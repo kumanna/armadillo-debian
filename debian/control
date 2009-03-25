@@ -1,0 +1,44 @@
+Source: armadillo
+Priority: optional
+Maintainer: Kumar Appaiah <akumar@debian.org>
+Build-Depends: debhelper (>= 7), doxygen (>= 1.5.1), libblas-dev, liblapack-dev
+Standards-Version: 3.8.0
+Section: libs
+Homepage: http://arma.sourceforge.net/
+
+Package: libarmadillo-dev
+Section: libdevel
+Architecture: any
+Depends: libarmadillo0 (= ${binary:Version})
+Description: streamlined C++ linear algebra library - Headers
+ Armadillo is a streamlined C++ linear algebra library (matrix maths)
+ aiming towards a good balance between speed and ease of use. Integer,
+ floating point and complex numbers are supported, as well as a subset
+ of trigonometric and statistics functions. Optional integration with
+ LAPACK and ATLAS libraries is also provided.
+ .
+ This package has the development libraries and headers for Armadillo.
+
+Package: libarmadillo0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: streamlined C++ linear algebra library
+ Armadillo is a streamlined C++ linear algebra library (matrix maths)
+ aiming towards a good balance between speed and ease of use. Integer,
+ floating point and complex numbers are supported, as well as a subset
+ of trigonometric and statistics functions. Optional integration with
+ LAPACK and ATLAS libraries is also provided.
+
+Package: libarmadillo-doc
+Section: doc
+Architecture: all
+Recommends: dwww, www-browser
+Description: streamlined C++ linear algebra library - Documentation
+ Armadillo is a streamlined C++ linear algebra library (matrix maths)
+ aiming towards a good balance between speed and ease of use. Integer,
+ floating point and complex numbers are supported, as well as a subset
+ of trigonometric and statistics functions. Optional integration with
+ LAPACK and ATLAS libraries is also provided.
+ .
+ This package contains the documentation for Armadillo.
