@@ -6,6 +6,8 @@ Build-Depends: debhelper (>= 7), doxygen (>= 1.5.1), libblas-dev, liblapack-dev
 Standards-Version: 3.8.0
 Section: libs
 Homepage: http://arma.sourceforge.net/
+Vcs-Git: git://git.debian.org/git/debian-science/packages/armadillo.git
+Vcs-Browser: http://git.debian.org/?p=debian-science/packages/armadillo.git
 
 Package: libarmadillo-dev
 Section: libdevel
