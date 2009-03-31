@@ -1,0 +1,132 @@
+#
+# (C) 2009 NICTA
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/build_aux/cmake/Modules/")
+
+INCLUDE(CheckIncludeFile)
+INCLUDE(CheckLibraryExists)
+INCLUDE(CheckFunctionExists) 
+
+#SET( CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE )
+
+PROJECT( armadillo CXX )
+
+#CMAKE_REQUIRED_FLAGS = string of compile command line flags
+#CMAKE_REQUIRED_DEFINITIONS = list of macros to define (-DFOO=bar)
+#CMAKE_REQUIRED_LIBRARIES = list of libraries to link
+
+IF(WIN32)
+  IF(NOT CYGWIN)
+    MESSAGE(FATAL_ERROR "Sorry, your platform is currently not supported")
+  ENDIF(NOT CYGWIN)
+ENDIF(WIN32)
+
+
+INCLUDE(ARMA_FindCLAPACKATLAS)
+INCLUDE(ARMA_FindCBLAS)
+
+IF(APPLE)
+  SET(ARMA_USE_LAPACK true)
+  SET(ARMA_USE_BLAS true)
+ELSE(APPLE)
+  INCLUDE(ARMA_FindLAPACK)
+  INCLUDE(ARMA_FindBLAS)
+
+  IF(LAPACK_FOUND)
+    SET(ARMA_USE_LAPACK true)
+  ENDIF(LAPACK_FOUND)
+  
+  IF(BLAS_FOUND)
+    SET(ARMA_USE_BLAS true)
+  ENDIF(BLAS_FOUND)
+ENDIF(APPLE)
+
+
+INCLUDE(FindBoost)
+FIND_PACKAGE(Boost)
+
+IF(CLAPACKATLAS_FOUND AND CBLAS_FOUND)
+  IF(${CLAPACKATLAS_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
+    SET(ARMA_USE_ATLAS true)
+    SET(ARMA_ATLAS_INCLUDE_DIR ${CLAPACKATLAS_INCLUDE_DIR}/)  # Note that the trailing / character is critical
+  ENDIF(${CLAPACKATLAS_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
+ENDIF(CLAPACKATLAS_FOUND AND CBLAS_FOUND)
+
+IF(Boost_FOUND)
+  SET(ARMA_USE_BOOST true)
+ENDIF(Boost_FOUND)
+
+
+
+CONFIGURE_FILE(src/include/armadillo_bits/config.hpp.cmake src/include/armadillo_bits/config.hpp)
+
+
+SET(ARMA_LIBS ${ARMA_LIBS} ${CLAPACKATLAS_LIBRARIES})
+SET(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
+SET(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
+SET(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
+
+IF(APPLE)
+  SET(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
+  MESSAGE(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
+ENDIF(APPLE)
+
+MESSAGE(STATUS "ARMA_LIBS = ${ARMA_LIBS}")
+
+INCLUDE_DIRECTORIES(src/include)
+ADD_LIBRARY( armadillo SHARED src/pull_libs )
+TARGET_LINK_LIBRARIES( armadillo ${ARMA_LIBS} )
+
+SET_TARGET_PROPERTIES(
+armadillo 
+PROPERTIES
+VERSION 0.6.2
+SOVERSION 0
+)
+
+# As Red Hat Enterprise Linux (and related systems such as Fedora)
+# does not search /usr/local/lib by default, we need to place the
+# library in /usr
+
+IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  SET(CMAKE_INSTALL_PREFIX "/usr")
+ENDIF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+
+MESSAGE(STATUS "CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
+
+
+# Allow for the "lib" directory to be specified on the command line
+
+IF(NOT LIB_INSTALL_DIR)
+  SET(LIB_INSTALL_DIR "lib")
+ENDIF(NOT LIB_INSTALL_DIR)
+
+MESSAGE(STATUS "LIB_INSTALL_DIR = ${LIB_INSTALL_DIR}")
+
+# Allow for the "include" directory to be specified on the command line
+
+IF(NOT INCLUDE_INSTALL_DIR)
+  SET(INCLUDE_INSTALL_DIR "include")
+ENDIF(NOT INCLUDE_INSTALL_DIR)
+
+MESSAGE(STATUS "INCLUDE_INSTALL_DIR = ${INCLUDE_INSTALL_DIR}")
+
+
+# Note that the trailing / character in "src/include/" is critical
+
+INSTALL(DIRECTORY src/include/ DESTINATION ${INCLUDE_INSTALL_DIR}
+PATTERN ".svn" EXCLUDE
+PATTERN "*.cmake" EXCLUDE
+PATTERN "*~" EXCLUDE
+PATTERN "*orig" EXCLUDE
+)
+
+
+INSTALL(TARGETS armadillo
+LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+)
+
+
+

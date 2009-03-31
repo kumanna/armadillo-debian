@@ -1,0 +1,20 @@
+#!/bin/sh
+
+ABORT=no
+
+check_prog()
+  {
+  ($1 --version) </dev/null >/dev/null 2>&1 ||
+    {
+    echo "error: \"$1\" must be present to configure and install Armadillo"
+    ABORT=yes
+    }
+  }
+
+check_prog "cmake"
+
+test "$ABORT" = yes && exit 1
+
+rm -f CMakeCache.txt
+cmake .
+
