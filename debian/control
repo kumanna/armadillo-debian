@@ -1,6 +1,7 @@
 Source: armadillo
 Priority: optional
-Maintainer: Kumar Appaiah <akumar@debian.org>
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders: Kumar Appaiah <akumar@debian.org>
 Build-Depends: debhelper (>= 7), doxygen (>= 1.5.1), libblas-dev, liblapack-dev
 Standards-Version: 3.8.0
 Section: libs
