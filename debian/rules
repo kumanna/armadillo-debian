@@ -15,8 +15,14 @@ config.status: configure
 
 build: build-stamp
 
+# The following reuses the Doxygen configuration provided with the
+# package to regenerate the API documentation. The current state of
+# affairs is kludgey, but I will work around this by requesting
+# upstream to make the document generation part of the build process,
+# like in the libitpp package.
+
 build-docs-stamp:
-	mkdir -p debian/doc_gen
+	mkdir -p debian/doc_gen # temporary documentation configurations places here.
 	cp build_aux/doxygen/doxygen.config build_aux/doxygen/main.doxy debian/doc_gen
 	echo -e "\nOUTPUT_DIRECTORY       = debian/tmp/usr/share/doc/libarmadillo-doc\n" >> debian/doc_gen/doxygen.config
 	doxygen -u debian/doc_gen/doxygen.config
@@ -26,7 +32,7 @@ build-docs-stamp:
 
 build-stamp: config.status
 	dh_testdir
-	cmake -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  .
+	cmake -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
 	$(MAKE)
 	touch $@
 
