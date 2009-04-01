@@ -12,6 +12,7 @@ Vcs-Browser: http://git.debian.org/?p=debian-science/packages/armadillo.git
 Package: libarmadillo-dev
 Section: libdevel
 Architecture: any
+Suggests: libitpp-dev
 Depends: libarmadillo0 (= ${binary:Version})
 Description: streamlined C++ linear algebra library - Headers
  Armadillo is a streamlined C++ linear algebra library (matrix maths)
