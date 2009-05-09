@@ -1,2 +1,2 @@
 usr/include/* usr/include
-usr/lib/lib*.so usr/lib
+usr/lib64/lib*.so usr/lib64

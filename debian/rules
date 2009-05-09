@@ -42,11 +42,12 @@ clean:
 	rm -f build-stamp build-docs-stamp
 	rm -rf debian/doc_gen
 	[ ! -f Makefile ] || $(MAKE) clean
-	rm -f config.guess config.sub Makefile
+	rm -f config.guess config.sub Makefile docs_tech/*
 	(cd build_aux;sh cleanup.sh)
 	rm -f CMakeCache.txt cmake_install.cmake
 	rm -rf CMakeFiles
 	rm -f src/include/armadillo_bits/config.hpp install_manifest.txt
+	rm -f include/armadillo_bits/config.hpp examples/Makefile
 	dh_clean  --exclude ./src/include/armadillo_bits/dgemm_proto.hpp.orig
 
 install: build
