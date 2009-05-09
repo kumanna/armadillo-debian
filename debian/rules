@@ -9,6 +9,8 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
+include /usr/share/quilt/quilt.make
+
 config.status: configure
 	dh_testdir
 	./configure
@@ -30,13 +32,13 @@ build-docs-stamp:
 	doxygen debian/doc_gen/doxygen.config
 	touch $@
 
-build-stamp: config.status
+build-stamp: config.status patch
 	dh_testdir
 	cmake -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
 	$(MAKE)
 	touch $@
 
-clean:
+clean: unpatch
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp build-docs-stamp

@@ -1,0 +1,13 @@
+Index: armadillo/CMakeLists.txt
+===================================================================
+--- armadillo.orig/CMakeLists.txt	2009-05-09 18:10:24.000000000 -0500
++++ armadillo/CMakeLists.txt	2009-05-09 18:10:51.000000000 -0500
+@@ -128,7 +128,7 @@
+     
+     IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
+       MESSAGE(STATUS "Detected 64 bit system")
+-      SET(LIB_INSTALL_DIR "lib64")
++      SET(LIB_INSTALL_DIR "lib")
+     ELSE(CMAKE_SIZEOF_VOID_P EQUAL 8)
+       SET(LIB_INSTALL_DIR "lib")
+     ENDIF(CMAKE_SIZEOF_VOID_P EQUAL 8)

@@ -1,3 +1,11 @@
+armadillo (0.6.10-2) unstable; urgency=low
+
+  * debian/control: Add quilt to Build-Depends.
+  * debian/patches: no_lib64.diff
+    + Patch to use lib64 always.
+  
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 09 May 2009 18:14:29 -0500
+
 armadillo (0.6.10-1) unstable; urgency=low
 
   * New Upstream Version
