@@ -1,3 +1,10 @@
+armadillo (0.6.2-2) UNRELEASED; urgency=low
+
+  * Update copyright: correct to mention that package is licensed under
+    LGPL v3 or later.
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 09 May 2009 16:31:04 -0500
+
 armadillo (0.6.2-1) unstable; urgency=low
 
   * Initial release (Closes: #521978)
