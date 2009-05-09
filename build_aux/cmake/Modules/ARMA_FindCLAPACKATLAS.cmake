@@ -16,7 +16,7 @@ FIND_PATH(CLAPACKATLAS_INCLUDE_DIR clapack.h
 SET(CLAPACKATLAS_NAMES ${CLAPACKATLAS_NAMES} lapack_atlas)
 FIND_LIBRARY(CLAPACKATLAS_LIBRARY
   NAMES ${CLAPACKATLAS_NAMES}
-  PATHS /usr/lib/atlas /usr/local/lib/atlas /usr/lib /usr/local/lib
+  PATHS /usr/lib64/atlas /usr/lib/atlas /usr/local/lib64/atlas /usr/local/lib/atlas /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib
   )
 
 IF (CLAPACKATLAS_LIBRARY AND CLAPACKATLAS_INCLUDE_DIR)

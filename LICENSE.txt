@@ -5,8 +5,12 @@ Public License (LGPL) as published by the Free Software
 Foundation, either version 3 of the License or (at your option)
 any later version.
 
-The LGPL v3 is given in the "LICENSE_LGPL.txt" file.  Note that
-LGPL v3 is formulated as an extension/modification of the GPL v3
-license, which is provided in the "LICENSE_GPL.txt" file.
+Note that the LGPL v3 is formulated as an extension/modification 
+of the GPL v3 license, providing additional permissions.
+For example, programs that use Armadillo can be distributed under 
+a different license, provided some conditions are met.
+
+A copy of the LGPL and GPL licenses is provided in the 
+"licenses/LGPL.txt" and "licenses/GPL.txt" files, respectively.
 
 More info: http://www.opensource.org/licenses

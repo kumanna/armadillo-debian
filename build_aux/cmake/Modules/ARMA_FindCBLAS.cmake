@@ -16,7 +16,7 @@ FIND_PATH(CBLAS_INCLUDE_DIR cblas.h
 SET(CBLAS_NAMES ${CBLAS_NAMES} cblas)
 FIND_LIBRARY(CBLAS_LIBRARY
   NAMES ${CBLAS_NAMES}
-  PATHS /usr/lib/atlas /usr/local/lib/atlas /usr/lib /usr/local/lib  
+  PATHS /usr/lib64/atlas /usr/lib/atlas /usr/local/lib64/atlas /usr/local/lib/atlas /usr/lib64 /usr/lib /usr/local/lib64 /usr/local/lib
   )
 
 IF (CBLAS_LIBRARY AND CBLAS_INCLUDE_DIR)

@@ -17,7 +17,7 @@
 <tr>
 <td>
 <h2>
-<b>Reference for Armadillo 0.6.0</b>
+<b>Reference for Armadillo 0.6.10</b>
 </h2>
 <td>
 <td style="text-align: right; vertical-align: top;">
@@ -34,16 +34,17 @@
 
 <!-- BEGIN CONTENT -->
 
+
 <font size=-1>
-<center>(If something needs to be clarified in this documentation, or if you spot any problems,
+(if something needs to be clarified or fixed in this documentation, 
 the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very interested in hearing about it)
-</center>
 </font>
+<br>
 <br>
 <br>
 <b>Matrix Classes and Member Functions</b>
 <ul>
-<a href="#basic_mat">mat, cx_mat and basic_mat</a>&nbsp;&middot;
+<a href="#Mat">Mat&lt;<i>type</i>&gt;, mat and cx_mat</a>&nbsp;&middot;
 <a href="#diag">diag</a>&nbsp;&middot;
 <a href="#element">element&nbsp;access</a>&nbsp;&middot;
 <a href="#fill">fill</a>&nbsp;&middot;
@@ -61,14 +62,15 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 
 <b>Vector Classes</b>
 <ul>
-<a href="#basic_colvec">vec, colvec and basic_colvec</a>&nbsp;&middot;
-<a href="#basic_rowvec">rowvec, basic_rowvec</a>
+<a href="#Col">Col&lt;<i>type</i>&gt;, colvec and vec</a>&nbsp;&middot;
+<a href="#Row">Row&lt;<i>type</i>&gt;, rowvec</a>
 </ul>
 <br>
 
 <b>Other Classes</b>
 <ul>
-<a href="#field">field</a>&nbsp;&middot;
+<a href="#field">field&lt;<i>object type</i>&gt;</a>&nbsp;&middot;
+<a href="#running_stat">running_stat&lt;<i>type</i>&gt;</a>&nbsp;&middot;
 <a href="#wall_clock">wall_clock</a>
 </ul>
 <br>
@@ -87,7 +89,7 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <ul>
 <a href="#abs">abs</a>&nbsp;&middot;
 <a href="#misc_fns">misc functions (exp, log, log10, pow, sqrt, square)</a>&nbsp;&middot;
-<a href="#trig_fns">trigonometric functions (cos, sin, ...)</a>
+<a href="#trig_fns">trigonometric functions (cos,&nbsp;sin,&nbsp;...)</a>
 </ul>
 <br>
 
@@ -126,7 +128,8 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <b>Decompositions, Inverse and Related Functions</b>
 <ul>
 <a href="#chol">chol</a>&nbsp;&middot;
-<a href="#eig">eig</a>&nbsp;&middot;
+<a href="#eig_sym">eig_sym</a>&nbsp;&middot;
+<a href="#eig_gen">eig_gen</a>&nbsp;&middot;
 <a href="#inv">inv</a>&nbsp;&middot;
 <a href="#lu">lu</a>&nbsp;&middot;
 <a href="#qr">qr</a>&nbsp;&middot;
@@ -156,10 +159,10 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <hr>
 <br>
 
-<a name="basic_mat"></a><b>mat, cx_mat and basic_mat</b>
+<a name="Mat"></a><b>Mat&lt;</b><i>type</i><b>&gt;</b>, <b>mat</b> and <b>cx_mat</b>
 <ul>
 <li>
-The root matrix class is <i>basic_mat&lt;type&gt;</i>, where <i>type</i> can be one of:
+The root template matrix class is <b>Mat&lt;</b><i>type</i><b>&gt;</b>, where <i>type</i> can be one of:
 <i>char</i>, <i>int</i>, <i>float</i>, <i>double</i>, <i>std::complex&lt;double&gt;</i>, etc.
 </li>
 <br>
@@ -180,46 +183,6 @@ For convenience the following typedefs have been defined:
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      imat
-      </td>
-      <td style="vertical-align: top;">=<br>
-      </td>
-      <td style="vertical-align: top;">
-      basic_mat&lt;s32&gt;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">
-      umat
-      </td>
-      <td style="vertical-align: top;">=<br>
-      </td>
-      <td style="vertical-align: top;">
-      basic_mat&lt;u32&gt;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">
-      fmat
-      </td>
-      <td style="vertical-align: top;">=<br>
-      </td>
-      <td style="vertical-align: top;">
-      basic_mat&lt;float&gt;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">
-      mat
-      </td>
-      <td style="vertical-align: top;">=<br>
-      </td>
-      <td style="vertical-align: top;">
-      basic_mat&lt;double&gt;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">
       cx_float, cx_double
       </td>
       <td style="vertical-align: top;">=<br>
@@ -230,12 +193,52 @@ For convenience the following typedefs have been defined:
     </tr>
     <tr>
       <td style="vertical-align: top;">
+      imat
+      </td>
+      <td style="vertical-align: top;">=<br>
+      </td>
+      <td style="vertical-align: top;">
+      Mat&lt;s32&gt;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      umat
+      </td>
+      <td style="vertical-align: top;">=<br>
+      </td>
+      <td style="vertical-align: top;">
+      Mat&lt;u32&gt;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      fmat
+      </td>
+      <td style="vertical-align: top;">=<br>
+      </td>
+      <td style="vertical-align: top;">
+      Mat&lt;float&gt;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      mat
+      </td>
+      <td style="vertical-align: top;">=<br>
+      </td>
+      <td style="vertical-align: top;">
+      Mat&lt;double&gt;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
       cx_fmat
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_mat&lt;cx_float&gt;
+      Mat&lt;cx_float&gt;
       </td>
     </tr>
     <tr>
@@ -245,7 +248,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_mat&lt;cx_double&gt;
+      Mat&lt;cx_double&gt;
       </td>
     </tr>
   </tbody>
@@ -254,7 +257,7 @@ For convenience the following typedefs have been defined:
 </li>
 <br>
 <li>
-Data is stored with column-major ordering.
+Data is stored with column-major ordering (i.e. column by column).
 </li>
 <br>
 <li>
@@ -277,7 +280,7 @@ Constructors:
 <li>mat(mat)</li>
 <li>mat(rowvec)</li>
 <li>mat(colvec)</li>
-<li>mat(mat,mat) &nbsp; (for constructing a complex matrix out of two real matrices)</li>
+<li>cx_mat(mat,mat) &nbsp; (for constructing a complex matrix out of two real matrices)</li>
 </ul>
 </li>
 <br>
@@ -373,9 +376,8 @@ object (i.e., <i>mat</i>, <i>colvec</i>, <i>rowvec</i>, <i>field</i>).<br>
 and
 rowvec, access the n-th element. For mat and field,
 access the n-th element/object under the assumption of a flat layout,
-with column-major ordering of data.
-Throws an exception if requested element is out of
-bounds.
+with column-major ordering of data (i.e. column by column).
+An exception is thrown if the requested element is out of bounds.
 The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro is defined.<br>
                           <br>
                           </td>
@@ -400,7 +402,7 @@ has been thoroughly debugged.<br>
                           </td>
                           <td style="vertical-align: top;">
 For mat and field classes, access the element/object stored at the i-th row and j-th column.
-Throws an exception if requested element is out of bounds.
+An exception is thrown if the requested element is out of bounds.
 The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro is defined.
 <br>
                           <br>
@@ -466,47 +468,38 @@ A.fill(123.0);
 <hr><br>
 
 <a name="n_rows"></a>
-<b>.n_rows
-<br>.n_cols
-<br>.n_elem
-</b>
-                  <ul>
-<li>
-Meaning:
-<br>
+
+
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<b>.n_rows</b>
+</td>
+<td>
+(number of rows)
+</td>
+</tr>
+<tr>
+<td>
+<b>.n_cols</b>
+</td>
+<td>
+(number of columns)
+</td>
+</tr>
+<tr>
+<td>
+<b>.n_elem</b>
+</td>
+<td>
+(number of elements)
+</td>
+</tr>
+</tbody>
+</table>
 <br>
 <ul>
-                  <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align: top;"><b>n_rows</b></td>
-                        <td style="vertical-align: top;"><br>
-                        </td>
-                        <td style="vertical-align: top;">
-Number of rows<br>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="vertical-align: top;"><b>n_cols</b></td>
-                        <td style="vertical-align: top;"><br>
-                        </td>
-                        <td style="vertical-align: top;">
-Number of columns
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="vertical-align: top;"><b>n_elem</b></td>
-                        <td style="vertical-align: top;"><br>
-                        </td>
-                        <td style="vertical-align: top;">
-Number of elements
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-</ul>
-</li>
-<br>
 <li>Read-only member variables of <i>mat</i>, <i>colvec</i>, <i>rowvec</i> and <i>field</i> classes.</li>
 <br>
 <li>The variables are of type <i>u32</i> (unsigned integer).</li>
@@ -726,16 +719,16 @@ A.reset();
 
 <a name="save_load"></a>
 <b>
-.save(name)
+.save(name, file_type = arma_binary)
 <br>
-.load(name)
+.load(name, file_type = auto_detect)
 </b>
 <ul>
 <li>
 Store/retrieve data in files
 </li>
 <br>
-<li>Member functions of <i>mat</i>, <i>colvec</i>, <i>rowvec</i> and <i>field</i> classes</li>
+<li>Member functions of <i>mat</i>, <i>colvec</i>, <i>rowvec</i> classes</li>
 <br>
 <li>load() will reset the object to have no elements if the loading process failed (e.g. wrong filename, unsupported format, etc).</li>
 <br>
@@ -763,7 +756,7 @@ This is the default operation.
                         </td>
                         <td style="vertical-align: top;">
 Numerical data stored in raw ASCII format (no header),
-with the fields separated by white space.
+with the numbers separated by white space.
 The number of columns must be the same in each row.
 load() can read data which was saved in Matlab/Octave using the <i>-ascii</i> option, except for complex numbers.
 Complex numbers are stored in standard C++ notation (a tuple surrounded by brackets: e.g. (1.23,4.56) indicates 1.24&nbsp;+&nbsp;4.56i).
@@ -944,11 +937,11 @@ Set the elements of an object to zero, optionally first resizing to specified di
 </li>
 <br>
 <li>
-<i>.zeros()</i> and <i>.zeros(n_rows,n_cols)</i> are member functions of <i>basic_mat</i>
+<i>.zeros()</i> and <i>.zeros(n_rows,n_cols)</i> are member functions of <i>Mat</i>
 </li>
 <br>
 <li>
-<i>.zeros()</i> and <i>.zeros(n_elem)</i> are member function of <i>basic_colvec</i> and <i>basic_rowvec</i>
+<i>.zeros()</i> and <i>.zeros(n_elem)</i> are member function of <i>Col</i> and <i>Row</i>
 </li>
 <br>
 <li>
@@ -979,13 +972,13 @@ See also: <a href="#zeros_standalone">zeros()</a> (stand alone function)
 <hr>
 <br>
 
-<a name="basic_colvec"></a><b>vec, colvec and basic_colvec</b>
+<a name="Col"></a><b>Col&lt;</b><i>type</i><b>&gt;</b>, <b>colvec</b> and <b>vec</b>
 <ul>
 <li>
 Classes for column vectors (matrices with one column).
 </li>
 <br>
-<li>The <i>basic_colvec&lt;type&gt;</i> class is derived from the <i>basic_mat&lt;type&gt;</i> class
+<li>The <b>Col&lt;</b><i>type</i><b>&gt;</b> class is derived from the <b>Mat&lt;</b><i>type</i><b>&gt;</b> class
 and inherits most of the member functions.
 </li>
 <br>
@@ -996,72 +989,62 @@ For convenience the following typedefs have been defined:
   <tbody>
     <tr>
       <td style="vertical-align: top;">
-      icolvec
+      ivec, icolvec
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_colvec&lt;s32&gt;
+      Col&lt;s32&gt;
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      ucolvec
+      uvec, ucolvec
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_colvec&lt;u32&gt;
+      Col&lt;u32&gt;
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      fcolvec
+      fvec, fcolvec
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_colvec&lt;float&gt;
+      Col&lt;float&gt;
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      colvec
+      vec, colvec
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_colvec&lt;double&gt;
+      Col&lt;double&gt;
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      cx_fcolvec
+      cx_fvec, cx_fcolvec
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_colvec&lt;cx_float&gt;
+      Col&lt;cx_float&gt;
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      cx_colvec
+      cx_vec, cx_colvec
       </td>
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_colvec&lt;cx_double&gt;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">
-      vec
-      </td>
-      <td style="vertical-align: top;">=<br>
-      </td>
-      <td style="vertical-align: top;">
-      basic_colvec&lt;double&gt;
+      Col&lt;cx_double&gt;
       </td>
     </tr>
   </tbody>
@@ -1071,13 +1054,14 @@ For convenience the following typedefs have been defined:
 <br>
 <li>
 <b>
-In this documentation the <i>colvec</i> type is used for convenience.
-It is possible to use other types instead, e.g. <i>fcolvec</i>.
+In this documentation the <i>colvec</i> type is used for convenience and to accentuate that it is a column vector.
+It is possible to use the <u>shorter version</u>, i.e. <u><i>vec</i></u>,
+as well as other types, e.g. <i>fvec</i>, <i>fcolvec</i>.
 </b>
 </li>
 <br>
 <li>
-Functions which take <i>basic_mat</i> as input can generally also take <i>basic_colvec</i> as input.
+Functions which take <i>Mat</i> as input can generally also take <i>Col</i> as input.
 Main exceptions are functions which require square matrices.
 </li>
 <br>
@@ -1091,7 +1075,7 @@ Constructors
 </li>
 <br>
 <li>
-Throws an exception if initialised with a matrix that has more than one column.<br>
+An exception is thrown if the given matrix has more than one column.<br>
 </li>
 <br>
 <li>
@@ -1101,7 +1085,7 @@ Examples:
 colvec x(10);
 colvec y = zeros&lt;colvec&gt;(10,1);
 
-mat A = rand&lt;mat&gt;(10,10);
+mat    A = rand&lt;mat&gt;(10,10);
 colvec z = A.col(5); // extract a column vector
 </pre>
 </ul>
@@ -1136,14 +1120,14 @@ colvec q = 123.0 * ones&lt;colvec&gt;(5,1);
 <br>
 <hr><br>
 
-<a name="basic_rowvec"></a>
-<b>rowvec and basic_rowvec</b>
+<a name="Row"></a>
+<b>Row&lt;</b><i>type</i><b>&gt;</b> and <b>rowvec</b>
 <ul>
 <li>
 Classes for row vectors (matrices with one row)
 </li>
 <br>
-<li>The <i>basic_rowvec&lt;type&gt;</i> class is derived from the <i>basic_mat&lt;type&gt;</i> class
+<li>The template <b>Row&lt;</b><i>type</i><b>&gt;</b> class is derived from the <b>Mat&lt;</b><i>type</i><b>&gt;</b> class
 and inherits most of the member functions.
 </li>
 <br>
@@ -1159,7 +1143,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_rowvec&lt;s32&gt;
+      Row&lt;s32&gt;
       </td>
     </tr>
     <tr>
@@ -1169,7 +1153,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_rowvec&lt;u32&gt;
+      Row&lt;u32&gt;
       </td>
     </tr>
     <tr>
@@ -1179,7 +1163,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_rowvec&lt;float&gt;
+      Row&lt;float&gt;
       </td>
     </tr>
     <tr>
@@ -1189,7 +1173,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_rowvec&lt;double&gt;
+      Row&lt;double&gt;
       </td>
     </tr>
     <tr>
@@ -1199,7 +1183,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_rowvec&lt;cx_float&gt;
+      Row&lt;cx_float&gt;
       </td>
     </tr>
     <tr>
@@ -1209,7 +1193,7 @@ For convenience the following typedefs have been defined:
       <td style="vertical-align: top;">=<br>
       </td>
       <td style="vertical-align: top;">
-      basic_rowvec&lt;cx_double&gt;
+      Row&lt;cx_double&gt;
       </td>
     </tr>
   </tbody>
@@ -1225,7 +1209,7 @@ It is possible to use other types instead, e.g. <i>frowvec</i>.
 </li>
 <br>
 <li>
-Functions which take <i>basic_mat</i> as input can generally also take <i>basic_rowvec</i> as input.
+Functions which take <i>Mat</i> as input can generally also take <i>Row</i> as input.
 Main exceptions are functions which require square matrices.
 </li>
 <br>
@@ -1239,7 +1223,7 @@ rowvec(n_elem=0)
 </li>
 <br>
 <li>
-Throws an exception if initialised with a matrix that has more than one row.
+An exception is thrown if the given matrix has more than one row.
 </li>
 <br>
 <li>
@@ -1294,18 +1278,18 @@ rowvec r = 123.0 * ones&lt;rowvec&gt;(1,5);
 <br>
 
 <a name="field"></a>
-<b>field</b>
+<b>field&lt;</b><i>object type</i><b>&gt;</b>
 <ul>
 <li>
 Class for one and two dimensional fields of arbitrary objects
 </li>
 <br>
 <li>
-Constructors (where <i>type</i> is another class, e.g. <i>mat</i>, <i>colvec</i>, <i>rowvec</i>, etc):
+Constructors (where <i>object type</i> is another class, e.g. <i>mat</i>, <i>colvec</i>, <i>rowvec</i>, <i>std::string</i>, etc):
 <ul>
-field&lt;<i>type</i>&gt;(n_elem=0)
-<br>field&lt;<i>type</i>&gt;(n_rows, n_cols)
-<br>field&lt;<i>type</i>&gt;(field&lt;<i>type</i>&gt;)
+field&lt;<i>object type</i>&gt;(n_elem=0)
+<br>field&lt;<i>object type</i>&gt;(n_rows, n_cols)
+<br>field&lt;<i>object type</i>&gt;(field&lt;<i>object type</i>&gt;)
 </ul>
 </li>
 <br>
@@ -1314,14 +1298,9 @@ field&lt;<i>type</i>&gt;(n_elem=0)
 <br>
 <li>The () operator has a bounds check that can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro is defined
 </li>
-</br>
-<li>
-The [] operator has no bounds check -- this not recommended for use unless your code has been thoroughly debugged
-</li>
 <br>
 <li>
-Fields with objects of type <i>mat</i>, <i>colvec</i> and <i>rowvec</i>
-can be saved or loaded via field's .save() and .load() member functions
+The [] operator has no bounds check -- this not recommended for use unless your code has been thoroughly debugged
 </li>
 <br>
 <li>
@@ -1334,6 +1313,86 @@ The field class has several member functions for accessing sub-fields:
 .<b>subfield(&nbsp;</b>first_row<b>,</b> first_column<b>,</b> last_row<b>,</b> last_column&nbsp;<b>)</b><br>
 </ul>
 </li>
+<br>
+<li>
+Fields with objects of type <i>mat</i>, <i>colvec</i>, <i>rowvec</i> and <i>std::string</i>
+can be saved or loaded via field's <b>.save()</b> and <b>.load()</b> member functions.
+The interface is similar to the <a href="#save_load">.save()/.load()</a> functions in the Mat class,
+with the main difference being that different file formats are supported:
+<br>
+<br>
+<ul>
+                  <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+                    <tbody>
+                      <tr>
+                        <td style="vertical-align: top;"><b>auto_detect</b></td>
+                        <td style="vertical-align: top;"><br>
+                        </td>
+                        <td style="vertical-align: top;">
+<br>
+<li>
+load(): try to automatically detect the field format type as one of the formats described below.
+This is the default operation.
+</li>
+<br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: top;"><b>arma_binary</b></td>
+                        <td style="vertical-align: top;"><br>
+                        </td>
+                        <td style="vertical-align: top;">
+<br>
+<li>
+Objects are stored in machine dependent binary format.
+<li>
+Default type for fields of type <i>mat</i>, <i>colvec</i> or <i>rowvec</i>.
+</li>
+<li>
+Only applicable to fields of type <i>mat</i>, <i>colvec</i> or <i>rowvec</i>.
+</li>
+<br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: top;"><b>ppm_binary</b></td>
+                        <td style="vertical-align: top;"><br>
+                        </td>
+                        <td style="vertical-align: top;">
+<br>
+<li>
+Image data stored in Portable Pixmap Map (PPM) format.
+</li>
+<li>
+Only applicable to fields of type <i>mat</i>, <i>colvec</i> or <i>rowvec</i>.
+</li>
+<li>
+.load(): Loads the specified image and stores the red, green and blue components as three separate matrices.
+The resulting field is comprised of the three matrices,
+with the red, green and blue components in the first, second and third matrix, respectively.
+</li>
+<li>
+.save(): Saves a field with exactly three matrices of equal size as an image.
+It is assumed that the red, green and blue components are stored in the first, second and third matrix, respectively.
+Saving <i>int</i>, <i>float</i> or <i>double</i> matrices is a lossy operation,
+as each matrix element is copied and converted to an 8 bit representation.
+</li>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+</ul>
+</li>
+<br>
+<li>
+Fields with objects of type <i>std::string</i> are saved and loaded as raw text files.
+The text files do not have a header.
+Each string is separated by a whitespace.
+The .load() function will only accept text files that have the same number of strings on each line.
+The strings can have variable lengths.
+</li>
+
 <br>
 <li>
 Examples:
@@ -1356,8 +1415,136 @@ F.row(0) = F.row(2);
 // extract a row of colvecs from F
 field&lt;colvec&gt; G = F.row(1);
 
+// print the field to the standard output
 G.print("G =");
+
+// save the field to a binary file
+G.save("colvec_field");
+
+
+// create a field of strings
+field&lt;std::string&gt; S(3,2);
+
+S(0,0) = "hello";
+S(1,0) = "there";
+
+// string fields can be saved as plain text files
+S.save("string_field");
 <br></pre>
+</ul>
+</li>
+</ul>
+<br>
+<hr><br>
+
+<a name="running_stat"></a>
+<b>running_stat&lt;</b><i>type</i><b>&gt;</b>
+<ul>
+<li>
+Class for keeping statistics of a continuously sampled process/signal.
+Useful if the storage of individual samples is not necessary or desired.
+Also useful if the number of samples is not known beforehand or exceeds 
+available memory.
+</li>
+<br>
+<li>
+<i>type</i> should be one of: <i>float</i>, <i>double</i>, <i>std::complex&lt;float&gt;</i>, <i>std::complex&lt;double&gt;</i>
+</li>
+<br>
+<li>
+Member functions:
+<ul>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.operator()(</b>sample<b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      update the statistics so far using the given sample
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.mean()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the mean or average value so far
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.var(</b>norm_type=0<b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the variance so far
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.stddev(</b>norm_type=0<b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the standard deviation so far
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.min()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the minimum value so far
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.max()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the maximum value so far
+      </td>
+    </tr>
+  </tbody>
+</table>
+</ul>
+</li>
+<br>
+<li>
+For the .var() and .stddev() functions, the default <i>norm_type=0</i> performs normalisation using N-1
+(where N is the number of samples so far),
+providing the best unbiased estimator.
+Using <i>norm_type=1</i> causes normalisation to be done using N, which provides the second moment around the mean.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+running_stat&lt;double&gt; stats;
+
+for(u32 i=0; i&lt;10000; ++i)
+  {
+  double sample = double(rand())/RAND_MAX;
+  stats(sample);
+  }
+
+cout &lt;&lt; "mean = " &lt;&lt; stats.mean() &lt;&lt; endl;
+cout &lt;&lt; "var  = " &lt;&lt; stats.var()  &lt;&lt; endl;
+cout &lt;&lt; "min  = " &lt;&lt; stats.min()  &lt;&lt; endl;
+cout &lt;&lt; "max  = " &lt;&lt; stats.max()  &lt;&lt; endl;
+</pre>
 </ul>
 </li>
 </ul>
@@ -1565,7 +1752,7 @@ rowvec r = zeros&lt;rowvec&gt;(5);
 </li>
 <br>
 <li>
-See also: <a href="#zeros_member">.zeros()</a> (member function of basic_mat, basic_colvec and basic_rowvec)
+See also: <a href="#zeros_member">.zeros()</a> (member function of Mat, Col and Row)
 </li>
 </ul>
 <br>
@@ -1823,7 +2010,7 @@ Determinant of a square matrix.
 </li>
 <br>
 <li>
-Throws an exception if the given matrix is not square.
+An exception is thrown if the given matrix is not square.
 </li>
 <br>
 <li>
@@ -1895,7 +2082,7 @@ Sum of the diagonal elements of a square matrix.
 </li>
 <br>
 <li>
-Throws an exception if the given matrix is not square.
+An exception is thrown if the given matrix is not square.
 </li>
 <br>
 <li>
@@ -2344,8 +2531,8 @@ mat B = trans(A);
 <br>
 
 <a name="chol"></a>
-<b>R = chol(X)</b>
-<br><b>chol(R, X)</b>
+<b>chol(R, X)</b>
+<br><b>R = chol(X)</b>
 <ul>
 <li>
 Cholesky decomposition of <i>X</i>, such that trans(R)*R = X.
@@ -2374,22 +2561,31 @@ See also: <a href="http://mathworld.wolfram.com/CholeskyDecomposition.html">Chol
 <br>
 <hr><br>
 
-<a name="eig"></a>
-<b>eig(colvec eigval, mat X)</b>
-<br><b>eig(colvec eigval, mat eigvec, mat X)</b>
-</b>
+<a name="eig_sym"></a>
+<b>eig_sym(colvec eigval, mat X)</b>
+<br><b>eig_sym(colvec eigval, cx_mat X)</b>
+<br>
+<br><b>colvec eigval = eig_sym(mat X)</b>
+<br><b>colvec eigval = eig_sym(cx_mat X)</b>
+<br>
+<br><b>eig_sym(colvec eigval, mat eigvec, mat X)</b>
+<br><b>eig_sym(colvec eigval, cx_mat eigvec, cx_mat X)</b>
 <ul>
 <li>
-Eigen decomposition of symmetric matrix <i>X</i>.
-The eigenvalues and corresponding eigenvectors are stored in <i>eigval</i> and <i>eigvec</i>, respectively.
-</li>
+Eigen decomposition of symmetric/hermitian matrix <i>X</i>.</li>
+<br>
+<li>The eigenvalues and corresponding eigenvectors are stored in <i>eigval</i> and <i>eigvec</i>, respectively.</li>
 <br>
 <li>
 The eigenvalues are not guaranteed to be ordered.
 </li>
 <br>
 <li>
-Throws an exception if <i>X</i> is not square.
+An exception is thrown if <i>X</i> is not square.
+</li>
+<br>
+<li>
+There is currently no check for symmetry of X.
 </li>
 <br>
 <li>
@@ -2397,12 +2593,60 @@ Examples:
 <ul>
 <pre>
 mat A = rand&lt;mat&gt;(10,10);
-mat B = trans(A)*A;
+mat B = trans(A)*A;  // generate a symmetric matrix
 
 colvec eigval;
 mat    eigvec;
 
-eig(eigval, eigvec, B);
+eig_sym(eigval, eigvec, B);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a>
+</li>
+</ul>
+<br>
+<hr><br>
+
+<a name="eig_gen"></a>
+<b>eig_gen(cx_colvec eigval, cx_mat eigvec, mat X, side='r')</b>
+<br>
+<b>eig_gen(cx_colvec eigval, cx_mat eigvec, cx_mat X, side='r')</b>
+<br>
+<br>
+<b>eig_gen(cx_colvec eigval, mat l_eigvec, mat r_eigvec, mat X)</b>
+<br>
+<b>eig_gen(cx_colvec eigval, cx_mat l_eigvec, cx_mat r_eigvec, cx_mat X)</b>
+<ul>
+<li>
+Eigen decomposition of general (non-symmetric/non-hermitian) square matrix <i>X</i>.</li>
+<br>
+<li>The eigenvalues and corresponding eigenvectors are stored in <i>eigval</i> and <i>eigvec</i>, respectively.</li>
+<br>
+<li>For the first two forms, <i>side='r'</i> (default) specifies that right eigenvectors are computed, while <i>side='l'</i> specifies that left eigenvectors are computed.</li>
+<br>
+<li>For the last two forms, both left and right eigenvectors are computed.</li>
+<br>
+<li>
+The eigenvalues are not guaranteed to be ordered.
+</li>
+<br>
+<li>
+An exception is thrown if <i>X</i> is not square.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = rand&lt;mat&gt;(10,10);
+
+cx_colvec eigval;
+cx_mat    eigvec;
+
+eig_gen(eigval, eigvec, A);
 </pre>
 </ul>
 </li>
@@ -2422,7 +2666,7 @@ Inverse of a square matrix.
 </li>
 <br>
 <li>
-Throws an exception if the given matrix is not square or is rank deficient.
+An exception is thrown if the given matrix is not square or is rank deficient.
 </li>
 <br>
 <li>
@@ -2518,8 +2762,11 @@ See also: <a href="http://mathworld.wolfram.com/QRDecomposition.html">QR decompo
 <hr><br>
 
 <a name="solve"></a>
-<b>solve(colvec x, mat A, colvec b)</b>, <b>colvec x = solve(mat A, colvec b)</b>
-<br><b>solve(mat X, mat A, mat B)</b>, <b>mat X = solve(mat A, mat B)</b>
+<b>solve(colvec x, mat A, colvec b)</b> 
+<br><b>solve(mat X, mat A, mat B)</b>, 
+<br>
+<br><b>colvec x = solve(mat A, colvec b)</b>
+<br><b>mat X = solve(mat A, mat B)</b>
 <ul>
 <li>Solve a system of linear equations, i.e., A*X = B, where X is unknown.</li>
 <br>
@@ -2560,11 +2807,13 @@ See also: <a href="http://mathworld.wolfram.com/LinearSystemofEquations.html">li
 
 
 <a name="svd"></a>
-<b>svd(colvec s, mat X)</b>, <b>colvec s = svd(mat X)</b>
+<b>svd(colvec s, mat X)</b>, 
+<br><b>svd(colvec s, cx_mat X)</b> 
+<br>
+<br><b>colvec s = svd(mat X)</b>
+<br><b>colvec s = svd(cx_mat X)</b>
+<br>
 <br><b>svd(mat U, colvec s, mat V, mat X)</b>
-<br>
-<br>
-<b>svd(colvec s, cx_mat X)</b>, <b>colvec s = svd(cx_mat X)</b>
 <br><b>svd(cx_mat U, colvec s, cx_mat V, cx_mat X)</b>
 <ul>
 <li>
@@ -2621,13 +2870,13 @@ Collection of constants, with their precision and/or value dependant on the nume
 </li>
 <br>
 <li>
-The constants are stored as static functions in the <i>basic_math&lt;type&gt;</i> class,
+The constants are stored as static functions in the <i>Math&lt;type&gt;</i> class,
 where <i>type</i> is either <i>float</i> or <i>double</i>.
 </li>
 <br>
 <li>
-For convenience, <i>basic_math&lt;float&gt;</i> has been typedefed as <i>fmath</i>,
-while <i>basic_math&lt;double&gt;</i> has been typedefed as <i>math</i>.
+For convenience, <i>Math&lt;float&gt;</i> has been typedefed as <i>fmath</i>,
+while <i>Math&lt;double&gt;</i> has been typedefed as <i>math</i>.
 </li>
 <br>
 <li>
