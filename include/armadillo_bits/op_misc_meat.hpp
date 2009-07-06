@@ -186,15 +186,15 @@ op_square::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_square>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
     {
-    const eT tmp = A.mem[i];
-    out_ptr[i] = tmp*tmp;
+    const eT tmp_val = A.mem[i];
+    out_ptr[i] = tmp_val*tmp_val;
     }
   
   }

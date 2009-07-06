@@ -208,6 +208,10 @@ namespace atlas
       typedef std::complex<double> T;
       return clapack_zgetrf(Order, M, N, (T*)A, lda, ipiv);
       }
+    else
+      {
+      return -1;
+      }
     }
   
   
@@ -245,6 +249,10 @@ namespace atlas
       {
       typedef std::complex<double> T;
       return clapack_zgetri(Order, N, (T*)A, lda, ipiv);
+      }
+    else
+      {
+      return -1;
       }
     }
   

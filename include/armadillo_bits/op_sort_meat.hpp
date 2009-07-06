@@ -77,7 +77,7 @@ class arma_qsort_helper
 
 
 
-template<>
+//template<>
 template<typename T>
 class arma_qsort_helper< std::complex<T> >
   {
@@ -200,21 +200,21 @@ op_sort::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sort>& in)
       arma_extra_debug_print("op_sort::apply(), dim = 1, generic");
       
       out.set_size(X.n_rows, X.n_cols);
-      podarray<eT> tmp(X.n_cols);
+      podarray<eT> tmp_array(X.n_cols);
       
       for(u32 row=0; row<out.n_rows; ++row)
         {
         
         for(u32 col=0; col<out.n_cols; ++col)
           {
-          tmp[col] = X.at(row,col);
+          tmp_array[col] = X.at(row,col);
           }
         
-        op_sort::direct_sort( tmp.memptr(), out.n_cols, sort_type );
+        op_sort::direct_sort( tmp_array.memptr(), out.n_cols, sort_type );
         
         for(u32 col=0; col<out.n_cols; ++col)
           {
-          out.at(row,col) = tmp[col];
+          out.at(row,col) = tmp_array[col];
           }
         
         }

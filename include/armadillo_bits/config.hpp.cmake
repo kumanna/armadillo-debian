@@ -14,14 +14,20 @@
 
 
 
-#cmakedefine ARMA_SYS_FINITE
-#cmakedefine ARMA_SYS_ISINF
-#cmakedefine ARMA_SYS_ISNAN
+#cmakedefine ARMA_HAVE_STD_ISFINITE
+#cmakedefine ARMA_HAVE_STD_ISINF
+#cmakedefine ARMA_HAVE_STD_ISNAN
+#cmakedefine ARMA_HAVE_STD_SNPRINTF
+
+#cmakedefine ARMA_HAVE_LOG1P
+#cmakedefine ARMA_HAVE_GETTIMEOFDAY
 
 #cmakedefine ARMA_USE_ATLAS
 #cmakedefine ARMA_USE_LAPACK
 #cmakedefine ARMA_USE_BLAS
 #cmakedefine ARMA_USE_BOOST
+#cmakedefine ARMA_USE_BOOST_DATE
+
 #cmakedefine ARMA_EXTRA_DEBUG
 #cmakedefine ARMA_NO_DEBUG
 
@@ -31,3 +37,8 @@
   #endif
 #endif
 
+#if defined(__CUDACC__)
+  #undef ARMA_HAVE_STD_ISFINITE
+  #undef ARMA_HAVE_STD_ISINF
+  #undef ARMA_HAVE_STD_ISNAN
+#endif

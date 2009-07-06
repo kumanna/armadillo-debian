@@ -1,29 +1,35 @@
 #
 # (C) 2009 NICTA
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+SET(ARMA_MAJOR 0)
+SET(ARMA_MINOR 6)
+SET(ARMA_PATCH 12)
+
+MESSAGE(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/build_aux/cmake/Modules/")
 
-INCLUDE(CheckIncludeFile)
+INCLUDE(CheckIncludeFileCXX)
 INCLUDE(CheckLibraryExists)
-INCLUDE(CheckFunctionExists) 
-#INCLUDE(CheckPrototypeExists)   # seems to be only present in cmake >= 2.6
+INCLUDE(FindBoost)
+
+INCLUDE(ARMA_CheckProto)
+INCLUDE(ARMA_CheckMathProto)
 
 #SET( CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE )
 
-PROJECT( armadillo CXX )
+PROJECT(armadillo CXX)
 
 #CMAKE_REQUIRED_FLAGS = string of compile command line flags
 #CMAKE_REQUIRED_DEFINITIONS = list of macros to define (-DFOO=bar)
 #CMAKE_REQUIRED_LIBRARIES = list of libraries to link
 
 IF(WIN32)
-  IF(NOT CYGWIN)
-    MESSAGE(FATAL_ERROR "Sorry, automatic installation is currently not supported on this platform. Please try the manual installation.")
-  ENDIF(NOT CYGWIN)
+  MESSAGE(STATUS "WARNING: Automatic installation has not been tested on this platform")
+  MESSAGE(STATUS "WARNING: If it doesn't work, please try the manual installation")
 ENDIF(WIN32)
-
 
 IF(APPLE)
   SET(ARMA_OS macos)
@@ -53,25 +59,43 @@ INCLUDE(ARMA_FindCBLAS)
 IF(CLAPACKATLAS_FOUND AND CBLAS_FOUND)
   IF(${CLAPACKATLAS_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
     SET(ARMA_USE_ATLAS true)
-    SET(ARMA_ATLAS_INCLUDE_DIR ${CLAPACKATLAS_INCLUDE_DIR}/)  # the trailing / character is critical
+    SET(ARMA_ATLAS_INCLUDE_DIR ${CLAPACKATLAS_INCLUDE_DIR})
   ENDIF(${CLAPACKATLAS_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
 ENDIF(CLAPACKATLAS_FOUND AND CBLAS_FOUND)
 
 
-INCLUDE(FindBoost)
+SET(ARMA_USE_BOOST false)
 FIND_PACKAGE(Boost)
 
 IF(Boost_FOUND)
-  SET(ARMA_USE_BOOST      true)
-  SET(ARMA_USE_BOOST_BOOL true)
-ELSE(Boost_FOUND)
-  SET(ARMA_USE_BOOST_BOOL false)
+  MESSAGE(STATUS "Boost_MAJOR_VERSION = ${Boost_MAJOR_VERSION}")
+  MESSAGE(STATUS "Boost_MINOR_VERSION = ${Boost_MINOR_VERSION}")
+
+  IF(Boost_MAJOR_VERSION GREATER 0)
+    IF(Boost_MINOR_VERSION GREATER 33)
+      SET(ARMA_USE_BOOST true)
+      MESSAGE(STATUS "Boost_INCLUDE_DIR = ${Boost_INCLUDE_DIR}")
+    ENDIF(Boost_MINOR_VERSION GREATER 33)
+  ENDIF(Boost_MAJOR_VERSION GREATER 0)
+
 ENDIF(Boost_FOUND)
 
+IF(ARMA_USE_BOOST STREQUAL false)
+  MESSAGE(STATUS "Boost libraries either not found or their version is too low (version 1.34 or later is good).")
+  MESSAGE(STATUS "( It's possible that CMake didn't find the particular version of Boost you may have. )")
+  MESSAGE(STATUS "( If that's the case, please edit include/armadillo_bits/config.hpp manually. )")
+ENDIF(ARMA_USE_BOOST STREQUAL false)
 
-#CHECK_PROTOTYPE_EXISTS(isfinite "cmath" ARMA_SYS_ISFINITE)
-#CHECK_PROTOTYPE_EXISTS(isinf    "cmath" ARMA_SYS_ISINF)
-#CHECK_PROTOTYPE_EXISTS(isnan    "cmath" ARMA_SYS_ISNAN)
+
+# If Boost libraries were found, explicitly check if Boost's date_time library is also present.
+# This is due to the non-standard packaging of Boost libraries on Debian and Ubuntu systems,
+# where certain individual Boost libraries are packaged separately.
+
+IF(ARMA_USE_BOOST STREQUAL true)
+  SET(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${Boost_INCLUDE_DIR})
+  CHECK_INCLUDE_FILE_CXX("boost/date_time/posix_time/posix_time.hpp" ARMA_USE_BOOST_DATE)
+ENDIF(ARMA_USE_BOOST STREQUAL true)
+
 
 SET(ARMA_LIBS ${ARMA_LIBS} ${CLAPACKATLAS_LIBRARIES})
 SET(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
@@ -84,6 +108,16 @@ IF(APPLE)
 ENDIF(APPLE)
 
 MESSAGE(STATUS "ARMA_LIBS = ${ARMA_LIBS}")
+
+
+ARMA_CHECK_MATH_PROTO("isfinite" "std" "cmath"  ARMA_HAVE_STD_ISFINITE)
+ARMA_CHECK_MATH_PROTO("isinf"    "std" "cmath"  ARMA_HAVE_STD_ISINF)
+ARMA_CHECK_MATH_PROTO("isnan"    "std" "cmath"  ARMA_HAVE_STD_ISNAN)
+ARMA_CHECK_MATH_PROTO("log1p"    ""    "cmath"  ARMA_HAVE_LOG1P)
+
+ARMA_CHECK_PROTO("snprintf"     "std" "cstdio"     ARMA_HAVE_STD_SNPRINTF)
+ARMA_CHECK_PROTO("gettimeofday" ""    "sys/time.h" ARMA_HAVE_GETTIMEOFDAY)
+
 
 MESSAGE(STATUS "Generating 'include/armadillo_bits/config.hpp'")
 CONFIGURE_FILE(include/armadillo_bits/config.hpp.cmake include/armadillo_bits/config.hpp)
@@ -101,12 +135,7 @@ ENDIF(ARMA_USE_BOOST)
 ADD_LIBRARY( armadillo SHARED src/pull_libs )
 TARGET_LINK_LIBRARIES( armadillo ${ARMA_LIBS} )
 
-SET_TARGET_PROPERTIES(
-armadillo 
-PROPERTIES
-VERSION 0.6.10
-SOVERSION 0
-)
+SET_TARGET_PROPERTIES(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH} SOVERSION 0)
 
 # As Red Hat Enterprise Linux (and related systems such as Fedora)
 # does not search /usr/local/lib by default, we need to place the
@@ -122,10 +151,7 @@ MESSAGE(STATUS "CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
 # Allow for the "lib" directory to be specified on the command line
 
 IF(NOT LIB_INSTALL_DIR)
-  IF(UNIX AND NOT APPLE)
-  
-    # The variable "CMAKE_SIZEOF_VOID_P" seems to be set only in CMake >= 2.6.0
-    
+  IF(UNIX AND NOT APPLE)   # I don't know how Mac OS handles 64 bit systems
     IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
       MESSAGE(STATUS "Detected 64 bit system")
       SET(LIB_INSTALL_DIR "lib64")
@@ -159,9 +185,7 @@ PATTERN "*orig" EXCLUDE
 )
 
 
-INSTALL(TARGETS armadillo
-LIBRARY DESTINATION ${LIB_INSTALL_DIR}
-)
+INSTALL(TARGETS armadillo DESTINATION ${LIB_INSTALL_DIR})
 
 
 

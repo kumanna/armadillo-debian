@@ -16,16 +16,57 @@
 //! \addtogroup ostream
 //! @{
 
+class arma_ostream_state
+  {
+  private:
+
+  const ios::fmtflags   orig_flags;
+  const std::streamsize orig_precision;
+  const std::streamsize orig_width;
+  const char            orig_fill;
+
+
+  public:
+
+  inline
+  arma_ostream_state(const std::ostream& o)
+   : orig_flags    (o.flags())
+   , orig_precision(o.precision())
+   , orig_width    (o.width())
+   , orig_fill     (o.fill())
+   {
+   }
+
+
+  inline
+  void
+  restore(std::ostream& o) const
+    {
+    o.flags    (orig_flags);
+    o.precision(orig_precision);
+    o.width    (orig_width);
+    o.fill     (orig_fill);
+    }
+
+  };
+
+
+
 class arma_ostream
   {
   public:
   
   template<typename eT>
-  inline static u32 set_flags(std::ostream& o, const Mat<eT>& m);
+  inline static u32 modify_stream(std::ostream& o, const Mat<eT>& m);
   
   template<typename T>
-  inline static u32 set_flags(std::ostream& o, const Mat< std::complex<T> >& m);
+  inline static u32 modify_stream(std::ostream& o, const Mat< std::complex<T> >& m);
   
+  template<typename eT>
+  inline static void print(std::ostream& o, const Mat<eT>& m, const bool modify);
+
+  template<typename T>
+  inline static void print(std::ostream& o, const Mat< std::complex<T> >& m, const bool modify);
   };
 
 
@@ -33,11 +74,13 @@ class arma_ostream
 template<typename eT>
 inline
 u32
-arma_ostream::set_flags(std::ostream& o, const Mat<eT>& m)
+arma_ostream::modify_stream(std::ostream& o, const Mat<eT>& m)
   {
   o.unsetf(ios::showbase);
   o.unsetf(ios::uppercase);
   o.fill(' ');
+
+  u32 cell_width;
   
   bool use_layout_B = false;
   bool use_layout_C = false;
@@ -65,8 +108,6 @@ arma_ostream::set_flags(std::ostream& o, const Mat<eT>& m)
       }
     }
   
-  u32 cell_width;
-  
   if(use_layout_C == true)
     {
     o.setf(ios::scientific);
@@ -89,7 +130,7 @@ arma_ostream::set_flags(std::ostream& o, const Mat<eT>& m)
     o.precision(4);
     cell_width = 9;
     }
- 
+  
   return cell_width;
   }
 
@@ -99,7 +140,7 @@ arma_ostream::set_flags(std::ostream& o, const Mat<eT>& m)
 template<typename T>
 inline
 u32
-arma_ostream::set_flags(std::ostream& o, const Mat< std::complex<T> >& m)
+arma_ostream::modify_stream(std::ostream& o, const Mat< std::complex<T> >& m)
   {
   o.unsetf(ios::showbase);
   o.unsetf(ios::uppercase);
@@ -108,8 +149,12 @@ arma_ostream::set_flags(std::ostream& o, const Mat< std::complex<T> >& m)
   o.setf(ios::scientific);
   o.setf(ios::showpos);
   o.unsetf(ios::fixed);
+  
+  u32 cell_width;
+  
   o.precision(3);
-  const u32 cell_width = 25;
+  cell_width = 2 + 2*(1 + 3 + o.precision() + 5) + 1;
+
   return cell_width;
   }
 
@@ -118,32 +163,130 @@ arma_ostream::set_flags(std::ostream& o, const Mat< std::complex<T> >& m)
 //! Print a matrix to the specified stream
 template<typename eT>
 inline
+void
+arma_ostream::print(std::ostream& o, const Mat<eT>& m, const bool modify)
+  {
+  arma_extra_debug_sigprint();
+  
+  const arma_ostream_state stream_state(o);
+
+  u32 cell_width;
+  
+  if(modify == true)
+    {
+    cell_width = arma_ostream::modify_stream(o, m);
+    }
+  else
+    {
+    cell_width = o.width();
+    }
+  
+  if(cell_width != 0)
+    {
+    for(u32 row=0; row < m.n_rows; ++row)
+      {
+      for(u32 col=0; col < m.n_cols; ++col)
+        {
+        o.width(cell_width);
+        o << m.at(row,col);
+        }
+      
+      o << '\n';
+      }
+    }
+  else
+    {
+    for(u32 row=0; row < m.n_rows; ++row)
+      {
+      for(u32 col=0; col < m.n_cols-1; ++col)
+        {
+        o << m.at(row,col) << ' ';
+        }
+      
+      o << m.at(row, m.n_cols-1) << '\n';
+      }
+    }
+  
+  o.flush();
+  stream_state.restore(o);
+  }
+
+
+
+//! Print a complex matrix to the specified stream
+//! EXPERIMENTAL !
+template<typename T>
+inline
+void
+arma_ostream::print(std::ostream& o, const Mat< std::complex<T> >& m, const bool modify)
+  {
+  arma_extra_debug_sigprint();
+  
+  const arma_ostream_state stream_state(o);
+
+  u32 cell_width;
+  
+  if(modify == true)
+    {
+    cell_width = arma_ostream::modify_stream(o, m);
+    }
+  else
+    {
+    cell_width = o.width();
+    }
+
+
+  
+  if(cell_width != 0)
+    {
+    for(u32 row=0; row < m.n_rows; ++row)
+      {
+      for(u32 col=0; col < m.n_cols; ++col)
+        {
+        std::ostringstream ss;
+        ss.flags(o.flags());
+        //ss.imbue(o.getloc());
+        ss.precision(o.precision());
+
+        ss << '(' << m.at(row,col).real() << ',' << m.at(row,col).imag() << ')';
+
+        o.width(cell_width);
+        o << ss.str();
+        }
+
+      o << '\n';
+      }
+    }
+  else
+    {
+    for(u32 row=0; row < m.n_rows; ++row)
+      {
+      for(u32 col=0; col < m.n_cols-1; ++col)
+        {
+        o << '(' << m.at(row,col).real() << ',' << m.at(row,col).imag() << ") ";
+        }
+      o << '(' << m.at(row, m.n_cols-1).real() << ',' << m.at(row, m.n_cols-1).imag() << ")\n";
+      }
+    }
+
+  
+  o.flush();
+  stream_state.restore(o);
+  }
+
+
+
+template<typename eT>
+inline
 std::ostream&
 operator<< (std::ostream& o, const Mat<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  const ios::fmtflags orig_flags = o.flags();
-  const u32 cell_width = arma_ostream::set_flags(o, m);
-  
-  for(u32 row=0; row != m.n_rows; ++row)
-    {
-    for(u32 col=0; col != m.n_cols; ++col)
-      {
-      o.width(cell_width);
-      o << m.at(row,col);
-      }
-    
-    o << '\n';
-    }
-  
-  o.flush();
-  o.flags(orig_flags);
+  arma_ostream::print(o,m,true);
   
   return o;
   }
-
-
 
 
 

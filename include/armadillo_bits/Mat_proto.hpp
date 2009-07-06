@@ -149,6 +149,10 @@ class Mat : public Base<eT, Mat<eT> >
   arma_inline const eT* memptr() const;
 
   inline void print(const std::string extra_text = "") const;
+  inline void print(std::ostream& user_stream, const std::string extra_text = "") const;
+
+  inline void raw_print(const std::string extra_text = "") const;
+  inline void raw_print(std::ostream& user_stream, const std::string extra_text = "") const;
 
   inline void fill(const eT val);
   inline void zeros();

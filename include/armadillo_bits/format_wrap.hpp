@@ -21,11 +21,44 @@
 namespace arma_boost
   {
   
-  #ifdef ARMA_USE_BOOST
+  #if defined(ARMA_USE_BOOST)
+
     using boost::format;
     using boost::basic_format;
     using boost::str;
+
   #else
+  
+    #if defined(ARMA_HAVE_STD_SNPRINTF)
+
+      #define arma_snprintf std::snprintf
+
+    #else
+
+      // better-than-nothing emulation of C99 snprintf(),
+      // with correct return value and null-terminated output string.
+      // note that _snprintf() provided by MS is not a good substitute for snprintf()
+
+      inline
+      int
+      arma_snprintf(char* out, size_t size, const char* fmt, ...)
+        {
+        size_t i;
+        
+        for(i=0; i<size; ++i)
+          {
+          out[i] = fmt[i];
+          if(fmt[i] == char(0))
+            break;
+          }
+        
+        if(size > 0)
+          out[size-1] = char(0);
+        
+        return int(i);
+        }
+
+    #endif
     
     class format
       {
@@ -95,28 +128,48 @@ namespace arma_boost
     std::string
     str(const basic_format< format, T2>& X)
       {
-      int data_size = 1024;
-      int reqd_size = data_size;
-    
+      char  local_buffer[1024];
+      char* buffer = local_buffer;
+      
+      int buffer_size   = 1024;
+      int required_size = buffer_size;
+   
+      bool using_local_buffer = true;
+      
       std::string out;
-    
+      
       do
         {
-        char* data = new char[data_size];
-        reqd_size = snprintf(data, data_size, X.A.A.c_str(), X.B);
-    
-        if(reqd_size < 0)
-          break;
-    
-        if(reqd_size < data_size)
-          out = data;
+        if(using_local_buffer == false)
+          {
+          buffer = new char[buffer_size];
+          }
+        
+        required_size = arma_snprintf(buffer, buffer_size, X.A.A.c_str(), X.B);
+        
+        if(required_size < buffer_size)
+          {
+          if(required_size > 0)
+            {
+            out = buffer;
+            }
+          }
         else
-          data_size *= 2;
-    
-        delete[] data;
-    
-        } while(reqd_size >= data_size);
-    
+          {
+          buffer_size *= 2;
+          }
+        
+        if(using_local_buffer == true)
+          {
+          using_local_buffer = false;
+          }
+        else
+          {
+          delete[] buffer;
+          }
+        
+        } while( (required_size >= buffer_size) );
+
       return out;
       }
     
@@ -127,28 +180,48 @@ namespace arma_boost
     std::string
     str(const basic_format< basic_format< format, T2>, T3>& X)
       {
-      int data_size = 1024;
-      int reqd_size = data_size;
-    
+      char  local_buffer[1024];
+      char* buffer = local_buffer;
+      
+      int buffer_size   = 1024;
+      int required_size = buffer_size;
+   
+      bool using_local_buffer = true;
+      
       std::string out;
-    
+      
       do
         {
-        char* data = new char[data_size];
-        reqd_size = snprintf(data, data_size, X.A.A.A.c_str(), X.A.B, X.B);
-    
-        if(reqd_size < 0)
-          break;
-    
-        if(reqd_size < data_size)
-          out = data;
+        if(using_local_buffer == false)
+          {
+          buffer = new char[buffer_size];
+          }
+        
+        required_size = arma_snprintf(buffer, buffer_size, X.A.A.A.c_str(), X.A.B, X.B);
+        
+        if(required_size < buffer_size)
+          {
+          if(required_size > 0)
+            {
+            out = buffer;
+            }
+          }
         else
-          data_size *= 2;
-    
-        delete[] data;
-    
-        } while(reqd_size >= data_size);
-    
+          {
+          buffer_size *= 2;
+          }
+        
+        if(using_local_buffer == true)
+          {
+          using_local_buffer = false;
+          }
+        else
+          {
+          delete[] buffer;
+          }
+        
+        } while( (required_size >= buffer_size) );
+
       return out;
       }
     
@@ -159,28 +232,48 @@ namespace arma_boost
     std::string
     str(const basic_format< basic_format< basic_format< format, T2>, T3>, T4>& X)
       {
-      int data_size = 1024;
-      int reqd_size = data_size;
-    
+      char  local_buffer[1024];
+      char* buffer = local_buffer;
+      
+      int buffer_size   = 1024;
+      int required_size = buffer_size;
+   
+      bool using_local_buffer = true;
+      
       std::string out;
-    
+      
       do
         {
-        char* data = new char[data_size];
-        reqd_size = snprintf(data, data_size, X.A.A.A.A.c_str(), X.A.A.B, X.A.B, X.B);
-    
-        if(reqd_size < 0)
-          break;
-    
-        if(reqd_size < data_size)
-          out = data;
+        if(using_local_buffer == false)
+          {
+          buffer = new char[buffer_size];
+          }
+        
+        required_size = arma_snprintf(buffer, buffer_size, X.A.A.A.A.c_str(), X.A.A.B, X.A.B, X.B);
+        
+        if(required_size < buffer_size)
+          {
+          if(required_size > 0)
+            {
+            out = buffer;
+            }
+          }
         else
-          data_size *= 2;
-    
-        delete[] data;
-    
-        } while(reqd_size >= data_size);
-    
+          {
+          buffer_size *= 2;
+          }
+        
+        if(using_local_buffer == true)
+          {
+          using_local_buffer = false;
+          }
+        else
+          {
+          delete[] buffer;
+          }
+        
+        } while( (required_size >= buffer_size) );
+
       return out;
       }
     
@@ -191,28 +284,48 @@ namespace arma_boost
     std::string
     str(const basic_format< basic_format< basic_format< basic_format< format, T2>, T3>, T4>, T5>& X)
       {
-      int data_size = 1024;
-      int reqd_size = data_size;
-    
+      char  local_buffer[1024];
+      char* buffer = local_buffer;
+      
+      int buffer_size   = 1024;
+      int required_size = buffer_size;
+   
+      bool using_local_buffer = true;
+      
       std::string out;
-    
+      
       do
         {
-        char* data = new char[data_size];
-        reqd_size = snprintf(data, data_size, X.A.A.A.A.A.c_str(), X.A.A.A.B, X.A.A.B, X.A.B, X.B);
-    
-        if(reqd_size < 0)
-          break;
-    
-        if(reqd_size < data_size)
-          out = data;
+        if(using_local_buffer == false)
+          {
+          buffer = new char[buffer_size];
+          }
+        
+        required_size = arma_snprintf(buffer, buffer_size, X.A.A.A.A.A.c_str(), X.A.A.A.B, X.A.A.B, X.A.B, X.B);
+        
+        if(required_size < buffer_size)
+          {
+          if(required_size > 0)
+            {
+            out = buffer;
+            }
+          }
         else
-          data_size *= 2;
-    
-        delete[] data;
-    
-        } while(reqd_size >= data_size);
-    
+          {
+          buffer_size *= 2;
+          }
+        
+        if(using_local_buffer == true)
+          {
+          using_local_buffer = false;
+          }
+        else
+          {
+          delete[] buffer;
+          }
+        
+        } while( (required_size >= buffer_size) );
+
       return out;
       }
     
@@ -223,28 +336,48 @@ namespace arma_boost
     std::string
     str(const basic_format< basic_format< basic_format< basic_format< basic_format< format, T2>, T3>, T4>, T5>, T6>& X)
       {
-      int data_size = 1024;
-      int reqd_size = data_size;
-    
+      char  local_buffer[1024];
+      char* buffer = local_buffer;
+      
+      int buffer_size   = 1024;
+      int required_size = buffer_size;
+   
+      bool using_local_buffer = true;
+      
       std::string out;
-    
+      
       do
         {
-        char* data = new char[data_size];
-        reqd_size = snprintf(data, data_size, X.A.A.A.A.A.A.c_str(), X.A.A.A.A.B, X.A.A.A.B, X.A.A.B, X.A.B, X.B);
-    
-        if(reqd_size < 0)
-          break;
-    
-        if(reqd_size < data_size)
-          out = data;
+        if(using_local_buffer == false)
+          {
+          buffer = new char[buffer_size];
+          }
+        
+        required_size = arma_snprintf(buffer, buffer_size, X.A.A.A.A.A.A.c_str(), X.A.A.A.A.B, X.A.A.A.B, X.A.A.B, X.A.B, X.B);
+        
+        if(required_size < buffer_size)
+          {
+          if(required_size > 0)
+            {
+            out = buffer;
+            }
+          }
         else
-          data_size *= 2;
-    
-        delete[] data;
-    
-        } while(reqd_size >= data_size);
-    
+          {
+          buffer_size *= 2;
+          }
+        
+        if(using_local_buffer == true)
+          {
+          using_local_buffer = false;
+          }
+        else
+          {
+          delete[] buffer;
+          }
+        
+        } while( (required_size >= buffer_size) );
+
       return out;
       }
     
@@ -255,28 +388,48 @@ namespace arma_boost
     std::string
     str(const basic_format< basic_format< basic_format< basic_format< basic_format< basic_format< format, T2>, T3>, T4>, T5>, T6>, T7>& X)
       {
-      int data_size = 1024;
-      int reqd_size = data_size;
-    
+      char  local_buffer[1024];
+      char* buffer = local_buffer;
+      
+      int buffer_size   = 1024;
+      int required_size = buffer_size;
+   
+      bool using_local_buffer = true;
+      
       std::string out;
-    
+      
       do
         {
-        char* data = new char[data_size];
-        reqd_size = snprintf(data, data_size, X.A.A.A.A.A.A.A.c_str(), X.A.A.A.A.A.B, X.A.A.A.A.B, X.A.A.A.B, X.A.A.B, X.A.B, X.B);
-    
-        if(reqd_size < 0)
-          break;
-    
-        if(reqd_size < data_size)
-          out = data;
+        if(using_local_buffer == false)
+          {
+          buffer = new char[buffer_size];
+          }
+        
+        required_size = arma_snprintf(buffer, buffer_size, X.A.A.A.A.A.A.A.c_str(), X.A.A.A.A.A.B, X.A.A.A.A.B, X.A.A.A.B, X.A.A.B, X.A.B, X.B);
+        
+        if(required_size < buffer_size)
+          {
+          if(required_size > 0)
+            {
+            out = buffer;
+            }
+          }
         else
-          data_size *= 2;
-    
-        delete[] data;
-    
-        } while(reqd_size >= data_size);
-    
+          {
+          buffer_size *= 2;
+          }
+        
+        if(using_local_buffer == true)
+          {
+          using_local_buffer = false;
+          }
+        else
+          {
+          delete[] buffer;
+          }
+        
+        } while( (required_size >= buffer_size) );
+
       return out;
       }
     
@@ -298,7 +451,7 @@ namespace arma_boost
     
     
     
-    template<>
+    //template<>
     template<typename T1, typename T2>
     struct format_metaprog< basic_format<T1,T2> >
       {

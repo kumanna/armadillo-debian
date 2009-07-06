@@ -18,11 +18,6 @@
 //! @{
 
 
-// TODO:
-// after upgrade to cmake >= 2.6,
-// change to use ARMA_SYS_ISFINITE
-// instead of checking for GCC specific macros
-
 
 template<typename eT>
 arma_inline
@@ -34,11 +29,12 @@ arma_isfinite(eT val)
 
 
 
+template<>
 arma_inline
 bool
 arma_isfinite(float x)
   {
-  #if defined(_GLIBCXX_USE_C99_MATH)
+  #if defined(ARMA_HAVE_STD_ISFINITE)
     {
     return (std::isfinite(x) != 0);
     }
@@ -54,11 +50,12 @@ arma_isfinite(float x)
 
 
 
+template<>
 arma_inline
 bool
 arma_isfinite(double x)
   {
-  #if defined(_GLIBCXX_USE_C99_MATH)
+  #if defined(ARMA_HAVE_STD_ISFINITE)
     {
     return (std::isfinite(x) != 0);
     }

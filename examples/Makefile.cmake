@@ -13,7 +13,7 @@ ifeq (${ARMA_OS},macos)
   EXTRA_LIB_FLAGS = -framework Accelerate
 endif
 
-ifeq (${ARMA_USE_BOOST_BOOL},true)
+ifeq (${ARMA_USE_BOOST},true)
   BOOST_INCLUDE_FLAG = -I ${Boost_INCLUDE_DIR}
 endif
 

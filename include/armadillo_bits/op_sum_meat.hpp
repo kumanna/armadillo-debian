@@ -41,13 +41,13 @@ op_sum::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sum>& in)
     
     for(u32 col=0; col<X.n_cols; ++col)
       {
-      eT tmp = eT(0);
+      eT tmp_val = eT(0);
       for(u32 row=0; row<X.n_rows; ++row)
         {
-        tmp += X.at(row,col);
+        tmp_val += X.at(row,col);
         }
     
-      out.at(0,col) = tmp;
+      out.at(0,col) = tmp_val;
       }
     }
   else
@@ -57,13 +57,13 @@ op_sum::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sum>& in)
     
     for(u32 row=0; row<X.n_rows; ++row)
       {
-      eT tmp = eT(0);
+      eT tmp_val = eT(0);
       for(u32 col=0; col<X.n_cols; ++col)
         {
-        tmp += X.at(row,col);
+        tmp_val += X.at(row,col);
         }
     
-      out.at(row,0) = tmp;
+      out.at(row,0) = tmp_val;
       }
     
     }

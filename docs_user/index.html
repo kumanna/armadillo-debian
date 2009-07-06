@@ -17,7 +17,7 @@
 <tr>
 <td>
 <h2>
-<b>Reference for Armadillo 0.6.10</b>
+<b>Reference for Armadillo 0.6.12</b>
 </h2>
 <td>
 <td style="text-align: right; vertical-align: top;">
@@ -37,7 +37,7 @@
 
 <font size=-1>
 (if something needs to be clarified or fixed in this documentation, 
-the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very interested in hearing about it)
+the <a href="http://arma.sourceforge.net/contact.html">developers</a> are interested in hearing about it)
 </font>
 <br>
 <br>
@@ -51,6 +51,7 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <a href="#n_rows">n_rows/n_cols/n_elem</a>&nbsp;&middot;
 <a href="#operators">operators</a>&nbsp;&middot;
 <a href="#print">print</a>&nbsp;&middot;
+<a href="#raw_print">raw_print</a>&nbsp;&middot;
 <a href="#reset">reset</a>&nbsp;&middot;
 <a href="#save_load">save/load</a>&nbsp;&middot;
 <a href="#set_size">set_size</a>&nbsp;&middot;
@@ -89,7 +90,7 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <ul>
 <a href="#abs">abs</a>&nbsp;&middot;
 <a href="#misc_fns">misc functions (exp, log, log10, pow, sqrt, square)</a>&nbsp;&middot;
-<a href="#trig_fns">trigonometric functions (cos,&nbsp;sin,&nbsp;...)</a>
+<a href="#trig_fns">trigonometric functions (cos, sin, ...)</a>
 </ul>
 <br>
 
@@ -106,8 +107,6 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <b>Scalar/Vector Valued Functions of Vectors/Matrices</b>
 <ul>
 <a href="#min_and_max">min/max</a>&nbsp;&middot;
-<a href="#sort">sort</a>&nbsp;&middot;
-<a href="#sort_index">sort_index</a>&nbsp;&middot;
 <a href="#sum">sum</a>&nbsp;&middot;
 <a href="#stats_fns">statistics (mean, stddev, ...)</a>
 </ul>
@@ -121,6 +120,8 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <a href="#htrans">htrans</a>&nbsp;&middot;
 <a href="#imag_real">imag/real</a>&nbsp;&middot;
 <a href="#reshape">reshape</a>&nbsp;&middot;
+<a href="#sort">sort</a>&nbsp;&middot;
+<a href="#sort_index">sort_index</a>&nbsp;&middot;
 <a href="#trans">trans</a>
 </ul>
 <br>
@@ -140,7 +141,8 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 
 <b>Miscellaneous</b>
 <ul>
-<a href="#constants">constants (pi, ...)</a>&nbsp;&middot;
+<a href="#math_constants">math constants (pi, ...)</a>&nbsp;&middot;
+<a href="#phys_constants">physical constants (speed of light, ...)</a>&nbsp;&middot;
 <a href="#log_add">log_add</a>&nbsp;&middot;
 <a href="#s32_u32">s32/u32</a>&nbsp;&middot;
 <a href="#cx_float">cx_float/cx_double</a>
@@ -159,7 +161,9 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are very i
 <hr>
 <br>
 
-<a name="Mat"></a><b>Mat&lt;</b><i>type</i><b>&gt;</b>, <b>mat</b> and <b>cx_mat</b>
+<a name="Mat"></a><b>Mat&lt;</b><i>type</i><b>&gt;</b>
+<br><b>mat</b>
+<br><b>cx_mat</b>
 <ul>
 <li>
 The root template matrix class is <b>Mat&lt;</b><i>type</i><b>&gt;</b>, where <i>type</i> can be one of:
@@ -657,13 +661,15 @@ umat ZZ = (AA >= BB);
 
 <a name="print"></a>
 <b>.print(header="")</b>
+<br><b>.print(stream, header="")</b>
 <ul>
 <li>
 Member function of <i>mat</i>, <i>colvec</i> and <i>rowvec</i>.
 </li>
 <br>
 <li>
-Prints the contents of an object to the <i>cout</i> stream, with an optional header line.
+The first form prints the contents of an object to the <i>cout</i> stream, with an optional header line.
+The second form prints to a user specified stream.
 </li>
 <br>
 <li>
@@ -684,6 +690,41 @@ B.print("B =");
 
 cout &lt;&lt; A &lt;&lt; endl;
 cout &lt;&lt; "B =" &lt;&lt; endl &lt;&lt; B &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+</ul>
+<br>
+<hr><br>
+
+<a name="raw_print"></a>
+<b>.raw_print(header="")</b>
+<br><b>.raw_print(stream, header="")</b>
+<ul>
+<li>
+Member function of <i>mat</i>, <i>colvec</i> and <i>rowvec</i>.
+</li>
+<br>
+<li>
+Similar to the <a href="#print">.print()</a> member function.
+The difference is that no formatting of the output is done -- i.e. the user can set the stream's parameters
+such as precision, cell width, etc.
+</li>
+<br>
+<li>
+If the cell width is set to zero, a space is printed between the elements.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = rand<mat>(5,5);
+
+cout.precision(11);
+cout.setf(ios::fixed);
+
+A.raw_print(cout, "A =");
 </pre>
 </ul>
 </li>
@@ -972,7 +1013,9 @@ See also: <a href="#zeros_standalone">zeros()</a> (stand alone function)
 <hr>
 <br>
 
-<a name="Col"></a><b>Col&lt;</b><i>type</i><b>&gt;</b>, <b>colvec</b> and <b>vec</b>
+<a name="Col"></a><b>Col&lt;</b><i>type</i><b>&gt;</b>
+<br><b>colvec</b>
+<br><b>vec</b>
 <ul>
 <li>
 Classes for column vectors (matrices with one column).
@@ -1121,7 +1164,8 @@ colvec q = 123.0 * ones&lt;colvec&gt;(5,1);
 <hr><br>
 
 <a name="Row"></a>
-<b>Row&lt;</b><i>type</i><b>&gt;</b> and <b>rowvec</b>
+<b>Row&lt;</b><i>type</i><b>&gt;</b>
+<br><b>rowvec</b>
 <ul>
 <li>
 Classes for row vectors (matrices with one row)
@@ -1687,9 +1731,11 @@ mat B = 123.0 * ones&lt;mat&gt;(5,5);
 <hr><br>
 
 <a name="rand_randn"></a>
-<b>
-rand(n_elem), randn(n_elem)
-<br>rand(n_rows,n_cols), randn(n_rows,n_cols)
+<b>rand(n_elem)</b> 
+<br><b>rand(n_rows,n_cols)</b>
+<br>
+<br><b>randn(n_elem)</b>
+<br><b>randn(n_rows,n_cols)</b>
 </b>
 <ul>
 <li>
@@ -2027,7 +2073,8 @@ double x = det(A);
 <hr><br>
 
 <a name="dot"></a>
-<b>dot(A, B)</b>, <b>norm_dot(A, B)</b>
+<b>dot(A, B)</b>
+<br><b>norm_dot(A, B)</b>
 <ul>
 <li>
 <i>dot(A,B):</i> dot product of A and B, under the assumption that A and B are vectors with the same number of elements
@@ -2108,8 +2155,13 @@ double x = trace(A);
 <br>
 
 <a name="min_and_max"></a>
-<b>min(mat, dim=0)</b>, <b>min(rowvec)</b>, <b>min(colvec)</b>
-<br><b>max(mat, dim=0)</b>, <b>max(rowvec)</b>, <b>max(colvec)</b>
+<b>min(mat, dim=0)</b>
+<br><b>min(rowvec)</b>
+<br><b>min(colvec)</b>
+<br>
+<br><b>max(mat, dim=0)</b>
+<br><b>max(rowvec)</b>
+<br><b>max(colvec)</b>
 <ul>
 <li>
 For a matrix argument, return the minimum/maximum value for each column (dim=0), or each row (dim=1).
@@ -2145,58 +2197,10 @@ double y = max(max(A));
 <br>
 <hr><br>
 
-<a name="sort"></a>
-<b>sort(mat, sort_type=0, dim=0)</b>
-<br><b>sort(rowvec, sort_type=0)</b>, <b>sort(colvec, sort_type=0)</b>
-<ul>
-<li>For a matrix argument, return a vector with the elements of the input matrix sorted in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)</li>
-<br>
-<li><i>sort_type=0</i> (default) indicates an ascending sort</li>
-<br>
-<li><i>sort_type=1</i> indicates a descending sort</li>
-<br>
-<li>For a vector argument, return a vector which is a sorted version of the input vector</li>
-<br>
-<li>
-Examples:
-<ul>
-<pre>
-mat A = rand&lt;mat&gt;(10,10);
-mat B = sort(A);
-</pre>
-</ul>
-</li>
-</ul>
-<br>
-<hr><br>
-
-<a name="sort_index"></a>
-<b>sort_index(colvec, sort_type=0)</b>, <b>sort_index(rowvec, sort_type=0)</b>
-<ul>
-<li>Sort the given vector and return a vector (with elements of type u32) which describes the sorted order
-(i.e. it contains the indices of the given vector's elements).
-</li>
-<br>
-<li><i>sort_type=0</i> (default) indicates an ascending sort</li>
-<br>
-<li><i>sort_type=1</i> indicates a descending sort</li>
-<br>
-<li>
-Examples:
-<ul>
-<pre>
-colvec  q       = rand&lt;colvec&gt;(10);
-ucolvec indices = sort_index(q);
-</pre>
-</ul>
-</li>
-</ul>
-<br>
-<hr><br>
-
 <a name="sum"></a>
 <b>sum(mat, dim=0)</b>
-<br><b>sum(rowvec)</b>, <b>sum(colvec)</b>
+<br><b>sum(rowvec)</b>
+<br><b>sum(colvec)</b>
 <ul>
 <li>
 For a matrix argument, return the sum of elements in each column (dim=0), or each row (dim=1).
@@ -2234,7 +2238,7 @@ double y = sum(sum(A));
 
 
 <a name="stats_fns"></a>
-<b>statistics (mean, median, stddev, var)</b>
+<b>statistics: mean, median, stddev, var</b>
 
 <ul>
 <table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
@@ -2242,7 +2246,8 @@ double y = sum(sum(A));
   <tr>
     <td style="vertical-align: top;">
        <b>mean(mat, dim=0)</b>
-       <br><b>mean(colvec)</b>, <b>mean(rowvec)</b>
+       <br><b>mean(colvec)</b>
+       <br><b>mean(rowvec)</b>
        <br>
        <br>
     </td>
@@ -2256,7 +2261,8 @@ double y = sum(sum(A));
   <tr>
     <td style="vertical-align: top;">
        <b>median(mat, dim=0)</b>
-       <br><b>median(colvec)</b>, <b>median(rowvec)</b>
+       <br><b>median(colvec)</b>
+       <br><b>median(rowvec)</b>
        <br>
        <br>
     </td>
@@ -2270,7 +2276,8 @@ double y = sum(sum(A));
   <tr>
     <td style="vertical-align: top;">
        <b>stddev(mat, norm_type=0, dim=0)</b>
-       <br><b>stddev(colvec, norm_type=0)</b>, <b>stddev(rowvec, norm_type=0)</b>
+       <br><b>stddev(colvec, norm_type=0)</b>
+       <br><b>stddev(rowvec, norm_type=0)</b>
        <br>
        <br>
     </td>
@@ -2284,7 +2291,8 @@ double y = sum(sum(A));
   <tr>
     <td style="vertical-align: top;">
        <b>var(mat, norm_type=0, dim=0)</b>
-       <br><b>var(colvec, norm_type=0)</b>, <b>var(rowvec, norm_type=0)</b>
+       <br><b>var(colvec, norm_type=0)</b>
+       <br><b>var(rowvec, norm_type=0)</b>
        <br>
        <br>
     </td>
@@ -2397,7 +2405,8 @@ cx_mat Y = conj(X);
 
 <a name="diagmat"></a>
 <b>diagmat(mat)</b>
-<br><b>diagmat(rowvec)</b>, <b>diagmat(colvec)</b>
+<br><b>diagmat(rowvec)</b>
+<br><b>diagmat(colvec)</b>
 <ul>
 <li>
 Interpret a matrix or vector as a diagonal matrix.
@@ -2431,7 +2440,8 @@ mat X = diagmat(q)*diagmat(r);
 
 <a name="htrans"></a>
 <b>htrans(cx_mat)</b>
-<br><b>htrans(cx_colvec)</b>, <b>htrans(cx_rowvec)</b>
+<br><b>htrans(cx_colvec)</b>
+<br><b>htrans(cx_rowvec)</b>
 <ul>
 <li>
 Hermitian transpose
@@ -2501,9 +2511,61 @@ mat B = reshape(A, 5, 10);
 <br>
 <hr><br>
 
+<a name="sort"></a>
+<b>sort(mat, sort_type=0, dim=0)</b>
+<br><b>sort(rowvec, sort_type=0)</b>
+<br><b>sort(colvec, sort_type=0)</b>
+<ul>
+<li>For a matrix argument, return a matrix with the elements of the input matrix sorted in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)</li>
+<br>
+<li><i>sort_type=0</i> (default) indicates an ascending sort</li>
+<br>
+<li><i>sort_type=1</i> indicates a descending sort</li>
+<br>
+<li>For a vector argument, return a vector which is a sorted version of the input vector</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = rand&lt;mat&gt;(10,10);
+mat B = sort(A);
+</pre>
+</ul>
+</li>
+</ul>
+<br>
+<hr><br>
+
+<a name="sort_index"></a>
+<b>sort_index(colvec, sort_type=0)</b>
+<br><b>sort_index(rowvec, sort_type=0)</b>
+<ul>
+<li>Sort the given vector and return a vector (with elements of type u32) which describes the sorted order
+(i.e. it contains the indices of the given vector's elements).
+</li>
+<br>
+<li><i>sort_type=0</i> (default) indicates an ascending sort</li>
+<br>
+<li><i>sort_type=1</i> indicates a descending sort</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+colvec  q       = rand&lt;colvec&gt;(10);
+ucolvec indices = sort_index(q);
+</pre>
+</ul>
+</li>
+</ul>
+<br>
+<hr><br>
+
 <a name="trans"></a>
 <b>trans(mat)</b>
-<br><b>trans(colvec)</b>, <b>trans(rowvec)</b>
+<br><b>trans(colvec)</b>
+<br><b>trans(rowvec)</b>
 <ul>
 <li>
 Matrix transpose
@@ -2860,8 +2922,8 @@ See also: <a href="http://mathworld.wolfram.com/SingularValueDecomposition.html"
 <hr>
 <br>
 
-<a name="constants"></a>
-<b>constants (pi, e, euler, gratio, sqrt2, eps, log_min, log_max)</b>
+<a name="math_constants"></a>
+<b>math constants (pi, e, euler, gratio, sqrt2, eps, log_min, log_max)</b>
 <br>
 <br>
 <ul>
@@ -2892,7 +2954,7 @@ Meaning of the constants:
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      ratio of any circle's circumference to its diameter
+      &pi;, the ratio of any circle's circumference to its diameter
     </td>
   </tr>
   <tr>
@@ -2986,6 +3048,379 @@ cout &lt;&lt; "log_max, when using floats  = " &lt;&lt; fmath::log_max() &lt;&lt
 cout &lt;&lt; "log_max, when using doubles = " &lt;&lt;  math::log_max() &lt;&lt; endl;
 </pre>
 </ul>
+</li>
+</ul>
+<br>
+<hr><br>
+
+<a name="phys_constants"></a>
+<b>physical constants (speed of light, etc)</b>
+<br>
+<br>
+<ul>
+<li>
+Collection of fundamental physical constants,
+mainly taken from
+<a href="http://physics.nist.gov/cuu/Constants">NIST</a>
+and some from
+<a href="http://www.wolframalpha.com">WolframAlpha</a>
+on 2009-06-23.
+</li>
+<br>
+<li>
+Constants from NIST are in turn sourced from the <a href="http://physics.nist.gov/cuu/Constants/papers.html">2006 CODATA values</a>.
+</li>
+<br>
+<li>
+The constants are stored as static functions in the <i>Phy&lt;type&gt;</i> class,
+where <i>type</i> is either <i>float</i> or <i>double</i>.
+</li>
+<br>
+<li>
+For convenience, <i>Phy&lt;float&gt;</i> has been typedefed as <i>fphy</i>,
+while <i>Phy&lt;double&gt;</i> has been typedefed as <i>phy</i>.
+</li>
+<br>
+<li>
+Meaning of the constants:
+<ul>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::m_u()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      atomic mass constant (in kg)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::N_A()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Avogadro constant
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::k()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Boltzmann constant (in joules per kelvin)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::k_evk()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Boltzmann constant (in eV/K)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::a_0()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Bohr radius (in meters)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::mu_B()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Bohr magneton
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::Z_0()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      characteristic impedance of vacuum (in ohms)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::G_0()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      conductance quantum (in siemens)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::k_e()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Coulomb's constant (in meters per farad)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::eps_0()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      electric constant (in farads per meter)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::m_e()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      electron mass (in kg)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::eV()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      electron volt (in joules)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::e()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      elementary charge (in coulombs)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::F()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Faraday constant (in coulombs)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::alpha()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      fine-structure constant
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::alpha_inv()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      inverse fine-structure constant
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::K_J()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Josephson constant
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::mu_0()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      magnetic constant (in henries per meter)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::phi_0() 
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      magnetic flux quantum (in webers)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::R()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      molar gas constant (in joules per mole kelvin)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::G()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Newtonian constant of gravitation (in newton square meters per kilogram squared)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::h() 
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Planck constant (in joule seconds)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::h_bar()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Planck constant over 2 pi, aka reduced Planck constant (in joule seconds)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::m_p()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      proton mass (in kg)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::R_inf()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Rydberg constant (in reciprocal meters)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::c_0()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      speed of light in vacuum (in meters per second)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::sigma()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Stefan-Boltzmann constant
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::R_k()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      von Klitzing constant (in ohms)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      phy::b()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      Wien wavelength displacement law constant
+    </td>
+  </tr>
+</tbody>
+</table>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+cout &lt;&lt; "speed of light = " &lt;&lt; phy::c_0() &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="http://en.wikipedia.org/wiki/Physical_constant">physical constant</a> entry in Wikipedia.
 </li>
 </ul>
 <br>
