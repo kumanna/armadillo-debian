@@ -154,7 +154,7 @@ IF(NOT LIB_INSTALL_DIR)
   IF(UNIX AND NOT APPLE)   # I don't know how Mac OS handles 64 bit systems
     IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
       MESSAGE(STATUS "Detected 64 bit system")
-      SET(LIB_INSTALL_DIR "lib64")
+      SET(LIB_INSTALL_DIR "lib")
     ELSE(CMAKE_SIZEOF_VOID_P EQUAL 8)
       SET(LIB_INSTALL_DIR "lib")
     ENDIF(CMAKE_SIZEOF_VOID_P EQUAL 8)
