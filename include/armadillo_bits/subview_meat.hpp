@@ -710,7 +710,7 @@ subview<eT>::extract(Mat<eT>& actual_out, const subview<eT>& in)
   const bool alias = (&actual_out == &in.m);
   
   Mat<eT>* tmp = (alias) ? new Mat<eT> : 0;
-  Mat<eT>& out = (alias) ? (*tmp)            : actual_out;
+  Mat<eT>& out = (alias) ? (*tmp)      : actual_out;
   
   //
   

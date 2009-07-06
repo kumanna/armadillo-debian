@@ -14,14 +14,20 @@
 
 
 
-/* #undef ARMA_SYS_ISFINITE */
-/* #undef ARMA_SYS_ISINF */
-/* #undef ARMA_SYS_ISNAN */
+/* #undef ARMA_HAVE_STD_ISFINITE */
+/* #undef ARMA_HAVE_STD_ISINF */
+/* #undef ARMA_HAVE_STD_ISNAN */
+/* #undef ARMA_HAVE_STD_SNPRINTF */
+
+/* #undef ARMA_HAVE_LOG1P */
+/* #undef ARMA_HAVE_GETTIMEOFDAY */
 
 /* #undef ARMA_USE_ATLAS */
 /* #undef ARMA_USE_LAPACK */
 /* #undef ARMA_USE_BLAS */
 /* #undef ARMA_USE_BOOST */
+/* #undef ARMA_USE_BOOST_DATE */
+
 /* #undef ARMA_EXTRA_DEBUG */
 /* #undef ARMA_NO_DEBUG */
 
@@ -31,3 +37,8 @@
   #endif
 #endif
 
+#if defined(__CUDACC__)
+  #undef ARMA_HAVE_STD_ISFINITE
+  #undef ARMA_HAVE_STD_ISINF
+  #undef ARMA_HAVE_STD_ISNAN
+#endif

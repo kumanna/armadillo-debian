@@ -31,6 +31,7 @@ randn(const u32 n_rows, const u32 n_cols)
 
 
 template<typename mat_type>
+inline
 const Op<mat_type,op_randn>
 randn(const u32 n_rows, const u32 n_cols)
   {

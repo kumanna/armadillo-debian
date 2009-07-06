@@ -59,8 +59,8 @@ class glue_minus_diag;
 class glue_times_diag;
 class glue_schur_diag;
 
-template<bool, bool, bool, bool> class gemm;
-template<bool, bool, bool>       class gemv;
+template<const bool, const bool, const bool, const bool> class gemm;
+template<const bool, const bool, const bool>       class gemv;
 
 template<typename T1, typename op_type> class Op; 
 template<typename T1, typename T2, typename glue_type> class Glue;

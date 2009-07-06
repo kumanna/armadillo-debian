@@ -27,8 +27,6 @@ operator<< (std::ostream& o, const field<T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const ios::fmtflags orig_flags = o.flags();
-  
   for(u32 col=0; col<X.n_cols; ++col)
     {
     o << "[field column " << col << ']' << '\n'; 
@@ -41,7 +39,6 @@ operator<< (std::ostream& o, const field<T1>& X)
     }
   
   o.flush();
-  o.flags(orig_flags);
   
   return o;
   }
@@ -58,8 +55,6 @@ operator<< (std::ostream& o, const subview_field<T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const ios::fmtflags orig_flags = o.flags();
-  
   for(u32 col=0; col<X.n_cols; ++col)
     {
     for(u32 row=0; row<X.n_rows; ++row)
@@ -71,7 +66,6 @@ operator<< (std::ostream& o, const subview_field<T1>& X)
     }
   
   o.flush();
-  o.flags(orig_flags);
   
   return o;
   }

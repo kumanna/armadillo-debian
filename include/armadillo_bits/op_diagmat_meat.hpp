@@ -271,18 +271,18 @@ op_diagmat_vec::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat_
     }
   else
     {
-    podarray<eT> tmp(X.n_elem);
+    podarray<eT> tmp_array(X.n_elem);
     
     for(u32 i=0; i<X.n_elem; ++i)
       {
-      tmp[i] = X[i];
+      tmp_array[i] = X[i];
       }
     
-    out.zeros(tmp.n_elem, tmp.n_elem);
+    out.zeros(tmp_array.n_elem, tmp_array.n_elem);
     
-    for(u32 i=0; i<tmp.n_elem; ++i)
+    for(u32 i=0; i<tmp_array.n_elem; ++i)
       {
-      out.at(i,i) = tmp[i];
+      out.at(i,i) = tmp_array[i];
       }
     
     }

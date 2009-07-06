@@ -44,7 +44,7 @@ class podarray
   inline                 podarray (const podarray& x);
   inline const podarray& operator=(const podarray& x);
   
-  arma_inline podarray(const u32 new_N);
+  arma_inline explicit podarray(const u32 new_N);
 
   arma_inline T1& operator[] (const u32 i);
   arma_inline T1  operator[] (const u32 i) const;

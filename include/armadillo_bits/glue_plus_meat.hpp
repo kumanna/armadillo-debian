@@ -302,8 +302,8 @@ glue_plus::apply(Mat<eT>& out, const Glue< subview<eT>, subview<eT>, glue_plus>&
     const u32 sub_A_n_rows = X.A.n_rows;
     const u32 sub_A_n_cols = X.A.n_cols;
     
-    const u32 sub_B_n_rows = X.B.n_rows;
-    const u32 sub_B_n_cols = X.B.n_cols;
+    //const u32 sub_B_n_rows = X.B.n_rows;
+    //const u32 sub_B_n_cols = X.B.n_cols;
     
     arma_debug_assert_same_size(X.A, X.B, "matrix addition");
       
@@ -393,8 +393,8 @@ glue_plus::apply_inplace(Mat<typename T1::elem_type>& out, const Op<T1, op_squar
   
   for(u32 i=0; i<n_elem; ++i)
     {
-    const eT tmp = B_mem[i];
-    out_mem[i] += tmp*tmp;
+    const eT tmp_val = B_mem[i];
+    out_mem[i] += tmp_val*tmp_val;
     }
   }
 
@@ -471,11 +471,11 @@ glue_plus::apply
     }
   else
     {
-    const unwrap_check< Mat<eT>    > tmp1(A,out);
-    const unwrap_check< Col<eT> > tmp2(B,out);
+    const unwrap_check< Mat<eT> > tmpA(A,out);
+    const unwrap_check< Col<eT> > tmpB(B,out);
     
-    const Mat<eT>& A_safe = tmp1.M;
-    const Col<eT>& B_safe = tmp2.M;
+    const Mat<eT>& A_safe = tmpA.M;
+    const Col<eT>& B_safe = tmpB.M;
     
     out = C;
     gemv<false,false,true>::apply(out.memptr(), A_safe, B_safe.mem, eT(1), eT(1));
@@ -515,14 +515,275 @@ glue_plus::apply
     }
   else
     {
-    const unwrap_check< Mat<eT> > tmp1(A,out);
-    const unwrap_check< Mat<eT> > tmp2(B,out);
+    const unwrap_check< Mat<eT> > tmpA(A,out);
+    const unwrap_check< Mat<eT> > tmpB(B,out);
     
-    const Mat<eT>& A_safe = tmp1.M;
-    const Mat<eT>& B_safe = tmp2.M;
+    const Mat<eT>& A_safe = tmpA.M;
+    const Mat<eT>& B_safe = tmpB.M;
     
     out = C;
     gemv<true,false,true>::apply(out.memptr(), B_safe, A_safe.mem, eT(1), eT(1));
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+glue_plus::apply
+  (
+  Mat<typename T1::elem_type>& out,
+  const Glue<Op<T1, op_scalar_times>, Op<T2, op_scalar_times>, glue_plus>& in
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp1(in.A.m);
+  const unwrap<T2> tmp2(in.B.m);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "matrix addition");
+  
+  out.set_size(A.n_rows, A.n_cols);
+  
+  const eT k1 = in.A.aux;
+  const eT k2 = in.B.aux;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const u32 local_n_elem = A.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] = k1*A_mem[i] + k2*B_mem[i];
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2, typename T3>
+inline
+void
+glue_plus::apply
+  (
+  Mat<typename T1::elem_type>& out,
+  const Glue< Glue<Op<T1, op_scalar_times>, Op<T2, op_scalar_times>, glue_plus>, Op<T3, op_scalar_times>, glue_plus>& in
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp1(in.A.A.m);
+  const unwrap<T2> tmp2(in.A.B.m);
+  const unwrap<T3> tmp3(in.B.m);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  const Mat<eT>& C = tmp3.M;
+  
+  arma_debug_assert_same_size(A, B, "matrix addition");
+  arma_debug_assert_same_size(B, C, "matrix addition");
+  
+  out.set_size(A.n_rows, A.n_cols);
+  
+  const eT k1 = in.A.A.aux;
+  const eT k2 = in.A.B.aux;
+  const eT k3 = in.B.aux;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  const eT* C_mem   = C.mem;
+  
+  const u32 local_n_elem = A.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] = k1*A_mem[i] + k2*B_mem[i] + k3*C_mem[i];
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+glue_plus::apply
+  (
+  Mat<typename T1::elem_type>& out,
+  const Glue<Op<T1, op_scalar_div_pre>, Op<T2, op_scalar_div_pre>, glue_plus>& in
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp1(in.A.m);
+  const unwrap<T2> tmp2(in.B.m);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "matrix addition");
+  
+  out.set_size(A.n_rows, A.n_cols);
+  
+  const eT k1 = in.A.aux;
+  const eT k2 = in.B.aux;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const u32 local_n_elem = A.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] = k1/A_mem[i] + k2/B_mem[i];
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2, typename T3>
+inline
+void
+glue_plus::apply
+  (
+  Mat<typename T1::elem_type>& out,
+  const Glue< Glue<Op<T1, op_scalar_div_pre>, Op<T2, op_scalar_div_pre>, glue_plus>, Op<T3, op_scalar_div_pre>, glue_plus>& in
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp1(in.A.A.m);
+  const unwrap<T2> tmp2(in.A.B.m);
+  const unwrap<T3> tmp3(in.B.m);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  const Mat<eT>& C = tmp3.M;
+  
+  arma_debug_assert_same_size(A, B, "matrix addition");
+  arma_debug_assert_same_size(B, C, "matrix addition");
+  
+  out.set_size(A.n_rows, A.n_cols);
+  
+  const eT k1 = in.A.A.aux;
+  const eT k2 = in.A.B.aux;
+  const eT k3 = in.B.aux;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  const eT* C_mem   = C.mem;
+  
+  const u32 local_n_elem = A.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] = k1/A_mem[i] + k2/B_mem[i] + k3/C_mem[i];
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+glue_plus::apply
+  (
+  Mat<typename T1::elem_type>& out,
+  const Glue<Op<T1, op_scalar_div_post>, Op<T2, op_scalar_div_post>, glue_plus>& in
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp1(in.A.m);
+  const unwrap<T2> tmp2(in.B.m);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "matrix addition");
+  
+  out.set_size(A.n_rows, A.n_cols);
+  
+  const eT k1 = in.A.aux;
+  const eT k2 = in.B.aux;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const u32 local_n_elem = A.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i]/k1 + B_mem[i]/k2;
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2, typename T3>
+inline
+void
+glue_plus::apply
+  (
+  Mat<typename T1::elem_type>& out,
+  const Glue< Glue<Op<T1, op_scalar_div_post>, Op<T2, op_scalar_div_post>, glue_plus>, Op<T3, op_scalar_div_post>, glue_plus>& in
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp1(in.A.A.m);
+  const unwrap<T2> tmp2(in.A.B.m);
+  const unwrap<T3> tmp3(in.B.m);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  const Mat<eT>& C = tmp3.M;
+  
+  arma_debug_assert_same_size(A, B, "matrix addition");
+  arma_debug_assert_same_size(B, C, "matrix addition");
+  
+  out.set_size(A.n_rows, A.n_cols);
+  
+  const eT k1 = in.A.A.aux;
+  const eT k2 = in.A.B.aux;
+  const eT k3 = in.B.aux;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  const eT* C_mem   = C.mem;
+  
+  const u32 local_n_elem = A.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i]/k1 + B_mem[i]/k2 + C_mem[i]/k3;
     }
   
   }

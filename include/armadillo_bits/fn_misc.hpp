@@ -196,13 +196,17 @@ log_add(eT log_a, eT log_b)
   
   const eT negdelta = log_b - log_a;
   
-  if( (negdelta < Math<eT>::log_min()) || std::isnan(negdelta) )
+  if( (negdelta < Math<eT>::log_min()) || (arma_isfinite(negdelta) == false) )
     {
     return log_a;
     }
   else
     {
-    return (log_a + log1p(std::exp(negdelta)));
+    #if defined(ARMA_HAVE_LOG1P)
+      return (log_a + log1p(std::exp(negdelta)));
+    #else
+      return (log_a + std::log(1.0 + std::exp(negdelta)));
+    #endif
     }
   }
 
