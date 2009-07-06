@@ -1589,7 +1589,7 @@ auxlib::solve_ud(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
     Mat<eT> A_copy = A;
     
     Mat<eT> tmp;
-    tmp = zeros(A.n_cols, B.n_cols);
+    tmp.zeros(A.n_cols, B.n_cols);
     
     for(u32 col=0; col<B.n_cols; ++col)
       {

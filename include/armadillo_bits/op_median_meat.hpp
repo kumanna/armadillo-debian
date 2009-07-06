@@ -122,7 +122,7 @@ op_median::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_median>& in)
     
     out.set_size(1, X.n_cols);
     
-    std::vector<eT> tmp(X.n_rows);
+    std::vector<eT> tmp_vec(X.n_rows);
     
     for(u32 col=0; col<X.n_cols; ++col)
       {
@@ -130,10 +130,10 @@ op_median::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_median>& in)
       
       for(u32 row=0; row<X.n_rows; ++row)
         {
-        tmp[row] = colmem[row];
+        tmp_vec[row] = colmem[row];
         }
       
-      out[col] = op_median::direct_median(tmp);
+      out[col] = op_median::direct_median(tmp_vec);
       }
     }
   else
@@ -143,16 +143,16 @@ op_median::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_median>& in)
   
     out.set_size(X.n_rows, 1);
     
-    std::vector<eT> tmp(X.n_cols);
+    std::vector<eT> tmp_vec(X.n_cols);
     
     for(u32 row=0; row<X.n_rows; ++row)
       {
       for(u32 col=0; col<X.n_cols; ++col)
         {
-        tmp[col] = X.at(row,col);
+        tmp_vec[col] = X.at(row,col);
         }
   
-      out[row] = op_median::direct_median(tmp);
+      out[row] = op_median::direct_median(tmp_vec);
       }
     }
   
@@ -277,7 +277,7 @@ op_median::apply(Mat< std::complex<T> >& out, const Op<T1,op_median>& in)
     
     out.set_size(1, X.n_cols);
     
-    std::vector< arma_cx_median_packet<T> > tmp(X.n_rows);
+    std::vector< arma_cx_median_packet<T> > tmp_vec(X.n_rows);
     
     for(u32 col=0; col<X.n_cols; ++col)
       {
@@ -285,13 +285,13 @@ op_median::apply(Mat< std::complex<T> >& out, const Op<T1,op_median>& in)
       
       for(u32 row=0; row<X.n_rows; ++row)
         {
-        tmp[row].val   = std::abs(colmem[row]);
-        tmp[row].index = row;
+        tmp_vec[row].val   = std::abs(colmem[row]);
+        tmp_vec[row].index = row;
         }
       
       u32 index1;
       u32 index2;
-      op_median::direct_cx_median_index(index1, index2, tmp);
+      op_median::direct_cx_median_index(index1, index2, tmp_vec);
       
       out[col] = (colmem[index1] + colmem[index2]) / T(2);
       }
@@ -303,19 +303,19 @@ op_median::apply(Mat< std::complex<T> >& out, const Op<T1,op_median>& in)
   
     out.set_size(X.n_rows, 1);
     
-    std::vector< arma_cx_median_packet<T> > tmp(X.n_cols);
+    std::vector< arma_cx_median_packet<T> > tmp_vec(X.n_cols);
     
     for(u32 row=0; row<X.n_rows; ++row)
       {
       for(u32 col=0; col<X.n_cols; ++col)
         {
-        tmp[col].val   = std::abs(X.at(row,col));
-        tmp[row].index = col;
+        tmp_vec[col].val   = std::abs(X.at(row,col));
+        tmp_vec[row].index = col;
         }
   
       u32 index1;
       u32 index2;
-      op_median::direct_cx_median_index(index1, index2, tmp);
+      op_median::direct_cx_median_index(index1, index2, tmp_vec);
       
       out[row] = ( X.at(row,index1) + X.at(row,index2) ) / T(2);
       }

@@ -17,7 +17,7 @@
 //! @{
 
 
-//! Class which implements the immediate addition matrices, with the result stored in 'mat' (dense matrix)
+//! Class which implements the immediate addition matrices, with the result stored in 'Mat' (dense matrix)
 class glue_plus
   {
   public:
@@ -31,22 +31,22 @@ class glue_plus
   inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue<Mat<eT>, Mat<eT>, glue_plus> &X);
+  inline static void apply(Mat<eT>& out, const Glue<Mat<eT>, Mat<eT>, glue_plus>& X);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>,glue_plus>, Mat<eT>, glue_plus> &X);
+  inline static void apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>,glue_plus>, Mat<eT>, glue_plus>& X);
   
   template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_plus> &X);
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_plus>& X);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue<Mat<eT>, subview<eT>, glue_plus> &X);
+  inline static void apply(Mat<eT>& out, const Glue<Mat<eT>, subview<eT>, glue_plus>& X);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue<subview<eT>, Mat<eT>, glue_plus> &X);
+  inline static void apply(Mat<eT>& out, const Glue<subview<eT>, Mat<eT>, glue_plus>& X);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue<subview<eT>, subview<eT>, glue_plus> &X);
+  inline static void apply(Mat<eT>& out, const Glue<subview<eT>, subview<eT>, glue_plus>& X);
   
   
   // mat, inplace
@@ -75,7 +75,25 @@ class glue_plus
   template<typename T1, typename T2>
   inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Glue<Row<typename T1::elem_type>, T1, glue_times_vec>, T2, glue_plus>& in);
   
-  
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1, op_scalar_times>, Op<T2, op_scalar_times>, glue_plus>& in);
+
+  template<typename T1, typename T2, typename T3>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Glue<Op<T1, op_scalar_times>, Op<T2, op_scalar_times>, glue_plus>, Op<T3, op_scalar_times>, glue_plus>& in);
+
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1, op_scalar_div_pre>, Op<T2, op_scalar_div_pre>, glue_plus>& in);
+
+  template<typename T1, typename T2, typename T3>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Glue<Op<T1, op_scalar_div_pre>, Op<T2, op_scalar_div_pre>, glue_plus>, Op<T3, op_scalar_div_pre>, glue_plus>& in);
+
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1, op_scalar_div_post>, Op<T2, op_scalar_div_post>, glue_plus>& in);
+
+  template<typename T1, typename T2, typename T3>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Glue<Op<T1, op_scalar_div_post>, Op<T2, op_scalar_div_post>, glue_plus>, Op<T3, op_scalar_div_post>, glue_plus>& in);
+
+
   // matrix addition with different element types
   
   template<typename eT1, typename eT2>

@@ -90,7 +90,7 @@ struct sort_index_result_type_deducer
   
 
 
-template<>
+//template<>
 template<typename eT>
 struct sort_index_result_type_deducer< Col<eT> >
   {
@@ -99,7 +99,7 @@ struct sort_index_result_type_deducer< Col<eT> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 struct sort_index_result_type_deducer< Row<eT> >
   {

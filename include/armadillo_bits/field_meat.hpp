@@ -32,7 +32,11 @@ field<oT>::~field()
   
   if(arma_config::debug == true)
     {
-    mem = 0;  // try to expose buggy code that still accesses a deleted 'field'
+    // try to expose buggy user code that accesses deleted objects
+    access::rw(n_rows) = 0;
+    access::rw(n_cols) = 0;
+    access::rw(n_elem) = 0;
+    mem = 0;
     }
   }
 

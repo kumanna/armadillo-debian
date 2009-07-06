@@ -24,17 +24,9 @@
 #define arma_aligned
 
 
-#if defined(__INTEL_COMPILER)
-  #if(__INTEL_COMPILER < 1000)
-    #error "need a newer compiler"
-  #endif
-#elif defined(_MSC_VER)
-  #if(_MSC_VER < 1400)
-    #error "need a newer compiler"
-  #endif
-#elif defined(__GNUG__)
+#if defined(__GNUG__)
   #if(__GNUC__ < 4)
-    #error "need a newer compiler"
+    #error "*** Need a newer compiler ***"
   #endif
   #if(__GNUC_MINOR__ >= 3)
     #undef  arma_hot
@@ -46,12 +38,22 @@
   #undef  arma_inline
   #undef  arma_aligned
 
-  #define arma_pure           __attribute__((pure)) 
+  #define arma_pure           __attribute__((pure))
   #define arma_const          __attribute__((const))
   #define arma_inline  inline __attribute__((always_inline))
   #define arma_aligned        __attribute__((aligned))
-
+#elif defined(__INTEL_COMPILER)
+  #if(__INTEL_COMPILER < 1000)
+    #error "*** Need a newer compiler ***"
+  #endif
+#elif defined(_MSC_VER)
+  #if(_MSC_VER <= 1500)
+    #error "*** This compiler is not supported due to its incomplete implementation of the C++ standard -- please try the gcc, mingw-gcc or intel compilers instead ***"
+  #else
+    #pragma message ("*** WARNING: This compiler may have an incomplete implementation of the C++ standard ***")
+  #endif
 #endif
+
 
 #include "armadillo_bits/config.hpp"
 
@@ -69,12 +71,15 @@
 #include <complex>
 #include <vector>
 
-#if !defined(ARMA_USE_BOOST)
+
+#if defined(ARMA_HAVE_GETTIMEOFDAY)
   #include <sys/time.h>
-#else
+#endif
+
+
+#if defined(ARMA_USE_BOOST)
   #include <boost/format.hpp>
   #include <boost/current_function.hpp>
-  #include <boost/date_time/posix_time/posix_time.hpp>
   #include <boost/math/complex.hpp>
   #include <boost/math/special_functions/acosh.hpp>
   #include <boost/math/special_functions/asinh.hpp>
@@ -82,11 +87,16 @@
 #endif
 
 
+#if defined(ARMA_USE_BOOST_DATE)
+  #include <boost/date_time/posix_time/posix_time.hpp>
+#endif
+
+
 #if defined(ARMA_USE_ATLAS)
   #define ARMA_TMP_STRING(x) x
 
-  #define ARMA_ATLAS_INCLUDE_1 <ARMA_TMP_STRING(ARMA_ATLAS_INCLUDE_DIR) ARMA_TMP_STRING(cblas.h)>
-  #define ARMA_ATLAS_INCLUDE_2 <ARMA_TMP_STRING(ARMA_ATLAS_INCLUDE_DIR) ARMA_TMP_STRING(clapack.h)>
+  #define ARMA_ATLAS_INCLUDE_1 <ARMA_TMP_STRING(ARMA_ATLAS_INCLUDE_DIR)/ARMA_TMP_STRING(cblas.h)>
+  #define ARMA_ATLAS_INCLUDE_2 <ARMA_TMP_STRING(ARMA_ATLAS_INCLUDE_DIR)/ARMA_TMP_STRING(clapack.h)>
   
   extern "C"
     {

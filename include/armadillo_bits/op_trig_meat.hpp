@@ -38,7 +38,7 @@ op_cos::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_cos>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -64,7 +64,7 @@ op_acos::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acos>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -93,7 +93,7 @@ op_acos::apply(Mat< std::complex<T> >& out, const Op<T1,op_acos>& in)
     const unwrap<T1> tmp(in.m);
     
     const Mat<eT>& A = tmp.M;
-    const u32 n_elem       = A.n_elem;
+    const u32 n_elem = A.n_elem;
     
     out.set_size(A.n_rows, A.n_cols);
     eT* out_ptr = out.memptr();
@@ -124,7 +124,7 @@ op_cosh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_cosh>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -152,7 +152,7 @@ op_acosh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acosh>& in)
     const unwrap<T1> tmp(in.m);
     
     const Mat<eT>& A = tmp.M;
-    const u32 n_elem       = A.n_elem;
+    const u32 n_elem = A.n_elem;
     
     out.set_size(A.n_rows, A.n_cols);
     eT* out_ptr = out.memptr();
@@ -186,7 +186,7 @@ op_sin::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sin>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -212,7 +212,7 @@ op_asin::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asin>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -241,7 +241,7 @@ op_asin::apply(Mat< std::complex<T> >& out, const Op<T1,op_asin>& in)
     const unwrap<T1> tmp(in.m);
     
     const Mat<eT>& A = tmp.M;
-    const u32 n_elem       = A.n_elem;
+    const u32 n_elem = A.n_elem;
     
     out.set_size(A.n_rows, A.n_cols);
     eT* out_ptr = out.memptr();
@@ -272,7 +272,7 @@ op_sinh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sinh>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -300,7 +300,7 @@ op_asinh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asinh>& in)
     const unwrap<T1> tmp(in.m);
   
     const Mat<eT>& A = tmp.M;
-    const u32 n_elem       = A.n_elem;
+    const u32 n_elem = A.n_elem;
     
     out.set_size(A.n_rows, A.n_cols);
     eT* out_ptr = out.memptr();
@@ -333,7 +333,7 @@ op_tan::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_tan>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -359,7 +359,7 @@ op_atan::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atan>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -388,7 +388,7 @@ op_atan::apply(Mat< std::complex<T> >& out, const Op<T1,op_atan>& in)
     const unwrap<T1> tmp(in.m);
     
     const Mat<eT>& A = tmp.M;
-    const u32 n_elem       = A.n_elem;
+    const u32 n_elem = A.n_elem;
     
     out.set_size(A.n_rows, A.n_cols);
     eT* out_ptr = out.memptr();
@@ -419,7 +419,7 @@ op_tanh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_tanh>& in)
   const unwrap<T1> tmp(in.m);
   
   const Mat<eT>& A = tmp.M;
-  const u32 n_elem       = A.n_elem;
+  const u32 n_elem = A.n_elem;
   
   out.set_size(A.n_rows, A.n_cols);
   eT* out_ptr = out.memptr();
@@ -447,7 +447,7 @@ op_atanh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atanh>& in)
     const unwrap<T1> tmp(in.m);
   
     const Mat<eT>& A = tmp.M;
-    const u32 n_elem       = A.n_elem;
+    const u32 n_elem = A.n_elem;
     
     out.set_size(A.n_rows, A.n_cols);
     eT* out_ptr = out.memptr();

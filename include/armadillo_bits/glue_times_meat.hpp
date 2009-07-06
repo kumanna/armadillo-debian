@@ -126,26 +126,6 @@ glue_times::apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT
 
 
 
-template<typename eT>
-inline
-void
-glue_times::apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_times>& X)
-  {
-  glue_times::apply(out, X.A, X.B);
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_times::apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>, glue_times>, Mat<eT>, glue_times>& X)
-  {
-  glue_times::apply(out, X.A.A, X.A.B, X.B);
-  }
-
-
-
 template<typename T1, typename T2>
 void
 glue_times::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X)
@@ -380,6 +360,26 @@ glue_times::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>
         }
       }
     }
+  }
+
+
+
+template<typename eT>
+inline
+void
+glue_times::apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_times>& X)
+  {
+  glue_times::apply(out, X.A, X.B);
+  }
+
+
+
+template<typename eT>
+inline
+void
+glue_times::apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>, glue_times>, Mat<eT>, glue_times>& X)
+  {
+  glue_times::apply(out, X.A.A, X.A.B, X.B);
   }
 
 

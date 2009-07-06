@@ -28,9 +28,9 @@ class field
   
   typedef oT object_type;
   
-  const u32 n_rows;
-  const u32 n_cols;
-  const u32 n_elem;
+  const u32 n_rows;     //!< number of rows in the field (read-only)
+  const u32 n_cols;     //!< number of columns in the field (read-only)
+  const u32 n_elem;     //!< number of elements in the field (read-only)
 
   private:
   

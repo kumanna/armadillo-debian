@@ -30,7 +30,11 @@ Mat<eT>::~Mat()
     
   if(arma_config::debug == true)
     {
-    access::rw(mem) = 0;  // try to expose buggy code that still accesses deleted objects
+    // try to expose buggy user code that accesses deleted objects
+    access::rw(n_rows) = 0;
+    access::rw(n_cols) = 0;
+    access::rw(n_elem) = 0;
+    access::rw(mem)    = 0;
     }
   
   isnt_supported_elem_type<eT>::check();
@@ -1449,7 +1453,10 @@ Mat<eT>::memptr() const
 
 
 
-//! print contents of the matrix, optionally preceding with a user specified line of text
+//! print contents of the matrix (to the cout stream),
+//! optionally preceding with a user specified line of text.
+//! the precision and cell width are modified.
+//! on return, the stream's flags are restored to their original values.
 template<typename eT>
 inline
 void
@@ -1462,7 +1469,69 @@ Mat<eT>::print(const std::string extra_text) const
     cout << extra_text << '\n';
     }
   
-  cout << *this << '\n';
+  arma_ostream::print(cout, *this, true);
+  }
+
+
+//! print contents of the matrix to a user specified stream,
+//! optionally preceding with a user specified line of text.
+//! the precision and cell width are modified.
+//! on return, the stream's flags are restored to their original values.
+template<typename eT>
+inline
+void
+Mat<eT>::print(std::ostream& user_stream, const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(extra_text.length() != 0)
+    {
+    user_stream << extra_text << '\n';
+    }
+  
+  arma_ostream::print(user_stream, *this, true);
+  }
+
+
+
+//! print contents of the matrix (to the cout stream),
+//! optionally preceding with a user specified line of text.
+//! the stream's flags are used as is and are not modified
+//! (i.e. the precision and cell width are not modified).
+template<typename eT>
+inline
+void
+Mat<eT>::raw_print(const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(extra_text.length() != 0)
+    {
+    cout << extra_text << '\n';
+    }
+  
+  arma_ostream::print(cout, *this, false);
+  }
+
+
+
+//! print contents of the matrix to a user specified stream,
+//! optionally preceding with a user specified line of text.
+//! the stream's flags are used as is and are not modified.
+//! (i.e. the precision and cell width are not modified).
+template<typename eT>
+inline
+void
+Mat<eT>::raw_print(std::ostream& user_stream, const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(extra_text.length() != 0)
+    {
+    user_stream << extra_text << '\n';
+    }
+  
+  arma_ostream::print(user_stream, *this, false);
   }
 
 
