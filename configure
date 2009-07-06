@@ -2,18 +2,21 @@
 
 ABORT=no
 
-check_prog()
+check_cmake()
   {
-  ($1 --version) </dev/null >/dev/null 2>&1 ||
+  (cmake --version) </dev/null >/dev/null 2>&1 ||
     {
-    echo "error: \"$1\" must be present to configure and install Armadillo"
+    echo "error: cmake 2.6 must be present to configure and install Armadillo"
+    echo ""
+    echo "cmake might be available as a package for your system,"
+    echo "or can be downloaded from http://cmake.org"
     ABORT=yes
     }
   }
 
-check_prog "cmake"
+check_cmake
 
-test "$ABORT" = yes && exit 1
+test "$ABORT" = yes && exit -1
 
 rm -f CMakeCache.txt
 cmake .

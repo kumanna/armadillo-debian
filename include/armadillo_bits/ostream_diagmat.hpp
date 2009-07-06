@@ -32,8 +32,9 @@ operator<< (std::ostream& o, const Op<T1,op_diagmat>& X)
     
   arma_debug_check( ((m.is_vec() == false) && (m.is_square() == false)), "operator<<(): incompatible dimensions for diagmat operation" );
   
-  const ios::fmtflags orig_flags = o.flags();
-  const u32 cell_width = arma_ostream::set_flags(o, m);
+  const arma_ostream_state stream_state(o);
+
+  const u32 cell_width = arma_ostream::modify_stream(o, m);
   
   const u32 local_n_rows = (std::max)(m.n_rows, m.n_cols);
   
@@ -64,7 +65,10 @@ operator<< (std::ostream& o, const Op<T1,op_diagmat>& X)
       o << '\n';
     }
   
-  o.flags(orig_flags);
+  o.flush();
+
+  stream_state.restore(o);  
+
   return o;
   }
 

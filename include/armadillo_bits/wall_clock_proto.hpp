@@ -25,7 +25,7 @@ class wall_clock
   inline wall_clock();
   inline ~wall_clock();
   
-  inline void tic();    //!< start the timer
+  inline void   tic();  //!< start the timer
   inline double toc();  //!< return the number of seconds since the last call to tic()
   
   
@@ -33,12 +33,14 @@ class wall_clock
   
   bool valid;
   
-  #if defined(ARMA_USE_BOOST)
-    boost::posix_time::ptime boost_time1;
+  #if defined(ARMA_USE_BOOST_DATE)
+    boost::posix_time::ptime         boost_time1;
     boost::posix_time::time_duration boost_duration;
   #else
-    struct timeval posix_time1;
-    struct timeval posix_time2;
+    #if defined(ARMA_HAVE_GETTIMEOFDAY)
+      struct timeval posix_time1;
+      struct timeval posix_time2;
+    #endif
   #endif
   
   };

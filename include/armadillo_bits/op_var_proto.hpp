@@ -24,10 +24,10 @@ class op_var
   public:
   
   template<typename eT>
-  inline static eT direct_var(const eT* const X, const u32 N, const u32 norm_type);
+  inline static eT direct_var(const eT* const X, const u32 N, const u32 norm_type = 0);
   
   template<typename T>
-  inline static T direct_var(const std::complex<T>* const X, const u32 N, const u32 norm_type);
+  inline static T direct_var(const std::complex<T>* const X, const u32 N, const u32 norm_type = 0);
   
   
   
@@ -40,17 +40,17 @@ class op_var
   
   
   template<typename eT>
-  inline static eT direct_var(const subview<eT>& X, const u32 norm_type);
+  inline static eT direct_var(const subview<eT>& X, const u32 norm_type = 0);
   
   template<typename T>
-  inline static T direct_var(const subview< std::complex<T> >& X, const u32 norm_type);
+  inline static T direct_var(const subview< std::complex<T> >& X, const u32 norm_type = 0);
   
   
   template<typename eT>
-  inline static eT direct_var(const diagview<eT>& X, const u32 norm_type);
+  inline static eT direct_var(const diagview<eT>& X, const u32 norm_type = 0);
   
   template<typename T>
-  inline static T direct_var(const diagview< std::complex<T> >& X, const u32 norm_type);
+  inline static T direct_var(const diagview< std::complex<T> >& X, const u32 norm_type = 0);
   
   };
 

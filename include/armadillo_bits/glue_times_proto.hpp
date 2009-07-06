@@ -36,15 +36,15 @@ class glue_times
   inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C);
   
   
-  
+
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X);
+
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_times>& X);
   
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>, glue_times>, Mat<eT>, glue_times>& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X);
   
   
   

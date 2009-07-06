@@ -317,7 +317,7 @@ accu(const Glue<T1,T2,glue_schur>& X)
   else
     {
     const Mat<eT>* ptrs[N_mat];
-    bool                  del[N_mat];
+    bool            del[N_mat];
   
     mat_ptrs<glue_schur, Glue<T1,T2,glue_schur> >::get_ptrs(ptrs, del, X);
   
@@ -331,8 +331,8 @@ accu(const Glue<T1,T2,glue_schur>& X)
       arma_debug_assert_same_size(tmp_mat, *(ptrs[i]), "accu()");
       }
     
-    const u32 n_rows = ptrs[0]->n_rows;
-    const u32 n_cols = ptrs[0]->n_cols;
+    // const u32 n_rows = ptrs[0]->n_rows;
+    // const u32 n_cols = ptrs[0]->n_cols;
     
     eT val = eT(0);
     
@@ -418,8 +418,8 @@ accu(const Glue<Mat<eT>,subview<eT>,glue_schur>& X)
   const Mat<eT>& A = X.A;
   const Mat<eT>& B = X.B.m;
   
-  const u32 B_sub_n_rows = X.B.n_rows;
-  const u32 B_sub_n_cols = X.B.n_cols;
+  // const u32 B_sub_n_rows = X.B.n_rows;
+  // const u32 B_sub_n_cols = X.B.n_cols;
   
   const u32 B_aux_row1 = X.B.aux_row1;
   const u32 B_aux_col1 = X.B.aux_col1;
@@ -461,8 +461,8 @@ accu(const Glue<subview<eT>,subview<eT>,glue_schur>& X)
   const u32 A_sub_n_rows = X.A.n_rows;
   const u32 A_sub_n_cols = X.A.n_cols;
   
-  const u32 B_sub_n_rows = X.B.n_rows;
-  const u32 B_sub_n_cols = X.B.n_cols;
+  // const u32 B_sub_n_rows = X.B.n_rows;
+  // const u32 B_sub_n_cols = X.B.n_cols;
   
   const u32 A_aux_row1 = X.A.aux_row1;
   const u32 A_aux_col1 = X.A.aux_col1;

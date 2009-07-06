@@ -21,7 +21,7 @@
 template<typename eT>
 inline 
 eT
-op_var::direct_var(const eT* const X, const u32 n_elem, const u32 norm_type = 0)
+op_var::direct_var(const eT* const X, const u32 n_elem, const u32 norm_type)
   {
   arma_extra_debug_sigprint();
   
@@ -47,7 +47,7 @@ op_var::direct_var(const eT* const X, const u32 n_elem, const u32 norm_type = 0)
 template<typename T>
 inline 
 T
-op_var::direct_var(const std::complex<T>* const X, const u32 n_elem, const u32 norm_type = 0)
+op_var::direct_var(const std::complex<T>* const X, const u32 n_elem, const u32 norm_type)
   {
   arma_extra_debug_sigprint();
   
@@ -192,7 +192,7 @@ op_var::apply(Mat<T>& out, const Mat< std::complex<T> >& X, const u32 norm_type,
 template<typename eT>
 inline 
 eT
-op_var::direct_var(const subview<eT>& X, const u32 norm_type = 0)
+op_var::direct_var(const subview<eT>& X, const u32 norm_type)
   {
   arma_extra_debug_sigprint();
   
@@ -220,7 +220,7 @@ op_var::direct_var(const subview<eT>& X, const u32 norm_type = 0)
 template<typename T>
 inline 
 T
-op_var::direct_var(const subview< std::complex<T> >& X, const u32 norm_type = 0)
+op_var::direct_var(const subview< std::complex<T> >& X, const u32 norm_type)
   {
   arma_extra_debug_sigprint();
   
@@ -249,7 +249,7 @@ op_var::direct_var(const subview< std::complex<T> >& X, const u32 norm_type = 0)
 template<typename eT>
 inline 
 eT
-op_var::direct_var(const diagview<eT>& X, const u32 norm_type = 0)
+op_var::direct_var(const diagview<eT>& X, const u32 norm_type)
   {
   arma_extra_debug_sigprint();
   
@@ -277,7 +277,7 @@ op_var::direct_var(const diagview<eT>& X, const u32 norm_type = 0)
 template<typename T>
 inline 
 T
-op_var::direct_var(const diagview< std::complex<T> >& X, const u32 norm_type = 0)
+op_var::direct_var(const diagview< std::complex<T> >& X, const u32 norm_type)
   {
   arma_extra_debug_sigprint();
   

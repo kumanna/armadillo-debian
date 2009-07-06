@@ -128,6 +128,7 @@ diskio::gen_bin_header(const Mat<eT>& x)
     {
     return std::string("ARMA_MAT_BIN_IS004");
     }
+  else
   if(is_float<eT>::value == true)
     {
     return std::string("ARMA_MAT_BIN_FN004");
@@ -211,14 +212,14 @@ inline
 std::string
 diskio::gen_tmp_name(const std::string& x)
   {
-  const std::string* ptr_x = &x;
-  const u8* ptr_ptr_x = reinterpret_cast<const u8*>(&ptr_x);
+  const std::string* ptr_x     = &x;
+  const u8*          ptr_ptr_x = reinterpret_cast<const u8*>(&ptr_x);
   
-  const char* extra = ".tmp_";
-  const u32 extra_size = 5;
+  const char* extra      = ".tmp_";
+  const u32   extra_size = 5;
   
-  const u32 tmp_size = 2*sizeof(u8*) + 2*2;
-  char tmp[tmp_size];
+  const u32   tmp_size   = 2*sizeof(u8*) + 2*2;
+        char  tmp[tmp_size];
   
   u32 char_count = 0;
   

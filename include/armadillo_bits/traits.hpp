@@ -21,11 +21,9 @@ template<typename T1>
 struct get_pod_type
   { typedef T1 pod_type; };
 
-template<>
 template<typename T2>
 struct get_pod_type< std::complex<T2> >
   { typedef T2 pod_type; };
-
 
 
 
@@ -33,7 +31,6 @@ template<typename T>
 struct is_Mat_only
   { static const bool value = false; };
 
-template<>
 template<typename eT>
 struct is_Mat_only< Mat<eT> >
   { static const bool value = true; };
@@ -44,17 +41,14 @@ template<typename T>
 struct is_Mat
   { static const bool value = false; };
 
-template<>
 template<typename eT>
 struct is_Mat< Mat<eT> >
   { static const bool value = true; };
 
-template<>
 template<typename eT>
 struct is_Mat< Row<eT> >
   { static const bool value = true; };
 
-template<>
 template<typename eT>
 struct is_Mat< Col<eT> >
   { static const bool value = true; };
@@ -65,7 +59,6 @@ template<typename T>
 struct is_Row
   { static const bool value = false; };
 
-template<>
 template<typename eT>
 struct is_Row< Row<eT> >
   { static const bool value = true; };
@@ -76,7 +69,6 @@ template<typename T>
 struct is_Col
   { static const bool value = false; };
 
-template<>
 template<typename eT>
 struct is_Col< Col<eT> >
   { static const bool value = true; };
@@ -90,7 +82,6 @@ template<typename T>
 struct is_subview
   { static const bool value = false; };
 
-template<>
 template<typename eT>
 struct is_subview< subview<eT> >
   { static const bool value = true; };
@@ -100,7 +91,6 @@ template<typename T>
 struct is_diagview
   { static const bool value = false; };
 
-template<>
 template<typename eT>
 struct is_diagview< diagview<eT> >
   { static const bool value = true; };
@@ -316,7 +306,7 @@ template<typename T1>
 struct is_complex
   { static const bool value = false; };
 
-template<>
+// template<>
 template<typename eT>
 struct is_complex< std::complex<eT> >
   { static const bool value = true; };
@@ -349,7 +339,7 @@ template<typename T1>
 struct is_supported_complex
   { static const bool value = false; };
 
-template<>
+//template<>
 template<typename eT>
 struct is_supported_complex< std::complex<eT> >
   { static const bool value = ( sizeof(std::complex<eT>) == 2*sizeof(eT) ); };
@@ -551,6 +541,8 @@ template<> struct promote_type<u16, u8> : public promote_type_ok { typedef u16 r
 template<> struct promote_type<s8, u8> : public promote_type_ok { typedef s8 result; };  // s16 ?
 
 
+
+
 //
 // type promotion, mirrored versions
 
@@ -659,7 +651,7 @@ struct upgrade_val
   };
 
 
-template<>
+// template<>
 template<typename T>
 struct upgrade_val<T,T>
   {
@@ -672,7 +664,7 @@ struct upgrade_val<T,T>
 
 //! upgrade a type to allow multiplication with a complex type
 //! e.g. the int in "int * complex<double>" is upgraded to a double
-template<>
+// template<>
 template<typename T, typename T2>
 struct upgrade_val< std::complex<T>, T2 >
   {
@@ -684,7 +676,7 @@ struct upgrade_val< std::complex<T>, T2 >
   };
 
 
-template<>
+// template<>
 template<typename T1, typename T>
 struct upgrade_val< T1, std::complex<T> >
   {

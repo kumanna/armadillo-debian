@@ -534,10 +534,11 @@ arma_stop(const T1& x)
         {
         std::cout << "@ ---" << '\n';
         std::cout << "@ Armadillo " << arma_version::major << '.' << arma_version::minor << '.' << arma_version::patch << '\n';
-        std::cout << "@ arma_config::atlas  = " << arma_config::atlas << '\n';
-        std::cout << "@ arma_config::lapack = " << arma_config::lapack << '\n';
-        std::cout << "@ arma_config::blas   = " << arma_config::blas << '\n';
-        std::cout << "@ arma_config::boost  = " << arma_config::boost << '\n';
+        std::cout << "@ arma_config::atlas      = " << arma_config::atlas      << '\n';
+        std::cout << "@ arma_config::lapack     = " << arma_config::lapack     << '\n';
+        std::cout << "@ arma_config::blas       = " << arma_config::blas       << '\n';
+        std::cout << "@ arma_config::boost      = " << arma_config::boost      << '\n';
+        std::cout << "@ arma_config::boost_date = " << arma_config::boost_date << '\n';
         std::cout << "@ sizeof(int)  = " << sizeof(int)  << '\n';
         std::cout << "@ sizeof(int*) = " << sizeof(int*) << '\n';
         std::cout << "@ sizeof(long) = " << sizeof(long) << '\n';

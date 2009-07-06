@@ -29,7 +29,7 @@ class unwrap
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap< Mat<eT> >
   {
@@ -47,7 +47,7 @@ class unwrap< Mat<eT> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap< Row<eT> >
   {
@@ -65,7 +65,7 @@ class unwrap< Row<eT> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap< Col<eT> >
   {
@@ -118,7 +118,7 @@ class unwrap< Glue<T1, T2, glue_type> >
   };
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap< subview<eT> >
   {
@@ -135,7 +135,7 @@ class unwrap< subview<eT> >
   };
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap< diagview<eT> >
   {
@@ -170,7 +170,7 @@ class unwrap_to_elem_access
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_to_elem_access< Mat<eT> >
   {
@@ -195,7 +195,7 @@ class unwrap_to_elem_access< Mat<eT> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_to_elem_access< Row<eT> >
   {
@@ -219,7 +219,7 @@ class unwrap_to_elem_access< Row<eT> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_to_elem_access< Op< Row<eT>, op_trans> >
   {
@@ -246,7 +246,7 @@ class unwrap_to_elem_access< Op< Row<eT>, op_trans> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_to_elem_access< Col<eT> >
   {
@@ -270,7 +270,7 @@ class unwrap_to_elem_access< Col<eT> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_to_elem_access< Op<Col<eT>, op_trans> >
   {
@@ -342,7 +342,7 @@ class unwrap_to_elem_access< Glue<T1, T2, glue_type> >
   };
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_to_elem_access< subview<eT> >
   {
@@ -381,7 +381,7 @@ class unwrap_check
   };
 
 
-template <>
+//template <>
 template<typename eT>
 class unwrap_check< Mat<eT> >
   {
@@ -452,7 +452,7 @@ class unwrap_check< Mat<eT> >
 
 
 
-template <>
+//template <>
 template<typename eT>
 class unwrap_check< Row<eT> >
   {
@@ -521,7 +521,7 @@ class unwrap_check< Row<eT> >
 
 
 
-template <>
+//template <>
 template<typename eT>
 class unwrap_check< Col<eT> >
   {
@@ -680,7 +680,7 @@ class unwrap_check< Glue<T1, T2, glue_type> >
 
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_check< subview<eT> >
   {
@@ -698,7 +698,7 @@ class unwrap_check< subview<eT> >
   };
 
 
-template<>
+//template<>
 template<typename eT>
 class unwrap_check< diagview<eT> >
   {
