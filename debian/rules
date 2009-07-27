@@ -26,7 +26,9 @@ build: build-stamp
 build-docs-stamp:
 	mkdir -p debian/doc_gen # temporary documentation configurations places here.
 	cp build_aux/doxygen/doxygen.config build_aux/doxygen/main.doxy debian/doc_gen
-	echo -e "\nOUTPUT_DIRECTORY       = debian/tmp/usr/share/doc/libarmadillo-doc\n" >> debian/doc_gen/doxygen.config
+	echo >> debian/doc_gen/doxygen.config
+	echo "OUTPUT_DIRECTORY       = debian/tmp/usr/share/doc/libarmadillo-doc" >> debian/doc_gen/doxygen.config
+	echo >> debian/doc_gen/doxygen.config
 	doxygen -u debian/doc_gen/doxygen.config
 	mkdir -p debian/tmp/usr/share/doc/libarmadillo-doc/docs_tech
 	doxygen debian/doc_gen/doxygen.config

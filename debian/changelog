@@ -1,3 +1,13 @@
+armadillo (0.6.12-2) unstable; urgency=low
+
+  * Add boost dependency. Thanks to Dirk Eddelbuettel for bringing this to
+    my notice. In particular, use libboost-math-dev and
+    libboost-date-time-dev.
+  * Fix echo -e bashism. Thanks to Raphael Geissert for pointing
+    this out. (#535371)
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 27 Jul 2009 09:17:46 -0500
+
 armadillo (0.6.12-1) UNRELEASED; urgency=low
 
   * New upstream release.
