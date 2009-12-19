@@ -21,11 +21,13 @@ using std::ios;
 template<typename eT> class Mat;
 template<typename eT> class Col;
 template<typename eT> class Row;
+template<typename eT> class Cube;
 
 template<typename eT> class subview;
 template<typename eT> class subview_col;
 template<typename eT> class subview_row;
 template<typename oT> class subview_field;
+template<typename oT> class subview_cube;
 
 template<typename eT> class diagview;
 
@@ -59,12 +61,20 @@ class glue_minus_diag;
 class glue_times_diag;
 class glue_schur_diag;
 
+class glue_cube_div;
+class glue_cube_minus;
+class glue_cube_plus;
+class glue_cube_schur;
+
+
 template<const bool, const bool, const bool, const bool> class gemm;
-template<const bool, const bool, const bool>       class gemv;
+template<const bool, const bool, const bool>             class gemv;
 
 template<typename T1, typename op_type> class Op; 
-template<typename T1, typename T2, typename glue_type> class Glue;
+template<typename T1, typename op_type> class OpCube; 
 
+template<typename T1, typename T2, typename glue_type> class Glue;
+template<typename T1, typename T2, typename glue_type> class GlueCube;
 
 
 //! \addtogroup diskio

@@ -1,5 +1,5 @@
 Name:           armadillo
-Version:        0.6.12
+Version:        0.8.0
 Release:        1%{?dist}
 Summary:        Fast C++ matrix library with interfaces to LAPACK and ATLAS
 
@@ -30,7 +30,7 @@ than another language like Matlab or Octave.
 Summary:        Development headers and documentation for the Armadillo C++ library
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
-Requires:       boost-devel, atlas-devel
+Requires:       boost-devel, atlas-devel, libstdc++-devel
 
 # The header files of Armadillo include some Boost and ATLAS header files,
 # delivered within the boost-devel and atlas-devel sub-packages, respectively.
@@ -48,6 +48,13 @@ user documentation (reference guide), and the technical documentation.
 %prep
 %setup -q
 
+# convert DOS end-of-line to UNIX end-of-line
+
+for file in README.txt; do
+  sed 's/\r//' $file >$file.new && \
+  touch -r $file $file.new && \
+  mv $file.new $file
+done
 
 %build
 %{cmake}
@@ -91,6 +98,21 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_docdir}/%{name}-%{version}/docs_tech/
 
 %changelog
+* Mon Dec 14 2009 Conrad Sanderson  <conradsand ! ieee ! org> - 0.8.0-1
+- spec updated for Armadillo 0.8.0
+
+* Fri Oct 23 2009 Conrad Sanderson  <conradsand ! ieee ! org> - 0.7.2-1
+- spec updated for Armadillo 0.7.2
+
+* Mon Oct 05 2009 Conrad Sanderson  <conradsand ! ieee ! org> - 0.7.0-1
+- spec updated for Armadillo 0.7.0
+
+* Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.6.12-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
+* Wed Jul 06 2009  Conrad Sanderson  <conradsand ! ieee ! org> - 0.6.12-2
+- added conversion of DOS end-of-line to UNIX end-of-line for README.txt
+
 * Wed Jun 22 2009  Conrad Sanderson  <conradsand ! ieee ! org> - 0.6.12-1
 - spec updated for Armadillo 0.6.12
 

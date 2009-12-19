@@ -23,11 +23,25 @@ class glue_div
   public:
   
   
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_div>& X);
+  
+  template<typename T1>
+  inline static void apply_inplace(Mat<typename T1::elem_type>& out, const T1& X);
+  
+  template<typename eT1, typename eT2>
+  inline static void apply_mixed(Mat<typename promote_type<eT1,eT2>::result>& out, const Mat<eT1>& X, const Mat<eT2>& Y);
+  
+  
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B);
   
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C);
+  
+  
+  #if defined(ARMA_GOOD_COMPILER)
+  
   
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_div>& X);
@@ -35,24 +49,8 @@ class glue_div
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>, glue_div>, Mat<eT>, glue_div>& X);
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_div>& X);
   
-  
-  template<typename eT>
-  inline static void apply_inplace(Mat<eT>& out, const Mat<eT>& B);
-  
-  template<typename T1, typename op_type>
-  inline static void apply_inplace(Mat<typename T1::elem_type>& out, const Op<T1, op_type>& X);
-  
-  template<typename T1, typename T2, typename glue_type>
-  inline static void apply_inplace(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_type>& X);
-
-
-  // element-wise division with different element types
-  
-  template<typename eT1, typename eT2>
-  inline static void apply_mixed(Mat<typename promote_type<eT1,eT2>::result>& out, const Mat<eT1>& X, const Mat<eT2>& Y);
+  #endif
   
   };
 

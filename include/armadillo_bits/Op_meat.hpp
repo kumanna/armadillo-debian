@@ -17,6 +17,7 @@
 //! @{
 
 
+
 template<typename T1, typename op_type>
 Op<T1, op_type>::Op(const T1& in_m)
   : m(in_m)
@@ -42,10 +43,21 @@ Op<T1, op_type>::Op(const T1& in_m, const typename T1::elem_type in_aux)
 
 
 template<typename T1, typename op_type>
-//Op<T1, op_type>::Op(const T1& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b = 0)
 Op<T1, op_type>::Op(const T1& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b)
   : m(in_m)
   , aux(aux)
+  , aux_u32_a(in_aux_u32_a)
+  , aux_u32_b(in_aux_u32_b)
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename T1, typename op_type>
+Op<T1, op_type>::Op(const T1& in_m, const typename T1::elem_type in_aux, const u32 in_aux_u32_a, const u32 in_aux_u32_b)
+  : m(in_m)
+  , aux(in_aux)
   , aux_u32_a(in_aux_u32_a)
   , aux_u32_b(in_aux_u32_b)
   {
@@ -71,6 +83,7 @@ Op<T1, op_type>::~Op()
   {
   arma_extra_debug_sigprint();
   }
- 
+
+
 
 //! @}

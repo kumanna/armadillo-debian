@@ -46,45 +46,35 @@ accu(const Base<typename T1::elem_type,T1>& X)
 
 
 
-//! sum of values along the main diagonal
+//! accumulate the elements of a cube
 template<typename T1>
 inline
 typename T1::elem_type
-accu(const Op<T1, op_diagmat>& X)
+accu(const BaseCube<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> tmp(X.m);
-  const Mat<eT>& A = tmp.M;
+  const unwrap_cube<T1> tmp(X.get_ref());
+  const Cube<eT>& A   = tmp.M;
   
-  arma_debug_check( !A.is_square(), "accu(): sum of diagonal values of a non-square matrix requested" );
+  const u32 A_n_elem = A.n_elem;
+  const eT* A_mem    = A.mem;
   
-  eT acc = eT(0);
+  eT val = eT(0);
   
-  for(u32 i=0; i<A.n_rows; ++i)
+  for(u32 i=0; i<A_n_elem; ++i)
     {
-    acc += A.at(i,i);
+    val += A_mem[i];
     }
   
-  return acc;
+  return val;
   }
 
 
 
-template<typename eT>
-inline
-eT
-accu(const Op<Mat<eT>, op_diagmat_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  const Mat<eT>& A = X.m;
-  arma_debug_check( !A.is_vec(), "accu(): internal error: expected a vector" );
-  
-  return accu(A);
-  }
+#if defined(ARMA_GOOD_COMPILER)
 
 
 
@@ -117,6 +107,35 @@ accu(const Op<T1, op_square>& in)
 
 
 
+//! sum of squares
+template<typename T1>
+inline
+typename T1::elem_type
+accu(const OpCube<T1, op_square>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  const Cube<eT>& A   = tmp.M;
+  
+  const u32 A_n_elem = A.n_elem;
+  const eT* A_mem    = A.mem;
+  
+  eT acc = eT(0);
+  
+  for(u32 i=0; i<A_n_elem; ++i)
+    {
+    const eT val = A_mem[i];
+    acc += val*val;
+    }
+  
+  return acc;
+  }
+
+
+
 //! sum of square roots
 template<typename T1>
 inline
@@ -129,6 +148,33 @@ accu(const Op<T1, op_sqrt>& in)
   
   const unwrap<T1> tmp(in.m);
   const Mat<eT>& A = tmp.M;
+  
+  const u32 A_n_elem = A.n_elem;
+  const eT* A_mem    = A.mem;
+  
+  eT acc = eT(0);
+  for(u32 i=0; i<A_n_elem; ++i)
+    {
+    acc += std::sqrt(A_mem[i]);
+    }
+  
+  return acc;
+  }
+
+
+
+//! sum of square roots
+template<typename T1>
+inline
+typename T1::elem_type
+accu(const OpCube<T1, op_sqrt>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  const Cube<eT>& A   = tmp.M;
   
   const u32 A_n_elem = A.n_elem;
   const eT* A_mem    = A.mem;
@@ -176,48 +222,34 @@ accu(const Op< Glue<T1,T2, glue_minus>, op_square>& in)
 
 
 
-//! accumulate the elements of a subview (submatrix)
-template<typename eT>
+//! sum of squares of differences
+template<typename T1, typename T2>
 inline
-eT
-accu(const subview<eT>& X)
+typename T1::elem_type
+accu(const OpCube< GlueCube<T1,T2, glue_cube_minus>, op_square>& in)
   {
-  arma_extra_debug_sigprint();  
+  arma_extra_debug_sigprint();
   
-  eT val = eT(0);
-  for(u32 col=0; col<X.n_cols; ++col)
-    {
-    const eT* coldata = X.colptr(col);
-    
-    for(u32 row=0; row<X.n_rows; ++row)
-      {
-      val += coldata[row];
-      }
-    
-    }
+  typedef typename T1::elem_type eT;
   
-  return val;
-  }
-
-
-
-//! accumulate the elements of a diagview
-template<typename eT>
-inline
-eT
-accu(const diagview<eT>& X)
-  {
-  arma_extra_debug_sigprint();  
+  const unwrap_cube<T1> tmp1(in.m.A);
+  const unwrap_cube<T2> tmp2(in.m.B);
   
-  const u32 n_elem = X.n_elem;
-  eT val = eT(0);
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
   
+  arma_debug_assert_same_size(A,B, "accu()");
+  
+  const u32 n_elem = A.n_elem;
+  
+  eT acc = eT(0);
   for(u32 i=0; i<n_elem; ++i)
     {
-    val += X[i];
+    const eT val = A.mem[i] - B.mem[i];
+    acc += val*val;
     }
   
-  return val;
+  return acc;
   }
 
 
@@ -252,7 +284,44 @@ accu_schur(const Mat<eT>& A, const Mat<eT>& B)
 template<typename eT>
 inline
 eT
+accu_schur(const Cube<eT>& A, const Cube<eT>& B)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_assert_same_size(A,B, "accu()");
+ 
+  const eT* const A_mem = A.mem;
+  const eT* const B_mem = B.mem;
+  
+  const u32 n_elem = A.n_elem;
+  eT val = eT(0);
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    val += A_mem[i] * B_mem[i];
+    }
+  
+  return val;
+  }
+
+
+
+//! accumulate the result of A % B, where % is the Schur product (element-wise multiplication)
+template<typename eT>
+inline
+eT
 accu(const Glue<Mat<eT>,Mat<eT>,glue_schur>& X)
+  {
+  return accu_schur(X.A, X.B);
+  }
+
+
+
+//! accumulate the result of A % B, where % is the Schur product (element-wise multiplication)
+template<typename eT>
+inline
+eT
+accu(const GlueCube< Cube<eT>, Cube<eT>, glue_cube_schur >& X)
   {
   return accu_schur(X.A, X.B);
   }
@@ -273,6 +342,38 @@ accu(const Glue<Glue<Mat<eT>,Mat<eT>,glue_schur>,Mat<eT>,glue_schur>& X)
   
   arma_debug_assert_same_size(A,B, "accu()");
   arma_debug_assert_same_size(A,C, "accu()");
+  
+  const eT* const A_mem = A.mem;
+  const eT* const B_mem = B.mem;
+  const eT* const C_mem = C.mem;
+  
+  const u32 n_elem = A.n_elem;
+  eT val = eT(0);
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    val += A_mem[i] * B_mem[i] * C_mem[i];
+    }
+    
+  return val;
+  }
+
+
+
+//! accumulate the result of A % B % C, where % is the Schur product (element-wise multiplication)
+template<typename eT>
+inline
+eT
+accu(const GlueCube< GlueCube< Cube<eT>, Cube<eT>, glue_cube_schur >, Cube<eT>, glue_cube_schur >& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Cube<eT>& A = X.A.A;
+  const Cube<eT>& B = X.A.B;
+  const Cube<eT>& C = X.B;
+  
+  arma_debug_assert_same_size(A,B, "accu()");
+  arma_debug_assert_same_size(B,C, "accu()");
   
   const eT* const A_mem = A.mem;
   const eT* const B_mem = B.mem;
@@ -312,7 +413,10 @@ accu(const Glue<T1,T2,glue_schur>& X)
 
   if(N_mat == 2)
     {
-    return accu_schur(Mat<eT>(X.A), Mat<eT>(X.B));
+    const unwrap<T1> tmp1(X.A);
+    const unwrap<T2> tmp2(X.B);
+    
+    return accu_schur(tmp1.M, tmp2.M);
     }
   else
     {
@@ -363,6 +467,145 @@ accu(const Glue<T1,T2,glue_schur>& X)
     return val;    
     }
   }
+
+
+
+//! sum of values along the main diagonal
+template<typename T1>
+inline
+typename T1::elem_type
+accu(const Op<T1, op_diagmat>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp(X.m);
+  const Mat<eT>& A = tmp.M;
+  
+  arma_debug_check( !A.is_square(), "accu(): sum of diagonal values of a non-square matrix requested" );
+  
+  eT acc = eT(0);
+  
+  for(u32 i=0; i<A.n_rows; ++i)
+    {
+    acc += A.at(i,i);
+    }
+  
+  return acc;
+  }
+
+
+
+template<typename eT>
+inline
+eT
+accu(const Op<Mat<eT>, op_diagmat_vec>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Mat<eT>& A = X.m;
+  arma_debug_check( !A.is_vec(), "accu(): internal error: expected a vector" );
+  
+  return accu(A);
+  }
+
+
+
+//! accumulate the elements of a diagview
+template<typename eT>
+inline
+eT
+accu(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();  
+  
+  const u32 n_elem = X.n_elem;
+  eT val = eT(0);
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    val += X[i];
+    }
+  
+  return val;
+  }
+
+
+
+//! accumulate the elements of a subview (submatrix)
+template<typename eT>
+inline
+eT
+accu(const subview<eT>& S)
+  {
+  arma_extra_debug_sigprint();  
+  
+  eT val = eT(0);
+  
+  for(u32 col=0; col<S.n_cols; ++col)
+    {
+    const eT* coldata = S.colptr(col);
+    
+    for(u32 row=0; row<S.n_rows; ++row)
+      {
+      val += coldata[row];
+      }
+    
+    }
+  
+  return val;
+  }
+
+
+
+//! accumulate the elements of a subview_row
+template<typename eT>
+inline
+eT
+accu(const subview_row<eT>& S)
+  {
+  arma_extra_debug_sigprint();  
+  
+  const Mat<eT>& X = S.m;
+  
+  const u32 row       = S.aux_row1;
+  const u32 start_col = S.aux_col1;
+  const u32 end_col   = S.aux_col2;
+  
+  eT val = eT(0);
+  
+  for(u32 col=start_col; col<=end_col; ++col)
+    {
+    val += X.at(row,col);
+    }
+  
+  return val;
+  }
+
+
+
+//! accumulate the elements of a subview_col
+template<typename eT>
+inline
+eT
+accu(const subview_col<eT>& S)
+  {
+  arma_extra_debug_sigprint();
+  
+  const eT* S_colptr = S.colptr(0);
+  const u32 n_rows   = S.n_rows;
+  
+  eT val = eT(0);
+  
+  for(u32 row=0; row<n_rows; ++row)
+    {
+    val += S_colptr[row];
+    }
+  
+  return val;
+  }
+
 
 
 //! accumulate the result of submatrix % matrix, where % is the Schur product (element-wise multiplication)
@@ -490,6 +733,10 @@ accu(const Glue<subview<eT>,subview<eT>,glue_schur>& X)
   
   return val;
   }
+
+
+
+#endif
 
 
 

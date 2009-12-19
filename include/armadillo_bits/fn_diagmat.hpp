@@ -18,10 +18,10 @@
 
 
 //! interpret a mat as a diagonal matrix (i.e. off-diagonal entries are zero)
-template<typename eT, typename T1>
+template<typename T1>
 inline
 const Op<T1, op_diagmat>
-diagmat(const Base<eT,T1>& X)
+diagmat(const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   

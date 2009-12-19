@@ -28,7 +28,14 @@ subview_field<oT>::~subview_field()
 
 template<typename oT>
 arma_inline
-subview_field<oT>::subview_field(const field<oT>& in_f, const u32 in_row1, const u32 in_col1, const u32 in_row2,  const u32 in_col2)
+subview_field<oT>::subview_field
+  (
+  const field<oT>& in_f,
+  const u32        in_row1,
+  const u32        in_col1,
+  const u32        in_row2,
+  const u32        in_col2
+  )
   : f(in_f)
   , f_ptr(0)
   , aux_row1(in_row1)
@@ -46,7 +53,14 @@ subview_field<oT>::subview_field(const field<oT>& in_f, const u32 in_row1, const
 
 template<typename oT>
 arma_inline
-subview_field<oT>::subview_field(field<oT>& in_f, const u32 in_row1, const u32 in_col1, const u32 in_row2,  const u32 in_col2)
+subview_field<oT>::subview_field
+  (
+        field<oT>& in_f,
+  const u32        in_row1,
+  const u32        in_col1,
+  const u32        in_row2,
+  const u32        in_col2
+  )
   : f(in_f)
   , f_ptr(&in_f)
   , aux_row1(in_row1)

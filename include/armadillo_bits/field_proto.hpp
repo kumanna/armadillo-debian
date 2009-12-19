@@ -54,8 +54,9 @@ class field
   inline explicit field(const u32 n_elem_in);
   inline          field(const u32 n_rows_in, const u32 n_cols_in);
   
-  inline void set_size(const u32 n_obj_in);
-  inline void set_size(const u32 n_rows_in, const u32 n_cols_in);
+  inline void  set_size(const u32 n_obj_in);
+  inline void  set_size(const u32 n_rows_in, const u32 n_cols_in);
+  inline void copy_size(const field& x);
   
   arma_inline       oT& operator[](const u32 i);
   arma_inline const oT& operator[](const u32 i) const;
@@ -85,6 +86,7 @@ class field
   inline const subview_field<oT> subfield(const u32 in_row1, const u32 in_col1, const u32 in_row2, const u32 in_col2) const;
   
   inline void print(const std::string extra_text = "") const;
+  inline void print(std::ostream& user_stream, const std::string extra_text = "") const;
   
   inline void fill(const oT& x);
   
@@ -113,50 +115,31 @@ class field_aux
   {
   public:
   
-  template<typename oT>
-  inline static void reset_objects(field< oT >& x);
-  
-  template<typename eT>
-  inline static void reset_objects(field< Mat<eT> >& x);
-  
-  template<typename eT>
-  inline static void reset_objects(field< Col<eT> >& x);
-  
-  template<typename eT>
-  inline static void reset_objects(field< Row<eT> >& x);
-  
-  inline static void reset_objects(field< std::string >& x);
+  template<typename oT> inline static void reset_objects(field< oT >& x);
+  template<typename eT> inline static void reset_objects(field< Mat<eT> >& x);
+  template<typename eT> inline static void reset_objects(field< Col<eT> >& x);
+  template<typename eT> inline static void reset_objects(field< Row<eT> >& x);
+  template<typename eT> inline static void reset_objects(field< Cube<eT> >& x);
+                        inline static void reset_objects(field< std::string >& x);
   
   
-  template<typename oT>
-  inline static void save(const field< oT >& x,          const std::string& name, const file_type type);
-  
-  template<typename oT>
-  inline static void load(      field< oT >& x,          const std::string& name, const file_type type);
-  
-  template<typename eT>
-  inline static void save(const field< Mat<eT> >& x,     const std::string& name, const file_type type);
+  template<typename oT> inline static void save(const field< oT >& x,          const std::string& name, const file_type type);
+  template<typename oT> inline static void load(      field< oT >& x,          const std::string& name, const file_type type);
 
-  template<typename eT>
-  inline static void load(      field< Mat<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Mat<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Mat<eT> >& x,     const std::string& name, const file_type type);
   
-  template<typename eT>
-  inline static void save(const field< Col<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Col<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Col<eT> >& x,     const std::string& name, const file_type type);
+  
+  template<typename eT> inline static void save(const field< Row<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Row<eT> >& x,     const std::string& name, const file_type type);
 
-  template<typename eT>
-  inline static void load(      field< Col<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Cube<eT> >& x,    const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Cube<eT> >& x,    const std::string& name, const file_type type);
   
-  template<typename eT>
-  inline static void save(const field< Row<eT> >& x,     const std::string& name, const file_type type);
-
-  template<typename eT>
-  inline static void load(      field< Row<eT> >& x,     const std::string& name, const file_type type);
-  
-  
-  inline static void save(const field< std::string >& x, const std::string& name, const file_type type);
-  inline static void load(      field< std::string >& x, const std::string& name, const file_type type);
-  
-  
+                        inline static void save(const field< std::string >& x, const std::string& name, const file_type type);
+                        inline static void load(      field< std::string >& x, const std::string& name, const file_type type);
   
   };
 

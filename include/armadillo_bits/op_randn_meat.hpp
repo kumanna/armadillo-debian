@@ -62,17 +62,32 @@ op_randn::direct_randn(eT* x, const u32 n_elem)
 
 
 
-template<typename eT>
+template<typename T>
 inline
 void
-op_randn::apply(Mat<eT>& out, const Op<Mat<eT>,op_randn>& in)
+op_randn::direct_randn(std::complex<T>* x, const u32 n_elem)
   {
   arma_extra_debug_sigprint();
   
-  const u32 n_rows = in.aux_u32_a;
-  const u32 n_cols = (in.aux_u32_b > 0) ? in.aux_u32_b : 1;
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    const T a = op_randn::randn<T>();
+    const T b = op_randn::randn<T>();
+
+    x[i] = std::complex<T>(a,b);
+    }
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_randn::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_randn>& in)
+  {
+  arma_extra_debug_sigprint();
   
-  out.set_size(n_rows, n_cols);
+  out.set_size(in.aux_u32_a, in.aux_u32_b);
   
   op_randn::direct_randn(out.memptr(), out.n_elem);
   }
@@ -82,53 +97,11 @@ op_randn::apply(Mat<eT>& out, const Op<Mat<eT>,op_randn>& in)
 template<typename eT>
 inline
 void
-op_randn::apply(Mat<eT>& out, const Op<Col<eT>,op_randn>& in)
+op_randn::apply(Cube<eT>& out, const OpCube<Cube<eT>,op_randn>& in)
   {
   arma_extra_debug_sigprint();
   
-  out.set_size(in.aux_u32_a, 1);
-  
-  op_randn::direct_randn(out.memptr(), out.n_elem);
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_randn::apply(Mat<eT>& out, const Op<Row<eT>,op_randn>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.set_size(1, in.aux_u32_a);
-  
-  op_randn::direct_randn(out.memptr(), out.n_elem);
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_randn::apply(Col<eT>& out, const Op<Col<eT>,op_randn>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.set_size(in.aux_u32_a);
-  
-  op_randn::direct_randn(out.memptr(), out.n_elem);
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_randn::apply(Row<eT>& out, const Op<Row<eT>,op_randn>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.set_size(in.aux_u32_a);
+  out.set_size(in.aux_u32_a, in.aux_u32_b, in.aux_u32_c);
   
   op_randn::direct_randn(out.memptr(), out.n_elem);
   }

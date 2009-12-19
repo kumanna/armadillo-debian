@@ -101,7 +101,7 @@ inline
 void
 arma_bktprint(const T1& x)
   {
-  std::cout << " [" << x << "]" << std::endl;
+  std::cout << " [" << x << ']' << std::endl;
   }
 
 
@@ -111,7 +111,7 @@ inline
 void
 arma_bktprint(const T1& x, const T2& y)
   {
-  std::cout << " [" << x << y << "]" << std::endl;
+  std::cout << " [" << x << y << ']' << std::endl;
   }
 
 
@@ -122,7 +122,7 @@ arma_bktprint(const T1& x, const T2& y)
   void
   arma_bktprint(const arma_boost::basic_format<T1>& x)
     {
-    std::cout << " [" << x << "]" << std::endl;
+    std::cout << " [" << x << ']' << std::endl;
     }
 #else
   template<typename T1, typename T2>
@@ -130,7 +130,7 @@ arma_bktprint(const T1& x, const T2& y)
   void
   arma_bktprint(const arma_boost::basic_format<T1,T2>& x)
     {
-    std::cout << " [" << x << "]" << std::endl;
+    std::cout << " [" << x << ']' << std::endl;
     }
 #endif
 
@@ -144,7 +144,7 @@ inline
 void
 arma_thisprint(void* this_ptr)
   {
-  std::cout << " [this = " << this_ptr << "]" << std::endl;
+  std::cout << " [this = " << this_ptr << ']' << std::endl;
   }
 
 
@@ -261,13 +261,18 @@ arma_check(const bool state, const T1& x, const T2& y)
 
 
 
+//
+// functions for checking whether two matrices have the same dimensions
+
+
+
 inline
 std::string
 arma_incompat_size_string(const u32 A_n_rows, const u32 A_n_cols, const u32 B_n_rows, const u32 B_n_cols, const char* x)
   {
   std::stringstream tmp;
   
-  tmp << x << ": incompatible matrix dimensions: (" << A_n_rows << "," << A_n_cols << ") and (" << B_n_rows << "," << B_n_cols << ")";
+  tmp << x << ": incompatible matrix dimensions: (" << A_n_rows << ',' << A_n_cols << ") and (" << B_n_rows << ',' << B_n_cols << ')';
   
   return tmp.str();
   }
@@ -356,6 +361,187 @@ arma_assert_same_size(const subview<eT1>& A, const subview<eT2>& B, const char* 
       );
     }
   }
+
+
+
+//
+// functions for checking whether two cubes have the same dimensions
+
+
+
+inline
+std::string
+arma_incompat_size_string(const u32 A_n_rows, const u32 A_n_cols, const u32 A_n_slices, const u32 B_n_rows, const u32 B_n_cols, const u32 B_n_slices, const char* x)
+  {
+  std::stringstream tmp;
+  
+  tmp << x << ": incompatible cube dimensions: (" << A_n_rows << ',' << A_n_cols << ',' << A_n_slices << ") and (" << B_n_rows << ',' << B_n_cols << ',' << B_n_slices << ')';
+  
+  return tmp.str();
+  }
+
+
+
+inline
+void
+arma_hot
+arma_assert_same_size(const u32 A_n_rows, const u32 A_n_cols, const u32 A_n_slices, const u32 B_n_rows, const u32 B_n_cols, const u32 B_n_slices, const char* x)
+  {
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) || (A_n_slices != B_n_slices) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x)
+      );
+    }
+  }
+
+
+
+//! if given cubes have different sizes, throw a run-time error exception
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Cube<eT1>& A, const Cube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
+      );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Cube<eT1>& A, const subview_cube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
+      );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const subview_cube<eT1>& A, const Cube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
+      );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const subview_cube<eT1>& A, const subview_cube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices))
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
+      );
+    }
+  }
+
+
+
+//
+// functions for checking whether a cube or subcube can be interpreted as a matrix (i.e. single slice)
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Cube<eT1>& A, const Mat<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != 1) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x)
+      );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Mat<eT1>& A, const Cube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (1 != B.n_slices) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x)
+      );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const subview_cube<eT1>& A, const Mat<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != 1) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x)
+      );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Mat<eT1>& A, const subview_cube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (1 != B.n_slices) )
+    {
+    throw std::runtime_error
+      (
+      arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x)
+      );
+    }
+  }
+
+
+
+//
+// functions for checking whether two matrices have dimensions that are compatible with the matrix multiply operation
 
 
 
@@ -539,6 +725,7 @@ arma_stop(const T1& x)
         std::cout << "@ arma_config::blas       = " << arma_config::blas       << '\n';
         std::cout << "@ arma_config::boost      = " << arma_config::boost      << '\n';
         std::cout << "@ arma_config::boost_date = " << arma_config::boost_date << '\n';
+        std::cout << "@ arma_config::good_comp  = " << arma_config::good_comp  << '\n';
         std::cout << "@ sizeof(int)  = " << sizeof(int)  << '\n';
         std::cout << "@ sizeof(int*) = " << sizeof(int*) << '\n';
         std::cout << "@ sizeof(long) = " << sizeof(long) << '\n';

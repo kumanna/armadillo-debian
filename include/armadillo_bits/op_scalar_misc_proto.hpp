@@ -18,113 +18,107 @@
 //! @{
 
 
-//! 'add scalar to matrix' operation
+//! 'add scalar to a matrix/cube' operation
 class op_scalar_plus
   {
   public:
   
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_plus>& in);
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_scalar_plus>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_plus>& in);
   };
 
 
 
-//! 'subtract matrix from a scalar' operation
+//! 'subtract matrix/cube from a scalar' operation
 class op_scalar_minus_pre
   {
   public:
   
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_minus_pre>& in);
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_scalar_minus_pre>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_minus_pre>& in);
   };
 
 
 
-//! 'subtract scalar from matrix' operation
+//! 'subtract scalar from a matrix/cube' operation
 class op_scalar_minus_post
   {
   public:
   
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_minus_post>& in);
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_scalar_minus_post>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_minus_post>& in);
   };
 
 
-//! 'multiply matrix by a scalar' operation
+//! 'multiply matrix/cube by a scalar' operation
 class op_scalar_times
   {
   public:
   
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_times>& in);
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_scalar_times>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_times>& in);
   
-  template<typename T1, typename T2, typename glue_type>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_type>,  op_scalar_times>& in);
+  #if defined(ARMA_GOOD_COMPILER)
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_plus>,  op_scalar_times>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_plus>,  op_scalar_times>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_plus>,  op_scalar_times>& in);
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_minus>, op_scalar_times>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_minus>, op_scalar_times>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_minus>, op_scalar_times>& in);
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_schur>, op_scalar_times>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_schur>, op_scalar_times>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_schur>, op_scalar_times>& in);
   
-  
+  #endif
   };
 
 
 
-//! 'divide scalar by a matrix' operation
+//! 'divide scalar by a matrix/cube' operation
 class op_scalar_div_pre
   {
   public:
   
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_div_pre>& in);
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_scalar_div_pre>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_div_pre>& in);
   
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Mat<eT>,op_scalar_div_pre>& in);
+  #if defined(ARMA_GOOD_COMPILER)
+
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_plus>,  op_scalar_div_pre>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_plus>,  op_scalar_div_pre>& in);
   
-  template<typename T1, typename T2, typename glue_type>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_type>, op_scalar_div_pre>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_minus>, op_scalar_div_pre>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_minus>, op_scalar_div_pre>& in);
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_plus>,  op_scalar_div_pre>& in);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_minus>, op_scalar_div_pre>& in);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_schur>, op_scalar_div_pre>& in);
-  
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_schur>, op_scalar_div_pre>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_schur>, op_scalar_div_pre>& in);
+
+  #endif
   };
 
 
 
-//! 'divide matrix by a scalar' operation
+//! 'divide matrix/cube by a scalar' operation
 class op_scalar_div_post
   {
   public:
   
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_div_post>& in);
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_scalar_div_post>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_div_post>& in);
   
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Mat<eT>,op_scalar_div_post>& in);
   
-  template<typename T1, typename T2, typename glue_type>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_type>, op_scalar_div_post>& in);
+  #if defined(ARMA_GOOD_COMPILER)
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_plus>,  op_scalar_div_post>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_plus>,  op_scalar_div_post>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_plus>,  op_scalar_div_post>& in);
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_minus>, op_scalar_div_post>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_minus>, op_scalar_div_post>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_minus>, op_scalar_div_post>& in);
   
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_schur>, op_scalar_div_post>& in);
+  template<typename T1, typename T2> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<    Glue<T1,T2,     glue_schur>, op_scalar_div_post>& in);
+  template<typename T1, typename T2> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<GlueCube<T1,T2,glue_cube_schur>, op_scalar_div_post>& in);
   
+  #endif
   };
 
 

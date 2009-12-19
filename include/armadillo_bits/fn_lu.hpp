@@ -18,31 +18,50 @@
 
 
 //! immediate lower upper decomposition
-template<typename eT, typename T1>
+template<typename T1>
 inline
 void
-lu(Mat<eT>& L, Mat<eT>& U, const Base<eT,T1>& X)
+lu(Mat<typename T1::elem_type>& L, Mat<typename T1::elem_type>& U, const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(X.get_ref());
-
-  auxlib::lu(L, U, tmp.M);
+  typedef typename T1::elem_type eT;
+  
+  arma_debug_check( (&L == &U), "lu(): L and U are the same object");
+  
+  const unwrap_check<T1> tmp1(X.get_ref(), L);
+  const Mat<eT>&     A = tmp1.M;
+  
+  const unwrap_check< Mat<eT> > tmp2(A, U);
+  const Mat<eT>&            B = tmp2.M;
+  
+  auxlib::lu(L, U, B);
   }
 
 
 
 //! immediate lower upper decomposition, also providing the permutation matrix
-template<typename eT, typename T1>
+template<typename T1>
 inline
 void
-lu(Mat<eT>& L, Mat<eT>& U, Mat<eT>& P, const Base<eT,T1>& X)
+lu(Mat<typename T1::elem_type>& L, Mat<typename T1::elem_type>& U, Mat<typename T1::elem_type>& P, const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(X.get_ref());
+  typedef typename T1::elem_type eT;
   
-  auxlib::lu(L, U, P, tmp.M);
+  arma_debug_check( ( (&L == &U) || (&L == &P) || (&U == &P) ), "lu(): two or more output objects are the same object");
+
+  const unwrap_check<T1> tmp1(X.get_ref(), L);
+  const Mat<eT>&     A = tmp1.M;
+  
+  const unwrap_check< Mat<eT> > tmp2(A, U);
+  const Mat<eT>&            B = tmp2.M;
+  
+  const unwrap_check< Mat<eT> > tmp3(B, P);
+  const Mat<eT>&            C = tmp3.M;
+  
+  auxlib::lu(L, U, P, C);
   }
 
 

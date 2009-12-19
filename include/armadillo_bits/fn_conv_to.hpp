@@ -74,8 +74,18 @@ class conv_to
 
   template<typename in_eT, typename T1>
   inline static out_eT from(const Base<in_eT,T1>& in);
-  
+
+  //
+
+  inline static out_eT from(const Cube< out_eT >& in);
+
+  template<typename in_eT>
+  inline static out_eT from(const Cube< in_eT >& in);
+
+  template<typename in_eT, typename T1>
+  inline static out_eT from(const BaseCube<in_eT,T1>& in);
   };
+
 
 
 template<typename out_eT>
@@ -123,6 +133,57 @@ conv_to<out_eT>::from(const Base<in_eT,T1>& in)
   arma_type_check< is_supported_elem_type<out_eT>::value == false >::apply();
   
   const unwrap<T1> tmp(in.get_ref());
+
+  return conv_to<out_eT>::from( tmp.M );
+  }
+
+
+
+template<typename out_eT>
+inline
+out_eT
+conv_to<out_eT>::from(const Cube<out_eT>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (in.n_elem != 1), "conv_to<>: cube doesn't have exactly one element" );
+  
+  return in.mem[0];
+  }
+
+
+
+template<typename out_eT>
+template<typename in_eT>
+inline
+out_eT
+conv_to<out_eT>::from(const Cube<in_eT>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check< is_supported_elem_type<out_eT>::value == false >::apply();
+  
+  arma_debug_check( (in.n_elem != 1), "conv_to<>: cube doesn't have exactly one element" );
+  
+  out_eT out;
+  copy_complex_elem(out, in.mem[0]);
+  
+  return out;
+  }
+
+
+
+template<typename out_eT>
+template<typename in_eT, typename T1>
+inline
+out_eT
+conv_to<out_eT>::from(const BaseCube<in_eT,T1>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check< is_supported_elem_type<out_eT>::value == false >::apply();
+  
+  const unwrap_cube<T1> tmp(in.get_ref());
 
   return conv_to<out_eT>::from( tmp.M );
   }
@@ -728,9 +789,96 @@ conv_to< Col<out_eT> >::from(const itpp::Vec< std::complex<in_T> >& in)
 //   }
 
 
+
+//
+//
+// Cube family
+
+template<typename out_eT>
+class conv_to< Cube<out_eT> >
+  {
+  public:
+  
+  template<typename in_eT>
+  inline static Cube<out_eT> from(const Cube< in_eT >& in);
+  
+  template<typename in_T>
+  inline static Cube<out_eT> from(const Cube< std::complex<in_T> >& in);
+  
+  template<typename in_eT, typename T1>
+  inline static Cube<out_eT> from(const BaseCube<in_eT,T1>& in);
+  };
+
+
+
+template<typename out_eT>
+template<typename in_eT>
+inline
+Cube<out_eT>
+conv_to< Cube<out_eT> >::from(const Cube<in_eT>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  Cube<out_eT> out(in.n_rows, in.n_cols, in.n_slices);
+  
+  const in_eT*  in_mem = in.mem;
+  out_eT*      out_mem = out.memptr();
+  
+  for(u32 i=0; i<out.n_elem; ++i)
+    {
+    out_mem[i] = out_eT( in_mem[i] );
+    }
+  
+  return out;
+  }
+
+
+
+template<typename out_eT>
+template<typename in_T>
+inline
+Cube<out_eT>
+conv_to< Cube<out_eT> >::from(const Cube< std::complex<in_T> >& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef std::complex<in_T> in_eT; 
+  
+  Cube<out_eT> out(in.n_rows, in.n_cols, in.n_slices);
+  
+  const in_eT*  in_mem = in.mem;
+  out_eT*      out_mem = out.memptr();
+  
+  for(u32 i=0; i<out.n_elem; ++i)
+    {
+    copy_complex_elem(out_mem[i], in_mem[i]);
+    }
+  
+  return out;
+  }
+
+
+
+template<typename out_eT>
+template<typename in_eT, typename T1>
+inline
+Cube<out_eT>
+conv_to< Cube<out_eT> >::from(const BaseCube<in_eT,T1>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap_cube<T1> tmp(in.get_ref());
+
+  return conv_to< Mat<out_eT> >::from( tmp.M );
+  }
+
+
+
 //
 //
 // itpp::Mat family
+
+
 
 template<typename out_eT>
 class conv_to< itpp::Mat<out_eT> >

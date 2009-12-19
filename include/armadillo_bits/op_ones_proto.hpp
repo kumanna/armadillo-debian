@@ -17,25 +17,16 @@
 //! @{
 
 
-//! Class for creation of a dense matrix/vector with all elements set to one
+//! Class for creation of a dense matrix/vector/cube with all elements set to one
 class op_ones_full
   {
   public:
   
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Mat<eT>,   op_ones_full>& in);
+  template<typename T1>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_ones_full>& in);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Col<eT>,op_ones_full>& in);
-  
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Row<eT>,op_ones_full>& in);
-  
-  template<typename eT>
-  inline static void apply(Col<eT>& out, const Op<Col<eT>,op_ones_full>& in);
-  
-  template<typename eT>
-  inline static void apply(Row<eT>& out, const Op<Row<eT>,op_ones_full>& in);
+  inline static void apply(Cube<eT>& out, const OpCube<Cube<eT>,op_ones_full>& in);
   };
 
 
@@ -43,6 +34,7 @@ class op_ones_full
 class op_ones_diag
   {
   public:
+  
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Op<Mat<eT>,op_ones_diag>& in);
   };

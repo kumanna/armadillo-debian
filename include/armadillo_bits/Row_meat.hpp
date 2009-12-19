@@ -38,6 +38,18 @@ Row<eT>::Row(const u32 in_n_elem)
 
 template<typename eT>
 inline
+Row<eT>::Row(const u32 in_n_rows, const u32 in_n_cols)
+  : Mat<eT>(in_n_rows, in_n_cols)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+inline
 Row<eT>::Row(const char* text)
   : Mat<eT>(text)
   {
@@ -56,7 +68,37 @@ Row<eT>::operator=(const char* text)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator=(text);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+Row<eT>::Row(const std::string& text)
+  : Mat<eT>(text)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  }
+  
+
+
+template<typename eT>
+inline
+const Row<eT>&
+Row<eT>::operator=(const std::string& text)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator=(text);
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -86,7 +128,8 @@ Row<eT>::operator=(const Row<eT>& X)
 
 
 template<typename eT>
-inline Row<eT>::Row(const Mat<eT>& X)
+inline
+Row<eT>::Row(const Mat<eT>& X)
   : Mat<eT>(X)
   {
   arma_extra_debug_sigprint();
@@ -124,17 +167,60 @@ Row<eT>::operator*=(const Mat<eT>& X)
 
 
 
-//! construct a row vector from a given auxillary array
+//! construct a row vector from a given auxiliary array
 template<typename eT>
 inline
-Row<eT>::Row(const eT* aux_mem, const u32 aux_length)
+Row<eT>::Row(eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols, const bool copy_aux_mem)
+  : Mat<eT>(aux_mem, aux_n_rows, aux_n_cols, copy_aux_mem)
   {
   arma_extra_debug_sigprint();
   
-  Mat<eT>::set_size(1, aux_length);
-  arma_check( (Mat<eT>::n_elem != aux_length), "Row(): don't know how to handle the given array" );
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  }
 
-  syslib::copy_elem( Mat<eT>::memptr(), aux_mem, Mat<eT>::n_elem );
+
+
+//! construct a row vector from a given auxiliary array
+template<typename eT>
+inline
+Row<eT>::Row(const eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols)
+  : Mat<eT>(aux_mem, aux_n_rows, aux_n_cols)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  }
+
+
+
+//! construct a row vector from a given auxiliary array
+template<typename eT>
+inline
+Row<eT>::Row(eT* aux_mem, const u32 aux_length, const bool copy_aux_mem)
+  : Mat<eT>(aux_mem, 1, aux_length, copy_aux_mem)
+  {
+  arma_extra_debug_sigprint();
+  
+//   Mat<eT>::set_size(1, aux_length);
+//   arma_check( (Mat<eT>::n_elem != aux_length), "Row(): don't know how to handle the given array" );
+// 
+//   syslib::copy_elem( Mat<eT>::memptr(), aux_mem, Mat<eT>::n_elem );
+  }
+
+
+
+//! construct a row vector from a given auxiliary array
+template<typename eT>
+inline
+Row<eT>::Row(const eT* aux_mem, const u32 aux_length)
+  : Mat<eT>(aux_mem, 1, aux_length)
+  {
+  arma_extra_debug_sigprint();
+  
+//   Mat<eT>::set_size(1, aux_length);
+//   arma_check( (Mat<eT>::n_elem != aux_length), "Row(): don't know how to handle the given array" );
+// 
+//   syslib::copy_elem( Mat<eT>::memptr(), aux_mem, Mat<eT>::n_elem );
   }
 
 
@@ -176,7 +262,9 @@ Row<eT>::operator=(const subview<eT>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator=(X);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -190,7 +278,53 @@ Row<eT>::operator*=(const subview<eT>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator*=(X);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+Row<eT>::Row(const subview_cube<eT>& X)
+  : Mat<eT>(X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+inline
+const Row<eT>&
+Row<eT>::operator=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator=(X);
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+const Row<eT>&
+Row<eT>::operator*=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator*=(X);
+  
+  arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -198,12 +332,14 @@ Row<eT>::operator*=(const subview<eT>& X)
 
 //! construct a row vector from given a diagview
 template<typename eT>
-inline Row<eT>::Row(const diagview<eT>& X)
+inline
+Row<eT>::Row(const diagview<eT>& X)
   : Mat<eT>(X)
   {
   arma_extra_debug_sigprint();
   
   std::swap( access::rw(Mat<eT>::n_rows), access::rw(Mat<eT>::n_cols) );
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
   }
 
@@ -244,6 +380,56 @@ Row<eT>::operator*=(const diagview<eT>& X)
 
 
 template<typename eT>
+arma_inline
+eT&
+Row<eT>::col(const u32 col_num)
+  {
+  arma_debug_check( (col_num >= Mat<eT>::n_cols), "Row::col(): out of bounds" );
+  
+  return access::rw(Mat<eT>::mem[col_num]);
+  }
+
+
+
+template<typename eT>
+arma_inline
+eT
+Row<eT>::col(const u32 col_num)
+  const
+  {
+  arma_debug_check( (col_num >= Mat<eT>::n_cols), "Row::col(): out of bounds" );
+  
+  return Mat<eT>::mem[col_num];
+  }
+
+
+
+template<typename eT>
+arma_inline
+subview_row<eT>
+Row<eT>::cols(const u32 in_col1, const u32 in_col2)
+  {
+  arma_debug_check( ( (in_col1 > in_col2) || (in_col2 >= Mat<eT>::n_cols) ), "Row::cols(): indices out of bounds or incorrectly used");
+  
+  return subview_row<eT>(*this, 0, in_col1, in_col2);
+  }
+
+
+
+template<typename eT>
+arma_inline
+const subview_row<eT>
+Row<eT>::cols(const u32 in_col1, const u32 in_col2)
+  const
+  {
+  arma_debug_check( ( (in_col1 > in_col2) || (in_col2 >= Mat<eT>::n_cols) ), "Row::cols(): indices out of bounds or incorrectly used");
+  
+  return subview_row<eT>(*this, 0, in_col1, in_col2);
+  }
+
+
+
+template<typename eT>
 template<typename T1, typename op_type>
 inline
 Row<eT>::Row(const Op<T1, op_type>& X)
@@ -265,7 +451,9 @@ Row<eT>::operator=(const Op<T1, op_type>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator=(X);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -280,7 +468,9 @@ Row<eT>::operator*=(const Op<T1, op_type>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator*=(X);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -308,7 +498,9 @@ Row<eT>::operator=(const Glue<T1, T2, glue_type>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator=(X);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -323,7 +515,9 @@ Row<eT>::operator*=(const Glue<T1, T2, glue_type>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator*=(X);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
+  
   return *this;
   }
 
@@ -348,9 +542,26 @@ Row<eT>::set_size(const u32 in_n_rows, const u32 in_n_cols)
   {
   arma_extra_debug_sigprint();
   
+  // min is used in case in_n_rows is zero
   Mat<eT>::set_size( (std::min)( u32(1), in_n_rows), in_n_cols );
   
   arma_debug_check( (in_n_rows > 1), "Row::set_size(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+template<typename eT2>
+inline
+void
+Row<eT>::copy_size(const Mat<eT2>& x)
+  {
+  arma_extra_debug_sigprint();
+  
+  // min is used in case x.n_rows is zero
+  Mat<eT>::set_size( (std::min)( u32(1), x.n_rows), x.n_cols );
+  
+  arma_debug_check( (x.n_rows > 1), "Row::copy_size(): incompatible dimensions" );
   }
 
 
@@ -374,7 +585,7 @@ Row<eT>::zeros(const u32 in_n_elem)
   {
   arma_extra_debug_sigprint();
   
-  Mat<eT>::zeros(1,in_n_elem);
+  Mat<eT>::zeros(1, in_n_elem);
   }
 
 
@@ -386,8 +597,49 @@ Row<eT>::zeros(const u32 in_n_rows, const u32 in_n_cols)
   {
   arma_extra_debug_sigprint();
   
+  // min is used in case in_n_rows is zero
   Mat<eT>::zeros( (std::min)( u32(1), in_n_rows), in_n_cols );
+  
   arma_debug_check( (in_n_rows > 1), "Row<eT>::zeros(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+inline
+void
+Row<eT>::ones()
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::ones();
+  }
+
+
+
+template<typename eT>
+inline
+void
+Row<eT>::ones(const u32 in_n_elem)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::ones(1, in_n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+void
+Row<eT>::ones(const u32 in_n_rows, const u32 in_n_cols)
+  {
+  arma_extra_debug_sigprint();
+  
+  // min is used in case in_n_rows is zero
+  Mat<eT>::ones( (std::min)( u32(1), in_n_rows), in_n_cols );
+  
+  arma_debug_check( (in_n_rows > 1), "Row<eT>::ones(): incompatible dimensions" );
   }
 
 
@@ -400,6 +652,7 @@ Row<eT>::load(const std::string name, const file_type type)
   arma_extra_debug_sigprint();
   
   Mat<eT>::load(name,type);
+  
   arma_debug_check( (Mat<eT>::n_rows > 1), "Row(): incompatible dimensions" );
   }
 

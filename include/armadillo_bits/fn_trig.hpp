@@ -203,4 +203,190 @@ atanh(const Base<typename T1::elem_type,T1>& A)
 
 
 
+//
+//
+// handling of cubes
+
+
+
+//
+// cos
+
+template<typename T1>
+inline
+const OpCube<T1, op_cos>
+cos(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_cos>(A.get_ref());
+  }
+
+
+
+//
+// acos
+
+template<typename T1>
+inline
+const OpCube<T1, op_acos>
+acos(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_acos>(A.get_ref());
+  }
+
+
+
+//
+// cosh
+
+template<typename T1>
+inline
+const OpCube<T1, op_cosh>
+cosh(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_cosh>(A.get_ref());
+  }
+
+
+
+//
+// acosh
+
+template<typename T1>
+inline
+const OpCube<T1, op_acosh>
+acosh(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_acosh>(A.get_ref());
+  }
+
+
+
+//
+// sin
+
+template<typename T1>
+inline
+const OpCube<T1, op_sin>
+sin(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_sin>(A.get_ref());
+  }
+
+
+
+//
+// asin
+
+template<typename T1>
+inline
+const OpCube<T1, op_asin>
+asin(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_asin>(A.get_ref());
+  }
+
+
+
+//
+// sinh
+
+template<typename T1>
+inline
+const OpCube<T1, op_sinh>
+sinh(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_sinh>(A.get_ref());
+  }
+
+
+
+//
+// asinh
+
+template<typename T1>
+inline
+const OpCube<T1, op_asinh>
+asinh(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_asinh>(A.get_ref());
+  }
+
+
+
+//
+// tan
+
+template<typename T1>
+inline
+const OpCube<T1, op_tan>
+tan(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_tan>(A.get_ref());
+  }
+
+
+
+//
+// atan
+
+template<typename T1>
+inline
+const OpCube<T1, op_atan>
+atan(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_atan>(A.get_ref());
+  }
+
+
+
+//
+// tanh
+
+template<typename T1>
+inline
+const OpCube<T1, op_tanh>
+tanh(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_tanh>(A.get_ref());
+  }
+
+
+
+//
+// atanh
+
+template<typename T1>
+inline
+const OpCube<T1, op_atanh>
+atanh(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_atanh>(A.get_ref());
+  }
+
+
+
 //! @}

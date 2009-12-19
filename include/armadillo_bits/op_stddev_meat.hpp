@@ -28,10 +28,10 @@ op_stddev::apply(Mat<eT>& out, const Mat<eT>& X, const u32 norm_type, const u32 
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (X.n_elem == 0), "op_stddev::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "stddev(): given matrix has no elements" );
   
-  arma_debug_check( (norm_type > 1), "op_stddev::apply(): incorrect usage. norm_type must be 0 or 1");
-  arma_debug_check( (dim > 1),       "op_stddev::apply(): incorrect usage. dim must be 0 or 1"      );
+  arma_debug_check( (norm_type > 1), "stddev(): incorrect usage. norm_type must be 0 or 1");
+  arma_debug_check( (dim > 1),       "stddev(): incorrect usage. dim must be 0 or 1"      );
   
   if(dim == 0)
     {
@@ -51,7 +51,7 @@ op_stddev::apply(Mat<eT>& out, const Mat<eT>& X, const u32 norm_type, const u32 
     
     out.set_size(X.n_rows, 1);
     
-    const eT norm_val = (norm_type == 0) ? eT(X.n_cols-1) : eT(X.n_cols);
+    const eT norm_val = (norm_type == 0) ? ( (X.n_cols > 1) ? eT(X.n_cols-1) : eT(1) ) : eT(X.n_cols);
     
     for(u32 row=0; row<X.n_rows; ++row)
       {
@@ -86,10 +86,10 @@ op_stddev::apply(Mat<T>& out, const Mat< std::complex<T> >& X, const u32 norm_ty
   
   typedef typename std::complex<T> eT;
   
-  arma_debug_check( (X.n_elem == 0), "op_stddev::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "stddev(): given matrix has no elements" );
   
-  arma_debug_check( (norm_type > 1), "op_stddev::apply(): incorrect usage. norm_type must be 0 or 1");
-  arma_debug_check( (dim > 1),       "op_stddev::apply(): incorrect usage. dim must be 0 or 1"      );
+  arma_debug_check( (norm_type > 1), "stddev(): incorrect usage. norm_type must be 0 or 1");
+  arma_debug_check( (dim > 1),       "stddev(): incorrect usage. dim must be 0 or 1"      );
   
   
   if(dim == 0)
@@ -110,7 +110,7 @@ op_stddev::apply(Mat<T>& out, const Mat< std::complex<T> >& X, const u32 norm_ty
     
     out.set_size(X.n_rows, 1);
     
-    const T norm_val = (norm_type == 0) ? T(X.n_cols-1) : T(X.n_cols);
+    const T norm_val = (norm_type == 0) ? ( (X.n_cols > 1) ? T(X.n_cols-1) : T(1) ) : T(X.n_cols);
     
     for(u32 row=0; row<X.n_rows; ++row)
       {

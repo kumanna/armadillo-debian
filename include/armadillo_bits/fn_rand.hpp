@@ -67,8 +67,48 @@ rand(const u32 n_elem)
   
   arma_type_check< (is_Col<vec_type>::value == false) && (is_Row<vec_type>::value == false) >::apply();
   
-  return Op<vec_type,op_rand>(n_elem, 0, 'j');
+  if(is_Row<vec_type>::value == true)
+    {
+    return Op<vec_type,op_rand>(1, n_elem, 'j');
+    }
+  else
+    {
+    return Op<vec_type,op_rand>(n_elem, 1, 'j');
+    }
   }
+
+
+
+//
+//
+// handling of cubes
+
+
+
+//! Generate a dense cube with all elements set to random values in the [0,1] interval (uniform distribution)
+inline
+const OpCube<cube, op_rand>
+rand(const u32 n_rows, const u32 n_cols, const u32 n_slices)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<cube, op_rand>(n_rows, n_cols, n_slices);
+  }
+
+
+
+template<typename cube_type>
+inline
+const OpCube<cube_type,op_rand>
+rand(const u32 n_rows, const u32 n_cols, const u32 n_slices)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check<is_Cube<cube_type>::value == false>::apply();
+  
+  return OpCube<cube_type,op_rand>(n_rows, n_cols, n_slices);
+  }
+
 
 
 //! @}

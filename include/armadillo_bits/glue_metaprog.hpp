@@ -17,6 +17,7 @@
 //! @{
 
 
+
 //! \brief
 //! Template metaprogram depth_lhs
 //! calculates the number of Glue<Tx,Ty, glue_type> instances on the left hand side argument of Glue<Tx,Ty, glue_type>

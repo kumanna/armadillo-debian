@@ -97,6 +97,8 @@ class subview : public Base<eT, subview<eT> >
   
   inline bool check_overlap(const subview& x) const;
   
+  inline bool is_vec() const;
+  
   
   private:
   
@@ -126,13 +128,18 @@ class subview_col : public subview<eT>
   arma_inline subview_col(const Mat<eT>& in_m, const u32 in_col);
   arma_inline subview_col(      Mat<eT>& in_m, const u32 in_col);
   
+  arma_inline subview_col(const Mat<eT>& in_m, const u32 in_col, const u32 in_row1, const u32 in_row2);
+  arma_inline subview_col(      Mat<eT>& in_m, const u32 in_col, const u32 in_row1, const u32 in_row2);
+  
   
   private:
   
   friend class Mat<eT>;
+  friend class Col<eT>;
+  
   subview_col();
   };
-  
+
 
 
 template<typename eT>
@@ -155,10 +162,15 @@ class subview_row : public subview<eT>
   arma_inline subview_row(const Mat<eT>& in_m, const u32 in_row);
   arma_inline subview_row(      Mat<eT>& in_m, const u32 in_row);
   
+  arma_inline subview_row(const Mat<eT>& in_m, const u32 in_row, const u32 in_col1, const u32 in_col2);
+  arma_inline subview_row(      Mat<eT>& in_m, const u32 in_row, const u32 in_col1, const u32 in_col2);
+  
   
   private:
   
   friend class Mat<eT>;
+  friend class Row<eT>;
+  
   subview_row();
   };
 

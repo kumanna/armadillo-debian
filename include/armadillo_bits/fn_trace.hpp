@@ -44,6 +44,10 @@ trace(const Base<typename T1::elem_type,T1>& X)
 
 
 
+#if defined(ARMA_GOOD_COMPILER)
+
+
+
 //! \brief
 //! Immediate trace (sum of diagonal elements) of A + B.
 //! A and B must be square and have the same dimensions.
@@ -64,7 +68,7 @@ trace(const Glue<T1,T2,glue_plus>& X)
   const Mat<eT>& A = tmp1.M;
   const Mat<eT>& B = tmp2.M;
   
-  arma_debug_check( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols), "trace(): incompatible matrix dimensions");
+  arma_debug_assert_same_size(A, B, "matrix addition");
   arma_debug_check( !A.is_square(), "trace(): matrices must be square");
   
   return trace(A) + trace(B);
@@ -91,8 +95,8 @@ trace(const Glue<T1,T2,glue_minus>& X)
   
   const Mat<eT>& A = tmp1.M;
   const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_check( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols), "trace(): incompatible matrix dimensions");
+
+  arma_debug_assert_same_size(A, B, "matrix subtraction");
   arma_debug_check( !A.is_square(), "trace(): matrices must be square");
   
   return trace(A) - trace(B);
@@ -120,7 +124,7 @@ trace(const Glue<T1,T2,glue_schur>& X)
   const Mat<eT>& A = tmp1.M;
   const Mat<eT>& B = tmp2.M;
   
-  arma_debug_check( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols), "trace(): incompatible matrix dimensions" );
+  arma_debug_assert_same_size(A, B, "matrix schur product");
   arma_debug_check( !A.is_square(), "trace(): matrices must be square" );
   
   eT val = eT(0);
@@ -180,6 +184,11 @@ trace(const Op<Mat<eT>, op_diagmat_vec>& X)
   
   return accu(X.m);
   }
+
+
+
+#endif
+
 
 
 //! @}

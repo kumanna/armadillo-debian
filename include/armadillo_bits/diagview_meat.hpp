@@ -171,7 +171,7 @@ eT&
 diagview<eT>::operator()(const u32 i)
   {
   arma_check( (m_ptr == 0), "diagview::operator(): matrix is read only");
-  arma_debug_check( (i > n_elem), "diagview::operator(): index out of bounds" );
+  arma_debug_check( (i >= n_elem), "diagview::operator(): index out of bounds" );
   
   return (*m_ptr).at(i+row_offset, i+col_offset);
   }
@@ -183,7 +183,7 @@ arma_inline
 eT
 diagview<eT>::operator()(const u32 i) const
   {
-  arma_debug_check( (i > n_elem), "diagview::operator(): index out of bounds" );
+  arma_debug_check( (i >= n_elem), "diagview::operator(): index out of bounds" );
   
   return m.at(i+row_offset, i+col_offset);
   }

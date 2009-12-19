@@ -16,15 +16,14 @@
 //! \addtogroup op_ones
 //! @{
 
-template<typename eT>
+template<typename T1>
 inline
 void
-op_ones_full::apply(Mat<eT>& out, const Op<Mat<eT>,op_ones_full>& in)
+op_ones_full::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_ones_full>& in)
   {
   arma_extra_debug_sigprint();
   
-  out.set_size(in.aux_u32_a, in.aux_u32_b);
-  out.fill(eT(1));
+  out.ones(in.aux_u32_a, in.aux_u32_b);
   }
 
 
@@ -32,51 +31,11 @@ op_ones_full::apply(Mat<eT>& out, const Op<Mat<eT>,op_ones_full>& in)
 template<typename eT>
 inline
 void
-op_ones_full::apply(Mat<eT>& out, const Op<Col<eT>,op_ones_full>& in)
+op_ones_full::apply(Cube<eT>& out, const OpCube<Cube<eT>,op_ones_full>& in)
   {
   arma_extra_debug_sigprint();
   
-  out.set_size(in.aux_u32_a, 1);
-  out.fill(eT(1));
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_ones_full::apply(Mat<eT>& out, const Op<Row<eT>,op_ones_full>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.set_size(1, in.aux_u32_a);
-  out.fill(eT(1));
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_ones_full::apply(Col<eT>& out, const Op<Col<eT>,op_ones_full>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.set_size(in.aux_u32_a);
-  out.fill(eT(1));
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_ones_full::apply(Row<eT>& out, const Op<Row<eT>,op_ones_full>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.set_size(in.aux_u32_a);
-  out.fill(eT(1));
+  out.ones(in.aux_u32_a, in.aux_u32_b, in.aux_u32_c);
   }
 
 

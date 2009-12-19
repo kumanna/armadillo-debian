@@ -19,7 +19,7 @@
 //! Dense matrix class
 
 template<typename eT>
-class Mat : public Base<eT, Mat<eT> >
+class Mat : public Base< eT, Mat<eT> >
   {
   public:
   
@@ -30,11 +30,12 @@ class Mat : public Base<eT, Mat<eT> >
   //!< otherwise pod_type is the same as elem_type
   
   
-  const u32 n_rows;     //!< number of rows in the matrix (read-only)
-  const u32 n_cols;     //!< number of columns in the matrix (read-only)
-  const u32 n_elem;     //!< number of elements in the matrix (read-only)
+  const u32  n_rows;      //!< number of rows in the matrix (read-only)
+  const u32  n_cols;      //!< number of columns in the matrix (read-only)
+  const u32  n_elem;      //!< number of elements in the matrix (read-only)
+  const bool use_aux_mem; //!< true if externally managed memory is being used (read-only)
   
-  arma_aligned const eT* const mem;  //!< pointer to memory used by the matrix (memory is read-only)
+  arma_aligned const eT* const mem;  //!< pointer to the memory used by the matrix (memory is read-only)
   
   protected:
   arma_aligned eT mem_local[ 16 ];
@@ -45,14 +46,14 @@ class Mat : public Base<eT, Mat<eT> >
   inline ~Mat();
   inline  Mat();
   
-  inline            Mat(const u32 in_rows, const u32 in_cols);
-  inline void  set_size(const u32 in_rows, const u32 in_cols);
+  inline Mat(const u32 in_rows, const u32 in_cols);
   
-  inline                  Mat(const char* text);
-  inline const Mat& operator=(const char* text);
+  inline                  Mat(const char*        text);
+  inline const Mat& operator=(const char*        text);
   inline                  Mat(const std::string& text);
   inline const Mat& operator=(const std::string& text);
   
+  inline Mat(      eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols, const bool copy_aux_mem = true);
   inline Mat(const eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols);
   
   arma_inline const Mat&  operator=(const eT val);
@@ -79,6 +80,16 @@ class Mat : public Base<eT, Mat<eT> >
   inline const Mat& operator*=(const subview<eT>& X);
   inline const Mat& operator%=(const subview<eT>& X);
   inline const Mat& operator/=(const subview<eT>& X);
+
+  //inline explicit          Mat(const subview_cube<eT>& X);
+  inline                   Mat(const subview_cube<eT>& X);
+  inline const Mat&  operator=(const subview_cube<eT>& X);
+  inline const Mat& operator+=(const subview_cube<eT>& X);
+  inline const Mat& operator-=(const subview_cube<eT>& X);
+  inline const Mat& operator*=(const subview_cube<eT>& X);
+  inline const Mat& operator%=(const subview_cube<eT>& X);
+  inline const Mat& operator/=(const subview_cube<eT>& X);
+
   
   //inline explicit          Mat(const diagview<eT>& X);
   inline                   Mat(const diagview<eT>& X);
@@ -131,32 +142,47 @@ class Mat : public Base<eT, Mat<eT> >
   arma_inline eT  at         (const u32 in_row, const u32 in_col) const;
   arma_inline eT& operator() (const u32 in_row, const u32 in_col);
   arma_inline eT  operator() (const u32 in_row, const u32 in_col) const;
-
+  
   arma_inline const Mat& operator++();
   arma_inline void       operator++(int);
-
+  
   arma_inline const Mat& operator--();
   arma_inline void       operator--(int);
-
+  
   arma_inline bool is_vec() const;
   arma_inline bool is_square() const;
   arma_inline bool is_finite() const;
-
+  
   arma_inline       eT* colptr(const u32 in_col);
   arma_inline const eT* colptr(const u32 in_col) const;
   
   arma_inline       eT* memptr();
   arma_inline const eT* memptr() const;
-
+  
   inline void print(const std::string extra_text = "") const;
   inline void print(std::ostream& user_stream, const std::string extra_text = "") const;
+
+  inline void print_trans(const std::string extra_text = "") const;
+  inline void print_trans(std::ostream& user_stream, const std::string extra_text = "") const;
 
   inline void raw_print(const std::string extra_text = "") const;
   inline void raw_print(std::ostream& user_stream, const std::string extra_text = "") const;
 
+  inline void raw_print_trans(const std::string extra_text = "") const;
+  inline void raw_print_trans(std::ostream& user_stream, const std::string extra_text = "") const;
+
+  template<typename eT2>
+  inline void copy_size(const Mat<eT2>& m);
+  
+  inline void  set_size(const u32 in_rows, const u32 in_cols);
+  
   inline void fill(const eT val);
+  
   inline void zeros();
   inline void zeros(const u32 in_rows, const u32 in_cols);
+  
+  inline void ones();
+  inline void ones(const u32 in_rows, const u32 in_cols);
   
   inline void reset();
   
@@ -169,6 +195,10 @@ class Mat : public Base<eT, Mat<eT> >
   inline void init(const u32 in_rows, const u32 in_cols);
   inline void init(const std::string& text);
   inline void init(const Mat& x);
+  
+  inline Mat(const char junk, const eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols);
+  
+  friend class Cube<eT>;
   };
 
 

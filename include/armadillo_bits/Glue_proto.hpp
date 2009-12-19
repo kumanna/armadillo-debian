@@ -17,6 +17,7 @@
 //! @{
 
 
+
 //! Class for storing data required for delayed binary operations,
 //! such as the operands (e.g. two matrices) and the binary operator (e.g. addition).
 //! The operands are stored as references (which can be optimised away),
@@ -40,12 +41,14 @@ class Glue : public Base<typename T1::elem_type, Glue<T1, T2, glue_type> >
   typedef typename get_pod_type<elem_type>::pod_type pod_type;
 
   arma_inline  Glue(const T1& in_A, const T2& in_B);
+  arma_inline  Glue(const T1& in_A, const T2& in_B, const u32 in_aux_u32);
   arma_inline ~Glue();
   
-  const T1& A;  //!< first operand
-  const T2& B;  //!< second operand
-  
+  const T1& A;       //!< first operand
+  const T2& B;       //!< second operand
+  const u32 aux_u32; //!< storage of auxiliary data, u32 format
   };
+
 
 
 //! @}

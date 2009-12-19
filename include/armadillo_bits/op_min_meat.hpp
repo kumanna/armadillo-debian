@@ -106,10 +106,10 @@ inline void op_min::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_min>&
   const unwrap_check<T1> tmp(in.m, out);
   const Mat<eT>& X = tmp.M;
   
-  arma_debug_check( (X.n_elem == 0), "op_min::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "min(): given matrix has no elements" );
   
   const u32 dim = in.aux_u32_a;
-  arma_debug_check( (dim > 1), "op_min::apply(): incorrect usage. dim must be 0 or 1");
+  arma_debug_check( (dim > 1), "min(): incorrect usage. dim must be 0 or 1");
   
   
   if(dim == 0)  // column-wise min
@@ -247,10 +247,10 @@ inline void op_min::apply(Mat< std::complex<T> >& out, const Op<T1,op_min>& in)
   const unwrap_check<T1> tmp(in.m, out);
   const Mat<eT>& X = tmp.M;
   
-  arma_debug_check( (X.n_elem == 0), "op_min::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "min(): given matrix has no elements" );
   
   const u32 dim = in.aux_u32_a;
-  arma_debug_check( (dim > 1), "op_min::apply(): incorrect usage. dim must be 0 or 1");
+  arma_debug_check( (dim > 1), "min(): incorrect usage. dim must be 0 or 1");
   
   
   if(dim == 0)  // column-wise min

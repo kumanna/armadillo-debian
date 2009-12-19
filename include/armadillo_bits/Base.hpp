@@ -17,6 +17,7 @@
 //! @{
 
 
+
 //! Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP).
 //! Used for type-safe downcasting in functions that restrict their input(s) to be classes that are
 //! derived from Base (e.g. Mat, Op, Glue, diagview, subview).
@@ -37,15 +38,15 @@ struct Base
 
 
 
-template<typename elem_type, typename derived_vec>
-struct Base_vec
+template<typename elem_type, typename derived>
+struct BaseVec
   {
   
   arma_inline
-  const derived_vec&
+  const derived&
   get_ref() const
     {
-    return static_cast<const derived_vec&>(*this);
+    return static_cast<const derived&>(*this);
     }
 
   };

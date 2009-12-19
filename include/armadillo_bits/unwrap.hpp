@@ -716,4 +716,335 @@ class unwrap_check< diagview<eT> >
   };
 
 
+//! if the given object in not a matrix, unwrap it into the given 'out' matrix (i.e. do not create another matrix)
+//! and provide a reference to the 'out' matrix.
+//! if the given object is a matrix, set the size of the 'out' matrix to be the same as the given object
+//! and provide a reference to the given object.
+
+template<typename T1>
+class unwrap_write
+  {
+  private:
+  template<typename eT> inline unwrap_write(Mat<eT>&      out, const T1& in);
+  template<typename eT> inline unwrap_write(Row<eT>&      out, const T1& in);
+  template<typename eT> inline unwrap_write(Col<eT>&      out, const T1& in);
+  template<typename eT> inline unwrap_write(subview<eT>&  out, const T1& in);
+  template<typename eT> inline unwrap_write(diagview<eT>& out, const T1& in);
+  };
+
+
+//template <>
+template<typename eT>
+class unwrap_write< Mat<eT> >
+  {
+  public:
+  
+  inline
+  unwrap_write(Mat<eT>& out, const Mat<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  
+  inline
+  unwrap_write(Row<eT>& out, const Mat<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  
+  inline
+  unwrap_write(Col<eT>& out, const Mat<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  
+  inline
+  ~unwrap_write()
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  
+  const Mat<eT>& M;
+  };
+
+
+
+//template <>
+template<typename eT>
+class unwrap_write< Row<eT> >
+  {
+  public:
+
+  inline
+  unwrap_write(Mat<eT>& out, const Row<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  
+  inline
+  unwrap_write(Row<eT>& out, const Row<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  inline
+  unwrap_write(Col<eT>& out, const Row<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+
+
+  inline
+  ~unwrap_write()
+    {
+    }
+  
+  
+  const Row<eT>& M;
+  };
+
+
+
+
+//template <>
+template<typename eT>
+class unwrap_write< Col<eT> >
+  {
+  public:
+
+  inline
+  unwrap_write(Mat<eT>& out, const Col<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  
+  inline
+  unwrap_write(Row<eT>& out, const Col<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+  
+  
+  inline
+  unwrap_write(Col<eT>& out, const Col<eT>& A)
+    : M(A)
+    {
+    arma_extra_debug_sigprint();
+    out.copy_size(A);
+    }
+
+
+  inline
+  ~unwrap_write()
+    {
+    }
+  
+  
+  const Col<eT>& M;
+  };
+
+
+
+template<typename T1, typename op_type>
+class unwrap_write< Op<T1, op_type> >
+  {
+  public:
+  typedef typename T1::elem_type eT;
+
+  //template<typename eT>
+  inline
+  unwrap_write(Mat<eT>& out, const Op<T1,op_type>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  //template<typename eT>
+  inline
+  unwrap_write(Row<eT>& out, const Op<T1,op_type>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  //template<typename eT>
+  inline
+  unwrap_write(Col<eT>& out, const Op<T1,op_type>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  ~unwrap_write()
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  const Mat<eT>& M;
+  };
+
+
+
+template<typename T1, typename T2, typename glue_type>
+class unwrap_write< Glue<T1, T2, glue_type> >
+  {
+  public:
+  typedef typename T1::elem_type eT;
+  
+  inline
+  unwrap_write(Mat<eT>& out, const Glue<T1, T2, glue_type>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  unwrap_write(Row<eT>& out, const Glue<T1, T2, glue_type>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  unwrap_write(Col<eT>& out, const Glue<T1, T2, glue_type>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  ~unwrap_write()
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  
+  const Mat<eT>& M;
+  };
+
+
+
+
+//template<>
+template<typename eT>
+class unwrap_write< subview<eT> >
+  {
+  public:
+  
+  inline
+  unwrap_write(Mat<eT>& out, const subview<eT>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  unwrap_write(Row<eT>& out, const subview<eT>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  unwrap_write(Col<eT>& out, const subview<eT>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  ~unwrap_write()
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  
+  const Mat<eT>& M;
+  };
+
+
+//template<>
+template<typename eT>
+class unwrap_write< diagview<eT> >
+  {
+  public:
+  
+  inline
+  unwrap_write(Mat<eT>& out, const diagview<eT>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  unwrap_write(Row<eT>& out, const diagview<eT>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  unwrap_write(Col<eT>& out, const diagview<eT>& A)
+    : M(out)
+    {
+    arma_extra_debug_sigprint();
+    out = A;
+    }
+  
+  
+  inline
+  ~unwrap_write()
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  
+  const Mat<eT>& M;
+  };
+
+
+
 //! @}
