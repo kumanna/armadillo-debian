@@ -17,6 +17,7 @@
 //! @{
 
 
+
 //! Class for storing data required for delayed unary operations,
 //! such as the operand (e.g. the matrix to which the operation is to be applied) and the unary operator (e.g. inverse).
 //! The operand is stored as a reference (which can be optimised away),
@@ -39,15 +40,18 @@ class Op : public Base<typename T1::elem_type, Op<T1, op_type> >
   inline explicit Op(const T1& in_m);
   inline          Op(const T1& in_m, const elem_type in_aux);
   inline          Op(const T1& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b);
+  inline          Op(const T1& in_m, const elem_type in_aux, const u32 in_aux_u32_a, const u32 in_aux_u32_b);
   inline          Op(const u32 in_aux_u32_a, const u32 in_aux_u32_b, const char junk);
   inline         ~Op();
     
   
   const T1&       m;          //!< storage of reference to the operand (e.g. a matrix)
-  const elem_type aux;        //!< storage of auxilliary data, user defined format
-  const u32       aux_u32_a;  //!< storage of auxilliary data, u32 format
-  const u32       aux_u32_b;  //!< storage of auxilliary data, u32 format
+  const elem_type aux;        //!< storage of auxiliary data, user defined format
+  const u32       aux_u32_a;  //!< storage of auxiliary data, u32 format
+  const u32       aux_u32_b;  //!< storage of auxiliary data, u32 format
   
   };
+
+
 
 //! @}

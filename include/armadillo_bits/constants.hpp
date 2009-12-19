@@ -162,8 +162,8 @@ typedef Phy<double>  phy;
 struct arma_version
   {
   static const unsigned int major = 0;
-  static const unsigned int minor = 6;
-  static const unsigned int patch = 12;
+  static const unsigned int minor = 8;
+  static const unsigned int patch = 0;
   };
 
 
@@ -217,8 +217,14 @@ struct arma_config
   #else
     static const bool extra_debug = false;
   #endif
+
+  #if defined(ARMA_GOOD_COMPILER)
+    static const bool good_comp = true;
+  #else
+    static const bool good_comp = false;
+  #endif
   };
 
+
+
 //! @}
-
-

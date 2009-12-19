@@ -17,17 +17,14 @@
 //! @{
 
 
-template<typename eT>
+template<typename T1>
 inline
 void
-op_zeros::apply(Mat<eT>& out, const Op<Mat<eT>,op_zeros>& in)
+op_zeros::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_zeros>& in)
   {
   arma_extra_debug_sigprint();
   
-  const u32 n_rows = in.aux_u32_a;
-  const u32 n_cols = (in.aux_u32_b > 0) ? in.aux_u32_b : 1;
-  
-  out.zeros(n_rows, n_cols);
+  out.zeros(in.aux_u32_a, in.aux_u32_b);
   }
 
 
@@ -35,49 +32,12 @@ op_zeros::apply(Mat<eT>& out, const Op<Mat<eT>,op_zeros>& in)
 template<typename eT>
 inline
 void
-op_zeros::apply(Mat<eT>& out, const Op<Col<eT>,op_zeros>& in)
+op_zeros::apply(Cube<eT>& out, const OpCube<Cube<eT>,op_zeros>& in)
   {
   arma_extra_debug_sigprint();
   
-  out.zeros(in.aux_u32_a, 1);
+  out.zeros(in.aux_u32_a, in.aux_u32_b, in.aux_u32_c);
   }
-
-
-
-template<typename eT>
-inline
-void
-op_zeros::apply(Mat<eT>& out, const Op<Row<eT>,op_zeros>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.zeros(1, in.aux_u32_a);
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_zeros::apply(Col<eT>& out, const Op<Col<eT>,op_zeros>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.zeros(in.aux_u32_a);
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_zeros::apply(Row<eT>& out, const Op<Row<eT>,op_zeros>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  out.zeros(in.aux_u32_a);
-  }
-
 
 
 

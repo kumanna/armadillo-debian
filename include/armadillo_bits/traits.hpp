@@ -101,6 +101,30 @@ struct is_diagview< diagview<eT> >
 //
 
 
+
+template<typename T>
+struct is_Cube
+  { static const bool value = false; };
+
+template<typename eT>
+struct is_Cube< Cube<eT> >
+  { static const bool value = true; };
+
+template<typename T>
+struct is_subview_cube
+  { static const bool value = false; };
+
+template<typename eT>
+struct is_subview_cube< subview_cube<eT> >
+  { static const bool value = true; };
+
+
+
+//
+//
+//
+
+
 template<typename T>
 struct is_Op
   { static const bool value = false; };
@@ -109,13 +133,31 @@ template<typename T1, typename op_type>
 struct is_Op< Op<T1,op_type> >
   { static const bool value = true; };
  
+
+template<typename T>
+struct is_OpCube
+  { static const bool value = false; };
  
+template<typename T1, typename op_type>
+struct is_OpCube< OpCube<T1,op_type> >
+  { static const bool value = true; };
+
+
 template<typename T>
 struct is_Glue
   { static const bool value = false; };
  
 template<typename T1, typename T2, typename glue_type>
 struct is_Glue< Glue<T1,T2,glue_type> >
+  { static const bool value = true; };
+
+
+template<typename T>
+struct is_GlueCube
+  { static const bool value = false; };
+ 
+template<typename T1, typename T2, typename glue_type>
+struct is_GlueCube< GlueCube<T1,T2,glue_type> >
   { static const bool value = true; };
 
 
@@ -142,6 +184,19 @@ struct is_arma_type
   || is_Glue<T1>::value
   || is_subview<T1>::value
   || is_diagview<T1>::value
+  ;
+  };
+
+
+
+template<typename T1>
+struct is_arma_cube_type
+  {
+  static const bool value
+  =  is_Cube<T1>::value
+  || is_OpCube<T1>::value
+  || is_GlueCube<T1>::value
+  || is_subview_cube<T1>::value
   ;
   };
 

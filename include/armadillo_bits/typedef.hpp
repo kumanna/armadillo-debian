@@ -67,40 +67,47 @@
 typedef std::complex<float>  cx_float;
 typedef std::complex<double> cx_double;
 
-typedef Mat<unsigned char> uchar_mat;
-typedef Col<unsigned char> uchar_vec;
-typedef Col<unsigned char> uchar_colvec;
-typedef Row<unsigned char> uchar_rowvec;
+typedef Mat<unsigned char>  uchar_mat;
+typedef Col<unsigned char>  uchar_vec;
+typedef Col<unsigned char>  uchar_colvec;
+typedef Row<unsigned char>  uchar_rowvec;
+typedef Cube<unsigned char> uchar_cube;
 
-typedef Mat<u32> umat;
-typedef Col<u32> uvec;
-typedef Col<u32> ucolvec;
-typedef Row<u32> urowvec;
+typedef Mat<u32>  umat;
+typedef Col<u32>  uvec;
+typedef Col<u32>  ucolvec;
+typedef Row<u32>  urowvec;
+typedef Cube<u32> ucube;
 
-typedef Mat<s32> imat;
-typedef Col<s32> ivec;
-typedef Col<s32> icolvec;
-typedef Row<s32> irowvec;
+typedef Mat<s32>  imat;
+typedef Col<s32>  ivec;
+typedef Col<s32>  icolvec;
+typedef Row<s32>  irowvec;
+typedef Cube<s32> icube;
 
-typedef Mat<float> fmat;
-typedef Col<float> fvec;
-typedef Col<float> fcolvec;
-typedef Row<float> frowvec;
+typedef Mat<float>  fmat;
+typedef Col<float>  fvec;
+typedef Col<float>  fcolvec;
+typedef Row<float>  frowvec;
+typedef Cube<float> fcube;
 
-typedef Mat<double> mat;
-typedef Col<double> vec;
-typedef Col<double> colvec;
-typedef Row<double> rowvec;
+typedef Mat<double>  mat;
+typedef Col<double>  vec;
+typedef Col<double>  colvec;
+typedef Row<double>  rowvec;
+typedef Cube<double> cube;
 
-typedef Mat<cx_float> cx_fmat;
-typedef Col<cx_float> cx_fvec;
-typedef Col<cx_float> cx_fcolvec;
-typedef Row<cx_float> cx_frowvec;
+typedef Mat<cx_float>  cx_fmat;
+typedef Col<cx_float>  cx_fvec;
+typedef Col<cx_float>  cx_fcolvec;
+typedef Row<cx_float>  cx_frowvec;
+typedef Cube<cx_float> cx_fcube;
 
-typedef Mat<cx_double> cx_mat;
-typedef Col<cx_double> cx_vec;
-typedef Col<cx_double> cx_colvec;
-typedef Row<cx_double> cx_rowvec;
+typedef Mat<cx_double>  cx_mat;
+typedef Col<cx_double>  cx_vec;
+typedef Col<cx_double>  cx_colvec;
+typedef Row<cx_double>  cx_rowvec;
+typedef Cube<cx_double> cx_cube;
 
 
 

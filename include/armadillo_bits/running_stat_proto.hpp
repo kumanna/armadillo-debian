@@ -18,6 +18,31 @@
 
 
 
+template<typename eT>
+class arma_counter
+  {
+  public:
+  
+  inline ~arma_counter();
+  inline  arma_counter();
+  
+  inline const arma_counter& operator++();
+  inline void                operator++(int);
+  
+  inline void reset();
+  inline eT   value()         const;
+  inline eT   value_plus_1()  const;
+  inline eT   value_minus_1() const;
+  
+  
+  private:
+  
+  arma_aligned eT  d_count;
+  arma_aligned u32 i_count;
+  };
+
+
+
 //! Class for keeping statistics of a continuously sampled process / signal.
 //! Useful if the storage of individual samples is not necessary or desired.
 //! Also useful if the number of samples is not known beforehand or exceeds 
@@ -30,11 +55,12 @@ class running_stat
   typedef typename get_pod_type<eT>::pod_type T;
   
   
-  inline      running_stat();
+  inline ~running_stat();
+  inline  running_stat();
   
   inline void operator() (const T sample);
   inline void operator() (const std::complex<T>& sample);
-
+  
   inline void reset();
   
   inline eT   mean() const;
@@ -50,18 +76,18 @@ class running_stat
   
   private:
   
-  arma_aligned  T  N;
+  arma_aligned arma_counter<T> counter;
   
-  arma_aligned eT  acc1;
-  arma_aligned  T  acc2;
+  arma_aligned eT r_mean;
+  arma_aligned  T r_var;
   
-  arma_aligned eT  min_val;
-  arma_aligned eT  max_val;
+  arma_aligned eT min_val;
+  arma_aligned eT max_val;
   
-  arma_aligned  T  min_val_norm;
-  arma_aligned  T  max_val_norm;
-
-
+  arma_aligned  T min_val_norm;
+  arma_aligned  T max_val_norm;
+  
+  
   friend class running_stat_aux;
   };
 
@@ -73,21 +99,13 @@ class running_stat_aux
   
   template<typename eT>
   inline static void update_stats(running_stat<eT>&               x,  const eT               sample);
-
+  
   template<typename T>
   inline static void update_stats(running_stat< std::complex<T> >& x, const T                sample);
-
+  
   template<typename T>
   inline static void update_stats(running_stat< std::complex<T> >& x, const std::complex<T>& sample);
-
-  //
-
-  template<typename eT>
-  inline static eT var(const running_stat<eT>&                x, const u32 norm_type = 0);
-
-  template<typename T>
-  inline static  T var(const running_stat< std::complex<T> >& x, const u32 norm_type = 0);
-
+  
   };
 
 

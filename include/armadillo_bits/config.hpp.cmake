@@ -42,3 +42,9 @@
   #undef ARMA_HAVE_STD_ISINF
   #undef ARMA_HAVE_STD_ISNAN
 #endif
+
+#if defined(__INTEL_COMPILER)
+  #if (__INTEL_COMPILER <= 1110)
+    #undef ARMA_HAVE_STD_ISFINITE
+  #endif
+#endif

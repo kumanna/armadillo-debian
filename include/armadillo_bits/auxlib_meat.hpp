@@ -460,16 +460,16 @@ auxlib::det(const Mat<eT>& X)
           val *= tmp.at(i,i);
           }
       
-        eT sign = eT(1);
+        int sign = +1;
         for(u32 i=0; i < tmp.n_rows; ++i)
           {
-          if(s32(i) != ipiv.mem[i])
+          if( int(i) != ipiv.mem[i] )  // NOTE: no adjustment required, as the clapack version of getrf() assumes counting from 0
             {
-            sign *= eT(-1);
+            sign *= -1;
             }
           }
         
-        return sign*val;
+        return val * eT(sign);
         }
       #elif defined(ARMA_USE_LAPACK)
         {
@@ -477,8 +477,8 @@ auxlib::det(const Mat<eT>& X)
         podarray<int> ipiv(tmp.n_rows);
         
         int info = 0;
-        int n_rows = tmp.n_rows;
-        int n_cols = tmp.n_cols;
+        int n_rows = int(tmp.n_rows);
+        int n_cols = int(tmp.n_cols);
         
         lapack::getrf_(&n_rows, &n_cols, tmp.memptr(), &n_rows, ipiv.memptr(), &info);
         
@@ -489,16 +489,16 @@ auxlib::det(const Mat<eT>& X)
           val *= tmp.at(i,i);
           }
       
-        eT sign = eT(1);
+        int sign = +1;
         for(u32 i=0; i < tmp.n_rows; ++i)
           {
-          if(s32(i) != ipiv.mem[i])
+          if( int(i) != (ipiv.mem[i] - 1) )  // NOTE: adjustment of -1 is required as Fortran counts from 1
             {
-            sign *= eT(-1);
+            sign *= -1;
             }
           }
         
-        return sign*val;
+        return val * eT(sign);
         }
       #else
         {
@@ -516,17 +516,9 @@ auxlib::det(const Mat<eT>& X)
 template<typename eT>
 inline
 void
-auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<int>& ipiv, const Mat<eT>& X_orig)
+auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<int>& ipiv, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
-  
-  arma_debug_check( (&L == &U), "auxlib::lu(): L and U are the same object");
-  
-  unwrap_check< Mat<eT> > tmp1(X_orig, U);
-  const Mat<eT>& X_tmp = tmp1.M;
-  
-  unwrap_check< Mat<eT> > tmp2(X_tmp, L);
-  const Mat<eT>& X = tmp2.M;
   
   U = X;
   
@@ -549,6 +541,13 @@ auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<int>& ipiv, const Mat<eT>& X_orig)
       int n_cols = U.n_cols;
       
       lapack::getrf_(&n_rows, &n_cols, U.memptr(), &n_rows, ipiv.memptr(), &info);
+      
+      // take into account that Fortran counts from 1
+      for(u32 i=0; i<U.n_rows; ++i)
+        {
+        ipiv[i] -= 1;
+        }
+      
       }
     #endif
     
@@ -590,31 +589,34 @@ auxlib::lu(Mat<eT>& L, Mat<eT>& U, Mat<eT>& P, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( ( (&P == &L) || (&P == &U) ), "auxlib::lu(): P is the same object as L or U" );
-  
   podarray<int> ipiv;
   auxlib::lu(L, U, ipiv, X);
   
   const u32 n = ipiv.n_elem;
-  
-  P.set_size(n,n);
-  Mat<eT> ident = eye(n,n);
 
+  Mat<u32> P_tmp(n,n);
+  Mat<u32> ident = eye< Mat<u32> >(n,n);
+  
   for(u32 i=n; i>0; --i)
     {
     const u32 j = i-1;
-    const u32 k = ipiv[j]-1;
+    const u32 k = ipiv[j];
     
     ident.swap_rows(j,k);
     
     if(i == n)
-      P = ident;
+      {
+      P_tmp = ident;
+      }
     else
-      P *= ident;
-
+      {
+      P_tmp *= ident;
+      }
+    
     ident.swap_rows(j,k);
     }
   
+  P = conv_to< Mat<eT> >::from(P_tmp);
   }
 
 
@@ -991,9 +993,6 @@ auxlib::chol(Mat<eT>& out, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
   
-  // TODO: check for aliasing
-  
-  
   #if defined(ARMA_USE_LAPACK)
     {
     char uplo = 'U';
@@ -1032,8 +1031,6 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
   
-  // TODO: check for aliasing
-  
   #if defined(ARMA_USE_LAPACK)
     {
     int m            = static_cast<int>(X.n_rows);
@@ -1060,7 +1057,7 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X)
     
     lapack::geqrf_(&m, &n, R.memptr(), &m, tau.memptr(), work.memptr(), &work_len, &info);
     
-    Q.set_size(X.n_rows,X.n_rows);
+    Q.set_size(X.n_rows, X.n_rows);
     
           eT* Q_mem = Q.memptr();
     const eT* R_mem = R.mem;
@@ -1131,8 +1128,6 @@ bool
 auxlib::svd(Col<eT>& S, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
-  
-  // TODO: check for aliasing
   
   #if defined(ARMA_USE_LAPACK)
     {
@@ -1214,8 +1209,6 @@ auxlib::svd(Col<T>& S, const Mat< std::complex<T> >& X)
   arma_extra_debug_sigprint();
   
   typedef std::complex<T> eT;
-  
-  // TODO: check for aliasing
   
   #if defined(ARMA_USE_LAPACK)
     {
@@ -1302,8 +1295,6 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
   
-  // TODO: check for aliasing
-
   #if defined(ARMA_USE_LAPACK)
     {
     Mat<eT> A = X;
@@ -1385,8 +1376,6 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, con
   
   typedef std::complex<T> eT;
   
-  // TODO: check for aliasing
-  
   #if defined(ARMA_USE_LAPACK)
     {
     Mat<eT> A = X;
@@ -1444,6 +1433,11 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, con
         );
       
       op_htrans::apply(V,V);  // op_htrans will work out that an in-place transpose can be done
+      
+      for(u32 i=0; i<A.n_cols; ++i)
+        {
+        V.at(i,i) = std::conj( V.at(i,i) );
+        }
       
       return (info == 0);
       }

@@ -19,6 +19,9 @@ endif
 
 
 LIB_FLAGS = -larmadillo $(EXTRA_LIB_FLAGS)
+## NOTE: on Ubuntu and Debian based systems you may need to add 
+## -lgfortran to LIB_FLAGS
+
 
 
 OPT = -O1

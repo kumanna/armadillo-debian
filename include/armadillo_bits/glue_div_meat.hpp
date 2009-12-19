@@ -17,73 +17,9 @@
 //! @{
 
 
-template<typename eT>
-inline
-void
-glue_div::apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_assert_same_size(A, B, "element-wise matrix division");
-    
-  // no aliasing problem
-  out.set_size(A.n_rows, A.n_cols);
-    
-  const u32 n_elem = A.n_elem;
-    
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    out[i] = A.mem[i] / B.mem[i];
-    }
-  
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_div::apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_assert_same_size(A, B, "element-wise matrix division");
-  arma_debug_assert_same_size(A, C, "element-wise matrix division");
-  
-  // no aliasing problem
-  out.set_size(A.n_rows, A.n_cols);
-    
-  const u32 n_elem = A.n_elem;
-  for(u32 i=0; i != n_elem; ++i)
-    {
-    out[i] = A.mem[i] / B.mem[i] / C.mem[i];
-    }
-  
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_div::apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_div>& X)
-  {
-  glue_div::apply(out, X.A, X.B);
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_div::apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>,glue_div>, Mat<eT>,glue_div>& X)
-  {
-  glue_div::apply(out, X.A.A, X.A.B, X.B);
-  }
-
-
 
 template<typename T1, typename T2>
+inline
 void
 glue_div::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_div>& X)
   {
@@ -96,10 +32,18 @@ glue_div::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_div>& X)
 
   if(N_mat == 2)
     {
-    const unwrap<T1> tmp1(X.A);
-    const unwrap<T2> tmp2(X.B);
-    
-    glue_div::apply(out, tmp1.M, tmp2.M);
+    if(is_Mat<T1>::value == false)
+      {
+      out = X.A;
+      glue_div::apply_inplace(out, X.B);
+      }
+    else
+      {
+      const unwrap<T1> tmp1(X.A);
+      const unwrap<T2> tmp2(X.B);
+      
+      glue_div::apply(out, tmp1.M, tmp2.M);
+      }
     }
   else
     {
@@ -155,59 +99,35 @@ glue_div::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_div>& X)
 
 
 
-template<typename eT>
+template<typename T1>
 inline
 void
-glue_div::apply_inplace(Mat<eT>& out, const Mat<eT>& B)
+glue_div::apply_inplace(Mat<typename T1::elem_type>& out, const T1& X)
   {
   arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1>   tmp(X);
+  const Mat<eT>& B = tmp.M;
   
   arma_debug_assert_same_size(out, B, "element-wise matrix division");
   
   const u32 n_elem = out.n_elem;
   
+        eT* out_mem = out.memptr();
+  const eT* B_mem   = B.mem;
+  
   for(u32 i=0; i<n_elem; ++i)
     {
-    out[i] /= B.mem[i];
+    out_mem[i] /= B_mem[i];
     }
   
   }
 
 
 
-template<typename T1, typename op_type>
-inline
-void
-glue_div::apply_inplace(Mat<typename T1::elem_type>& out, const Op<T1, op_type>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const Mat<eT> tmp(X);
-  glue_div::apply(out, out, tmp);
-  }
-  
-
-
-template<typename T1, typename T2, typename glue_type>
-inline
-void
-glue_div::apply_inplace(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_type>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const Mat<eT> tmp(X);
-  glue_div::apply(out, X, out);
-  }
-
-
-
-//
-// element-wise division with different element types
-
+//! element-wise division with different element types
 template<typename eT1, typename eT2>
 inline
 void
@@ -219,7 +139,8 @@ glue_div::apply_mixed(Mat<typename promote_type<eT1,eT2>::result>& out, const Ma
   
   arma_debug_assert_same_size(X,Y, "element-wise matrix division");
   
-  out.set_size(X.n_rows, X.n_cols);
+  //out.set_size(X.n_rows, X.n_cols);
+  out.copy_size(X);
   
         out_eT* out_mem = out.memptr();
   const eT1*    X_mem   = X.mem;
@@ -232,6 +153,90 @@ glue_div::apply_mixed(Mat<typename promote_type<eT1,eT2>::result>& out, const Ma
     out_mem[i] = upgrade_val<eT1,eT2>::apply(X_mem[i]) / upgrade_val<eT1,eT2>::apply(Y_mem[i]);
     }
   }
+
+
+
+template<typename eT>
+inline
+void
+glue_div::apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_assert_same_size(A, B, "element-wise matrix division");
+    
+  // no aliasing problem
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+    
+  const u32 n_elem = A.n_elem;
+
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+    
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i] / B_mem[i];
+    }
+  
+  }
+
+
+
+template<typename eT>
+inline
+void
+glue_div::apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_assert_same_size(A, B, "element-wise matrix division");
+  arma_debug_assert_same_size(B, C, "element-wise matrix division");
+  
+  // no aliasing problem
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+  
+  const u32 n_elem = A.n_elem;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  const eT* C_mem   = C.mem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i] / B_mem[i] / C_mem[i];
+    }
+  
+  }
+
+
+#if defined(ARMA_GOOD_COMPILER)
+
+
+template<typename eT>
+inline
+void
+glue_div::apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_div>& X)
+  {
+  glue_div::apply(out, X.A, X.B);
+  }
+
+
+
+template<typename eT>
+inline
+void
+glue_div::apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>,glue_div>, Mat<eT>,glue_div>& X)
+  {
+  glue_div::apply(out, X.A.A, X.A.B, X.B);
+  }
+
+
+
+#endif
 
 
 

@@ -19,10 +19,133 @@
 
 
 template<typename eT>
+inline
+arma_counter<eT>::~arma_counter()
+  {
+  arma_extra_debug_sigprint_this(this);
+  }
+
+
+
+template<typename eT>
+inline
+arma_counter<eT>::arma_counter()
+  : d_count( eT(0))
+  , i_count(u32(0))
+  {
+  arma_extra_debug_sigprint_this(this);
+  }
+
+
+
+template<typename eT>
+inline
+const arma_counter<eT>& 
+arma_counter<eT>::operator++()
+  {
+  const u32 max_val = 0xffffffff;
+  
+  if(i_count < max_val)
+    {
+    i_count++;
+    }
+  else
+    {
+    d_count += eT(max_val);
+    i_count =  1;
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+void
+arma_counter<eT>::operator++(int)
+  {
+  operator++();
+  }
+
+
+
+template<typename eT>
+inline
+void
+arma_counter<eT>::reset()
+  {
+  d_count =  eT(0);
+  i_count = u32(0);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+arma_counter<eT>::value()
+const
+  {
+  return d_count + eT(i_count);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+arma_counter<eT>::value_plus_1()
+const
+  {
+  const u32 max_val = 0xffffffff;
+  
+  if(i_count < max_val)
+    {
+    return d_count + eT(i_count + 1);
+    }
+  else
+    {
+    return d_count + eT(max_val) + eT(1);
+    }
+  }
+
+
+
+template<typename eT>
+inline
+eT
+arma_counter<eT>::value_minus_1()
+const
+  {
+  if(i_count > 0)
+    {
+    return d_count + eT(i_count - 1);
+    }
+  else
+    {
+    return d_count - eT(1);
+    }
+  }
+
+
+
+//
+
+
+
+template<typename eT>
+running_stat<eT>::~running_stat()
+  {
+  arma_extra_debug_sigprint_this(this);
+  }
+
+
+
+template<typename eT>
 running_stat<eT>::running_stat()
-  : N           (typename running_stat<eT>::T(0))
-  , acc1        (                          eT(0))
-  , acc2        (typename running_stat<eT>::T(0))
+  : r_mean      (                          eT(0))
+  , r_var       (typename running_stat<eT>::T(0))
   , min_val     (                          eT(0))
   , max_val     (                          eT(0))
   , min_val_norm(typename running_stat<eT>::T(0))
@@ -40,6 +163,8 @@ void
 running_stat<eT>::operator() (const typename running_stat<eT>::T sample)
   {
   arma_extra_debug_sigprint();
+  
+  arma_check( (arma_isfinite(sample) == false), "running_stat: non-finite sample given" );
 
   running_stat_aux::update_stats(*this, sample);
   }
@@ -53,9 +178,11 @@ void
 running_stat<eT>::operator() (const std::complex< typename running_stat<eT>::T >& sample)
   {
   arma_extra_debug_sigprint();
-
+  
   isnt_same_type<eT, std::complex< typename running_stat<eT>::T > >::check();
-
+  
+  arma_check( (arma_isfinite(sample) == false), "running_stat: non-finite sample given" );
+  
   running_stat_aux::update_stats(*this, sample);
   }
 
@@ -68,13 +195,13 @@ void
 running_stat<eT>::reset()
   {
   arma_extra_debug_sigprint();
-
+  
   typedef typename running_stat<eT>::T T;
   
-  N            =  T(0);
+  counter.reset();
   
-  acc1         = eT(0);
-  acc2         =  T(0);
+  r_mean       = eT(0);
+  r_var        =  T(0);
   
   min_val      = eT(0);
   max_val      = eT(0);
@@ -89,20 +216,12 @@ running_stat<eT>::reset()
 template<typename eT>
 inline
 eT
-running_stat<eT>::mean() const
+running_stat<eT>::mean()
+const
   {
   arma_extra_debug_sigprint();
-
-  typedef typename running_stat<eT>::T T;
   
-  if(N > T(0))
-    {
-    return acc1 / N;
-    }
-  else
-    {
-    return eT(0);
-    }
+  return r_mean;
   }
 
 
@@ -111,11 +230,29 @@ running_stat<eT>::mean() const
 template<typename eT>
 inline
 typename running_stat<eT>::T
-running_stat<eT>::var(const u32 norm_type) const
+running_stat<eT>::var(const u32 norm_type)
+const
   {
   arma_extra_debug_sigprint();
-
-  return running_stat_aux::var(*this, norm_type);
+  
+  const T N = counter.value();
+  
+  if(N > T(1))
+    {
+    if(norm_type == 0)
+      {
+      return r_var;
+      }
+    else
+      {
+      const T N_minus_1 = counter.value_minus_1();
+      return (N_minus_1/N) * r_var;
+      }
+    }
+  else
+    {
+    return T(0);
+    }
   }
 
 
@@ -124,11 +261,12 @@ running_stat<eT>::var(const u32 norm_type) const
 template<typename eT>
 inline
 typename running_stat<eT>::T
-running_stat<eT>::stddev(const u32 norm_type) const
+running_stat<eT>::stddev(const u32 norm_type)
+const
   {
   arma_extra_debug_sigprint();
 
-  return std::sqrt( running_stat_aux::var(*this, norm_type) );
+  return std::sqrt( (*this).var(norm_type) );
   }
 
 
@@ -137,10 +275,11 @@ running_stat<eT>::stddev(const u32 norm_type) const
 template<typename eT>
 inline
 eT
-running_stat<eT>::min() const
+running_stat<eT>::min()
+const
   {
   arma_extra_debug_sigprint();
-
+  
   return min_val;
   }
 
@@ -150,7 +289,8 @@ running_stat<eT>::min() const
 template<typename eT>
 inline
 eT
-running_stat<eT>::max() const
+running_stat<eT>::max()
+const
   {
   arma_extra_debug_sigprint();
 
@@ -166,8 +306,12 @@ void
 running_stat_aux::update_stats(running_stat<eT>& x, const eT sample)
   {
   arma_extra_debug_sigprint();
-
-  if(x.N > eT(0))
+  
+  typedef typename running_stat<eT>::T T;
+  
+  const T N = x.counter.value();
+  
+  if(N > T(0))
     {
     if(sample < x.min_val)
       {
@@ -178,17 +322,31 @@ running_stat_aux::update_stats(running_stat<eT>& x, const eT sample)
       {
       x.max_val = sample;
       }
+    
+    const T  N_plus_1   = x.counter.value_plus_1();
+    const T  N_minus_1  = x.counter.value_minus_1();
+    
+    // note: variance has to be updated before the mean
+    
+    const eT tmp = sample - x.r_mean;
+    
+    x.r_var  = N_minus_1/N * x.r_var + (tmp*tmp)/N_plus_1;
+    
+    x.r_mean = x.r_mean + (sample - x.r_mean)/N_plus_1;
+    //x.r_mean = (N/N_plus_1)*x.r_mean + sample/N_plus_1;
+    //x.r_mean = (x.r_mean + sample/N) * N/N_plus_1;
     }
   else
     {
+    x.r_mean  = sample;
     x.min_val = sample;
     x.max_val = sample;
+    
+    // r_var is initialised to zero
+    // in the constructor and reset()
     }
   
-  x.N++;
-  
-  x.acc1 += sample;
-  x.acc2 += sample*sample;
+  x.counter++;
   }
 
 
@@ -213,10 +371,13 @@ void
 running_stat_aux::update_stats(running_stat< std::complex<T> >& x, const std::complex<T>& sample)
   {
   arma_extra_debug_sigprint();
-
-  const T sample_norm = std::norm(sample);
   
-  if(x.N > T(0))
+  typedef typename std::complex<T> eT;
+  
+  const T sample_norm = std::norm(sample);
+  const T N           = x.counter.value();
+  
+  if(N > T(0))
     {
     if(sample_norm < x.min_val_norm)
       {
@@ -229,63 +390,29 @@ running_stat_aux::update_stats(running_stat< std::complex<T> >& x, const std::co
       x.max_val_norm = sample_norm;
       x.max_val      = sample;
       }
+    
+    const T  N_plus_1   = x.counter.value_plus_1();
+    const T  N_minus_1  = x.counter.value_minus_1();
+    
+    x.r_var = N_minus_1/N * x.r_var + std::norm(sample - x.r_mean)/N_plus_1;
+    
+    x.r_mean = x.r_mean + (sample - x.r_mean)/N_plus_1;
+    //x.r_mean = (N/N_plus_1)*x.r_mean + sample/N_plus_1;
+    //x.r_mean = (x.r_mean + sample/N) * N/N_plus_1;
     }
   else
     {
+    x.r_mean       = sample;
     x.min_val      = sample;
     x.max_val      = sample;
     x.min_val_norm = sample_norm;
     x.max_val_norm = sample_norm;
+    
+    // r_var is initialised to zero
+    // in the constructor and reset()
     }
   
-  x.N++;
-  
-  x.acc1 += sample;
-  x.acc2 += sample_norm;
-  }
-
-
-
-//! variance
-template<typename eT>
-inline
-eT
-running_stat_aux::var(const running_stat<eT>& x, const u32 norm_type)
-  {
-  arma_extra_debug_sigprint();
-
-  if(x.N > eT(1))
-    {
-    const eT norm_val = (norm_type == 0) ? (x.N-eT(1)) : x.N;
-    const eT var_val  = (x.acc2 - x.acc1*x.acc1/x.N) / norm_val;
-    return var_val;
-    }
-  else
-    {
-    return eT(0);
-    }
-  }
-
-
-
-//! variance (version for complex numbers)
-template<typename T>
-inline
-T
-running_stat_aux::var(const running_stat< std::complex<T> >& x, const u32 norm_type)
-  {
-  arma_extra_debug_sigprint();
-
-  if(x.N > T(1))
-    {
-    const T norm_val = (norm_type == 0) ? (x.N-T(1)) : x.N;
-    const T var_val  = (x.acc2 - std::norm(x.acc1)/x.N) / norm_val;
-    return var_val;
-    }
-  else
-    {
-    return T(0);
-    }
+  x.counter++;
   }
 
 

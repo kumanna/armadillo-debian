@@ -35,7 +35,7 @@ op_var::direct_var(const eT* const X, const u32 n_elem, const u32 norm_type)
     acc2 += tmp_val*tmp_val;
     }
   
-  const eT norm_val = (norm_type == 0) ? eT(n_elem-1) : eT(n_elem);
+  const eT norm_val = (norm_type == 0) ? ( (n_elem > 1) ? eT(n_elem-1) : eT(1) ) : eT(n_elem);
   const eT var_val  = (acc2 - acc1*acc1/eT(n_elem)) / norm_val;
   
   return var_val;
@@ -62,7 +62,7 @@ op_var::direct_var(const std::complex<T>* const X, const u32 n_elem, const u32 n
     acc2 += std::norm(X[i]);
     }
   
-  const T norm_val = (norm_type == 0) ? T(n_elem-1) : T(n_elem);
+  const T norm_val = (norm_type == 0) ? ( (n_elem > 1) ? T(n_elem-1) : T(1) ) : T(n_elem);
   const T var_val  = (acc2 - std::norm(acc1)/T(n_elem)) / norm_val;
   
   return var_val;
@@ -81,10 +81,10 @@ op_var::apply(Mat<eT>& out, const Mat<eT>& X, const u32 norm_type, const u32 dim
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (X.n_elem == 0), "op_var::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "var(): given matrix has no elements" );
   
-  arma_debug_check( (norm_type > 1), "op_var::apply(): incorrect usage. norm_type must be 0 or 1");
-  arma_debug_check( (dim > 1),       "op_var::apply(): incorrect usage. dim must be 0 or 1"      );
+  arma_debug_check( (norm_type > 1), "var(): incorrect usage. norm_type must be 0 or 1");
+  arma_debug_check( (dim > 1),       "var(): incorrect usage. dim must be 0 or 1"      );
   
   
   if(dim == 0)
@@ -105,7 +105,7 @@ op_var::apply(Mat<eT>& out, const Mat<eT>& X, const u32 norm_type, const u32 dim
     
     out.set_size(X.n_rows, 1);
     
-    const eT norm_val = (norm_type == 0) ? eT(X.n_cols-1) : eT(X.n_cols);
+    const eT norm_val = (norm_type == 0) ? ( (X.n_cols > 1) ? eT(X.n_cols-1) : eT(1) ) : eT(X.n_cols);
     
     for(u32 row=0; row<X.n_rows; ++row)
       {
@@ -140,10 +140,10 @@ op_var::apply(Mat<T>& out, const Mat< std::complex<T> >& X, const u32 norm_type,
   
   typedef typename std::complex<T> eT;
   
-  arma_debug_check( (X.n_elem == 0), "op_var::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "var(): given matrix has no elements" );
   
-  arma_debug_check( (norm_type > 1), "op_var::apply(): incorrect usage. norm_type must be 0 or 1");
-  arma_debug_check( (dim > 1),       "op_var::apply(): incorrect usage. dim must be 0 or 1"      );
+  arma_debug_check( (norm_type > 1), "var(): incorrect usage. norm_type must be 0 or 1");
+  arma_debug_check( (dim > 1),       "var(): incorrect usage. dim must be 0 or 1"      );
   
   
   if(dim == 0)
@@ -164,7 +164,7 @@ op_var::apply(Mat<T>& out, const Mat< std::complex<T> >& X, const u32 norm_type,
     
     out.set_size(X.n_rows, 1);
     
-    const T norm_val = (norm_type == 0) ? T(X.n_cols-1) : T(X.n_cols);
+    const T norm_val = (norm_type == 0) ? ( (X.n_cols > 1) ? T(X.n_cols-1) : T(1) ) : T(X.n_cols);
     
     for(u32 row=0; row<X.n_rows; ++row)
       {
@@ -208,7 +208,7 @@ op_var::direct_var(const subview<eT>& X, const u32 norm_type)
     acc2 += tmp_val*tmp_val;
     }
   
-  const eT norm_val = (norm_type == 0) ? eT(n_elem-1) : eT(n_elem);
+  const eT norm_val = (norm_type == 0) ? ( (n_elem > 1) ? eT(n_elem-1) : eT(1) ) : eT(n_elem);
   const eT var_val  = (acc2 - acc1*acc1/eT(n_elem)) / norm_val;
   
   return var_val;
@@ -237,7 +237,7 @@ op_var::direct_var(const subview< std::complex<T> >& X, const u32 norm_type)
     acc2 += std::norm(X[i]);
     }
   
-  const T norm_val = (norm_type == 0) ? T(n_elem-1) : T(n_elem);
+  const T norm_val = (norm_type == 0) ? ( (n_elem > 1) ? T(n_elem-1) : T(1) ) : T(n_elem);
   const T var_val  = (acc2 - std::norm(acc1)/T(n_elem)) / norm_val;
   
   return var_val;
@@ -265,7 +265,7 @@ op_var::direct_var(const diagview<eT>& X, const u32 norm_type)
     acc2 += tmp_val*tmp_val;
     }
   
-  const eT norm_val = (norm_type == 0) ? eT(n_elem-1) : eT(n_elem);
+  const eT norm_val = (norm_type == 0) ? ( (n_elem > 1) ? eT(n_elem-1) : eT(1) ) : eT(n_elem);
   const eT var_val  = (acc2 - acc1*acc1/eT(n_elem)) / norm_val;
   
   return var_val;
@@ -294,7 +294,7 @@ op_var::direct_var(const diagview< std::complex<T> >& X, const u32 norm_type)
     acc2 += std::norm(X[i]);
     }
   
-  const T norm_val = (norm_type == 0) ? T(n_elem-1) : T(n_elem);
+  const T norm_val = (norm_type == 0) ? ( (n_elem > 1) ? T(n_elem-1) : T(1) ) : T(n_elem);
   const T var_val  = (acc2 - std::norm(acc1)/T(n_elem)) / norm_val;
   
   return var_val;

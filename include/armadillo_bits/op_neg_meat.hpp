@@ -17,7 +17,9 @@
 //! \addtogroup op_neg
 //! @{
 
-//! Negate all element of a matrix and store the result in a dense matrix
+
+
+//! Negate all elements of a dense matrix
 template<typename T1>
 inline
 void
@@ -27,21 +29,45 @@ op_neg::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_neg> &in)
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
-  // no alias problems
-  out.set_size(X.n_rows, X.n_cols);
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;  
   
-  const eT* X_mem = X.mem;
-  eT* out_mem = out.memptr();
-  
-  
-  for(u32 i=0; i<X.n_elem; ++i)
+  for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] = -X_mem[i];
+    out_mem[i] = -A_mem[i];
     }
-    
   }
+
+
+
+
+//! Negate all elements of a dense cube
+template<typename T1>
+inline
+void
+op_neg::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_neg> &in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;  
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = -A_mem[i];
+    }
+  }
+
+
 
 //! @}

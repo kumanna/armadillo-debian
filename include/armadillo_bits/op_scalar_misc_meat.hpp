@@ -17,7 +17,9 @@
 //! \addtogroup op_scalar_misc
 //! @{
 
-//! Add a scalar to all elements of a matrix and store the result in a dense matrix
+
+
+//! Add a scalar to all elements of a matrix
 template<typename T1>
 inline
 void
@@ -27,50 +29,96 @@ op_scalar_plus::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_pl
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
-  
-  // no alias problems
-  out.set_size(X.n_rows, X.n_cols);
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
         eT* out_mem = out.memptr();
-  const eT* X_mem   = X.mem;
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
   const eT  k       = in.aux;
-  
-  for(u32 i=0; i<X.n_elem; ++i)
+    
+  for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] = X_mem[i] + k;
+    out_mem[i] = A_mem[i] + k;
     }
-
   }
 
 
 
-//! For each element of a matrix, subtract it from a scalar and store the result in a dense matrix
+//! Add a scalar to all elements of a cube
+template<typename T1>
+inline
+void
+op_scalar_plus::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_plus>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
+  const eT  k       = in.aux;
+    
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i] + k;
+    }
+  }
+
+
+
+//! For each element of a matrix, subtract it from a scalar
 template<typename T1>
 inline
 void
 op_scalar_minus_pre::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_minus_pre>& in)
   {
   arma_extra_debug_sigprint();
-
+  
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
-  
-  // no alias problems
-  out.set_size(X.n_rows, X.n_cols);
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
         eT* out_mem = out.memptr();
-  const eT* X_mem   = X.mem;
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
   const eT  k       = in.aux;
-  
-  for(u32 i=0; i<X.n_elem; ++i)
+    
+  for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] = k - X_mem[i];
+    out_mem[i] = k - A_mem[i];
     }
+  }
 
+
+
+//! For each element of a cube, subtract it from a scalar
+template<typename T1>
+inline
+void
+op_scalar_minus_pre::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_minus_pre>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
+  const eT  k       = in.aux;
+    
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = k - A_mem[i];
+    }
   }
 
 
@@ -82,29 +130,52 @@ void
 op_scalar_minus_post::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_minus_post>& in)
   {
   arma_extra_debug_sigprint();
-
-  typedef typename T1::elem_type eT;
-
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
   
-  // no alias problems
-  out.set_size(X.n_rows, X.n_cols);
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
         eT* out_mem = out.memptr();
-  const eT* X_mem   = X.mem;
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
   const eT  k       = in.aux;
-  
-  for(u32 i=0; i<X.n_elem; ++i)
+    
+  for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] = X_mem[i] - k;
+    out_mem[i] = A_mem[i] - k;
     }
-
   }
 
 
 
-//! Multiply all elements of a matrix by a scalar and store the result in a dense matrix
+//! subtract a scalar from each element of a cube
+template<typename T1>
+inline
+void
+op_scalar_minus_post::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_minus_post>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
+  const eT  k       = in.aux;
+    
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i] - k ;
+    }
+  }
+
+
+
+//! Multiply all elements of a matrix by a scalar
 template<typename T1>
 inline
 void
@@ -114,54 +185,53 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_t
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
-  // no alias problems
-  out.set_size(X.n_rows, X.n_cols);
-        
         eT* out_mem = out.memptr();
-  const eT* X_mem   = X.mem;
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
   const eT  k       = in.aux;
-  
-  for(u32 i=0; i < X.n_elem; ++i)
+    
+  for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] = X_mem[i] * k;
+    out_mem[i] = A_mem[i] * k;
     }
-  
   }
 
 
   
-//! \brief 
-//! Evaluate Glue<T1,T2,glue_type>, and then multiply each element of the result by a scalar.
-//! Store the final result in a dense matrix.
-template<typename T1, typename T2, typename glue_type>
+//! Multiply all elements of a cube by a scalar
+template<typename T1>
 inline
 void
-op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_type>, op_scalar_times>& in)
+op_scalar_times::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_times>& in)
   {
   arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  out = in.m;  // implicit conversion to 'Mat<eT>'
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
   
         eT* out_mem = out.memptr();
-  const eT        k = in.aux;
+  const eT* A_mem   = A.memptr();
   const u32 n_elem  = out.n_elem;
-  
+  const eT  k       = in.aux;
+    
   for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] *= k;
+    out_mem[i] = A_mem[i] * k;
     }
   }
-  
-  
 
-//! \brief 
+
+
+#if defined(ARMA_GOOD_COMPILER)
+
+
+
 //! Evaluate A + B, and then multiply each element of the result by a scalar.
-//! Store the final result in a dense matrix.
 template<typename T1, typename T2>
 inline
 void
@@ -180,7 +250,8 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,gl
   arma_debug_assert_same_size(A, B, "matrix addition");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -198,9 +269,45 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,gl
 
 
 
-//! \brief 
+//! Evaluate A + B, and then multiply each element of the result by a scalar.
+template<typename T1, typename T2>
+inline
+void
+op_scalar_times::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_plus>, op_scalar_times>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap_cube<T1> tmp1(in.m.A);
+  const unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "cube addition");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = (A_mem[i] + B_mem[i]) * k;
+    }
+  
+  }
+
+
+
 //! Evaluate A - B, and then multiply each element of the result by a scalar.
-//! Store the final result in a dense matrix.
 template<typename T1, typename T2>
 inline
 void
@@ -219,7 +326,8 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,gl
   arma_debug_assert_same_size(A, B, "matrix subtraction");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -237,9 +345,45 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,gl
 
 
 
-//! \brief 
+//! Evaluate A - B, and then multiply each element of the result by a scalar.
+template<typename T1, typename T2>
+inline
+void
+op_scalar_times::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_minus>, op_scalar_times>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap_cube<T1> tmp1(in.m.A);
+  const unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "cube subtraction");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = (A_mem[i] - B_mem[i]) * k;
+    }
+  
+  }
+
+
+
 //! Evaluate A % B (where % is the element-wise multiply operation) and then multiply each element of the result by a scalar.
-//! Store the final result in a dense matrix.
 template<typename T1, typename T2>
 inline
 void
@@ -258,7 +402,8 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,gl
   arma_debug_assert_same_size(A, B, "schur product");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -276,6 +421,48 @@ op_scalar_times::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,gl
 
 
 
+//! Evaluate A % B (where % is the element-wise multiply operation) and then multiply each element of the result by a scalar.
+template<typename T1, typename T2>
+inline
+void
+op_scalar_times::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_schur>, op_scalar_times>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap_cube<T1> tmp1(in.m.A);
+  const unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "schur product");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = (A_mem[i] * B_mem[i]) * k;
+    }
+  
+  }
+
+
+
+#endif
+
+
+
 //
 // 
 // 
@@ -288,86 +475,51 @@ void
 op_scalar_div_pre::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_div_pre>& in)
   {
   arma_extra_debug_sigprint();
-
-  typedef typename T1::elem_type eT;
-  
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
-  
-  // TODO: analyse effects of aliasing
-  out.set_size(X.n_rows, X.n_cols);
-  
-        eT* out_mem = out.memptr();
-  const eT* X_mem   = X.mem;
-  const eT  k       = in.aux;
-  
-  for(u32 i=0; i < X.n_elem; ++i)
-    {
-    out_mem[i] = k / X_mem[i];
-    }
-  
-  }
-
-
-  
-template<typename eT>
-inline
-void
-op_scalar_div_pre::apply(Mat<eT>& out, const Op<Mat<eT>,op_scalar_div_pre>& in)
-  {
-  arma_extra_debug_sigprint();
-
-  const Mat<eT>& X = in.m;
-  
-  if(&out != &X)
-    {
-    out.set_size(X.n_rows, X.n_cols);
-    
-          eT* out_mem = out.memptr();
-    const eT* X_mem   = X.mem;
-    const eT  k       = in.aux;
-    
-    for(u32 i=0; i < X.n_elem; ++i)
-      {
-      out_mem[i] = k / X_mem[i];
-      }
-    }
-  else
-    {
-          eT* out_mem = out.memptr();
-    const eT  k       = in.aux;
-    
-    for(u32 i=0; i < out.n_elem; ++i)
-      {
-      out_mem[i] = k / out_mem[i];
-      }
-    
-    }
-  
-  }
-
-
-
-template<typename T1, typename T2, typename glue_type>
-inline
-void
-op_scalar_div_pre::apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_type>, op_scalar_div_pre>& in)
-  {
-  arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  out = in.m;  // implicit conversion to 'Mat<eT>'
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
         eT* out_mem = out.memptr();
-  const eT  k       = in.aux;
+  const eT* A_mem   = A.memptr();
   const u32 n_elem  = out.n_elem;
-  
+  const eT  k       = in.aux;
+    
   for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] = k / out_mem[i];
+    out_mem[i] = k / A_mem[i];
     }
   }
+
+
+  
+template<typename T1>
+inline
+void
+op_scalar_div_pre::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_div_pre>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
+  const eT  k       = in.aux;
+    
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = k / A_mem[i];
+    }
+  }
+
+
+
+#if defined(ARMA_GOOD_COMPILER)
 
 
 
@@ -389,7 +541,45 @@ op_scalar_div_pre::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,
   arma_debug_assert_same_size(A, B, "matrix addition");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = k / (A_mem[i] + B_mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+op_scalar_div_pre::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_plus>, op_scalar_div_pre>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  unwrap_cube<T1> tmp1(in.m.A);
+  unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "cube addition");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -425,7 +615,45 @@ op_scalar_div_pre::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,
   arma_debug_assert_same_size(A, B, "matrix subtraction");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = k / (A_mem[i] - B_mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+op_scalar_div_pre::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_minus>, op_scalar_div_pre>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  unwrap_cube<T1> tmp1(in.m.A);
+  unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "cube subtraction");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -461,7 +689,8 @@ op_scalar_div_pre::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,
   arma_debug_assert_same_size(A, B, "schur product");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -479,6 +708,47 @@ op_scalar_div_pre::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,
 
 
 
+template<typename T1, typename T2>
+inline
+void
+op_scalar_div_pre::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_schur>, op_scalar_div_pre>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  unwrap_cube<T1> tmp1(in.m.A);
+  unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "schur product");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = k / (A_mem[i] * B_mem[i]);
+    }
+  
+  }
+
+
+
+#endif
+
+
+
 //
 //
 //
@@ -491,86 +761,51 @@ void
 op_scalar_div_post::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_scalar_div_post>& in)
   {
   arma_extra_debug_sigprint();
-
-  typedef typename T1::elem_type eT;
-  
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
-  
-  // TODO: analyse effects of aliasing
-  out.set_size(X.n_rows, X.n_cols);
-  
-        eT* out_mem = out.memptr();
-  const eT* X_mem   = X.mem;
-  const eT  k       = in.aux;
-  
-  for(u32 i=0; i < X.n_elem; ++i)
-    {
-    out_mem[i] = X_mem[i] / k;
-    }
-  
-  }
-
-
-
-template<typename eT>
-inline
-void
-op_scalar_div_post::apply(Mat<eT>& out, const Op<Mat<eT>,op_scalar_div_post>& in)
-  {
-  arma_extra_debug_sigprint();
-
-  const Mat<eT>& X = in.m;
-  
-  if(&out != &X)
-    {
-    out.set_size(X.n_rows, X.n_cols);
-    
-          eT* out_mem = out.memptr();
-    const eT* X_mem   = X.mem;
-    const eT  k       = in.aux;
-    
-    for(u32 i=0; i < X.n_elem; ++i)
-      {
-      out_mem[i] = X_mem[i] / k;
-      }
-    }
-  else
-    {
-          eT* out_mem = out.memptr();
-    const eT  k       = in.aux;
-    
-    for(u32 i=0; i < out.n_elem; ++i)
-      {
-      out_mem[i] /= k;
-      }
-    
-    }
-  
-  }
-
-
-
-template<typename T1, typename T2, typename glue_type>
-inline
-void
-op_scalar_div_post::apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_type>, op_scalar_div_post>& in)
-  {
-  arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  out = in.m;  // implicit conversion to 'Mat<eT>'
+  const unwrap_write<T1> tmp(out, in.m);
+  const Mat<eT>& A     = tmp.M;
   
         eT* out_mem = out.memptr();
-  const eT  k       = in.aux;
+  const eT* A_mem   = A.memptr();
   const u32 n_elem  = out.n_elem;
-  
+  const eT  k       = in.aux;
+    
   for(u32 i=0; i<n_elem; ++i)
     {
-    out_mem[i] /= k;
+    out_mem[i] = A_mem[i] / k;
     }
   }
+
+
+
+template<typename T1>
+inline
+void
+op_scalar_div_post::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_scalar_div_post>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube_write<T1> tmp(out, in.m);
+  const Cube<eT>& A         = tmp.M;
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = out.n_elem;
+  const eT  k       = in.aux;
+    
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = A_mem[i] / k;
+    }
+  }
+
+
+
+#if defined(ARMA_GOOD_COMPILER)
 
 
 
@@ -592,7 +827,45 @@ op_scalar_div_post::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2
   arma_debug_assert_same_size(A, B, "matrix addition");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = (A_mem[i] + B_mem[i]) / k;
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+op_scalar_div_post::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_plus>, op_scalar_div_post>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  unwrap_cube<T1> tmp1(in.m.A);
+  unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "cube addition");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -628,7 +901,45 @@ op_scalar_div_post::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2
   arma_debug_assert_same_size(A, B, "matrix subtraction");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = (A_mem[i] - B_mem[i]) / k;
+    }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+op_scalar_div_post::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_minus>, op_scalar_div_post>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  unwrap_cube<T1> tmp1(in.m.A);
+  unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "cube subtraction");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -664,7 +975,8 @@ op_scalar_div_post::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2
   arma_debug_assert_same_size(A, B, "schur product");
   
   // no alias problems
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
   
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.mem;
@@ -680,6 +992,46 @@ op_scalar_div_post::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2
   
   }
 
+
+
+template<typename T1, typename T2>
+inline
+void
+op_scalar_div_post::apply(Cube<typename T1::elem_type>& out, const OpCube< GlueCube<T1,T2,glue_cube_schur>, op_scalar_div_post>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  unwrap_cube<T1> tmp1(in.m.A);
+  unwrap_cube<T2> tmp2(in.m.B);
+  
+  typedef typename T1::elem_type eT;
+  
+  const Cube<eT>& A = tmp1.M;
+  const Cube<eT>& B = tmp2.M;
+  
+  arma_debug_assert_same_size(A, B, "schur product");
+  
+  // no alias problems
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+  
+        eT* out_mem = out.memptr();
+  const eT* A_mem   = A.mem;
+  const eT* B_mem   = B.mem;
+  
+  const eT  k       = in.aux;
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = (A_mem[i] * B_mem[i]) / k;
+    }
+  
+  }
+
+
+
+#endif
 
 
 //! @}

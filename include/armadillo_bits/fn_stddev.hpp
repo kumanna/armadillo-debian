@@ -53,7 +53,7 @@ stddev(const Row<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A.mem, A.n_elem, norm_type) );
   }
@@ -68,7 +68,7 @@ stddev(const Row< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A.mem, A.n_elem, norm_type) );
   }
@@ -83,7 +83,7 @@ stddev(const Col<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A.mem, A.n_elem, norm_type) );
   }
@@ -98,7 +98,7 @@ stddev(const Col< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A.mem, A.n_elem, norm_type) );
   }
@@ -113,7 +113,7 @@ stddev(const subview_row<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A, norm_type) );
   }
@@ -128,7 +128,7 @@ stddev(const subview_row< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A, norm_type) );
   }
@@ -143,7 +143,7 @@ stddev(const subview_col<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A, norm_type) );
   }
@@ -158,7 +158,7 @@ stddev(const subview_col< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A, norm_type) );
   }
@@ -173,7 +173,7 @@ stddev(const diagview<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A, norm_type) );
   }
@@ -188,7 +188,7 @@ stddev(const diagview< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
+  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
   
   return std::sqrt( op_var::direct_var(A, norm_type) );
   }

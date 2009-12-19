@@ -29,23 +29,18 @@ class op_randn
   template<typename eT>
   inline static void direct_randn(eT* x, const u32 n_elem);
   
+  template<typename T>
+  inline static void direct_randn(std::complex<T>* x, const u32 n_elem);
+  
+  
   
   public:
   
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Mat<eT>,op_randn>& in);
+  template<typename T1>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_randn>& in);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Col<eT>,op_randn>& in);
-  
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op<Row<eT>,op_randn>& in);
-  
-  template<typename eT>
-  inline static void apply(Col<eT>& out, const Op<Col<eT>,op_randn>& in);
-  
-  template<typename eT>
-  inline static void apply(Row<eT>& out, const Op<Row<eT>,op_randn>& in);
+  inline static void apply(Cube<eT>& out, const OpCube<Cube<eT>,op_randn>& in);
   };
 
 

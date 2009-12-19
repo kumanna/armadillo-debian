@@ -111,7 +111,7 @@ struct sort_index_result_type_deducer< Row<eT> >
 template<typename T1>
 inline
 typename sort_index_result_type_deducer<T1>::out_type
-sort_index(const Base_vec<typename T1::elem_type,T1>& X, const u32 sort_type = 0)
+sort_index(const BaseVec<typename T1::elem_type,T1>& X, const u32 sort_type = 0)
   {
   arma_extra_debug_sigprint();
   

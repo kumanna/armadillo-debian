@@ -17,31 +17,39 @@
 //! @{
 
 
-template<typename eT, typename T1>
+
+template<typename T1>
 inline
 bool
-chol(Mat<eT>& out, const Base<eT,T1>& X)
+chol(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(X.get_ref());
-  arma_debug_check( !tmp.M.is_square(), "chol(): given matrix is not square");
+  typedef typename T1::elem_type eT;
   
-  return auxlib::chol(out, tmp.M);
+  const unwrap_check<T1> tmp(X.get_ref(), out);
+  const Mat<eT>&     A = tmp.M;
+  
+  arma_debug_check( (A.is_square() == false), "chol(): given matrix is not square");
+  
+  return auxlib::chol(out, A);
   }
 
 
 
-template<typename eT, typename T1>
+template<typename T1>
 inline
-Mat<eT>
-chol(const Base<eT,T1>& X)
+Mat<typename T1::elem_type>
+chol(const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
   
   Mat<eT> out;
   
   const bool ok = chol(out, X);
+  
   if(ok == false)
     {
     arma_print("chol(): matrix factorisation failed");
@@ -49,6 +57,7 @@ chol(const Base<eT,T1>& X)
   
   return out;
   }
+
 
 
 //! @}

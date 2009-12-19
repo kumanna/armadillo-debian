@@ -72,7 +72,7 @@ subview<eT>::fill(const eT val)
     {
     eT* coldata = colptr(col);
     
-    for(u32 row = 0; row != n_rows; ++row)
+    for(u32 row = 0; row<n_rows; ++row)
       {
       coldata[row] = val;
       }
@@ -181,8 +181,8 @@ subview<eT>::operator= (const Base<eT,T1>& in)
   
   const unwrap<T1> tmp(in.get_ref());
   
-  const Mat<eT>& x = tmp.M;
-        subview<eT>&   t = *this;
+  const Mat<eT>&     x = tmp.M;
+        subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "insert into submatrix");
   
@@ -212,8 +212,8 @@ subview<eT>::operator+= (const Base<eT,T1>& in)
   
   const unwrap<T1> tmp(in.get_ref());
   
-  const Mat<eT>& x = tmp.M;
-        subview<eT>&   t = *this;
+  const Mat<eT>&     x = tmp.M;
+        subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix addition");
   
@@ -243,8 +243,8 @@ subview<eT>::operator-= (const Base<eT,T1>& in)
   
   const unwrap<T1> tmp(in.get_ref());
   
-  const Mat<eT>& x = tmp.M;
-        subview<eT>&   t = *this;
+  const Mat<eT>&     x = tmp.M;
+        subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix subtraction");
   
@@ -274,8 +274,8 @@ subview<eT>::operator%= (const Base<eT,T1>& in)
   
   const unwrap<T1> tmp(in.get_ref());
   
-  const Mat<eT>& x = tmp.M;
-        subview<eT>&   t = *this;
+  const Mat<eT>&     x = tmp.M;
+        subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix schur product");
   
@@ -305,8 +305,8 @@ subview<eT>::operator/= (const Base<eT,T1>& in)
   
   const unwrap<T1> tmp(in.get_ref());
   
-  const Mat<eT>& x = tmp.M;
-        subview<eT>&   t = *this;
+  const Mat<eT>&     x = tmp.M;
+        subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "element-wise matrix division");
   
@@ -336,7 +336,7 @@ subview<eT>::operator= (const subview<eT>& x_in)
   
   const bool overlap = check_overlap(x_in);
   
-  Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
+        Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
   const subview<eT>* tmp_subview = overlap ? new subview<eT>(*tmp_mat, x_in.aux_row1, x_in.aux_col1, x_in.aux_row2, x_in.aux_col2) : 0;
   const subview<eT>&           x = overlap ? (*tmp_subview) : x_in;
   
@@ -376,7 +376,7 @@ subview<eT>::operator+= (const subview<eT>& x_in)
   
   const bool overlap = check_overlap(x_in);
   
-  Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
+        Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
   const subview<eT>* tmp_subview = overlap ? new subview(*tmp_mat, x_in.aux_row1, x_in.aux_col1, x_in.aux_row2, x_in.aux_col2) : 0;
   const subview<eT>&           x = overlap ? (*tmp_subview) : x_in;
   
@@ -384,7 +384,7 @@ subview<eT>::operator+= (const subview<eT>& x_in)
   subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix addition");
-
+  
   
   for(u32 col = 0; col<t.n_cols; ++col)
     {
@@ -411,7 +411,7 @@ subview<eT>::operator-= (const subview<eT>& x_in)
   
   const bool overlap = check_overlap(x_in);
   
-  Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
+        Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
   const subview<eT>* tmp_subview = overlap ? new subview(*tmp_mat, x_in.aux_row1, x_in.aux_col1, x_in.aux_row2, x_in.aux_col2) : 0;
   const subview<eT>&           x = overlap ? (*tmp_subview) : x_in;
   
@@ -429,7 +429,12 @@ subview<eT>::operator-= (const subview<eT>& x_in)
       {
       t_coldata[row] -= x_coldata[row];
       }
+    }
     
+  if(overlap)
+    {
+    delete tmp_subview;
+    delete tmp_mat;
     }
   
   }
@@ -445,7 +450,7 @@ subview<eT>::operator%= (const subview& x_in)
   
   const bool overlap = check_overlap(x_in);
   
-  Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
+        Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
   const subview<eT>* tmp_subview = overlap ? new subview(*tmp_mat, x_in.aux_row1, x_in.aux_col1, x_in.aux_row2, x_in.aux_col2) : 0;
   const subview<eT>&           x = overlap ? (*tmp_subview) : x_in;
   
@@ -463,7 +468,12 @@ subview<eT>::operator%= (const subview& x_in)
       {
       t_coldata[row] *= x_coldata[row];
       }
-    
+    }
+  
+  if(overlap)
+    {
+    delete tmp_subview;
+    delete tmp_mat;
     }
   
   }
@@ -479,7 +489,7 @@ subview<eT>::operator/= (const subview& x_in)
   
   const bool overlap = check_overlap(x_in);
   
-  Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
+        Mat<eT>*     tmp_mat     = overlap ? new Mat<eT>(x_in.m) : 0;
   const subview<eT>* tmp_subview = overlap ? new subview(*tmp_mat, x_in.aux_row1, x_in.aux_col1, x_in.aux_row2, x_in.aux_col2) : 0;
   const subview<eT>&           x = overlap ? (*tmp_subview) : x_in;
   
@@ -497,7 +507,12 @@ subview<eT>::operator/= (const subview& x_in)
       {
       t_coldata[row] /= x_coldata[row];
       }
+    }
     
+  if(overlap)
+    {
+    delete tmp_subview;
+    delete tmp_mat;
     }
   
   }
@@ -698,6 +713,16 @@ subview<eT>::check_overlap(const subview<eT>& x) const
 
 
 
+template<typename eT>
+inline
+bool
+subview<eT>::is_vec() const
+  {
+  return ( (n_rows == 1) || (n_cols == 1) );
+  }
+
+
+
 //! X = Y.submat(...)
 template<typename eT>
 inline
@@ -714,47 +739,58 @@ subview<eT>::extract(Mat<eT>& actual_out, const subview<eT>& in)
   
   //
   
-  const u32 n_rows = in.n_rows;
-  const u32 n_cols = in.n_cols;
+  const u32 n_rows = in.n_rows;  // number of rows in the subview
+  const u32 n_cols = in.n_cols;  // number of columns in the subview
   
   out.set_size(n_rows, n_cols);
   
   arma_extra_debug_print(arma_boost::format("out.n_rows = %d   out.n_cols = %d    in.m.n_rows = %d  in.m.n_cols = %d") % out.n_rows % out.n_cols % in.m.n_rows % in.m.n_cols );
   
-  
-  if((n_rows == 1) && (n_cols != 1))
+
+  if(in.is_vec() == true)
     {
-    arma_extra_debug_print("subview::apply(): copying row (going across columns)");
-    
-    for(u32 col = 0; col<n_cols; ++col)
+    if(n_cols == 1)   // a column vector
       {
-      out[col] = in.m.at(in.aux_row1, col);
+      arma_extra_debug_print("subview::extract(): copying col (going across rows)");
+      
+            eT* out_mem    = out.memptr();
+      const eT* in_coldata = in.colptr(0);  // the first column of the subview, taking into account any row offset
+      
+      for(u32 row=0; row<n_rows; ++row)
+        {
+        out_mem[row] = in_coldata[row];
+        }
+      }
+    else   // a row vector
+      {
+      arma_extra_debug_print("subview::extract(): copying row (going across columns)");
+      
+      const Mat<eT>& X = in.m;
+      
+            eT* out_mem   = out.memptr();
+      const u32 row       = in.aux_row1;
+      const u32 start_col = in.aux_col1;
+      
+      for(u32 i=0; i<n_cols; ++i)
+        {
+        out_mem[i] = X.at(row, i+start_col);
+        }
       }
     }
-  else
-  if((n_rows != 1) && (n_cols == 1))
+  else   // general submatrix
     {
-    arma_extra_debug_print("subview::apply(): copying col (going across n_rows)");
+    arma_extra_debug_print("subview::extract(): general submatrix");
     
-    const eT* in_coldata = in.colptr(0);
-    
-    for(u32 row = 0; row<n_rows; ++row)
+    for(u32 col = 0; col<n_cols; ++col)   
       {
-      out[row] = in_coldata[row];
+            eT* out_coldata = out.colptr(col);
+      const eT*  in_coldata =  in.colptr(col);
+      
+      for(u32 row = 0; row<n_rows; ++row)
+        {
+        out_coldata[row] = in_coldata[row];
+        }
       }
-    
-    }
-  else  
-  for(u32 col = 0; col<n_cols; ++col)
-    {
-          eT* out_coldata = out.colptr(col);
-    const eT*  in_coldata =  in.colptr(col);
-    
-    for(u32 row = 0; row<n_rows; ++row)
-      {
-      out_coldata[row] = in_coldata[row];
-      }
-    
     }
   
   
@@ -943,7 +979,7 @@ subview<eT>::div_inplace(Mat<eT>& out, const subview<eT>& in)
     for(u32 i=0; i<out.n_elem; ++i)
       {
       const eT tmp = out_mem[i];
-      out_mem[i] = tmp*tmp;
+      out_mem[i] = tmp/tmp;  // using tmp/tmp as tmp might be zero
       }
     }
   
@@ -971,6 +1007,26 @@ template<typename eT>
 arma_inline
 subview_col<eT>::subview_col(Mat<eT>& in_m, const u32 in_col)
   : subview<eT>(in_m, 0, in_col, in_m.n_rows-1, in_col)
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+arma_inline
+subview_col<eT>::subview_col(const Mat<eT>& in_m, const u32 in_col, const u32 in_row1, const u32 in_row2)
+  : subview<eT>(in_m, in_row1, in_col, in_row2, in_col)
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+arma_inline
+subview_col<eT>::subview_col(Mat<eT>& in_m, const u32 in_col, const u32 in_row1, const u32 in_row2)
+  : subview<eT>(in_m, in_row1, in_col, in_row2, in_col)
   {
   arma_extra_debug_sigprint();
   }
@@ -1038,6 +1094,26 @@ template<typename eT>
 arma_inline
 subview_row<eT>::subview_row(Mat<eT>& in_m, const u32 in_row)
   : subview<eT>(in_m, in_row, 0, in_row, in_m.n_cols-1)
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+arma_inline
+subview_row<eT>::subview_row(const Mat<eT>& in_m, const u32 in_row, const u32 in_col1, const u32 in_col2)
+  : subview<eT>(in_m, in_row, in_col1, in_row, in_col2)
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+arma_inline
+subview_row<eT>::subview_row(Mat<eT>& in_m, const u32 in_row, const u32 in_col1, const u32 in_col2)
+  : subview<eT>(in_m, in_row, in_col1, in_row, in_col2)
   {
   arma_extra_debug_sigprint();
   }

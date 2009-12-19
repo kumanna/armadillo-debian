@@ -65,9 +65,9 @@ inline
 bool
 svd
   (
-  Mat<typename T1::elem_type>& U,
-  Col<typename T1::pod_type>& S,
-  Mat<typename T1::elem_type>& V,
+         Mat<typename T1::elem_type>&    U,
+         Col<typename T1::pod_type>&     S,
+         Mat<typename T1::elem_type>&    V,
   const Base<typename T1::elem_type,T1>& X
   )
   {
@@ -75,11 +75,14 @@ svd
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> tmp(X.get_ref());
+  arma_debug_check( ( ((void*)(&U) == (void*)(&S)) || (&U == &V) || ((void*)(&S) == (void*)(&V)) ), "svd(): two or more output objects are the same object" );
+  
+  const unwrap<T1>   tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
   
+  // auxlib::svd() makes an internal copy of A
   const bool status = auxlib::svd(U, S, V, A);
-    
+  
   if(status == false)
     {
     arma_print("svd(): singular value decomposition failed");

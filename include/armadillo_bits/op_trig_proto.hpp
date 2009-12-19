@@ -29,7 +29,9 @@
 class op_cos
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_cos>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_cos>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_cos>& in);
   };
 
 
@@ -37,8 +39,12 @@ class op_cos
 class op_acos
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acos>& in);
-  template<typename T, typename T1> inline static void apply(Mat< std::complex<T> >& out, const Op<T1,op_acos>& in);
+
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_acos>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_acos>& in);
+
+  template<typename T, typename T1> inline static void apply( Mat< std::complex<T> >& out, const     Op<T1,op_acos>& in);
+  template<typename T, typename T1> inline static void apply(Cube< std::complex<T> >& out, const OpCube<T1,op_acos>& in);
   };
 
 
@@ -46,7 +52,9 @@ class op_acos
 class op_cosh
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_cosh>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_cosh>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_cosh>& in);
   };
   
 
@@ -54,8 +62,12 @@ class op_cosh
 class op_acosh
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acosh>& in);
-  template<typename T, typename T1> inline static void apply(Mat< std::complex<T> >& out, const Op<T1,op_acosh>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_acosh>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_acosh>& in);
+  
+  template<typename T, typename T1> inline static void apply( Mat< std::complex<T> >& out, const     Op<T1,op_acosh>& in);
+  template<typename T, typename T1> inline static void apply(Cube< std::complex<T> >& out, const OpCube<T1,op_acosh>& in);
   };
   
 
@@ -65,7 +77,9 @@ class op_acosh
 class op_sin
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sin>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_sin>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_sin>& in);
   };
 
 
@@ -73,8 +87,12 @@ class op_sin
 class op_asin
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asin>& in);
-  template<typename T, typename T1> inline static void apply(Mat< std::complex<T> >& out, const Op<T1,op_asin>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_asin>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_asin>& in);
+  
+  template<typename T, typename T1> inline static void apply( Mat< std::complex<T> >& out, const     Op<T1,op_asin>& in);
+  template<typename T, typename T1> inline static void apply(Cube< std::complex<T> >& out, const OpCube<T1,op_asin>& in);
   };
 
 
@@ -82,7 +100,9 @@ class op_asin
 class op_sinh
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sinh>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_sinh>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_sinh>& in);
   };
   
 
@@ -90,7 +110,9 @@ class op_sinh
 class op_asinh
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asinh>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_asinh>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_asinh>& in);
   };
 
 
@@ -100,7 +122,9 @@ class op_asinh
 class op_tan
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_tan>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_tan>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_tan>& in);
   };
 
 
@@ -108,8 +132,12 @@ class op_tan
 class op_atan
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atan>& in);
-  template<typename T, typename T1> inline static void apply(Mat< std::complex<T> >& out, const Op<T1,op_atan>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_atan>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_atan>& in);
+  
+  template<typename T, typename T1> inline static void apply( Mat< std::complex<T> >& out, const     Op<T1,op_atan>& in);
+  template<typename T, typename T1> inline static void apply(Cube< std::complex<T> >& out, const OpCube<T1,op_atan>& in);
   };
 
 
@@ -117,7 +145,9 @@ class op_atan
 class op_tanh
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_tanh>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_tanh>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_tanh>& in);
   };
   
 
@@ -125,7 +155,9 @@ class op_tanh
 class op_atanh
   {
   public:
-  template<typename T1> inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atanh>& in);
+  
+  template<typename T1> inline static void apply( Mat<typename T1::elem_type>& out, const     Op<T1,op_atanh>& in);
+  template<typename T1> inline static void apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_atanh>& in);
   };
 
 

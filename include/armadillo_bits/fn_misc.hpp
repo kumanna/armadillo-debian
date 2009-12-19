@@ -65,62 +65,6 @@ linspace(const double start, const double end, const u32 num, const u32 dim = 0)
 
 
 
-
-
-
-//
-// reshape
-
-template<typename T1>
-inline
-Mat<typename T1::elem_type>
-reshape(const Base<typename T1::elem_type,T1>& X, const u32 in_n_rows, const u32 in_n_cols, const u32 dim = 0)
-  {
-  arma_extra_debug_sigprint();
-
-  typedef typename T1::elem_type eT;
-  
-  Mat<eT> out;
-
-  const unwrap<T1> A_tmp(X.get_ref());
-  const Mat<eT>& A = A_tmp.M;
-
-  const u32 in_n_elem = in_n_rows * in_n_cols;
-
-  arma_debug_check( (A.n_elem != in_n_elem), "reshape(): incompatible dimensions");
-  arma_debug_check( (dim > 1), "reshape(): dim must be 0 or 1");
-
-  if(dim == 0)
-    {
-    out = A;
-
-    access::rw(out.n_rows) = in_n_rows;
-    access::rw(out.n_cols) = in_n_cols;
-
-    return out;
-    }
-  else
-    {
-    out.set_size(in_n_rows, in_n_cols);
-    
-    eT* out_mem = out.memptr();
-    u32 i = 0;
-    
-    for(u32 row=0; row<A.n_rows; ++row)
-      {
-      for(u32 col=0; col<A.n_cols; ++col)
-        {
-        out_mem[i] = A.at(row,col);
-        ++i;
-        }
-      }
-    
-    return out;
-    }
-  }
-
-
-
 //
 // real
 
@@ -151,6 +95,33 @@ real(const Base<std::complex<T>, T1>& X)
 
 
 
+template<typename T, typename T1>
+inline
+Cube<T>
+real(const BaseCube<std::complex<T>, T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef std::complex<T> eT;
+
+  const unwrap_cube<T1> A_tmp(X.get_ref());
+  const Cube<eT>& A   = A_tmp.M;
+  
+  Cube<T> out(A.n_rows, A.n_cols, A.n_slices);
+  
+  const eT* A_mem = A.mem;
+  T* out_mem = out.memptr();
+  
+  for(u32 i=0; i<out.n_elem; ++i)
+    {
+    out_mem[i] = std::real(A_mem[i]);
+    }
+  
+  return out;
+  }
+
+
+
 //
 // imag
 
@@ -167,6 +138,33 @@ imag(const Base<std::complex<T>,T1>& X)
   const Mat<eT>& A = A_tmp.M;
   
   Mat<T> out(A.n_rows, A.n_cols);
+  
+  const eT* A_mem = A.mem;
+  T* out_mem = out.memptr();
+  
+  for(u32 i=0; i<out.n_elem; ++i)
+    {
+    out_mem[i] = std::imag(A_mem[i]);
+    }
+  
+  return out;
+  }
+
+
+
+template<typename T, typename T1>
+inline
+Cube<T>
+imag(const BaseCube<std::complex<T>,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef std::complex<T> eT;
+
+  const unwrap_cube<T1> A_tmp(X.get_ref());
+  const Cube<eT>& A   = A_tmp.M;
+  
+  Cube<T> out(A.n_rows, A.n_cols, A.n_slices);
   
   const eT* A_mem = A.mem;
   T* out_mem = out.memptr();
@@ -227,6 +225,10 @@ trunc_log(const eT x)
       {
       return Math<eT>::log_min();
       }
+    else
+      {
+      return std::log(x);
+      }
     }
   else
     {
@@ -268,6 +270,18 @@ log(const Base<typename T1::elem_type,T1>& A)
 
 
 
+template<typename T1>
+inline
+const OpCube<T1, op_log>
+log(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_log>(A.get_ref());
+  }
+
+
+
 //
 // trunc_log
 
@@ -279,6 +293,18 @@ trunc_log(const Base<typename T1::elem_type,T1>& A)
   arma_extra_debug_sigprint();
   
   return Op<T1, op_trunc_log>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+inline
+const OpCube<T1, op_trunc_log>
+trunc_log(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_trunc_log>(A.get_ref());
   }
 
 
@@ -298,6 +324,18 @@ log10(const Base<typename T1::elem_type,T1>& A)
 
 
 
+template<typename T1>
+inline
+const OpCube<T1, op_log10>
+log10(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_log10>(A.get_ref());
+  }
+
+
+
 //
 // exp
 
@@ -313,6 +351,18 @@ exp(const Base<typename T1::elem_type,T1>& A)
 
 
 
+template<typename T1>
+inline
+const OpCube<T1, op_exp>
+exp(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_exp>(A.get_ref());
+  }
+
+
+
 //
 // trunc_exp
 
@@ -324,6 +374,18 @@ trunc_exp(const Base<typename T1::elem_type,T1>& A)
   arma_extra_debug_sigprint();
   
   return Op<T1, op_trunc_exp>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+inline
+const OpCube<T1, op_trunc_exp>
+trunc_exp(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_trunc_exp>(A.get_ref());
   }
 
 
@@ -364,6 +426,39 @@ abs(const Base<typename T1::elem_type,T1>& X)
 
 
 
+template<typename T1>
+inline
+Cube<typename T1::pod_type>
+abs(const BaseCube<typename T1::elem_type,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap_cube<T1> A_tmp(X.get_ref());
+
+  // if T1 is a complex matrix,
+  // pod_type is the underlying type used by std::complex;
+  // otherwise pod_type is the same as elem_type
+  
+  typedef typename T1::elem_type  in_eT;
+  typedef typename T1::pod_type  out_eT;
+
+  const Cube<in_eT>& A = A_tmp.M;
+  
+  Cube<out_eT> out(A.n_rows, A.n_cols, A.n_slices);
+  
+  const in_eT* A_mem   = A.mem;
+  out_eT*      out_mem = out.memptr();
+  
+  for(u32 i=0; i<out.n_elem; ++i)
+    {
+    out_mem[i] = std::abs(A_mem[i]);
+    }
+  
+  return out;
+  }
+
+
+
 //
 // fabs
 
@@ -371,6 +466,18 @@ template<typename T1>
 inline
 Mat<typename T1::pod_type>
 fabs(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return abs(A);
+  }
+
+
+
+template<typename T1>
+inline
+Cube<typename T1::pod_type>
+fabs(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
@@ -394,6 +501,18 @@ square(const Base<typename T1::elem_type,T1>& A)
 
 
 
+template<typename T1>
+inline
+const OpCube<T1, op_square>
+square(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_square>(A.get_ref());
+  }
+
+
+
 //
 // sqrt
 
@@ -405,6 +524,18 @@ sqrt(const Base<typename T1::elem_type,T1>& A)
   arma_extra_debug_sigprint();
   
   return Op<T1, op_sqrt>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+inline
+const OpCube<T1, op_sqrt>
+sqrt(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_sqrt>(A.get_ref());
   }
 
 
@@ -423,6 +554,18 @@ pow(const Base<typename T1::elem_type,T1>& A, const typename T1::elem_type expon
 
 
 
+template<typename T1>
+inline
+const OpCube<T1, op_pow>
+pow(const BaseCube<typename T1::elem_type,T1>& A, const typename T1::elem_type exponent)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_pow>(A.get_ref(), exponent);
+  }
+
+
+
 // pow, specialised handling (non-complex exponent for complex matrices)
 
 template<typename T1>
@@ -435,6 +578,21 @@ pow(const Base<typename T1::elem_type,T1>& A, const typename T1::elem_type::valu
   return Op<T1, op_pow>(A.get_ref(), eT(exponent));
   }
 
+
+
+template<typename T1>
+inline
+const OpCube<T1, op_pow>
+pow(const BaseCube<typename T1::elem_type,T1>& A, const typename T1::elem_type::value_type exponent)
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_pow>(A.get_ref(), eT(exponent));
+  }
+
+
+
+#if defined(ARMA_GOOD_COMPILER)
 
 
 // pow_s32  (integer exponent)
@@ -458,6 +616,29 @@ pow(const Base<typename T1::elem_type,T1>& A, const s32 exponent)
 
 
 
+template<typename T1>
+inline
+const OpCube<T1, op_pow_s32>
+pow(const BaseCube<typename T1::elem_type,T1>& A, const s32 exponent)
+  {
+  arma_extra_debug_sigprint();
+  
+  if(exponent >= 0)
+    {
+    return OpCube<T1, op_pow_s32>(A.get_ref(), exponent, 0);
+    }
+  else
+    {
+    return OpCube<T1, op_pow_s32>(A.get_ref(), -exponent, 1);
+    }
+  }
+
+
+
+#endif
+
+
+
 // conj
 
 template<typename T, typename T1>
@@ -472,6 +653,18 @@ conj(const Base<std::complex<T>,T1>& A)
 
 
 
+template<typename T, typename T1>
+inline
+const OpCube<T1, op_conj>
+conj(const BaseCube<std::complex<T>,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+
+  return OpCube<T1, op_conj>(A.get_ref());
+  }
+
+
+
 template<typename T1>
 inline
 const T1&
@@ -482,6 +675,17 @@ conj(const Op<T1, op_conj>& A)
   return A.m;
   }
 
+
+
+template<typename T1>
+inline
+const T1&
+conj(const OpCube<T1, op_conj>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return A.m;
+  }
 
 
 //! the conjugate of the transpose of a complex matrix is the same as the hermitian transpose

@@ -40,7 +40,37 @@ op_cos::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_cos>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::cos(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_cos::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_cos>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -66,7 +96,37 @@ op_acos::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acos>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::acos(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_acos::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_acos>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -95,7 +155,9 @@ op_acos::apply(Mat< std::complex<T> >& out, const Op<T1,op_acos>& in)
     const Mat<eT>& A = tmp.M;
     const u32 n_elem = A.n_elem;
     
-    out.set_size(A.n_rows, A.n_cols);
+    //out.set_size(A.n_rows, A.n_cols);
+    out.copy_size(A);
+
     eT* out_ptr = out.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
@@ -105,7 +167,43 @@ op_acos::apply(Mat< std::complex<T> >& out, const Op<T1,op_acos>& in)
     }
   #else
     {
-    arma_stop("op_acos::apply(): need Boost libraries");
+    arma_stop("acos(): need Boost libraries");
+    }
+  #endif
+  }
+
+
+
+template<typename T, typename T1>
+inline
+void
+op_acos::apply(Cube< std::complex<T> >& out, const OpCube<T1,op_acos>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_BOOST)
+    {
+    typedef typename std::complex<T> eT;
+    isnt_same_type<eT, typename T1::elem_type>::check();
+    
+    const unwrap_cube<T1> tmp(in.m);
+    
+    const Cube<eT>& A = tmp.M;
+    const u32 n_elem  = A.n_elem;
+    
+    //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+    out.copy_size(A);
+    
+    eT* out_ptr = out.memptr();
+    
+    for(u32 i=0; i<n_elem; ++i)
+      {
+      out_ptr[i] = boost::math::acos(A.mem[i]);
+      }
+    }
+  #else
+    {
+    arma_stop("acos(): need Boost libraries");
     }
   #endif
   }
@@ -126,7 +224,37 @@ op_cosh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_cosh>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::cosh(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_cosh::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_cosh>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -154,7 +282,9 @@ op_acosh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acosh>& in)
     const Mat<eT>& A = tmp.M;
     const u32 n_elem = A.n_elem;
     
-    out.set_size(A.n_rows, A.n_cols);
+    //out.set_size(A.n_rows, A.n_cols);
+    out.copy_size(A);
+
     eT* out_ptr = out.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
@@ -164,7 +294,43 @@ op_acosh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_acosh>& in)
     }
   #else
     {
-    arma_stop("op_acosh::apply(): need Boost libraries");
+    arma_stop("acosh(): need Boost libraries");
+    }
+  #endif
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_acosh::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_acosh>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_BOOST)
+    {
+    typedef typename T1::elem_type eT;
+    
+    const unwrap_cube<T1> tmp(in.m);
+    
+    const Cube<eT>& A = tmp.M;
+    const u32 n_elem  = A.n_elem;
+    
+    //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+    out.copy_size(A);
+
+    eT* out_ptr = out.memptr();
+    
+    for(u32 i=0; i<n_elem; ++i)
+      {
+      out_ptr[i] = boost::math::acosh(A.mem[i]);
+      }
+    }
+  #else
+    {
+    arma_stop("acosh(): need Boost libraries");
     }
   #endif
   
@@ -188,7 +354,37 @@ op_sin::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sin>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::sin(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_sin::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_sin>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -214,12 +410,42 @@ op_asin::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asin>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
     {
-    out_ptr[i] = std::acos(A.mem[i]);
+    out_ptr[i] = std::asin(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_asin::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_asin>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::asin(A.mem[i]);
     }
   
   }
@@ -243,7 +469,9 @@ op_asin::apply(Mat< std::complex<T> >& out, const Op<T1,op_asin>& in)
     const Mat<eT>& A = tmp.M;
     const u32 n_elem = A.n_elem;
     
-    out.set_size(A.n_rows, A.n_cols);
+    //out.set_size(A.n_rows, A.n_cols);
+    out.copy_size(A);
+
     eT* out_ptr = out.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
@@ -253,7 +481,43 @@ op_asin::apply(Mat< std::complex<T> >& out, const Op<T1,op_asin>& in)
     }
   #else
     {
-    arma_stop("op_asin::apply(): need Boost libraries");
+    arma_stop("asin(): need Boost libraries");
+    }
+  #endif
+  }
+
+
+
+template<typename T, typename T1>
+inline
+void
+op_asin::apply(Cube< std::complex<T> >& out, const OpCube<T1,op_asin>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_BOOST)
+    {
+    typedef typename std::complex<T> eT;
+    isnt_same_type<eT, typename T1::elem_type>::check();
+    
+    const unwrap_cube<T1> tmp(in.m);
+    
+    const Cube<eT>& A = tmp.M;
+    const u32 n_elem  = A.n_elem;
+    
+    //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+    out.copy_size(A);
+
+    eT* out_ptr = out.memptr();
+    
+    for(u32 i=0; i<n_elem; ++i)
+      {
+      out_ptr[i] = boost::math::asin(A.mem[i]);
+      }
+    }
+  #else
+    {
+    arma_stop("asin(): need Boost libraries");
     }
   #endif
   }
@@ -274,7 +538,37 @@ op_sinh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sinh>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::sinh(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_sinh::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_sinh>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -302,7 +596,9 @@ op_asinh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asinh>& in)
     const Mat<eT>& A = tmp.M;
     const u32 n_elem = A.n_elem;
     
-    out.set_size(A.n_rows, A.n_cols);
+    //out.set_size(A.n_rows, A.n_cols);
+    out.copy_size(A);
+
     eT* out_ptr = out.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
@@ -312,7 +608,42 @@ op_asinh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_asinh>& in)
     }
   #else
     {
-    arma_stop("op_asinh::apply(): need Boost libraries");
+    arma_stop("asinh(): need Boost libraries");
+    }
+  #endif
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_asinh::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_asinh>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_BOOST)
+    {
+    typedef typename T1::elem_type eT;
+    
+    const unwrap_cube<T1> tmp(in.m);
+  
+    const Cube<eT>& A = tmp.M;
+    const u32 n_elem = A.n_elem;
+    
+    //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+    out.copy_size(A);
+
+    eT* out_ptr = out.memptr();
+    
+    for(u32 i=0; i<n_elem; ++i)
+      {
+      out_ptr[i] = boost::math::asinh(A.mem[i]);
+      }
+    }
+  #else
+    {
+    arma_stop("asinh(): need Boost libraries");
     }
   #endif
   }
@@ -335,7 +666,37 @@ op_tan::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_tan>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::tan(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_tan::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_tan>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -361,7 +722,37 @@ op_atan::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atan>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::atan(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_atan::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_atan>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -390,7 +781,9 @@ op_atan::apply(Mat< std::complex<T> >& out, const Op<T1,op_atan>& in)
     const Mat<eT>& A = tmp.M;
     const u32 n_elem = A.n_elem;
     
-    out.set_size(A.n_rows, A.n_cols);
+    //out.set_size(A.n_rows, A.n_cols);
+    out.copy_size(A);
+
     eT* out_ptr = out.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
@@ -400,7 +793,43 @@ op_atan::apply(Mat< std::complex<T> >& out, const Op<T1,op_atan>& in)
     }
   #else
     {
-    arma_stop("op_asin::apply(): need Boost libraries");
+    arma_stop("atan(): need Boost libraries");
+    }
+  #endif
+  }
+
+
+
+template<typename T, typename T1>
+inline
+void
+op_atan::apply(Cube< std::complex<T> >& out, const OpCube<T1,op_atan>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_BOOST)
+    {
+    typedef typename std::complex<T> eT;
+    isnt_same_type<eT, typename T1::elem_type>::check();
+    
+    const unwrap_cube<T1> tmp(in.m);
+    
+    const Cube<eT>& A = tmp.M;
+    const u32 n_elem  = A.n_elem;
+    
+    //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+    out.copy_size(A);
+
+    eT* out_ptr = out.memptr();
+    
+    for(u32 i=0; i<n_elem; ++i)
+      {
+      out_ptr[i] = boost::math::atan(A.mem[i]);
+      }
+    }
+  #else
+    {
+    arma_stop("atan(): need Boost libraries");
     }
   #endif
   }
@@ -421,7 +850,37 @@ op_tanh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_tanh>& in)
   const Mat<eT>& A = tmp.M;
   const u32 n_elem = A.n_elem;
   
-  out.set_size(A.n_rows, A.n_cols);
+  //out.set_size(A.n_rows, A.n_cols);
+  out.copy_size(A);
+
+  eT* out_ptr = out.memptr();
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_ptr[i] = std::tanh(A.mem[i]);
+    }
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_tanh::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_tanh>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap_cube<T1> tmp(in.m);
+  
+  const Cube<eT>& A = tmp.M;
+  const u32 n_elem  = A.n_elem;
+  
+  //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+  out.copy_size(A);
+
   eT* out_ptr = out.memptr();
   
   for(u32 i=0; i<n_elem; ++i)
@@ -449,7 +908,9 @@ op_atanh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atanh>& in)
     const Mat<eT>& A = tmp.M;
     const u32 n_elem = A.n_elem;
     
-    out.set_size(A.n_rows, A.n_cols);
+    //out.set_size(A.n_rows, A.n_cols);
+    out.copy_size(A);
+
     eT* out_ptr = out.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
@@ -459,7 +920,43 @@ op_atanh::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_atanh>& in)
     }
   #else
     {
-    arma_stop("op_atanh::apply(): need Boost libraries");
+    arma_stop("atanh(): need Boost libraries");
+    }
+  #endif
+  
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_atanh::apply(Cube<typename T1::elem_type>& out, const OpCube<T1,op_atanh>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_BOOST)
+    {
+    typedef typename T1::elem_type eT;
+    
+    const unwrap_cube<T1> tmp(in.m);
+  
+    const Cube<eT>& A = tmp.M;
+    const u32 n_elem  = A.n_elem;
+    
+    //out.set_size(A.n_rows, A.n_cols, A.n_slices);
+    out.copy_size(A);
+
+    eT* out_ptr = out.memptr();
+    
+    for(u32 i=0; i<n_elem; ++i)
+      {
+      out_ptr[i] = boost::math::atanh(A.mem[i]);
+      }
+    }
+  #else
+    {
+    arma_stop("atanh(): need Boost libraries");
     }
   #endif
   

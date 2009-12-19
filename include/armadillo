@@ -25,10 +25,12 @@
 
 
 #if defined(__GNUG__)
-  #if(__GNUC__ < 4)
+
+  #if (__GNUC__ < 4)
     #error "*** Need a newer compiler ***"
   #endif
-  #if(__GNUC_MINOR__ >= 3)
+  
+  #if (__GNUC_MINOR__ >= 3)
     #undef  arma_hot
     #define arma_hot __attribute__((hot))
   #endif
@@ -42,17 +44,26 @@
   #define arma_const          __attribute__((const))
   #define arma_inline  inline __attribute__((always_inline))
   #define arma_aligned        __attribute__((aligned))
+  
+  #define ARMA_GOOD_COMPILER
+  
 #elif defined(__INTEL_COMPILER)
-  #if(__INTEL_COMPILER < 1000)
+  
+  #if (__INTEL_COMPILER < 1000)
     #error "*** Need a newer compiler ***"
   #endif
+  
+  #define ARMA_GOOD_COMPILER
+  
 #elif defined(_MSC_VER)
-  #if(_MSC_VER <= 1500)
-    #error "*** This compiler is not supported due to its incomplete implementation of the C++ standard -- please try the gcc, mingw-gcc or intel compilers instead ***"
-  #else
-    #pragma message ("*** WARNING: This compiler may have an incomplete implementation of the C++ standard ***")
-  #endif
+  
+  #pragma message ("*** WARNING: This compiler may have an incomplete implementation of the C++ standard ***")
+  #undef ARMA_GOOD_COMPILER
+
 #endif
+
+
+
 
 
 #include "armadillo_bits/config.hpp"
@@ -128,6 +139,7 @@ namespace arma
   #include "armadillo_bits/traits.hpp"
   #include "armadillo_bits/access.hpp"
   
+  
   //
   // class prototypes
   
@@ -140,20 +152,29 @@ namespace arma
   #include "armadillo_bits/auxlib_proto.hpp"
   
   #include "armadillo_bits/Base.hpp"
+  #include "armadillo_bits/BaseCube.hpp"
+  
   #include "armadillo_bits/Mat_proto.hpp"
   #include "armadillo_bits/Col_proto.hpp"
   #include "armadillo_bits/Row_proto.hpp"
+  #include "armadillo_bits/Cube_proto.hpp"
+  
   #include "armadillo_bits/field_proto.hpp"
   #include "armadillo_bits/subview_proto.hpp"
   #include "armadillo_bits/subview_field_proto.hpp"
+  #include "armadillo_bits/subview_cube_proto.hpp"
   #include "armadillo_bits/diagview_proto.hpp"
+  
   
   #include "armadillo_bits/diskio_proto.hpp"
   #include "armadillo_bits/wall_clock_proto.hpp"
   #include "armadillo_bits/running_stat_proto.hpp"
+  #include "armadillo_bits/running_stat_vec_proto.hpp"
   
   #include "armadillo_bits/Op_proto.hpp"
+  #include "armadillo_bits/OpCube_proto.hpp"
   #include "armadillo_bits/Glue_proto.hpp"
+  #include "armadillo_bits/GlueCube_proto.hpp"
   
   #include "armadillo_bits/op_diagmat_proto.hpp"
   #include "armadillo_bits/op_dot_proto.hpp"
@@ -176,6 +197,14 @@ namespace arma
   #include "armadillo_bits/op_trans_proto.hpp"
   #include "armadillo_bits/op_var_proto.hpp"
   #include "armadillo_bits/op_zeros_proto.hpp"
+  #include "armadillo_bits/op_repmat_proto.hpp"
+  #include "armadillo_bits/op_reshape_proto.hpp"
+  #include "armadillo_bits/op_cov_proto.hpp"
+  #include "armadillo_bits/op_cor_proto.hpp"
+  #include "armadillo_bits/op_shuffle_proto.hpp"
+  #include "armadillo_bits/op_prod_proto.hpp"
+  #include "armadillo_bits/op_eps_proto.hpp"
+  #include "armadillo_bits/op_pinv_proto.hpp"
   
   #include "armadillo_bits/glue_plus_proto.hpp"
   #include "armadillo_bits/glue_minus_proto.hpp"
@@ -183,16 +212,43 @@ namespace arma
   #include "armadillo_bits/glue_schur_proto.hpp"
   #include "armadillo_bits/glue_div_proto.hpp"
   
+  #include "armadillo_bits/glue_cov_proto.hpp"
+  #include "armadillo_bits/glue_cor_proto.hpp"
+  #include "armadillo_bits/glue_kron_proto.hpp"
+  
+  #include "armadillo_bits/glue_cube_plus_proto.hpp"
+  #include "armadillo_bits/glue_cube_minus_proto.hpp"
+  #include "armadillo_bits/glue_cube_schur_proto.hpp"
+  #include "armadillo_bits/glue_cube_div_proto.hpp"
+  
+  
   //
   // debugging functions
   
   #include "armadillo_bits/debug.hpp"
   
   
+  //
+  // classes that underlay metaprogramming 
+  
   #include "armadillo_bits/unwrap.hpp"
+  #include "armadillo_bits/unwrap_cube.hpp"
+
   #include "armadillo_bits/Op_meat.hpp"
+  #include "armadillo_bits/OpCube_meat.hpp"
   #include "armadillo_bits/Glue_meat.hpp"
+  #include "armadillo_bits/GlueCube_meat.hpp"
+  
   #include "armadillo_bits/glue_metaprog.hpp"
+  #include "armadillo_bits/glue_cube_metaprog.hpp"
+  
+  
+  //
+  // ostream
+  
+  #include "armadillo_bits/arma_ostream_proto.hpp"
+  #include "armadillo_bits/arma_ostream_meat.hpp"
+  
   
   //
   // operators
@@ -205,16 +261,21 @@ namespace arma
   #include "armadillo_bits/operator_div.hpp"
   #include "armadillo_bits/operator_relational.hpp"
   
-  //
-  // ostream
+  #include "armadillo_bits/operator_cube_plus.hpp"
+  #include "armadillo_bits/operator_cube_minus.hpp"
+  #include "armadillo_bits/operator_cube_times.hpp"
+  #include "armadillo_bits/operator_cube_schur.hpp"
+  #include "armadillo_bits/operator_cube_div.hpp"
+  #include "armadillo_bits/operator_cube_relational.hpp"
   
-  #include "armadillo_bits/ostream_mat.hpp"
-  #include "armadillo_bits/ostream_diagmat.hpp"
-  #include "armadillo_bits/ostream_field.hpp"
-  #include "armadillo_bits/ostream_misc.hpp"
+  #include "armadillo_bits/operator_ostream.hpp"
+  
   
   //
   // user accessible functions
+  
+  // the order of the fn_*.hpp include files matters,
+  // as some files require functionality given in preceding files
   
   #include "armadillo_bits/fn_conv_to.hpp"
   #include "armadillo_bits/fn_min.hpp"
@@ -247,6 +308,16 @@ namespace arma
   #include "armadillo_bits/fn_qr.hpp"
   #include "armadillo_bits/fn_svd.hpp"
   #include "armadillo_bits/fn_solve.hpp"
+  #include "armadillo_bits/fn_repmat.hpp"
+  #include "armadillo_bits/fn_reshape.hpp"
+  #include "armadillo_bits/fn_cov.hpp"
+  #include "armadillo_bits/fn_cor.hpp"
+  #include "armadillo_bits/fn_shuffle.hpp"
+  #include "armadillo_bits/fn_prod.hpp"
+  #include "armadillo_bits/fn_eps.hpp"
+  #include "armadillo_bits/fn_pinv.hpp"
+  #include "armadillo_bits/fn_rank.hpp"
+  #include "armadillo_bits/fn_kron.hpp"
   
   //
   // class meat
@@ -261,14 +332,17 @@ namespace arma
   #include "armadillo_bits/Mat_meat.hpp"
   #include "armadillo_bits/Col_meat.hpp"
   #include "armadillo_bits/Row_meat.hpp"
+  #include "armadillo_bits/Cube_meat.hpp"
   #include "armadillo_bits/field_meat.hpp"
   #include "armadillo_bits/subview_meat.hpp"
   #include "armadillo_bits/subview_field_meat.hpp"
+  #include "armadillo_bits/subview_cube_meat.hpp"
   #include "armadillo_bits/diagview_meat.hpp"
   
   #include "armadillo_bits/diskio_meat.hpp"
   #include "armadillo_bits/wall_clock_meat.hpp"
   #include "armadillo_bits/running_stat_meat.hpp"
+  #include "armadillo_bits/running_stat_vec_meat.hpp"
   
   #include "armadillo_bits/op_diagmat_meat.hpp"
   #include "armadillo_bits/op_dot_meat.hpp"
@@ -291,6 +365,14 @@ namespace arma
   #include "armadillo_bits/op_trig_meat.hpp"
   #include "armadillo_bits/op_var_meat.hpp"
   #include "armadillo_bits/op_zeros_meat.hpp"
+  #include "armadillo_bits/op_repmat_meat.hpp"
+  #include "armadillo_bits/op_reshape_meat.hpp"
+  #include "armadillo_bits/op_cov_meat.hpp"
+  #include "armadillo_bits/op_cor_meat.hpp"
+  #include "armadillo_bits/op_shuffle_meat.hpp"
+  #include "armadillo_bits/op_prod_meat.hpp"
+  #include "armadillo_bits/op_eps_meat.hpp"
+  #include "armadillo_bits/op_pinv_meat.hpp"
   
   #include "armadillo_bits/glue_plus_meat.hpp"
   #include "armadillo_bits/glue_minus_meat.hpp"
@@ -298,8 +380,14 @@ namespace arma
   #include "armadillo_bits/glue_schur_meat.hpp"
   #include "armadillo_bits/glue_div_meat.hpp"
   
-  #include "armadillo_bits/deprecated.hpp"
-
+  #include "armadillo_bits/glue_cov_meat.hpp"
+  #include "armadillo_bits/glue_cor_meat.hpp"
+  #include "armadillo_bits/glue_kron_meat.hpp"
+  
+  #include "armadillo_bits/glue_cube_plus_meat.hpp"
+  #include "armadillo_bits/glue_cube_minus_meat.hpp"
+  #include "armadillo_bits/glue_cube_schur_meat.hpp"
+  #include "armadillo_bits/glue_cube_div_meat.hpp"
   }
   
 #endif

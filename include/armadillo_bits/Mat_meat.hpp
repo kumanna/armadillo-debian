@@ -23,9 +23,12 @@ Mat<eT>::~Mat()
   {
   arma_extra_debug_sigprint_this(this);
   
-  if(n_elem > sizeof(mem_local)/sizeof(eT) )
+  if(use_aux_mem == false)
     {
-    delete [] mem;
+    if(n_elem > sizeof(mem_local)/sizeof(eT) )
+      {
+      delete [] mem;
+      }
     }
     
   if(arma_config::debug == true)
@@ -48,6 +51,7 @@ Mat<eT>::Mat()
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -62,6 +66,7 @@ Mat<eT>::Mat(const u32 in_n_rows, const u32 in_n_cols)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -72,18 +77,6 @@ Mat<eT>::Mat(const u32 in_n_rows, const u32 in_n_cols)
 
 
 
-//! change the matrix to have user specified dimensions (data is not preserved)
-template<typename eT>
-inline
-void
-Mat<eT>::set_size(const u32 in_n_rows, const u32 in_n_cols)
-  {
-  arma_extra_debug_sigprint(arma_boost::format("in_n_rows = %d, in_n_cols = %d") % in_n_rows % in_n_cols);
-  
-  init(in_n_rows,in_n_cols);
-  }
-
-
 //! internal matrix construction; if the requested size is small enough, memory from the stack is used. otherwise memory is allocated via 'new'
 template<typename eT>
 inline
@@ -91,7 +84,6 @@ void
 Mat<eT>::init(const u32 in_n_rows, const u32 in_n_cols)
   {
   arma_extra_debug_sigprint( arma_boost::format("in_n_rows = %d, in_n_cols = %d") % in_n_rows % in_n_cols );
-  
   
   const u32 new_n_elem = in_n_rows * in_n_cols;
 
@@ -102,7 +94,12 @@ Mat<eT>::init(const u32 in_n_rows, const u32 in_n_cols)
     }
   else
     {
-    
+    arma_debug_check
+      (
+      (use_aux_mem == true),
+      "Mat::init(): can't change the amount of memory as auxiliary memory is in use"
+      );
+
     if(n_elem > sizeof(mem_local)/sizeof(eT) )
       {
       delete [] mem;
@@ -132,7 +129,6 @@ Mat<eT>::init(const u32 in_n_rows, const u32 in_n_cols)
       }
     
     }
-  
   }
 
 
@@ -143,6 +139,7 @@ Mat<eT>::Mat(const char* text)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -174,6 +171,7 @@ Mat<eT>::Mat(const std::string& text)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -254,7 +252,7 @@ Mat<eT>::init(const std::string& text)
     
     }
     
-  Mat<eT> &x = *this;
+  Mat<eT>& x = *this;
   x.set_size(t_n_rows, t_n_cols);
   
   line_start = 0;
@@ -387,10 +385,11 @@ Mat<eT>::operator/=(const eT val)
 //! construct a matrix from a given matrix
 template<typename eT>
 inline
-Mat<eT>::Mat(const Mat<eT> &in_mat)
+Mat<eT>::Mat(const Mat<eT>& in_mat)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -419,7 +418,7 @@ Mat<eT>::operator=(const Mat<eT>& x)
 template<typename eT>
 inline
 void
-Mat<eT>::init(const Mat<eT> &x)
+Mat<eT>::init(const Mat<eT>& x)
   {
   arma_extra_debug_sigprint();
   
@@ -432,13 +431,40 @@ Mat<eT>::init(const Mat<eT> &x)
 
 
 
-//! construct a matrix from a given auxillary array of eTs
+//! construct a matrix from a given auxiliary array of eTs.
+//! if copy_aux_mem is true, new memory is allocated and the array is copied.
+//! if copy_aux_mem is false, the auxiliary array is used directly (without allocating memory and copying).
+//! the default is to copy the array.
+
+template<typename eT>
+inline
+Mat<eT>::Mat(eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols, const bool copy_aux_mem)
+  : n_rows     (copy_aux_mem ? 0     : aux_n_rows           )
+  , n_cols     (copy_aux_mem ? 0     : aux_n_cols           )
+  , n_elem     (copy_aux_mem ? 0     : aux_n_rows*aux_n_cols)
+  , use_aux_mem(copy_aux_mem ? false : true                 )
+  , mem        (copy_aux_mem ? mem   : aux_mem              )
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  if(copy_aux_mem == true)
+    {
+    init(aux_n_rows, aux_n_cols);
+    syslib::copy_elem( memptr(), aux_mem, n_elem );
+    }
+  }
+
+
+
+//! construct a matrix from a given auxiliary read-only array of eTs.
+//! the array is copied.
 template<typename eT>
 inline
 Mat<eT>::Mat(const eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -446,6 +472,24 @@ Mat<eT>::Mat(const eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols)
   
   init(aux_n_rows, aux_n_cols);
   syslib::copy_elem( memptr(), aux_mem, n_elem );
+  }
+
+
+
+//! DANGEROUS! Construct a temporary matrix, using auxiliary memory.
+//! This constructor is NOT intended for usage by user code.
+//! Its sole purpose is to be used by the Cube class.
+
+template<typename eT>
+inline
+Mat<eT>::Mat(const char junk, const eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols)
+  : n_rows     (aux_n_rows           )
+  , n_cols     (aux_n_cols           )
+  , n_elem     (aux_n_rows*aux_n_cols)
+  , use_aux_mem(true                 )
+  , mem        (aux_mem              )
+  {
+  arma_extra_debug_sigprint_this(this);
   }
 
 
@@ -532,6 +576,7 @@ Mat<eT>::Mat
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -572,6 +617,7 @@ Mat<eT>::Mat(const subview<eT>& X)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -664,6 +710,109 @@ Mat<eT>::operator/=(const subview<eT>& X)
 
 
 
+//! construct a matrix from a subview_cube instance
+template<typename eT>
+inline
+Mat<eT>::Mat(const subview_cube<eT>& x)
+  : n_rows(0)
+  , n_cols(0)
+  , n_elem(0)
+  , use_aux_mem(false)
+  //, mem(0)
+  , mem(mem)
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  this->operator=(x);
+  }
+
+
+
+//! construct a matrix from a subview_cube instance
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  subview_cube<eT>::extract(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place matrix addition (using a single-slice subcube on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator+=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  subview_cube<eT>::plus_inplace(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place matrix subtraction (using a single-slice subcube on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator-=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  subview_cube<eT>::minus_inplace(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place matrix mutiplication (using a single-slice subcube on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator*=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  const Mat<eT> tmp(X);
+  glue_times::apply_inplace(*this, tmp);
+  return *this;
+  }
+
+
+
+//! in-place element-wise matrix mutiplication (using a single-slice subcube on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator%=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  subview_cube<eT>::schur_inplace(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place element-wise matrix division (using a single-slice subcube on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator/=(const subview_cube<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  subview_cube<eT>::div_inplace(*this, X);
+  return *this;
+  }
+
+
+
 //! construct a matrix from diagview (e.g. construct a matrix from a delayed diag operation)
 template<typename eT>
 inline
@@ -671,6 +820,7 @@ Mat<eT>::Mat(const diagview<eT>& X)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -769,7 +919,7 @@ Mat<eT>::rows(const u32 in_row1, const u32 in_row2)
     "Mat::rows(): indices out of bounds or incorrectly used"
     );
   
-  return subview<eT>(*this, in_row1, 0, in_row2, n_cols-1);
+  return subview<eT>(*this, in_row1, 0, in_row2, ((n_cols>0) ? n_cols-1 : 0) );
   }
 
 
@@ -788,7 +938,7 @@ Mat<eT>::rows(const u32 in_row1, const u32 in_row2) const
     "Mat::rows(): indices out of bounds or incorrectly used"
     );
   
-  return subview<eT>(*this, in_row1, 0, in_row2, n_cols-1);
+  return subview<eT>(*this, in_row1, 0, in_row2, ((n_cols>0) ? n_cols-1 : 0) );
   }
 
 
@@ -807,7 +957,7 @@ Mat<eT>::cols(const u32 in_col1, const u32 in_col2)
     "Mat::cols(): indices out of bounds or incorrectly used"
     );
   
-  return subview<eT>(*this, 0, in_col1, n_rows-1, in_col2);
+  return subview<eT>(*this, 0, in_col1, ((n_rows>0) ? n_rows-1 : 0), in_col2);
   }
 
 
@@ -826,7 +976,7 @@ Mat<eT>::cols(const u32 in_col1, const u32 in_col2) const
     "Mat::cols(): indices out of bounds or incorrectly used"
     );
   
-  return subview<eT>(*this, 0, in_col1, n_rows-1, in_col2);
+  return subview<eT>(*this, 0, in_col1, ((n_rows>0) ? n_rows-1 : 0), in_col2);
   }
 
 
@@ -981,6 +1131,7 @@ Mat<eT>::Mat(const Op<T1, op_type>& X)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -1107,6 +1258,7 @@ Mat<eT>::Mat(const Glue<T1, T2, glue_type>& X)
   : n_rows(0)
   , n_cols(0)
   , n_elem(0)
+  , use_aux_mem(false)
   //, mem(0)
   , mem(mem)
   {
@@ -1466,11 +1618,16 @@ Mat<eT>::print(const std::string extra_text) const
   
   if(extra_text.length() != 0)
     {
+    const std::streamsize orig_width = cout.width();
+    
     cout << extra_text << '\n';
+  
+    cout.width(orig_width);
     }
   
   arma_ostream::print(cout, *this, true);
   }
+
 
 
 //! print contents of the matrix to a user specified stream,
@@ -1486,10 +1643,52 @@ Mat<eT>::print(std::ostream& user_stream, const std::string extra_text) const
   
   if(extra_text.length() != 0)
     {
+    const std::streamsize orig_width = user_stream.width();
+    
     user_stream << extra_text << '\n';
+    
+    user_stream.width(orig_width);
     }
   
   arma_ostream::print(user_stream, *this, true);
+  }
+
+
+
+//! print contents of the transposed version of the matrix (to the cout stream),
+//! optionally preceding with a user specified line of text.
+//! the precision and cell width are modified.
+//! on return, the stream's flags are restored to their original values.
+template<typename eT>
+inline
+void
+Mat<eT>::print_trans(const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT> tmp;
+  op_trans::apply_noalias(tmp, *this);
+  
+  tmp.print(extra_text);
+  }
+
+
+
+//! print contents of the transposed version of matrix to a user specified stream,
+//! optionally preceding with a user specified line of text.
+//! the precision and cell width are modified.
+//! on return, the stream's flags are restored to their original values.
+template<typename eT>
+inline
+void
+Mat<eT>::print_trans(std::ostream& user_stream, const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT> tmp;
+  op_trans::apply_noalias(tmp, *this);
+  
+  tmp.print(user_stream, extra_text);
   }
 
 
@@ -1507,7 +1706,11 @@ Mat<eT>::raw_print(const std::string extra_text) const
   
   if(extra_text.length() != 0)
     {
+    const std::streamsize orig_width = cout.width();
+    
     cout << extra_text << '\n';
+  
+    cout.width(orig_width);
     }
   
   arma_ostream::print(cout, *this, false);
@@ -1528,10 +1731,79 @@ Mat<eT>::raw_print(std::ostream& user_stream, const std::string extra_text) cons
   
   if(extra_text.length() != 0)
     {
+    const std::streamsize orig_width = user_stream.width();
+  
     user_stream << extra_text << '\n';
+  
+    user_stream.width(orig_width);
     }
   
   arma_ostream::print(user_stream, *this, false);
+  }
+
+
+
+//! print contents of the transposed version of the matrix (to the cout stream),
+//! optionally preceding with a user specified line of text.
+//! the stream's flags are used as is and are not modified
+//! (i.e. the precision and cell width are not modified).
+template<typename eT>
+inline
+void
+Mat<eT>::raw_print_trans(const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT> tmp;
+  op_trans::apply_noalias(tmp, *this);
+  
+  tmp.raw_print(extra_text);
+  }
+
+
+
+//! print contents of the transposed version of the matrix to a user specified stream,
+//! optionally preceding with a user specified line of text.
+//! the stream's flags are used as is and are not modified.
+//! (i.e. the precision and cell width are not modified).
+template<typename eT>
+inline
+void
+Mat<eT>::raw_print_trans(std::ostream& user_stream, const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT> tmp;
+  op_trans::apply_noalias(tmp, *this);
+  
+  tmp.raw_print(user_stream, extra_text);
+  }
+
+
+
+//! change the matrix to have user specified dimensions (data is not preserved)
+template<typename eT>
+inline
+void
+Mat<eT>::set_size(const u32 in_n_rows, const u32 in_n_cols)
+  {
+  arma_extra_debug_sigprint();
+  
+  init(in_n_rows, in_n_cols);
+  }
+
+
+
+//! change the matrix (without preserving data) to have the same dimensions as the given matrix 
+template<typename eT>
+template<typename eT2>
+inline
+void
+Mat<eT>::copy_size(const Mat<eT2>& m)
+  {
+  arma_extra_debug_sigprint();
+  
+  init(m.n_rows, m.n_cols);
   }
 
 
@@ -1580,6 +1852,31 @@ Mat<eT>::zeros(const u32 in_rows, const u32 in_cols)
 template<typename eT>
 inline
 void
+Mat<eT>::ones()
+  {
+  arma_extra_debug_sigprint();
+  
+  fill(eT(1));
+  }
+
+
+
+template<typename eT>
+inline
+void
+Mat<eT>::ones(const u32 in_rows, const u32 in_cols)
+  {
+  arma_extra_debug_sigprint( arma_boost::format("in_rows = %d, in_cols = %d") % in_rows % in_cols );
+
+  set_size(in_rows, in_cols);
+  fill(eT(1));
+  }
+
+
+
+template<typename eT>
+inline
+void
 Mat<eT>::reset()
   {
   arma_extra_debug_sigprint();
@@ -1616,7 +1913,7 @@ Mat<eT>::save(const std::string name, const file_type type) const
       break;
     
     default:
-      arma_stop("Mat::save(): unsupported type");
+      arma_stop("Mat::save(): unsupported file type");
     }
   
   }
@@ -1654,7 +1951,7 @@ Mat<eT>::load(const std::string name, const file_type type)
       break;
     
     default:
-      arma_stop("Mat::load(): unsupported type");
+      arma_stop("Mat::load(): unsupported file type");
     }
   
   }

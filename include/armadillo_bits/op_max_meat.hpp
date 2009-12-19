@@ -108,10 +108,10 @@ op_max::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_max>& in)
   const unwrap_check<T1> tmp(in.m, out);
   const Mat<eT>& X = tmp.M;
   
-  arma_debug_check( (X.n_elem == 0), "op_max::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "max(): given matrix has no elements" );
   
   const u32 dim = in.aux_u32_a;
-  arma_debug_check( (dim > 1), "op_max::apply(): incorrect usage. dim must be 0 or 1");
+  arma_debug_check( (dim > 1), "max(): incorrect usage. dim must be 0 or 1");
   
   
   if(dim == 0)
@@ -249,10 +249,10 @@ inline void op_max::apply(Mat< std::complex<T> >& out, const Op<T1,op_max>& in)
   const unwrap_check<T1> tmp(in.m, out);
   const Mat<eT>& X = tmp.M;
   
-  arma_debug_check( (X.n_elem == 0), "op_max::apply(): given matrix has no elements" );
+  arma_debug_check( (X.n_elem == 0), "max(): given matrix has no elements" );
   
   const u32 dim = in.aux_u32_a;
-  arma_debug_check( (dim > 1), "op_max::apply(): incorrect usage. dim must be 0 or 1");
+  arma_debug_check( (dim > 1), "max(): incorrect usage. dim must be 0 or 1");
   
   
   if(dim == 0)  // column-wise max

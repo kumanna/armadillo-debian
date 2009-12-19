@@ -175,6 +175,22 @@ field<oT>::set_size(const u32 n_rows_in, const u32 n_cols_in)
 
 
 
+//! change the field to have the specified dimensions (data is not preserved)
+template<typename oT>
+inline
+void
+field<oT>::copy_size(const field<oT>& x)
+  {
+  arma_extra_debug_sigprint();
+  
+  if(this != &x)
+    {
+    init(x.n_rows, x.n_cols);
+    }
+  }
+
+
+
 //! linear element accessor (treats the field as a vector); no bounds check
 template<typename oT>
 arma_inline
@@ -436,7 +452,15 @@ field<oT>::subfield(const u32 in_row1, const u32 in_col1, const u32 in_row2, con
 
 
 
-//! print contents of the field, optionally preceding with a user specified line of text
+//! print contents of the field (to the cout stream),
+//! optionally preceding with a user specified line of text.
+//! the field class preserves the stream's flags
+//! but the associated operator<< function for type oT 
+//! may still modify the stream's parameters.
+//! NOTE: this function assumes that type oT can be printed,
+//! i.e. the function "std::ostream& operator<< (std::ostream&, const oT&)"
+//! has been defined.
+
 template<typename oT>
 inline
 void
@@ -446,10 +470,44 @@ field<oT>::print(const std::string extra_text) const
   
   if(extra_text.length() != 0)
     {
+    const std::streamsize orig_width = cout.width();
+    
     cout << extra_text << '\n';
+  
+    cout.width(orig_width);
     }
   
-  cout << *this << '\n';
+  arma_ostream::print(cout, *this);
+  }
+
+
+
+//! print contents of the field to a user specified stream,
+//! optionally preceding with a user specified line of text.
+//! the field class preserves the stream's flags
+//! but the associated operator<< function for type oT 
+//! may still modify the stream's parameters.
+//! NOTE: this function assumes that type oT can be printed,
+//! i.e. the function "std::ostream& operator<< (std::ostream&, const oT&)"
+//! has been defined.
+
+template<typename oT>
+inline
+void
+field<oT>::print(std::ostream& user_stream, const std::string extra_text) const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(extra_text.length() != 0)
+    {
+    const std::streamsize orig_width = user_stream.width();
+    
+    user_stream << extra_text << '\n';
+  
+    user_stream.width(orig_width);
+    }
+  
+  arma_ostream::print(user_stream, *this);
   }
 
 
@@ -702,6 +760,21 @@ field_aux::reset_objects(field< Row<eT> >& x)
 
 
 
+template<typename eT>
+inline
+void
+field_aux::reset_objects(field< Cube<eT> >& x)
+  {
+  arma_extra_debug_sigprint();
+  
+  for(u32 i=0; i<x.n_elem; ++i)
+    {
+    (*(x.mem[i])).reset();
+    }
+  }
+
+
+
 inline
 void
 field_aux::reset_objects(field< std::string >& x)
@@ -757,11 +830,11 @@ field_aux::save(const field< Mat<eT> >& x, const std::string& name, const file_t
   switch(type)
     {
     case arma_binary:
-      diskio::save_field_arma_binary(x, name);
+      diskio::save_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      diskio::save_field_ppm_binary(x, name);
+      diskio::save_ppm_binary(x, name);
       break;
     
     default:
@@ -781,15 +854,15 @@ field_aux::load(field< Mat<eT> >& x, const std::string& name, const file_type ty
   switch(type)
     {
     case auto_detect:
-      diskio::load_field_auto_detect(x, name);
+      diskio::load_auto_detect(x, name);
       break;
     
     case arma_binary:
-      diskio::load_field_arma_binary(x, name);
+      diskio::load_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      diskio::load_field_ppm_binary(x, name);
+      diskio::load_ppm_binary(x, name);
       break;
     
     default:
@@ -809,11 +882,11 @@ field_aux::save(const field< Col<eT> >& x, const std::string& name, const file_t
   switch(type)
     {
     case arma_binary:
-      diskio::save_field_arma_binary(x, name);
+      diskio::save_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      diskio::save_field_ppm_binary(x, name);
+      diskio::save_ppm_binary(x, name);
       break;
     
     default:
@@ -833,15 +906,15 @@ field_aux::load(field< Col<eT> >& x, const std::string& name, const file_type ty
   switch(type)
     {
     case auto_detect:
-      diskio::load_field_auto_detect(x, name);
+      diskio::load_auto_detect(x, name);
       break;
     
     case arma_binary:
-      diskio::load_field_arma_binary(x, name);
+      diskio::load_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      diskio::load_field_ppm_binary(x, name);
+      diskio::load_ppm_binary(x, name);
       break;
     
     default:
@@ -861,11 +934,11 @@ field_aux::save(const field< Row<eT> >& x, const std::string& name, const file_t
   switch(type)
     {
     case arma_binary:
-      diskio::save_field_arma_binary(x, name);
+      diskio::save_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      diskio::save_field_ppm_binary(x, name);
+      diskio::save_ppm_binary(x, name);
       break;
     
     default:
@@ -885,15 +958,67 @@ field_aux::load(field< Row<eT> >& x, const std::string& name, const file_type ty
   switch(type)
     {
     case auto_detect:
-      diskio::load_field_auto_detect(x, name);
+      diskio::load_auto_detect(x, name);
       break;
     
     case arma_binary:
-      diskio::load_field_arma_binary(x, name);
+      diskio::load_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      diskio::load_field_ppm_binary(x, name);
+      diskio::load_ppm_binary(x, name);
+      break;
+    
+    default:
+      arma_stop("field_aux::load(): unsupported type");
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+field_aux::save(const field< Cube<eT> >& x, const std::string& name, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  switch(type)
+    {
+    case arma_binary:
+      diskio::save_arma_binary(x, name);
+      break;
+      
+    case ppm_binary:
+      diskio::save_ppm_binary(x, name);
+      break;
+    
+    default:
+      arma_stop("field_aux::save(): unsupported type");
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+field_aux::load(field< Cube<eT> >& x, const std::string& name, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  switch(type)
+    {
+    case auto_detect:
+      diskio::load_auto_detect(x, name);
+      break;
+    
+    case arma_binary:
+      diskio::load_arma_binary(x, name);
+      break;
+      
+    case ppm_binary:
+      diskio::load_ppm_binary(x, name);
       break;
     
     default:
@@ -909,7 +1034,7 @@ field_aux::save(const field< std::string >& x, const std::string& name, const fi
   {
   arma_extra_debug_sigprint();
   
-  diskio::save_field_std_string(x, name);
+  diskio::save_std_string(x, name);
   }
 
 
@@ -920,7 +1045,7 @@ field_aux::load(field< std::string >& x, const std::string& name, const file_typ
   {
   arma_extra_debug_sigprint();
   
-  diskio::load_field_std_string(x, name);
+  diskio::load_std_string(x, name);
   }
 
 

@@ -32,6 +32,12 @@ For a quick tutorial see <i>examples/example1.cpp</i>
 <li>Base &lt;- subview &lt;- subview_col</li>
 <li>Base &lt;- subview &lt;- subview_row</li>
 <li>Base &lt;- diagview</li>
+<br>
+<li>BaseCube &lt;- Cube</li>
+<li>BaseCube &lt;- GlueCube</li>
+<li>BaseCube &lt;- OpCube</li>
+<li>BaseCube &lt;- subview_cube</li>
+<br>
 <li>field</li>
 <li>field &lt;- subview_field</li>
 </ul>
@@ -51,6 +57,12 @@ For a quick tutorial see <i>examples/example1.cpp</i>
 <li>glue_times</li>
 <li>unwrap</li>
 <li>unwrap_check</li>
+<br>
+<li>glue_cube_div</li>
+<li>glue_cube_minus</li>
+<li>glue_cube_plus</li>
+<li>glue_cube_schur</li>
+
 </ul>
 </td>
 </tr>
@@ -79,9 +91,16 @@ an error at run-time is given where incorrect usage is detected.
 <br>
 
 <li>
+'Cube' is the templated cube class (set of matrices which uses contiguous memory, or "3D" matrices).
+</li>
+<br>
+
+<li>
 'Mat&lt;double&gt;' has been typedefed as 'mat'.
 'Col&lt;double&gt;' has been typedefed as 'vec' and 'colvec'.
 'Row&lt;double&gt;' has been typedefed as 'rowvec'.
+'Cube&lt;double&gt;' has been typedefed as 'cube'.
+
 See <i>include/armadillo_bits/typedef.hpp</i> for more typedefs.
 </li>
 

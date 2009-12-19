@@ -18,8 +18,8 @@
 
 
 // using qsort() rather than std::sort() for now.
-// std::sort() will be used when a Random Access Iterator wrapper for plain arrays is ready
-// otherwise using std::sort() now would entail copying elements to/from std::vector
+// std::sort() will be used when a Random Access Iterator wrapper for plain arrays is ready,
+// otherwise using std::sort() would currently entail copying elements to/from std::vector
 
 template<typename eT>
 class arma_qsort_helper
@@ -171,14 +171,15 @@ op_sort::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sort>& in)
   
   typedef typename T1::elem_type eT;
   
-  unwrap<T1> tmp(in.m);
+  const unwrap<T1>   tmp(in.m);
   const Mat<eT>& X = tmp.M;
   
   const u32 sort_type = in.aux_u32_a;
   const u32 dim       = in.aux_u32_b;
   
-  arma_debug_check( (sort_type > 1), "op_sort::apply(): incorrect usage. sort_type must be 0 or 1");
-  arma_debug_check( (dim > 1),       "op_sort::apply(): incorrect usage. dim must be 0 or 1"      );
+  arma_debug_check( (X.is_finite() == false), "sort(): given object has non-finite elements"     );
+  arma_debug_check( (sort_type > 1),          "sort(): incorrect usage. sort_type must be 0 or 1");
+  arma_debug_check( (dim > 1),                "sort(): incorrect usage. dim must be 0 or 1"      );
   
   
   if(dim == 0)  // column-wise
@@ -199,7 +200,9 @@ op_sort::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sort>& in)
       {
       arma_extra_debug_print("op_sort::apply(), dim = 1, generic");
       
-      out.set_size(X.n_rows, X.n_cols);
+      //out.set_size(X.n_rows, X.n_cols);
+      out.copy_size(X);
+      
       podarray<eT> tmp_array(X.n_cols);
       
       for(u32 row=0; row<out.n_rows; ++row)

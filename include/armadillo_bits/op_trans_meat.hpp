@@ -68,7 +68,7 @@ op_trans::apply(Mat<eT>& out, const Mat<eT>& A)
     {
     if(out.n_rows == out.n_cols)
       {
-      arma_extra_debug_print("doing in-place transpose of a square matrix");
+      arma_extra_debug_print("op_trans::apply(): doing in-place transpose of a square matrix");
       
       const u32 n_rows = out.n_rows;
       const u32 n_cols = out.n_cols;
@@ -113,7 +113,7 @@ op_trans::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans>& in)
     {
     if(out.n_rows == out.n_cols)
       {
-      arma_extra_debug_print("doing in-place transpose of a square matrix");
+      arma_extra_debug_print("op_trans::apply(): doing in-place transpose of a square matrix");
       
       const u32 n_rows = out.n_rows;
       const u32 n_cols = out.n_cols;
@@ -136,6 +136,10 @@ op_trans::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans>& in)
     }
   
   }
+
+
+
+#if defined(ARMA_GOOD_COMPILER)
 
 
 
@@ -186,6 +190,10 @@ op_trans::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,glue_plus
     }
   
   }
+
+
+
+#endif
 
 
 

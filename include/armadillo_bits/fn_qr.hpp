@@ -18,16 +18,25 @@
 
 
 //! QR decomposition
-template<typename eT, typename T1>
+template<typename T1>
 inline
 void
-qr(Mat<eT>& Q, Mat<eT>& R, const Base<eT,T1>& X)
+qr(Mat<typename T1::elem_type>& Q, Mat<typename T1::elem_type>& R, const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(X.get_ref());
+  typedef typename T1::elem_type eT;
 
-  const bool ok = auxlib::qr(Q, R, tmp.M);
+  arma_debug_check( (&Q == &R), "qr(): Q and R are the same object");
+  
+  const unwrap_check<T1> tmp1(X.get_ref(), Q);
+  const Mat<eT>&     A = tmp1.M;
+  
+  const unwrap_check< Mat<eT> > tmp2(A, R);
+  const Mat<eT>&            B = tmp2.M;
+  
+  const bool ok = auxlib::qr(Q, R, B);
+  
   if(ok == false)
     {
     arma_print("qr(): matrix factorisation failed");

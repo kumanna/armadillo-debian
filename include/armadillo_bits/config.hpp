@@ -14,22 +14,22 @@
 
 
 
-/* #undef ARMA_HAVE_STD_ISFINITE */
-/* #undef ARMA_HAVE_STD_ISINF */
-/* #undef ARMA_HAVE_STD_ISNAN */
-/* #undef ARMA_HAVE_STD_SNPRINTF */
+// #define ARMA_HAVE_STD_ISFINITE
+// #define ARMA_HAVE_STD_ISINF
+// #define ARMA_HAVE_STD_ISNAN
+// #define ARMA_HAVE_STD_SNPRINTF
 
-/* #undef ARMA_HAVE_LOG1P */
-/* #undef ARMA_HAVE_GETTIMEOFDAY */
+// #define ARMA_HAVE_LOG1P
+// #define ARMA_HAVE_GETTIMEOFDAY
 
-/* #undef ARMA_USE_ATLAS */
-/* #undef ARMA_USE_LAPACK */
-/* #undef ARMA_USE_BLAS */
-/* #undef ARMA_USE_BOOST */
-/* #undef ARMA_USE_BOOST_DATE */
+// #define ARMA_USE_ATLAS
+// #define ARMA_USE_LAPACK
+// #define ARMA_USE_BLAS
+// #define ARMA_USE_BOOST
+// #define ARMA_USE_BOOST_DATE
 
-/* #undef ARMA_EXTRA_DEBUG */
-/* #undef ARMA_NO_DEBUG */
+// #define ARMA_EXTRA_DEBUG
+// #define ARMA_NO_DEBUG
 
 #if defined(ARMA_USE_ATLAS)
   #if !defined(ARMA_ATLAS_INCLUDE_DIR)
@@ -41,4 +41,10 @@
   #undef ARMA_HAVE_STD_ISFINITE
   #undef ARMA_HAVE_STD_ISINF
   #undef ARMA_HAVE_STD_ISNAN
+#endif
+
+#if defined(__INTEL_COMPILER)
+  #if (__INTEL_COMPILER <= 1110)
+    #undef ARMA_HAVE_STD_ISFINITE
+  #endif
 #endif

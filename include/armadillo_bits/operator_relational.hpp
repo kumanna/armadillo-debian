@@ -171,7 +171,7 @@ operator<=
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] == B_mem[i])
+    if(A_mem[i] <= B_mem[i])
       {
       out_mem[i] = umat_elem_type(1);
       }
