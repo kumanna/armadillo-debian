@@ -1,9 +1,9 @@
 Index: armadillo/CMakeLists.txt
 ===================================================================
---- armadillo.orig/CMakeLists.txt	2009-05-09 18:10:24.000000000 -0500
-+++ armadillo/CMakeLists.txt	2009-05-09 18:10:51.000000000 -0500
-@@ -128,7 +128,7 @@
-     
+--- armadillo.orig/CMakeLists.txt	2009-12-19 01:41:05.000000000 -0600
++++ armadillo/CMakeLists.txt	2009-12-19 01:42:29.000000000 -0600
+@@ -220,7 +220,7 @@
+   IF(UNIX AND NOT APPLE)   # I don't know how Mac OS handles 64 bit systems
      IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
        MESSAGE(STATUS "Detected 64 bit system")
 -      SET(LIB_INSTALL_DIR "lib64")

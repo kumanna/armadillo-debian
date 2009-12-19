@@ -1,3 +1,11 @@
+armadillo (0.8.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Standards Version is now 3.8.3 (no changes needed)
+  * Update watch file.
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 19 Dec 2009 01:41:31 -0600
+
 armadillo (0.6.12-2) unstable; urgency=low
 
   * Add boost dependency. Thanks to Dirk Eddelbuettel for bringing this to
@@ -20,7 +28,7 @@ armadillo (0.6.10-2) unstable; urgency=low
   * debian/control: Add quilt to Build-Depends.
   * debian/patches: no_lib64.diff
     + Patch to use lib64 always.
-  
+
  -- Kumar Appaiah <akumar@debian.org>  Sat, 09 May 2009 18:14:29 -0500
 
 armadillo (0.6.10-1) unstable; urgency=low
@@ -29,7 +37,7 @@ armadillo (0.6.10-1) unstable; urgency=low
   * Update copyright: correct to mention that package is licensed under
     LGPL v3 or later.
   * Place library in /usr/lib64.
-  
+
  -- Kumar Appaiah <akumar@debian.org>  Sat, 09 May 2009 16:54:18 -0500
 
 armadillo (0.6.2-1) unstable; urgency=low
