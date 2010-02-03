@@ -1,3 +1,10 @@
+armadillo (0.8.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Standards Version is now 3.8.4 (No changes needed)
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 03 Feb 2010 05:57:59 -0600
+
 armadillo (0.8.0-1) unstable; urgency=low
 
   * New upstream release.
