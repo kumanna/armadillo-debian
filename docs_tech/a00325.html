@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap&lt; T1 &gt; Class Template Reference</title>
+<title>Armadillo Technical: running_stat_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,51 +29,28 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap&lt; T1 &gt; Class Template Reference<br/>
+<h1>running_stat_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00730.html">Unwrap</a>]</small>
-</h1><!-- doxytag: class="unwrap" -->
-<p><code>#include &lt;<a class="el" href="a00585_source.html">unwrap.hpp</a>&gt;</code></p>
+[<a class="el" href="a00735.html">Running_stat</a>]</small>
+</h1><!-- doxytag: class="running_stat_aux" -->
+<p><code>#include &lt;<a class="el" href="a00585_source.html">running_stat_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01050.html">List of all members.</a></p>
+<p><a href="a01063.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00325.html#a39ac7457de3602e4cfad490eb03a29ee">unwrap</a> (const T1 &amp;A)</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00735.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1">update_stats</a> (<a class="el" href="a00324.html">running_stat</a>&lt; eT &gt; &amp;x, const eT sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a00735.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00735.html#gad7918da5f93ef4342749886796fc3b71">update_stats</a> (<a class="el" href="a00324.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const T sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a00735.html#gad7918da5f93ef4342749886796fc3b71"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00735.html#gadab0edabc3cb036e2685ba255070b4ab">update_stats</a> (<a class="el" href="a00324.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const std::complex&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">alter statistics to reflect new sample (version for complex numbers)  <a href="a00735.html#gadab0edabc3cb036e2685ba255070b4ab"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- class unwrap&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00585_source.html#l00021">21</a> of file <a class="el" href="a00585_source.html">unwrap.hpp</a>.</p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a39ac7457de3602e4cfad490eb03a29ee"></a><!-- doxytag: member="unwrap::unwrap" ref="a39ac7457de3602e4cfad490eb03a29ee" args="(const T1 &amp;A)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00325.html">unwrap</a>&lt; T1 &gt;::<a class="el" href="a00325.html">unwrap</a> </td>
-          <td>(</td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00585_source.html#l00024">24</a> of file <a class="el" href="a00585_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00025"></a>00025     {
-<a name="l00026"></a>00026     <a class="code" href="a00016.html">arma_type_check&lt; is_arma_type&lt;T1&gt;::value</a> == <span class="keyword">false</span> &gt;::apply();
-<a name="l00027"></a>00027     }
-</pre></div></p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00585_source.html#l00096">96</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

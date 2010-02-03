@@ -62,6 +62,10 @@ op_inv::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& in)
 
 
 
+#if defined(ARMA_GOOD_COMPILER)
+
+
+
 //! inverse of diagmat(mat)
 template<typename T1>
 inline
@@ -159,6 +163,10 @@ op_inv::apply(Mat<eT>& out, const Op< Op<Mat<eT>,op_diagmat_vec>, op_inv>& in)
   const Mat<eT>& X = in.m.m;
   op_inv::apply_diagvec(out, X);
   }
+
+
+
+#endif
 
 
 

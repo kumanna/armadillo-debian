@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: upgrade_val&lt; std::complex&lt; float &gt;, double &gt; Struct Template Reference</title>
+<title>Armadillo Technical: unwrap_write&lt; Col&lt; eT &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,107 +29,189 @@
   </div>
 </div>
 <div class="contents">
-<h1>upgrade_val&lt; std::complex&lt; float &gt;, double &gt; Struct Template Reference<br/>
+<h1>unwrap_write&lt; Col&lt; eT &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;" -->
-<p>ensure we don't lose precision when multiplying a complex number with a higher precision real number  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00744.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="unwrap_write&lt; Col&lt; eT &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00598_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
-
-<p><a href="a01103.html">List of all members.</a></p>
+<p><a href="a01116.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#afa0c4c0cf6295f17c1d88ce7cff1b88a">T1_result</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#ac65f0118d66184812fb788918906f026">T2_result</a></td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
-std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#a2f553e135e010c11c9f247592099ffb2">apply</a> (const std::complex&lt; float &gt; &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#ae2a30ffbaa2f34a2a788ae84aac3824e">apply</a> (const double x)</td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#a98cdf0add8f7289d558dc81eca804ad6">unwrap_write</a> (<a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#a9a4f4a5a088e7125abfba95931f47bf3">unwrap_write</a> (<a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#affb12c736e12965ebe8f2e271d7df3f2">unwrap_write</a> (<a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#ad8d3d029ecbcdc4ca6df527c8afdb4c1">~unwrap_write</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html#afed4fee9c1651c5eddd89069319a9132">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct upgrade_val&lt; std::complex&lt; float &gt;, double &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ class unwrap_write&lt; Col&lt; eT &gt; &gt;</h3>
 
-<p>ensure we don't lose precision when multiplying a complex number with a higher precision real number </p>
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00748">748</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="afa0c4c0cf6295f17c1d88ce7cff1b88a"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::T1_result" ref="afa0c4c0cf6295f17c1d88ce7cff1b88a" args="" -->
+<p>Definition at line <a class="el" href="a00598_source.html#l00827">827</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a98cdf0add8f7289d558dc81eca804ad6"></a><!-- doxytag: member="unwrap_write&lt; Col&lt; eT &gt; &gt;::unwrap_write" ref="a98cdf0add8f7289d558dc81eca804ad6" args="(Mat&lt; eT &gt; &amp;out, const Col&lt; eT &gt; &amp;A)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00373.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::<a class="el" href="a00378.html#afa0c4c0cf6295f17c1d88ce7cff1b88a">T1_result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00750">750</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac65f0118d66184812fb788918906f026"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::T2_result" ref="ac65f0118d66184812fb788918906f026" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef double <a class="el" href="a00373.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::<a class="el" href="a00378.html#ac65f0118d66184812fb788918906f026">T2_result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00751">751</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a2f553e135e010c11c9f247592099ffb2"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::apply" ref="a2f553e135e010c11c9f247592099ffb2" args="(const std::complex&lt; float &gt; &amp;x)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static arma_inline const std::complex&lt;double&gt; <a class="el" href="a00373.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::apply </td>
+          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
           <td>(</td>
-          <td class="paramtype">const std::complex&lt; float &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
+          <td class="paramtype"><a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00753">753</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00832">832</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00753"></a>00753 { <span class="keywordflow">return</span> std::complex&lt;double&gt;(x); }
+<p>References <a class="el" href="a00502_source.html#l01802">Mat&lt; eT &gt;::copy_size()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00833"></a>00833     : <a class="code" href="a00378.html#afed4fee9c1651c5eddd89069319a9132">M</a>(A)
+<a name="l00834"></a>00834     {
+<a name="l00835"></a>00835     arma_extra_debug_sigprint();
+<a name="l00836"></a>00836     out.<a class="code" href="a00687.html#gabeed7f66dc1018fd551a6e760343dee6" title="change the matrix (without preserving data) to have the same dimensions as the given...">copy_size</a>(A);
+<a name="l00837"></a>00837     }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ae2a30ffbaa2f34a2a788ae84aac3824e"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::apply" ref="ae2a30ffbaa2f34a2a788ae84aac3824e" args="(const double x)" -->
+<a class="anchor" id="a9a4f4a5a088e7125abfba95931f47bf3"></a><!-- doxytag: member="unwrap_write&lt; Col&lt; eT &gt; &gt;::unwrap_write" ref="a9a4f4a5a088e7125abfba95931f47bf3" args="(Row&lt; eT &gt; &amp;out, const Col&lt; eT &gt; &amp;A)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_inline const double <a class="el" href="a00373.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::apply </td>
+          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
           <td>(</td>
-          <td class="paramtype">const double&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
+          <td class="paramtype"><a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00754">754</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00841">841</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00754"></a>00754 { <span class="keywordflow">return</span> x; }
+<p>References <a class="el" href="a00582_source.html#l00557">Row&lt; eT &gt;::copy_size()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00842"></a>00842     : <a class="code" href="a00378.html#afed4fee9c1651c5eddd89069319a9132">M</a>(A)
+<a name="l00843"></a>00843     {
+<a name="l00844"></a>00844     arma_extra_debug_sigprint();
+<a name="l00845"></a>00845     out.<a class="code" href="a00734.html#ga6de6165c99af62ce3a928611d9113a91">copy_size</a>(A);
+<a name="l00846"></a>00846     }
 </pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="affb12c736e12965ebe8f2e271d7df3f2"></a><!-- doxytag: member="unwrap_write&lt; Col&lt; eT &gt; &gt;::unwrap_write" ref="affb12c736e12965ebe8f2e271d7df3f2" args="(Col&lt; eT &gt; &amp;out, const Col&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00850">850</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00409_source.html#l00589">Col&lt; eT &gt;::copy_size()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00851"></a>00851     : <a class="code" href="a00378.html#afed4fee9c1651c5eddd89069319a9132">M</a>(A)
+<a name="l00852"></a>00852     {
+<a name="l00853"></a>00853     arma_extra_debug_sigprint();
+<a name="l00854"></a>00854     out.<a class="code" href="a00616.html#gafca5e729281ec03cf80c7fc0e0f273cb" title="change the number of rows (this function re-implements mat::copy_size() in order...">copy_size</a>(A);
+<a name="l00855"></a>00855     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ad8d3d029ecbcdc4ca6df527c8afdb4c1"></a><!-- doxytag: member="unwrap_write&lt; Col&lt; eT &gt; &gt;::~unwrap_write" ref="ad8d3d029ecbcdc4ca6df527c8afdb4c1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::~<a class="el" href="a00377.html">unwrap_write</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00859">859</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00860"></a>00860     {
+<a name="l00861"></a>00861     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="afed4fee9c1651c5eddd89069319a9132"></a><!-- doxytag: member="unwrap_write&lt; Col&lt; eT &gt; &gt;::M" ref="afed4fee9c1651c5eddd89069319a9132" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00035.html">Col</a>&lt;eT&gt;&amp; <a class="el" href="a00377.html">unwrap_write</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00378.html#afed4fee9c1651c5eddd89069319a9132">M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00864">864</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

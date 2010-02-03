@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_write&lt; T1 &gt; Class Template Reference</title>
+<title>Armadillo Technical: unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,189 +29,126 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_write&lt; T1 &gt; Class Template Reference<br/>
+<h1>unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00730.html">Unwrap</a>]</small>
-</h1><!-- doxytag: class="unwrap_write" -->
-<p>if the given object in not a matrix, <a class="el" href="a00325.html">unwrap</a> it into the given 'out' matrix (i.e. do not create another matrix) and provide a reference to the 'out' matrix. if the given object is a matrix, set the size of the 'out' matrix to be the same as the given object and provide a reference to the given object.  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00745.html">Unwrap_cube</a>]</small>
+</h1><!-- doxytag: class="unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00599_source.html">unwrap_cube.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00585_source.html">unwrap.hpp</a>&gt;</code></p>
-
-<p><a href="a01090.html">List of all members.</a></p>
+<p><a href="a01103.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00365.html#ae8addf3bc0645b5fd4f95f89ca644090">unwrap_write</a> (<a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00365.html#a2433284c351ee15ba169232e570c7e33">unwrap_write</a> (<a class="el" href="a00311.html">Row</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00365.html#ae705e4c5f4d84683301fb49085acbde4">unwrap_write</a> (<a class="el" href="a00023.html">Col</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00365.html#a6ed8c41af52983c66bc5afae33c58cd6">unwrap_write</a> (<a class="el" href="a00319.html">subview</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00365.html#af4001e043afca81e6320b33efceb5f64">unwrap_write</a> (<a class="el" href="a00041.html">diagview</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00365.html#a61f945190abaf982711ca833d95333ca">eT</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00365.html#ae4e24851b1fd6836da2e4b25822d220a">unwrap_cube_write</a> (<a class="el" href="a00043.html">Cube</a>&lt; <a class="el" href="a00365.html#a61f945190abaf982711ca833d95333ca">eT</a> &gt; &amp;out, const <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00365.html#a5a8c6b6ddffeda2ca33e052bdc6006b5">~unwrap_cube_write</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00043.html">Cube</a>&lt; <a class="el" href="a00365.html#a61f945190abaf982711ca833d95333ca">eT</a> &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00365.html#ad5f97a65cb93b9e1be0c75edbee253f8">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- class unwrap_write&lt; T1 &gt;</h3>
+<h3>template&lt;typename T1, typename T2, typename glue_type&gt;<br/>
+ class unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</h3>
 
-<p>if the given object in not a matrix, <a class="el" href="a00325.html">unwrap</a> it into the given 'out' matrix (i.e. do not create another matrix) and provide a reference to the 'out' matrix. if the given object is a matrix, set the size of the 'out' matrix to be the same as the given object and provide a reference to the given object. </p>
 
-<p>Definition at line <a class="el" href="a00585_source.html#l00725">725</a> of file <a class="el" href="a00585_source.html">unwrap.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00599_source.html#l00301">301</a> of file <a class="el" href="a00599_source.html">unwrap_cube.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a61f945190abaf982711ca833d95333ca"></a><!-- doxytag: member="unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::eT" ref="a61f945190abaf982711ca833d95333ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00363.html">unwrap_cube_write</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00365.html#a61f945190abaf982711ca833d95333ca">eT</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00599_source.html#l00304">304</a> of file <a class="el" href="a00599_source.html">unwrap_cube.hpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae8addf3bc0645b5fd4f95f89ca644090"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="ae8addf3bc0645b5fd4f95f89ca644090" args="(Mat&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
+<a class="anchor" id="ae4e24851b1fd6836da2e4b25822d220a"></a><!-- doxytag: member="unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::unwrap_cube_write" ref="ae4e24851b1fd6836da2e4b25822d220a" args="(Cube&lt; eT &gt; &amp;out, const GlueCube&lt; T1, T2, glue_type &gt; &amp;A)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00365.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00365.html">unwrap_write</a> </td>
+          <td class="memname"><a class="el" href="a00363.html">unwrap_cube_write</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00363.html">unwrap_cube_write</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00043.html">Cube</a>&lt; <a class="el" href="a00365.html#a61f945190abaf982711ca833d95333ca">eT</a> &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>Definition at line <a class="el" href="a00599_source.html#l00307">307</a> of file <a class="el" href="a00599_source.html">unwrap_cube.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00308"></a>00308     : <a class="code" href="a00365.html#ad5f97a65cb93b9e1be0c75edbee253f8">M</a>(out)
+<a name="l00309"></a>00309     {
+<a name="l00310"></a>00310     arma_extra_debug_sigprint();
+<a name="l00311"></a>00311     out = A;
+<a name="l00312"></a>00312     }
+</pre></div></p>
+
 </div>
 </div>
-<a class="anchor" id="a2433284c351ee15ba169232e570c7e33"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="a2433284c351ee15ba169232e570c7e33" args="(Row&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
+<a class="anchor" id="a5a8c6b6ddffeda2ca33e052bdc6006b5"></a><!-- doxytag: member="unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::~unwrap_cube_write" ref="a5a8c6b6ddffeda2ca33e052bdc6006b5" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00365.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00365.html">unwrap_write</a> </td>
+          <td class="memname"><a class="el" href="a00363.html">unwrap_cube_write</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::~<a class="el" href="a00363.html">unwrap_cube_write</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00311.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>Definition at line <a class="el" href="a00599_source.html#l00316">316</a> of file <a class="el" href="a00599_source.html">unwrap_cube.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00317"></a>00317     {
+<a name="l00318"></a>00318     arma_extra_debug_sigprint();
+<a name="l00319"></a>00319     }
+</pre></div></p>
+
 </div>
 </div>
-<a class="anchor" id="ae705e4c5f4d84683301fb49085acbde4"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="ae705e4c5f4d84683301fb49085acbde4" args="(Col&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ad5f97a65cb93b9e1be0c75edbee253f8"></a><!-- doxytag: member="unwrap_cube_write&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::M" ref="ad5f97a65cb93b9e1be0c75edbee253f8" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00365.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00365.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00023.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
+          <td class="memname">const <a class="el" href="a00043.html">Cube</a>&lt;<a class="el" href="a00365.html#a61f945190abaf982711ca833d95333ca">eT</a>&gt;&amp; <a class="el" href="a00363.html">unwrap_cube_write</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00365.html#ad5f97a65cb93b9e1be0c75edbee253f8">M</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a6ed8c41af52983c66bc5afae33c58cd6"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="a6ed8c41af52983c66bc5afae33c58cd6" args="(subview&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00365.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00365.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00319.html">subview</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af4001e043afca81e6320b33efceb5f64"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="af4001e043afca81e6320b33efceb5f64" args="(diagview&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00365.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00365.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00041.html">diagview</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Definition at line <a class="el" href="a00599_source.html#l00322">322</a> of file <a class="el" href="a00599_source.html">unwrap_cube.hpp</a>.</p>
 
 </div>
 </div>

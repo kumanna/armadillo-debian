@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_min Class Reference</title>
+<title>Armadillo Technical: op_diagmat Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,47 +29,38 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_min Class Reference<br/>
+<h1>op_diagmat Class Reference<br/>
 <small>
-[<a class="el" href="a00685.html">Op_min</a>]</small>
-</h1><!-- doxytag: class="op_min" -->
-<p>Class for finding minimum values in a matrix.  
+[<a class="el" href="a00690.html">Op_diagmat</a>]</small>
+</h1><!-- doxytag: class="op_diagmat" -->
+<p>convert a mat/rowvec/colvec to a diagonal matrix  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="a00513_source.html">op_min_proto.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00509_source.html">op_diagmat_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00920.html">List of all members.</a></p>
+<p><a href="a00933.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga0df0f705cc4c6b54207c313a72af5e4f">direct_min</a> (const eT *const X, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the minimum value in an array.  <a href="a00685.html#ga0df0f705cc4c6b54207c313a72af5e4f"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga296cb3e3d81ebb08ffb4920cbde1dc68">direct_min</a> (const <a class="el" href="a00319.html">subview</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the minimum value in a <a class="el" href="a00319.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>  <a href="a00685.html#ga296cb3e3d81ebb08ffb4920cbde1dc68"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga4f69883ca22fcff355da8874eead067b">direct_min</a> (const <a class="el" href="a00041.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the minimum value in a <a class="el" href="a00041.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00685.html#ga4f69883ca22fcff355da8874eead067b"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#gae95945f452a80deda8b519c76ebad514">apply</a> (<a class="el" href="a00164.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00171.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_min</a> &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">For each row or for each column, find the minimum value. The result is stored in a dense matrix that has either one column or one row. The dimension, for which the minima are found, is set via the <a class="el" href="a00627.html#gadbdff97c2fba55e7f3d548aa3356df02" title="Delayed &#39;minimum values&#39; operation. The dimension, along which the minima...">min()</a> function.  <a href="a00685.html#gae95945f452a80deda8b519c76ebad514"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga420810658f08086bbc9f100781c5fb6a">direct_min</a> (const std::complex&lt; T &gt; *const X, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the minimum value in an array (version for complex numbers).  <a href="a00685.html#ga420810658f08086bbc9f100781c5fb6a"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga51c0ad61b340bb5b6c3b19b6bf693b16">direct_min</a> (const <a class="el" href="a00319.html">subview</a>&lt; std::complex&lt; T &gt; &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the minimum value in a <a class="el" href="a00319.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (version for complex numbers).  <a href="a00685.html#ga51c0ad61b340bb5b6c3b19b6bf693b16"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga4e07e7b793dc7b6dc62c0b34708408b4">direct_min</a> (const <a class="el" href="a00041.html">diagview</a>&lt; std::complex&lt; T &gt; &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the minimum value in a <a class="el" href="a00041.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> (version for complex numbers).  <a href="a00685.html#ga4e07e7b793dc7b6dc62c0b34708408b4"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T , typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00685.html#ga396a380860716c4340aff041ef840739">apply</a> (<a class="el" href="a00164.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00171.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_min</a> &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation for complex numbers.  <a href="a00685.html#ga396a380860716c4340aff041ef840739"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#ga3b4bfa26bce5f4579dded3dbd5b70305">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#ga01617f95390dae85240e54a9e564e1f3">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00077.html">glue_div</a> &gt;, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#gabcb7a76657d04041221ead7b4a59a7c1">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00079.html">glue_minus</a> &gt;, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#gafaf6793ef5ad171cbee74377839a3808">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00081.html">glue_plus</a> &gt;, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#ga160e4f20a03f7195910ffaa08a8fb85e">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00083.html">glue_schur</a> &gt;, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#ga76f4b5cac469e853a2829840dfe575f5">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00085.html">glue_times</a> &gt;, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;in)</td></tr>
+<tr><td colspan="2"><h2>Static Private Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00690.html#gaaf2f1682485639f8309844f4bcbce645">zero_offdiag</a> (<a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Class for finding minimum values in a matrix. </p>
+<p>convert a mat/rowvec/colvec to a diagonal matrix </p>
 
-<p>Definition at line <a class="el" href="a00513_source.html#l00021">21</a> of file <a class="el" href="a00513_source.html">op_min_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00509_source.html#l00022">22</a> of file <a class="el" href="a00509_source.html">op_diagmat_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

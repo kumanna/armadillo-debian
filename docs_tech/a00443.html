@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_stddev.hpp File Reference</title>
+<title>Armadillo Technical: fn_ones.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,46 +25,22 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_stddev.hpp File Reference</h1>
+<h1>fn_ones.hpp File Reference</h1>
 <p><a href="a00443_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00164.html">Mat</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a> (const <a class="el" href="a00019.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#ga094ac905ff4e39af8f1c59fdec85555d">stddev</a> (const <a class="el" href="a00311.html">Row</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the standard deviation of a row vector' operation.  <a href="a00643.html#ga094ac905ff4e39af8f1c59fdec85555d"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#gac80322e593f1fdd83bcc454ec5707b40">stddev</a> (const <a class="el" href="a00311.html">Row</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the standard deviation of a row vector' operation (version for complex numbers).  <a href="a00643.html#gac80322e593f1fdd83bcc454ec5707b40"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#ga3322f9692f02069f97f059fe7e3b29c5">stddev</a> (const <a class="el" href="a00023.html">Col</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the standard deviation of a column vector' operation.  <a href="a00643.html#ga3322f9692f02069f97f059fe7e3b29c5"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#ga4c8343e5a569ccd7ec36dca7d1fb4a3f">stddev</a> (const <a class="el" href="a00023.html">Col</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the standard deviation of a column vector' operation (version for complex numbers).  <a href="a00643.html#ga4c8343e5a569ccd7ec36dca7d1fb4a3f"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#gad2fae446fdb51dc7528a21de8fb9ded1">stddev</a> (const <a class="el" href="a00323.html">subview_row</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the standard deviation of a <a class="el" href="a00323.html">subview_row</a>  <a href="a00643.html#gad2fae446fdb51dc7528a21de8fb9ded1"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#gaac569646d2b92e5af822dd024c33112a">stddev</a> (const <a class="el" href="a00323.html">subview_row</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the standard deviation of a <a class="el" href="a00323.html">subview_row</a> (version for complex numbers)  <a href="a00643.html#gaac569646d2b92e5af822dd024c33112a"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#gaf7d3f4a81e87902a2bd61610fad2a835">stddev</a> (const <a class="el" href="a00320.html">subview_col</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the standard deviation of a <a class="el" href="a00320.html">subview_col</a>  <a href="a00643.html#gaf7d3f4a81e87902a2bd61610fad2a835"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#gab0252cc605a21aa299b2532c8d1d11fd">stddev</a> (const <a class="el" href="a00320.html">subview_col</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the standard deviation of a <a class="el" href="a00320.html">subview_col</a> (version for complex numbers)  <a href="a00643.html#gab0252cc605a21aa299b2532c8d1d11fd"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#ga11dffd3281dfb2f7a8947b6f28e53002">stddev</a> (const <a class="el" href="a00041.html">diagview</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the standard deviation of a <a class="el" href="a00041.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00643.html#ga11dffd3281dfb2f7a8947b6f28e53002"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00643.html#ga2457ba203e73d1317f381bdc9ab9eff5">stddev</a> (const <a class="el" href="a00041.html">diagview</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the standard deviation of a <a class="el" href="a00041.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> (version for complex numbers)  <a href="a00643.html#ga2457ba203e73d1317f381bdc9ab9eff5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00176.html">mat</a>, <a class="el" href="a00211.html">op_ones_full</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00644.html#gac2d494d954c9b986672813278d74b471">ones</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed generation of a dense matrix with all elements set to one.  <a href="a00644.html#gac2d494d954c9b986672813278d74b471"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00035.html">colvec</a>, <a class="el" href="a00211.html">op_ones_full</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00644.html#gabac90db4270fb411f3e2abecec0d66c0">ones</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a vector with all elements set to one.  <a href="a00644.html#gabac90db4270fb411f3e2abecec0d66c0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00176.html">mat</a>, <a class="el" href="a00210.html">op_ones_diag</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00644.html#ga2561a4d9b8e039030f7a170a226c95dc">eye</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed generation of a diagonal matrix with the diagonal elements set to one.  <a href="a00644.html#ga2561a4d9b8e039030f7a170a226c95dc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00241.html">OpCube</a>&lt; <a class="el" href="a00043.html">cube</a>, <a class="el" href="a00211.html">op_ones_full</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00644.html#ga7dd8dac07f93fa1caf26ac8c5f1d8947">ones</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed generation of a dense cube with all elements set to one.  <a href="a00644.html#ga7dd8dac07f93fa1caf26ac8c5f1d8947"></a><br/></td></tr>
 </table>
 </div>
 </BODY>

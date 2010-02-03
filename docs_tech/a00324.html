@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: syslib Class Reference</title>
+<title>Armadillo Technical: running_stat&lt; eT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,74 +29,224 @@
   </div>
 </div>
 <div class="contents">
-<h1>syslib Class Reference<br/>
+<h1>running_stat&lt; eT &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00727.html">Syslib</a>]</small>
-</h1><!-- doxytag: class="syslib" -->
-<p><code>#include &lt;<a class="el" href="a00582_source.html">syslib_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00735.html">Running_stat</a>]</small>
+</h1><!-- doxytag: class="running_stat" -->
+<p>Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01049.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00585_source.html">running_stat_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a01062.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00324.html#a9eb4d78b666f4deaafdf75d1345a38e1">copy_elem</a> (eT *dest, const eT *src, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">get_pod_type</a>&lt; eT &gt;<br class="typebreak"/>
+::pod_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga9afbbf89f85f493366e6ea2ba30f3cc9">~running_stat</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga2e40a6700ed69cd672ef9a7ecaae21ec">running_stat</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gaf87fd94c84249dea511fb04001ee7ac3">operator()</a> (const <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a00735.html#gaf87fd94c84249dea511fb04001ee7ac3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gaaefb6a4b7a62dbd91b14faed3d53626a">operator()</a> (const std::complex&lt; <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a00735.html#gaaefb6a4b7a62dbd91b14faed3d53626a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gab5299a8b23735c18f080c64cbce6863b">reset</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set all statistics to zero  <a href="a00735.html#gab5299a8b23735c18f080c64cbce6863b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gafe2b34beaa4ee979f0532912f0d25998">mean</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">mean or average value  <a href="a00735.html#gafe2b34beaa4ee979f0532912f0d25998"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga7bc25b1019c59c0b0660e60906031945">var</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">variance  <a href="a00735.html#ga7bc25b1019c59c0b0660e60906031945"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga72614524303dfa76bf3b5a608f05d7b7">stddev</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">standard deviation  <a href="a00735.html#ga72614524303dfa76bf3b5a608f05d7b7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga73317e1b093f70a4122eeaa229c901c9">min</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">minimum value  <a href="a00735.html#ga73317e1b093f70a4122eeaa229c901c9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga8366b2cc630340027bd1417b3aab5f05">max</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">maximum value  <a href="a00735.html#ga8366b2cc630340027bd1417b3aab5f05"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00005.html">arma_counter</a>&lt; <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a></td></tr>
+<tr><td colspan="2"><h2>Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html#a023283c40f15021283a336abd40b68e2">running_stat_aux</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename eT&gt;<br/>
+ class running_stat&lt; eT &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00582_source.html#l00020">20</a> of file <a class="el" href="a00582_source.html">syslib_proto.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a9eb4d78b666f4deaafdf75d1345a38e1"></a><!-- doxytag: member="syslib::copy_elem" ref="a9eb4d78b666f4deaafdf75d1345a38e1" args="(eT *dest, const eT *src, const u32 n_elem)" -->
+<p>Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory. </p>
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00051">51</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a2254e8020db0f7fcd2b589d63f0bcc07"></a><!-- doxytag: member="running_stat::T" ref="a2254e8020db0f7fcd2b589d63f0bcc07" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename eT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_inline void syslib::copy_elem </td>
-          <td>(</td>
-          <td class="paramtype">eT *&nbsp;</td>
-          <td class="paramname"> <em>dest</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const eT *&nbsp;</td>
-          <td class="paramname"> <em>src</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>n_elem</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static]</code></td>
+          <td class="memname">typedef <a class="el" href="a00068.html">get_pod_type</a>&lt;eT&gt;::pod_type <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00582_source.html#l00028">28</a> of file <a class="el" href="a00582_source.html">syslib_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00585_source.html#l00055">55</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="a00531_source.html#l00025">op_reshape::apply()</a>, <a class="el" href="a00543_source.html#l00024">op_trans::apply_noalias()</a>, <a class="el" href="a00401_source.html#l00354">Cube&lt; eT &gt;::Cube()</a>, <a class="el" href="a00412_source.html#l01123">conv_to&lt; itpp::Vec&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00412_source.html#l00927">conv_to&lt; itpp::Mat&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00412_source.html#l00606">conv_to&lt; Col&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00412_source.html#l00379">conv_to&lt; Row&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00489_source.html#l00421">Mat&lt; eT &gt;::init()</a>, <a class="el" href="a00401_source.html#l00333">Cube&lt; eT &gt;::init()</a>, <a class="el" href="a00489_source.html#l00441">Mat&lt; eT &gt;::Mat()</a>, <a class="el" href="a00391_source.html#l01502">auxlib::solve_od()</a>, and <a class="el" href="a00391_source.html#l01566">auxlib::solve_ud()</a>.</p>
+</div>
+</div>
+<hr/><h2>Friends And Related Function Documentation</h2>
+<a class="anchor" id="a023283c40f15021283a336abd40b68e2"></a><!-- doxytag: member="running_stat::running_stat_aux" ref="a023283c40f15021283a336abd40b68e2" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="a00325.html">running_stat_aux</a><code> [friend]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
-<p><div class="fragment"><pre class="fragment"><a name="l00029"></a>00029     {
-<a name="l00030"></a>00030     <span class="keywordflow">if</span>( n_elem &lt;= (128/<span class="keyword">sizeof</span>(eT)) )
-<a name="l00031"></a>00031       {
-<a name="l00032"></a>00032       <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00033"></a>00033         {
-<a name="l00034"></a>00034         dest[i] = src[i];
-<a name="l00035"></a>00035         }
-<a name="l00036"></a>00036       }
-<a name="l00037"></a>00037     <span class="keywordflow">else</span>
-<a name="l00038"></a>00038       {
-<a name="l00039"></a>00039       std::memcpy(dest, src, n_elem*<span class="keyword">sizeof</span>(eT));
-<a name="l00040"></a>00040       }
-<a name="l00041"></a>00041   
-<a name="l00042"></a>00042     }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00585_source.html#l00091">91</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a1cf715d47fe777ad98bbe0a4279216ac"></a><!-- doxytag: member="running_stat::counter" ref="a1cf715d47fe777ad98bbe0a4279216ac" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned <a class="el" href="a00005.html">arma_counter</a>&lt;<a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&gt; <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00079">79</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>, <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>, and <a class="el" href="a00584_source.html#l00233">running_stat&lt; eT &gt;::var()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a91928a6ae7c221153b43d58b9e59f916"></a><!-- doxytag: member="running_stat::r_mean" ref="a91928a6ae7c221153b43d58b9e59f916" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned eT <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00081">81</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00219">running_stat&lt; eT &gt;::mean()</a>, <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>, and <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd969db4dff1f0e98012fb128ae62b2c"></a><!-- doxytag: member="running_stat::r_var" ref="abd969db4dff1f0e98012fb128ae62b2c" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00082">82</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>, <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>, and <a class="el" href="a00584_source.html#l00233">running_stat&lt; eT &gt;::var()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa2f1a124bccd0cac93eea7eef4660300"></a><!-- doxytag: member="running_stat::min_val" ref="aa2f1a124bccd0cac93eea7eef4660300" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned eT <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00084">84</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00278">running_stat&lt; eT &gt;::min()</a>, <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>, and <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1aef557777807037eabecae815f97a83"></a><!-- doxytag: member="running_stat::max_val" ref="a1aef557777807037eabecae815f97a83" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned eT <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00085">85</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00292">running_stat&lt; eT &gt;::max()</a>, <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>, and <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9e8966b8f470b83c05ac55632377b797"></a><!-- doxytag: member="running_stat::min_val_norm" ref="a9e8966b8f470b83c05ac55632377b797" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00087">87</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a23acc03908c0a20a8d8f7311998711dd"></a><!-- doxytag: member="running_stat::max_val_norm" ref="a23acc03908c0a20a8d8f7311998711dd" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00585_source.html#l00088">88</a> of file <a class="el" href="a00585_source.html">running_stat_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>.</p>
 
 </div>
 </div>

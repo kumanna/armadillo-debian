@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; float, s8 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: promote_type&lt; T1, T2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,46 +29,70 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; float, s8 &gt; Struct Template Reference<br/>
+<h1>promote_type&lt; T1, T2 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; float, s8 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; float, s8 &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00244.gif" usemap="#promote_type&lt; float, s8 &gt;_map" alt=""/>
-  <map id="promote_type&lt; float, s8 &gt;_map" name="promote_type&lt; float, s8 &gt;_map">
-<area href="a00310.html" alt="promote_type_ok" shape="rect" coords="0,0,158,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00742.html">Traits</a>]</small>
+</h1><!-- doxytag: class="promote_type" -->
+<p><code>#include &lt;<a class="el" href="a00596_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><a href="a00969.html">List of all members.</a></p>
+<p><a href="a00982.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00244.html#aef9fe287009ae125fc2fc6540e194ce4">result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00244.html#a9e8efc5ce4b3284583144a91bdc052bf">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00244.html#af84f38f42cfb0d891487c3273c521f2d">check</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; float, s8 &gt;</h3>
+<h3>template&lt;typename T1, typename T2&gt;<br/>
+ struct promote_type&lt; T1, T2 &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00575">575</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00596_source.html#l00510">510</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aef9fe287009ae125fc2fc6540e194ce4"></a><!-- doxytag: member="promote_type&lt; float, s8 &gt;::result" ref="aef9fe287009ae125fc2fc6540e194ce4" args="" -->
+<a class="anchor" id="a9e8efc5ce4b3284583144a91bdc052bf"></a><!-- doxytag: member="promote_type::result" ref="a9e8efc5ce4b3284583144a91bdc052bf" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef float <a class="el" href="a00232.html">promote_type</a>&lt; float, <a class="el" href="a00729.html#ga2ff401e087cf786c38a6812723e94473">s8</a> &gt;::<a class="el" href="a00244.html#aef9fe287009ae125fc2fc6540e194ce4">result</a></td>
+          <td class="memname">typedef T1 <a class="el" href="a00244.html">promote_type</a>&lt; T1, T2 &gt;::<a class="el" href="a00244.html#a9e8efc5ce4b3284583144a91bdc052bf">result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00575">575</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00596_source.html#l00518">518</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="af84f38f42cfb0d891487c3273c521f2d"></a><!-- doxytag: member="promote_type::check" ref="af84f38f42cfb0d891487c3273c521f2d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00244.html">promote_type</a>&lt; T1, T2 &gt;::check </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00596_source.html#l00512">512</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00435_source.html#l00044">kron()</a>, <a class="el" href="a00570_source.html#l00048">operator%()</a>, <a class="el" href="a00578_source.html#l00178">operator*()</a>, <a class="el" href="a00568_source.html#l00088">operator+()</a>, <a class="el" href="a00567_source.html#l00122">operator-()</a>, and <a class="el" href="a00566_source.html#l00077">operator/()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00513"></a>00513     {
+<a name="l00514"></a>00514     arma_static_assert&lt;false&gt; ERROR___UNSUPPORTED_MIXTURE_OF_TYPES;
+<a name="l00515"></a>00515     ERROR___UNSUPPORTED_MIXTURE_OF_TYPES = ERROR___UNSUPPORTED_MIXTURE_OF_TYPES;
+<a name="l00516"></a>00516     }
+</pre></div></p>
 
 </div>
 </div>

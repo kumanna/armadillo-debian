@@ -58,7 +58,7 @@ int main(int argc, char** argv)
     {
     cout << "  residual: " << ( data(i,1) - (solution(0) + solution(1) * data(i,0)) ) << endl;
     }
-  
+    
   return 0;
   }
 

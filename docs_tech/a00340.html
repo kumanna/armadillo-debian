@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_check&lt; subview&lt; eT &gt; &gt; Class Template Reference</title>
+<title>Armadillo Technical: unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,81 +29,89 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_check&lt; subview&lt; eT &gt; &gt; Class Template Reference<br/>
+<h1>unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00730.html">Unwrap</a>]</small>
-</h1><!-- doxytag: class="unwrap_check&lt; subview&lt; eT &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00585_source.html">unwrap.hpp</a>&gt;</code></p>
+[<a class="el" href="a00744.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00598_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01065.html">List of all members.</a></p>
+<p><a href="a01078.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00340.html#a41b7a2681c10d86393e05c06bf24c062">elem_type</a></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00340.html#a32e950f6347b173e29518b191e5654ef">unwrap_check</a> (const <a class="el" href="a00319.html">subview</a>&lt; eT &gt; &amp;A, const T2 &amp;junk)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00340.html#a6753c114c90c43cd177a04750b8c2615">unwrap</a> (const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;A)</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00164.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00340.html#a9fab58bff3d3953e0b367a21cde0568b">M</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00176.html">Mat</a>&lt; <a class="el" href="a00340.html#a41b7a2681c10d86393e05c06bf24c062">elem_type</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00340.html#a2bc59aeab452353ff08596f50119f612">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename eT&gt;<br/>
- class unwrap_check&lt; subview&lt; eT &gt; &gt;</h3>
+<h3>template&lt;typename T1, typename T2, typename glue_type&gt;<br/>
+ class unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00585_source.html#l00685">685</a> of file <a class="el" href="a00585_source.html">unwrap.hpp</a>.</p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a32e950f6347b173e29518b191e5654ef"></a><!-- doxytag: member="unwrap_check&lt; subview&lt; eT &gt; &gt;::unwrap_check" ref="a32e950f6347b173e29518b191e5654ef" args="(const subview&lt; eT &gt; &amp;A, const T2 &amp;junk)" -->
+<p>Definition at line <a class="el" href="a00598_source.html#l00105">105</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a41b7a2681c10d86393e05c06bf24c062"></a><!-- doxytag: member="unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::elem_type" ref="a41b7a2681c10d86393e05c06bf24c062" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
-<div class="memtemplate">
-template&lt;typename T2 &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00333.html">unwrap_check</a>&lt; <a class="el" href="a00319.html">subview</a>&lt; eT &gt; &gt;::<a class="el" href="a00333.html">unwrap_check</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00319.html">subview</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T2 &amp;&nbsp;</td>
-          <td class="paramname"> <em>junk</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00337.html">unwrap</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00340.html#a41b7a2681c10d86393e05c06bf24c062">elem_type</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00585_source.html#l00690">690</a> of file <a class="el" href="a00585_source.html">unwrap.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00115">115</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00691"></a>00691     : <a class="code" href="a00340.html#a9fab58bff3d3953e0b367a21cde0568b">M</a>(A)
-<a name="l00692"></a>00692     {
-<a name="l00693"></a>00693     arma_extra_debug_sigprint();
-<a name="l00694"></a>00694     }
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6753c114c90c43cd177a04750b8c2615"></a><!-- doxytag: member="unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::unwrap" ref="a6753c114c90c43cd177a04750b8c2615" args="(const Glue&lt; T1, T2, glue_type &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00337.html">unwrap</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00337.html">unwrap</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00109">109</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00110"></a>00110     : <a class="code" href="a00340.html#a2bc59aeab452353ff08596f50119f612">M</a>(A)
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112     arma_extra_debug_sigprint();
+<a name="l00113"></a>00113     }
 </pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a9fab58bff3d3953e0b367a21cde0568b"></a><!-- doxytag: member="unwrap_check&lt; subview&lt; eT &gt; &gt;::M" ref="a9fab58bff3d3953e0b367a21cde0568b" args="" -->
+<a class="anchor" id="a2bc59aeab452353ff08596f50119f612"></a><!-- doxytag: member="unwrap&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::M" ref="a2bc59aeab452353ff08596f50119f612" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00164.html">Mat</a>&lt;eT&gt; <a class="el" href="a00333.html">unwrap_check</a>&lt; <a class="el" href="a00319.html">subview</a>&lt; eT &gt; &gt;::<a class="el" href="a00340.html#a9fab58bff3d3953e0b367a21cde0568b">M</a></td>
+          <td class="memname">const <a class="el" href="a00176.html">Mat</a>&lt;<a class="el" href="a00340.html#a41b7a2681c10d86393e05c06bf24c062">elem_type</a>&gt; <a class="el" href="a00337.html">unwrap</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00340.html#a2bc59aeab452353ff08596f50119f612">M</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00585_source.html#l00696">696</a> of file <a class="el" href="a00585_source.html">unwrap.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00116">116</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

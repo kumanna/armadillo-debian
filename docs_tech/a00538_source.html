@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_sort_proto.hpp Source File</title>
+<title>Armadillo Technical: op_rand_meat.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>op_sort_proto.hpp</h1><a href="a00538.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
+<h1>op_rand_meat.hpp</h1><a href="a00538.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
 <a name="l00002"></a>00002 <span class="comment">// </span>
 <a name="l00003"></a>00003 <span class="comment">// Authors:</span>
 <a name="l00004"></a>00004 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
@@ -44,22 +44,77 @@
 <a name="l00013"></a>00013 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00014"></a>00014 
 <a name="l00015"></a>00015 <span class="comment"></span>
-<a name="l00016"></a>00016 <span class="comment">//! \addtogroup op_sort</span>
+<a name="l00016"></a>00016 <span class="comment">//! \addtogroup op_rand</span>
 <a name="l00017"></a>00017 <span class="comment">//! @{</span>
 <a name="l00018"></a>00018 <span class="comment"></span>
-<a name="l00019"></a><a class="code" href="a00217.html">00019</a> <span class="keyword">class </span><a class="code" href="a00217.html">op_sort</a>
-<a name="l00020"></a>00020   {
-<a name="l00021"></a>00021   <span class="keyword">public</span>:
-<a name="l00022"></a>00022   
-<a name="l00023"></a>00023   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00024"></a>00024   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00697.html#gadedd65f8a32d5dfade055126050c2d06">direct_sort</a>(eT* X, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> sort_type = 0);
-<a name="l00025"></a>00025   
-<a name="l00026"></a>00026   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00027"></a>00027   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00697.html#ga2a79b1a5621ee3ae79e2f8144c362883">apply</a>(<a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00171.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_sort&gt;</a>&amp; in);
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   };
-<a name="l00030"></a>00030 <span class="comment"></span>
-<a name="l00031"></a>00031 <span class="comment">//! @}</span>
+<a name="l00019"></a>00019 <span class="comment"></span>
+<a name="l00020"></a>00020 <span class="comment">//! TODO: optionally use the Marsenne-Twister random number generator (see Boost)</span>
+<a name="l00021"></a>00021 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00022"></a>00022 <span class="keyword">inline</span>
+<a name="l00023"></a>00023 <span class="keywordtype">void</span>
+<a name="l00024"></a><a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d">00024</a> <a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d" title="TODO: optionally use the Marsenne-Twister random number generator (see Boost).">op_rand::direct_rand</a>(eT* x, <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)
+<a name="l00025"></a>00025   {
+<a name="l00026"></a>00026   arma_extra_debug_sigprint();
+<a name="l00027"></a>00027   
+<a name="l00028"></a>00028   <span class="keywordflow">for</span>(<a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00029"></a>00029     {
+<a name="l00030"></a>00030     x[i] = eT(<a class="code" href="a00648.html#gae875f8ae2d57ae41e19bc529533ec40e" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / eT(RAND_MAX);
+<a name="l00031"></a>00031     }
+<a name="l00032"></a>00032   
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   }
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00039"></a>00039 <span class="keyword">inline</span>
+<a name="l00040"></a>00040 <span class="keywordtype">void</span>
+<a name="l00041"></a><a class="code" href="a00705.html#ga660cb4d2a6f776267e3335476634d98e">00041</a> <a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d" title="TODO: optionally use the Marsenne-Twister random number generator (see Boost).">op_rand::direct_rand</a>(std::complex&lt;T&gt;* x, <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)
+<a name="l00042"></a>00042   {
+<a name="l00043"></a>00043   arma_extra_debug_sigprint();
+<a name="l00044"></a>00044   
+<a name="l00045"></a>00045   <span class="keywordflow">for</span>(<a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00046"></a>00046     {
+<a name="l00047"></a>00047     <span class="keyword">const</span> T a = T(<a class="code" href="a00648.html#gae875f8ae2d57ae41e19bc529533ec40e" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / T(RAND_MAX);
+<a name="l00048"></a>00048     <span class="keyword">const</span> T b = T(<a class="code" href="a00648.html#gae875f8ae2d57ae41e19bc529533ec40e" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / T(RAND_MAX);
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050     x[i] = std::complex&lt;T&gt;(a,b);
+<a name="l00051"></a>00051     }
+<a name="l00052"></a>00052   
+<a name="l00053"></a>00053   
+<a name="l00054"></a>00054   }
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00059"></a>00059 <span class="keyword">inline</span>
+<a name="l00060"></a>00060 <span class="keywordtype">void</span>
+<a name="l00061"></a><a class="code" href="a00705.html#ga298a76160f7044f0be3bade65265cde6">00061</a> <a class="code" href="a00705.html#ga298a76160f7044f0be3bade65265cde6">op_rand::apply</a>(<a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_rand&gt;</a>&amp; in)
+<a name="l00062"></a>00062   {
+<a name="l00063"></a>00063   arma_extra_debug_sigprint();
+<a name="l00064"></a>00064   
+<a name="l00065"></a>00065   out.<a class="code" href="a00687.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(in.<a class="code" href="a00183.html#a5bb8e0047ae5979de97353676d0b483b" title="storage of auxiliary data, u32 format">aux_u32_a</a>, in.<a class="code" href="a00183.html#a3c6f439543d332afa2166765ef103647" title="storage of auxiliary data, u32 format">aux_u32_b</a>);
+<a name="l00066"></a>00066   
+<a name="l00067"></a>00067   <a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d" title="TODO: optionally use the Marsenne-Twister random number generator (see Boost).">op_rand::direct_rand</a>(out.<a class="code" href="a00687.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(), out.<a class="code" href="a00176.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00068"></a>00068   }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00073"></a>00073 <span class="keyword">inline</span>
+<a name="l00074"></a>00074 <span class="keywordtype">void</span>
+<a name="l00075"></a><a class="code" href="a00705.html#ga2bfeddb89047c29264412341824c0f3b">00075</a> <a class="code" href="a00705.html#ga298a76160f7044f0be3bade65265cde6">op_rand::apply</a>(<a class="code" href="a00043.html" title="Dense cube class.">Cube&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00241.html" title="Analog of the Op class, intended for cubes.">OpCube</a>&lt;<a class="code" href="a00043.html" title="Dense cube class.">Cube&lt;eT&gt;</a>,<a class="code" href="a00216.html" title="&amp;#39;generate matrix with random values&amp;#39; operation">op_rand</a>&gt;&amp; in)
+<a name="l00076"></a>00076   {
+<a name="l00077"></a>00077   arma_extra_debug_sigprint();
+<a name="l00078"></a>00078   
+<a name="l00079"></a>00079   out.<a class="code" href="a00618.html#gac10bacf38c391e357e110e36b74c8863" title="change the cube to have user specified dimensions (data is not preserved)">set_size</a>(in.aux_u32_a, in.aux_u32_b, in.aux_u32_c);
+<a name="l00080"></a>00080   
+<a name="l00081"></a>00081   <a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d" title="TODO: optionally use the Marsenne-Twister random number generator (see Boost).">op_rand::direct_rand</a>(out.<a class="code" href="a00618.html#ga1e0aa001a72a50700fc151a655ece615" title="returns a pointer to array of eTs used by the cube">memptr</a>(), out.<a class="code" href="a00043.html#a902bd50808663f9eec272591651ff21a" title="number of elements in the cube (read-only)">n_elem</a>);
+<a name="l00082"></a>00082   }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="comment"></span>
+<a name="l00086"></a>00086 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

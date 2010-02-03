@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: get_pod_type&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: field_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,41 +29,52 @@
   </div>
 </div>
 <div class="contents">
-<h1>get_pod_type&lt; T1 &gt; Struct Template Reference<br/>
+<h1>field_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="get_pod_type" -->
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00622.html">Field</a>]</small>
+</h1><!-- doxytag: class="field_aux" -->
+<p><code>#include &lt;<a class="el" href="a00421_source.html">field_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00783.html">List of all members.</a></p>
+<p><a href="a00799.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T1&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056.html#ac30d2c1f601aca3c15a4c0201a18cfc8">pod_type</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gab3b66cc27f791ccd84f7ef462e1832d6">reset_objects</a> (<a class="el" href="a00055.html">field</a>&lt; oT &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gaaf775802dcc7113f181f7946682a4d3b">reset_objects</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gad1d5775d525988476e535681565ee3f2">reset_objects</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gaa24b7bd4103024def8d9c75548bcfc3a">reset_objects</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#ga548f8c776faf27ed4fe5a1b5ae53e519">reset_objects</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00622.html#ga84e902200837f78fba517651bc7c667e">reset_objects</a> (<a class="el" href="a00055.html">field</a>&lt; std::string &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gab1a0f23954cf95e117d1a451858c5607">save</a> (const <a class="el" href="a00055.html">field</a>&lt; oT &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#ga3de8a6ef648eaf3eeac453b9b76fdaee">load</a> (<a class="el" href="a00055.html">field</a>&lt; oT &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#ga45acaa73d589f8dad712832a42599456">save</a> (const <a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gabb6bdc75360f71d1fefa9414d655f02d">load</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#ga8900174b33946b1d9a59a9afa748953a">save</a> (const <a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gacc7946fa4a3ac456e498c33ad2ac404f">load</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#ga2d6cafb94c4148cb43e632b0cdf58c2d">save</a> (const <a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gae4b570deba317a2b3c25c0176494c827">load</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gade0743b7c1a013221d5777b5f56ae4fb">save</a> (const <a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00622.html#gab69dd167bcfd33ba0c024898b3b3da08">load</a> (<a class="el" href="a00055.html">field</a>&lt; <a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00622.html#ga716668089dd4223b69a42177565f97bd">save</a> (const <a class="el" href="a00055.html">field</a>&lt; std::string &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00622.html#gab8afe2941951de3015de7153d3fd987b">load</a> (<a class="el" href="a00055.html">field</a>&lt; std::string &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00621.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct get_pod_type&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00021">21</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="ac30d2c1f601aca3c15a4c0201a18cfc8"></a><!-- doxytag: member="get_pod_type::pod_type" ref="ac30d2c1f601aca3c15a4c0201a18cfc8" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef T1 <a class="el" href="a00056.html">get_pod_type</a>&lt; T1 &gt;::<a class="el" href="a00056.html#ac30d2c1f601aca3c15a4c0201a18cfc8">pod_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00022">22</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00421_source.html#l00114">114</a> of file <a class="el" href="a00421_source.html">field_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

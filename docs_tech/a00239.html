@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; double, u32 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: op_var Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,49 +29,47 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; double, u32 &gt; Struct Template Reference<br/>
+<h1>op_var Class Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; double, u32 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; double, u32 &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00239.gif" usemap="#promote_type&lt; double, u32 &gt;_map" alt=""/>
-  <map id="promote_type&lt; double, u32 &gt;_map" name="promote_type&lt; double, u32 &gt;_map">
-<area href="a00310.html" alt="promote_type_ok" shape="rect" coords="0,0,180,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00716.html">Op_var</a>]</small>
+</h1><!-- doxytag: class="op_var" -->
+<p>Class for finding variance values of a matrix.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a00964.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00561_source.html">op_var_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a00977.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00239.html#afc1fd9d46445709fc786e4a39f05ff31">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#gae3a582d5d3035053edfe82248612d9b5">direct_var</a> (const eT *const X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the variance of an array  <a href="a00716.html#gae3a582d5d3035053edfe82248612d9b5"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#ga5ff21fc7de96b687443e4c09f711ae38">direct_var</a> (const std::complex&lt; T &gt; *const X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the variance of an array (version for complex numbers)  <a href="a00716.html#ga5ff21fc7de96b687443e4c09f711ae38"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#ga763e664a64c0df40771e762a8dfb3fdc">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">For each row or for each column, find the variance. The result is stored in a dense matrix that has either one column or one row. The dimension, for which the variances are found, is set via the <a class="el" href="a00663.html#ga739920839a13fd75c445c66d8f90b5cb">var()</a> function.  <a href="a00716.html#ga763e664a64c0df40771e762a8dfb3fdc"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#ga6824ebda138d994f2500398a65679480">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; T &gt; &amp;out, const <a class="el" href="a00176.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">implementation for complex numbers  <a href="a00716.html#ga6824ebda138d994f2500398a65679480"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#ga0f569580a60694fb8b20442e0b9e51d4">direct_var</a> (const <a class="el" href="a00331.html">subview</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the variance of a <a class="el" href="a00331.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>  <a href="a00716.html#ga0f569580a60694fb8b20442e0b9e51d4"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#gaec344c0865502e06138dd0a7411ebd5d">direct_var</a> (const <a class="el" href="a00331.html">subview</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the variance of a <a class="el" href="a00331.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (version for complex numbers)  <a href="a00716.html#gaec344c0865502e06138dd0a7411ebd5d"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#gabcfe0ef22a00d52c529d9d58b2cb7e36">direct_var</a> (const <a class="el" href="a00053.html">diagview</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the variance of a <a class="el" href="a00053.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00716.html#gabcfe0ef22a00d52c529d9d58b2cb7e36"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static T&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00716.html#ga254c81b8c6a76e0ea5403533bd663ca0">direct_var</a> (const <a class="el" href="a00053.html">diagview</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the variance of a <a class="el" href="a00053.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> (version for complex numbers)  <a href="a00716.html#ga254c81b8c6a76e0ea5403533bd663ca0"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; double, u32 &gt;</h3>
+<p>Class for finding variance values of a matrix. </p>
 
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00565">565</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="afc1fd9d46445709fc786e4a39f05ff31"></a><!-- doxytag: member="promote_type&lt; double, u32 &gt;::result" ref="afc1fd9d46445709fc786e4a39f05ff31" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef double <a class="el" href="a00232.html">promote_type</a>&lt; double, <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;::<a class="el" href="a00239.html#afc1fd9d46445709fc786e4a39f05ff31">result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00565">565</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00561_source.html#l00022">22</a> of file <a class="el" href="a00561_source.html">op_var_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

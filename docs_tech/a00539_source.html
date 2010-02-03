@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_stddev_meat.hpp Source File</title>
+<title>Armadillo Technical: op_rand_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>op_stddev_meat.hpp</h1><a href="a00539.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
+<h1>op_rand_proto.hpp</h1><a href="a00539.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
 <a name="l00002"></a>00002 <span class="comment">// </span>
 <a name="l00003"></a>00003 <span class="comment">// Authors:</span>
 <a name="l00004"></a>00004 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
@@ -44,128 +44,34 @@
 <a name="l00013"></a>00013 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00014"></a>00014 
 <a name="l00015"></a>00015 <span class="comment"></span>
-<a name="l00016"></a>00016 <span class="comment">//! \addtogroup op_stddev</span>
+<a name="l00016"></a>00016 <span class="comment">//! \addtogroup op_rand</span>
 <a name="l00017"></a>00017 <span class="comment">//! @{</span>
 <a name="l00018"></a>00018 <span class="comment"></span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">//! \brief</span>
-<a name="l00021"></a>00021 <span class="comment">//! For each row or for each column, find the standard deviation.</span>
-<a name="l00022"></a>00022 <span class="comment">//! The result is stored in a dense matrix that has either one column or one row.</span>
-<a name="l00023"></a>00023 <span class="comment">//! The dimension for which the standard deviations are found is set via the stddev() function.</span>
-<a name="l00024"></a>00024 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00025"></a>00025 <span class="keyword">inline</span>
-<a name="l00026"></a>00026 <span class="keywordtype">void</span>
-<a name="l00027"></a><a class="code" href="a00698.html#ga3b439b8a56b2e9eeb3eb166fde960472">00027</a> <a class="code" href="a00698.html#ga3b439b8a56b2e9eeb3eb166fde960472" title="For each row or for each column, find the standard deviation. The result is stored...">op_stddev::apply</a>(<a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)
-<a name="l00028"></a>00028   {
-<a name="l00029"></a>00029   arma_extra_debug_sigprint();
-<a name="l00030"></a>00030   
-<a name="l00031"></a>00031   arma_debug_check( (X.<a class="code" href="a00164.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;stddev(): given matrix has no elements&quot;</span> );
+<a name="l00020"></a>00020 <span class="comment">//! &apos;generate matrix with random values&apos; operation</span>
+<a name="l00021"></a>00021 <span class="comment"></span>
+<a name="l00022"></a><a class="code" href="a00216.html">00022</a> <span class="keyword">class </span><a class="code" href="a00216.html" title="&amp;#39;generate matrix with random values&amp;#39; operation">op_rand</a>
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024   <span class="keyword">private</span>:
+<a name="l00025"></a>00025   
+<a name="l00026"></a>00026   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00027"></a>00027   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d" title="TODO: optionally use the Marsenne-Twister random number generator (see Boost).">direct_rand</a>(eT* x, <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem);
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00030"></a>00030   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d" title="TODO: optionally use the Marsenne-Twister random number generator (see Boost).">direct_rand</a>(std::complex&lt;T&gt;* x, <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem);
+<a name="l00031"></a>00031   
 <a name="l00032"></a>00032   
-<a name="l00033"></a>00033   arma_debug_check( (norm_type &gt; 1), <span class="stringliteral">&quot;stddev(): incorrect usage. norm_type must be 0 or 1&quot;</span>);
-<a name="l00034"></a>00034   arma_debug_check( (dim &gt; 1),       <span class="stringliteral">&quot;stddev(): incorrect usage. dim must be 0 or 1&quot;</span>      );
-<a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keywordflow">if</span>(dim == 0)
-<a name="l00037"></a>00037     {
-<a name="l00038"></a>00038     arma_extra_debug_print(<span class="stringliteral">&quot;op_stddev::apply(), dim = 0&quot;</span>);
-<a name="l00039"></a>00039     
-<a name="l00040"></a>00040     out.<a class="code" href="a00673.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1, X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>);
-<a name="l00041"></a>00041     
-<a name="l00042"></a>00042     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>; ++col)
-<a name="l00043"></a>00043       {
-<a name="l00044"></a>00044       out[col] = <a class="code" href="a00628.html#ga88ff51e5431a82e8c903b656a21fba3c">std::sqrt</a>( <a class="code" href="a00702.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>( X.<a class="code" href="a00673.html#ga9355267e66e1ce202e16b2bc9e486585" title="returns a pointer to array of eTs for a specified column; no bounds check">colptr</a>(col), X.<a class="code" href="a00164.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>, norm_type ) );
-<a name="l00045"></a>00045       }
-<a name="l00046"></a>00046     }
-<a name="l00047"></a>00047   <span class="keywordflow">else</span>
-<a name="l00048"></a>00048   <span class="keywordflow">if</span>(dim == 1)
-<a name="l00049"></a>00049     {
-<a name="l00050"></a>00050     arma_extra_debug_print(<span class="stringliteral">&quot;op_stddev::apply(), dim = 1&quot;</span>);
-<a name="l00051"></a>00051     
-<a name="l00052"></a>00052     out.<a class="code" href="a00673.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(X.<a class="code" href="a00164.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>, 1);
-<a name="l00053"></a>00053     
-<a name="l00054"></a>00054     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a> &gt; 1) ? eT(X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>-1) : eT(1) ) : eT(X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>);
-<a name="l00055"></a>00055     
-<a name="l00056"></a>00056     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row&lt;X.<a class="code" href="a00164.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>; ++row)
-<a name="l00057"></a>00057       {
-<a name="l00058"></a>00058       eT acc1 = eT(0);
-<a name="l00059"></a>00059       eT acc2 = eT(0);
-<a name="l00060"></a>00060   
-<a name="l00061"></a>00061       <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>; ++col)
-<a name="l00062"></a>00062         {
-<a name="l00063"></a>00063         <span class="keyword">const</span> eT tmp_val = X.<a class="code" href="a00673.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,col);
-<a name="l00064"></a>00064         acc1 += tmp_val;
-<a name="l00065"></a>00065         acc2 += tmp_val*tmp_val;
-<a name="l00066"></a>00066         }
-<a name="l00067"></a>00067       
-<a name="l00068"></a>00068       <span class="keyword">const</span> eT sd_val = <a class="code" href="a00628.html#ga88ff51e5431a82e8c903b656a21fba3c">std::sqrt</a>( (acc2 - acc1*acc1/eT(X.<a class="code" href="a00164.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>)) / norm_val );
-<a name="l00069"></a>00069       
-<a name="l00070"></a>00070       out[row] = sd_val;
-<a name="l00071"></a>00071       }
-<a name="l00072"></a>00072     
-<a name="l00073"></a>00073     }
-<a name="l00074"></a>00074   
-<a name="l00075"></a>00075   }
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">//! implementation for complex numbers</span>
-<a name="l00080"></a>00080 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00081"></a>00081 <span class="keyword">inline</span>
-<a name="l00082"></a>00082 <span class="keywordtype">void</span>
-<a name="l00083"></a><a class="code" href="a00698.html#ga151a559dfdf63e3ca9257055c18de472">00083</a> <a class="code" href="a00698.html#ga3b439b8a56b2e9eeb3eb166fde960472" title="For each row or for each column, find the standard deviation. The result is stored...">op_stddev::apply</a>(<a class="code" href="a00164.html">Mat&lt;T&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; X, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)
-<a name="l00084"></a>00084   {
-<a name="l00085"></a>00085   arma_extra_debug_sigprint();
-<a name="l00086"></a>00086   
-<a name="l00087"></a>00087   <span class="keyword">typedef</span> <span class="keyword">typename</span> std::complex&lt;T&gt; eT;
-<a name="l00088"></a>00088   
-<a name="l00089"></a>00089   arma_debug_check( (X.n_elem == 0), <span class="stringliteral">&quot;stddev(): given matrix has no elements&quot;</span> );
-<a name="l00090"></a>00090   
-<a name="l00091"></a>00091   arma_debug_check( (norm_type &gt; 1), <span class="stringliteral">&quot;stddev(): incorrect usage. norm_type must be 0 or 1&quot;</span>);
-<a name="l00092"></a>00092   arma_debug_check( (dim &gt; 1),       <span class="stringliteral">&quot;stddev(): incorrect usage. dim must be 0 or 1&quot;</span>      );
-<a name="l00093"></a>00093   
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="keywordflow">if</span>(dim == 0)
-<a name="l00096"></a>00096     {
-<a name="l00097"></a>00097     arma_extra_debug_print(<span class="stringliteral">&quot;op_stddev::apply(), dim = 0&quot;</span>);
-<a name="l00098"></a>00098     
-<a name="l00099"></a>00099     out.<a class="code" href="a00673.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1, X.n_cols);
-<a name="l00100"></a>00100     
-<a name="l00101"></a>00101     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;X.n_cols; ++col)
-<a name="l00102"></a>00102       {
-<a name="l00103"></a>00103       out[col] = <a class="code" href="a00628.html#ga88ff51e5431a82e8c903b656a21fba3c">std::sqrt</a>( <a class="code" href="a00702.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>( X.colptr(col), X.n_rows, norm_type ) );
-<a name="l00104"></a>00104       }
-<a name="l00105"></a>00105     }
-<a name="l00106"></a>00106   <span class="keywordflow">else</span>
-<a name="l00107"></a>00107   <span class="keywordflow">if</span>(dim == 1)
-<a name="l00108"></a>00108     {
-<a name="l00109"></a>00109     arma_extra_debug_print(<span class="stringliteral">&quot;op_stddev::apply(), dim = 1&quot;</span>);
-<a name="l00110"></a>00110     
-<a name="l00111"></a>00111     out.<a class="code" href="a00673.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(X.n_rows, 1);
-<a name="l00112"></a>00112     
-<a name="l00113"></a>00113     <span class="keyword">const</span> T norm_val = (norm_type == 0) ? ( (X.n_cols &gt; 1) ? T(X.n_cols-1) : T(1) ) : T(X.n_cols);
-<a name="l00114"></a>00114     
-<a name="l00115"></a>00115     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row&lt;X.n_rows; ++row)
-<a name="l00116"></a>00116       {
-<a name="l00117"></a>00117       eT acc1 = eT(0);
-<a name="l00118"></a>00118       T  acc2 = T(0);
-<a name="l00119"></a>00119   
-<a name="l00120"></a>00120       <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;X.n_cols; ++col)
-<a name="l00121"></a>00121         {
-<a name="l00122"></a>00122         acc1 += X.at(row,col);
-<a name="l00123"></a>00123         acc2 += <a class="code" href="a00629.html#ga68853b2d4cf1f3824358183777e07399">std::norm</a>(X.at(row,col));
-<a name="l00124"></a>00124         }
-<a name="l00125"></a>00125       
-<a name="l00126"></a>00126       <span class="keyword">const</span> T var_val = (acc2 - <a class="code" href="a00629.html#ga68853b2d4cf1f3824358183777e07399">std::norm</a>(acc1)/T(X.n_cols)) / norm_val;
-<a name="l00127"></a>00127       
-<a name="l00128"></a>00128       out[row] = <a class="code" href="a00628.html#ga88ff51e5431a82e8c903b656a21fba3c">std::sqrt</a>(var_val);
-<a name="l00129"></a>00129       }
-<a name="l00130"></a>00130     
-<a name="l00131"></a>00131     }
-<a name="l00132"></a>00132   
-<a name="l00133"></a>00133   }
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">//! @}</span>
+<a name="l00033"></a>00033   <span class="keyword">public</span>:
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00036"></a>00036   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00705.html#ga298a76160f7044f0be3bade65265cde6">apply</a>(<a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_rand&gt;</a>&amp; in);
+<a name="l00037"></a>00037   
+<a name="l00038"></a>00038   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00039"></a>00039   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00705.html#ga298a76160f7044f0be3bade65265cde6">apply</a>(<a class="code" href="a00043.html" title="Dense cube class.">Cube&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00241.html" title="Analog of the Op class, intended for cubes.">OpCube</a>&lt;<a class="code" href="a00043.html" title="Dense cube class.">Cube&lt;eT&gt;</a>,<a class="code" href="a00216.html" title="&amp;#39;generate matrix with random values&amp;#39; operation">op_rand</a>&gt;&amp; in);
+<a name="l00040"></a>00040   };
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="comment"></span>
+<a name="l00043"></a>00043 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

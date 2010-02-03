@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Base.hpp File Reference</title>
+<title>Armadillo Technical: upgrade_val&lt; T, T &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,29 +14,102 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>Base.hpp File Reference</h1>
-<p><a href="a00393_source.html">Go to the source code of this file.</a></p>
+<h1>upgrade_val&lt; T, T &gt; Struct Template Reference<br/>
+<small>
+[<a class="el" href="a00742.html">Traits</a>]</small>
+</h1><!-- doxytag: class="upgrade_val&lt; T, T &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00596_source.html">traits.hpp</a>&gt;</code></p>
+
+<p><a href="a01131.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html">Base&lt; elem_type, derived &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00019.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00164.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00171.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00058.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00041.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00319.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00019.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00164.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00325.html">unwrap</a> class.  <a href="a00019.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00021.html">BaseVec&lt; elem_type, derived &gt;</a></td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00393.html#aa11f2c459dcb05836fd55886b2f33d17">T1_result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00393.html#a88463080d68257d10a33abe40a54d38a">T2_result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const T &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00393.html#a61f104468efe816278ec32d5f31b8714">apply</a> (const T &amp;x)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T&gt;<br/>
+ struct upgrade_val&lt; T, T &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00596_source.html#l00711">711</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="aa11f2c459dcb05836fd55886b2f33d17"></a><!-- doxytag: member="upgrade_val&lt; T, T &gt;::T1_result" ref="aa11f2c459dcb05836fd55886b2f33d17" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T <a class="el" href="a00385.html">upgrade_val</a>&lt; T, T &gt;::<a class="el" href="a00393.html#aa11f2c459dcb05836fd55886b2f33d17">T1_result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00596_source.html#l00713">713</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a88463080d68257d10a33abe40a54d38a"></a><!-- doxytag: member="upgrade_val&lt; T, T &gt;::T2_result" ref="a88463080d68257d10a33abe40a54d38a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T <a class="el" href="a00385.html">upgrade_val</a>&lt; T, T &gt;::<a class="el" href="a00393.html#a88463080d68257d10a33abe40a54d38a">T2_result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00596_source.html#l00714">714</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a61f104468efe816278ec32d5f31b8714"></a><!-- doxytag: member="upgrade_val&lt; T, T &gt;::apply" ref="a61f104468efe816278ec32d5f31b8714" args="(const T &amp;x)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline const T&amp; <a class="el" href="a00385.html">upgrade_val</a>&lt; T, T &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00596_source.html#l00716">716</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00716"></a>00716 { <span class="keywordflow">return</span> x; }
+</pre></div></p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

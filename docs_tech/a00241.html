@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; float, double &gt; Struct Template Reference</title>
+<title>Armadillo Technical: OpCube&lt; T1, op_type &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,46 +29,196 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; float, double &gt; Struct Template Reference<br/>
+<h1>OpCube&lt; T1, op_type &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; float, double &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00718.html">OpCube</a>]</small>
+</h1><!-- doxytag: class="OpCube" --><!-- doxytag: inherits="BaseCube&lt; T1::elem_type, OpCube&lt; T1, op_type &gt; &gt;" -->
+<p>Analog of the <a class="el" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a> class, intended for cubes.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="a00565_source.html">OpCube_proto.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for promote_type&lt; float, double &gt;:</div>
+Inheritance diagram for OpCube&lt; T1, op_type &gt;:</div>
 <div class="dynsection">
  <div class="center">
-  <img src="a00241.gif" usemap="#promote_type&lt; float, double &gt;_map" alt=""/>
-  <map id="promote_type&lt; float, double &gt;_map" name="promote_type&lt; float, double &gt;_map">
-<area href="a00310.html" alt="promote_type_ok" shape="rect" coords="0,0,183,24"/>
+  <img src="a00241.gif" usemap="#OpCube&lt; T1, op_type &gt;_map" alt=""/>
+  <map id="OpCube&lt; T1, op_type &gt;_map" name="OpCube&lt; T1, op_type &gt;_map">
+<area href="a00032.html" alt="BaseCube&lt; T1::elem_type, OpCube&lt; T1, op_type &gt; &gt;" shape="rect" coords="0,0,319,24"/>
 </map>
  </div>
 </div>
 
-<p><a href="a00966.html">List of all members.</a></p>
+<p><a href="a00979.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#a30aef3d37c6c9bb3ad406954ff30e454">result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a> &gt;::<a class="el" href="a00241.html#a3857d8b353c6a180614a55ba504b6840">pod_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#a3857d8b353c6a180614a55ba504b6840">pod_type</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#gaadfa4a77e19077a36ab1803baedd48df">OpCube</a> (const <a class="el" href="a00032.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#ga6b98b47978e4274afef70f9279ad3b31">OpCube</a> (const <a class="el" href="a00032.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const <a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a> in_aux)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#ga407b7bc7c8dc39302ca06ad57dd6f4b4">OpCube</a> (const <a class="el" href="a00032.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#ga7ed2242573aaa922afb23cfd243d3985">OpCube</a> (const <a class="el" href="a00032.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#ga91346ae86362bb0d000359252786ff75">OpCube</a> (const <a class="el" href="a00032.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const <a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a> in_aux, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#ga808f019a86f70c5a1a737fc53b692367">OpCube</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00718.html#ga0e7f504bc2317fffbf212f24f1157f00">~OpCube</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#a4e1df59e4cd3ba1aac1005266c7e4801">m</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of reference to the operand (e.g. a cube)  <a href="#a4e1df59e4cd3ba1aac1005266c7e4801"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#a4c0ec4775c634bdf27d2c5631a6d63c5">aux</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, user defined format  <a href="#a4c0ec4775c634bdf27d2c5631a6d63c5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#affff0f1a9126ed139c634d5500a1c3e5">aux_u32_a</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, u32 format  <a href="#affff0f1a9126ed139c634d5500a1c3e5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#ae5b9b5bca8e96a8a0c756e0bf481c65d">aux_u32_b</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, u32 format  <a href="#ae5b9b5bca8e96a8a0c756e0bf481c65d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html#a277f0fd245a96c34a8a10e5da896eff8">aux_u32_c</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, u32 format  <a href="#a277f0fd245a96c34a8a10e5da896eff8"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; float, double &gt;</h3>
+<h3>template&lt;typename T1, typename op_type&gt;<br/>
+ class OpCube&lt; T1, op_type &gt;</h3>
 
+<p>Analog of the <a class="el" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a> class, intended for cubes. </p>
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00635">635</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00565_source.html#l00023">23</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a30aef3d37c6c9bb3ad406954ff30e454"></a><!-- doxytag: member="promote_type&lt; float, double &gt;::result" ref="a30aef3d37c6c9bb3ad406954ff30e454" args="" -->
+<a class="anchor" id="a4a3252e41d333f0cea649a44b6e87d0d"></a><!-- doxytag: member="OpCube::elem_type" ref="a4a3252e41d333f0cea649a44b6e87d0d" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef double <a class="el" href="a00232.html">promote_type</a>&lt; float, double &gt;::<a class="el" href="a00241.html#a30aef3d37c6c9bb3ad406954ff30e454">result</a></td>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00635">635</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00565_source.html#l00027">27</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3857d8b353c6a180614a55ba504b6840"></a><!-- doxytag: member="OpCube::pod_type" ref="a3857d8b353c6a180614a55ba504b6840" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00068.html">get_pod_type</a>&lt;<a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a>&gt;::<a class="el" href="a00241.html#a3857d8b353c6a180614a55ba504b6840">pod_type</a> <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#a3857d8b353c6a180614a55ba504b6840">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00565_source.html#l00028">28</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a4e1df59e4cd3ba1aac1005266c7e4801"></a><!-- doxytag: member="OpCube::m" ref="a4e1df59e4cd3ba1aac1005266c7e4801" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const T1&amp; <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#a4e1df59e4cd3ba1aac1005266c7e4801">m</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of reference to the operand (e.g. a cube) </p>
+
+<p>Definition at line <a class="el" href="a00565_source.html#l00041">41</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00422_source.html#l00114">accu()</a>, <a class="el" href="a00558_source.html#l00934">op_atanh::apply()</a>, <a class="el" href="a00558_source.html#l00870">op_tanh::apply()</a>, <a class="el" href="a00558_source.html#l00742">op_atan::apply()</a>, <a class="el" href="a00558_source.html#l00686">op_tan::apply()</a>, <a class="el" href="a00558_source.html#l00621">op_asinh::apply()</a>, <a class="el" href="a00558_source.html#l00558">op_sinh::apply()</a>, <a class="el" href="a00558_source.html#l00430">op_asin::apply()</a>, <a class="el" href="a00558_source.html#l00374">op_sin::apply()</a>, <a class="el" href="a00558_source.html#l00308">op_acosh::apply()</a>, <a class="el" href="a00558_source.html#l00244">op_cosh::apply()</a>, <a class="el" href="a00558_source.html#l00116">op_acos::apply()</a>, <a class="el" href="a00558_source.html#l00060">op_cos::apply()</a>, <a class="el" href="a00546_source.html#l00786">op_scalar_div_post::apply()</a>, <a class="el" href="a00546_source.html#l00500">op_scalar_div_pre::apply()</a>, <a class="el" href="a00546_source.html#l00208">op_scalar_times::apply()</a>, <a class="el" href="a00546_source.html#l00156">op_scalar_minus_post::apply()</a>, <a class="el" href="a00546_source.html#l00104">op_scalar_minus_pre::apply()</a>, <a class="el" href="a00546_source.html#l00052">op_scalar_plus::apply()</a>, <a class="el" href="a00544_source.html#l00082">op_reshape::apply()</a>, <a class="el" href="a00529_source.html#l00052">op_neg::apply()</a>, <a class="el" href="a00527_source.html#l00684">op_conj::apply()</a>, <a class="el" href="a00527_source.html#l00632">op_pow_s32::apply()</a>, <a class="el" href="a00527_source.html#l00442">op_pow::apply()</a>, <a class="el" href="a00527_source.html#l00337">op_square::apply()</a>, <a class="el" href="a00527_source.html#l00288">op_sqrt::apply()</a>, <a class="el" href="a00527_source.html#l00240">op_trunc_exp::apply()</a>, <a class="el" href="a00527_source.html#l00192">op_exp::apply()</a>, <a class="el" href="a00527_source.html#l00144">op_log10::apply()</a>, <a class="el" href="a00527_source.html#l00096">op_trunc_log::apply()</a>, <a class="el" href="a00527_source.html#l00048">op_log::apply()</a>, <a class="el" href="a00478_source.html#l00388">glue_cube_plus::apply_inplace()</a>, <a class="el" href="a00441_source.html#l00683">conj()</a>, <a class="el" href="a00571_source.html#l00042">operator*()</a>, and <a class="el" href="a00568_source.html#l00054">operator+()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4c0ec4775c634bdf27d2c5631a6d63c5"></a><!-- doxytag: member="OpCube::aux" ref="a4c0ec4775c634bdf27d2c5631a6d63c5" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00241.html#a4a3252e41d333f0cea649a44b6e87d0d">elem_type</a> <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#a4c0ec4775c634bdf27d2c5631a6d63c5">aux</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, user defined format </p>
+
+<p>Definition at line <a class="el" href="a00565_source.html#l00042">42</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00546_source.html#l00786">op_scalar_div_post::apply()</a>, <a class="el" href="a00546_source.html#l00500">op_scalar_div_pre::apply()</a>, <a class="el" href="a00546_source.html#l00208">op_scalar_times::apply()</a>, <a class="el" href="a00546_source.html#l00156">op_scalar_minus_post::apply()</a>, <a class="el" href="a00546_source.html#l00104">op_scalar_minus_pre::apply()</a>, <a class="el" href="a00546_source.html#l00052">op_scalar_plus::apply()</a>, <a class="el" href="a00544_source.html#l00082">op_reshape::apply()</a>, <a class="el" href="a00527_source.html#l00442">op_pow::apply()</a>, <a class="el" href="a00571_source.html#l00042">operator*()</a>, and <a class="el" href="a00568_source.html#l00054">operator+()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="affff0f1a9126ed139c634d5500a1c3e5"></a><!-- doxytag: member="OpCube::aux_u32_a" ref="affff0f1a9126ed139c634d5500a1c3e5" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#affff0f1a9126ed139c634d5500a1c3e5">aux_u32_a</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, u32 format </p>
+
+<p>Definition at line <a class="el" href="a00565_source.html#l00043">43</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00544_source.html#l00082">op_reshape::apply()</a>, <a class="el" href="a00527_source.html#l00632">op_pow_s32::apply()</a>, <a class="el" href="a00571_source.html#l00056">operator*()</a>, and <a class="el" href="a00566_source.html#l00040">operator/()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae5b9b5bca8e96a8a0c756e0bf481c65d"></a><!-- doxytag: member="OpCube::aux_u32_b" ref="ae5b9b5bca8e96a8a0c756e0bf481c65d" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#ae5b9b5bca8e96a8a0c756e0bf481c65d">aux_u32_b</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, u32 format </p>
+
+<p>Definition at line <a class="el" href="a00565_source.html#l00044">44</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00544_source.html#l00082">op_reshape::apply()</a>, <a class="el" href="a00527_source.html#l00632">op_pow_s32::apply()</a>, <a class="el" href="a00571_source.html#l00056">operator*()</a>, and <a class="el" href="a00566_source.html#l00040">operator/()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a277f0fd245a96c34a8a10e5da896eff8"></a><!-- doxytag: member="OpCube::aux_u32_c" ref="a277f0fd245a96c34a8a10e5da896eff8" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00241.html">OpCube</a>&lt; T1, op_type &gt;::<a class="el" href="a00241.html#a277f0fd245a96c34a8a10e5da896eff8">aux_u32_c</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, u32 format </p>
+
+<p>Definition at line <a class="el" href="a00565_source.html#l00045">45</a> of file <a class="el" href="a00565_source.html">OpCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00544_source.html#l00082">op_reshape::apply()</a>, <a class="el" href="a00571_source.html#l00056">operator*()</a>, and <a class="el" href="a00566_source.html#l00040">operator/()</a>.</p>
 
 </div>
 </div>

@@ -37,7 +37,7 @@ op_eps::direct_eps(const eT x)
   const eT radix_eT     = eT(std::numeric_limits<eT>::radix);
   const eT digits_m1_eT = eT(std::numeric_limits<eT>::digits - 1);
   
-  return std::pow( radix_eT, (std::floor(std::log10(std::abs(x))/std::log10(radix_eT)) - digits_m1_eT) );
+  return std::pow( radix_eT, eT(std::floor(std::log10(std::abs(x))/std::log10(radix_eT)) - digits_m1_eT) );
   }
 
 
@@ -54,7 +54,7 @@ op_eps::direct_eps(const std::complex<T>& x)
   const T radix_T     = T(std::numeric_limits<T>::radix);
   const T digits_m1_T = T(std::numeric_limits<T>::digits - 1);
   
-  return std::pow( radix_T, (std::floor(std::log10(std::abs(x))/std::log10(radix_T)) - digits_m1_T) );
+  return std::pow( radix_T, T(std::floor(std::log10(std::abs(x))/std::log10(radix_T)) - digits_m1_T) );
   }
 
 

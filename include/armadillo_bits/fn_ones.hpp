@@ -85,6 +85,8 @@ eye(const u32 n_rows, const u32 n_cols)
   {
   arma_extra_debug_sigprint();
   
+  arma_debug_check( (n_rows != n_cols), "eye(): non-square matrix specified" );
+  
   return Op<mat,op_ones_diag>(n_rows, n_cols, 'j');
   }
 

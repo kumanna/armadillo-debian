@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Glue_cube_schur</title>
+<title>Armadillo Technical: Fn_trans</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,499 +21,213 @@
   </div>
 </div>
 <div class="contents">
-<h1>Glue_cube_schur</h1><table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00064.html">glue_cube_schur</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class which implements the immediate Schur product (element-wise multiplication) of two or more cubes.  <a href="a00064.html#_details">More...</a><br/></td></tr>
+<h1>Fn_trans</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gacb2531911cfb061550e4b579016f7632">glue_cube_schur::apply</a> (<a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00076.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;X)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gad988c8656c9af34325e61f6dd7a2d21d">glue_cube_schur::apply_inplace</a> (<a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const T1 &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT1 , typename eT2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gabb3997e4fc1063d778a8aa015b180198">glue_cube_schur::apply_mixed</a> (<a class="el" href="a00031.html">Cube</a>&lt; typename <a class="el" href="a00232.html">promote_type</a>&lt; eT1, eT2 &gt;::result &gt; &amp;out, const <a class="el" href="a00031.html">Cube</a>&lt; eT1 &gt; &amp;X, const <a class="el" href="a00031.html">Cube</a>&lt; eT2 &gt; &amp;Y)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">cube schur product with different element types  <a href="#gabb3997e4fc1063d778a8aa015b180198"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00236.html">op_trans</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga15e9cb9c5046609aa9160d348700d68f">trans</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga403252b6bb2a2d63c4bc8a2cb58fde50">glue_cube_schur::apply</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;B)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt;, <a class="el" href="a00236.html">op_trans</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga73b9c285d46212a6c2a76eb48237ee85">trans</a> (const <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;X)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gaf17147c4a89ec16a85375fbc314bc869">glue_cube_schur::apply</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;B, const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;C)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga228a4e84ccbb0d1d239c36e7001624b3">glue_cube_schur::apply</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00076.html">GlueCube</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gacf78d4379e688151e6677c6c1bf4566f">glue_cube_schur::apply</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00076.html">GlueCube</a>&lt; <a class="el" href="a00076.html">GlueCube</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00064.html">glue_cube_schur</a> &gt;, <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gad74f71c20eb011bcf6066324dab252f9">glue_cube_schur::apply_inplace</a> (<a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00076.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;X)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt;, <a class="el" href="a00236.html">op_trans</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga98dd30932b3cd015972b51247e77899b">trans</a> (const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga4761b98cca5cce041d20119d699c025b">trans</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00236.html">op_trans</a> &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">two consecutive transpose operations cancel each other  <a href="#ga4761b98cca5cce041d20119d699c025b"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#gafa0ecc493d74247c7aee7b59e273a2fc">trans</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">transpose of a diagonal matrix gives you the original matrix back  <a href="#gafa0ecc493d74247c7aee7b59e273a2fc"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00200.html">op_htrans</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00661.html#ga17bc3cf1a02e2df61c6d132b355a44c9">trans</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00190.html">op_conj</a> &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the transpose of the conjugate of a complex matrix is equivalent to the hermitian transpose  <a href="#ga17bc3cf1a02e2df61c6d132b355a44c9"></a><br/></td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gacb2531911cfb061550e4b579016f7632"></a><!-- doxytag: member="glue_cube_schur::apply" ref="gacb2531911cfb061550e4b579016f7632" args="(Cube&lt; typename T1::elem_type &gt; &amp;out, const GlueCube&lt; T1, T2, glue_cube_schur &gt; &amp;X)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void glue_cube_schur::apply </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00076.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00467_source.html#l00024">24</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00485_source.html#l00035">GlueCube&lt; T1, T2, glue_type &gt;::A</a>, <a class="el" href="a00485_source.html#l00036">GlueCube&lt; T1, T2, glue_type &gt;::B</a>, and <a class="el" href="a00401_source.html#l01254">Cube&lt; eT &gt;::set_size()</a>.</p>
-
-<p>Referenced by <a class="el" href="a00467_source.html#l00216">apply()</a>, and <a class="el" href="a00467_source.html#l00126">apply_mixed()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00025"></a>00025   {
-<a name="l00026"></a>00026   arma_extra_debug_sigprint();
-<a name="l00027"></a>00027 
-<a name="l00028"></a>00028   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030   <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N_cube = 1 + <a class="code" href="a00039.html" title="Template metaprogram depth_lhs_cube calculates the number of GlueCube&amp;lt;Tx,Ty, glue_type&amp;gt;...">depth_lhs_cube&lt; glue_cube_schur, GlueCube&lt;T1,T2,glue_cube_schur&gt;</a> &gt;::num;
-<a name="l00031"></a>00031   arma_extra_debug_print( <a class="code" href="a00045.html">arma_boost::format</a>(<span class="stringliteral">&quot;N_cube = %d&quot;</span>) % N_cube );
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033   <span class="keywordflow">if</span>(N_cube == 2)
-<a name="l00034"></a>00034     {
-<a name="l00035"></a>00035     <span class="keyword">const</span> <a class="code" href="a00341.html">unwrap_cube&lt;T1&gt;</a> tmp1(X.<a class="code" href="a00076.html#a25d66df3c2248b7cc7d750c5a0b2e0b0" title="first operand">A</a>);
-<a name="l00036"></a>00036     <span class="keyword">const</span> <a class="code" href="a00341.html">unwrap_cube&lt;T2&gt;</a> tmp2(X.<a class="code" href="a00076.html#a94a47687da2ded2666b559004e3f95d6" title="second operand">B</a>);
-<a name="l00037"></a>00037     
-<a name="l00038"></a>00038     <a class="code" href="a00661.html#gacb2531911cfb061550e4b579016f7632">glue_cube_schur::apply</a>(out, tmp1.M, tmp2.M);
-<a name="l00039"></a>00039     }
-<a name="l00040"></a>00040   <span class="keywordflow">else</span>
-<a name="l00041"></a>00041     {
-<a name="l00042"></a>00042     <span class="keyword">const</span> <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt;eT&gt;</a>* ptrs[N_cube];
-<a name="l00043"></a>00043     <span class="keywordtype">bool</span>             del[N_cube];
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045     <a class="code" href="a00033.html" title="Template metaprogram cube_ptrs fills a given array with addresses of cubes from a...">cube_ptrs&lt;glue_cube_schur, GlueCube&lt;T1,T2,glue_cube_schur&gt;</a> &gt;::get_ptrs(ptrs, del, X);
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N_cube; ++i)  arma_extra_debug_print( <a class="code" href="a00045.html">arma_boost::format</a>(<span class="stringliteral">&quot;ptrs[%d] = %x&quot;</span>) % i % ptrs[i] );
-<a name="l00048"></a>00048     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N_cube; ++i)  arma_extra_debug_print( <a class="code" href="a00045.html">arma_boost::format</a>(<span class="stringliteral">&quot; del[%d] = %d&quot;</span>) % i %  del[i] );
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050     <span class="keyword">const</span> <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt;eT&gt;</a>&amp; tmp_cube = *(ptrs[0]);
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=1; i&lt;N_cube; ++i)
-<a name="l00053"></a>00053       {
-<a name="l00054"></a>00054       arma_debug_assert_same_size(tmp_cube, *(ptrs[i]), <span class="stringliteral">&quot;cube schur product&quot;</span>);
-<a name="l00055"></a>00055       }
-<a name="l00056"></a>00056   
-<a name="l00057"></a>00057     
-<a name="l00058"></a>00058     <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows   = ptrs[0]-&gt;n_rows;
-<a name="l00059"></a>00059     <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols   = ptrs[0]-&gt;n_cols;
-<a name="l00060"></a>00060     <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices = ptrs[0]-&gt;n_slices;
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062     <span class="comment">// no aliasing problem</span>
-<a name="l00063"></a>00063     out.<a class="code" href="a00605.html#gac10bacf38c391e357e110e36b74c8863" title="change the cube to have user specified dimensions (data is not preserved)">set_size</a>(n_rows, n_cols, n_slices);
-<a name="l00064"></a>00064     
-<a name="l00065"></a>00065     <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = ptrs[0]-&gt;n_elem;
-<a name="l00066"></a>00066     
-<a name="l00067"></a>00067     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> j=0; j&lt;n_elem; ++j)
-<a name="l00068"></a>00068       {
-<a name="l00069"></a>00069       eT acc = ptrs[0]-&gt;mem[j];
-<a name="l00070"></a>00070       
-<a name="l00071"></a>00071       <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=1; i&lt;N_cube; ++i)
-<a name="l00072"></a>00072         {
-<a name="l00073"></a>00073         acc *= ptrs[i]-&gt;mem[j];
-<a name="l00074"></a>00074         }
-<a name="l00075"></a>00075       
-<a name="l00076"></a>00076       out[j] = acc;
-<a name="l00077"></a>00077       }
-<a name="l00078"></a>00078     
-<a name="l00079"></a>00079     
-<a name="l00080"></a>00080     <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N_cube; ++i)
-<a name="l00081"></a>00081       {
-<a name="l00082"></a>00082       <span class="keywordflow">if</span>(del[i] == <span class="keyword">true</span>)
-<a name="l00083"></a>00083         {
-<a name="l00084"></a>00084         arma_extra_debug_print( <a class="code" href="a00045.html">arma_boost::format</a>(<span class="stringliteral">&quot;delete ptrs[%d]&quot;</span>) % i );
-<a name="l00085"></a>00085         <span class="keyword">delete</span> ptrs[i];
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087       }
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="gad988c8656c9af34325e61f6dd7a2d21d"></a><!-- doxytag: member="glue_cube_schur::apply_inplace" ref="gad988c8656c9af34325e61f6dd7a2d21d" args="(Cube&lt; typename T1::elem_type &gt; &amp;out, const T1 &amp;X)" -->
+<a class="anchor" id="ga15e9cb9c5046609aa9160d348700d68f"></a><!-- doxytag: member="fn_trans.hpp::trans" ref="ga15e9cb9c5046609aa9160d348700d68f" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cube_schur::apply_inplace </td>
+          <td class="memname">const <a class="el" href="a00183.html">Op</a>&lt;T1, <a class="el" href="a00236.html">op_trans</a>&gt; trans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00467_source.html#l00097">97</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00460_source.html#l00023">23</a> of file <a class="el" href="a00460_source.html">fn_trans.hpp</a>.</p>
 
-<p>References <a class="el" href="a00402_source.html#l00041">Cube&lt; eT &gt;::mem</a>, <a class="el" href="a00401_source.html#l01105">Cube&lt; eT &gt;::memptr()</a>, and <a class="el" href="a00402_source.html#l00037">Cube&lt; eT &gt;::n_elem</a>.</p>
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
 
-<p>Referenced by <a class="el" href="a00401_source.html#l00428">Cube&lt; eT &gt;::operator%=()</a>.</p>
+<p>Referenced by <a class="el" href="a00467_source.html#l00036">gemm_mixed_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00466_source.html#l00035">gemm_emul_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00504_source.html#l00027">op_cor::direct_cor()</a>, <a class="el" href="a00469_source.html#l00026">glue_cor::direct_cor()</a>, <a class="el" href="a00506_source.html#l00027">op_cov::direct_cov()</a>, <a class="el" href="a00471_source.html#l00026">glue_cov::direct_cov()</a>, <a class="el" href="a00533_source.html#l00027">op_pinv::direct_pinv()</a>, <a class="el" href="a00403_source.html#l01502">auxlib::solve_od()</a>, <a class="el" href="a00403_source.html#l01566">auxlib::solve_ud()</a>, and <a class="el" href="a00586_source.html#l00238">running_stat_vec_aux::update_stats()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00098"></a>00098   {
-<a name="l00099"></a>00099   arma_extra_debug_sigprint();
-<a name="l00100"></a>00100   
-<a name="l00101"></a>00101   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00102"></a>00102   
-<a name="l00103"></a>00103   <span class="keyword">const</span> <a class="code" href="a00341.html">unwrap_cube&lt;T1&gt;</a> tmp(X);
-<a name="l00104"></a>00104   <span class="keyword">const</span> <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt;eT&gt;</a>&amp; B   = tmp.M;
-<a name="l00105"></a>00105   
-<a name="l00106"></a>00106   arma_debug_assert_same_size(out, B, <span class="stringliteral">&quot;cube schur product&quot;</span>);
-<a name="l00107"></a>00107   
-<a name="l00108"></a>00108   <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = out.<a class="code" href="a00031.html#a902bd50808663f9eec272591651ff21a" title="number of elements in the cube (read-only)">n_elem</a>;
-<a name="l00109"></a>00109   
-<a name="l00110"></a>00110         eT* out_mem = out.<a class="code" href="a00605.html#ga1e0aa001a72a50700fc151a655ece615" title="returns a pointer to array of eTs used by the cube">memptr</a>();
-<a name="l00111"></a>00111   <span class="keyword">const</span> eT* B_mem   = B.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00112"></a>00112   
-<a name="l00113"></a>00113   <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00114"></a>00114     {
-<a name="l00115"></a>00115     out_mem[i] *= B_mem[i];
-<a name="l00116"></a>00116     }
-<a name="l00117"></a>00117   
-<a name="l00118"></a>00118   }
+<p><div class="fragment"><pre class="fragment"><a name="l00024"></a>00024   {
+<a name="l00025"></a>00025   arma_extra_debug_sigprint();
+<a name="l00026"></a>00026   
+<a name="l00027"></a>00027   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_trans&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00028"></a>00028   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gabb3997e4fc1063d778a8aa015b180198"></a><!-- doxytag: member="glue_cube_schur::apply_mixed" ref="gabb3997e4fc1063d778a8aa015b180198" args="(Cube&lt; typename promote_type&lt; eT1, eT2 &gt;::result &gt; &amp;out, const Cube&lt; eT1 &gt; &amp;X, const Cube&lt; eT2 &gt; &amp;Y)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT1 , typename eT2 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void glue_cube_schur::apply_mixed </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; typename <a class="el" href="a00232.html">promote_type</a>&lt; eT1, eT2 &gt;::result &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT1 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT2 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>cube schur product with different element types </p>
-
-<p>Definition at line <a class="el" href="a00467_source.html#l00126">126</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00467_source.html#l00024">apply()</a>, and <a class="el" href="a00402_source.html#l00041">Cube&lt; eT &gt;::mem</a>.</p>
-
-<p>Referenced by <a class="el" href="a00557_source.html#l00048">operator%()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00127"></a>00127   {
-<a name="l00128"></a>00128   arma_extra_debug_sigprint();
-<a name="l00129"></a>00129   
-<a name="l00130"></a>00130   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00232.html#a9e8efc5ce4b3284583144a91bdc052bf">promote_type&lt;eT1,eT2&gt;::result</a> out_eT;
-<a name="l00131"></a>00131   
-<a name="l00132"></a>00132   arma_debug_assert_same_size(X,Y, <span class="stringliteral">&quot;cube schur product&quot;</span>);  
-<a name="l00133"></a>00133   
-<a name="l00134"></a>00134   <span class="comment">//out.set_size(X.n_rows, X.n_cols, X.n_slices);</span>
-<a name="l00135"></a>00135   out.<a class="code" href="a00605.html#gabec1313f7c0ce9e000d74654392c7c51" title="change the cube (without preserving data) to have the same dimensions as the given...">copy_size</a>(X);
-<a name="l00136"></a>00136   
-<a name="l00137"></a>00137         out_eT* out_mem = out.<a class="code" href="a00605.html#ga1e0aa001a72a50700fc151a655ece615" title="returns a pointer to array of eTs used by the cube">memptr</a>();
-<a name="l00138"></a>00138   <span class="keyword">const</span> eT1*    X_mem   = X.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00139"></a>00139   <span class="keyword">const</span> eT2*    Y_mem   = Y.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00140"></a>00140   
-<a name="l00141"></a>00141   <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = out.<a class="code" href="a00031.html#a902bd50808663f9eec272591651ff21a" title="number of elements in the cube (read-only)">n_elem</a>;
-<a name="l00142"></a>00142   
-<a name="l00143"></a>00143   <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00144"></a>00144     {
-<a name="l00145"></a>00145     out_mem[i] = <a class="code" href="a00661.html#gacb2531911cfb061550e4b579016f7632">upgrade_val&lt;eT1,eT2&gt;::apply</a>(X_mem[i]) * <a class="code" href="a00661.html#gacb2531911cfb061550e4b579016f7632">upgrade_val&lt;eT1,eT2&gt;::apply</a>(Y_mem[i]);
-<a name="l00146"></a>00146     }
-<a name="l00147"></a>00147   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ga403252b6bb2a2d63c4bc8a2cb58fde50"></a><!-- doxytag: member="glue_cube_schur::apply" ref="ga403252b6bb2a2d63c4bc8a2cb58fde50" args="(Cube&lt; eT &gt; &amp;out, const Cube&lt; eT &gt; &amp;A, const Cube&lt; eT &gt; &amp;B)" -->
+<a class="anchor" id="ga73b9c285d46212a6c2a76eb48237ee85"></a><!-- doxytag: member="fn_trans.hpp::trans" ref="ga73b9c285d46212a6c2a76eb48237ee85" args="(const Row&lt; eT &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cube_schur::apply </td>
+          <td class="memname">const <a class="el" href="a00183.html">Op</a>&lt;<a class="el" href="a00323.html">Row</a>&lt;eT&gt;, <a class="el" href="a00236.html">op_trans</a>&gt; trans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00467_source.html#l00154">154</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00460_source.html#l00035">35</a> of file <a class="el" href="a00460_source.html">fn_trans.hpp</a>.</p>
 
-<p>References <a class="el" href="a00401_source.html#l01268">Cube&lt; eT &gt;::copy_size()</a>, <a class="el" href="a00402_source.html#l00041">Cube&lt; eT &gt;::mem</a>, <a class="el" href="a00401_source.html#l01105">Cube&lt; eT &gt;::memptr()</a>, and <a class="el" href="a00402_source.html#l00037">Cube&lt; eT &gt;::n_elem</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00155"></a>00155   {
-<a name="l00156"></a>00156   arma_extra_debug_sigprint();
-<a name="l00157"></a>00157   
-<a name="l00158"></a>00158   arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;cube schur product&quot;</span>);
-<a name="l00159"></a>00159     
-<a name="l00160"></a>00160   <span class="comment">// no aliasing problem</span>
-<a name="l00161"></a>00161   <span class="comment">//out.set_size(A.n_rows, A.n_cols, A.n_slices);</span>
-<a name="l00162"></a>00162   out.<a class="code" href="a00605.html#gabec1313f7c0ce9e000d74654392c7c51" title="change the cube (without preserving data) to have the same dimensions as the given...">copy_size</a>(A);
-<a name="l00163"></a>00163     
-<a name="l00164"></a>00164         eT* out_mem = out.<a class="code" href="a00605.html#ga1e0aa001a72a50700fc151a655ece615" title="returns a pointer to array of eTs used by the cube">memptr</a>();
-<a name="l00165"></a>00165   <span class="keyword">const</span> eT* A_mem   = A.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00166"></a>00166   <span class="keyword">const</span> eT* B_mem   = B.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00167"></a>00167   
-<a name="l00168"></a>00168   <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem  = A.<a class="code" href="a00031.html#a902bd50808663f9eec272591651ff21a" title="number of elements in the cube (read-only)">n_elem</a>;
-<a name="l00169"></a>00169     
-<a name="l00170"></a>00170   <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00171"></a>00171     {
-<a name="l00172"></a>00172     out_mem[i] = A_mem[i] * B_mem[i];
-<a name="l00173"></a>00173     }
-<a name="l00174"></a>00174   
-<a name="l00175"></a>00175   }
+<p><div class="fragment"><pre class="fragment"><a name="l00036"></a>00036   {
+<a name="l00037"></a>00037   arma_extra_debug_sigprint();
+<a name="l00038"></a>00038   
+<a name="l00039"></a>00039   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Row&lt;eT&gt;</a>, <a class="code" href="a00236.html" title="&amp;#39;matrix transpose&amp;#39; operation">op_trans</a>&gt;(X);
+<a name="l00040"></a>00040   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gaf17147c4a89ec16a85375fbc314bc869"></a><!-- doxytag: member="glue_cube_schur::apply" ref="gaf17147c4a89ec16a85375fbc314bc869" args="(Cube&lt; eT &gt; &amp;out, const Cube&lt; eT &gt; &amp;A, const Cube&lt; eT &gt; &amp;B, const Cube&lt; eT &gt; &amp;C)" -->
+<a class="anchor" id="ga98dd30932b3cd015972b51247e77899b"></a><!-- doxytag: member="fn_trans.hpp::trans" ref="ga98dd30932b3cd015972b51247e77899b" args="(const Col&lt; eT &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cube_schur::apply </td>
+          <td class="memname">const <a class="el" href="a00183.html">Op</a>&lt;<a class="el" href="a00035.html">Col</a>&lt;eT&gt;, <a class="el" href="a00236.html">op_trans</a>&gt; trans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>C</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00467_source.html#l00182">182</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00460_source.html#l00047">47</a> of file <a class="el" href="a00460_source.html">fn_trans.hpp</a>.</p>
 
-<p>References <a class="el" href="a00401_source.html#l01268">Cube&lt; eT &gt;::copy_size()</a>, <a class="el" href="a00402_source.html#l00041">Cube&lt; eT &gt;::mem</a>, <a class="el" href="a00401_source.html#l01105">Cube&lt; eT &gt;::memptr()</a>, and <a class="el" href="a00402_source.html#l00037">Cube&lt; eT &gt;::n_elem</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00183"></a>00183   {
-<a name="l00184"></a>00184   arma_extra_debug_sigprint();
-<a name="l00185"></a>00185   
-<a name="l00186"></a>00186   arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;cube schur product&quot;</span>);
-<a name="l00187"></a>00187   arma_debug_assert_same_size(A, C, <span class="stringliteral">&quot;cube schur product&quot;</span>);
-<a name="l00188"></a>00188   
-<a name="l00189"></a>00189   <span class="comment">// no aliasing problem</span>
-<a name="l00190"></a>00190   <span class="comment">//out.set_size(A.n_rows, A.n_cols, A.n_slices);</span>
-<a name="l00191"></a>00191   out.<a class="code" href="a00605.html#gabec1313f7c0ce9e000d74654392c7c51" title="change the cube (without preserving data) to have the same dimensions as the given...">copy_size</a>(A);
-<a name="l00192"></a>00192     
-<a name="l00193"></a>00193         eT* out_mem = out.<a class="code" href="a00605.html#ga1e0aa001a72a50700fc151a655ece615" title="returns a pointer to array of eTs used by the cube">memptr</a>();
-<a name="l00194"></a>00194   <span class="keyword">const</span> eT* A_mem   = A.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00195"></a>00195   <span class="keyword">const</span> eT* B_mem   = B.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00196"></a>00196   <span class="keyword">const</span> eT* C_mem   = C.<a class="code" href="a00031.html#a5d762740f29569b8493d2d6372dc908d" title="pointer to the memory used by the cube (memory is read-only)">mem</a>;
-<a name="l00197"></a>00197   
-<a name="l00198"></a>00198   <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem  = A.<a class="code" href="a00031.html#a902bd50808663f9eec272591651ff21a" title="number of elements in the cube (read-only)">n_elem</a>;
-<a name="l00199"></a>00199   
-<a name="l00200"></a>00200   <span class="keywordflow">for</span>(<a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00201"></a>00201     {
-<a name="l00202"></a>00202     out_mem[i] = A_mem[i] * B_mem[i] * C_mem[i];
-<a name="l00203"></a>00203     }
-<a name="l00204"></a>00204   
-<a name="l00205"></a>00205   }
+<p><div class="fragment"><pre class="fragment"><a name="l00048"></a>00048   {
+<a name="l00049"></a>00049   arma_extra_debug_sigprint();
+<a name="l00050"></a>00050   
+<a name="l00051"></a>00051   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Col&lt;eT&gt;</a>, <a class="code" href="a00236.html" title="&amp;#39;matrix transpose&amp;#39; operation">op_trans</a>&gt;(X);
+<a name="l00052"></a>00052   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga228a4e84ccbb0d1d239c36e7001624b3"></a><!-- doxytag: member="glue_cube_schur::apply" ref="ga228a4e84ccbb0d1d239c36e7001624b3" args="(Cube&lt; eT &gt; &amp;out, const GlueCube&lt; Cube&lt; eT &gt;, Cube&lt; eT &gt;, glue_cube_schur &gt; &amp;X)" -->
+<a class="anchor" id="ga4761b98cca5cce041d20119d699c025b"></a><!-- doxytag: member="fn_trans.hpp::trans" ref="ga4761b98cca5cce041d20119d699c025b" args="(const Op&lt; T1, op_trans &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cube_schur::apply </td>
+          <td class="memname">const T1&amp; trans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00076.html">GlueCube</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00236.html">op_trans</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00467_source.html#l00216">216</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
+<p>two consecutive transpose operations cancel each other </p>
 
-<p>References <a class="el" href="a00467_source.html#l00024">apply()</a>.</p>
+<p>Definition at line <a class="el" href="a00460_source.html#l00060">60</a> of file <a class="el" href="a00460_source.html">fn_trans.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00217"></a>00217   {
-<a name="l00218"></a>00218   <a class="code" href="a00661.html#gacb2531911cfb061550e4b579016f7632">glue_cube_schur::apply</a>(out, X.<a class="code" href="a00076.html#a25d66df3c2248b7cc7d750c5a0b2e0b0" title="first operand">A</a>, X.<a class="code" href="a00076.html#a94a47687da2ded2666b559004e3f95d6" title="second operand">B</a>);
-<a name="l00219"></a>00219   }
+<p>References <a class="el" href="a00537_source.html#l00048">Op&lt; T1, op_type &gt;::m</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00061"></a>00061   {
+<a name="l00062"></a>00062   arma_extra_debug_sigprint();
+<a name="l00063"></a>00063   arma_extra_debug_print(<span class="stringliteral">&quot;trans(): removing op_trans&quot;</span>);
+<a name="l00064"></a>00064   
+<a name="l00065"></a>00065   <span class="keywordflow">return</span> X.<a class="code" href="a00183.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>;
+<a name="l00066"></a>00066   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gacf78d4379e688151e6677c6c1bf4566f"></a><!-- doxytag: member="glue_cube_schur::apply" ref="gacf78d4379e688151e6677c6c1bf4566f" args="(Cube&lt; eT &gt; &amp;out, const GlueCube&lt; GlueCube&lt; Cube&lt; eT &gt;, Cube&lt; eT &gt;, glue_cube_schur &gt;, Cube&lt; eT &gt;, glue_cube_schur &gt; &amp;X)" -->
+<a class="anchor" id="gafa0ecc493d74247c7aee7b59e273a2fc"></a><!-- doxytag: member="fn_trans.hpp::trans" ref="gafa0ecc493d74247c7aee7b59e273a2fc" args="(const Op&lt; T1, op_diagmat &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cube_schur::apply </td>
+          <td class="memname">const <a class="el" href="a00183.html">Op</a>&lt;T1, <a class="el" href="a00195.html">op_diagmat</a>&gt; trans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00076.html">GlueCube</a>&lt; <a class="el" href="a00076.html">GlueCube</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00064.html">glue_cube_schur</a> &gt;, <a class="el" href="a00031.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00467_source.html#l00226">226</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
+<p>transpose of a diagonal matrix gives you the original matrix back </p>
 
-<p>References <a class="el" href="a00467_source.html#l00024">apply()</a>.</p>
+<p>Definition at line <a class="el" href="a00460_source.html#l00074">74</a> of file <a class="el" href="a00460_source.html">fn_trans.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00227"></a>00227   {
-<a name="l00228"></a>00228   <a class="code" href="a00661.html#gacb2531911cfb061550e4b579016f7632">glue_cube_schur::apply</a>(out, X.<a class="code" href="a00076.html#a25d66df3c2248b7cc7d750c5a0b2e0b0" title="first operand">A</a>.A, X.<a class="code" href="a00076.html#a25d66df3c2248b7cc7d750c5a0b2e0b0" title="first operand">A</a>.B, X.<a class="code" href="a00076.html#a94a47687da2ded2666b559004e3f95d6" title="second operand">B</a>);
-<a name="l00229"></a>00229   }
+<p><div class="fragment"><pre class="fragment"><a name="l00075"></a>00075   {
+<a name="l00076"></a>00076   arma_extra_debug_sigprint();
+<a name="l00077"></a>00077   arma_extra_debug_print(<span class="stringliteral">&quot;trans(): not applying op_trans to diagonal matrix&quot;</span>);
+<a name="l00078"></a>00078   
+<a name="l00079"></a>00079   <span class="keywordflow">return</span> X;
+<a name="l00080"></a>00080   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gad74f71c20eb011bcf6066324dab252f9"></a><!-- doxytag: member="glue_cube_schur::apply_inplace" ref="gad74f71c20eb011bcf6066324dab252f9" args="(Cube&lt; typename T1::elem_type &gt; &amp;out, const GlueCube&lt; T1, T2, glue_cube_schur &gt; &amp;X)" -->
+<a class="anchor" id="ga17bc3cf1a02e2df61c6d132b355a44c9"></a><!-- doxytag: member="fn_trans.hpp::trans" ref="ga17bc3cf1a02e2df61c6d132b355a44c9" args="(const Op&lt; T1, op_conj &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cube_schur::apply_inplace </td>
+          <td class="memname">const <a class="el" href="a00183.html">Op</a>&lt;T1, <a class="el" href="a00200.html">op_htrans</a>&gt; trans </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00076.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00064.html">glue_cube_schur</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00190.html">op_conj</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00467_source.html#l00236">236</a> of file <a class="el" href="a00467_source.html">glue_cube_schur_meat.hpp</a>.</p>
+<p>the transpose of the conjugate of a complex matrix is equivalent to the hermitian transpose </p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00237"></a>00237   {
-<a name="l00238"></a>00238   arma_extra_debug_sigprint();
-<a name="l00239"></a>00239   
-<a name="l00240"></a>00240   out = X % out;
-<a name="l00241"></a>00241   }
+<p>Definition at line <a class="el" href="a00460_source.html#l00088">88</a> of file <a class="el" href="a00460_source.html">fn_trans.hpp</a>.</p>
+
+<p>References <a class="el" href="a00537_source.html#l00048">Op&lt; T1, op_type &gt;::m</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00089"></a>00089   {
+<a name="l00090"></a>00090   arma_extra_debug_sigprint();
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092   <a class="code" href="a00028.html">arma_type_check&lt; is_complex&lt;typename T1::elem_type&gt;::value</a> == <span class="keyword">false</span> &gt;::apply();
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_htrans&gt;</a>(X.<a class="code" href="a00183.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
+<a name="l00095"></a>00095   }
 </pre></div></p>
 
 </div>

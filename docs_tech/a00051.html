@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt; Class Template Reference</title>
+<title>Armadillo Technical: depth_lhs_cube&lt; glue_cube_type, T1 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,96 +29,42 @@
   </div>
 </div>
 <div class="contents">
-<h1>gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt; Class Template Reference<br/>
+<h1>depth_lhs_cube&lt; glue_cube_type, T1 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00653.html">Gemm_mixed</a>]</small>
-</h1><!-- doxytag: class="gemm_mixed" -->
-<p>Matrix multplication where the matrices have different element types.  
+[<a class="el" href="a00672.html">Glue_cube_metaprog</a>]</small>
+</h1><!-- doxytag: class="depth_lhs_cube" -->
+<p>Template metaprogram <a class="el" href="a00051.html" title="Template metaprogram depth_lhs_cube calculates the number of GlueCube&lt;Tx,Ty, glue_type&gt;...">depth_lhs_cube</a> calculates the number of GlueCube&lt;Tx,Ty, glue_type&gt; instances on the left hand side argument of GlueCube&lt;Tx,Ty, glue_cube_type&gt; i.e. it recursively expands each Tx, until the type of Tx is not "GlueCube&lt;..,.., glue_cube_type&gt;" (i.e the "glue_cube_type" changes).  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="a00454_source.html">gemm_mixed.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00475_source.html">glue_cube_metaprog.hpp</a>&gt;</code></p>
 
-<p><a href="a00778.html">List of all members.</a></p>
+<p><a href="a00793.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename out_eT , typename in_eT1 , typename in_eT2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00051.html#a6a8dc5a871f383e7afa7e3b45a285e25">apply</a> (<a class="el" href="a00164.html">Mat</a>&lt; out_eT &gt; &amp;C, const <a class="el" href="a00164.html">Mat</a>&lt; in_eT1 &gt; &amp;A, const <a class="el" href="a00164.html">Mat</a>&lt; in_eT2 &gt; &amp;B, const out_eT alpha=out_eT(1), const out_eT beta=out_eT(0))</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate multiplication of matrices A and B, storing the result in C  <a href="#a6a8dc5a871f383e7afa7e3b45a285e25"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html#ac928e06656e49ec8855d9867af981194">num</a> = 0</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const bool use_alpha = false, const bool use_beta = false&gt;<br/>
- class gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</h3>
+<h3>template&lt;typename glue_cube_type, typename T1&gt;<br/>
+ struct depth_lhs_cube&lt; glue_cube_type, T1 &gt;</h3>
 
-<p>Matrix multplication where the matrices have different element types. </p>
+<p>Template metaprogram <a class="el" href="a00051.html" title="Template metaprogram depth_lhs_cube calculates the number of GlueCube&lt;Tx,Ty, glue_type&gt;...">depth_lhs_cube</a> calculates the number of GlueCube&lt;Tx,Ty, glue_type&gt; instances on the left hand side argument of GlueCube&lt;Tx,Ty, glue_cube_type&gt; i.e. it recursively expands each Tx, until the type of Tx is not "GlueCube&lt;..,.., glue_cube_type&gt;" (i.e the "glue_cube_type" changes). </p>
 
-<p>Definition at line <a class="el" href="a00454_source.html#l00404">404</a> of file <a class="el" href="a00454_source.html">gemm_mixed.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a6a8dc5a871f383e7afa7e3b45a285e25"></a><!-- doxytag: member="gemm_mixed::apply" ref="a6a8dc5a871f383e7afa7e3b45a285e25" args="(Mat&lt; out_eT &gt; &amp;C, const Mat&lt; in_eT1 &gt; &amp;A, const Mat&lt; in_eT2 &gt; &amp;B, const out_eT alpha=out_eT(1), const out_eT beta=out_eT(0))" -->
+<p>Definition at line <a class="el" href="a00475_source.html#l00027">27</a> of file <a class="el" href="a00475_source.html">glue_cube_metaprog.hpp</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ac928e06656e49ec8855d9867af981194"></a><!-- doxytag: member="depth_lhs_cube::num" ref="ac928e06656e49ec8855d9867af981194" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
-<div class="memtemplate">
-template&lt;typename out_eT , typename in_eT1 , typename in_eT2 &gt; </div>
+template&lt;typename glue_cube_type, typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00051.html">gemm_mixed</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00164.html">Mat</a>&lt; out_eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>C</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00164.html">Mat</a>&lt; in_eT1 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00164.html">Mat</a>&lt; in_eT2 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const out_eT&nbsp;</td>
-          <td class="paramname"> <em>alpha</em> = <code>out_eT(1)</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const out_eT&nbsp;</td>
-          <td class="paramname"> <em>beta</em> = <code>out_eT(0)</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static]</code></td>
+          <td class="memname">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00051.html">depth_lhs_cube</a>&lt; glue_cube_type, T1 &gt;::<a class="el" href="a00051.html#ac928e06656e49ec8855d9867af981194">num</a> = 0<code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>immediate multiplication of matrices A and B, storing the result in C </p>
-
-<p>Definition at line <a class="el" href="a00454_source.html#l00414">414</a> of file <a class="el" href="a00454_source.html">gemm_mixed.hpp</a>.</p>
-
-<p>References <a class="el" href="a00490_source.html#l00035">Mat&lt; eT &gt;::n_elem</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00421"></a>00421     {
-<a name="l00422"></a>00422     arma_extra_debug_sigprint();
-<a name="l00423"></a>00423     
-<a name="l00424"></a>00424     <span class="keywordflow">if</span>( (A.<a class="code" href="a00164.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) &amp;&amp; (B.<a class="code" href="a00164.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) )
-<a name="l00425"></a>00425       {
-<a name="l00426"></a>00426       <a class="code" href="a00051.html#a6a8dc5a871f383e7afa7e3b45a285e25" title="immediate multiplication of matrices A and B, storing the result in C">gemm_mixed_simple&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply</a>(C,A,B,alpha,beta);
-<a name="l00427"></a>00427       }
-<a name="l00428"></a>00428     <span class="keywordflow">else</span>
-<a name="l00429"></a>00429       {
-<a name="l00430"></a>00430       <a class="code" href="a00051.html#a6a8dc5a871f383e7afa7e3b45a285e25" title="immediate multiplication of matrices A and B, storing the result in C">gemm_mixed_cache&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply</a>(C,A,B,alpha,beta);
-<a name="l00431"></a>00431       }
-<a name="l00432"></a>00432     }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00475_source.html#l00029">29</a> of file <a class="el" href="a00475_source.html">glue_cube_metaprog.hpp</a>.</p>
 
 </div>
 </div>

@@ -41,7 +41,8 @@ op_randn::randn()
     acc += eT(std::rand()) / eT(RAND_MAX);
     }
   
-  return acc/eT(N) - eT(0.5);
+  //return acc/eT(N) - eT(0.5);
+  return acc - eT(N/2);
   }
 
 

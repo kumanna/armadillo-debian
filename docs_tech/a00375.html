@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: upgrade_val&lt; float, std::complex&lt; double &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,103 +29,192 @@
   </div>
 </div>
 <div class="contents">
-<h1>upgrade_val&lt; float, std::complex&lt; double &gt; &gt; Struct Template Reference<br/>
+<h1>unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00744.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00598_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01100.html">List of all members.</a></p>
+<p><a href="a01113.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a6bf19df19e789a05dc6bc2169d61450a">T1_result</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a1e2002644010a8b922a43386a81fbbfc">T2_result</a></td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#aa8c92cd05b555afa06631ecef0d96074">apply</a> (const float x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
-std::complex&lt; double &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#af888a7698232234d80a1407e695b313f">apply</a> (const std::complex&lt; double &gt; &amp;x)</td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a9b135c535a1a0956d245832c0bbdd7fa">unwrap_to_elem_access</a> (const <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a149023bf804375935bf2c99b8a04376b">operator[]</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a3c37adb5c27888ac64d9e46a2c8913f4">operator()</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a546339ac655bf2186227e499c45431ed">operator()</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a7977c379d895e8b19d7f93f8c75e2257">at</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct upgrade_val&lt; float, std::complex&lt; double &gt; &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ class unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00805">805</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a6bf19df19e789a05dc6bc2169d61450a"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::T1_result" ref="a6bf19df19e789a05dc6bc2169d61450a" args="" -->
+<p>Definition at line <a class="el" href="a00598_source.html#l00200">200</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a9b135c535a1a0956d245832c0bbdd7fa"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;::unwrap_to_elem_access" ref="a9b135c535a1a0956d245832c0bbdd7fa" args="(const Row&lt; eT &gt; &amp;A)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef double <a class="el" href="a00373.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::<a class="el" href="a00375.html#a6bf19df19e789a05dc6bc2169d61450a">T1_result</a></td>
+          <td class="memname"><a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt;::<a class="el" href="a00368.html">unwrap_to_elem_access</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00807">807</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00204">204</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="a1e2002644010a8b922a43386a81fbbfc"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::T2_result" ref="a1e2002644010a8b922a43386a81fbbfc" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00373.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::<a class="el" href="a00375.html#a1e2002644010a8b922a43386a81fbbfc">T2_result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00808">808</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p><div class="fragment"><pre class="fragment"><a name="l00205"></a>00205     : <a class="code" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a>(A)
+<a name="l00206"></a>00206     {
+<a name="l00207"></a>00207     arma_extra_debug_sigprint();
+<a name="l00208"></a>00208     }
+</pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aa8c92cd05b555afa06631ecef0d96074"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::apply" ref="aa8c92cd05b555afa06631ecef0d96074" args="(const float x)" -->
+<a class="anchor" id="a149023bf804375935bf2c99b8a04376b"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;::operator[]" ref="a149023bf804375935bf2c99b8a04376b" args="(const u32 i) const " -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_inline const double <a class="el" href="a00373.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::apply </td>
+          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt;::operator[] </td>
           <td>(</td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
+          <td> const<code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00810">810</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00210">210</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00810"></a>00810 { <span class="keywordflow">return</span> double(x); }
+<p><div class="fragment"><pre class="fragment"><a name="l00210"></a>00210 { <span class="keywordflow">return</span> <a class="code" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a>[i]; }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="af888a7698232234d80a1407e695b313f"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::apply" ref="af888a7698232234d80a1407e695b313f" args="(const std::complex&lt; double &gt; &amp;x)" -->
+<a class="anchor" id="a3c37adb5c27888ac64d9e46a2c8913f4"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;::operator()" ref="a3c37adb5c27888ac64d9e46a2c8913f4" args="(const u32 i) const " -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_inline const std::complex&lt;double&gt;&amp; <a class="el" href="a00373.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::apply </td>
+          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt;::operator() </td>
           <td>(</td>
-          <td class="paramtype">const std::complex&lt; double &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
+          <td> const<code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00583_source.html#l00811">811</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00598_source.html#l00211">211</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00811"></a>00811 { <span class="keywordflow">return</span> x; }
+<p><div class="fragment"><pre class="fragment"><a name="l00211"></a>00211 { <span class="keywordflow">return</span> <a class="code" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a>(i); }
 </pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a546339ac655bf2186227e499c45431ed"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;::operator()" ref="a546339ac655bf2186227e499c45431ed" args="(const u32 in_row, const u32 in_col) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00213">213</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00213"></a>00213 { <span class="keywordflow">return</span> <a class="code" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a>(in_row,in_col);    }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a7977c379d895e8b19d7f93f8c75e2257"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;::at" ref="a7977c379d895e8b19d7f93f8c75e2257" args="(const u32 in_row, const u32 in_col) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt;::at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00214">214</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00214"></a>00214 { <span class="keywordflow">return</span> <a class="code" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a>.at(in_row,in_col); }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a0dd6e260b9f3e53fd212a30f63d960bf"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Row&lt; eT &gt; &gt;::M" ref="a0dd6e260b9f3e53fd212a30f63d960bf" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00323.html">Row</a>&lt;eT&gt;&amp; <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00323.html">Row</a>&lt; eT &gt; &gt;::<a class="el" href="a00375.html#a0dd6e260b9f3e53fd212a30f63d960bf">M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00598_source.html#l00216">216</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

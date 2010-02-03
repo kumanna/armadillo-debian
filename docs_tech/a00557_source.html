@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: operator_cube_schur.hpp Source File</title>
+<title>Armadillo Technical: op_trans_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>operator_cube_schur.hpp</h1><a href="a00557.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
+<h1>op_trans_proto.hpp</h1><a href="a00557.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
 <a name="l00002"></a>00002 <span class="comment">// </span>
 <a name="l00003"></a>00003 <span class="comment">// Authors:</span>
 <a name="l00004"></a>00004 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
@@ -44,195 +44,40 @@
 <a name="l00013"></a>00013 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00014"></a>00014 
 <a name="l00015"></a>00015 <span class="comment"></span>
-<a name="l00016"></a>00016 <span class="comment">//! \addtogroup operator_cube_schur</span>
+<a name="l00016"></a>00016 <span class="comment">//! \addtogroup op_trans</span>
 <a name="l00017"></a>00017 <span class="comment">//! @{</span>
 <a name="l00018"></a>00018 <span class="comment"></span>
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="comment">// operator %, which we define it to do a schur product (element-wise multiplication)</span>
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="comment"></span>
-<a name="l00023"></a>00023 <span class="comment">//! Base % Base</span>
-<a name="l00024"></a>00024 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00025"></a>00025 arma_inline
-<a name="l00026"></a>00026 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00027"></a>00027 <span class="keyword">operator</span>%
-<a name="l00028"></a><a class="code" href="a00709.html#gab10e35f23f4e4b9c0a5490a028fe1ab7">00028</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type,T2&gt;</a>&amp; Y)
-<a name="l00029"></a>00029   {
-<a name="l00030"></a>00030   arma_extra_debug_sigprint();
+<a name="l00019"></a>00019 <span class="comment"></span>
+<a name="l00020"></a>00020 <span class="comment">//! &apos;matrix transpose&apos; operation</span>
+<a name="l00021"></a>00021 <span class="comment"></span>
+<a name="l00022"></a><a class="code" href="a00236.html">00022</a> <span class="keyword">class </span><a class="code" href="a00236.html" title="&amp;#39;matrix transpose&amp;#39; operation">op_trans</a>
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024   <span class="keyword">public</span>:
+<a name="l00025"></a>00025   
+<a name="l00026"></a>00026   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00027"></a>00027   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00714.html#ga2e21436d310d2b180e9a4572b9772346" title="Immediate transpose of a dense matrix.">apply_noalias</a>(<a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A);
+<a name="l00028"></a>00028   
+<a name="l00029"></a>00029   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00030"></a>00030   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00714.html#ga6b2c7421167b3ae02fed393bbddf1389">apply</a>(<a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A);
 <a name="l00031"></a>00031   
-<a name="l00032"></a>00032   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00033"></a>00033   }
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="comment">//</span>
-<a name="l00038"></a>00038 <span class="comment">// schur product of Base objects with different element types</span>
-<a name="l00039"></a>00039 <span class="comment">//</span>
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 <span class="comment"></span>
-<a name="l00043"></a>00043 <span class="comment">//! Base % Base</span>
-<a name="l00044"></a>00044 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT1, <span class="keyword">typename</span> T1, <span class="keyword">typename</span> eT2, <span class="keyword">typename</span> T2&gt;
-<a name="l00045"></a>00045 arma_inline
-<a name="l00046"></a>00046 <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt;typename promote_type&lt;eT1,eT2&gt;::result</a>&gt;
-<a name="l00047"></a>00047 <span class="keyword">operator</span>%
-<a name="l00048"></a><a class="code" href="a00709.html#ga392eda7f64fc31b8411e9ce1ddb90c11">00048</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;eT1,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;eT2,T2&gt;</a>&amp; Y)
-<a name="l00049"></a>00049   {
-<a name="l00050"></a>00050   arma_extra_debug_sigprint();
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <a class="code" href="a00232.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   <span class="keyword">const</span> <a class="code" href="a00341.html">unwrap_cube&lt;T1&gt;</a> tmp1(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>());
-<a name="l00055"></a>00055   <span class="keyword">const</span> <a class="code" href="a00341.html">unwrap_cube&lt;T2&gt;</a> tmp2(Y.get_ref());
-<a name="l00056"></a>00056   
-<a name="l00057"></a>00057   <span class="keyword">const</span> <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt;eT1&gt;</a>&amp; A = tmp1.M;
-<a name="l00058"></a>00058   <span class="keyword">const</span> <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt;eT2&gt;</a>&amp; B = tmp2.M;
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   <a class="code" href="a00031.html" title="Dense cube class.">Cube&lt; typename promote_type&lt;eT1,eT2&gt;::result</a> &gt; out;
-<a name="l00061"></a>00061   <a class="code" href="a00661.html#gabb3997e4fc1063d778a8aa015b180198" title="cube schur product with different element types">glue_cube_schur::apply_mixed</a>(out, A, B);
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   <span class="keywordflow">return</span> out;
-<a name="l00064"></a>00064   }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="comment">//</span>
-<a name="l00069"></a>00069 <span class="comment">// schur product of Base objects with same element types</span>
-<a name="l00070"></a>00070 <span class="comment">//</span>
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00075"></a>00075 arma_inline
-<a name="l00076"></a>00076 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00077"></a>00077 <span class="keyword">operator</span>%
-<a name="l00078"></a><a class="code" href="a00709.html#gaa90dcd42a4f9dade5132165c54fff1f7">00078</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;std::complex&lt;double&gt;</a>,T1&gt;&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;std::complex&lt;double&gt;</a>,T2&gt;&amp; Y)
-<a name="l00079"></a>00079   {
-<a name="l00080"></a>00080   arma_extra_debug_sigprint();
-<a name="l00081"></a>00081   
-<a name="l00082"></a>00082   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00083"></a>00083   }
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00088"></a>00088 arma_inline
-<a name="l00089"></a>00089 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00090"></a>00090 <span class="keyword">operator</span>%
-<a name="l00091"></a><a class="code" href="a00709.html#ga8b1ee1b19e53c8cffeb297a442f7fbb0">00091</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;std::complex&lt;float&gt;</a>,T1&gt;&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;std::complex&lt;float&gt;</a>,T2&gt;&amp; Y)
-<a name="l00092"></a>00092   {
-<a name="l00093"></a>00093   arma_extra_debug_sigprint();
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00096"></a>00096   }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00101"></a>00101 arma_inline
-<a name="l00102"></a>00102 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00103"></a>00103 <span class="keyword">operator</span>%
-<a name="l00104"></a><a class="code" href="a00709.html#ga4fb612a6179ec4cb8e1917ccd13a1ee8">00104</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;double,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;double,T2&gt;</a>&amp; Y)
-<a name="l00105"></a>00105   {
-<a name="l00106"></a>00106   arma_extra_debug_sigprint();
-<a name="l00107"></a>00107   
-<a name="l00108"></a>00108   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00109"></a>00109   }
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00114"></a>00114 arma_inline
-<a name="l00115"></a>00115 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00116"></a>00116 <span class="keyword">operator</span>%
-<a name="l00117"></a><a class="code" href="a00709.html#gada86dbc81dca067785c3ba3645429a4b">00117</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;float,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;float,T2&gt;</a>&amp; Y)
-<a name="l00118"></a>00118   {
-<a name="l00119"></a>00119   arma_extra_debug_sigprint();
-<a name="l00120"></a>00120   
-<a name="l00121"></a>00121   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00122"></a>00122   }
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00127"></a>00127 arma_inline
-<a name="l00128"></a>00128 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00129"></a>00129 <span class="keyword">operator</span>%
-<a name="l00130"></a><a class="code" href="a00709.html#gac1bd30afd996c7328c6f02f93592ebf7">00130</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;s32,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;s32,T2&gt;</a>&amp; Y)
-<a name="l00131"></a>00131   {
-<a name="l00132"></a>00132   arma_extra_debug_sigprint();
-<a name="l00133"></a>00133   
-<a name="l00134"></a>00134   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00135"></a>00135   }
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00140"></a>00140 arma_inline
-<a name="l00141"></a>00141 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00142"></a>00142 <span class="keyword">operator</span>%
-<a name="l00143"></a><a class="code" href="a00709.html#ga109a0218ae708d5cdeeb4bbdbc8d947a">00143</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;u32,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;u32,T2&gt;</a>&amp; Y)
-<a name="l00144"></a>00144   {
-<a name="l00145"></a>00145   arma_extra_debug_sigprint();
-<a name="l00146"></a>00146   
-<a name="l00147"></a>00147   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00148"></a>00148   }
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00153"></a>00153 arma_inline
-<a name="l00154"></a>00154 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00155"></a>00155 <span class="keyword">operator</span>%
-<a name="l00156"></a><a class="code" href="a00709.html#gab4fcf399b03faf80a9aedb455da21524">00156</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;s16,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;s16,T2&gt;</a>&amp; Y)
-<a name="l00157"></a>00157   {
-<a name="l00158"></a>00158   arma_extra_debug_sigprint();
-<a name="l00159"></a>00159   
-<a name="l00160"></a>00160   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00161"></a>00161   }
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163 
-<a name="l00164"></a>00164 
-<a name="l00165"></a>00165 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00166"></a>00166 arma_inline
-<a name="l00167"></a>00167 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00168"></a>00168 <span class="keyword">operator</span>%
-<a name="l00169"></a><a class="code" href="a00709.html#ga7b286175e6694d1d986d9f5506174abb">00169</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;u16,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;u16,T2&gt;</a>&amp; Y)
-<a name="l00170"></a>00170   {
-<a name="l00171"></a>00171   arma_extra_debug_sigprint();
-<a name="l00172"></a>00172   
-<a name="l00173"></a>00173   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00174"></a>00174   }
-<a name="l00175"></a>00175 
-<a name="l00176"></a>00176 
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00179"></a>00179 arma_inline
-<a name="l00180"></a>00180 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00181"></a>00181 <span class="keyword">operator</span>%
-<a name="l00182"></a><a class="code" href="a00709.html#gac64ba2f93065c65e2e476e21556f5b30">00182</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;s8,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;s8,T2&gt;</a>&amp; Y)
-<a name="l00183"></a>00183   {
-<a name="l00184"></a>00184   arma_extra_debug_sigprint();
-<a name="l00185"></a>00185   
-<a name="l00186"></a>00186   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00187"></a>00187   }
-<a name="l00188"></a>00188 
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190 
-<a name="l00191"></a>00191 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00192"></a>00192 arma_inline
-<a name="l00193"></a>00193 <span class="keyword">const</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>
-<a name="l00194"></a>00194 <span class="keyword">operator</span>%
-<a name="l00195"></a><a class="code" href="a00709.html#gac40b0dca3a28ba87d5c5e06c57cb2f95">00195</a> (<span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;u8,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00020.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;u8,T2&gt;</a>&amp; Y)
-<a name="l00196"></a>00196   {
-<a name="l00197"></a>00197   arma_extra_debug_sigprint();
-<a name="l00198"></a>00198   
-<a name="l00199"></a>00199   <span class="keywordflow">return</span> <a class="code" href="a00076.html" title="analog of the Glue class, intended for Cube objects">GlueCube&lt;T1, T2, glue_cube_schur&gt;</a>(X.<a class="code" href="a00020.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), Y.get_ref());
-<a name="l00200"></a>00200   }
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202 
-<a name="l00203"></a>00203 <span class="comment"></span>
-<a name="l00204"></a>00204 <span class="comment">//! @}</span>
+<a name="l00032"></a>00032   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00033"></a>00033   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00714.html#ga6b2c7421167b3ae02fed393bbddf1389">apply</a>(<a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_trans&gt;</a>&amp; in);
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   
+<a name="l00036"></a>00036 <span class="preprocessor">  #if defined(ARMA_GOOD_COMPILER)</span>
+<a name="l00037"></a>00037 <span class="preprocessor"></span>  
+<a name="l00038"></a>00038   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00039"></a>00039   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00714.html#ga6b2c7421167b3ae02fed393bbddf1389">apply</a>(<a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>&lt;<a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1,T2,glue_plus&gt;</a>,<a class="code" href="a00236.html" title="&amp;#39;matrix transpose&amp;#39; operation">op_trans</a>&gt;&amp; in);
+<a name="l00040"></a>00040   
+<a name="l00041"></a>00041 <span class="preprocessor">  #endif</span>
+<a name="l00042"></a>00042 <span class="preprocessor"></span>  
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   <span class="comment">// inline static void apply_inplace(mat &amp;out);</span>
+<a name="l00045"></a>00045   
+<a name="l00046"></a>00046   };
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 <span class="comment"></span>
+<a name="l00049"></a>00049 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

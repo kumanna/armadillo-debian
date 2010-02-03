@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: running_stat_vec_proto.hpp Source File</title>
+<title>Armadillo Technical: operator_ostream.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>running_stat_vec_proto.hpp</h1><a href="a00574.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
+<h1>operator_ostream.hpp</h1><a href="a00574.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2009 NICTA</span>
 <a name="l00002"></a>00002 <span class="comment">// </span>
 <a name="l00003"></a>00003 <span class="comment">// Authors:</span>
 <a name="l00004"></a>00004 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
@@ -44,96 +44,131 @@
 <a name="l00013"></a>00013 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00014"></a>00014 
 <a name="l00015"></a>00015 <span class="comment"></span>
-<a name="l00016"></a>00016 <span class="comment">//! \addtogroup running_stat_vec</span>
+<a name="l00016"></a>00016 <span class="comment">//! \addtogroup operator_ostream</span>
 <a name="l00017"></a>00017 <span class="comment">//! @{</span>
 <a name="l00018"></a>00018 <span class="comment"></span>
 <a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment">//! Class for keeping statistics of a continuously sampled process / signal.</span>
-<a name="l00022"></a>00022 <span class="comment">//! Useful if the storage of individual samples is not necessary or desired.</span>
-<a name="l00023"></a>00023 <span class="comment">//! Also useful if the number of samples is not known beforehand or exceeds </span>
-<a name="l00024"></a>00024 <span class="comment">//! available memory.</span>
-<a name="l00025"></a>00025 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00026"></a><a class="code" href="a00314.html">00026</a> <span class="keyword">class </span><a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec</a>
-<a name="l00027"></a>00027   {
-<a name="l00028"></a>00028   <span class="keyword">public</span>:
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00022"></a>00022 <span class="keyword">inline</span>
+<a name="l00023"></a>00023 std::ostream&amp;
+<a name="l00024"></a><a class="code" href="a00727.html#ga7510fe14cd82767da1a515acf1686609">00024</a> operator&lt;&lt; (std::ostream&amp; o, const Base&lt;typename T1::elem_type,T1&gt;&amp; X)
+<a name="l00025"></a>00025   {
+<a name="l00026"></a>00026   arma_extra_debug_sigprint();
+<a name="l00027"></a>00027   
+<a name="l00028"></a>00028   <span class="keyword">const</span> <a class="code" href="a00337.html">unwrap&lt;T1&gt;</a> tmp(X.get_ref());
 <a name="l00029"></a>00029   
-<a name="l00030"></a><a class="code" href="a00314.html#a447cf18e20bfcf3e80fd9c98775a3570">00030</a>   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00056.html">get_pod_type&lt;eT&gt;::pod_type</a> <a class="code" href="a00314.html#a447cf18e20bfcf3e80fd9c98775a3570">T</a>;
+<a name="l00030"></a>00030   <a class="code" href="a00611.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">arma_ostream::print</a>(o, tmp.M, <span class="keyword">true</span>);
 <a name="l00031"></a>00031   
-<a name="l00032"></a>00032   <span class="keyword">inline</span> <a class="code" href="a00722.html#gaec33f20d3193ecb1724539f9a1304faa">~running_stat_vec</a>();
-<a name="l00033"></a>00033   <span class="keyword">inline</span>  <a class="code" href="a00722.html#ga8c3932f1fbc4ced9c6ccecf1ca838ca7">running_stat_vec</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> in_calc_cov = <span class="keyword">false</span>);
-<a name="l00034"></a>00034   
-<a name="l00035"></a>00035   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="a00722.html#ga9d8ccc4c728253d6b5dba7af28285b0d" title="update statistics to reflect new sample">operator() </a>(<span class="keyword">const</span> <a class="code" href="a00019.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;               T,  T1&gt;</a>&amp; X);
-<a name="l00036"></a>00036   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="a00722.html#ga9d8ccc4c728253d6b5dba7af28285b0d" title="update statistics to reflect new sample">operator() </a>(<span class="keyword">const</span> <a class="code" href="a00019.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base</a>&lt; std::complex&lt;T&gt;,  T1&gt;&amp; X);
-<a name="l00037"></a>00037   
-<a name="l00038"></a>00038   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="a00722.html#ga0b24a1901dcd6e78126a5109486e1130" title="set all statistics to zero">reset</a>();
-<a name="l00039"></a>00039   
-<a name="l00040"></a>00040   <span class="keyword">inline</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>  <a class="code" href="a00722.html#gaa5e183e0187ad868a4777cc921631aa3" title="mean or average value">mean</a>() <span class="keyword">const</span>;
-<a name="l00041"></a>00041   
-<a name="l00042"></a>00042   <span class="keyword">inline</span> <a class="code" href="a00164.html">Mat&lt; T&gt;</a>  <a class="code" href="a00722.html#gab9f7a3972c7766e7999cbd4ba0c0d017" title="variance">var</a>   (<span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0) <span class="keyword">const</span>;
-<a name="l00043"></a>00043   <span class="keyword">inline</span> <a class="code" href="a00164.html">Mat&lt; T&gt;</a>  <a class="code" href="a00722.html#gad6af997d482290ad0a72073301e6561b" title="standard deviation">stddev</a>(<span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0) <span class="keyword">const</span>;
-<a name="l00044"></a>00044   <span class="keyword">inline</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>  <a class="code" href="a00722.html#ga4bff70d34d00b5ef4439d63572e1b8a4" title="covariance">cov</a>   (<span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0) <span class="keyword">const</span>;
+<a name="l00032"></a>00032   <span class="keywordflow">return</span> o;
+<a name="l00033"></a>00033   }
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00038"></a>00038 <span class="keyword">inline</span>
+<a name="l00039"></a>00039 std::ostream&amp;
+<a name="l00040"></a><a class="code" href="a00727.html#ga98a298c05c8f7813b1c4ef4f12f9770f">00040</a> operator&lt;&lt; (std::ostream&amp; o, const BaseCube&lt;typename T1::elem_type,T1&gt;&amp; X)
+<a name="l00041"></a>00041   {
+<a name="l00042"></a>00042   arma_extra_debug_sigprint();
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   <span class="keyword">const</span> <a class="code" href="a00353.html">unwrap_cube&lt;T1&gt;</a> tmp(X.get_ref());
 <a name="l00045"></a>00045   
-<a name="l00046"></a>00046   <span class="keyword">inline</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00722.html#ga468084bf2dd929e9084a8d6ac5f8b40b" title="vector with minimum values">min</a>() <span class="keyword">const</span>;
-<a name="l00047"></a>00047   <span class="keyword">inline</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00722.html#gaa0864231aeafdb47e8cdc8ab32249d91" title="vector with maximum values">max</a>() <span class="keyword">const</span>;
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   <span class="comment">//</span>
-<a name="l00050"></a>00050   <span class="comment">//</span>
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keyword">private</span>:
-<a name="l00053"></a>00053   
-<a name="l00054"></a><a class="code" href="a00314.html#af6f16e6a7bab118c3e31e9da21679633">00054</a>   <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00314.html#af6f16e6a7bab118c3e31e9da21679633">calc_cov</a>;
-<a name="l00055"></a>00055   
-<a name="l00056"></a><a class="code" href="a00314.html#ada54739e4e8ba70f18c9511319b576cb">00056</a>   arma_aligned <a class="code" href="a00005.html">arma_counter&lt;T&gt;</a> <a class="code" href="a00314.html#ada54739e4e8ba70f18c9511319b576cb">counter</a>;
-<a name="l00057"></a>00057   
-<a name="l00058"></a><a class="code" href="a00314.html#ae003bb20689bff90bb4bc1a359926cb3">00058</a>   arma_aligned <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00314.html#ae003bb20689bff90bb4bc1a359926cb3">r_mean</a>;
-<a name="l00059"></a><a class="code" href="a00314.html#a8d679450ee400c781a7fb00b486908b4">00059</a>   arma_aligned <a class="code" href="a00164.html">Mat&lt; T&gt;</a> <a class="code" href="a00314.html#a8d679450ee400c781a7fb00b486908b4">r_var</a>;
-<a name="l00060"></a><a class="code" href="a00314.html#aa29c6c1c6cceaaeee58327a6ad0570e0">00060</a>   arma_aligned <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00314.html#aa29c6c1c6cceaaeee58327a6ad0570e0">r_cov</a>;
-<a name="l00061"></a>00061   
-<a name="l00062"></a><a class="code" href="a00314.html#ae8cb973ae5550f2d3739c7643b0f59c5">00062</a>   arma_aligned <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00314.html#ae8cb973ae5550f2d3739c7643b0f59c5">min_val</a>;
-<a name="l00063"></a><a class="code" href="a00314.html#acc05de9b12b9cce343b594976b74f38d">00063</a>   arma_aligned <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00314.html#acc05de9b12b9cce343b594976b74f38d">max_val</a>;
-<a name="l00064"></a>00064   
-<a name="l00065"></a><a class="code" href="a00314.html#a107cb2380143d1ad09e55fc7aa39ee03">00065</a>   arma_aligned <a class="code" href="a00164.html">Mat&lt; T&gt;</a> <a class="code" href="a00314.html#a107cb2380143d1ad09e55fc7aa39ee03">min_val_norm</a>;
-<a name="l00066"></a><a class="code" href="a00314.html#a2868ac37af9488ae7d890c9bf5d6cf0d">00066</a>   arma_aligned <a class="code" href="a00164.html">Mat&lt; T&gt;</a> <a class="code" href="a00314.html#a2868ac37af9488ae7d890c9bf5d6cf0d">max_val_norm</a>;
+<a name="l00046"></a>00046   <a class="code" href="a00611.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">arma_ostream::print</a>(o, tmp.M, <span class="keyword">true</span>);
+<a name="l00047"></a>00047   
+<a name="l00048"></a>00048   <span class="keywordflow">return</span> o;
+<a name="l00049"></a>00049   }
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="comment"></span>
+<a name="l00053"></a>00053 <span class="comment">//! Print a diagonal matrix to the specified stream.</span>
+<a name="l00054"></a>00054 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00055"></a>00055 <span class="keyword">inline</span>
+<a name="l00056"></a>00056 std::ostream&amp;
+<a name="l00057"></a><a class="code" href="a00727.html#ga70f40a6b3bfad521a3460d6d7c8e1329">00057</a> operator&lt;&lt; (std::ostream&amp; o, const Op&lt;T1,op_diagmat&gt;&amp; X)
+<a name="l00058"></a>00058   {
+<a name="l00059"></a>00059   arma_extra_debug_sigprint();
+<a name="l00060"></a>00060   
+<a name="l00061"></a>00061   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00062"></a>00062   
+<a name="l00063"></a>00063   <span class="keyword">const</span> <a class="code" href="a00337.html">unwrap&lt;T1&gt;</a> tmp(X.m);
+<a name="l00064"></a>00064   <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; m = tmp.M;
+<a name="l00065"></a>00065     
+<a name="l00066"></a>00066   arma_debug_check( ((m.<a class="code" href="a00687.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>() == <span class="keyword">false</span>) &amp;&amp; (m.<a class="code" href="a00687.html#gaebcde5b059098f2ee43b9ae0a3d3f0b7" title="returns true if the object has the same number of non-zero rows and columnns">is_square</a>() == <span class="keyword">false</span>)), <span class="stringliteral">&quot;operator&lt;&lt;(): incompatible dimensions for diagmat operation&quot;</span> );
 <a name="l00067"></a>00067   
-<a name="l00068"></a><a class="code" href="a00314.html#a9b6bdd6b48564a221355d0ea0bc1e01f">00068</a>   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="a00315.html">running_stat_vec_aux</a>;
-<a name="l00069"></a>00069   };
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 
-<a name="l00073"></a><a class="code" href="a00315.html">00073</a> <span class="keyword">class </span><a class="code" href="a00315.html">running_stat_vec_aux</a>
-<a name="l00074"></a>00074   {
-<a name="l00075"></a>00075   <span class="keyword">public</span>:
-<a name="l00076"></a>00076   
-<a name="l00077"></a>00077   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00078"></a>00078   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00722.html#ga2ef5e79f0863917485585cddfd4b8e6a" title="update statistics to reflect new sample">update_stats</a>(<a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec&lt; eT &gt;</a>&amp;              x, <span class="keyword">const</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp;                sample);
-<a name="l00079"></a>00079   
-<a name="l00080"></a>00080   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00081"></a>00081   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00722.html#ga2ef5e79f0863917485585cddfd4b8e6a" title="update statistics to reflect new sample">update_stats</a>(<a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec</a>&lt; std::complex&lt;T&gt; &gt;&amp; x, <span class="keyword">const</span> <a class="code" href="a00164.html">Mat&lt; T&gt;</a>&amp;                sample);
-<a name="l00082"></a>00082   
-<a name="l00083"></a>00083   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00084"></a>00084   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00722.html#ga2ef5e79f0863917485585cddfd4b8e6a" title="update statistics to reflect new sample">update_stats</a>(<a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec</a>&lt; std::complex&lt;T&gt; &gt;&amp; x, <span class="keyword">const</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; sample);
-<a name="l00085"></a>00085   
-<a name="l00086"></a>00086   <span class="comment">//</span>
-<a name="l00087"></a>00087   
-<a name="l00088"></a>00088   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00089"></a>00089   <span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> <a class="code" href="a00315.html#acc14798b6da75f98666907a4564e6557">var</a>(<span class="keyword">const</span> <a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec&lt; eT &gt;</a>&amp;              x, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0);
-<a name="l00090"></a>00090   
-<a name="l00091"></a>00091   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00092"></a>00092   <span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="a00164.html">Mat&lt; T&gt;</a> <a class="code" href="a00315.html#acc14798b6da75f98666907a4564e6557">var</a>(<span class="keyword">const</span> <a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec</a>&lt; std::complex&lt;T&gt; &gt;&amp; x, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0);
-<a name="l00093"></a>00093   
-<a name="l00094"></a>00094   <span class="comment">//</span>
-<a name="l00095"></a>00095   
-<a name="l00096"></a>00096   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00097"></a>00097   <span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt;              eT &gt;</a> <a class="code" href="a00315.html#abfb982ec27f9700e3a926103d967f814">cov</a>(<span class="keyword">const</span> <a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec&lt; eT &gt;</a>&amp;              x, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0);
-<a name="l00098"></a>00098   
-<a name="l00099"></a>00099   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00100"></a>00100   <span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="a00164.html" title="Dense matrix class.">Mat&lt; std::complex&lt;T&gt;</a> &gt; <a class="code" href="a00315.html#abfb982ec27f9700e3a926103d967f814">cov</a>(<span class="keyword">const</span> <a class="code" href="a00314.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat_vec</a>&lt; std::complex&lt;T&gt; &gt;&amp; x, <span class="keyword">const</span> <a class="code" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0);
-<a name="l00101"></a>00101   };
+<a name="l00068"></a>00068   <span class="keyword">const</span> <a class="code" href="a00010.html">arma_ostream_state</a> stream_state(o);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070   <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> cell_width = <a class="code" href="a00611.html#gaf8367fae8c5fc5bebf278da89ad11029">arma_ostream::modify_stream</a>(o, m.<a class="code" href="a00176.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, m.<a class="code" href="a00176.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00071"></a>00071   
+<a name="l00072"></a>00072   <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> local_n_rows = (<a class="code" href="a00638.html#gad60243265b085a362148cba3d36a3507" title="Delayed &amp;#39;maximum values&amp;#39; operation. The dimension, along which the maxima...">std::max</a>)(m.<a class="code" href="a00176.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>, m.<a class="code" href="a00176.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>);
+<a name="l00073"></a>00073   
+<a name="l00074"></a>00074   <span class="keywordflow">for</span>(<a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row &lt; local_n_rows; ++row)
+<a name="l00075"></a>00075     {
+<a name="l00076"></a>00076     <span class="keywordflow">for</span>(<a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col &lt; local_n_rows; ++col)
+<a name="l00077"></a>00077       {
+<a name="l00078"></a>00078       <span class="keywordflow">if</span>(row != col)
+<a name="l00079"></a>00079         {
+<a name="l00080"></a>00080         o.width(cell_width);
+<a name="l00081"></a>00081         <span class="keywordflow">if</span>(<a class="code" href="a00093.html">is_complex&lt;eT&gt;::value</a> == <span class="keyword">false</span>)
+<a name="l00082"></a>00082           {
+<a name="l00083"></a>00083           o &lt;&lt; <span class="stringliteral">&quot;0.0&quot;</span>;
+<a name="l00084"></a>00084           }
+<a name="l00085"></a>00085         <span class="keywordflow">else</span>
+<a name="l00086"></a>00086           {
+<a name="l00087"></a>00087           o &lt;&lt; <span class="stringliteral">&quot;(0.0,0.0)&quot;</span>;
+<a name="l00088"></a>00088           }
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090       <span class="keywordflow">else</span>
+<a name="l00091"></a>00091         {
+<a name="l00092"></a>00092         <span class="keyword">const</span> eT val = m.<a class="code" href="a00687.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>() ? m.<a class="code" href="a00176.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>[row] : m.<a class="code" href="a00687.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,row);
+<a name="l00093"></a>00093         
+<a name="l00094"></a>00094         o.width(cell_width);
+<a name="l00095"></a>00095         o &lt;&lt; val;
+<a name="l00096"></a>00096         }
+<a name="l00097"></a>00097       }
+<a name="l00098"></a>00098       o &lt;&lt; <span class="charliteral">&apos;\n&apos;</span>;
+<a name="l00099"></a>00099     }
+<a name="l00100"></a>00100   
+<a name="l00101"></a>00101   o.flush();
 <a name="l00102"></a>00102 
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">//! @}</span>
+<a name="l00103"></a>00103   stream_state.restore(o);
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105   <span class="keywordflow">return</span> o;
+<a name="l00106"></a>00106   }
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">//! Print the contents of a field to the specified stream.</span>
+<a name="l00111"></a>00111 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00112"></a>00112 <span class="keyword">inline</span>
+<a name="l00113"></a>00113 std::ostream&amp;
+<a name="l00114"></a><a class="code" href="a00727.html#ga394fe1359fdeda9dc4ab896935509046">00114</a> operator&lt;&lt; (std::ostream&amp; o, const field&lt;T1&gt;&amp; X)
+<a name="l00115"></a>00115   {
+<a name="l00116"></a>00116   arma_extra_debug_sigprint();
+<a name="l00117"></a>00117   
+<a name="l00118"></a>00118   <a class="code" href="a00611.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">arma_ostream::print</a>(o, X);
+<a name="l00119"></a>00119   
+<a name="l00120"></a>00120   <span class="keywordflow">return</span> o;
+<a name="l00121"></a>00121   }
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124 <span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">//! Print the contents of a subfield to the specified stream</span>
+<a name="l00126"></a>00126 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00127"></a>00127 <span class="keyword">inline</span>
+<a name="l00128"></a>00128 std::ostream&amp;
+<a name="l00129"></a><a class="code" href="a00727.html#gab11a87cf73776561a07b554640107e22">00129</a> operator&lt;&lt; (std::ostream&amp; o, const subview_field&lt;T1&gt;&amp; X)
+<a name="l00130"></a>00130   {
+<a name="l00131"></a>00131   arma_extra_debug_sigprint();
+<a name="l00132"></a>00132   
+<a name="l00133"></a>00133   <a class="code" href="a00611.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">arma_ostream::print</a>(o, X);
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135   <span class="keywordflow">return</span> o;
+<a name="l00136"></a>00136   }
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 <span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

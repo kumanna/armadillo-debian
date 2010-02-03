@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_stddev Class Reference</title>
+<title>Armadillo Technical: op_scalar_div_post Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,29 +29,39 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_stddev Class Reference<br/>
+<h1>op_scalar_div_post Class Reference<br/>
 <small>
-[<a class="el" href="a00698.html">Op_stddev</a>]</small>
-</h1><!-- doxytag: class="op_stddev" -->
-<p>Class for finding the standard deviation.  
+[<a class="el" href="a00709.html">Op_scalar_misc</a>]</small>
+</h1><!-- doxytag: class="op_scalar_div_post" -->
+<p>'divide matrix/cube by a scalar' operation  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="a00540_source.html">op_stddev_proto.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00547_source.html">op_scalar_misc_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00945.html">List of all members.</a></p>
+<p><a href="a00958.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00698.html#ga3b439b8a56b2e9eeb3eb166fde960472">apply</a> (<a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">For each row or for each column, find the standard deviation. The result is stored in a dense matrix that has either one column or one row. The dimension for which the standard deviations are found is set via the <a class="el" href="a00643.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev()</a> function.  <a href="a00698.html#ga3b439b8a56b2e9eeb3eb166fde960472"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00698.html#ga151a559dfdf63e3ca9257055c18de472">apply</a> (<a class="el" href="a00164.html">Mat</a>&lt; T &gt; &amp;out, const <a class="el" href="a00164.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">implementation for complex numbers  <a href="a00698.html#ga151a559dfdf63e3ca9257055c18de472"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga881a4f771082d2ea78ab50d43feaad65">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga1f5be0479cd0eb4a820c515c4e1c489e">apply</a> (<a class="el" href="a00043.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00241.html">OpCube</a>&lt; T1, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga5e90732da3a2505c4944318f12bdb81a">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00081.html">glue_plus</a> &gt;, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga3d9c75b0776cb95c00c375cc64ecfbd2">apply</a> (<a class="el" href="a00043.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00241.html">OpCube</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00075.html">glue_cube_plus</a> &gt;, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga775b567117c04b4b9b1ec833ab9f36f7">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00079.html">glue_minus</a> &gt;, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#gaf611762b15a79405d5648cd6e163d688">apply</a> (<a class="el" href="a00043.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00241.html">OpCube</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00074.html">glue_cube_minus</a> &gt;, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga0ca6a026ac08c024c2f968d6aadb29c8">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <a class="el" href="a00083.html">glue_schur</a> &gt;, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00709.html#ga2b4d6cb2ad0a915d6e3ca088a24bb69c">apply</a> (<a class="el" href="a00043.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00241.html">OpCube</a>&lt; <a class="el" href="a00088.html">GlueCube</a>&lt; T1, T2, <a class="el" href="a00076.html">glue_cube_schur</a> &gt;, <a class="el" href="a00220.html">op_scalar_div_post</a> &gt; &amp;in)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Class for finding the standard deviation. </p>
+<p>'divide matrix/cube by a scalar' operation </p>
 
-<p>Definition at line <a class="el" href="a00540_source.html#l00020">20</a> of file <a class="el" href="a00540_source.html">op_stddev_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00547_source.html#l00102">102</a> of file <a class="el" href="a00547_source.html">op_scalar_misc_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

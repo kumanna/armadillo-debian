@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Traits</title>
+<title>Armadillo Technical: Operator_plus</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,191 +21,836 @@
   </div>
 </div>
 <div class="contents">
-<h1>Traits</h1><table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056.html">get_pod_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html">get_pod_type&lt; std::complex&lt; T2 &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00105.html">is_Mat_only&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106.html">is_Mat_only&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00101.html">is_Mat&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00103.html">is_Mat&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104.html">is_Mat&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00102.html">is_Mat&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112.html">is_Row&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113.html">is_Row&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00079.html">is_Col&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00080.html">is_Col&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00123.html">is_subview&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00124.html">is_subview&lt; subview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089.html">is_diagview&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00090.html">is_diagview&lt; diagview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00087.html">is_Cube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00088.html">is_Cube&lt; Cube&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00125.html">is_subview_cube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00126.html">is_subview_cube&lt; subview_cube&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html">is_Op&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00109.html">is_Op&lt; Op&lt; T1, op_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00110.html">is_OpCube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00111.html">is_OpCube&lt; OpCube&lt; T1, op_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00095.html">is_Glue&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00096.html">is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00099.html">is_GlueCube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100.html">is_GlueCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00097.html">is_glue_times&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00098.html">is_glue_times&lt; Glue&lt; T1, T2, glue_times &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00078.html">is_arma_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00077.html">is_arma_cube_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00120.html">is_same_type&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00121.html">is_same_type&lt; T1, T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00149.html">isnt_same_type&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html">isnt_same_type&lt; T1, T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00142.html">isnt_fltpt&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00148.html">isnt_fltpt_false</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00144.html">isnt_fltpt&lt; float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00143.html">isnt_fltpt&lt; double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00145.html">isnt_fltpt&lt; long double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00147.html">isnt_fltpt&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00146.html">isnt_fltpt&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140.html">is_u8&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00141.html">is_u8&lt; u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00118.html">is_s8&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00119.html">is_s8&lt; s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00136.html">is_u16&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137.html">is_u16&lt; u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114.html">is_s16&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00115.html">is_s16&lt; s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00138.html">is_u32&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00139.html">is_u32&lt; u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00116.html">is_s32&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00117.html">is_s32&lt; s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html">is_float&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00094.html">is_float&lt; float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091.html">is_double&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html">is_double&lt; double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00081.html">is_complex&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00082.html">is_complex&lt; std::complex&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086.html">is_complex_float&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html">is_complex&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00084.html">is_complex_double&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085.html">is_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128.html">is_supported_complex&lt; T1 &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">check for a weird implementation of the std::complex class  <a href="a00128.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00129.html">is_supported_complex&lt; std::complex&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00132.html">is_supported_complex_float&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00133.html">is_supported_complex_float&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00130.html">is_supported_complex_double&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00131.html">is_supported_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00134.html">is_supported_elem_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00151.html">isnt_supported_elem_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00162.html">isnt_supported_elem_type_false</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00161.html">isnt_supported_elem_type&lt; u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00156.html">isnt_supported_elem_type&lt; s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00159.html">isnt_supported_elem_type&lt; u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00154.html">isnt_supported_elem_type&lt; s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00160.html">isnt_supported_elem_type&lt; u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00155.html">isnt_supported_elem_type&lt; s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00153.html">isnt_supported_elem_type&lt; float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00152.html">isnt_supported_elem_type&lt; double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00158.html">isnt_supported_elem_type&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00157.html">isnt_supported_elem_type&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00127.html">is_supported_blas_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122.html">is_signed&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00107.html">is_non_integral&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00232.html">promote_type&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00310.html">promote_type_ok</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00285.html">promote_type&lt; T, T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00280.html">promote_type&lt; std::complex&lt; T &gt;, T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00274.html">promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00273.html">promote_type&lt; std::complex&lt; double &gt;, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00275.html">promote_type&lt; std::complex&lt; float &gt;, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00278.html">promote_type&lt; std::complex&lt; T &gt;, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00282.html">promote_type&lt; std::complex&lt; T &gt;, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00277.html">promote_type&lt; std::complex&lt; T &gt;, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00281.html">promote_type&lt; std::complex&lt; T &gt;, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00279.html">promote_type&lt; std::complex&lt; T &gt;, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00283.html">promote_type&lt; std::complex&lt; T &gt;, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00233.html">promote_type&lt; double, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00235.html">promote_type&lt; double, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00239.html">promote_type&lt; double, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00234.html">promote_type&lt; double, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00238.html">promote_type&lt; double, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00236.html">promote_type&lt; double, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00240.html">promote_type&lt; double, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html">promote_type&lt; float, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00247.html">promote_type&lt; float, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00242.html">promote_type&lt; float, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00246.html">promote_type&lt; float, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00244.html">promote_type&lt; float, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00248.html">promote_type&lt; float, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00263.html">promote_type&lt; s32, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html">promote_type&lt; s32, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00262.html">promote_type&lt; s32, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00260.html">promote_type&lt; s32, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00264.html">promote_type&lt; s32, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00296.html">promote_type&lt; u32, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00300.html">promote_type&lt; u32, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00298.html">promote_type&lt; u32, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00301.html">promote_type&lt; u32, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00254.html">promote_type&lt; s16, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00252.html">promote_type&lt; s16, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00256.html">promote_type&lt; s16, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00290.html">promote_type&lt; u16, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00293.html">promote_type&lt; u16, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00272.html">promote_type&lt; s8, u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00284.html">promote_type&lt; T, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00276.html">promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00245.html">promote_type&lt; float, std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00237.html">promote_type&lt; double, std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00261.html">promote_type&lt; s32, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00299.html">promote_type&lt; u32, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00253.html">promote_type&lt; s16, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00291.html">promote_type&lt; u16, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00269.html">promote_type&lt; s8, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00307.html">promote_type&lt; u8, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html">promote_type&lt; float, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00257.html">promote_type&lt; s32, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00294.html">promote_type&lt; u32, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00249.html">promote_type&lt; s16, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00286.html">promote_type&lt; u16, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00265.html">promote_type&lt; s8, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00302.html">promote_type&lt; u8, double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00258.html">promote_type&lt; s32, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00295.html">promote_type&lt; u32, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00250.html">promote_type&lt; s16, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00287.html">promote_type&lt; u16, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00266.html">promote_type&lt; s8, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00303.html">promote_type&lt; u8, float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00297.html">promote_type&lt; u32, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00251.html">promote_type&lt; s16, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00289.html">promote_type&lt; u16, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00268.html">promote_type&lt; s8, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00305.html">promote_type&lt; u8, s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00255.html">promote_type&lt; s16, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00292.html">promote_type&lt; u16, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00271.html">promote_type&lt; s8, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00309.html">promote_type&lt; u8, u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00288.html">promote_type&lt; u16, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00267.html">promote_type&lt; s8, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html">promote_type&lt; u8, s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00270.html">promote_type&lt; s8, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00308.html">promote_type&lt; u8, u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00306.html">promote_type&lt; u8, s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00373.html">upgrade_val&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00373.html" title="upgrade_val is used to ensure an operation such as multiplication is possible between...">upgrade_val</a> is used to ensure an operation such as multiplication is possible between two types. values are upgraded only where necessary. used by: <a class="el" href="a00662.html#gaa6d80b7c73cb9c665a6b930acf76d0c8" title="element-wise division with different element types">glue_div::apply_mixed()</a>, <a class="el" href="a00666.html#ga8e1dd68c3b92457af6e13d030881de84" title="matrix subtraction with different element types">glue_minus::apply_mixed()</a>, <a class="el" href="a00667.html#ga230a7f2dcea8fde7ff6689f4a1116cf5" title="matrix addition with different element types">glue_plus::apply_mixed()</a>, <a class="el" href="a00668.html#ga9fb4407f420281b8f495e41e2447d99a" title="matrix schur product with different element types">glue_schur::apply_mixed()</a> and <a class="el" href="a00669.html#ga229b087d0091a592689dd50a98e7ade2" title="matrix multiplication with different element types">glue_times::apply_mixed()</a> via gemm_mixed().  <a href="a00373.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00381.html">upgrade_val&lt; T, T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00380.html">upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">upgrade a type to allow multiplication with a complex type e.g. the int in "int * complex&lt;double&gt;" is upgraded to a double  <a href="a00380.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00382.html">upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html">upgrade_val&lt; std::complex&lt; float &gt;, double &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ensure we don't lose precision when multiplying a complex number with a higher precision real number  <a href="a00378.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00374.html">upgrade_val&lt; double, std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00379.html">upgrade_val&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">ensure we don't lose precision when multiplying complex numbers with different underlying types  <a href="a00379.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00377.html">upgrade_val&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00376.html">upgrade_val&lt; std::complex&lt; double &gt;, float &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">work around limitations in the complex class (at least as present in gcc 4.1 &amp; 4.3)  <a href="a00376.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html">upgrade_val&lt; float, std::complex&lt; double &gt; &gt;</a></td></tr>
+<h1>Operator_plus</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00031.html">Base</a><br class="typebreak"/>
+&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gad2ae76ac9efeeddfc67d44057473fc21">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">unary plus operation (does nothing, but is required for completeness)  <a href="#gad2ae76ac9efeeddfc67d44057473fc21"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00183.html">Op</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00224.html">op_scalar_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gacba238b1ab9cf22de06ea838a5466d9a">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const typename T1::elem_type k)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + scalar.  <a href="#gacba238b1ab9cf22de06ea838a5466d9a"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00183.html">Op</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00224.html">op_scalar_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga94b118f7c513fe86169c69e748770b9f">operator+</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00224.html">op_scalar_plus</a> &gt; &amp;X, const typename T1::elem_type k)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">op + scalar, level 2  <a href="#ga94b118f7c513fe86169c69e748770b9f"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00183.html">Op</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00224.html">op_scalar_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gab51927679f64001dde1271f331e82323">operator+</a> (const typename T1::elem_type k, const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">scalar + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>  <a href="#gab51927679f64001dde1271f331e82323"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, <a class="el" href="a00183.html">Op</a><br class="typebreak"/>
+&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt;<br class="typebreak"/>
+, <a class="el" href="a00082.html">glue_plus_diag</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gad8cf81fca1ce98fabffe9fac56c07a75">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T2::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;Y)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + diagmat.  <a href="#gad8cf81fca1ce98fabffe9fac56c07a75"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, <a class="el" href="a00183.html">Op</a><br class="typebreak"/>
+&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt;<br class="typebreak"/>
+, <a class="el" href="a00082.html">glue_plus_diag</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga0643b1f983b62274340bf05aa28dd11c">operator+</a> (const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;Y, const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">diagmat + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>  <a href="#ga0643b1f983b62274340bf05aa28dd11c"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00176.html">Mat</a>&lt; typename <a class="el" href="a00244.html">promote_type</a><br class="typebreak"/>
+&lt; typename T1::elem_type, <br class="typebreak"/>
+typename T2::elem_type &gt;<br class="typebreak"/>
+::result &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga75a6079b5275627f51a15e6015d40d5d">operator+</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;X, const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;Y)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">diagmat + diagmat  <a href="#ga75a6079b5275627f51a15e6015d40d5d"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT1 , typename T1 , typename eT2 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00176.html">Mat</a>&lt; typename <br class="typebreak"/>
+<a class="el" href="a00244.html">promote_type</a>&lt; eT1, eT2 &gt;<br class="typebreak"/>
+::result &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga074abe1cea573ec0e21aef641eb81bc3">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; eT1, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; eT2, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>.  <a href="#ga074abe1cea573ec0e21aef641eb81bc3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga2239f2c648623e0a3250eddb51ef35d8">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; double &gt;, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; double &gt;, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gae594c3b16fd64ec1fed8b4831edb3e7a">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; float &gt;, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; float &gt;, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gadf4aa081cd03ea834410411281de7a9d">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; double, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; double, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga2cf07766c72761bf659550383204b465">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; float, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; float, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga430cd057d0d9f31c4b06f5a4115edd28">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga1c698c5066780f537d95ecbd7a299a45">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga04375fb4f2ad83794c79c71e51781412">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga8db5256de5b0d28c172aecd263f7ca96">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gafbda96d761996724e0b0b4f2415f4cff">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
+<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga25b8cd1a7e0fd8409c3f5dd3f18f1d6c">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, T2 &gt; &amp;Y)</td></tr>
 </table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="gad2ae76ac9efeeddfc67d44057473fc21"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gad2ae76ac9efeeddfc67d44057473fc21" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00031.html">Base</a>&lt;typename T1::elem_type,T1&gt;&amp; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>unary plus operation (does nothing, but is required for completeness) </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00026">26</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00027"></a>00027   {
+<a name="l00028"></a>00028   arma_extra_debug_sigprint();
+<a name="l00029"></a>00029   
+<a name="l00030"></a>00030   <span class="keywordflow">return</span> X;
+<a name="l00031"></a>00031   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gacba238b1ab9cf22de06ea838a5466d9a"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gacba238b1ab9cf22de06ea838a5466d9a" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X, const typename T1::elem_type k)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00183.html">Op</a>&lt;T1, <a class="el" href="a00224.html">op_scalar_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename T1::elem_type&nbsp;</td>
+          <td class="paramname"> <em>k</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + scalar. </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00040">40</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00041"></a>00041   {
+<a name="l00042"></a>00042   arma_extra_debug_sigprint();
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_scalar_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), k);
+<a name="l00045"></a>00045   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga94b118f7c513fe86169c69e748770b9f"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga94b118f7c513fe86169c69e748770b9f" args="(const Op&lt; T1, op_scalar_plus &gt; &amp;X, const typename T1::elem_type k)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00183.html">Op</a>&lt;T1,<a class="el" href="a00224.html">op_scalar_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00224.html">op_scalar_plus</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename T1::elem_type&nbsp;</td>
+          <td class="paramname"> <em>k</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>op + scalar, level 2 </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00054">54</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00537_source.html#l00049">Op&lt; T1, op_type &gt;::aux</a>, and <a class="el" href="a00537_source.html#l00048">Op&lt; T1, op_type &gt;::m</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00055"></a>00055   {
+<a name="l00056"></a>00056   arma_extra_debug_sigprint();
+<a name="l00057"></a>00057   
+<a name="l00058"></a>00058   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_scalar_plus&gt;</a>(X.<a class="code" href="a00183.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>, X.<a class="code" href="a00183.html#abf43144f48377f8645f66a07d98e649a" title="storage of auxiliary data, user defined format">aux</a> + k);
+<a name="l00059"></a>00059   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gab51927679f64001dde1271f331e82323"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gab51927679f64001dde1271f331e82323" args="(const typename T1::elem_type k, const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00183.html">Op</a>&lt;T1, <a class="el" href="a00224.html">op_scalar_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const typename T1::elem_type&nbsp;</td>
+          <td class="paramname"> <em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>scalar + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00068">68</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00069"></a>00069   {
+<a name="l00070"></a>00070   arma_extra_debug_sigprint();
+<a name="l00071"></a>00071   
+<a name="l00072"></a>00072   <span class="keywordflow">return</span> <a class="code" href="a00183.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_scalar_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), k);  <span class="comment">// NOTE: order is swapped</span>
+<a name="l00073"></a>00073   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gad8cf81fca1ce98fabffe9fac56c07a75"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gad8cf81fca1ce98fabffe9fac56c07a75" args="(const Base&lt; typename T2::elem_type, T1 &gt; &amp;X, const Op&lt; T2, op_diagmat &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, <a class="el" href="a00183.html">Op</a>&lt;T2,<a class="el" href="a00195.html">op_diagmat</a>&gt;, <a class="el" href="a00082.html">glue_plus_diag</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; typename T2::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + diagmat. </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00082">82</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00083"></a>00083   {
+<a name="l00084"></a>00084   arma_extra_debug_sigprint();
+<a name="l00085"></a>00085   
+<a name="l00086"></a>00086   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, Op&lt;T2,op_diagmat&gt;</a>, <a class="code" href="a00082.html">glue_plus_diag</a>&gt;(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y);
+<a name="l00087"></a>00087   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga0643b1f983b62274340bf05aa28dd11c"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga0643b1f983b62274340bf05aa28dd11c" args="(const Op&lt; T2, op_diagmat &gt; &amp;Y, const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, <a class="el" href="a00183.html">Op</a>&lt;T2,<a class="el" href="a00195.html">op_diagmat</a>&gt;, <a class="el" href="a00082.html">glue_plus_diag</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>diagmat + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00096">96</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00097"></a>00097   {
+<a name="l00098"></a>00098   arma_extra_debug_sigprint();
+<a name="l00099"></a>00099   
+<a name="l00100"></a>00100   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, Op&lt;T2,op_diagmat&gt;</a>, <a class="code" href="a00082.html">glue_plus_diag</a>&gt;(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y);  <span class="comment">// NOTE: order is swapped</span>
+<a name="l00101"></a>00101   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga75a6079b5275627f51a15e6015d40d5d"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga75a6079b5275627f51a15e6015d40d5d" args="(const Op&lt; T1, op_diagmat &gt; &amp;X, const Op&lt; T2, op_diagmat &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00176.html">Mat</a>&lt; typename <a class="el" href="a00244.html">promote_type</a>&lt;typename T1::elem_type, typename T2::elem_type&gt;::result &gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>diagmat + diagmat </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00110">110</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00596_source.html#l00691">upgrade_val&lt; T1, T2 &gt;::apply()</a>, <a class="el" href="a00502_source.html#l01459">Mat&lt; eT &gt;::at()</a>, <a class="el" href="a00596_source.html#l00512">promote_type&lt; T1, T2 &gt;::check()</a>, <a class="el" href="a00537_source.html#l00048">Op&lt; T1, op_type &gt;::m</a>, <a class="el" href="a00503_source.html#l00034">Mat&lt; eT &gt;::n_cols</a>, <a class="el" href="a00503_source.html#l00033">Mat&lt; eT &gt;::n_rows</a>, and <a class="el" href="a00502_source.html#l01830">Mat&lt; eT &gt;::zeros()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00111"></a>00111   {
+<a name="l00112"></a>00112   arma_extra_debug_sigprint();
+<a name="l00113"></a>00113   
+<a name="l00114"></a>00114   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT1;
+<a name="l00115"></a>00115   <span class="keyword">typedef</span> <span class="keyword">typename</span> T2::elem_type eT2;
+<a name="l00116"></a>00116   
+<a name="l00117"></a>00117   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00244.html">promote_type&lt;eT1,eT2&gt;::result</a> out_eT;
+<a name="l00118"></a>00118   
+<a name="l00119"></a>00119   <a class="code" href="a00244.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
+<a name="l00120"></a>00120   
+<a name="l00121"></a>00121   <span class="keyword">const</span> <a class="code" href="a00337.html">unwrap&lt;T1&gt;</a> tmp1(X.<a class="code" href="a00183.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
+<a name="l00122"></a>00122   <span class="keyword">const</span> <a class="code" href="a00337.html">unwrap&lt;T2&gt;</a> tmp2(Y.<a class="code" href="a00183.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
+<a name="l00123"></a>00123   
+<a name="l00124"></a>00124   <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT1&gt;</a> A(tmp1.M);
+<a name="l00125"></a>00125   <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT2&gt;</a> B(tmp2.M);
+<a name="l00126"></a>00126   
+<a name="l00127"></a>00127   arma_debug_assert_same_size(A.n_rows, A.n_cols, B.n_rows, B.n_cols, <span class="stringliteral">&quot;matrix addition&quot;</span>);
+<a name="l00128"></a>00128   
+<a name="l00129"></a>00129   <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;out_eT&gt;</a> out(A.n_rows, A.n_rows);
+<a name="l00130"></a>00130   out.zeros();
+<a name="l00131"></a>00131   
+<a name="l00132"></a>00132   <span class="keywordflow">for</span>(<a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;A.n_rows; ++i)
+<a name="l00133"></a>00133     {
+<a name="l00134"></a>00134     out.at(i,i) = <a class="code" href="a00385.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>( A.at(i,i) ) + <a class="code" href="a00385.html" title="upgrade_val is used to ensure an operation such as multiplication is possible between...">upgrade_val&lt;eT1,eT2&gt;::apply</a>( B.at(i,i) );
+<a name="l00135"></a>00135     }
+<a name="l00136"></a>00136   
+<a name="l00137"></a>00137   <span class="keywordflow">return</span> out;
+<a name="l00138"></a>00138   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga074abe1cea573ec0e21aef641eb81bc3"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga074abe1cea573ec0e21aef641eb81bc3" args="(const Base&lt; eT1, T1 &gt; &amp;X, const Base&lt; eT2, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT1 , typename T1 , typename eT2 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00176.html">Mat</a>&lt;typename <a class="el" href="a00244.html">promote_type</a>&lt;eT1,eT2&gt;::result&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; eT1, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; eT2, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>. </p>
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00153">153</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00490_source.html#l00158">glue_plus::apply_mixed()</a>, <a class="el" href="a00596_source.html#l00512">promote_type&lt; T1, T2 &gt;::check()</a>, <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00154"></a>00154   {
+<a name="l00155"></a>00155   arma_extra_debug_sigprint();
+<a name="l00156"></a>00156   
+<a name="l00157"></a>00157   <a class="code" href="a00244.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
+<a name="l00158"></a>00158 
+<a name="l00159"></a>00159   <span class="keyword">const</span> <a class="code" href="a00337.html">unwrap&lt;T1&gt;</a> tmp1(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00160"></a>00160   <span class="keyword">const</span> <a class="code" href="a00337.html">unwrap&lt;T2&gt;</a> tmp2(Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00161"></a>00161   
+<a name="l00162"></a>00162   <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT1&gt;</a>&amp; A = tmp1.M;
+<a name="l00163"></a>00163   <span class="keyword">const</span> <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt;eT2&gt;</a>&amp; B = tmp2.M;
+<a name="l00164"></a>00164   
+<a name="l00165"></a>00165   <a class="code" href="a00176.html" title="Dense matrix class.">Mat&lt; typename promote_type&lt;eT1,eT2&gt;::result</a> &gt; out;
+<a name="l00166"></a>00166   <a class="code" href="a00681.html#ga230a7f2dcea8fde7ff6689f4a1116cf5" title="matrix addition with different element types">glue_plus::apply_mixed</a>(out, A, B);
+<a name="l00167"></a>00167   
+<a name="l00168"></a>00168   <span class="keywordflow">return</span> out;
+<a name="l00169"></a>00169   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga2239f2c648623e0a3250eddb51ef35d8"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga2239f2c648623e0a3250eddb51ef35d8" args="(const Base&lt; std::complex&lt; double &gt;, T1 &gt; &amp;X, const Base&lt; std::complex&lt; double &gt;, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; double &gt;, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; double &gt;, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00183">183</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00184"></a>00184   {
+<a name="l00185"></a>00185   arma_extra_debug_sigprint();
+<a name="l00186"></a>00186   
+<a name="l00187"></a>00187   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00188"></a>00188   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gae594c3b16fd64ec1fed8b4831edb3e7a"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gae594c3b16fd64ec1fed8b4831edb3e7a" args="(const Base&lt; std::complex&lt; float &gt;, T1 &gt; &amp;X, const Base&lt; std::complex&lt; float &gt;, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; float &gt;, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; float &gt;, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00196">196</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00197"></a>00197   {
+<a name="l00198"></a>00198   arma_extra_debug_sigprint();
+<a name="l00199"></a>00199   
+<a name="l00200"></a>00200   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00201"></a>00201   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gadf4aa081cd03ea834410411281de7a9d"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gadf4aa081cd03ea834410411281de7a9d" args="(const Base&lt; double, T1 &gt; &amp;X, const Base&lt; double, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; double, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; double, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00209">209</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00210"></a>00210   {
+<a name="l00211"></a>00211   arma_extra_debug_sigprint();
+<a name="l00212"></a>00212   
+<a name="l00213"></a>00213   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00214"></a>00214   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga2cf07766c72761bf659550383204b465"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga2cf07766c72761bf659550383204b465" args="(const Base&lt; float, T1 &gt; &amp;X, const Base&lt; float, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; float, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; float, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00222">222</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00223"></a>00223   {
+<a name="l00224"></a>00224   arma_extra_debug_sigprint();
+<a name="l00225"></a>00225   
+<a name="l00226"></a>00226   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00227"></a>00227   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga430cd057d0d9f31c4b06f5a4115edd28"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga430cd057d0d9f31c4b06f5a4115edd28" args="(const Base&lt; s32, T1 &gt; &amp;X, const Base&lt; s32, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00235">235</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00236"></a>00236   {
+<a name="l00237"></a>00237   arma_extra_debug_sigprint();
+<a name="l00238"></a>00238   
+<a name="l00239"></a>00239   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00240"></a>00240   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga1c698c5066780f537d95ecbd7a299a45"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga1c698c5066780f537d95ecbd7a299a45" args="(const Base&lt; u32, T1 &gt; &amp;X, const Base&lt; u32, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00248">248</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00249"></a>00249   {
+<a name="l00250"></a>00250   arma_extra_debug_sigprint();
+<a name="l00251"></a>00251   
+<a name="l00252"></a>00252   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00253"></a>00253   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga04375fb4f2ad83794c79c71e51781412"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga04375fb4f2ad83794c79c71e51781412" args="(const Base&lt; s16, T1 &gt; &amp;X, const Base&lt; s16, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00261">261</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00262"></a>00262   {
+<a name="l00263"></a>00263   arma_extra_debug_sigprint();
+<a name="l00264"></a>00264   
+<a name="l00265"></a>00265   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00266"></a>00266   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga8db5256de5b0d28c172aecd263f7ca96"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga8db5256de5b0d28c172aecd263f7ca96" args="(const Base&lt; u16, T1 &gt; &amp;X, const Base&lt; u16, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00274">274</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00275"></a>00275   {
+<a name="l00276"></a>00276   arma_extra_debug_sigprint();
+<a name="l00277"></a>00277   
+<a name="l00278"></a>00278   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00279"></a>00279   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gafbda96d761996724e0b0b4f2415f4cff"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="gafbda96d761996724e0b0b4f2415f4cff" args="(const Base&lt; s8, T1 &gt; &amp;X, const Base&lt; s8, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00287">287</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00288"></a>00288   {
+<a name="l00289"></a>00289   arma_extra_debug_sigprint();
+<a name="l00290"></a>00290   
+<a name="l00291"></a>00291   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00292"></a>00292   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga25b8cd1a7e0fd8409c3f5dd3f18f1d6c"></a><!-- doxytag: member="operator_plus.hpp::operator+" ref="ga25b8cd1a7e0fd8409c3f5dd3f18f1d6c" args="(const Base&lt; u8, T1 &gt; &amp;X, const Base&lt; u8, T2 &gt; &amp;Y)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt;T1, T2, <a class="el" href="a00081.html">glue_plus</a>&gt; operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00575_source.html#l00300">300</a> of file <a class="el" href="a00575_source.html">operator_plus.hpp</a>.</p>
+
+<p>References <a class="el" href="a00405_source.html#l00032">Base&lt; T1::elem_type, Op&lt; T1, op_type &gt; &gt;::get_ref()</a>, and <a class="el" href="a00405_source.html#l00032">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00301"></a>00301   {
+<a name="l00302"></a>00302   arma_extra_debug_sigprint();
+<a name="l00303"></a>00303   
+<a name="l00304"></a>00304   <span class="keywordflow">return</span> <a class="code" href="a00070.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_plus&gt;</a>(X.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00031.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00305"></a>00305   }
+</pre></div></p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

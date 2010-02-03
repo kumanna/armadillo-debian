@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Member List</title>
+<title>Armadillo Technical: Running_stat</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,23 +14,878 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
-      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
-    </ul>
-  </div>
 </div>
 <div class="contents">
-<h1>arma_apply_proxy&lt; false, arma_class &gt; Member List</h1>This is the complete list of members for <a class="el" href="a00002.html">arma_apply_proxy&lt; false, arma_class &gt;</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="a00002.html#a25a1f63bc1f1037cdee599016911177a">apply</a>(Tout &amp;out, const T1 &amp;A, const T2 &amp;B)</td><td><a class="el" href="a00002.html">arma_apply_proxy&lt; false, arma_class &gt;</a></td><td><code> [inline, static]</code></td></tr>
-</table></div>
+<h1>Running_stat</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00005.html">arma_counter&lt; eT &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00324.html">running_stat&lt; eT &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory.  <a href="a00324.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00325.html">running_stat_aux</a></td></tr>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gab8c19b6c66ff2d4845bd6f63823459e5">arma_counter::~arma_counter</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga1ff4e69229a1f7f44630cf9df178008e">arma_counter::arma_counter</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00005.html">arma_counter</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga7aa18f328c8da93e802de806160dd25a">arma_counter::operator++</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga0db3b046bbf212fb78e3a64a8f7c902a">arma_counter::operator++</a> (int)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga2100eb687e8f0247868c6b92e060945c">arma_counter::reset</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga88e69e203621e898c3474d036efd2ceb">arma_counter::value</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga6e90332a574ecc097b80003f5a6b2171">arma_counter::value_plus_1</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga76e81391fd2e8932523eeb6585e45e07">arma_counter::value_minus_1</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga9afbbf89f85f493366e6ea2ba30f3cc9">running_stat::~running_stat</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga2e40a6700ed69cd672ef9a7ecaae21ec">running_stat::running_stat</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gaf87fd94c84249dea511fb04001ee7ac3">running_stat::operator()</a> (const T sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="#gaf87fd94c84249dea511fb04001ee7ac3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gaaefb6a4b7a62dbd91b14faed3d53626a">running_stat::operator()</a> (const std::complex&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="#gaaefb6a4b7a62dbd91b14faed3d53626a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gab5299a8b23735c18f080c64cbce6863b">running_stat::reset</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set all statistics to zero  <a href="#gab5299a8b23735c18f080c64cbce6863b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#gafe2b34beaa4ee979f0532912f0d25998">running_stat::mean</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">mean or average value  <a href="#gafe2b34beaa4ee979f0532912f0d25998"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga7bc25b1019c59c0b0660e60906031945">running_stat::var</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">variance  <a href="#ga7bc25b1019c59c0b0660e60906031945"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga72614524303dfa76bf3b5a608f05d7b7">running_stat::stddev</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">standard deviation  <a href="#ga72614524303dfa76bf3b5a608f05d7b7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga73317e1b093f70a4122eeaa229c901c9">running_stat::min</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">minimum value  <a href="#ga73317e1b093f70a4122eeaa229c901c9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html#ga8366b2cc630340027bd1417b3aab5f05">running_stat::max</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">maximum value  <a href="#ga8366b2cc630340027bd1417b3aab5f05"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00735.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1">running_stat_aux::update_stats</a> (<a class="el" href="a00324.html">running_stat</a>&lt; eT &gt; &amp;x, const eT sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="#ga43a0d1d4c3a9aab10dbafaf0e7a764c1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00735.html#gad7918da5f93ef4342749886796fc3b71">running_stat_aux::update_stats</a> (<a class="el" href="a00324.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const T sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="#gad7918da5f93ef4342749886796fc3b71"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00735.html#gadab0edabc3cb036e2685ba255070b4ab">running_stat_aux::update_stats</a> (<a class="el" href="a00324.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const std::complex&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">alter statistics to reflect new sample (version for complex numbers)  <a href="#gadab0edabc3cb036e2685ba255070b4ab"></a><br/></td></tr>
+</table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="gab8c19b6c66ff2d4845bd6f63823459e5"></a><!-- doxytag: member="arma_counter::~arma_counter" ref="gab8c19b6c66ff2d4845bd6f63823459e5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::~<a class="el" href="a00005.html">arma_counter</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00023">23</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00024"></a>00024   {
+<a name="l00025"></a>00025   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00026"></a>00026   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga1ff4e69229a1f7f44630cf9df178008e"></a><!-- doxytag: member="arma_counter::arma_counter" ref="ga1ff4e69229a1f7f44630cf9df178008e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::<a class="el" href="a00005.html">arma_counter</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00032">32</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00033"></a>00033   : <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a>( eT(0))
+<a name="l00034"></a>00034   , <a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a>(<a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>(0))
+<a name="l00035"></a>00035   {
+<a name="l00036"></a>00036   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00037"></a>00037   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga7aa18f328c8da93e802de806160dd25a"></a><!-- doxytag: member="arma_counter::operator++" ref="ga7aa18f328c8da93e802de806160dd25a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt; &amp; <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::operator++ </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00044">44</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00040">arma_counter&lt; eT &gt;::d_count</a>, and <a class="el" href="a00585_source.html#l00041">arma_counter&lt; eT &gt;::i_count</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00066">arma_counter&lt; eT &gt;::operator++()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00045"></a>00045   {
+<a name="l00046"></a>00046   <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> max_val = 0xffffffff;
+<a name="l00047"></a>00047   
+<a name="l00048"></a>00048   <span class="keywordflow">if</span>(<a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> &lt; max_val)
+<a name="l00049"></a>00049     {
+<a name="l00050"></a>00050     <a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a>++;
+<a name="l00051"></a>00051     }
+<a name="l00052"></a>00052   <span class="keywordflow">else</span>
+<a name="l00053"></a>00053     {
+<a name="l00054"></a>00054     <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> += eT(max_val);
+<a name="l00055"></a>00055     <a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> =  1;
+<a name="l00056"></a>00056     }
+<a name="l00057"></a>00057   
+<a name="l00058"></a>00058   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00059"></a>00059   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga0db3b046bbf212fb78e3a64a8f7c902a"></a><!-- doxytag: member="arma_counter::operator++" ref="ga0db3b046bbf212fb78e3a64a8f7c902a" args="(int)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::operator++ </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00066">66</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00584_source.html#l00044">arma_counter&lt; eT &gt;::operator++()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00067"></a>00067   {
+<a name="l00068"></a>00068   <a class="code" href="a00735.html#ga7aa18f328c8da93e802de806160dd25a">operator++</a>();
+<a name="l00069"></a>00069   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga2100eb687e8f0247868c6b92e060945c"></a><!-- doxytag: member="arma_counter::reset" ref="ga2100eb687e8f0247868c6b92e060945c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00076">76</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00040">arma_counter&lt; eT &gt;::d_count</a>, and <a class="el" href="a00585_source.html#l00041">arma_counter&lt; eT &gt;::i_count</a>.</p>
+
+<p>Referenced by <a class="el" href="a00586_source.html#l00084">running_stat_vec&lt; eT &gt;::reset()</a>, and <a class="el" href="a00584_source.html#l00195">running_stat&lt; eT &gt;::reset()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00077"></a>00077   {
+<a name="l00078"></a>00078   <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> =  eT(0);
+<a name="l00079"></a>00079   <a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> = <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>(0);
+<a name="l00080"></a>00080   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga88e69e203621e898c3474d036efd2ceb"></a><!-- doxytag: member="arma_counter::value" ref="ga88e69e203621e898c3474d036efd2ceb" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::value </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00087">87</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00040">arma_counter&lt; eT &gt;::d_count</a>, and <a class="el" href="a00585_source.html#l00041">arma_counter&lt; eT &gt;::i_count</a>.</p>
+
+<p>Referenced by <a class="el" href="a00586_source.html#l00167">running_stat_vec&lt; eT &gt;::cov()</a>, <a class="el" href="a00586_source.html#l00238">running_stat_vec_aux::update_stats()</a>, <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>, <a class="el" href="a00586_source.html#l00121">running_stat_vec&lt; eT &gt;::var()</a>, and <a class="el" href="a00584_source.html#l00233">running_stat&lt; eT &gt;::var()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00089"></a>00089   {
+<a name="l00090"></a>00090   <span class="keywordflow">return</span> <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> + eT(<a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a>);
+<a name="l00091"></a>00091   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga6e90332a574ecc097b80003f5a6b2171"></a><!-- doxytag: member="arma_counter::value_plus_1" ref="ga6e90332a574ecc097b80003f5a6b2171" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::value_plus_1 </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00098">98</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00040">arma_counter&lt; eT &gt;::d_count</a>, and <a class="el" href="a00585_source.html#l00041">arma_counter&lt; eT &gt;::i_count</a>.</p>
+
+<p>Referenced by <a class="el" href="a00586_source.html#l00238">running_stat_vec_aux::update_stats()</a>, and <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00100"></a>00100   {
+<a name="l00101"></a>00101   <span class="keyword">const</span> <a class="code" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> max_val = 0xffffffff;
+<a name="l00102"></a>00102   
+<a name="l00103"></a>00103   <span class="keywordflow">if</span>(<a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> &lt; max_val)
+<a name="l00104"></a>00104     {
+<a name="l00105"></a>00105     <span class="keywordflow">return</span> <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> + eT(<a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> + 1);
+<a name="l00106"></a>00106     }
+<a name="l00107"></a>00107   <span class="keywordflow">else</span>
+<a name="l00108"></a>00108     {
+<a name="l00109"></a>00109     <span class="keywordflow">return</span> <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> + eT(max_val) + eT(1);
+<a name="l00110"></a>00110     }
+<a name="l00111"></a>00111   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga76e81391fd2e8932523eeb6585e45e07"></a><!-- doxytag: member="arma_counter::value_minus_1" ref="ga76e81391fd2e8932523eeb6585e45e07" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00005.html">arma_counter</a>&lt; eT &gt;::value_minus_1 </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00118">118</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00040">arma_counter&lt; eT &gt;::d_count</a>, and <a class="el" href="a00585_source.html#l00041">arma_counter&lt; eT &gt;::i_count</a>.</p>
+
+<p>Referenced by <a class="el" href="a00586_source.html#l00167">running_stat_vec&lt; eT &gt;::cov()</a>, <a class="el" href="a00586_source.html#l00238">running_stat_vec_aux::update_stats()</a>, <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>, <a class="el" href="a00586_source.html#l00121">running_stat_vec&lt; eT &gt;::var()</a>, and <a class="el" href="a00584_source.html#l00233">running_stat&lt; eT &gt;::var()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00120"></a>00120   {
+<a name="l00121"></a>00121   <span class="keywordflow">if</span>(<a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> &gt; 0)
+<a name="l00122"></a>00122     {
+<a name="l00123"></a>00123     <span class="keywordflow">return</span> <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> + eT(<a class="code" href="a00005.html#a1eeca315f26dc29017f12d848e163085">i_count</a> - 1);
+<a name="l00124"></a>00124     }
+<a name="l00125"></a>00125   <span class="keywordflow">else</span>
+<a name="l00126"></a>00126     {
+<a name="l00127"></a>00127     <span class="keywordflow">return</span> <a class="code" href="a00005.html#a1b16b9881ae5d22180de80ac1478a3fd">d_count</a> - eT(1);
+<a name="l00128"></a>00128     }
+<a name="l00129"></a>00129   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga9afbbf89f85f493366e6ea2ba30f3cc9"></a><!-- doxytag: member="running_stat::~running_stat" ref="ga9afbbf89f85f493366e6ea2ba30f3cc9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::~<a class="el" href="a00324.html">running_stat</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00138">138</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00139"></a>00139   {
+<a name="l00140"></a>00140   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00141"></a>00141   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga2e40a6700ed69cd672ef9a7ecaae21ec"></a><!-- doxytag: member="running_stat::running_stat" ref="ga2e40a6700ed69cd672ef9a7ecaae21ec" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00324.html">running_stat</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00146">146</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00147"></a>00147   : <a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>      (                          eT(0))
+<a name="l00148"></a>00148   , <a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a>       (<span class="keyword">typename</span> <a class="code" href="a00324.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat&lt;eT&gt;::T</a>(0))
+<a name="l00149"></a>00149   , <a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a>     (                          eT(0))
+<a name="l00150"></a>00150   , <a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a>     (                          eT(0))
+<a name="l00151"></a>00151   , <a class="code" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a>(<span class="keyword">typename</span> <a class="code" href="a00324.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat&lt;eT&gt;::T</a>(0))
+<a name="l00152"></a>00152   , <a class="code" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a>(<span class="keyword">typename</span> <a class="code" href="a00324.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat&lt;eT&gt;::T</a>(0))
+<a name="l00153"></a>00153   {
+<a name="l00154"></a>00154   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00155"></a>00155   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaf87fd94c84249dea511fb04001ee7ac3"></a><!-- doxytag: member="running_stat::operator()" ref="gaf87fd94c84249dea511fb04001ee7ac3" args="(const T sample)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>&nbsp;</td>
+          <td class="paramname"> <em>sample</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>update statistics to reflect new sample </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00163">163</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00415_source.html#l00214">arma_check()</a>, <a class="el" href="a00408_source.html#l00025">arma_isfinite()</a>, and <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00164"></a>00164   {
+<a name="l00165"></a>00165   arma_extra_debug_sigprint();
+<a name="l00166"></a>00166   
+<a name="l00167"></a>00167   <a class="code" href="a00619.html#gae33c63e1a88bbb22b1874f472f27df9e" title="if state is true, throw a run-time error exception">arma_check</a>( (<a class="code" href="a00615.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a>(sample) == <span class="keyword">false</span>), <span class="stringliteral">&quot;running_stat: non-finite sample given&quot;</span> );
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169   <a class="code" href="a00735.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1" title="update statistics to reflect new sample">running_stat_aux::update_stats</a>(*<span class="keyword">this</span>, sample);
+<a name="l00170"></a>00170   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaaefb6a4b7a62dbd91b14faed3d53626a"></a><!-- doxytag: member="running_stat::operator()" ref="gaaefb6a4b7a62dbd91b14faed3d53626a" args="(const std::complex&lt; T &gt; &amp;sample)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; <a class="el" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>sample</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>update statistics to reflect new sample (version for complex numbers) </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00178">178</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00415_source.html#l00214">arma_check()</a>, <a class="el" href="a00408_source.html#l00025">arma_isfinite()</a>, and <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00179"></a>00179   {
+<a name="l00180"></a>00180   arma_extra_debug_sigprint();
+<a name="l00181"></a>00181   
+<a name="l00182"></a>00182   <a class="code" href="a00161.html">isnt_same_type&lt;eT, std::complex&lt; typename running_stat&lt;eT&gt;::T</a> &gt; &gt;::check();
+<a name="l00183"></a>00183   
+<a name="l00184"></a>00184   <a class="code" href="a00619.html#gae33c63e1a88bbb22b1874f472f27df9e" title="if state is true, throw a run-time error exception">arma_check</a>( (<a class="code" href="a00615.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a>(sample) == <span class="keyword">false</span>), <span class="stringliteral">&quot;running_stat: non-finite sample given&quot;</span> );
+<a name="l00185"></a>00185   
+<a name="l00186"></a>00186   <a class="code" href="a00735.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1" title="update statistics to reflect new sample">running_stat_aux::update_stats</a>(*<span class="keyword">this</span>, sample);
+<a name="l00187"></a>00187   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gab5299a8b23735c18f080c64cbce6863b"></a><!-- doxytag: member="running_stat::reset" ref="gab5299a8b23735c18f080c64cbce6863b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>set all statistics to zero </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00195">195</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00079">running_stat&lt; eT &gt;::counter</a>, <a class="el" href="a00585_source.html#l00085">running_stat&lt; eT &gt;::max_val</a>, <a class="el" href="a00585_source.html#l00088">running_stat&lt; eT &gt;::max_val_norm</a>, <a class="el" href="a00585_source.html#l00084">running_stat&lt; eT &gt;::min_val</a>, <a class="el" href="a00585_source.html#l00087">running_stat&lt; eT &gt;::min_val_norm</a>, <a class="el" href="a00585_source.html#l00081">running_stat&lt; eT &gt;::r_mean</a>, <a class="el" href="a00585_source.html#l00082">running_stat&lt; eT &gt;::r_var</a>, and <a class="el" href="a00584_source.html#l00076">arma_counter&lt; eT &gt;::reset()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00196"></a>00196   {
+<a name="l00197"></a>00197   arma_extra_debug_sigprint();
+<a name="l00198"></a>00198   
+<a name="l00199"></a>00199   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00324.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat&lt;eT&gt;::T</a> <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>;
+<a name="l00200"></a>00200   
+<a name="l00201"></a>00201   <a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga2100eb687e8f0247868c6b92e060945c">reset</a>();
+<a name="l00202"></a>00202   
+<a name="l00203"></a>00203   <a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>       = eT(0);
+<a name="l00204"></a>00204   <a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a>        =  <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>(0);
+<a name="l00205"></a>00205   
+<a name="l00206"></a>00206   <a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a>      = eT(0);
+<a name="l00207"></a>00207   <a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a>      = eT(0);
+<a name="l00208"></a>00208   
+<a name="l00209"></a>00209   <a class="code" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a> =  <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>(0);
+<a name="l00210"></a>00210   <a class="code" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a> =  <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>(0);
+<a name="l00211"></a>00211   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gafe2b34beaa4ee979f0532912f0d25998"></a><!-- doxytag: member="running_stat::mean" ref="gafe2b34beaa4ee979f0532912f0d25998" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::mean </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>mean or average value </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00219">219</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00081">running_stat&lt; eT &gt;::r_mean</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00221"></a>00221   {
+<a name="l00222"></a>00222   arma_extra_debug_sigprint();
+<a name="l00223"></a>00223   
+<a name="l00224"></a>00224   <span class="keywordflow">return</span> <a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>;
+<a name="l00225"></a>00225   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga7bc25b1019c59c0b0660e60906031945"></a><!-- doxytag: member="running_stat::var" ref="ga7bc25b1019c59c0b0660e60906031945" args="(const u32 norm_type=0) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::T <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::var </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>variance </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00233">233</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00079">running_stat&lt; eT &gt;::counter</a>, <a class="el" href="a00585_source.html#l00082">running_stat&lt; eT &gt;::r_var</a>, <a class="el" href="a00584_source.html#l00087">arma_counter&lt; eT &gt;::value()</a>, and <a class="el" href="a00584_source.html#l00118">arma_counter&lt; eT &gt;::value_minus_1()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00235"></a>00235   {
+<a name="l00236"></a>00236   arma_extra_debug_sigprint();
+<a name="l00237"></a>00237   
+<a name="l00238"></a>00238   <span class="keyword">const</span> <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> N = <a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga88e69e203621e898c3474d036efd2ceb">value</a>();
+<a name="l00239"></a>00239   
+<a name="l00240"></a>00240   <span class="keywordflow">if</span>(N &gt; <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>(1))
+<a name="l00241"></a>00241     {
+<a name="l00242"></a>00242     <span class="keywordflow">if</span>(norm_type == 0)
+<a name="l00243"></a>00243       {
+<a name="l00244"></a>00244       <span class="keywordflow">return</span> <a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a>;
+<a name="l00245"></a>00245       }
+<a name="l00246"></a>00246     <span class="keywordflow">else</span>
+<a name="l00247"></a>00247       {
+<a name="l00248"></a>00248       <span class="keyword">const</span> <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a> N_minus_1 = <a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga76e81391fd2e8932523eeb6585e45e07">value_minus_1</a>();
+<a name="l00249"></a>00249       <span class="keywordflow">return</span> (N_minus_1/N) * <a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a>;
+<a name="l00250"></a>00250       }
+<a name="l00251"></a>00251     }
+<a name="l00252"></a>00252   <span class="keywordflow">else</span>
+<a name="l00253"></a>00253     {
+<a name="l00254"></a>00254     <span class="keywordflow">return</span> <a class="code" href="a00324.html#a2254e8020db0f7fcd2b589d63f0bcc07">T</a>(0);
+<a name="l00255"></a>00255     }
+<a name="l00256"></a>00256   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga72614524303dfa76bf3b5a608f05d7b7"></a><!-- doxytag: member="running_stat::stddev" ref="ga72614524303dfa76bf3b5a608f05d7b7" args="(const u32 norm_type=0) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::T <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::stddev </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>standard deviation </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00264">264</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00441_source.html#l00522">sqrt()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00266"></a>00266   {
+<a name="l00267"></a>00267   arma_extra_debug_sigprint();
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269   <span class="keywordflow">return</span> <a class="code" href="a00642.html#ga88ff51e5431a82e8c903b656a21fba3c">std::sqrt</a>( (*this).var(norm_type) );
+<a name="l00270"></a>00270   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga73317e1b093f70a4122eeaa229c901c9"></a><!-- doxytag: member="running_stat::min" ref="ga73317e1b093f70a4122eeaa229c901c9" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::min </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>minimum value </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00278">278</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00084">running_stat&lt; eT &gt;::min_val</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00280"></a>00280   {
+<a name="l00281"></a>00281   arma_extra_debug_sigprint();
+<a name="l00282"></a>00282   
+<a name="l00283"></a>00283   <span class="keywordflow">return</span> <a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a>;
+<a name="l00284"></a>00284   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga8366b2cc630340027bd1417b3aab5f05"></a><!-- doxytag: member="running_stat::max" ref="ga8366b2cc630340027bd1417b3aab5f05" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT <a class="el" href="a00324.html">running_stat</a>&lt; eT &gt;::max </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>maximum value </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00292">292</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00085">running_stat&lt; eT &gt;::max_val</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00294"></a>00294   {
+<a name="l00295"></a>00295   arma_extra_debug_sigprint();
+<a name="l00296"></a>00296 
+<a name="l00297"></a>00297   <span class="keywordflow">return</span> <a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a>;
+<a name="l00298"></a>00298   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga43a0d1d4c3a9aab10dbafaf0e7a764c1"></a><!-- doxytag: member="running_stat_aux::update_stats" ref="ga43a0d1d4c3a9aab10dbafaf0e7a764c1" args="(running_stat&lt; eT &gt; &amp;x, const eT sample)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void running_stat_aux::update_stats </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00324.html">running_stat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>sample</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>update statistics to reflect new sample </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00306">306</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00585_source.html#l00079">running_stat&lt; eT &gt;::counter</a>, <a class="el" href="a00585_source.html#l00085">running_stat&lt; eT &gt;::max_val</a>, <a class="el" href="a00585_source.html#l00084">running_stat&lt; eT &gt;::min_val</a>, <a class="el" href="a00585_source.html#l00081">running_stat&lt; eT &gt;::r_mean</a>, <a class="el" href="a00585_source.html#l00082">running_stat&lt; eT &gt;::r_var</a>, <a class="el" href="a00584_source.html#l00087">arma_counter&lt; eT &gt;::value()</a>, <a class="el" href="a00584_source.html#l00118">arma_counter&lt; eT &gt;::value_minus_1()</a>, and <a class="el" href="a00584_source.html#l00098">arma_counter&lt; eT &gt;::value_plus_1()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00584_source.html#l00163">running_stat&lt; eT &gt;::operator()()</a>, and <a class="el" href="a00584_source.html#l00358">running_stat_aux::update_stats()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00307"></a>00307   {
+<a name="l00308"></a>00308   arma_extra_debug_sigprint();
+<a name="l00309"></a>00309   
+<a name="l00310"></a>00310   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00324.html" title="Class for keeping statistics of a continuously sampled process / signal. Useful if...">running_stat&lt;eT&gt;::T</a> T;
+<a name="l00311"></a>00311   
+<a name="l00312"></a>00312   <span class="keyword">const</span> T N = x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga88e69e203621e898c3474d036efd2ceb">value</a>();
+<a name="l00313"></a>00313   
+<a name="l00314"></a>00314   <span class="keywordflow">if</span>(N &gt; T(0))
+<a name="l00315"></a>00315     {
+<a name="l00316"></a>00316     <span class="keywordflow">if</span>(sample &lt; x.<a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a>)
+<a name="l00317"></a>00317       {
+<a name="l00318"></a>00318       x.<a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a> = sample;
+<a name="l00319"></a>00319       }
+<a name="l00320"></a>00320     
+<a name="l00321"></a>00321     <span class="keywordflow">if</span>(sample &gt; x.<a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a>)
+<a name="l00322"></a>00322       {
+<a name="l00323"></a>00323       x.<a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a> = sample;
+<a name="l00324"></a>00324       }
+<a name="l00325"></a>00325     
+<a name="l00326"></a>00326     <span class="keyword">const</span> T  N_plus_1   = x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga6e90332a574ecc097b80003f5a6b2171">value_plus_1</a>();
+<a name="l00327"></a>00327     <span class="keyword">const</span> T  N_minus_1  = x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga76e81391fd2e8932523eeb6585e45e07">value_minus_1</a>();
+<a name="l00328"></a>00328     
+<a name="l00329"></a>00329     <span class="comment">// note: variance has to be updated before the mean</span>
+<a name="l00330"></a>00330     
+<a name="l00331"></a>00331     <span class="keyword">const</span> eT tmp = sample - x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>;
+<a name="l00332"></a>00332     
+<a name="l00333"></a>00333     x.<a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a>  = N_minus_1/N * x.<a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a> + (tmp*tmp)/N_plus_1;
+<a name="l00334"></a>00334     
+<a name="l00335"></a>00335     x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a> = x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a> + (sample - x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>)/N_plus_1;
+<a name="l00336"></a>00336     <span class="comment">//x.r_mean = (N/N_plus_1)*x.r_mean + sample/N_plus_1;</span>
+<a name="l00337"></a>00337     <span class="comment">//x.r_mean = (x.r_mean + sample/N) * N/N_plus_1;</span>
+<a name="l00338"></a>00338     }
+<a name="l00339"></a>00339   <span class="keywordflow">else</span>
+<a name="l00340"></a>00340     {
+<a name="l00341"></a>00341     x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>  = sample;
+<a name="l00342"></a>00342     x.<a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a> = sample;
+<a name="l00343"></a>00343     x.<a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a> = sample;
+<a name="l00344"></a>00344     
+<a name="l00345"></a>00345     <span class="comment">// r_var is initialised to zero</span>
+<a name="l00346"></a>00346     <span class="comment">// in the constructor and reset()</span>
+<a name="l00347"></a>00347     }
+<a name="l00348"></a>00348   
+<a name="l00349"></a>00349   x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>++;
+<a name="l00350"></a>00350   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gad7918da5f93ef4342749886796fc3b71"></a><!-- doxytag: member="running_stat_aux::update_stats" ref="gad7918da5f93ef4342749886796fc3b71" args="(running_stat&lt; std::complex&lt; T &gt; &gt; &amp;x, const T sample)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void running_stat_aux::update_stats </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00324.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T&nbsp;</td>
+          <td class="paramname"> <em>sample</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>update statistics to reflect new sample (version for complex numbers) </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00358">358</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00584_source.html#l00306">running_stat_aux::update_stats()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00359"></a>00359   {
+<a name="l00360"></a>00360   arma_extra_debug_sigprint();
+<a name="l00361"></a>00361 
+<a name="l00362"></a>00362   <a class="code" href="a00735.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1" title="update statistics to reflect new sample">running_stat_aux::update_stats</a>(x, std::complex&lt;T&gt;(sample));
+<a name="l00363"></a>00363   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gadab0edabc3cb036e2685ba255070b4ab"></a><!-- doxytag: member="running_stat_aux::update_stats" ref="gadab0edabc3cb036e2685ba255070b4ab" args="(running_stat&lt; std::complex&lt; T &gt; &gt; &amp;x, const std::complex&lt; T &gt; &amp;sample)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void running_stat_aux::update_stats </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00324.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>sample</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>alter statistics to reflect new sample (version for complex numbers) </p>
+
+<p>Definition at line <a class="el" href="a00584_source.html#l00371">371</a> of file <a class="el" href="a00584_source.html">running_stat_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00442_source.html#l00022">norm()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00372"></a>00372   {
+<a name="l00373"></a>00373   arma_extra_debug_sigprint();
+<a name="l00374"></a>00374   
+<a name="l00375"></a>00375   <span class="keyword">typedef</span> <span class="keyword">typename</span> std::complex&lt;T&gt; eT;
+<a name="l00376"></a>00376   
+<a name="l00377"></a>00377   <span class="keyword">const</span> T sample_norm = <a class="code" href="a00643.html#ga68853b2d4cf1f3824358183777e07399">std::norm</a>(sample);
+<a name="l00378"></a>00378   <span class="keyword">const</span> T N           = x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga88e69e203621e898c3474d036efd2ceb">value</a>();
+<a name="l00379"></a>00379   
+<a name="l00380"></a>00380   <span class="keywordflow">if</span>(N &gt; T(0))
+<a name="l00381"></a>00381     {
+<a name="l00382"></a>00382     <span class="keywordflow">if</span>(sample_norm &lt; x.<a class="code" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a>)
+<a name="l00383"></a>00383       {
+<a name="l00384"></a>00384       x.<a class="code" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a> = sample_norm;
+<a name="l00385"></a>00385       x.<a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a>      = sample;
+<a name="l00386"></a>00386       }
+<a name="l00387"></a>00387     
+<a name="l00388"></a>00388     <span class="keywordflow">if</span>(sample_norm &gt; x.<a class="code" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a>)
+<a name="l00389"></a>00389       {
+<a name="l00390"></a>00390       x.<a class="code" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a> = sample_norm;
+<a name="l00391"></a>00391       x.<a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a>      = sample;
+<a name="l00392"></a>00392       }
+<a name="l00393"></a>00393     
+<a name="l00394"></a>00394     <span class="keyword">const</span> T  N_plus_1   = x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga6e90332a574ecc097b80003f5a6b2171">value_plus_1</a>();
+<a name="l00395"></a>00395     <span class="keyword">const</span> T  N_minus_1  = x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>.<a class="code" href="a00735.html#ga76e81391fd2e8932523eeb6585e45e07">value_minus_1</a>();
+<a name="l00396"></a>00396     
+<a name="l00397"></a>00397     x.<a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a> = N_minus_1/N * x.<a class="code" href="a00324.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a> + <a class="code" href="a00643.html#ga68853b2d4cf1f3824358183777e07399">std::norm</a>(sample - x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>)/N_plus_1;
+<a name="l00398"></a>00398     
+<a name="l00399"></a>00399     x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a> = x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a> + (sample - x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>)/N_plus_1;
+<a name="l00400"></a>00400     <span class="comment">//x.r_mean = (N/N_plus_1)*x.r_mean + sample/N_plus_1;</span>
+<a name="l00401"></a>00401     <span class="comment">//x.r_mean = (x.r_mean + sample/N) * N/N_plus_1;</span>
+<a name="l00402"></a>00402     }
+<a name="l00403"></a>00403   <span class="keywordflow">else</span>
+<a name="l00404"></a>00404     {
+<a name="l00405"></a>00405     x.<a class="code" href="a00324.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a>       = sample;
+<a name="l00406"></a>00406     x.<a class="code" href="a00324.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a>      = sample;
+<a name="l00407"></a>00407     x.<a class="code" href="a00324.html#a1aef557777807037eabecae815f97a83">max_val</a>      = sample;
+<a name="l00408"></a>00408     x.<a class="code" href="a00324.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a> = sample_norm;
+<a name="l00409"></a>00409     x.<a class="code" href="a00324.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a> = sample_norm;
+<a name="l00410"></a>00410     
+<a name="l00411"></a>00411     <span class="comment">// r_var is initialised to zero</span>
+<a name="l00412"></a>00412     <span class="comment">// in the constructor and reset()</span>
+<a name="l00413"></a>00413     }
+<a name="l00414"></a>00414   
+<a name="l00415"></a>00415   x.<a class="code" href="a00324.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a>++;
+<a name="l00416"></a>00416   }
+</pre></div></p>
+
+</div>
+</div>
+</div>
 </BODY>
 </HTML>

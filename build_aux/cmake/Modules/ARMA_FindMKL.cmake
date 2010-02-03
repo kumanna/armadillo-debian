@@ -6,7 +6,6 @@
 SET(MKL_NAMES ${MKL_NAMES} mkl_lapack)
 SET(MKL_NAMES ${MKL_NAMES} mkl_intel_thread)
 SET(MKL_NAMES ${MKL_NAMES} mkl_core)
-SET(MKL_NAMES ${MKL_NAMES} mkl_def)
 SET(MKL_NAMES ${MKL_NAMES} guide)
 SET(MKL_NAMES ${MKL_NAMES} mkl)
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_rand.hpp File Reference</title>
+<title>Armadillo Technical: fn_inv.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,20 +25,20 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_cbddba4184e8b026e95f944779bddfd6.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_6043df652a445db60924c267c4a9145c.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_rand.hpp File Reference</h1>
+<h1>fn_inv.hpp File Reference</h1>
 <p><a href="a00434_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00171.html">Op</a>&lt; <a class="el" href="a00164.html">mat</a>, <a class="el" href="a00204.html">op_rand</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00634.html#gae875f8ae2d57ae41e19bc529533ec40e">rand</a> (const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a dense matrix with all elements set to random values in the [0,1] interval (uniform distribution).  <a href="a00634.html#gae875f8ae2d57ae41e19bc529533ec40e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00171.html">Op</a>&lt; <a class="el" href="a00023.html">colvec</a>, <a class="el" href="a00204.html">op_rand</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00634.html#ga43547538ef720d9f5648165f4935a637">rand</a> (const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a vector with all elements set to random values in the [0,1] interval (uniform distribution).  <a href="a00634.html#ga43547538ef720d9f5648165f4935a637"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00229.html">OpCube</a>&lt; <a class="el" href="a00031.html">cube</a>, <a class="el" href="a00204.html">op_rand</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00634.html#ga40277022090838064f9916b88920a99e">rand</a> (const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a00729.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a dense cube with all elements set to random values in the [0,1] interval (uniform distribution).  <a href="a00634.html#ga40277022090838064f9916b88920a99e"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00201.html">op_inv</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00635.html#ga30bd6ad3d9bc003658c253a5122d42e9">inv</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">delayed matrix inverse  <a href="a00635.html#ga30bd6ad3d9bc003658c253a5122d42e9"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00635.html#ga7adb41650bdb50fd02b8564907348485">inv</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00201.html">op_inv</a> &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">remove the inverse operation if applied twice consecutively  <a href="a00635.html#ga7adb41650bdb50fd02b8564907348485"></a><br/></td></tr>
 </table>
 </div>
 </BODY>

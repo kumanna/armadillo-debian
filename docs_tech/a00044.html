@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: field_aux Class Reference</title>
+<title>Armadillo Technical: Cube_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,52 +29,43 @@
   </div>
 </div>
 <div class="contents">
-<h1>field_aux Class Reference<br/>
+<h1>Cube_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00609.html">Field</a>]</small>
-</h1><!-- doxytag: class="field_aux" -->
-<p><code>#include &lt;<a class="el" href="a00409_source.html">field_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00618.html">Cube</a>]</small>
+</h1><!-- doxytag: class="Cube_aux" -->
+<p><code>#include &lt;<a class="el" href="a00414_source.html">Cube_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00774.html">List of all members.</a></p>
+<p><a href="a00786.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gab3b66cc27f791ccd84f7ef462e1832d6">reset_objects</a> (<a class="el" href="a00043.html">field</a>&lt; oT &gt; &amp;x)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gaaf775802dcc7113f181f7946682a4d3b">reset_objects</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#gaa0ebb575427635df9dad21d2bd0457f3">prefix_pp</a> (<a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++  <a href="a00618.html#gaa0ebb575427635df9dad21d2bd0457f3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#ga94cb50acaf1e4360e6325f325ba096bd">prefix_pp</a> (<a class="el" href="a00043.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00618.html#ga94cb50acaf1e4360e6325f325ba096bd"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gad1d5775d525988476e535681565ee3f2">reset_objects</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00023.html">Col</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#ga4e73d6e46a8d79e6c6b40607154e7b1b">postfix_pp</a> (<a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++  <a href="a00618.html#ga4e73d6e46a8d79e6c6b40607154e7b1b"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#ga2ff885c12d4c334ae827157ddbed71b0">postfix_pp</a> (<a class="el" href="a00043.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00618.html#ga2ff885c12d4c334ae827157ddbed71b0"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gaa24b7bd4103024def8d9c75548bcfc3a">reset_objects</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00311.html">Row</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#ga4d72f270fd218a69d79adecac7e9fc5c">prefix_mm</a> (<a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix --  <a href="a00618.html#ga4d72f270fd218a69d79adecac7e9fc5c"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#gab4485a579abb88757b7f8e83805ec2f4">prefix_mm</a> (<a class="el" href="a00043.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix -- for complex numbers (work around for limitations of the std::complex class)  <a href="a00618.html#gab4485a579abb88757b7f8e83805ec2f4"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#ga548f8c776faf27ed4fe5a1b5ae53e519">reset_objects</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &gt; &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00609.html#ga84e902200837f78fba517651bc7c667e">reset_objects</a> (<a class="el" href="a00043.html">field</a>&lt; std::string &gt; &amp;x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gab1a0f23954cf95e117d1a451858c5607">save</a> (const <a class="el" href="a00043.html">field</a>&lt; oT &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#ga3de8a6ef648eaf3eeac453b9b76fdaee">load</a> (<a class="el" href="a00043.html">field</a>&lt; oT &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#ga45acaa73d589f8dad712832a42599456">save</a> (const <a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gabb6bdc75360f71d1fefa9414d655f02d">load</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00164.html">Mat</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#ga8900174b33946b1d9a59a9afa748953a">save</a> (const <a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00023.html">Col</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gacc7946fa4a3ac456e498c33ad2ac404f">load</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00023.html">Col</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#ga2d6cafb94c4148cb43e632b0cdf58c2d">save</a> (const <a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00311.html">Row</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gae4b570deba317a2b3c25c0176494c827">load</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00311.html">Row</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gade0743b7c1a013221d5777b5f56ae4fb">save</a> (const <a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00609.html#gab69dd167bcfd33ba0c024898b3b3da08">load</a> (<a class="el" href="a00043.html">field</a>&lt; <a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00609.html#ga716668089dd4223b69a42177565f97bd">save</a> (const <a class="el" href="a00043.html">field</a>&lt; std::string &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00609.html#gab8afe2941951de3015de7153d3fd987b">load</a> (<a class="el" href="a00043.html">field</a>&lt; std::string &gt; &amp;x, const std::string &amp;name, const <a class="el" href="a00608.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#gae95e218a4268fbcee637e80b56e1e6f6">postfix_mm</a> (<a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix --  <a href="a00618.html#gae95e218a4268fbcee637e80b56e1e6f6"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00618.html#gae2e53de87e71bb5b874bfbe95f4e380c">postfix_mm</a> (<a class="el" href="a00043.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00618.html#gae2e53de87e71bb5b874bfbe95f4e380c"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="a00409_source.html#l00114">114</a> of file <a class="el" href="a00409_source.html">field_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00414_source.html#l00169">169</a> of file <a class="el" href="a00414_source.html">Cube_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

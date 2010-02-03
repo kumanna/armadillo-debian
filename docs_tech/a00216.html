@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_sinh Class Reference</title>
+<title>Armadillo Technical: op_rand Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,23 +29,33 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_sinh Class Reference<br/>
+<h1>op_rand Class Reference<br/>
 <small>
-[<a class="el" href="a00701.html">Op_trig</a>]</small>
-</h1><!-- doxytag: class="op_sinh" -->
-<p><code>#include &lt;<a class="el" href="a00546_source.html">op_trig_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00705.html">Op_rand</a>]</small>
+</h1><!-- doxytag: class="op_rand" -->
+<p>'generate matrix with random values' operation  
+<a href="#_details">More...</a></p>
 
-<p><a href="a00941.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00539_source.html">op_rand_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a00954.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00701.html#ga5ac583c8aba73104258f8e7c8aea9633">apply</a> (<a class="el" href="a00164.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00171.html">Op</a>&lt; T1, <a class="el" href="a00216.html">op_sinh</a> &gt; &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00701.html#gade425d0f898da6049339d1214b039b5d">apply</a> (<a class="el" href="a00031.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00229.html">OpCube</a>&lt; T1, <a class="el" href="a00216.html">op_sinh</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00705.html#ga298a76160f7044f0be3bade65265cde6">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00216.html">op_rand</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00705.html#ga2bfeddb89047c29264412341824c0f3b">apply</a> (<a class="el" href="a00043.html">Cube</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00241.html">OpCube</a>&lt; <a class="el" href="a00043.html">Cube</a>&lt; eT &gt;, <a class="el" href="a00216.html">op_rand</a> &gt; &amp;in)</td></tr>
+<tr><td colspan="2"><h2>Static Private Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d">direct_rand</a> (eT *x, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">TODO: optionally use the Marsenne-Twister random number generator (see Boost).  <a href="a00705.html#ga1a4acacc61d6f76569c9e21550ed744d"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00705.html#ga660cb4d2a6f776267e3335476634d98e">direct_rand</a> (std::complex&lt; T &gt; *x, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>'generate matrix with random values' operation </p>
 
-<p>Definition at line <a class="el" href="a00546_source.html#l00100">100</a> of file <a class="el" href="a00546_source.html">op_trig_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00539_source.html#l00022">22</a> of file <a class="el" href="a00539_source.html">op_rand_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

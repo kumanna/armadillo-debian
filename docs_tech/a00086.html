@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_complex_float&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: glue_times_diag Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,41 +29,31 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_complex_float&lt; T1 &gt; Struct Template Reference<br/>
+<h1>glue_times_diag Class Reference<br/>
 <small>
-[<a class="el" href="a00728.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_complex_float" -->
-<p><code>#include &lt;<a class="el" href="a00583_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00683.html">Glue_times</a>]</small>
+</h1><!-- doxytag: class="glue_times_diag" -->
+<p><code>#include &lt;<a class="el" href="a00496_source.html">glue_times_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00813.html">List of all members.</a></p>
+<p><a href="a00826.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086.html#a5ff6d99002ca80f4d4fe66b2e209693e">value</a> = false</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00683.html#ga7abe43c772cabe42861c40ddfa40b460">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const T1 &amp;A, const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;B)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00683.html#gad6f22b009d7de1cb73e21bbc8d6af37c">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;A, const T2 &amp;B)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00683.html#ga4aee9d9d6763609327ed4d485bde4ab8">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;A, const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;B)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00683.html#ga70d6b72a7fdbbbc18fb15d30ef9de4fa">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00070.html">Glue</a>&lt; T1, <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt;, <a class="el" href="a00086.html">glue_times_diag</a> &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00683.html#gaab9c294b469ffc18dcd877c9d8f1bd9b">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00070.html">Glue</a>&lt; <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt;, T2, <a class="el" href="a00086.html">glue_times_diag</a> &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00683.html#gae46bef96e1bf3d963b6ff05a0157a2a7">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00070.html">Glue</a>&lt; <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt;, <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt;, <a class="el" href="a00086.html">glue_times_diag</a> &gt; &amp;X)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct is_complex_float&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00372">372</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a5ff6d99002ca80f4d4fe66b2e209693e"></a><!-- doxytag: member="is_complex_float::value" ref="a5ff6d99002ca80f4d4fe66b2e209693e" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool <a class="el" href="a00086.html">is_complex_float</a>&lt; T1 &gt;::<a class="el" href="a00086.html#a5ff6d99002ca80f4d4fe66b2e209693e">value</a> = false<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00583_source.html#l00373">373</a> of file <a class="el" href="a00583_source.html">traits.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00496_source.html#l00094">94</a> of file <a class="el" href="a00496_source.html">glue_times_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

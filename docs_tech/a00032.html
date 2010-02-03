@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Cube_aux Class Reference</title>
+<title>Armadillo Technical: BaseCube&lt; elem_type, derived &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,43 +29,56 @@
   </div>
 </div>
 <div class="contents">
-<h1>Cube_aux Class Reference<br/>
+<h1>BaseCube&lt; elem_type, derived &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00605.html">Cube</a>]</small>
-</h1><!-- doxytag: class="Cube_aux" -->
-<p><code>#include &lt;<a class="el" href="a00402_source.html">Cube_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00614.html">BaseCube</a>]</small>
+</h1><!-- doxytag: class="BaseCube" -->
+<p>Analog of the <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> class, intended for cubes.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a00761.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00406_source.html">BaseCube.hpp</a>&gt;</code></p>
+
+<p><a href="a00775.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#gaa0ebb575427635df9dad21d2bd0457f3">prefix_pp</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++  <a href="a00605.html#gaa0ebb575427635df9dad21d2bd0457f3"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#ga94cb50acaf1e4360e6325f325ba096bd">prefix_pp</a> (<a class="el" href="a00031.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00605.html#ga94cb50acaf1e4360e6325f325ba096bd"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#ga4e73d6e46a8d79e6c6b40607154e7b1b">postfix_pp</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++  <a href="a00605.html#ga4e73d6e46a8d79e6c6b40607154e7b1b"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#ga2ff885c12d4c334ae827157ddbed71b0">postfix_pp</a> (<a class="el" href="a00031.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00605.html#ga2ff885c12d4c334ae827157ddbed71b0"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#ga4d72f270fd218a69d79adecac7e9fc5c">prefix_mm</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix --  <a href="a00605.html#ga4d72f270fd218a69d79adecac7e9fc5c"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#gab4485a579abb88757b7f8e83805ec2f4">prefix_mm</a> (<a class="el" href="a00031.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix -- for complex numbers (work around for limitations of the std::complex class)  <a href="a00605.html#gab4485a579abb88757b7f8e83805ec2f4"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#gae95e218a4268fbcee637e80b56e1e6f6">postfix_mm</a> (<a class="el" href="a00031.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix --  <a href="a00605.html#gae95e218a4268fbcee637e80b56e1e6f6"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00605.html#gae2e53de87e71bb5b874bfbe95f4e380c">postfix_mm</a> (<a class="el" href="a00031.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00605.html#gae2e53de87e71bb5b874bfbe95f4e380c"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const derived &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a> () const </td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename elem_type, typename derived&gt;<br/>
+ struct BaseCube&lt; elem_type, derived &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00402_source.html#l00169">169</a> of file <a class="el" href="a00402_source.html">Cube_proto.hpp</a>.</p>
+<p>Analog of the <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> class, intended for cubes. </p>
+
+<p>Definition at line <a class="el" href="a00406_source.html#l00023">23</a> of file <a class="el" href="a00406_source.html">BaseCube.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a65f6e7fb3341e814ca4e7d683ec3595c"></a><!-- doxytag: member="BaseCube::get_ref" ref="a65f6e7fb3341e814ca4e7d683ec3595c" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename elem_type, typename derived&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const derived&amp; <a class="el" href="a00032.html">BaseCube</a>&lt; elem_type, derived &gt;::get_ref </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00406_source.html#l00028">28</a> of file <a class="el" href="a00406_source.html">BaseCube.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00441_source.html#l00432">abs()</a>, <a class="el" href="a00422_source.html#l00053">accu()</a>, <a class="el" href="a00461_source.html#l00233">acos()</a>, <a class="el" href="a00461_source.html#l00263">acosh()</a>, <a class="el" href="a00423_source.html#l00044">as_scalar()</a>, <a class="el" href="a00461_source.html#l00293">asin()</a>, <a class="el" href="a00461_source.html#l00323">asinh()</a>, <a class="el" href="a00461_source.html#l00353">atan()</a>, <a class="el" href="a00461_source.html#l00383">atanh()</a>, <a class="el" href="a00461_source.html#l00218">cos()</a>, <a class="el" href="a00461_source.html#l00248">cosh()</a>, <a class="el" href="a00441_source.html#l00357">exp()</a>, <a class="el" href="a00425_source.html#l00180">conv_to&lt; out_eT &gt;::from()</a>, <a class="el" href="a00441_source.html#l00276">log()</a>, <a class="el" href="a00441_source.html#l00330">log10()</a>, <a class="el" href="a00569_source.html#l00067">operator!=()</a>, <a class="el" href="a00570_source.html#l00028">operator%()</a>, <a class="el" href="a00589_source.html#l00292">subview_cube&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00571_source.html#l00028">operator*()</a>, <a class="el" href="a00568_source.html#l00040">operator+()</a>, <a class="el" href="a00589_source.html#l00226">subview_cube&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00567_source.html#l00054">operator-()</a>, <a class="el" href="a00589_source.html#l00259">subview_cube&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00566_source.html#l00026">operator/()</a>, <a class="el" href="a00589_source.html#l00325">subview_cube&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00569_source.html#l00235">operator&lt;()</a>, <a class="el" href="a00569_source.html#l00151">operator&lt;=()</a>, <a class="el" href="a00589_source.html#l00192">subview_cube&lt; eT &gt;::operator=()</a>, <a class="el" href="a00569_source.html#l00025">operator==()</a>, <a class="el" href="a00569_source.html#l00193">operator&gt;()</a>, <a class="el" href="a00569_source.html#l00109">operator&gt;=()</a>, <a class="el" href="a00441_source.html#l00560">pow()</a>, <a class="el" href="a00451_source.html#l00040">reshape()</a>, <a class="el" href="a00461_source.html#l00278">sin()</a>, <a class="el" href="a00461_source.html#l00308">sinh()</a>, <a class="el" href="a00441_source.html#l00534">sqrt()</a>, <a class="el" href="a00441_source.html#l00507">square()</a>, <a class="el" href="a00461_source.html#l00338">tan()</a>, <a class="el" href="a00461_source.html#l00368">tanh()</a>, <a class="el" href="a00441_source.html#l00384">trunc_exp()</a>, and <a class="el" href="a00441_source.html#l00303">trunc_log()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00029"></a>00029     {
+<a name="l00030"></a>00030     <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>derived&amp;<span class="keyword">&gt;</span>(*this);
+<a name="l00031"></a>00031     }
+</pre></div></p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>
