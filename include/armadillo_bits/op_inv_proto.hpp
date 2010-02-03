@@ -31,18 +31,23 @@ class op_inv
   
   template<typename T1>
   inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& in);
-
+  
+  
+  #if defined(ARMA_GOOD_COMPILER)
+  
   template<typename T1>
   inline static void apply(Mat<typename T1::elem_type>& out, const Op< Op<T1,op_diagmat>, op_inv>& in);
-
-  //
-
+  
   template<typename eT>
   inline static void apply_diagvec(Mat<eT>& out, const Mat<eT>& X);
   
   template<typename eT>
   inline static void apply(Mat<eT>& out, const Op< Op<Mat<eT>,op_diagmat_vec>, op_inv>& in);
   
+  #endif
+  
   };
+
+
 
 //! @}

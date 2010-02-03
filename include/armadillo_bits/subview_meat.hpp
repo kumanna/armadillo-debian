@@ -444,7 +444,7 @@ subview<eT>::operator-= (const subview<eT>& x_in)
 template<typename eT>
 inline
 void
-subview<eT>::operator%= (const subview& x_in)
+subview<eT>::operator%= (const subview<eT>& x_in)
   {
   arma_extra_debug_sigprint();
   
@@ -483,7 +483,7 @@ subview<eT>::operator%= (const subview& x_in)
 template<typename eT>
 inline
 void
-subview<eT>::operator/= (const subview& x_in)
+subview<eT>::operator/= (const subview<eT>& x_in)
   {
   arma_extra_debug_sigprint();
   

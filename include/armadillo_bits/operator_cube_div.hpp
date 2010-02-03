@@ -80,8 +80,8 @@ operator/
   
   promote_type<eT1,eT2>::check();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
+  const unwrap_cube<T1> tmp1(X.get_ref());
+  const unwrap_cube<T2> tmp2(Y.get_ref());
   
   const Cube<eT1>& A = tmp1.M;
   const Cube<eT2>& B = tmp2.M;

@@ -163,7 +163,7 @@ struct arma_version
   {
   static const unsigned int major = 0;
   static const unsigned int minor = 8;
-  static const unsigned int patch = 0;
+  static const unsigned int patch = 2;
   };
 
 

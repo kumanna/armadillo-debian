@@ -17,7 +17,7 @@
 <tr>
 <td>
 <h2>
-<b>Reference for Armadillo 0.8.0</b>
+<b>Reference for Armadillo 0.8.2</b>
 </h2>
 <td>
 <td style="text-align: right; vertical-align: top;">
@@ -107,6 +107,7 @@ the <a href="http://arma.sourceforge.net/contact.html">developers</a> are intere
 <b>Scalar Valued Functions of Vectors/Matrices/Cubes</b>
 <ul>
 <a href="#accu">accu</a>&nbsp;&middot;
+<a href="#as_scalar">as_scalar</a>&nbsp;&middot;
 <a href="#det">det</a>&nbsp;&middot;
 <a href="#dot">dot/norm_dot</a>&nbsp;&middot;
 <a href="#norm">norm</a>&nbsp;&middot;
@@ -289,25 +290,24 @@ Constructors:
 <li>
 Advanced constructors:
 <ul>
-mat(aux_mem*, n_rows, n_cols, copy_aux_mem = true)
-<ul>
+<li>mat(aux_mem*, n_rows, n_cols, copy_aux_mem = true)
+<br>
+<br>
 Create a matrix using data from writeable auxiliary memory.
 By default the matrix allocates its own memory and copies data from the auxiliary memory.
 However, if copy_aux_mem is set to false, the matrix will instead directly use the auxiliary memory 
--- this can be very dangerous unless you know what you're doing!
-</ul>
-
+-- this can be dangerous unless you know what you're doing!
+</li>
 <br>
-mat(const aux_mem*, n_rows, n_cols)
+<li>mat(const aux_mem*, n_rows, n_cols)
 <br>
-<ul>
+<br>
 Create a matrix by copying data from read-only auxiliary memory.
-</ul>
-
+</li>
 </ul>
 </li>
 <br>
-
+<br>
 <li>
 Examples:
 <ul>
@@ -761,25 +761,24 @@ cube()
 <li>
 Advanced constructors:
 <ul>
-cube(aux_mem*, n_rows, n_cols, n_slices, copy_aux_mem = true)
-<ul>
+<li>cube(aux_mem*, n_rows, n_cols, n_slices, copy_aux_mem = true)
+<br>
+<br>
 Create a cube using data from writeable auxiliary memory.
 By default the cube allocates its own memory and copies data from the auxiliary memory.
 However, if copy_aux_mem is set to false, the cube will instead directly use the auxiliary memory 
--- this can be very dangerous unless you know what you're doing!
-</ul>
-
+-- this can be dangerous unless you know what you're doing!
+</li>
 <br>
-cube(const aux_mem*, n_rows, n_cols, n_slices)
+<li>cube(const aux_mem*, n_rows, n_cols, n_slices)
 <br>
-<ul>
+<br>
 Create a cube by copying data from read-only auxiliary memory.
-</ul>
-
+</li>
 </ul>
 </li>
 <br>
-
+<br>
 <li>
 Examples:
 <ul>
@@ -2784,6 +2783,34 @@ See also: <a href="#sum">sum()</a>
 </ul>
 <br>
 <hr class="greyline"><br>
+
+<a name="as_scalar"></a>
+<b>as_scalar(expression)</b>
+<ul>
+<li>
+Evaluate an expression that results in a 1x1 matrix, followed by converting the 1x1 matrix to a scalar
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+rowvec r = rand&lt;rowvec&gt;(5);
+colvec q = rand&lt;colvec&gt;(5);
+mat    A = rand&lt;mat&gt;(5,5);
+
+double x = as_scalar(r*q);
+double y = as_scalar(r*A*q);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="#conv_to">conv_to()</a>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
                   
 <a name="det"></a>
 <b>det(mat)</b>
@@ -3178,6 +3205,10 @@ conv_to&lt;<i>type</i>&gt::from(X)
 </b>
 <ul>
 <li>
+A form of casting
+</li>
+<br>
+<li>
 Convert between matrix types (e.g. <i>mat</i> to <i>fmat</i>) as well as cube types (e.g. <i>cube</i> to <i>fcube</i>).
 </li>
 <br>
@@ -3187,21 +3218,19 @@ if the object has one column or one row, respectively.
 </li>
 <br>
 <li>
-Conversion of a matrix into a scalar is only possible for matrices with a size of 1x1.
-</li>
-<br>
-<li>
 Examples:
 <ul>
 <pre>
-mat  A = rand&lt;mat&gt;(1,5);
-mat  B = rand&lt;mat&gt;(5,1);
+mat  A = rand&lt;mat&gt;(5,5);
 
-fmat C = conv_to&lt;fmat&gt;::from(A);
-
-double x = conv_to&lt;rowvec&gt;::from(A) * conv_to&lt;colvec&gt;::from(B);
-double y = conv_to&lt;double&gt;::from(A * B);
+fmat B = conv_to&lt;fmat&gt;::from(A);
 </pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="#as_scalar">as_scalar()</a>
+</li>
 </ul>
 </li>
 </ul>

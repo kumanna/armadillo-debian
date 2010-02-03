@@ -62,6 +62,43 @@ operator%
 
 
 
+//! diagmat % diagmat
+template<typename T1, typename T2>
+inline
+Mat< typename promote_type<typename T1::elem_type, typename T2::elem_type>::result >
+operator%
+(const Op<T1, op_diagmat>& X, const Op<T2, op_diagmat>& Y)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT1;
+  typedef typename T2::elem_type eT2;
+  
+  typedef typename promote_type<eT1,eT2>::result out_eT;
+  
+  promote_type<eT1,eT2>::check();
+  
+  const unwrap<T1> tmp1(X.m);
+  const unwrap<T2> tmp2(Y.m);
+  
+  const Mat<eT1> A(tmp1.M);
+  const Mat<eT2> B(tmp2.M);
+  
+  arma_debug_assert_same_size(A.n_rows, A.n_cols, B.n_rows, B.n_cols, "element-wise matrix multiplication");
+  
+  Mat<out_eT> out(A.n_rows, A.n_rows);
+  out.zeros();
+  
+  for(u32 i=0; i<A.n_rows; ++i)
+    {
+    out.at(i,i) = upgrade_val<eT1,eT2>::apply( A.at(i,i) ) * upgrade_val<eT1,eT2>::apply( B.at(i,i) );
+    }
+  
+  return out;
+  }
+
+
+
 //
 // schur product of Base objects with different element types
 //
@@ -226,276 +263,6 @@ operator%
   
   return Glue<T1, T2, glue_schur>(X.get_ref(), Y.get_ref());
   }
-
-
-
-//
-// old operators
-//
-
-
-// //! mat % mat
-// template<typename mT>
-// arma_inline
-// const Glue<Mat<mT>, Mat<mT>, glue_schur>
-// operator%
-// (const Mat<mT>& X, const Mat<mT>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Mat<mT>, Mat<mT>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! mat % diagmat(T1)
-// template<typename T1>
-// arma_inline
-// const Glue<Mat<typename T1::elem_type>, Op<T1,op_diagmat>, glue_schur_diag>
-// operator%
-// (const Mat<typename T1::elem_type>& X, const Op<T1,op_diagmat>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Mat<typename T1::elem_type>, Op<T1,op_diagmat>, glue_schur_diag>(X,Y);
-//   }
-// 
-// 
-// 
-// //! diagmat(T1) % mat
-// template<typename mT, typename T1>
-// arma_inline
-// const Glue< Op<T1,op_diagmat>, Mat<typename T1::elem_type>, glue_schur_diag>
-// operator%
-// (const Op<T1,op_diagmat>& X, const Mat<typename T1::elem_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue< Op<T1,op_diagmat>, Mat<typename T1::elem_type>, glue_schur_diag>(X,Y);
-//   }
-// 
-// 
-// 
-// //! diagmat(T1) % diagmat(T2)
-// template<typename T1, typename T2>
-// arma_inline
-// const Glue< Op<T1,op_diagmat>, Op<T2,op_diagmat>, glue_schur_diag>
-// operator%
-// (const Op<T1,op_diagmat>& X, const Op<T2,op_diagmat>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue< Op<T1,op_diagmat>, Op<T2,op_diagmat>, glue_schur_diag>(X,Y);
-//   }
-// 
-// 
-// 
-// //! mat % op
-// template<typename T1, typename op_type>
-// arma_inline
-// const Glue<Mat<typename T1::elem_type>, Op<T1,op_type>, glue_schur>
-// operator%
-// (const Mat<typename T1::elem_type>& X, const Op<T1,op_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Mat<typename T1::elem_type>, Op<T1,op_type>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! op % mat
-// template<typename T1, typename op_type>
-// arma_inline
-// const Glue<Op<T1,op_type>, Mat<typename T1::elem_type>, glue_schur>
-// operator%
-// (const Op<T1,op_type>& X, const Mat<typename T1::elem_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Op<T1,op_type>, Mat<typename T1::elem_type>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! op % diagmat(T2)
-// template<typename T1, typename op_type, typename T2>
-// arma_inline
-// const Glue<Op<T1,op_type>, Op<T2,op_diagmat>, glue_schur_diag>
-// operator%
-// (const Op<T1,op_type>& X, const Op<T2,op_diagmat>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Op<T1,op_type>, Op<T2,op_diagmat>, glue_schur_diag>(X,Y);
-//   }
-// 
-// 
-// 
-// //! op % glue
-// template<typename T1, typename op_type, typename T2, typename T3, typename glue_type>
-// arma_inline
-// const Glue<Op<T1,op_type>, Glue<T2, T3, glue_type>, glue_schur>
-// operator%
-// (const Op<T1,op_type>& X, const Glue<T2, T3, glue_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Op<T1,op_type>, Glue<T2, T3, glue_type>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! glue % op
-// template<typename T1, typename op_type, typename T2, typename T3, typename glue_type>
-// arma_inline
-// const Glue<Glue<T2, T3, glue_type>, Op<T1,op_type>, glue_schur>
-// operator%
-// (const Glue<T2, T3, glue_type>& X, const Op<T1,op_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Glue<T2, T3, glue_type>, Op<T1,op_type>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! mat % glue
-// template<typename T1, typename T2, typename glue_type>
-// arma_inline
-// const Glue<Mat<typename T1::elem_type>, Glue<T1,T2,glue_type>, glue_schur>
-// operator%
-// (const Mat<typename T1::elem_type>& X, const Glue<T1,T2,glue_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Mat<typename T1::elem_type>, Glue<T1,T2,glue_type>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! diagmat(T1) % glue
-// template<typename T1, typename T2, typename T3, typename glue_type>
-// arma_inline
-// const Glue< Op<T1,op_diagmat>, Glue<T2,T3,glue_type>, glue_schur_diag>
-// operator%
-// (const Op<T1,op_diagmat>& X, const Glue<T2,T3,glue_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue< Op<T1,op_diagmat>, Glue<T2,T3,glue_type>, glue_schur_diag>(X,Y);
-//   }
-// 
-// 
-// 
-// //! glue % mat
-// template<typename T1, typename T2, typename glue_type>
-// arma_inline
-// const Glue<Glue<T1, T2,glue_type>, Mat<typename T1::elem_type>, glue_schur>
-// operator%
-// (const Glue<T1,T2,glue_type>& X, const Mat<typename T1::elem_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Glue<T1,T2,glue_type>, Mat<typename T1::elem_type>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! glue % diagmat(T3)
-// template<typename T1, typename T2, typename glue_type, typename T3>
-// arma_inline
-// const Glue<Glue<T1, T2,glue_type>, Op<T3,op_diagmat>, glue_schur_diag>
-// operator%
-// (const Glue<T1,T2,glue_type>& X, const Op<T3,op_diagmat>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Glue<T1,T2,glue_type>, Op<T3,op_diagmat>, glue_schur_diag>(X,Y);
-//   }
-// 
-// 
-// 
-// //! op % op
-// template<typename T1, typename op_type1, typename T2, typename op_type2>
-// arma_inline
-// const Glue<Op<T1,op_type1>, Op<T2,op_type2>, glue_schur>
-// operator%
-// (const Op<T1,op_type1>& X, const Op<T2,op_type2>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Op<T1,op_type1>, Op<T2,op_type2>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// //! glue % glue
-// template<typename T1, typename T2, typename glue_type1, typename T3, typename T4, typename glue_type2>
-// arma_inline
-// const Glue<Glue<T1,T2,glue_type1>, Glue<T3,T4,glue_type2>, glue_schur>
-// operator%
-// (const Glue<T1,T2,glue_type1>& X, const Glue<T3,T4,glue_type2>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<Glue<T1,T2,glue_type1>, Glue<T3,T4,glue_type2>, glue_schur>(X,Y);
-//   }
-// 
-// 
-// 
-// //! Base % subview
-// template<typename T1>
-// arma_inline
-// const Glue<T1, subview<typename T1::elem_type>, glue_schur>
-// operator%
-// (const Base<T1>& X, const subview<typename T1::elem_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<T1, subview<typename T1::elem_type>, glue_schur>(X.get_ref(),Y);
-//   }
-// 
-// 
-// 
-// //! subview % Base
-// template<typename T1>
-// arma_inline
-// const Glue<subview<typename T1::elem_type>, T1, glue_schur>
-// operator%
-// (const subview<typename T1::elem_type>& X, const Base<T1>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<subview<typename T1::elem_type>, T1, glue_schur>(X,Y.get_ref());
-//   }
-// 
-// 
-// 
-// //! Base % diagview
-// template<typename T1>
-// arma_inline
-// const Glue<T1, diagview<typename T1::elem_type>, glue_schur>
-// operator%
-// (const Base<T1>& X, const diagview<typename T1::elem_type>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<T1, diagview<typename T1::elem_type>, glue_schur>(X.get_ref(),Y);
-//   }
-// 
-// 
-// 
-// //! diagview % Base
-// template<typename T1>
-// arma_inline
-// const Glue<diagview<typename T1::elem_type>, T1, glue_schur>
-// operator%
-// (const diagview<typename T1::elem_type>& X, const Base<T1>& Y)
-//   {
-//   arma_extra_debug_sigprint();
-//   
-//   return Glue<diagview<typename T1::elem_type>, T1, glue_schur>(X,Y.get_ref());
-//   }
 
 
 

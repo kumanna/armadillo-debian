@@ -318,6 +318,7 @@ namespace arma
   #include "armadillo_bits/fn_pinv.hpp"
   #include "armadillo_bits/fn_rank.hpp"
   #include "armadillo_bits/fn_kron.hpp"
+  #include "armadillo_bits/fn_as_scalar.hpp"
   
   //
   // class meat

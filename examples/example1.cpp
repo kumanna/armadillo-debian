@@ -108,7 +108,7 @@ int main(int argc, char** argv)
   q.print("q =");
 
   // dot or inner product
-  cout << "r*q = " << r*q << endl;
+  cout << "as_scalar(r*q) = " << as_scalar(r*q) << endl;
   
 
   // outer product

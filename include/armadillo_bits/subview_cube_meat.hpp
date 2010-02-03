@@ -482,7 +482,7 @@ subview_cube<eT>::operator-= (const subview_cube<eT>& x_in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator%= (const subview_cube& x_in)
+subview_cube<eT>::operator%= (const subview_cube<eT>& x_in)
   {
   arma_extra_debug_sigprint();
   
@@ -524,7 +524,7 @@ subview_cube<eT>::operator%= (const subview_cube& x_in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator/= (const subview_cube& x_in)
+subview_cube<eT>::operator/= (const subview_cube<eT>& x_in)
   {
   arma_extra_debug_sigprint();
   

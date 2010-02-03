@@ -53,8 +53,10 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
   {
   o.unsetf(ios::showbase);
   o.unsetf(ios::uppercase);
+  o.unsetf(ios::showpos);
+  
   o.fill(' ');
-
+  
   u32 cell_width;
   
   bool use_layout_B = false;
