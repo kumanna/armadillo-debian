@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,7 +19,102 @@
 
 
 
+template<u32 N>
 template<typename T1, typename T2>
+inline
+void
+glue_times_redirect<N>::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const partial_unwrap_check<T1> tmp1(X.A, out);
+  const partial_unwrap_check<T2> tmp2(X.B, out);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  
+  const bool do_trans_A = tmp1.do_trans;
+  const bool do_trans_B = tmp2.do_trans;
+
+  const bool use_alpha = tmp1.do_times | tmp2.do_times;
+  const eT       alpha = use_alpha ? (tmp1.val * tmp2.val) : eT(0);
+  
+  glue_times::apply(out, A, B, alpha, do_trans_A, do_trans_B, use_alpha);
+  }
+
+
+
+template<typename T1, typename T2, typename T3>
+inline
+void
+glue_times_redirect<3>::apply(Mat<typename T1::elem_type>& out, const Glue< Glue<T1,T2,glue_times>, T3, glue_times>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  // there is exactly 3 objects
+  // hence we can safely expand X as X.A.A, X.A.B and X.B
+  
+  const partial_unwrap_check<T1> tmp1(X.A.A, out);
+  const partial_unwrap_check<T2> tmp2(X.A.B, out);
+  const partial_unwrap_check<T3> tmp3(X.B,   out);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  const Mat<eT>& C = tmp3.M;
+  
+  const bool do_trans_A = tmp1.do_trans;
+  const bool do_trans_B = tmp2.do_trans;
+  const bool do_trans_C = tmp3.do_trans;
+  
+  const bool use_alpha = tmp1.do_times | tmp2.do_times | tmp3.do_times;
+  const eT       alpha = use_alpha ? (tmp1.val * tmp2.val * tmp3.val) : eT(0);
+  
+  glue_times::apply(out, A, B, C, alpha, do_trans_A, do_trans_B, do_trans_C, use_alpha);
+  }
+
+
+
+template<typename T1, typename T2, typename T3, typename T4>
+inline
+void
+glue_times_redirect<4>::apply(Mat<typename T1::elem_type>& out, const Glue< Glue< Glue<T1,T2,glue_times>, T3, glue_times>, T4, glue_times>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  // there is exactly 4 objects
+  // hence we can safely expand X as X.A.A.A, X.A.A.B, X.A.B and X.B
+  
+  const partial_unwrap_check<T1> tmp1(X.A.A.A, out);
+  const partial_unwrap_check<T2> tmp2(X.A.A.B, out);
+  const partial_unwrap_check<T3> tmp3(X.A.B,   out);
+  const partial_unwrap_check<T4> tmp4(X.B,     out);
+  
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  const Mat<eT>& C = tmp3.M;
+  const Mat<eT>& D = tmp4.M;
+  
+  const bool do_trans_A = tmp1.do_trans;
+  const bool do_trans_B = tmp2.do_trans;
+  const bool do_trans_C = tmp3.do_trans;
+  const bool do_trans_D = tmp4.do_trans;
+  
+  const bool use_alpha = tmp1.do_times | tmp2.do_times | tmp3.do_times | tmp4.do_times;
+  const eT       alpha = use_alpha ? (tmp1.val * tmp2.val * tmp3.val * tmp4.val) : eT(0);
+  
+  glue_times::apply(out, A, B, C, D, alpha, do_trans_A, do_trans_B, do_trans_C, do_trans_D, use_alpha);
+  }
+
+
+
+template<typename T1, typename T2>
+inline
 void
 glue_times::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X)
   {
@@ -30,228 +126,7 @@ glue_times::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>
 
   arma_extra_debug_print(arma_boost::format("N_mat = %d") % N_mat);
 
-  if(N_mat == 2)
-    {
-    const unwrap<T1> tmp1(X.A);
-    const unwrap<T2> tmp2(X.B);
-    
-    glue_times::apply(out, tmp1.M, tmp2.M);
-    }
-  else
-    {
-    // we have at least three matrices
-
-    const Mat<eT>* ptrs[N_mat];
-    bool            del[N_mat];
-  
-    // takes care of any aliasing problems
-    mat_ptrs_outcheck<glue_times, Glue<T1,T2,glue_times> >::get_ptrs(ptrs, del, X, &out);
-  
-    for(s32 i=0; i<N_mat; ++i)  arma_extra_debug_print( arma_boost::format("ptrs[%d] = %x") % i % ptrs[i] );
-    for(s32 i=0; i<N_mat; ++i)  arma_extra_debug_print( arma_boost::format(" del[%d] = %d") % i %  del[i] );
-  
-  
-    arma_extra_debug_print( arma_boost::format("required size of 'out':  %d, %d") % ptrs[0]->n_rows % ptrs[N_mat-1]->n_cols );
-  
-    int order[N_mat];  for(s32 i=0; i<N_mat; ++i)  order[i] = -1;
-  
-    int first_id = 0;
-    int last_id  = N_mat-1;
-    int starting_id = -1;
-  
-    int mat_count = N_mat;
-  
-    int largest_size = 0;
-  
-    while(mat_count != 0)
-      {
-  
-      for(s32 i=first_id; i != N_mat; ++i)
-        {
-        if(order[i] == -1)  { first_id = i; break; }
-        }
-  
-      for(s32 i=last_id; i != -1; --i)
-        {
-        if(order[i] == -1)  { last_id = i; break; }
-        }
-  
-      arma_extra_debug_print();
-      arma_extra_debug_print(arma_boost::format("mat_count = %d") % mat_count );
-      arma_extra_debug_print(arma_boost::format("first_id  = %d") % first_id  );
-      arma_extra_debug_print(arma_boost::format("last_id   = %d") % last_id   );
-  
-      if(first_id == last_id)  { order[first_id] = 0; starting_id = first_id; break; }
-  
-      s32 storage_cost_wo_last  = mul_storage_cost( *ptrs[ first_id   ], *ptrs[ last_id-1 ] );
-      s32 storage_cost_wo_first = mul_storage_cost( *ptrs[ first_id+1 ], *ptrs[ last_id   ] );
-  
-      if(storage_cost_wo_last < storage_cost_wo_first)
-        {
-        order[last_id]  = mat_count-1;
-        if(storage_cost_wo_last > largest_size)  largest_size = storage_cost_wo_last;
-        }
-      else
-        {
-        order[first_id] = mat_count-1;
-        if(storage_cost_wo_first > largest_size)  largest_size = storage_cost_wo_first;
-        }
-  
-      arma_extra_debug_print(arma_boost::format("storage_cost_wo_last  = %d") % storage_cost_wo_last  );
-      arma_extra_debug_print(arma_boost::format("storage_cost_wo_first = %d") % storage_cost_wo_first );
-  
-      arma_extra_debug_print("order = ");
-      for(s32 i=0; i != N_mat; ++i)  arma_extra_debug_print(order[i]);
-  
-      --mat_count;
-      }
-  
-    arma_extra_debug_print("final order = ");
-    for(s32 i=0; i != N_mat; ++i)  arma_extra_debug_print(order[i]);
-  
-    arma_extra_debug_print(arma_boost::format("*** largest_size = %d") % largest_size);
-    arma_extra_debug_print(arma_boost::format("starting_id  = %d") % starting_id);
-  
-  
-    // multiply based on order
-    // if there are only three matrices, we need only one temporary store:
-    //   out = a*b*c translates to:  tmp1 = a*b,  out = tmp1*c
-    //
-    // if there are four matrices, we need two temporary stores
-    //   out = a*b*c*d translates to:  tmp1 = a*b, tmp2 = tmp1*c, out = tmp2*d
-    //
-    // if there are five matrices, we need two temporary stores
-    //   out = a*b*c*d*e translates to:  tmp1 = a*b, tmp2 = tmp1*c, tmp1 = tmp2*d, out = tmp1*e
-    //
-    // if there are six matrices, we need two temporary stores
-    //   out = a*b*c*d*e*f translates to:  tmp1 = a*b, tmp2 = tmp1*c, tmp1 = tmp2*d, tmp2 = tmp1*e, out = tmp2*f
-    //
-  
-    
-    const u32 N_mul = N_mat - 1;
-    int mul_count = N_mul;
-    int current_id = starting_id;
-  
-    const Mat<eT>* src_mat_1_ptr = ptrs[current_id];
-    const Mat<eT>* src_mat_2_ptr = 0;
-  
-    // TODO:
-    // allocate two storage areas (of size 'largest_size'), not two matrices
-  
-    
-    Mat<eT> tmp_mat_1;
-    Mat<eT> tmp_mat_2;
-    
-    Mat<eT>* tmp_mat_1_ptr = &tmp_mat_1;
-    Mat<eT>* tmp_mat_2_ptr = (N_mul <= 2) ? 0 : &tmp_mat_2;
-  
-    Mat<eT>* dest_mat_ptr  = tmp_mat_2_ptr;
-  
-    arma_extra_debug_print(arma_boost::format("tmp_mat_1_ptr = %x") % tmp_mat_1_ptr );
-    arma_extra_debug_print(arma_boost::format("tmp_mat_2_ptr = %x") % tmp_mat_2_ptr );
-    arma_extra_debug_print(arma_boost::format("&out          = %x") % &out );
-  
-    while(mul_count != 0)
-      {
-      arma_extra_debug_print("");
-      arma_extra_debug_print("");
-      arma_extra_debug_print(arma_boost::format("mul_count = %d") % mul_count);
-  
-      arma_extra_debug_print("order = ");
-      for(s32 i=0; i != N_mat; ++i)  arma_extra_debug_print(order[i]);
-      arma_extra_debug_print("");
-  
-      // only one multiplication left, hence destination matrix is the out matrix
-      if(mul_count == 1)
-        {
-        arma_extra_debug_print("dest_mat = &out");
-        dest_mat_ptr = &out;
-        }
-      else
-        {
-        if(dest_mat_ptr == tmp_mat_2_ptr)
-          {
-          arma_extra_debug_print("dest_mat_ptr = tmp_mat_2_ptr");
-          dest_mat_ptr = tmp_mat_1_ptr;
-          }
-        else
-          {
-          arma_extra_debug_print("dest_mat_ptr = tmp_mat_1_ptr");
-          dest_mat_ptr = tmp_mat_2_ptr;
-          }
-        }
-  
-      arma_extra_debug_print(arma_boost::format("dest_mat_ptr = %x") % dest_mat_ptr );
-  
-      // search on either side of current_pos for a useable value.  unuseable values are equal to -1
-      s32 left_val = N_mat;
-      s32 left_id = -1;
-  
-      s32 right_val = N_mat;
-      s32 right_id = -1;
-  
-      // go left from current_pos
-      for(s32 i=current_id-1; i >= 0; --i)
-        if( order[i] > order[current_id] ) { left_val = order[i]; left_id = i; break; }
-  
-      // go right from current_pos
-      for(s32 i=current_id+1; i < N_mat; ++i)
-        if( order[current_id] < order[i] ) { right_val = order[i]; right_id = i; break; }
-  
-      arma_extra_debug_print("");
-      arma_extra_debug_print(arma_boost::format("left_id  = %d") % left_id  );
-      arma_extra_debug_print(arma_boost::format("left_val = %f") % left_val );
-  
-      arma_extra_debug_print("");
-      arma_extra_debug_print(arma_boost::format("right_id  = %d") % right_id  );
-      arma_extra_debug_print(arma_boost::format("right_val = %f") % right_val );
-  
-  
-      if(left_val < right_val)
-        {
-        // a pre-multiply
-        src_mat_2_ptr = ptrs[left_id];
-  
-        arma_extra_debug_print("");
-        arma_extra_debug_print(arma_boost::format("case pre-multiply with matrix %d") % left_id);
-        arma_extra_debug_print(arma_boost::format("required destination size: %d, %d  (%d)") %  src_mat_2_ptr->n_rows % src_mat_1_ptr->n_cols % (src_mat_2_ptr->n_rows * src_mat_1_ptr->n_cols) );
-  
-        glue_times::apply_noalias(*dest_mat_ptr, *src_mat_2_ptr, *src_mat_1_ptr);
-  
-        order[current_id] = -1;
-        current_id = left_id;
-        }
-      else
-        {
-        // a post-multiply
-        src_mat_2_ptr = ptrs[right_id];
-  
-        arma_extra_debug_print("");
-        arma_extra_debug_print(arma_boost::format("case post-multiply with matrix %d") % right_id);
-        arma_extra_debug_print(arma_boost::format("required destination size: %d, %d  (%d)") % src_mat_1_ptr->n_rows % src_mat_2_ptr->n_cols % (src_mat_1_ptr->n_rows * src_mat_2_ptr->n_cols) );
-  
-        glue_times::apply_noalias(*dest_mat_ptr, *src_mat_1_ptr, *src_mat_2_ptr);
-  
-        order[current_id] = -1;
-        current_id = right_id;
-        }
-  
-      // update pointer to source matrix: must point to last multiplication result
-      src_mat_1_ptr = dest_mat_ptr;
-  
-      --mul_count;
-      }
-  
-  
-    for(s32 i=0; i<N_mat; ++i)
-      {
-      if(del[i] == true)
-        {
-        arma_extra_debug_print(arma_boost::format("delete mat_ptr[%d]") % i );
-        delete ptrs[i];
-        }
-      }
-    }
+  glue_times_redirect<N_mat>::apply(out, X);
   }
 
 
@@ -265,8 +140,8 @@ glue_times::apply_inplace(Mat<typename T1::elem_type>& out, const T1& X)
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1>   tmp(X);
-  const Mat<eT>& B = tmp.M;
+  const unwrap_check<T1> tmp(X, out);
+  const Mat<eT>& B     = tmp.M;
   
   arma_debug_assert_mul_size(out, B, "matrix multiply");
   
@@ -300,8 +175,169 @@ glue_times::apply_inplace(Mat<typename T1::elem_type>& out, const T1& X)
   else
     {
     const Mat<eT> tmp(out);
-    glue_times::apply(out, tmp, B);
+    glue_times::apply(out, tmp, B, eT(1), false, false, false);
     }
+  
+  }
+
+
+
+template<typename T1, typename T2>
+arma_hot
+inline
+void
+glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times>& X, const s32 sign)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const partial_unwrap_check<T1> tmp1(X.A, out);
+  const partial_unwrap_check<T2> tmp2(X.B, out);
+  
+  const Mat<eT>& A     = tmp1.M;
+  const Mat<eT>& B     = tmp2.M;
+  const eT       alpha = tmp1.val * tmp2.val * ( (sign > s32(0)) ? eT(1) : eT(-1) );
+  
+  const bool do_trans_A = tmp1.do_trans;
+  const bool do_trans_B = tmp2.do_trans;
+  const bool use_alpha  = tmp1.do_times | tmp2.do_times | (sign < s32(0));
+  
+  arma_debug_assert_mul_size(A, B, do_trans_A, do_trans_B, "matrix multiply");
+  
+  const u32 result_n_rows = (do_trans_A == false) ? A.n_rows : A.n_cols;
+  const u32 result_n_cols = (do_trans_B == false) ? B.n_cols : B.n_rows;
+  
+  arma_assert_same_size(out.n_rows, out.n_cols, result_n_rows, result_n_cols, "matrix addition");
+  
+  if( (do_trans_A == false) && (do_trans_B == false) && (use_alpha == false) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<true,         false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_cols == 1)
+      {
+      gemv<false,        false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<false, false, false, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == false) && (do_trans_B == false) && (use_alpha == true) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<true,         true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_cols == 1)
+      {
+      gemv<false,        true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<false, false, true, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == false) && (use_alpha == false) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<true,        false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_cols == 1)
+      {
+      gemv<true,        false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<true, false, false, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == false) && (use_alpha == true) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<true,        true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_cols == 1)
+      {
+      gemv<true,        true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<true, false, true, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == false) && (do_trans_B == true) && (use_alpha == false) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<false,       false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<false,       false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<false, true, false, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == false) && (do_trans_B == true) && (use_alpha == true) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<false,       true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<false,       true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<false, true, true, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == true) && (use_alpha == false) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<false,      false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<true,       false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<true, true, false, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == true) && (use_alpha == true) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<false,      true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<true,       true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
+      }
+    else
+      {
+      gemm<true, true, true, true>::apply(out, A, B, alpha, eT(1));
+      }
+    }
+  
   
   }
 
@@ -327,438 +363,250 @@ glue_times::apply_mixed(Mat<typename promote_type<eT1,eT2>::result>& out, const 
 
 template<typename eT>
 arma_inline
-u32 glue_times::mul_storage_cost(const Mat<eT>& X, const Mat<eT>& Y)
+u32
+glue_times::mul_storage_cost(const Mat<eT>& A, const Mat<eT>& B, const bool do_trans_A, const bool do_trans_B)
   {
-  return X.n_rows * Y.n_cols;
-  }
-
-
-
-//! multiply matrices A and B, storing the result in 'out'
-//! assumes that A and B are not aliases of 'out'
-template<typename eT>
-inline
-void
-glue_times::apply_noalias(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
-  {
-  arma_extra_debug_sigprint();
+  const u32 final_A_n_rows = (do_trans_A == false) ? A.n_rows : A.n_cols;
+  const u32 final_B_n_cols = (do_trans_B == false) ? B.n_cols : B.n_rows;
   
-  arma_debug_assert_mul_size(A, B, "matrix multiply");
-  
-  out.set_size(A.n_rows,B.n_cols);
-  gemm<>::apply(out,A,B);
+  return final_A_n_rows * final_B_n_cols;
   }
 
 
 
 template<typename eT>
+arma_hot
 inline
 void
-glue_times::apply(Mat<eT>& out, const Mat<eT>& A_in, const Mat<eT>& B_in)
+glue_times::apply
+  (
+        Mat<eT>& out,
+  const Mat<eT>& A,
+  const Mat<eT>& B,
+  const eT       alpha,
+  const bool     do_trans_A,
+  const bool     do_trans_B,
+  const bool     use_alpha
+  )
   {
   arma_extra_debug_sigprint();
   
-  if( (&out != &A_in) && (&out != &B_in) )
+  arma_debug_assert_mul_size(A, B, do_trans_A, do_trans_B, "matrix multiply");
+  
+  const u32 final_n_rows = (do_trans_A == false) ? A.n_rows : A.n_cols;
+  const u32 final_n_cols = (do_trans_B == false) ? B.n_cols : B.n_rows;
+  
+  out.set_size(final_n_rows, final_n_cols);
+  
+  // TODO: thoroughly test all combinations
+  
+  if( (do_trans_A == false) && (do_trans_B == false) && (use_alpha == false) )
     {
-    glue_times::apply_noalias(out,A_in,B_in);
+    if(A.n_rows == 1)
+      {
+      gemv<true,         false, false>::apply(out.memptr(), B, A.memptr());
+      }
+    else
+    if(B.n_cols == 1)
+      {
+      gemv<false,        false, false>::apply(out.memptr(), A, B.memptr());
+      }
+    else
+      {
+      gemm<false, false, false, false>::apply(out, A, B);
+      }
+    }
+  else
+  if( (do_trans_A == false) && (do_trans_B == false) && (use_alpha == true) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<true,         true, false>::apply(out.memptr(), B, A.memptr(), alpha);
+      }
+    else
+    if(B.n_cols == 1)
+      {
+      gemv<false,        true, false>::apply(out.memptr(), A, B.memptr(), alpha);
+      }
+    else
+      {
+      gemm<false, false, true, false>::apply(out, A, B, alpha);
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == false) && (use_alpha == false) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<true,        false, false>::apply(out.memptr(), B, A.memptr());
+      }
+    else
+    if(B.n_cols == 1)
+      {
+      gemv<true,        false, false>::apply(out.memptr(), A, B.memptr());
+      }
+    else
+      {
+      gemm<true, false, false, false>::apply(out, A, B);
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == false) && (use_alpha == true) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<true,        true, false>::apply(out.memptr(), B, A.memptr(), alpha);
+      }
+    if(B.n_cols == 1)
+      {
+      gemv<true,        true, false>::apply(out.memptr(), A, B.memptr(), alpha);
+      }
+    else
+      {
+      gemm<true, false, true, false>::apply(out, A, B, alpha);
+      }
+    }
+  else
+  if( (do_trans_A == false) && (do_trans_B == true) && (use_alpha == false) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<false,       false, false>::apply(out.memptr(), B, A.memptr());
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<false,       false, false>::apply(out.memptr(), A, B.memptr());
+      }
+    else
+      {
+      gemm<false, true, false, false>::apply(out, A, B);
+      }
+    }
+  else
+  if( (do_trans_A == false) && (do_trans_B == true) && (use_alpha == true) )
+    {
+    if(A.n_rows == 1)
+      {
+      gemv<false,       true, false>::apply(out.memptr(), B, A.memptr(), alpha);
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<false,       true, false>::apply(out.memptr(), A, B.memptr(), alpha);
+      }
+    else
+      {
+      gemm<false, true, true, false>::apply(out, A, B, alpha);
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == true) && (use_alpha == false) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<false,      false, false>::apply(out.memptr(), B, A.memptr());
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<true,       false, false>::apply(out.memptr(), A, B.memptr());
+      }
+    else
+      {
+      gemm<true, true, false, false>::apply(out, A, B);
+      }
+    }
+  else
+  if( (do_trans_A == true) && (do_trans_B == true) && (use_alpha == true) )
+    {
+    if(A.n_cols == 1)
+      {
+      gemv<false,      true, false>::apply(out.memptr(), B, A.memptr(), alpha);
+      }
+    if(B.n_rows == 1)
+      {
+      gemv<true,       true, false>::apply(out.memptr(), A, B.memptr(), alpha);
+      }
+    else
+      {
+      gemm<true, true, true, false>::apply(out, A, B, alpha);
+      }
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+glue_times::apply
+  (
+        Mat<eT>& out,
+  const Mat<eT>& A,
+  const Mat<eT>& B,
+  const Mat<eT>& C,
+  const eT       alpha,
+  const bool     do_trans_A,
+  const bool     do_trans_B,
+  const bool     do_trans_C,
+  const bool     use_alpha
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT> tmp;
+  
+  if( glue_times::mul_storage_cost(A, B, do_trans_A, do_trans_B) <= glue_times::mul_storage_cost(B, C, do_trans_B, do_trans_C) )
+    {
+    // out = (A*B)*C
+    glue_times::apply(tmp, A,   B, alpha, do_trans_A, do_trans_B, use_alpha);
+    glue_times::apply(out, tmp, C, eT(0), false,      do_trans_C, false    );
     }
   else
     {
-    
-    if( (&out == &A_in) && (&out != &B_in) )
-      {
-      Mat<eT> A_copy(A_in);
-      glue_times::apply_noalias(out,A_copy,B_in);
-      }
-    else
-    if( (&out != &A_in) && (&out == &B_in) )
-      {
-      Mat<eT> B_copy(B_in);
-      glue_times::apply_noalias(out,A_in,B_copy);
-      }
-    else
-    if( (&out == &A_in) && (&out == &B_in) )
-      {
-      Mat<eT> tmp(A_in);
-      glue_times::apply_noalias(out,tmp,tmp);
-      }
-
+    // out = A*(B*C)
+    glue_times::apply(tmp, B, C,   alpha, do_trans_B, do_trans_C, use_alpha);
+    glue_times::apply(out, A, tmp, eT(0), do_trans_A, false,      false    );
     }
-    
   }
+
 
 
 template<typename eT>
 inline
 void
-glue_times::apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C)
+glue_times::apply
+  (
+        Mat<eT>& out,
+  const Mat<eT>& A,
+  const Mat<eT>& B,
+  const Mat<eT>& C,
+  const Mat<eT>& D,
+  const eT       alpha,
+  const bool     do_trans_A,
+  const bool     do_trans_B,
+  const bool     do_trans_C,
+  const bool     do_trans_D,
+  const bool     use_alpha
+  )
   {
   arma_extra_debug_sigprint();
-
-  arma_debug_assert_mul_size(A, B, "matrix multiply");
-  arma_debug_assert_mul_size(B, C, "matrix multiply");
   
-  if( mul_storage_cost(A,B) <= mul_storage_cost(B,C) )
+  Mat<eT> tmp;
+  
+  if( glue_times::mul_storage_cost(A, C, do_trans_A, do_trans_C) <= glue_times::mul_storage_cost(B, D, do_trans_B, do_trans_D) )
     {
-    Mat<eT> tmp;
-    glue_times::apply_noalias(tmp, A, B);
+    // out = (A*B*C)*D
+    glue_times::apply(tmp, A, B, C, alpha, do_trans_A, do_trans_B, do_trans_C, use_alpha);
     
-    if(&out != &C)
-      {
-      glue_times::apply_noalias(out, tmp, C);
-      }
-    else
-      {
-      Mat<eT> C_copy = C;
-      glue_times::apply_noalias(out, tmp, C_copy);
-      }
-      
+    glue_times::apply(out, tmp, D, eT(0), false, do_trans_D, false);
     }
   else
     {
-    Mat<eT> tmp;
-    glue_times::apply_noalias(tmp, B, C);
+    // out = A*(B*C*D)
+    glue_times::apply(tmp, B, C, D, alpha, do_trans_B, do_trans_C, do_trans_D, use_alpha);
     
-    if(&out != &A)
-      {
-      glue_times::apply_noalias(out, A, tmp);
-      }
-    else
-      {
-      Mat<eT> A_copy = A;
-      glue_times::apply_noalias(out, A_copy, tmp);
-      }
-    }
-  
-  }
-
-
-
-template<typename eT>
-inline
-eT
-glue_times::direct_rowvec_mat_colvec
-  (
-  const eT*      A_mem,
-  const Mat<eT>& B,
-  const eT*      C_mem
-  )
-  {
-  arma_extra_debug_sigprint();
-  
-  const u32 cost_AB = B.n_cols;
-  const u32 cost_BC = B.n_rows;
-  
-  if(cost_AB <= cost_BC)
-    {
-    podarray<eT> tmp(B.n_cols);
-    
-    for(u32 col=0; col<B.n_cols; ++col)
-      {
-      const eT* B_coldata = B.colptr(col);
-      
-      eT val = eT(0);
-      for(u32 i=0; i<B.n_rows; ++i)
-        {
-        val += A_mem[i] * B_coldata[i];
-        }
-        
-      tmp[col] = val;
-      }
-    
-    return op_dot::direct_dot(B.n_cols, tmp.mem, C_mem);
-    }
-  else
-    {
-    podarray<eT> tmp(B.n_rows);
-    
-    for(u32 row=0; row<B.n_rows; ++row)
-      {
-      eT val = eT(0);
-      for(u32 col=0; col<B.n_cols; ++col)
-        {
-        val += B.at(row,col) * C_mem[col];
-        }
-      
-      tmp[row] = val;
-      }
-    
-    return op_dot::direct_dot(B.n_rows, A_mem, tmp.mem);
-    }
-  
-  
-  }
-
-
-
-template<typename eT>
-inline
-eT
-glue_times::direct_rowvec_diagmat_colvec
-  (
-  const eT*      A_mem,
-  const Mat<eT>& B,
-  const eT*      C_mem
-  )
-  {
-  arma_extra_debug_sigprint();
-  
-  eT val = eT(0);
-
-  for(u32 i=0; i<B.n_rows; ++i)
-    {
-    val += A_mem[i] * B.at(i,i) * C_mem[i];
-    }
-
-  return val;
-  }
-
-
-
-template<typename eT>
-inline
-eT
-glue_times::direct_rowvec_invdiagmat_colvec
-  (
-  const eT*      A_mem,
-  const Mat<eT>& B,
-  const eT*      C_mem
-  )
-  {
-  arma_extra_debug_sigprint();
-  
-  eT val = eT(0);
-
-  for(u32 i=0; i<B.n_rows; ++i)
-    {
-    val += (A_mem[i] * C_mem[i]) / B.at(i,i);
-    }
-
-  return val;
-  }
-
-
-
-template<typename eT>
-inline
-eT
-glue_times::direct_rowvec_invdiagvec_colvec
-  (
-  const eT*      A_mem,
-  const Mat<eT>& B,
-  const eT*      C_mem
-  )
-  {
-  arma_extra_debug_sigprint();
-  
-  const eT* B_mem = B.mem;
-  
-  eT val = eT(0);
-
-  for(u32 i=0; i<B.n_elem; ++i)
-    {
-    val += (A_mem[i] * C_mem[i]) / B_mem[i];
-    }
-
-  return val;
-  }
-
-
-
-#if defined(ARMA_GOOD_COMPILER)
-
-
-template<typename eT>
-inline
-void
-glue_times::apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_times>& X)
-  {
-  glue_times::apply(out, X.A, X.B);
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_times::apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>, glue_times>, Mat<eT>, glue_times>& X)
-  {
-  glue_times::apply(out, X.A.A, X.A.B, X.B);
-  }
-
-
-
-//! out = T1 * trans(T2)
-template<typename T1, typename T2>
-inline
-void
-glue_times::apply(Mat<typename T1::elem_type>& out, const Glue<T1, Op<T2,op_trans>, glue_times>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  
-  typedef typename T1::elem_type eT;
-  
-  // checks for aliases are done later
-  
-  const unwrap<T1> tmp1(X.A);
-  const unwrap<T2> tmp2(X.B.m);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A.n_rows, A.n_cols, B.n_cols, B.n_rows, "matrix multiply");
-    
-  if( (A.n_rows*B.n_rows) > 0)
-    {
-    if(&A != &B)   // A*B'
-      {
-      unwrap_check< Mat<eT> > A_safe_tmp(A, out);
-      unwrap_check< Mat<eT> > B_safe_tmp(B, out);
-      
-      const Mat<eT>& A_safe = A_safe_tmp.M;
-      const Mat<eT>& B_safe = B_safe_tmp.M;
-      
-      out.set_size(A_safe.n_rows, B_safe.n_rows);
-      
-      gemm<false,true>::apply(out, A, B);
-      }
-    else   // A*A'
-      {
-      arma_extra_debug_print("glue_times::apply(): detected A*A'");
-      
-      Mat<eT> tmp;
-      op_trans::apply(tmp,A);
-      
-      // no aliasing problem
-      out.set_size(A.n_rows, A.n_rows);
-      
-      for(u32 row=0; row != A.n_rows; ++row)
-        {
-        for(u32 col=0; col <= row; ++col)
-          {
-          const eT* coldata1 = tmp.colptr(row);
-          const eT* coldata2 = tmp.colptr(col);
-        
-          eT val = eT(0);
-          for(u32 i=0; i < tmp.n_rows; ++i)
-            {
-            val += coldata1[i] * coldata2[i];
-            }
-          
-          out.at(row,col) = val;
-          out.at(col,row) = val;
-          }
-        }
-        
-      }
-    
-    }
-  
-  }
-
-
-
-//! out = trans(T1) * T2
-template<typename T1, typename T2>
-inline
-void
-glue_times::apply(Mat<typename T1::elem_type>& out, const Glue< Op<T1,op_trans>, T2, glue_times>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const unwrap_check<T1> tmp1(X.A.m, out);
-  const unwrap_check<T2> tmp2(X.B,   out);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A.n_cols, A.n_rows, B.n_rows, B.n_cols, "matrix multiply");
-  
-  if( (A.n_cols*B.n_cols) > 0 )
-    {
-    out.set_size(A.n_cols, B.n_cols);
-    
-    gemm<true,false>::apply(out, A, B);
-    }
-    
-  }
-
-
-
-//! out = trans(T1) * trans(T2)
-template<typename T1, typename T2>
-inline
-void
-glue_times::apply(Mat<typename T1::elem_type>& out, const Glue< Op<T1,op_trans>, Op<T2,op_trans>, glue_times>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const unwrap_check<T1> tmp1(X.A.m, out);
-  const unwrap_check<T2> tmp2(X.B.m, out);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A.n_cols, A.n_rows, B.n_cols, B.n_rows, "matrix multiply");
-  
-  if( (A.n_cols*B.n_rows) > 0 )
-    {
-    out.set_size(A.n_cols, B.n_rows);
-    
-    gemm<true,true>::apply(out, A, B);
-    
-    }
-    
-  }
-
-
-
-
-//! out = -T1 * T2
-template<typename T1, typename T2>
-inline
-void
-glue_times::apply(Mat<typename T1::elem_type>& out, const Glue< Op<T1, op_neg>, T2, glue_times>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const unwrap_check<T1> tmp1(X.A.m, out);
-  const unwrap_check<T2> tmp2(X.B,   out);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-
-  glue_times::apply(out, A, B);
-  
-  const u32 n_elem = out.n_elem;
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    out[i] = -out[i];
+    glue_times::apply(out, A, tmp, eT(0), do_trans_A, false, false);
     }
   }
-
-
-
-template<typename T1, typename T2>
-inline
-void
-glue_times::apply_inplace(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  out = out * X;
-  }
-
-
-
-#endif
 
 
 
@@ -767,366 +615,84 @@ glue_times::apply_inplace(Mat<typename T1::elem_type>& out, const Glue<T1, T2, g
 
 
 template<typename T1, typename T2>
+arma_hot
 inline
 void
-glue_times_diag::apply(Mat<typename T1::elem_type>& out, const T1& A_orig, const Op<T2,op_diagmat>& B_orig)
+glue_times_diag::apply(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times_diag>& X)
   {
   arma_extra_debug_sigprint();
-    
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
-  
-  const unwrap_check<T1> tmp1(A_orig,   out);
-  const unwrap_check<T2> tmp2(B_orig.m, out);
   
   typedef typename T1::elem_type eT;
   
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  const strip_diagmat<T1> S1(X.A);
+  const strip_diagmat<T2> S2(X.B);
   
-  arma_debug_check( (B.is_square() == false), "glue_times_diag::apply(): incompatible matrix dimensions" );
-  arma_debug_assert_mul_size(A.n_rows, A.n_cols, B.n_rows, B.n_cols, "matrix multiply");
+  typedef typename strip_diagmat<T1>::stored_type T1_stripped;
+  typedef typename strip_diagmat<T2>::stored_type T2_stripped;
   
-  out.set_size(A.n_rows, B.n_cols);
-  
-  for(u32 col=0; col<A.n_cols; ++col)
+  if( (S1.do_diagmat == true) && (S2.do_diagmat == false) )
     {
-    const eT val = B.at(col,col);
+    const diagmat_proxy_check<T1_stripped> A(S1.M, out);
     
-    const eT*   A_coldata =   A.colptr(col);
-          eT* out_coldata = out.colptr(col);
+    const unwrap_check<T2> tmp(X.B, out);
+    const Mat<eT>& B     = tmp.M;
     
-    for(u32 row=0; row<B.n_rows; ++row)
+    arma_debug_assert_mul_size(A.n_elem, A.n_elem, B.n_rows, B.n_cols, "matrix multiply");
+    
+    out.set_size(A.n_elem, B.n_cols);
+    
+    for(u32 col=0; col<B.n_cols; ++col)
       {
-      out_coldata[row] = A_coldata[row] * val;
+            eT* out_coldata = out.colptr(col);
+      const eT* B_coldata   = B.colptr(col);
+      
+      for(u32 row=0; row<B.n_rows; ++row)
+        {
+        out_coldata[row] = A[row] * B_coldata[row];
+        }
       }
-    
-    }
-  
-  }
-
-
-
-template<typename T1, typename T2>
-inline
-void
-glue_times_diag::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_diagmat>& A_orig, const T2& B_orig)
-  {
-  arma_extra_debug_sigprint();
-  
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
-  
-  const unwrap_check<T1> tmp1(A_orig.m, out);
-  const unwrap_check<T2> tmp2(B_orig,   out);
-  
-  typedef typename T1::elem_type eT;
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_check( (A.is_square() == false), "glue_times_diag::apply(): incompatible matrix dimensions" );
-  arma_debug_assert_mul_size(A.n_rows, A.n_cols, B.n_rows, B.n_cols, "matrix multiply");
-  
-  out.set_size(A.n_rows, B.n_cols);
-  
-  
-  for(u32 col=0; col<A.n_cols; ++col)
-    {
-    const eT*   B_coldata =   B.colptr(col);
-          eT* out_coldata = out.colptr(col);
-    
-    for(u32 row=0; row<B.n_rows; ++row)
-      {
-      out_coldata[row] = A.at(row,row) * B_coldata[row];
-      }
-    
-    }
-
-  }
-
-
-
-template<typename T1, typename T2>
-inline
-void
-glue_times_diag::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_diagmat>& A_orig, const Op<T2,op_diagmat>& B_orig)
-  {
-  arma_extra_debug_sigprint();
-  
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
-  
-  unwrap_check<T1> tmp1(A_orig.m, out);
-  unwrap_check<T2> tmp2(B_orig.m, out);
-  
-  typedef typename T1::elem_type eT;
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_check( !A.is_square() || !B.is_square(), "glue_times_diag::apply(): incompatible matrix dimensions" );
-  arma_debug_assert_mul_size(A.n_rows, A.n_cols, B.n_rows, B.n_cols, "matrix multiply");
-  
-  out.zeros(A.n_rows, B.n_cols);
-  
-  for(u32 i=0; i<A.n_rows; ++i)
-    {
-    out.at(i,i) = A.at(i,i) * B.at(i,i);
-    }
-  }
-
-
-
-template<typename T1, typename T2>
-inline
-void 
-glue_times_diag::apply(Mat<typename T1::elem_type>& out, const Glue<T1, Op<T2,op_diagmat>, glue_times_diag>& X)
-  {
-  glue_times_diag::apply(out, X.A, X.B);
-  }
-
-
-
-template<typename T1, typename T2>
-inline
-void
-glue_times_diag::apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1,op_diagmat>, T2, glue_times_diag>& X)
-  {
-  glue_times_diag::apply(out, X.A, X.B);
-  }
-
-
-
-template<typename T1, typename T2>
-inline
-void
-glue_times_diag::apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1,op_diagmat>, Op<T2,op_diagmat>, glue_times_diag>& X)
-  {
-  glue_times_diag::apply(out, X.A, X.B);
-  }
-
-
-
-//
-// glue_times_vec
-
-
-//! at least one of T1 and T2 is a vector (both could be vectors)
-template<typename T1, typename T2>
-inline
-void
-glue_times_vec::apply(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  unwrap_check<T1> tmp1(X.A, out);
-  unwrap_check<T2> tmp2(X.B, out);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A, B, "vector multiply");
-  
-  // col * row  --> outer product
-  // mat * row  --> only makes sense if mat is a col vector, hence equiv to col * row
-  // col * mat  --> only makes sense if mat is a row vector, hence equiv to col * row
-  
-  // row * col  --> dot product
-  // row * mat  --> ok
-  
-  // mat * col  --> ok
-  
-  out.set_size(A.n_rows, B.n_cols);
-  
-  if(A.n_cols == 1)    // A is a column vector
-    {
-    glue_times_vec::mul_col_row(out, A.mem, B.mem);
     }
   else
+  if( (S1.do_diagmat == false) && (S2.do_diagmat == true) )
     {
-    if(A.n_rows == 1)  // A is a row vector
+    const unwrap_check<T1> tmp(X.A, out);
+    const Mat<eT>& A     = tmp.M;
+    
+    const diagmat_proxy_check<T2_stripped> B(S2.M, out);
+    
+    arma_debug_assert_mul_size(A.n_rows, A.n_cols, B.n_elem, B.n_elem, "matrix multiply");
+    
+    out.set_size(A.n_rows, B.n_elem);
+    
+    for(u32 col=0; col<A.n_cols; ++col)
       {
-      if(B.n_cols == 1)
+      const eT  val = B[col];
+      
+            eT* out_coldata = out.colptr(col);
+      const eT*   A_coldata =   A.colptr(col);
+    
+      for(u32 row=0; row<A.n_rows; ++row)
         {
-        out[0] = op_dot::direct_dot(A.n_elem, A.mem, B.mem);
-        }
-      else
-        {
-        gemv<true>::apply(out.memptr(), B, A.mem);
+        out_coldata[row] = A_coldata[row] * val;
         }
       }
-    else               // A is a matrix
-      {
-      gemv<>::apply(out.memptr(), A, B.mem);
-      }
     }
-  
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_times_vec::mul_col_row(Mat<eT>& out, const eT* A, const eT* B)
-  {
-  const u32 n_rows = out.n_rows;
-  const u32 n_cols = out.n_cols;
-  
-  for(u32 col=0; col < n_cols; ++col)
+  else
+  if( (S1.do_diagmat == true) && (S2.do_diagmat == true) )
     {
-    const eT val = B[col];
+    const diagmat_proxy_check<T1_stripped> A(S1.M, out);
+    const diagmat_proxy_check<T2_stripped> B(S2.M, out);
     
-    eT* out_coldata = out.colptr(col);
+    arma_debug_assert_mul_size(A.n_elem, A.n_elem, B.n_elem, B.n_elem, "matrix multiply");
     
-    for(u32 row=0; row < n_rows; ++row)
+    out.zeros(A.n_elem, A.n_elem);
+    
+    for(u32 i=0; i<A.n_elem; ++i)
       {
-      out_coldata[row] = A[row] * val;
+      out.at(i,i) = A[i] * B[i];
       }
     }
-  
   }
-
-
-
-template<typename eT>
-inline
-void
-glue_times_vec::mul_col_row_inplace_add(Mat<eT>& out, const eT* A, const eT* B)
-  {
-  const u32 n_rows = out.n_rows;
-  const u32 n_cols = out.n_cols;
-  
-  for(u32 col=0; col < n_cols; ++col)
-    {
-    const eT val = B[col];
-    
-    eT* out_coldata = out.colptr(col);
-    
-    for(u32 row=0; row < n_rows; ++row)
-      {
-      out_coldata[row] += A[row] * val;
-      }
-    }
-  
-  }
-
-
-
-#if defined(ARMA_GOOD_COMPILER)
-
-
-
-template<typename eT>
-inline
-void
-glue_times_vec::apply(Mat<eT>& out, const Glue<Col<eT>,Row<eT>,glue_times_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  unwrap_check< Col<eT> > tmp1(X.A, out);
-  unwrap_check< Row<eT> > tmp2(X.B, out);
-  
-  const Col<eT>& A = tmp1.M;
-  const Row<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A, B, "vector multiply");
-  
-  out.set_size(A.n_rows, B.n_cols);
-  
-  glue_times_vec::mul_col_row(out, A.mem, B.mem);
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_times_vec::apply(Mat<eT>& out, const Glue< Op<Row<eT>, op_trans>, Row<eT>, glue_times_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  unwrap_check< Row<eT> > tmp1(X.A.m, out);
-  unwrap_check< Row<eT> > tmp2(X.B,   out);
-  
-  const Row<eT>& A = tmp1.M;
-  const Row<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A.n_cols, A.n_rows, B.n_rows, B.n_cols, "vector multiply");
-  
-  out.set_size(A.n_cols, B.n_cols);
-  
-  glue_times_vec::mul_col_row(out, A.mem, B.mem);
-  }
-
-
-
-template<typename eT>
-inline
-void
-glue_times_vec::apply(Mat<eT>& out, const Glue< Col<eT>, Op<Col<eT>, op_trans>, glue_times_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  unwrap_check< Col<eT> > tmp1(X.A,   out);
-  unwrap_check< Col<eT> > tmp2(X.B.m, out);
-  
-  const Col<eT>& A = tmp1.M;
-  const Col<eT>& B = tmp2.M;
-  
-  arma_debug_assert_mul_size(A.n_rows, A.n_cols, B.n_cols, B.n_rows, "vector multiply");
-  
-  out.set_size(A.n_rows, B.n_rows);
-  
-  glue_times_vec::mul_col_row(out, A.mem, B.mem);
-  }
-
-
-
-template<typename T1>
-inline
-void
-glue_times_vec::apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1, op_trans>, Col<typename T1::elem_type>,glue_times_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  unwrap_check< T1 >      tmp1(X.A.m, out);
-  unwrap_check< Col<eT> > tmp2(X.B,   out);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Col<eT>& B = tmp2.M;
-
-  arma_debug_assert_mul_size(A.n_cols, A.n_rows, B.n_rows, B.n_cols, "vector multiply");
-  
-  out.set_size(A.n_cols, B.n_cols);
-  
-//         eT* out_mem = out.memptr();
-//   const eT* B_mem   = B.mem;
-//   
-//   const u32 A_n_cols = A.n_cols;
-//   const u32 B_n_rows = B.n_rows;
-//   
-//   for(u32 col=0; col < A_n_cols; ++col)
-//     {
-//     const eT* A_col = A.colptr(col);
-//     
-//     eT val = eT(0);
-//     for(u32 row=0; row<B_n_rows; ++row)
-//       {
-//       val += A_col[row] * B_mem[row];
-//       }
-//     
-//     out_mem[col] = val;
-//     }
-  
-  gemv<true>::apply(out.memptr(), A, B.mem);
-  }
-
-
-
-#endif
 
 
 

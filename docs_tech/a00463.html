@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_zeros.hpp File Reference</title>
+<title>Armadillo Technical: ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,32 +14,307 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_zeros.hpp File Reference</h1>
-<p><a href="a00463_source.html">Go to the source code of this file.</a></p>
+<h1>ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="a00850.html">ProxyCube</a>]</small>
+</h1><!-- doxytag: class="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00691_source.html">ProxyCube.hpp</a>&gt;</code></p>
+
+<p><a href="a01318.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00176.html">mat</a>, <a class="el" href="a00240.html">op_zeros</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00664.html#ga4178a9e5d5514a4355114ada00d8261e">zeros</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a dense matrix with all elements set to zero.  <a href="a00664.html#ga4178a9e5d5514a4355114ada00d8261e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00183.html">Op</a>&lt; <a class="el" href="a00035.html">colvec</a>, <a class="el" href="a00240.html">op_zeros</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00664.html#ga036ef4806004ad5bb01331247b9a54e4">zeros</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a vector with all elements set to zero.  <a href="a00664.html#ga036ef4806004ad5bb01331247b9a54e4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00241.html">OpCube</a>&lt; <a class="el" href="a00043.html">cube</a>, <a class="el" href="a00240.html">op_zeros</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00664.html#ga50b1018df9590ff22e4030f8016c7e5d">zeros</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a dense cube with all elements set to zero.  <a href="a00664.html#ga50b1018df9590ff22e4030f8016c7e5d"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00187.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a3244f0a2e0c7675e2e0966947b6cdc02">pod_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a621fd31fee5d527b4ff30d4bb68d7f93">stored_type</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a55a256397fb328c3f41dd5be1e4875fc">ProxyCube</a> (const <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a6353d8a25c0ce2f8f5a7f704ef89dccb">operator[]</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#adda09c7d88b48e658258eb1e0bedcf0d">at</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> slice) const </td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a9c7da922a3b407b98b82eb85d4ca0c9e">n_rows</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a84c3e443ff9a8a0d32a1a63015192001">n_cols</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#a0738aff55d3d84347c375e57125ae8d6">n_elem_slice</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#afe57167d152fcd9998c5c8109d77cf15">n_slices</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html#ae8229269f0a6ac0fefabb37ec533ce94">n_elem</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T1, typename T2, typename glue_type&gt;<br/>
+ class ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00104">104</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a2400d9cfd62a91066f07f2a46d932017"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::elem_type" ref="a2400d9cfd62a91066f07f2a46d932017" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00108">108</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3244f0a2e0c7675e2e0966947b6cdc02"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::pod_type" ref="a3244f0a2e0c7675e2e0966947b6cdc02" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt;<a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a>&gt;::result <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#a3244f0a2e0c7675e2e0966947b6cdc02">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00109">109</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a621fd31fee5d527b4ff30d4bb68d7f93"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::stored_type" ref="a621fd31fee5d527b4ff30d4bb68d7f93" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00066.html">Cube</a>&lt;<a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a>&gt; <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00066.html">stored_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00110">110</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a55a256397fb328c3f41dd5be1e4875fc"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::ProxyCube" ref="a55a256397fb328c3f41dd5be1e4875fc" args="(const GlueCube&lt; T1, T2, glue_type &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00459.html">ProxyCube</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00120">120</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00121"></a>00121     : <a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>           (A)
+<a name="l00122"></a>00122     , <a class="code" href="a00463.html#a9c7da922a3b407b98b82eb85d4ca0c9e">n_rows</a>      (<a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>.<a class="code" href="a00066.html#a2b96522a62c1934882f61a5cf31f6823" title="number of rows in each slice (read-only)">n_rows</a>)
+<a name="l00123"></a>00123     , <a class="code" href="a00463.html#a84c3e443ff9a8a0d32a1a63015192001">n_cols</a>      (<a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>.<a class="code" href="a00066.html#ad80e30cde8ecfc263436b59d95b42342" title="number of columns in each slice (read-only)">n_cols</a>)
+<a name="l00124"></a>00124     , <a class="code" href="a00463.html#a0738aff55d3d84347c375e57125ae8d6">n_elem_slice</a>(<a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>.<a class="code" href="a00066.html#aceb46f96d3e364fb7f645cc39460df61" title="number of elements in each slice (read-only)">n_elem_slice</a>)
+<a name="l00125"></a>00125     , <a class="code" href="a00463.html#afe57167d152fcd9998c5c8109d77cf15">n_slices</a>    (<a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>.<a class="code" href="a00066.html#a44db2acf88521b88816d7d7c607f96d7" title="number of slices in the cube (read-only)">n_slices</a>)
+<a name="l00126"></a>00126     , <a class="code" href="a00463.html#ae8229269f0a6ac0fefabb37ec533ce94">n_elem</a>      (<a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>.<a class="code" href="a00066.html#a902bd50808663f9eec272591651ff21a" title="number of elements in the cube (read-only)">n_elem</a>)
+<a name="l00127"></a>00127     {
+<a name="l00128"></a>00128     arma_extra_debug_sigprint();
+<a name="l00129"></a>00129     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a6353d8a25c0ce2f8f5a7f704ef89dccb"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::operator[]" ref="a6353d8a25c0ce2f8f5a7f704ef89dccb" args="(const u32 i) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00131">131</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00131"></a>00131 { <span class="keywordflow">return</span> <a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>[i];                  }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="adda09c7d88b48e658258eb1e0bedcf0d"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::at" ref="adda09c7d88b48e658258eb1e0bedcf0d" args="(const u32 row, const u32 col, const u32 slice) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>slice</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00132">132</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00132"></a>00132 { <span class="keywordflow">return</span> <a class="code" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a>.<a class="code" href="a00732.html#ga88789d28113d5e6606c27f802c506c82" title="element accessor; no bounds check">at</a>(row, col, slice); }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aa263128a4d6f4c4b7878463333bb14df"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::Q" ref="aa263128a4d6f4c4b7878463333bb14df" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00066.html">Cube</a>&lt;<a class="el" href="a00463.html#a2400d9cfd62a91066f07f2a46d932017">elem_type</a>&gt; <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#aa263128a4d6f4c4b7878463333bb14df">Q</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00112">112</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c7da922a3b407b98b82eb85d4ca0c9e"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::n_rows" ref="a9c7da922a3b407b98b82eb85d4ca0c9e" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#a9c7da922a3b407b98b82eb85d4ca0c9e">n_rows</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00114">114</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a84c3e443ff9a8a0d32a1a63015192001"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::n_cols" ref="a84c3e443ff9a8a0d32a1a63015192001" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#a84c3e443ff9a8a0d32a1a63015192001">n_cols</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00115">115</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0738aff55d3d84347c375e57125ae8d6"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::n_elem_slice" ref="a0738aff55d3d84347c375e57125ae8d6" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#a0738aff55d3d84347c375e57125ae8d6">n_elem_slice</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00116">116</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afe57167d152fcd9998c5c8109d77cf15"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::n_slices" ref="afe57167d152fcd9998c5c8109d77cf15" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#afe57167d152fcd9998c5c8109d77cf15">n_slices</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00117">117</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae8229269f0a6ac0fefabb37ec533ce94"></a><!-- doxytag: member="ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;::n_elem" ref="ae8229269f0a6ac0fefabb37ec533ce94" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00459.html">ProxyCube</a>&lt; <a class="el" href="a00198.html">GlueCube</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00463.html#ae8229269f0a6ac0fefabb37ec533ce94">n_elem</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00691_source.html#l00118">118</a> of file <a class="el" href="a00691_source.html">ProxyCube.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

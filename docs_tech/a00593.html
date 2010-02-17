@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: subview_meat.hpp File Reference</title>
+<title>Armadillo Technical: fn_sum.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,13 +25,38 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>subview_meat.hpp File Reference</h1>
+<h1>fn_sum.hpp File Reference</h1>
 <p><a href="a00593_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00331.html">op_sum</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081">sum</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed sum of elements of a matrix along a specified dimension (either rows or columns). The result is stored in a dense matrix that has either one column or one row. For dim = 0, find the sum of each column. For dim = 1, find the sum of each row. The default is dim = 0. NOTE: this function works differently than in Matlab/Octave.  <a href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga8e22bda9525de7c645e2b83e389a5b93">sum</a> (const <a class="el" href="a00466.html">Row</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'sum all values' operation for a row vector.  <a href="a00788.html#ga8e22bda9525de7c645e2b83e389a5b93"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga45c612bacf9c276645597911a2a457bb">sum</a> (const <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'sum all values' operation for a column vector.  <a href="a00788.html#ga45c612bacf9c276645597911a2a457bb"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gac8b4c96f8b36d2a9344698d368292077">sum</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00331.html">op_sum</a> &gt; &amp;in)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'sum all values' operation, invoked, for example, by: sum(sum(A)).  <a href="a00788.html#gac8b4c96f8b36d2a9344698d368292077"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00307.html">Op</a>&lt; <a class="el" href="a00307.html">Op</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00331.html">op_sum</a> &gt;, <a class="el" href="a00331.html">op_sum</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaaf522d79a5a629af25d5bb84513a476a">sum</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00331.html">op_sum</a> &gt; &amp;in, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gadbb5e56c6dcf6940d7ebbc0c96139568">sum</a> (const <a class="el" href="a00482.html">subview_row</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sum all values of a <a class="el" href="a00482.html">subview_row</a>  <a href="a00788.html#gadbb5e56c6dcf6940d7ebbc0c96139568"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaa917b797688cf860a353b209fcf2fef3">sum</a> (const <a class="el" href="a00479.html">subview_col</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sum all values of a <a class="el" href="a00479.html">subview_col</a>  <a href="a00788.html#gaa917b797688cf860a353b209fcf2fef3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga6f4f0098e9ff0883a8bc35bdf27dd5f1">sum</a> (const <a class="el" href="a00078.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sum all values of a <a class="el" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00788.html#ga6f4f0098e9ff0883a8bc35bdf27dd5f1"></a><br/></td></tr>
 </table>
 </div>
 </BODY>

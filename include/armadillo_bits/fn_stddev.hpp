@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -25,16 +26,11 @@ stddev(const Base<typename T1::elem_type,T1>& X, const u32 norm_type = 0, const 
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> A_tmp(X.get_ref());
-
-  // if T1 is a complex matrix,
-  // pod_type is the underlying type used by std::complex;
-  // otherwise pod_type is the same as elem_type
-  
   typedef typename T1::elem_type  in_eT;
   typedef typename T1::pod_type  out_eT;
 
-  const Mat<in_eT>& A = A_tmp.M;
+  const unwrap<T1>      tmp(X.get_ref());
+  const Mat<in_eT>& A = tmp.M;
   
   Mat<out_eT> out;
   
@@ -48,23 +44,8 @@ stddev(const Base<typename T1::elem_type,T1>& X, const u32 norm_type = 0, const 
 //! Immediate 'find the standard deviation of a row vector' operation
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 stddev(const Row<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
-  
-  return std::sqrt( op_var::direct_var(A.mem, A.n_elem, norm_type) );
-  }
-
-
-
-//! Immediate 'find the standard deviation of a row vector' operation (version for complex numbers)
-template<typename T>
-inline
-T
-stddev(const Row< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
@@ -78,23 +59,8 @@ stddev(const Row< std::complex<T> >& A, const u32 norm_type = 0)
 //! Immediate 'find the standard deviation of a column vector' operation
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 stddev(const Col<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
-  
-  return std::sqrt( op_var::direct_var(A.mem, A.n_elem, norm_type) );
-  }
-
-
-
-//! Immediate 'find the standard deviation of a column vector' operation (version for complex numbers)
-template<typename T>
-inline
-T
-stddev(const Col< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
@@ -108,23 +74,8 @@ stddev(const Col< std::complex<T> >& A, const u32 norm_type = 0)
 //! find the standard deviation of a subview_row
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 stddev(const subview_row<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
-  
-  return std::sqrt( op_var::direct_var(A, norm_type) );
-  }
-
-
-
-//! find the standard deviation of a subview_row (version for complex numbers)
-template<typename T>
-inline
-T
-stddev(const subview_row< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
@@ -138,23 +89,8 @@ stddev(const subview_row< std::complex<T> >& A, const u32 norm_type = 0)
 //! find the standard deviation of a subview_col
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 stddev(const subview_col<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
-  
-  return std::sqrt( op_var::direct_var(A, norm_type) );
-  }
-
-
-
-//! find the standard deviation of a subview_col (version for complex numbers)
-template<typename T>
-inline
-T
-stddev(const subview_col< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
@@ -168,23 +104,8 @@ stddev(const subview_col< std::complex<T> >& A, const u32 norm_type = 0)
 //! find the standard deviation of a diagview
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 stddev(const diagview<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "stddev(): given vector has no elements" );
-  
-  return std::sqrt( op_var::direct_var(A, norm_type) );
-  }
-
-
-
-//! find the standard deviation of a diagview (version for complex numbers)
-template<typename T>
-inline
-T
-stddev(const diagview< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   

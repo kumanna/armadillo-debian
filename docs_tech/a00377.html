@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_write&lt; T1 &gt; Class Template Reference</title>
+<title>Armadillo Technical: promote_type&lt; double, u32 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,189 +29,46 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_write&lt; T1 &gt; Class Template Reference<br/>
+<h1>promote_type&lt; double, u32 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00744.html">Unwrap</a>]</small>
-</h1><!-- doxytag: class="unwrap_write" -->
-<p>if the given object in not a matrix, <a class="el" href="a00337.html">unwrap</a> it into the given 'out' matrix (i.e. do not create another matrix) and provide a reference to the 'out' matrix. if the given object is a matrix, set the size of the 'out' matrix to be the same as the given object and provide a reference to the given object.  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00848.html">Promote_type</a>]</small>
+</h1><!-- doxytag: class="promote_type&lt; double, u32 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
+<p><code>#include &lt;<a class="el" href="a00689_source.html">promote_type.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for promote_type&lt; double, u32 &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00377.gif" usemap="#promote_type&lt; double, u32 &gt;_map" alt=""/>
+  <map id="promote_type&lt; double, u32 &gt;_map" name="promote_type&lt; double, u32 &gt;_map">
+<area href="a00448.html" alt="promote_type_ok" shape="rect" coords="0,0,180,24"/>
+</map>
+ </div>
+</div>
 
-<p><code>#include &lt;<a class="el" href="a00598_source.html">unwrap.hpp</a>&gt;</code></p>
-
-<p><a href="a01115.html">List of all members.</a></p>
+<p><a href="a01232.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00377.html#ae8addf3bc0645b5fd4f95f89ca644090">unwrap_write</a> (<a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00377.html#a2433284c351ee15ba169232e570c7e33">unwrap_write</a> (<a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00377.html#ae705e4c5f4d84683301fb49085acbde4">unwrap_write</a> (<a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00377.html#a6ed8c41af52983c66bc5afae33c58cd6">unwrap_write</a> (<a class="el" href="a00331.html">subview</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00377.html#af4001e043afca81e6320b33efceb5f64">unwrap_write</a> (<a class="el" href="a00053.html">diagview</a>&lt; eT &gt; &amp;out, const T1 &amp;in)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00377.html#afc1fd9d46445709fc786e4a39f05ff31">result</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- class unwrap_write&lt; T1 &gt;</h3>
+<h3>template&lt;&gt;<br/>
+ struct promote_type&lt; double, u32 &gt;</h3>
 
-<p>if the given object in not a matrix, <a class="el" href="a00337.html">unwrap</a> it into the given 'out' matrix (i.e. do not create another matrix) and provide a reference to the 'out' matrix. if the given object is a matrix, set the size of the 'out' matrix to be the same as the given object and provide a reference to the given object. </p>
 
-<p>Definition at line <a class="el" href="a00598_source.html#l00725">725</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae8addf3bc0645b5fd4f95f89ca644090"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="ae8addf3bc0645b5fd4f95f89ca644090" args="(Mat&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
+<p>Definition at line <a class="el" href="a00689_source.html#l00059">59</a> of file <a class="el" href="a00689_source.html">promote_type.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="afc1fd9d46445709fc786e4a39f05ff31"></a><!-- doxytag: member="promote_type&lt; double, u32 &gt;::result" ref="afc1fd9d46445709fc786e4a39f05ff31" args="" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
+          <td class="memname">typedef double <a class="el" href="a00370.html">promote_type</a>&lt; double, <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;::<a class="el" href="a00377.html#afc1fd9d46445709fc786e4a39f05ff31">result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a2433284c351ee15ba169232e570c7e33"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="a2433284c351ee15ba169232e570c7e33" args="(Row&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00323.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae705e4c5f4d84683301fb49085acbde4"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="ae705e4c5f4d84683301fb49085acbde4" args="(Col&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a6ed8c41af52983c66bc5afae33c58cd6"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="a6ed8c41af52983c66bc5afae33c58cd6" args="(subview&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00331.html">subview</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af4001e043afca81e6320b33efceb5f64"></a><!-- doxytag: member="unwrap_write::unwrap_write" ref="af4001e043afca81e6320b33efceb5f64" args="(diagview&lt; eT &gt; &amp;out, const T1 &amp;in)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00377.html">unwrap_write</a>&lt; T1 &gt;::<a class="el" href="a00377.html">unwrap_write</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00053.html">diagview</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Definition at line <a class="el" href="a00689_source.html#l00059">59</a> of file <a class="el" href="a00689_source.html">promote_type.hpp</a>.</p>
 
 </div>
 </div>

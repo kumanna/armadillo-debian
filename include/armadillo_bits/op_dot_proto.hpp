@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -24,13 +25,19 @@ class op_dot
   public:
   
   template<typename eT>
-  inline arma_pure static eT direct_dot(const u32 n_elem, const eT* const A, const eT* const B);
+  inline arma_hot arma_pure static eT direct_dot(const u32 n_elem, const eT* const A, const eT* const B);
   
   template<typename eT>
-  inline arma_pure static eT direct_dot(const u32 n_elem, const eT* const A, const eT* const B, const eT* C);
+  inline arma_hot arma_pure static eT direct_dot(const u32 n_elem, const eT* const A, const eT* const B, const eT* C);
   
   template<typename T1, typename T2>
-  inline static typename T1::elem_type apply(const Base<typename T1::elem_type,T1>& A_orig, const Base<typename T1::elem_type,T2>& B_orig);
+  arma_inline arma_hot static typename T1::elem_type apply(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y);
+  
+  template<typename T1, typename T2>
+  inline arma_hot static typename T1::elem_type apply_unwrap(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y);
+  
+  template<typename T1, typename T2>
+  inline arma_hot static typename T1::elem_type apply_proxy (const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y);
   };
   
   
@@ -43,7 +50,15 @@ class op_norm_dot
   public:
   
   template<typename T1, typename T2>
-  inline static typename T1::elem_type apply(const Base<typename T1::elem_type,T1>& A_orig, const Base<typename T1::elem_type,T2>& B_orig);
+  arma_inline arma_hot static typename T1::elem_type apply(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y);
+  
+  template<typename T1, typename T2>
+  inline arma_hot static typename T1::elem_type apply_unwrap(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y);
+  
+  template<typename T1, typename T2>
+  inline arma_hot static typename T1::elem_type apply_proxy (const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y);
   };
+
+
 
 //! @}

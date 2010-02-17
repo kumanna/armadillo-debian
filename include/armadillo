@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -17,56 +18,8 @@
 #define ARMA_INCLUDES
 
 
-#define arma_hot
-#define arma_pure
-#define arma_const
-#define arma_inline   inline
-#define arma_aligned
-
-
-#if defined(__GNUG__)
-
-  #if (__GNUC__ < 4)
-    #error "*** Need a newer compiler ***"
-  #endif
-  
-  #if (__GNUC_MINOR__ >= 3)
-    #undef  arma_hot
-    #define arma_hot __attribute__((hot))
-  #endif
-
-  #undef  arma_pure
-  #undef  arma_const
-  #undef  arma_inline
-  #undef  arma_aligned
-
-  #define arma_pure           __attribute__((pure))
-  #define arma_const          __attribute__((const))
-  #define arma_inline  inline __attribute__((always_inline))
-  #define arma_aligned        __attribute__((aligned))
-  
-  #define ARMA_GOOD_COMPILER
-  
-#elif defined(__INTEL_COMPILER)
-  
-  #if (__INTEL_COMPILER < 1000)
-    #error "*** Need a newer compiler ***"
-  #endif
-  
-  #define ARMA_GOOD_COMPILER
-  
-#elif defined(_MSC_VER)
-  
-  #pragma message ("*** WARNING: This compiler may have an incomplete implementation of the C++ standard ***")
-  #undef ARMA_GOOD_COMPILER
-
-#endif
-
-
-
-
-
 #include "armadillo_bits/config.hpp"
+#include "armadillo_bits/compiler_setup.hpp"
 
 #include <cstdlib>
 #include <cstring>
@@ -136,7 +89,11 @@ namespace arma
   #include "armadillo_bits/format_wrap.hpp"
   #include "armadillo_bits/cmath_wrap.hpp"
   #include "armadillo_bits/constants.hpp"
+  #include "armadillo_bits/version.hpp"
   #include "armadillo_bits/traits.hpp"
+  #include "armadillo_bits/promote_type.hpp"
+  #include "armadillo_bits/upgrade_val.hpp"
+  #include "armadillo_bits/restrictors.hpp"
   #include "armadillo_bits/access.hpp"
   
   
@@ -173,53 +130,52 @@ namespace arma
   
   #include "armadillo_bits/Op_proto.hpp"
   #include "armadillo_bits/OpCube_proto.hpp"
+  
+  #include "armadillo_bits/eOp_proto.hpp"
+  #include "armadillo_bits/eOpCube_proto.hpp"
+  
+  
   #include "armadillo_bits/Glue_proto.hpp"
+  #include "armadillo_bits/eGlue_proto.hpp"
+  
   #include "armadillo_bits/GlueCube_proto.hpp"
+  #include "armadillo_bits/eGlueCube_proto.hpp"
+  
+  #include "armadillo_bits/eop_core_proto.hpp"
+  #include "armadillo_bits/eop_cube_core_proto.hpp"
+  
+  #include "armadillo_bits/eglue_core_proto.hpp"
+  #include "armadillo_bits/eglue_cube_core_proto.hpp"
   
   #include "armadillo_bits/op_diagmat_proto.hpp"
+  #include "armadillo_bits/op_diagvec_proto.hpp"
   #include "armadillo_bits/op_dot_proto.hpp"
   #include "armadillo_bits/op_inv_proto.hpp"
   #include "armadillo_bits/op_htrans_proto.hpp"
-  #include "armadillo_bits/op_misc_proto.hpp"
   #include "armadillo_bits/op_max_proto.hpp"
   #include "armadillo_bits/op_min_proto.hpp"
   #include "armadillo_bits/op_mean_proto.hpp"
   #include "armadillo_bits/op_median_proto.hpp"
-  #include "armadillo_bits/op_neg_proto.hpp"
-  #include "armadillo_bits/op_ones_proto.hpp"
-  #include "armadillo_bits/op_rand_proto.hpp"
-  #include "armadillo_bits/op_randn_proto.hpp"
-  #include "armadillo_bits/op_scalar_misc_proto.hpp"
   #include "armadillo_bits/op_sort_proto.hpp"
   #include "armadillo_bits/op_sum_proto.hpp"
   #include "armadillo_bits/op_stddev_proto.hpp"
-  #include "armadillo_bits/op_trig_proto.hpp"
   #include "armadillo_bits/op_trans_proto.hpp"
   #include "armadillo_bits/op_var_proto.hpp"
-  #include "armadillo_bits/op_zeros_proto.hpp"
   #include "armadillo_bits/op_repmat_proto.hpp"
   #include "armadillo_bits/op_reshape_proto.hpp"
   #include "armadillo_bits/op_cov_proto.hpp"
   #include "armadillo_bits/op_cor_proto.hpp"
   #include "armadillo_bits/op_shuffle_proto.hpp"
   #include "armadillo_bits/op_prod_proto.hpp"
-  #include "armadillo_bits/op_eps_proto.hpp"
   #include "armadillo_bits/op_pinv_proto.hpp"
+  #include "armadillo_bits/op_dotext_proto.hpp"
+  #include "armadillo_bits/op_flip_proto.hpp"
+  #include "armadillo_bits/op_princomp_proto.hpp"
   
-  #include "armadillo_bits/glue_plus_proto.hpp"
-  #include "armadillo_bits/glue_minus_proto.hpp"
   #include "armadillo_bits/glue_times_proto.hpp"
-  #include "armadillo_bits/glue_schur_proto.hpp"
-  #include "armadillo_bits/glue_div_proto.hpp"
-  
   #include "armadillo_bits/glue_cov_proto.hpp"
   #include "armadillo_bits/glue_cor_proto.hpp"
   #include "armadillo_bits/glue_kron_proto.hpp"
-  
-  #include "armadillo_bits/glue_cube_plus_proto.hpp"
-  #include "armadillo_bits/glue_cube_minus_proto.hpp"
-  #include "armadillo_bits/glue_cube_schur_proto.hpp"
-  #include "armadillo_bits/glue_cube_div_proto.hpp"
   
   
   //
@@ -231,16 +187,32 @@ namespace arma
   //
   // classes that underlay metaprogramming 
   
+  #include "armadillo_bits/Proxy.hpp"
+  #include "armadillo_bits/ProxyCube.hpp"
+  
+  #include "armadillo_bits/diagmat_proxy.hpp"
+
   #include "armadillo_bits/unwrap.hpp"
   #include "armadillo_bits/unwrap_cube.hpp"
 
+  #include "armadillo_bits/strip.hpp"
+  
   #include "armadillo_bits/Op_meat.hpp"
   #include "armadillo_bits/OpCube_meat.hpp"
+  
   #include "armadillo_bits/Glue_meat.hpp"
   #include "armadillo_bits/GlueCube_meat.hpp"
   
-  #include "armadillo_bits/glue_metaprog.hpp"
-  #include "armadillo_bits/glue_cube_metaprog.hpp"
+  #include "armadillo_bits/eop_aux.hpp"
+  
+  #include "armadillo_bits/eOp_meat.hpp"
+  #include "armadillo_bits/eOpCube_meat.hpp"
+  
+  #include "armadillo_bits/eGlue_meat.hpp"
+  #include "armadillo_bits/eGlueCube_meat.hpp"
+  
+  #include "armadillo_bits/eglue_misc.hpp"
+  #include "armadillo_bits/eglue_cube_misc.hpp"
   
   
   //
@@ -256,7 +228,6 @@ namespace arma
   #include "armadillo_bits/operator_plus.hpp"
   #include "armadillo_bits/operator_minus.hpp"
   #include "armadillo_bits/operator_times.hpp"
-  #include "armadillo_bits/operator_times_dot.hpp"
   #include "armadillo_bits/operator_schur.hpp"
   #include "armadillo_bits/operator_div.hpp"
   #include "armadillo_bits/operator_relational.hpp"
@@ -283,10 +254,12 @@ namespace arma
   #include "armadillo_bits/fn_accu.hpp"
   #include "armadillo_bits/fn_sum.hpp"
   #include "armadillo_bits/fn_diagmat.hpp"
+  #include "armadillo_bits/fn_diagvec.hpp"
   #include "armadillo_bits/fn_inv.hpp"
   #include "armadillo_bits/fn_trace.hpp"
   #include "armadillo_bits/fn_trans.hpp"
   #include "armadillo_bits/fn_det.hpp"
+  #include "armadillo_bits/fn_log_det.hpp"
   #include "armadillo_bits/fn_eig.hpp"
   #include "armadillo_bits/fn_lu.hpp"
   #include "armadillo_bits/fn_zeros.hpp"
@@ -318,7 +291,9 @@ namespace arma
   #include "armadillo_bits/fn_pinv.hpp"
   #include "armadillo_bits/fn_rank.hpp"
   #include "armadillo_bits/fn_kron.hpp"
+  #include "armadillo_bits/fn_flip.hpp"
   #include "armadillo_bits/fn_as_scalar.hpp"
+  #include "armadillo_bits/fn_princomp.hpp"
   
   //
   // class meat
@@ -326,6 +301,12 @@ namespace arma
   #include "armadillo_bits/gemm.hpp"
   #include "armadillo_bits/gemv.hpp"
   #include "armadillo_bits/gemm_mixed.hpp"
+  
+  #include "armadillo_bits/eop_core_meat.hpp"
+  #include "armadillo_bits/eop_cube_core_meat.hpp"
+  
+  #include "armadillo_bits/eglue_core_meat.hpp"
+  #include "armadillo_bits/eglue_cube_core_meat.hpp"
   
   #include "armadillo_bits/podarray_meat.hpp"
   #include "armadillo_bits/auxlib_meat.hpp"
@@ -346,49 +327,34 @@ namespace arma
   #include "armadillo_bits/running_stat_vec_meat.hpp"
   
   #include "armadillo_bits/op_diagmat_meat.hpp"
+  #include "armadillo_bits/op_diagvec_meat.hpp"
   #include "armadillo_bits/op_dot_meat.hpp"
   #include "armadillo_bits/op_inv_meat.hpp"
   #include "armadillo_bits/op_htrans_meat.hpp"
-  #include "armadillo_bits/op_misc_meat.hpp"
   #include "armadillo_bits/op_max_meat.hpp"
   #include "armadillo_bits/op_min_meat.hpp"
   #include "armadillo_bits/op_mean_meat.hpp"
   #include "armadillo_bits/op_median_meat.hpp"
-  #include "armadillo_bits/op_neg_meat.hpp"
-  #include "armadillo_bits/op_ones_meat.hpp"
-  #include "armadillo_bits/op_rand_meat.hpp"
-  #include "armadillo_bits/op_randn_meat.hpp"
-  #include "armadillo_bits/op_scalar_misc_meat.hpp"
   #include "armadillo_bits/op_sort_meat.hpp"
   #include "armadillo_bits/op_sum_meat.hpp"
   #include "armadillo_bits/op_stddev_meat.hpp"
   #include "armadillo_bits/op_trans_meat.hpp"
-  #include "armadillo_bits/op_trig_meat.hpp"
   #include "armadillo_bits/op_var_meat.hpp"
-  #include "armadillo_bits/op_zeros_meat.hpp"
   #include "armadillo_bits/op_repmat_meat.hpp"
   #include "armadillo_bits/op_reshape_meat.hpp"
   #include "armadillo_bits/op_cov_meat.hpp"
   #include "armadillo_bits/op_cor_meat.hpp"
   #include "armadillo_bits/op_shuffle_meat.hpp"
   #include "armadillo_bits/op_prod_meat.hpp"
-  #include "armadillo_bits/op_eps_meat.hpp"
   #include "armadillo_bits/op_pinv_meat.hpp"
+  #include "armadillo_bits/op_dotext_meat.hpp"
+  #include "armadillo_bits/op_flip_meat.hpp"
+  #include "armadillo_bits/op_princomp_meat.hpp"
   
-  #include "armadillo_bits/glue_plus_meat.hpp"
-  #include "armadillo_bits/glue_minus_meat.hpp"
   #include "armadillo_bits/glue_times_meat.hpp"
-  #include "armadillo_bits/glue_schur_meat.hpp"
-  #include "armadillo_bits/glue_div_meat.hpp"
-  
   #include "armadillo_bits/glue_cov_meat.hpp"
   #include "armadillo_bits/glue_cor_meat.hpp"
   #include "armadillo_bits/glue_kron_meat.hpp"
-  
-  #include "armadillo_bits/glue_cube_plus_meat.hpp"
-  #include "armadillo_bits/glue_cube_minus_meat.hpp"
-  #include "armadillo_bits/glue_cube_schur_meat.hpp"
-  #include "armadillo_bits/glue_cube_div_meat.hpp"
   }
   
 #endif

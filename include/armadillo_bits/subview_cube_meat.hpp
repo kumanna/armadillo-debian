@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -364,7 +365,7 @@ subview_cube<eT>::operator= (const subview_cube<eT>& x_in)
   
         Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
   const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.aux_row2, x_in.aux_col2, x_in.aux_slice2) : 0;
-  const subview_cube<eT>&                x = overlap ? (*tmp_subview_cube) : x_in;
+  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
   
   subview_cube<eT>& t = *this;
   
@@ -406,7 +407,7 @@ subview_cube<eT>::operator+= (const subview_cube<eT>& x_in)
   
         Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
   const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.aux_row2, x_in.aux_col2, x_in.aux_slice2) : 0;
-  const subview_cube<eT>&                x = overlap ? (*tmp_subview_cube) : x_in;
+  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
   
   subview_cube<eT>& t = *this;
   
@@ -448,7 +449,7 @@ subview_cube<eT>::operator-= (const subview_cube<eT>& x_in)
   
         Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
   const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.aux_row2, x_in.aux_col2, x_in.aux_slice2) : 0;
-  const subview_cube<eT>&                x = overlap ? (*tmp_subview_cube) : x_in;
+  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
   
   subview_cube<eT>& t = *this;
   
@@ -490,7 +491,7 @@ subview_cube<eT>::operator%= (const subview_cube<eT>& x_in)
   
         Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
   const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.aux_row2, x_in.aux_col2, x_in.aux_slice2) : 0;
-  const subview_cube<eT>&                x = overlap ? (*tmp_subview_cube) : x_in;
+  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
   
   subview_cube<eT>& t = *this;
   
@@ -532,7 +533,7 @@ subview_cube<eT>::operator/= (const subview_cube<eT>& x_in)
   
         Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
   const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.aux_row2, x_in.aux_col2, x_in.aux_slice2) : 0;
-  const subview_cube<eT>&                x = overlap ? (*tmp_subview_cube) : x_in;
+  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
   
   subview_cube<eT>& t = *this;
   
@@ -1060,39 +1061,23 @@ subview_cube<eT>::plus_inplace(Cube<eT>& out, const subview_cube<eT>& in)
   
   arma_debug_assert_same_size(out, in, "cube addition");
   
-  if(&out != &in.m)
+  const u32 n_rows   = out.n_rows;
+  const u32 n_cols   = out.n_cols;
+  const u32 n_slices = out.n_slices;
+  
+  for(u32 slice = 0; slice<n_slices; ++slice)
     {
-    const u32 n_rows   = out.n_rows;
-    const u32 n_cols   = out.n_cols;
-    const u32 n_slices = out.n_slices;
-    
-    for(u32 slice = 0; slice<n_slices; ++slice)
+    for(u32 col = 0; col<n_cols; ++col)
       {
-      for(u32 col = 0; col<n_cols; ++col)
+            eT* out_coldata = out.slice_colptr(slice,col);
+      const eT*  in_coldata =  in.slice_colptr(slice,col);
+      
+      for(u32 row = 0; row<n_rows; ++row)
         {
-              eT* out_coldata = out.slice_colptr(slice,col);
-        const eT*  in_coldata =  in.slice_colptr(slice,col);
-        
-        for(u32 row = 0; row<n_rows; ++row)
-          {
-          out_coldata[row] += in_coldata[row];
-          }
+        out_coldata[row] += in_coldata[row];
         }
       }
     }
-  else
-    {
-    // X += X.subcube(...)
-    // this only makes sense if X and X.subcube(...) are the same size
-    
-    eT* out_mem = out.memptr();
-    
-    for(u32 i=0; i<out.n_elem; ++i)
-      {
-      out_mem[i] *= eT(2);
-      }
-    }
-  
   }
 
 
@@ -1107,34 +1092,23 @@ subview_cube<eT>::minus_inplace(Cube<eT>& out, const subview_cube<eT>& in)
   
   arma_debug_assert_same_size(out, in, "cube subtraction");
   
-  if(&out != &in.m)
+  const u32 n_rows   = out.n_rows;
+  const u32 n_cols   = out.n_cols;
+  const u32 n_slices = out.n_slices;
+  
+  for(u32 slice = 0; slice<n_slices; ++slice)
     {
-    const u32 n_rows   = out.n_rows;
-    const u32 n_cols   = out.n_cols;
-    const u32 n_slices = out.n_slices;
-    
-    for(u32 slice = 0; slice<n_slices; ++slice)
+    for(u32 col = 0; col<n_cols; ++col)
       {
-      for(u32 col = 0; col<n_cols; ++col)
+            eT* out_coldata = out.slice_colptr(slice,col);
+      const eT*  in_coldata =  in.slice_colptr(slice,col);
+      
+      for(u32 row = 0; row<n_rows; ++row)
         {
-              eT* out_coldata = out.slice_colptr(slice,col);
-        const eT*  in_coldata =  in.slice_colptr(slice,col);
-        
-        for(u32 row = 0; row<n_rows; ++row)
-          {
-          out_coldata[row] -= in_coldata[row];
-          }
+        out_coldata[row] -= in_coldata[row];
         }
       }
     }
-  else
-    {
-    // X -= X.subcube(...)
-    // this only makes sense if X and X.subcube(...) are the same size
-
-    out.zeros();
-    }
-  
   }
 
 
@@ -1149,40 +1123,23 @@ subview_cube<eT>::schur_inplace(Cube<eT>& out, const subview_cube<eT>& in)
   
   arma_debug_assert_same_size(out, in, "cube schur product");
   
-  if(&out != &in.m)
+  const u32 n_rows   = out.n_rows;
+  const u32 n_cols   = out.n_cols;
+  const u32 n_slices = out.n_slices;
+  
+  for(u32 slice = 0; slice<n_slices; ++slice)
     {
-    const u32 n_rows   = out.n_rows;
-    const u32 n_cols   = out.n_cols;
-    const u32 n_slices = out.n_slices;
-    
-    for(u32 slice = 0; slice<n_slices; ++slice)
+    for(u32 col = 0; col<n_cols; ++col)
       {
-      for(u32 col = 0; col<n_cols; ++col)
+            eT* out_coldata = out.slice_colptr(slice,col);
+      const eT*  in_coldata =  in.slice_colptr(slice,col);
+      
+      for(u32 row = 0; row<n_rows; ++row)
         {
-              eT* out_coldata = out.slice_colptr(slice,col);
-        const eT*  in_coldata =  in.slice_colptr(slice,col);
-        
-        for(u32 row = 0; row<n_rows; ++row)
-          {
-          out_coldata[row] *= in_coldata[row];
-          }
+        out_coldata[row] *= in_coldata[row];
         }
       }
     }
-  else
-    {
-    // X %= X.subcube(...)
-    // this only makes sense if X and X.subcube(...) are the same size
-
-    eT* out_mem = out.memptr();
-    
-    for(u32 i=0; i<out.n_elem; ++i)
-      {
-      const eT tmp = out_mem[i];
-      out_mem[i] = tmp*tmp;
-      }
-    }
-  
   }
 
 
@@ -1197,40 +1154,23 @@ subview_cube<eT>::div_inplace(Cube<eT>& out, const subview_cube<eT>& in)
   
   arma_debug_assert_same_size(out, in, "element-wise cube division");
   
-  if(&out != &in.m)
+  const u32 n_rows   = out.n_rows;
+  const u32 n_cols   = out.n_cols;
+  const u32 n_slices = out.n_slices;
+  
+  for(u32 slice = 0; slice<n_slices; ++slice)
     {
-    const u32 n_rows   = out.n_rows;
-    const u32 n_cols   = out.n_cols;
-    const u32 n_slices = out.n_slices;
-    
-    for(u32 slice = 0; slice<n_slices; ++slice)
+    for(u32 col = 0; col<n_cols; ++col)
       {
-      for(u32 col = 0; col<n_cols; ++col)
+            eT* out_coldata = out.slice_colptr(slice,col);
+      const eT*  in_coldata =  in.slice_colptr(slice,col);
+      
+      for(u32 row = 0; row<n_rows; ++row)
         {
-              eT* out_coldata = out.slice_colptr(slice,col);
-        const eT*  in_coldata =  in.slice_colptr(slice,col);
-        
-        for(u32 row = 0; row<n_rows; ++row)
-          {
-          out_coldata[row] /= in_coldata[row];
-          }
+        out_coldata[row] /= in_coldata[row];
         }
       }
     }
-  else
-    {
-    // X /= X.subcube(...)
-    // this only makes sense if X and X.subcube(...) are the same size
-
-    eT* out_mem = out.memptr();
-    
-    for(u32 i=0; i<out.n_elem; ++i)
-      {
-      const eT tmp = out_mem[i];
-      out_mem[i] = tmp/tmp;  // using tmp/tmp as tmp might be zero
-      }
-    }
-  
   }
 
 

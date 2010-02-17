@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -20,20 +21,18 @@
 
 //! A lightweight array for POD types. If the amount of memory requested is small, the stack is used.
 
-template<typename T1>
+template<typename eT>
 class podarray
   {
   public:
   
-  //! number of elements held
-  const u32 n_elem;    
-
-  //! pointer to memory used by the object
-  arma_aligned const T1* const mem;
+  arma_aligned const u32       n_elem; //!< number of elements held
+  arma_aligned const eT* const mem;    //!< pointer to memory used by the object
+  
   
   protected:
   //! Internal memory, to avoid calling the 'new' operator for small amounts of memory.
-  arma_aligned T1 mem_local[ 16 ];
+  arma_aligned eT mem_local[ 16 ];
   
   
   public:
@@ -45,27 +44,32 @@ class podarray
   inline const podarray& operator=(const podarray& x);
   
   arma_inline explicit podarray(const u32 new_N);
-
-  arma_inline T1& operator[] (const u32 i);
-  arma_inline T1  operator[] (const u32 i) const;
   
-  arma_inline T1& operator() (const u32 i);
-  arma_inline T1  operator() (const u32 i) const;
-
+  arma_inline explicit podarray(const eT* X, const u32 new_N);
+  
+  arma_inline eT& operator[] (const u32 i);
+  arma_inline eT  operator[] (const u32 i) const;
+  
+  arma_inline eT& operator() (const u32 i);
+  arma_inline eT  operator() (const u32 i) const;
+  
   inline void set_size(const u32 new_n_elem);
-  inline void fill(const T1 val);
-
+  
+  inline void fill(const eT val);
+  
   inline void zeros();
   inline void zeros(const u32 new_n_elem);
-
-  arma_inline       T1* memptr();
-  arma_inline const T1* memptr() const;
+  
+  arma_inline       eT* memptr();
+  arma_inline const eT* memptr() const;
   
   
   protected:
   
   inline void init(const u32 new_n_elem);
-
+  
   };
+
+
 
 //! @}

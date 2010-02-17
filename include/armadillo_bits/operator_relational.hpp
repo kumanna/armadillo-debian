@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,40 +19,34 @@
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 umat
 operator==
-(const Base<eT,T1>& X, const Base<eT,T2>& Y)
+(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
   
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-    
   arma_debug_assert_same_size(A, B, "operator==");
   
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
-  
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] == B_mem[i])
+    if(A[i] == B[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -60,40 +55,34 @@ operator==
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 umat
 operator!=
-(const Base<eT,T1>& X, const Base<eT,T2>& Y)
+(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator!=");
   
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
-  
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] != B_mem[i])
+    if(A[i] != B[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -102,40 +91,34 @@ operator!=
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 umat
 operator>=
-(const Base<eT,T1>& X, const Base<eT,T2>& Y)
+(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator>=");
   
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
-  
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] >= B_mem[i])
+    if(A[i] >= B[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -144,40 +127,34 @@ operator>=
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 umat
 operator<=
-(const Base<eT,T1>& X, const Base<eT,T2>& Y)
+(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator<=");
   
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
-  
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] <= B_mem[i])
+    if(A[i] <= B[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -186,40 +163,34 @@ operator<=
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 umat
 operator>
-(const Base<eT,T1>& X, const Base<eT,T2>& Y)
+(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator>");
   
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
-  
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] > B_mem[i])
+    if(A[i] > B[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -228,40 +199,34 @@ operator>
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 umat
 operator<
-(const Base<eT,T1>& X, const Base<eT,T2>& Y)
+(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const unwrap<T2> tmp2(Y.get_ref());
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator<");
   
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
-  
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] < B_mem[i])
+    if(A[i] < B[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -278,27 +243,23 @@ operator==
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-  
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] == val)
+    if(A[i] == val)
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -315,27 +276,23 @@ operator!=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
-  
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  typedef typename umat::elem_type umat_eT;
+
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] != val)
+    if(A[i] != val)
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -352,27 +309,23 @@ operator>=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] >= val)
+    if(A[i] >= val)
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -389,27 +342,23 @@ operator<=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] <= val)
+    if(A[i] <= val)
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -426,27 +375,23 @@ operator>
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] > val)
+    if(A[i] > val)
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -463,27 +408,23 @@ operator<
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] < val)
+    if(A[i] < val)
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -522,27 +463,23 @@ operator>=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val >= A_mem[i])
+    if(val >= A[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -559,27 +496,23 @@ operator<=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val <= A_mem[i])
+    if(val <= A[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -596,27 +529,23 @@ operator>
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-    
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val > A_mem[i])
+    if(val > A[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   
@@ -633,27 +562,23 @@ operator<
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename umat::elem_type umat_eT;
   
-  const unwrap<T1> tmp1(X.get_ref());
-  const Mat<eT>& A = tmp1.M;
-  
+  const Proxy<T1> A(X.get_ref());
+
   umat out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename umat::elem_type umat_elem_type;
-  umat_elem_type* out_mem = out.memptr();
+  umat_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val < A_mem[i])
+    if(val < A[i])
       {
-      out_mem[i] = umat_elem_type(1);
+      out_mem[i] = umat_eT(1);
       }
     else
       {
-      out_mem[i] = umat_elem_type(0);
+      out_mem[i] = umat_eT(0);
       }
     }
   

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -23,12 +24,8 @@ class Cube : public BaseCube< eT, Cube<eT> >
   {
   public:
   
-  typedef eT elem_type;  //!< the type of elements stored in the cube
-  
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
-  //!< if eT is std::complex, pod_type is the underlying type used by std::complex.
-  //!< otherwise pod_type is the same as elem_type
-  
+  typedef eT                                elem_type; //!< the type of elements stored in the cube
+  typedef typename get_pod_type<eT>::result pod_type;  //!< if eT is non-complex, pod_type is same as eT. otherwise, pod_type is the underlying type used by std::complex
   
   const u32  n_rows;       //!< number of rows in each slice (read-only)
   const u32  n_cols;       //!< number of columns in each slice (read-only)
@@ -88,21 +85,33 @@ class Cube : public BaseCube< eT, Cube<eT> >
   arma_inline const subview_cube<eT> subcube(const u32 in_row1, const u32 in_col1, const u32 in_slice1, const u32 in_row2, const u32 in_col2, const u32 in_slice2) const;
 
 
-  template<typename T1, typename op_cube_type> inline                   Cube(const OpCube<T1, op_cube_type>& X);
-  template<typename T1, typename op_cube_type> inline const Cube&  operator=(const OpCube<T1, op_cube_type>& X);
-  template<typename T1, typename op_cube_type> inline const Cube& operator+=(const OpCube<T1, op_cube_type>& X);
-  template<typename T1, typename op_cube_type> inline const Cube& operator-=(const OpCube<T1, op_cube_type>& X);
-  template<typename T1, typename op_cube_type> inline const Cube& operator%=(const OpCube<T1, op_cube_type>& X);
-  template<typename T1, typename op_cube_type> inline const Cube& operator/=(const OpCube<T1, op_cube_type>& X);
+  template<typename T1, typename op_type> inline                   Cube(const OpCube<T1, op_type>& X);
+  template<typename T1, typename op_type> inline const Cube&  operator=(const OpCube<T1, op_type>& X);
+  template<typename T1, typename op_type> inline const Cube& operator+=(const OpCube<T1, op_type>& X);
+  template<typename T1, typename op_type> inline const Cube& operator-=(const OpCube<T1, op_type>& X);
+  template<typename T1, typename op_type> inline const Cube& operator%=(const OpCube<T1, op_type>& X);
+  template<typename T1, typename op_type> inline const Cube& operator/=(const OpCube<T1, op_type>& X);
   
+  template<typename T1, typename eop_type> inline                   Cube(const eOpCube<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Cube&  operator=(const eOpCube<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Cube& operator+=(const eOpCube<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Cube& operator-=(const eOpCube<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Cube& operator%=(const eOpCube<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Cube& operator/=(const eOpCube<T1, eop_type>& X);
   
-  template<typename T1, typename T2, typename glue_cube_type> inline                   Cube(const GlueCube<T1, T2, glue_cube_type>& X);
-  template<typename T1, typename T2, typename glue_cube_type> inline const Cube&  operator=(const GlueCube<T1, T2, glue_cube_type>& X);
-  template<typename T1, typename T2, typename glue_cube_type> inline const Cube& operator+=(const GlueCube<T1, T2, glue_cube_type>& X);
-  template<typename T1, typename T2, typename glue_cube_type> inline const Cube& operator-=(const GlueCube<T1, T2, glue_cube_type>& X);
-  template<typename T1, typename T2, typename glue_cube_type> inline const Cube& operator%=(const GlueCube<T1, T2, glue_cube_type>& X);
-  template<typename T1, typename T2, typename glue_cube_type> inline const Cube& operator/=(const GlueCube<T1, T2, glue_cube_type>& X);
+  template<typename T1, typename T2, typename glue_type> inline                   Cube(const GlueCube<T1, T2, glue_type>& X);
+  template<typename T1, typename T2, typename glue_type> inline const Cube&  operator=(const GlueCube<T1, T2, glue_type>& X);
+  template<typename T1, typename T2, typename glue_type> inline const Cube& operator+=(const GlueCube<T1, T2, glue_type>& X);
+  template<typename T1, typename T2, typename glue_type> inline const Cube& operator-=(const GlueCube<T1, T2, glue_type>& X);
+  template<typename T1, typename T2, typename glue_type> inline const Cube& operator%=(const GlueCube<T1, T2, glue_type>& X);
+  template<typename T1, typename T2, typename glue_type> inline const Cube& operator/=(const GlueCube<T1, T2, glue_type>& X);
   
+  template<typename T1, typename T2, typename eglue_type> inline                   Cube(const eGlueCube<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Cube&  operator=(const eGlueCube<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Cube& operator+=(const eGlueCube<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Cube& operator-=(const eGlueCube<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Cube& operator%=(const eGlueCube<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Cube& operator/=(const eGlueCube<T1, T2, eglue_type>& X);
   
   arma_inline eT& operator[] (const u32 i);
   arma_inline eT  operator[] (const u32 i) const;
@@ -151,8 +160,11 @@ class Cube : public BaseCube< eT, Cube<eT> >
   
   inline void reset();
   
-  inline void save(const std::string name, const file_type type = arma_binary) const;
-  inline void load(const std::string name, const file_type type = auto_detect);
+  inline void save(const std::string   name, const file_type type = arma_binary) const;
+  inline void save(      std::ostream& os,   const file_type type = arma_binary) const;
+  
+  inline void load(const std::string   name, const file_type type = auto_detect);
+  inline void load(      std::istream& is,   const file_type type = auto_detect);
   
   
   protected:

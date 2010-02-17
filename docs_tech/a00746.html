@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Wall_clock</title>
+<title>Armadillo Technical: EOp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,74 +21,270 @@
   </div>
 </div>
 <div class="contents">
-<h1>Wall_clock</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>EOp</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00396.html">wall_clock</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for measuring time intervals.  <a href="a00396.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html">eOp&lt; T1, eop_type &gt;</a></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#gad4ae6db872afaf62d9d85fc814c86157">wall_clock::wall_clock</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga213936cd25ca7b437ab541f1cbe0ee9d">wall_clock::~wall_clock</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga9064966cb7554c013f7bc6976b6fb696">wall_clock::tic</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">start the timer  <a href="#ga9064966cb7554c013f7bc6976b6fb696"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga6ac88f19461855332d70d24c96e0f8b8">wall_clock::toc</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">return the number of seconds since the last call to <a class="el" href="a00746.html#ga9064966cb7554c013f7bc6976b6fb696" title="start the timer">tic()</a>  <a href="#ga6ac88f19461855332d70d24c96e0f8b8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga5082a5597bf411b545b96f1089edb484">eOp::eOp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#gabedd303684ac33696208ddc7c5e0bf37">eOp::eOp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const elem_type in_aux)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga057c2a86decfba3c7c31c6a23e3b9c78">eOp::eOp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga704365dd2caea17527c1c29d6ad2602d">eOp::eOp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const elem_type in_aux, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#gab609030fdf3a8d705bfcecd66a68fb74">eOp::eOp</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_rows, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_cols)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00746.html#ga945799121f189a53af139b37dd8beadb">eOp::~eOp</a> ()</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gad4ae6db872afaf62d9d85fc814c86157"></a><!-- doxytag: member="wall_clock::wall_clock" ref="gad4ae6db872afaf62d9d85fc814c86157" args="()" -->
+<a class="anchor" id="ga5082a5597bf411b545b96f1089edb484"></a><!-- doxytag: member="eOp::eOp" ref="ga5082a5597bf411b545b96f1089edb484" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;in_m)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename eop_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">wall_clock::wall_clock </td>
+          <td class="memname"><a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt;::<a class="el" href="a00092.html">eOp</a> </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_m</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline, explicit, inherited]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00600_source.html#l00021">21</a> of file <a class="el" href="a00600_source.html">wall_clock_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00548_source.html#l00023">23</a> of file <a class="el" href="a00548_source.html">eOp_meat.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00022"></a>00022   : <a class="code" href="a00396.html#a254d5299375cabcf258dd80231a4383e">valid</a>(<span class="keyword">false</span>)
-<a name="l00023"></a>00023   {
-<a name="l00024"></a>00024   arma_extra_debug_sigprint();
-<a name="l00025"></a>00025   }
-</pre></div></p>
+<p>References <a class="el" href="a00549_source.html#l00032">eOp&lt; T1, eop_type &gt;::n_cols</a>, and <a class="el" href="a00549_source.html#l00031">eOp&lt; T1, eop_type &gt;::n_rows</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="ga213936cd25ca7b437ab541f1cbe0ee9d"></a><!-- doxytag: member="wall_clock::~wall_clock" ref="ga213936cd25ca7b437ab541f1cbe0ee9d" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">wall_clock::~wall_clock </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00600_source.html#l00030">30</a> of file <a class="el" href="a00600_source.html">wall_clock_meat.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031   {
+<p><div class="fragment"><pre class="fragment"><a name="l00024"></a>00024   : <a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>(in_m.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>())
+<a name="l00025"></a>00025   , <a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_rows)
+<a name="l00026"></a>00026   , <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_cols)
+<a name="l00027"></a>00027   , <a class="code" href="a00092.html#a62000b76b58b47593fa89bfc63437137">n_elem</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_elem)
+<a name="l00028"></a>00028   , <a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>(<a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>)
+<a name="l00029"></a>00029   , <a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>(<a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>)
+<a name="l00030"></a>00030   , <a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>(<a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>)
+<a name="l00031"></a>00031   {
 <a name="l00032"></a>00032   arma_extra_debug_sigprint();
-<a name="l00033"></a>00033   }
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   arma_debug_check( (eop_type::size_ok(<a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>, <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>) == <span class="keyword">false</span>), eop_type::error_msg() );
+<a name="l00035"></a>00035   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga9064966cb7554c013f7bc6976b6fb696"></a><!-- doxytag: member="wall_clock::tic" ref="ga9064966cb7554c013f7bc6976b6fb696" args="()" -->
+<a class="anchor" id="gabedd303684ac33696208ddc7c5e0bf37"></a><!-- doxytag: member="eOp::eOp" ref="gabedd303684ac33696208ddc7c5e0bf37" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const elem_type in_aux)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename eop_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void wall_clock::tic </td>
+          <td class="memname"><a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt;::<a class="el" href="a00092.html">eOp</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00092.html#afc8758d53f7cb0a2728d70ddb4a435ed">elem_type</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00548_source.html#l00040">40</a> of file <a class="el" href="a00548_source.html">eOp_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00549_source.html#l00032">eOp&lt; T1, eop_type &gt;::n_cols</a>, and <a class="el" href="a00549_source.html#l00031">eOp&lt; T1, eop_type &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00041"></a>00041   : <a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>(in_m.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>())
+<a name="l00042"></a>00042   , <a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_rows)
+<a name="l00043"></a>00043   , <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_cols)
+<a name="l00044"></a>00044   , <a class="code" href="a00092.html#a62000b76b58b47593fa89bfc63437137">n_elem</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_elem)
+<a name="l00045"></a>00045   , <a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>(in_aux)
+<a name="l00046"></a>00046   , <a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>(<a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>)
+<a name="l00047"></a>00047   , <a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>(<a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>)
+<a name="l00048"></a>00048   {
+<a name="l00049"></a>00049   arma_extra_debug_sigprint();
+<a name="l00050"></a>00050   
+<a name="l00051"></a>00051   arma_debug_check( (eop_type::size_ok(<a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>, <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>) == <span class="keyword">false</span>), eop_type::error_msg() );
+<a name="l00052"></a>00052   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga057c2a86decfba3c7c31c6a23e3b9c78"></a><!-- doxytag: member="eOp::eOp" ref="ga057c2a86decfba3c7c31c6a23e3b9c78" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename eop_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt;::<a class="el" href="a00092.html">eOp</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux_u32_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux_u32_b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00548_source.html#l00057">57</a> of file <a class="el" href="a00548_source.html">eOp_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00549_source.html#l00032">eOp&lt; T1, eop_type &gt;::n_cols</a>, and <a class="el" href="a00549_source.html#l00031">eOp&lt; T1, eop_type &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00058"></a>00058   : <a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>(in_m.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>())
+<a name="l00059"></a>00059   , <a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_rows)
+<a name="l00060"></a>00060   , <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_cols)
+<a name="l00061"></a>00061   , <a class="code" href="a00092.html#a62000b76b58b47593fa89bfc63437137">n_elem</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_elem)
+<a name="l00062"></a>00062   , <a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>(<a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>)
+<a name="l00063"></a>00063   , <a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>(in_aux_u32_a)
+<a name="l00064"></a>00064   , <a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>(in_aux_u32_b)
+<a name="l00065"></a>00065   {
+<a name="l00066"></a>00066   arma_extra_debug_sigprint();
+<a name="l00067"></a>00067   
+<a name="l00068"></a>00068   arma_debug_check( (eop_type::size_ok(<a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>, <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>) == <span class="keyword">false</span>), eop_type::error_msg() );
+<a name="l00069"></a>00069   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga704365dd2caea17527c1c29d6ad2602d"></a><!-- doxytag: member="eOp::eOp" ref="ga704365dd2caea17527c1c29d6ad2602d" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;in_m, const elem_type in_aux, const u32 in_aux_u32_a, const u32 in_aux_u32_b)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename eop_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt;::<a class="el" href="a00092.html">eOp</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00092.html#afc8758d53f7cb0a2728d70ddb4a435ed">elem_type</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux_u32_a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux_u32_b</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00548_source.html#l00074">74</a> of file <a class="el" href="a00548_source.html">eOp_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00549_source.html#l00032">eOp&lt; T1, eop_type &gt;::n_cols</a>, and <a class="el" href="a00549_source.html#l00031">eOp&lt; T1, eop_type &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00075"></a>00075   : <a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>(in_m.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>())
+<a name="l00076"></a>00076   , <a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_rows)
+<a name="l00077"></a>00077   , <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_cols)
+<a name="l00078"></a>00078   , <a class="code" href="a00092.html#a62000b76b58b47593fa89bfc63437137">n_elem</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.n_elem)
+<a name="l00079"></a>00079   , <a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>(in_aux)
+<a name="l00080"></a>00080   , <a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>(in_aux_u32_a)
+<a name="l00081"></a>00081   , <a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>(in_aux_u32_b)
+<a name="l00082"></a>00082   {
+<a name="l00083"></a>00083   arma_extra_debug_sigprint();
+<a name="l00084"></a>00084   
+<a name="l00085"></a>00085   arma_debug_check( (eop_type::size_ok(<a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>, <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>) == <span class="keyword">false</span>), eop_type::error_msg() );
+<a name="l00086"></a>00086   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gab609030fdf3a8d705bfcecd66a68fb74"></a><!-- doxytag: member="eOp::eOp" ref="gab609030fdf3a8d705bfcecd66a68fb74" args="(const u32 in_n_rows, const u32 in_n_cols)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename eop_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt;::<a class="el" href="a00092.html">eOp</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_n_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_n_cols</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00548_source.html#l00091">91</a> of file <a class="el" href="a00548_source.html">eOp_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00549_source.html#l00032">eOp&lt; T1, eop_type &gt;::n_cols</a>, and <a class="el" href="a00549_source.html#l00031">eOp&lt; T1, eop_type &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00092"></a>00092   : <a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>(<a class="code" href="a00092.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>)
+<a name="l00093"></a>00093   , <a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>(in_n_rows)
+<a name="l00094"></a>00094   , <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>(in_n_cols)
+<a name="l00095"></a>00095   , <a class="code" href="a00092.html#a62000b76b58b47593fa89bfc63437137">n_elem</a>(<a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>*<a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>)
+<a name="l00096"></a>00096   , <a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>(<a class="code" href="a00092.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>)
+<a name="l00097"></a>00097   , <a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>(<a class="code" href="a00092.html#a82f5058d70721139f2e2250d3d00e206" title="storage of auxiliary data, u32 format">aux_u32_a</a>)
+<a name="l00098"></a>00098   , <a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>(<a class="code" href="a00092.html#ad4f5c46e034629f60cff6de36731f253" title="storage of auxiliary data, u32 format">aux_u32_b</a>)
+<a name="l00099"></a>00099   {
+<a name="l00100"></a>00100   arma_extra_debug_sigprint();
+<a name="l00101"></a>00101   
+<a name="l00102"></a>00102   arma_debug_check( (eop_type::size_ok(<a class="code" href="a00092.html#a92272a113a0fc724a822ee852254ebf1">n_rows</a>, <a class="code" href="a00092.html#a89b50426ac1501b3c08fac411287d003">n_cols</a>) == <span class="keyword">false</span>), eop_type::error_msg() );
+<a name="l00103"></a>00103   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga945799121f189a53af139b37dd8beadb"></a><!-- doxytag: member="eOp::~eOp" ref="ga945799121f189a53af139b37dd8beadb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename eop_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt;::~<a class="el" href="a00092.html">eOp</a> </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -98,91 +294,11 @@
 </div>
 <div class="memdoc">
 
-<p>start the timer </p>
+<p>Definition at line <a class="el" href="a00548_source.html#l00108">108</a> of file <a class="el" href="a00548_source.html">eOp_meat.hpp</a>.</p>
 
-<p>Definition at line <a class="el" href="a00600_source.html#l00039">39</a> of file <a class="el" href="a00600_source.html">wall_clock_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00415_source.html#l00640">arma_stop()</a>, <a class="el" href="a00601_source.html#l00037">boost_time1</a>, <a class="el" href="a00601_source.html#l00041">posix_time1</a>, and <a class="el" href="a00601_source.html#l00034">valid</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00040"></a>00040   {
-<a name="l00041"></a>00041   arma_extra_debug_sigprint();
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043 <span class="preprocessor">  #if defined(ARMA_USE_BOOST_DATE)</span>
-<a name="l00044"></a>00044 <span class="preprocessor"></span>    {
-<a name="l00045"></a>00045     <a class="code" href="a00396.html#ad06554be2ea5b36e64ff69f01702c63b">boost_time1</a> = boost::posix_time::microsec_clock::local_time();
-<a name="l00046"></a>00046     <a class="code" href="a00396.html#a254d5299375cabcf258dd80231a4383e">valid</a> = <span class="keyword">true</span>;
-<a name="l00047"></a>00047     }
-<a name="l00048"></a>00048 <span class="preprocessor">  #else</span>
-<a name="l00049"></a>00049 <span class="preprocessor"></span><span class="preprocessor">    #if defined(ARMA_HAVE_GETTIMEOFDAY)</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span>      {
-<a name="l00051"></a>00051       gettimeofday(&amp;<a class="code" href="a00396.html#a4f6b78eab684bd55acec1937d80f8916">posix_time1</a>, 0);
-<a name="l00052"></a>00052       <a class="code" href="a00396.html#a254d5299375cabcf258dd80231a4383e">valid</a> = <span class="keyword">true</span>;
-<a name="l00053"></a>00053       }
-<a name="l00054"></a>00054 <span class="preprocessor">    #else</span>
-<a name="l00055"></a>00055 <span class="preprocessor"></span>      {
-<a name="l00056"></a>00056       <a class="code" href="a00619.html#ga83f583af567c74f81c35a8011a0ed0e0" title="throw a run-time error exception">arma_stop</a>(<span class="stringliteral">&quot;wall_clock::tic(): need Boost libraries or POSIX gettimeofday()&quot;</span>);
-<a name="l00057"></a>00057       }
-<a name="l00058"></a>00058 <span class="preprocessor">    #endif</span>
-<a name="l00059"></a>00059 <span class="preprocessor"></span><span class="preprocessor">  #endif</span>
-<a name="l00060"></a>00060 <span class="preprocessor"></span>  }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ga6ac88f19461855332d70d24c96e0f8b8"></a><!-- doxytag: member="wall_clock::toc" ref="ga6ac88f19461855332d70d24c96e0f8b8" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double wall_clock::toc </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>return the number of seconds since the last call to <a class="el" href="a00746.html#ga9064966cb7554c013f7bc6976b6fb696" title="start the timer">tic()</a> </p>
-
-<p>Definition at line <a class="el" href="a00600_source.html#l00066">66</a> of file <a class="el" href="a00600_source.html">wall_clock_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00415_source.html#l00640">arma_stop()</a>, <a class="el" href="a00601_source.html#l00038">boost_duration</a>, <a class="el" href="a00601_source.html#l00037">boost_time1</a>, <a class="el" href="a00601_source.html#l00041">posix_time1</a>, <a class="el" href="a00601_source.html#l00042">posix_time2</a>, and <a class="el" href="a00601_source.html#l00034">valid</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00067"></a>00067   {
-<a name="l00068"></a>00068   arma_extra_debug_sigprint();
-<a name="l00069"></a>00069   
-<a name="l00070"></a>00070   <span class="keywordflow">if</span>(<a class="code" href="a00396.html#a254d5299375cabcf258dd80231a4383e">valid</a>)
-<a name="l00071"></a>00071     {
-<a name="l00072"></a>00072 <span class="preprocessor">    #if defined(ARMA_USE_BOOST_DATE)</span>
-<a name="l00073"></a>00073 <span class="preprocessor"></span>      {
-<a name="l00074"></a>00074       <a class="code" href="a00396.html#acaa8814043e2a385051f9c502d068036">boost_duration</a> = boost::posix_time::microsec_clock::local_time() - <a class="code" href="a00396.html#ad06554be2ea5b36e64ff69f01702c63b">boost_time1</a>;
-<a name="l00075"></a>00075       <span class="keywordflow">return</span> <a class="code" href="a00396.html#acaa8814043e2a385051f9c502d068036">boost_duration</a>.total_microseconds() * 1e-6;
-<a name="l00076"></a>00076       }
-<a name="l00077"></a>00077 <span class="preprocessor">    #else</span>
-<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">      #if defined(ARMA_HAVE_GETTIMEOFDAY)</span>
-<a name="l00079"></a>00079 <span class="preprocessor"></span>        {
-<a name="l00080"></a>00080         gettimeofday(&amp;<a class="code" href="a00396.html#a3e64a068cc6becde605ff298cb9968c8">posix_time2</a>, 0);
-<a name="l00081"></a>00081         
-<a name="l00082"></a>00082         <span class="keyword">const</span> <span class="keywordtype">double</span> tmp_time1 = <a class="code" href="a00396.html#a4f6b78eab684bd55acec1937d80f8916">posix_time1</a>.tv_sec + <a class="code" href="a00396.html#a4f6b78eab684bd55acec1937d80f8916">posix_time1</a>.tv_usec * 1.0e-6;
-<a name="l00083"></a>00083         <span class="keyword">const</span> <span class="keywordtype">double</span> tmp_time2 = <a class="code" href="a00396.html#a3e64a068cc6becde605ff298cb9968c8">posix_time2</a>.tv_sec + <a class="code" href="a00396.html#a3e64a068cc6becde605ff298cb9968c8">posix_time2</a>.tv_usec * 1.0e-6;
-<a name="l00084"></a>00084         
-<a name="l00085"></a>00085         <span class="keywordflow">return</span> tmp_time2 - tmp_time1;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087 <span class="preprocessor">      #else</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span>        {
-<a name="l00089"></a>00089         <a class="code" href="a00619.html#ga83f583af567c74f81c35a8011a0ed0e0" title="throw a run-time error exception">arma_stop</a>(<span class="stringliteral">&quot;wall_clock::toc(): need Boost libraries or POSIX gettimeofday()&quot;</span>);
-<a name="l00090"></a>00090         <span class="keywordflow">return</span> 0.0;
-<a name="l00091"></a>00091         }
-<a name="l00092"></a>00092 <span class="preprocessor">      #endif</span>
-<a name="l00093"></a>00093 <span class="preprocessor"></span><span class="preprocessor">    #endif</span>
-<a name="l00094"></a>00094 <span class="preprocessor"></span>    }
-<a name="l00095"></a>00095   <span class="keywordflow">else</span>
-<a name="l00096"></a>00096     {  
-<a name="l00097"></a>00097     <span class="keywordflow">return</span> 0.0;
-<a name="l00098"></a>00098     }
-<a name="l00099"></a>00099   }
+<p><div class="fragment"><pre class="fragment"><a name="l00109"></a>00109   {
+<a name="l00110"></a>00110   arma_extra_debug_sigprint();
+<a name="l00111"></a>00111   }
 </pre></div></p>
 
 </div>

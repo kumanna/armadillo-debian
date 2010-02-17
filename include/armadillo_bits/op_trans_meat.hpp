@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -139,64 +140,6 @@ op_trans::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans>& in)
 
 
 
-#if defined(ARMA_GOOD_COMPILER)
-
-
-
-template<typename T1, typename T2>
-inline
-void
-op_trans::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,glue_plus>, op_trans>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  isnt_same_type<eT, typename T2::elem_type>::check();
-  
-  const unwrap_check<T1> tmp1(in.m.A, out);
-  const unwrap_check<T2> tmp2(in.m.B, out);
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_assert_same_size(A, B, "matrix addition");
-  
-  out.set_size(A.n_cols, A.n_rows);
-  
-  if( ( (A.n_rows == 1) || (A.n_cols == 1) ) && ( (B.n_rows == 1) || (B.n_cols == 1) ) )
-    {
-    for(u32 i=0; i<A.n_elem; ++i)
-      {
-      out[i] = A[i] + B[i];
-      }
-    }
-  else
-    {
-    const u32 A_n_cols = A.n_cols;
-    const u32 A_n_rows = A.n_rows;
-  
-    for(u32 col=0; col<A_n_cols; ++col)
-      {
-      const u32 out_row = col;
-      for(u32 row=0; row<A_n_rows; ++row)
-        {
-        const u32 out_col = row;
-        out.at(out_row, out_col) = A.at(row,col) + B.at(row,col);
-        }
-      
-      }
-    
-    }
-  
-  }
-
-
-
-#endif
-
-
-
 // inline void op_trans::apply_inplace(mat &X)
 //   {
 //   arma_extra_debug_sigprint();
@@ -237,5 +180,34 @@ op_trans::apply(Mat<typename T1::elem_type>& out, const Op< Glue<T1,T2,glue_plus
 //     }
 //   
 //   }
+
+
+
+
+template<typename T1>
+inline
+void
+op_trans2::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans2>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const unwrap<T1> tmp(in.m);
+  
+  op_trans::apply(out, tmp.M);
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = out.n_elem;
+  const eT  k       = in.aux;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] *= k;
+    }
+  
+  }
+
+
 
 //! @}

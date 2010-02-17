@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA and the authors listed below
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -21,7 +22,7 @@
 //! immediate matrix inverse
 template<typename eT>
 inline
-void
+bool
 auxlib::inv_noalias(Mat<eT>& out, const Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
@@ -134,7 +135,7 @@ auxlib::inv_noalias(Mat<eT>& out, const Mat<eT>& X)
           info = atlas::clapack_getri(atlas::CblasColMajor, out.n_rows, out.memptr(), out.n_rows, ipiv.memptr());
           }
         
-        arma_check( (info > 0), "auxlib::inv_noalias(): matrix appears to be singular" );
+        return (info == 0);
         }
       #elif defined(ARMA_USE_LAPACK)
         {
@@ -166,7 +167,7 @@ auxlib::inv_noalias(Mat<eT>& out, const Mat<eT>& X)
           
           if(info == 0)
             {
-            int proposed_work_len = static_cast<int>(auxlib::tmp_real(work[0]));
+            int proposed_work_len = static_cast<int>(access::tmp_real(work[0]));
             
             // if necessary, allocate more memory
             if(work_len < proposed_work_len)
@@ -179,15 +180,17 @@ auxlib::inv_noalias(Mat<eT>& out, const Mat<eT>& X)
           lapack::getri_(&n_rows, out.memptr(), &n_rows, ipiv.memptr(), work.memptr(), &work_len, &info);
           }
         
-        arma_check( (info > 0), "auxlib::inv_noalias(): matrix appears to be singular" );
+        return (info == 0);
         }
       #else
         {
-        arma_stop("auxlib::inv_noalias(): need ATLAS or LAPACK library");
+        arma_stop("inv(): need ATLAS or LAPACK");
         }
       #endif
       };
     }
+    
+  return true;
   }
   
   
@@ -195,7 +198,7 @@ auxlib::inv_noalias(Mat<eT>& out, const Mat<eT>& X)
 //! immediate inplace matrix inverse
 template<typename eT>
 inline
-void
+bool
 auxlib::inv_inplace(Mat<eT>& X)
   {
   arma_extra_debug_sigprint();
@@ -306,7 +309,7 @@ auxlib::inv_inplace(Mat<eT>& X)
           info = atlas::clapack_getri(atlas::CblasColMajor, out.n_rows, out.memptr(), out.n_rows, ipiv.memptr());
           }
         
-        arma_check( (info > 0), "auxlib::inv_inplace(): matrix appears to be singular" );
+        return (info == 0);
         }
       #elif defined(ARMA_USE_LAPACK)
         {
@@ -338,7 +341,7 @@ auxlib::inv_inplace(Mat<eT>& X)
           
           if(info == 0)
             {
-            int proposed_work_len = static_cast<int>(auxlib::tmp_real(work[0]));
+            int proposed_work_len = static_cast<int>(access::tmp_real(work[0]));
             
             // if necessary, allocate more memory
             if(work_len < proposed_work_len)
@@ -351,17 +354,18 @@ auxlib::inv_inplace(Mat<eT>& X)
           lapack::getri_(&n_rows, out.memptr(), &n_rows, ipiv.memptr(), work.memptr(), &work_len, &info);
           }
         
-        arma_check( (info > 0), "auxlib::inv_noalias(): matrix appears to be singular" );
+        return (info == 0);
         }
       #else
         {
-        arma_stop("auxlib::inv_inplace(): need ATLAS or LAPACK");
+        arma_stop("inv(): need ATLAS or LAPACK");
         }
       #endif
       }
     
     }
   
+  return true;
   }
 
 
@@ -376,7 +380,7 @@ auxlib::det(const Mat<eT>& X)
   switch(X.n_rows)
     {
     case 0:
-      return 0.0;
+      return eT(0);
     
     case 1:
       return X[0];
@@ -459,7 +463,7 @@ auxlib::det(const Mat<eT>& X)
           {
           val *= tmp.at(i,i);
           }
-      
+        
         int sign = +1;
         for(u32 i=0; i < tmp.n_rows; ++i)
           {
@@ -476,7 +480,7 @@ auxlib::det(const Mat<eT>& X)
         Mat<eT> tmp = X;
         podarray<int> ipiv(tmp.n_rows);
         
-        int info = 0;
+        int info   = 0;
         int n_rows = int(tmp.n_rows);
         int n_cols = int(tmp.n_cols);
         
@@ -488,7 +492,7 @@ auxlib::det(const Mat<eT>& X)
           {
           val *= tmp.at(i,i);
           }
-      
+        
         int sign = +1;
         for(u32 i=0; i < tmp.n_rows; ++i)
           {
@@ -502,12 +506,100 @@ auxlib::det(const Mat<eT>& X)
         }
       #else
         {
-        arma_stop("auxlib::det(): need ATLAS or LAPACK library");
+        arma_stop("det(): need ATLAS or LAPACK");
         return eT(0);
         }
       #endif
       }
     }
+  }
+
+
+
+//! immediate log determinant of a matrix using ATLAS or LAPACK
+template<typename eT>
+inline
+void
+auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const Mat<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename get_pod_type<eT>::result T;
+  
+  #if defined(ARMA_USE_ATLAS)
+    {
+    Mat<eT> tmp = X;
+    podarray<int> ipiv(tmp.n_rows);
+    
+    atlas::clapack_getrf(atlas::CblasColMajor, tmp.n_rows, tmp.n_cols, tmp.memptr(), tmp.n_rows, ipiv.memptr());
+    
+    // on output tmp appears to be L+U_alt, where U_alt is U with the main diagonal set to zero
+    
+    s32 sign = (is_complex<eT>::value == false) ? ( (access::tmp_real( tmp.at(0,0) ) < T(0)) ? -1 : +1 ) : +1;
+    eT   val = (is_complex<eT>::value == false) ? std::log( (access::tmp_real( tmp.at(0,0) ) < T(0)) ? tmp.at(0,0)*T(-1) : tmp.at(0,0) ) : std::log( tmp.at(0,0) );
+    
+    for(u32 i=1; i < tmp.n_rows; ++i)
+      {
+      const eT x = tmp.at(i,i);
+      
+      sign *= (is_complex<eT>::value == false) ? ( (access::tmp_real(x) < T(0)) ? -1 : +1 ) : +1;
+      val  += (is_complex<eT>::value == false) ? std::log( (access::tmp_real(x) < T(0)) ? x*T(-1) : x ) : std::log(x);
+      }
+    
+    for(u32 i=0; i < tmp.n_rows; ++i)
+      {
+      if( int(i) != ipiv.mem[i] )  // NOTE: no adjustment required, as the clapack version of getrf() assumes counting from 0
+        {
+        sign *= -1;
+        }
+      }
+    
+    out_val  = val;
+    out_sign = T(sign);
+    }
+  #elif defined(ARMA_USE_LAPACK)
+    {
+    Mat<eT> tmp = X;
+    podarray<int> ipiv(tmp.n_rows);
+    
+    int info   = 0;
+    int n_rows = int(tmp.n_rows);
+    int n_cols = int(tmp.n_cols);
+    
+    lapack::getrf_(&n_rows, &n_cols, tmp.memptr(), &n_rows, ipiv.memptr(), &info);
+    
+    // on output tmp appears to be L+U_alt, where U_alt is U with the main diagonal set to zero
+    
+    s32 sign = (is_complex<eT>::value == false) ? ( (access::tmp_real( tmp.at(0,0) ) < T(0)) ? -1 : +1 ) : +1;
+    eT   val = (is_complex<eT>::value == false) ? std::log( (access::tmp_real( tmp.at(0,0) ) < T(0)) ? tmp.at(0,0)*T(-1) : tmp.at(0,0) ) : std::log( tmp.at(0,0) );
+    
+    for(u32 i=1; i < tmp.n_rows; ++i)
+      {
+      const eT x = tmp.at(i,i);
+      
+      sign *= (is_complex<eT>::value == false) ? ( (access::tmp_real(x) < T(0)) ? -1 : +1 ) : +1;
+      val  += (is_complex<eT>::value == false) ? std::log( (access::tmp_real(x) < T(0)) ? x*T(-1) : x ) : std::log(x);
+      }
+    
+    for(u32 i=0; i < tmp.n_rows; ++i)
+      {
+      if( int(i) != (ipiv.mem[i] - 1) )  // NOTE: adjustment of -1 is required as Fortran counts from 1
+        {
+        sign *= -1;
+        }
+      }
+    
+    out_val  = val;
+    out_sign = T(sign);
+    }
+  #else
+    {
+    arma_stop("log_det(): need ATLAS or LAPACK");
+    
+    out_val  = eT(0);
+    out_sign =  T(0);
+    }
+  #endif
   }
 
 
@@ -574,7 +666,7 @@ auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<int>& ipiv, const Mat<eT>& X)
     }
   #else
     {
-    arma_stop("auxlib::lu(): need ATLAS or LAPACK library");
+    arma_stop("lu(): need ATLAS or LAPACK");
     }
   #endif
   
@@ -647,7 +739,7 @@ auxlib::eig_sym(Col<eT>& eigval, const Mat<eT>& A_orig)
     const unwrap_check<Mat<eT> > tmp(A_orig, eigval);
     const Mat<eT>& A = tmp.M;
     
-    arma_debug_check( (A.n_rows != A.n_cols), "auxlib::eig_sym(): given matrix is not square");
+    arma_debug_check( (A.n_rows != A.n_cols), "eig_sym(): given matrix is not square");
     
     // rudimentary "better-than-nothing" test for symmetry
     //arma_debug_check( (A.at(A.n_rows-1, 0) != A.at(0, A.n_cols-1)), "auxlib::eig(): given matrix is not symmetric" );
@@ -669,7 +761,7 @@ auxlib::eig_sym(Col<eT>& eigval, const Mat<eT>& A_orig)
     }
   #else
     {
-    arma_stop("auxlib::eig_sym(): need LAPACK library");
+    arma_stop("eig_sym(): need LAPACK");
     }
   #endif
   }
@@ -688,7 +780,7 @@ auxlib::eig_sym(Col<T>& eigval, const Mat< std::complex<T> >& A)
   
   #if defined(ARMA_USE_LAPACK)
     {
-    arma_debug_check( (A.n_rows != A.n_cols), "auxlib::eig_sym(): given matrix is not hermitian");
+    arma_debug_check( (A.n_rows != A.n_cols), "eig_sym(): given matrix is not hermitian");
 
     char jobz  = 'N'; 
     char uplo  = 'U';
@@ -710,7 +802,7 @@ auxlib::eig_sym(Col<T>& eigval, const Mat< std::complex<T> >& A)
     }
   #else
     {
-    arma_stop("auxlib::eig_sym(): need LAPACK library");
+    arma_stop("eig_sym(): need LAPACK");
     }
   #endif
   }
@@ -735,7 +827,7 @@ auxlib::eig_sym(Col<eT>& eigval, Mat<eT>& eigvec, const Mat<eT>& A_orig)
     const unwrap_check< Mat<eT> > tmp2(A_tmp, eigvec);
     const Mat<eT>& A = tmp2.M;
     
-    arma_debug_check( (A.n_rows != A.n_cols), "auxlib::eig_sym(): given matrix is not square" );
+    arma_debug_check( (A.n_rows != A.n_cols), "eig_sym(): given matrix is not square" );
     
     // rudimentary "better-than-nothing" test for symmetry
     //arma_debug_check( (A.at(A.n_rows-1, 0) != A.at(0, A.n_cols-1)), "auxlib::eig(): given matrix is not symmetric" );
@@ -758,7 +850,7 @@ auxlib::eig_sym(Col<eT>& eigval, Mat<eT>& eigvec, const Mat<eT>& A_orig)
     }
   #else
     {
-    arma_stop("auxlib::eig_sym(): need LAPACK library");
+    arma_stop("eig_sym(): need LAPACK");
     }
   #endif
   
@@ -781,7 +873,7 @@ auxlib::eig_sym(Col<T>& eigval, Mat< std::complex<T> >& eigvec, const Mat< std::
     const unwrap_check< Mat<eT> > tmp(A_orig, eigvec);
     const Mat<eT>& A = tmp.M;
     
-    arma_debug_check( (A.n_rows != A.n_cols), "auxlib::eig_sym(): given matrix is not hermitian" );
+    arma_debug_check( (A.n_rows != A.n_cols), "eig_sym(): given matrix is not hermitian" );
     
     char jobz  = 'V';
     char uplo  = 'U';
@@ -803,7 +895,7 @@ auxlib::eig_sym(Col<T>& eigval, Mat< std::complex<T> >& eigvec, const Mat< std::
     }
   #else
     {
-    arma_stop("auxlib::eig_sym(): need LAPACK library");
+    arma_stop("eig_sym(): need LAPACK");
     }
   #endif
   
@@ -832,7 +924,7 @@ auxlib::eig_gen
   
   #if defined(ARMA_USE_LAPACK)
     {
-    arma_debug_check( (A.n_rows != A.n_cols), "auxlib::eig_gen(): given matrix is not square" );
+    arma_debug_check( (A.n_rows != A.n_cols), "eig_gen(): given matrix is not square" );
     
     char jobvl;
     char jobvr;
@@ -860,7 +952,7 @@ auxlib::eig_gen
         break;
 
       default:
-        arma_stop("auxlib::eig_gen(): parameter 'side' is invalid");
+        arma_stop("eig_gen(): parameter 'side' is invalid");
       }
 
        
@@ -894,7 +986,7 @@ auxlib::eig_gen
     }
   #else
     {
-    arma_stop("auxlib::eig_gen(): need LAPACK library");
+    arma_stop("eig_gen(): need LAPACK");
     }
   #endif
   
@@ -927,7 +1019,7 @@ auxlib::eig_gen
 
   #if defined(ARMA_USE_LAPACK)
     {
-    arma_debug_check( (A.n_rows != A.n_cols), "auxlib::eig_gen(): given matrix is not square" );
+    arma_debug_check( (A.n_rows != A.n_cols), "eig_gen(): given matrix is not square" );
     
     char jobvl;
     char jobvr;
@@ -955,7 +1047,7 @@ auxlib::eig_gen
         break;
 
       default:
-        arma_stop("auxlib::eig_gen(): parameter 'side' is invalid");
+        arma_stop("eig_gen(): parameter 'side' is invalid");
       }
     
        
@@ -978,7 +1070,7 @@ auxlib::eig_gen
     }
   #else
     {
-    arma_stop("auxlib::eig_gen(): need LAPACK library");
+    arma_stop("eig_gen(): need LAPACK");
     }
   #endif
   
@@ -1016,7 +1108,7 @@ auxlib::chol(Mat<eT>& out, const Mat<eT>& X)
     }
   #else
     {
-    arma_stop("auxlib::chol(): need LAPACK library");
+    arma_stop("chol(): need LAPACK");
     return false;
     }
   #endif
@@ -1051,7 +1143,7 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X)
     
     if(info == 0)
       {
-      work_len = static_cast<int>(auxlib::tmp_real(work[0]));
+      work_len = static_cast<int>(access::tmp_real(work[0]));
       work.set_size(work_len);
       }
     
@@ -1088,7 +1180,7 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X)
       
       if(info == 0)
         {
-        work_len = static_cast<int>(auxlib::tmp_real(work[0]));
+        work_len = static_cast<int>(access::tmp_real(work[0]));
         work.set_size(work_len);
         }
       
@@ -1103,7 +1195,7 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X)
       
       if(info == 0)
         {
-        work_len = static_cast<int>(auxlib::tmp_real(work[0]));
+        work_len = static_cast<int>(access::tmp_real(work[0]));
         work.set_size(work_len);
         }
       
@@ -1114,7 +1206,7 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X)
     }
   #else
     {
-    arma_stop("auxlib::qr(): need LAPACK library");
+    arma_stop("qr(): need LAPACK");
     return false;
     }
   #endif
@@ -1193,7 +1285,7 @@ auxlib::svd(Col<eT>& S, const Mat<eT>& X)
     }
   #else
     {
-    arma_stop("auxlib::svd(): need LAPACK library");
+    arma_stop("svd(): need LAPACK");
     return false;
     }
   #endif
@@ -1280,7 +1372,7 @@ auxlib::svd(Col<T>& S, const Mat< std::complex<T> >& X)
     }
   #else
     {
-    arma_stop("auxlib::svd(): need LAPACK library");
+    arma_stop("svd(): need LAPACK");
     return false;
     }
   #endif
@@ -1359,7 +1451,7 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X)
     }
   #else
     {
-    arma_stop("auxlib::svd(): need LAPACK library");
+    arma_stop("svd(): need LAPACK");
     return false;
     }
   #endif
@@ -1448,7 +1540,7 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, con
     }
   #else
     {
-    arma_stop("auxlib::svd(): need LAPACK library");
+    arma_stop("svd(): need LAPACK");
     return false;
     }
   #endif
@@ -1485,7 +1577,7 @@ auxlib::solve(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
     }
   #else
     {
-    arma_stop("auxlib::solve(): need LAPACK library");
+    arma_stop("solve(): need LAPACK");
     return false;
     }
   #endif
@@ -1549,7 +1641,7 @@ auxlib::solve_od(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
     }
   #else
     {
-    arma_stop("auxlib::solve_od(): need LAPACK library");
+    arma_stop("auxlib::solve_od(): need LAPACK");
     return false;
     }
   #endif
@@ -1627,7 +1719,7 @@ auxlib::solve_ud(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B)
     }
   #else
     {
-    arma_stop("auxlib::solve_ud(): need LAPACK library");
+    arma_stop("auxlib::solve_ud(): need LAPACK");
     return false;
     }
   #endif

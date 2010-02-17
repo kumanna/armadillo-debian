@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -53,7 +54,13 @@ svd(const Base<typename T1::elem_type,T1>& X)
   arma_extra_debug_sigprint();
   
   Col<typename T1::pod_type> out;
-  svd(out, X);
+  
+  const bool status = svd(out, X);
+  
+  if(status == false)
+    {
+    out.set_size(0);
+    }
   
   return out;
   }

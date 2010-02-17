@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,7 +19,7 @@
 
 
 template<typename T1, typename T2>
-inline
+arma_inline
 typename T1::elem_type
 dot(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,T2>& B)
   {
@@ -30,7 +31,7 @@ dot(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,
 
 
 template<typename T1, typename T2>
-inline
+arma_inline
 typename T1::elem_type
 norm_dot(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,T2>& B)
   {

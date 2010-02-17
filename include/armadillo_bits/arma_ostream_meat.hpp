@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -88,6 +89,7 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
   if(use_layout_C == true)
     {
     o.setf(ios::scientific);
+    o.setf(ios::right);
     o.unsetf(ios::fixed);
     o.precision(4);
     cell_width = 13;
@@ -96,6 +98,7 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
   if(use_layout_B == true)
     {
     o.unsetf(ios::scientific);
+    o.setf(ios::right);
     o.setf(ios::fixed);
     o.precision(4);
     cell_width = 10;
@@ -103,6 +106,7 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
   else
     {
     o.unsetf(ios::scientific);
+    o.setf(ios::right);
     o.setf(ios::fixed);
     o.precision(4);
     cell_width = 9;
@@ -125,6 +129,7 @@ arma_ostream::modify_stream(std::ostream& o, const std::complex<T>* data, const 
   
   o.setf(ios::scientific);
   o.setf(ios::showpos);
+  o.setf(ios::right);
   o.unsetf(ios::fixed);
   
   u32 cell_width;
@@ -143,7 +148,20 @@ arma_inline
 void
 arma_ostream::print_elem(std::ostream& o, const eT& x)
   {
-  o << x;
+  if(x != eT(0))
+    {
+    o << x;
+    }
+  else
+    {
+    const std::streamsize orig_precision = o.precision();
+    
+    o.precision(0);
+    
+    o << eT(0);
+    
+    o.precision(orig_precision);
+    }
   }
 
 
@@ -155,14 +173,20 @@ arma_inline
 void
 arma_ostream::print_elem(std::ostream& o, const std::complex<T>& x)
   {
-  std::ostringstream ss;
-  ss.flags(o.flags());
-  //ss.imbue(o.getloc());
-  ss.precision(o.precision());
-
-  ss << '(' << x.real() << ',' << x.imag() << ')';
-
-  o << ss.str();
+  if( (x.real() != T(0)) || (x.imag() != T(0)) )
+    {
+    std::ostringstream ss;
+    ss.flags(o.flags());
+    //ss.imbue(o.getloc());
+    ss.precision(o.precision());
+  
+    ss << '(' << x.real() << ',' << x.imag() << ')';
+    o << ss.str();
+    }
+  else
+    {
+    o << "(0,0)";
+    }
   }
 
 

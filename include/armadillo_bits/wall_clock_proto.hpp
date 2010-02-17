@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -22,7 +23,7 @@ class wall_clock
   {
   public:
   
-  inline wall_clock();
+  inline  wall_clock();
   inline ~wall_clock();
   
   inline void   tic();  //!< start the timer

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,7 +19,7 @@
 
 
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_trans>
 trans(const Base<typename T1::elem_type,T1>& X)
   {
@@ -29,33 +30,9 @@ trans(const Base<typename T1::elem_type,T1>& X)
 
 
 
-template<typename eT>
-inline
-const Op<Row<eT>, op_trans>
-trans(const Row<eT>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<Row<eT>, op_trans>(X);
-  }
-
-
-
-template<typename eT>
-inline
-const Op<Col<eT>, op_trans>
-trans(const Col<eT>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<Col<eT>, op_trans>(X);
-  }
-
-
-
 //! two consecutive transpose operations cancel each other
 template<typename T1>
-inline
+arma_inline
 const T1&
 trans(const Op<T1, op_trans>& X)
   {
@@ -67,9 +44,9 @@ trans(const Op<T1, op_trans>& X)
 
 
 
-//! transpose of a diagonal matrix gives you the original matrix back
+//! transpose of a diagonal matrix (which is square) does nothing
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_diagmat>
 trans(const Op<T1, op_diagmat>& X)
   {
@@ -77,21 +54,6 @@ trans(const Op<T1, op_diagmat>& X)
   arma_extra_debug_print("trans(): not applying op_trans to diagonal matrix");
   
   return X;
-  }
-
-
-
-//! the transpose of the conjugate of a complex matrix is equivalent to the hermitian transpose
-template<typename T1>
-inline
-const Op<T1, op_htrans>
-trans(const Op<T1, op_conj>& X)
-  {
-  arma_extra_debug_sigprint();
-
-  arma_type_check< is_complex<typename T1::elem_type>::value == false >::apply();
-
-  return Op<T1, op_htrans>(X.m);
   }
 
 

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -21,7 +22,12 @@
 template<typename T1>
 inline
 void
-lu(Mat<typename T1::elem_type>& L, Mat<typename T1::elem_type>& U, const Base<typename T1::elem_type,T1>& X)
+lu
+  (
+        Mat<typename T1::elem_type>&     L,
+        Mat<typename T1::elem_type>&     U,
+  const Base<typename T1::elem_type,T1>& X
+  )
   {
   arma_extra_debug_sigprint();
   
@@ -44,7 +50,13 @@ lu(Mat<typename T1::elem_type>& L, Mat<typename T1::elem_type>& U, const Base<ty
 template<typename T1>
 inline
 void
-lu(Mat<typename T1::elem_type>& L, Mat<typename T1::elem_type>& U, Mat<typename T1::elem_type>& P, const Base<typename T1::elem_type,T1>& X)
+lu
+  (
+        Mat<typename T1::elem_type>&     L,
+        Mat<typename T1::elem_type>&     U, 
+        Mat<typename T1::elem_type>&     P,
+  const Base<typename T1::elem_type,T1>& X
+  )
   {
   arma_extra_debug_sigprint();
   

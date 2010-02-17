@@ -17,18 +17,54 @@ int main(int argc, char** argv)
    0.148678  0.682258  0.571154  0.874724  0.444632;\
    0.245726  0.595218  0.409327  0.367827  0.385736;\
    ";
-
+  
   // print to the cout stream
   // with an optional string before the contents of the matrix
   A.print("A =");
-
+  
   // determinant
   cout << "det(A) = " << det(A) << endl;
-
+  
   // inverse
   cout << "inv(A) = " << endl << inv(A) << endl;
-
-
+  
+  
+  // examples of some expressions
+  // for which optimised implementations exist
+  
+  mat    B = rand<mat>(5,5);
+  rowvec r = rand<rowvec>(5);
+  colvec q = rand<colvec>(5);
+  
+  // optimised implementation of a trinary expression
+  // that results in a scalar
+  cout << "as_scalar( r*inv(diagmat(B))*q ) = ";
+  cout << as_scalar( r*inv(diagmat(B))*q ) << endl;
+  
+  //
+  
+  double k = 1.23;
+  mat    C = rand<mat>(5,5);
+  
+  // example of an expression which is optimised 
+  // as a call to the dgemm() function in BLAS:
+  cout << "k*trans(B)*C = " << endl << k*trans(B)*C;
+  
+  
+  // If you want to see a trace of how Armadillo
+  // evaluates expressions, compile with the
+  // ARMA_EXTRA_DEBUG macro defined.
+  // This was designed to work the the GCC compiler,
+  // but it may also work with other compilers
+  // if you have the Boost libraries installed
+  // and told Armadillo to use them.
+  // 
+  // Example for GCC:
+  // g++ -DARMA_EXTRA_DEBUG -o example2 example2.cpp -larmadillo
+  // 
+  // Running example2 will now produce a truckload of messages,
+  // so you may want to redirect the output to a log file.
+  
   return 0;
   }
 

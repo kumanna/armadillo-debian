@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_arma_type&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: eglue_schur Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,43 +29,50 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_arma_type&lt; T1 &gt; Struct Template Reference<br/>
+<h1>eglue_schur Class Reference<br/>
 <small>
-[<a class="el" href="a00742.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_arma_type" -->
-<p><code>#include &lt;<a class="el" href="a00596_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00741.html">Eglue_misc</a>]</small>
+</h1><!-- doxytag: class="eglue_schur" --><!-- doxytag: inherits="eglue_core&lt; eglue_schur &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00539_source.html">eglue_misc.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for eglue_schur:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00090.gif" usemap="#eglue_schur_map" alt=""/>
+  <map id="eglue_schur_map" name="eglue_schur_map">
+<area href="a00081.html" alt="eglue_core&lt; eglue_schur &gt;" shape="rect" coords="0,0,170,24"/>
+</map>
+ </div>
+</div>
 
-<p><a href="a00830.html">List of all members.</a></p>
+<p><a href="a00950.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00090.html#a3a8a4372ad4affe8d905e0d0b4d3aefb">value</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00090.html#a744c23162ea3b418fad47bfd07d5b0c0">id</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct is_arma_type&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00596_source.html#l00179">179</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a3a8a4372ad4affe8d905e0d0b4d3aefb"></a><!-- doxytag: member="is_arma_type::value" ref="a3a8a4372ad4affe8d905e0d0b4d3aefb" args="" -->
+<p>Definition at line <a class="el" href="a00539_source.html#l00049">49</a> of file <a class="el" href="a00539_source.html">eglue_misc.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a744c23162ea3b418fad47bfd07d5b0c0"></a><!-- doxytag: member="eglue_schur::id" ref="a744c23162ea3b418fad47bfd07d5b0c0" args="()" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00090.html">is_arma_type</a>&lt; T1 &gt;::<a class="el" href="a00090.html#a3a8a4372ad4affe8d905e0d0b4d3aefb">value</a><code> [static]</code></td>
+          <td class="memname">static const char* eglue_schur::id </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Initial value:</b><div class="fragment"><pre class="fragment">  <a class="code" href="a00113.html">is_Mat&lt;T1&gt;::value</a>
-  || <a class="code" href="a00120.html">is_Op&lt;T1&gt;::value</a>
-  || <a class="code" href="a00107.html">is_Glue&lt;T1&gt;::value</a>
-  || <a class="code" href="a00135.html">is_subview&lt;T1&gt;::value</a>
-  || <a class="code" href="a00101.html">is_diagview&lt;T1&gt;::value</a>
-</pre></div>
-<p>Definition at line <a class="el" href="a00596_source.html#l00182">182</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00539_source.html#l00053">53</a> of file <a class="el" href="a00539_source.html">eglue_misc.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00053"></a>00053 { <span class="keywordflow">return</span> <span class="stringliteral">&quot;element-wise matrix multiplication&quot;</span>; }
+</pre></div></p>
 
 </div>
 </div>

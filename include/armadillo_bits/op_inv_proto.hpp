@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -31,21 +32,10 @@ class op_inv
   
   template<typename T1>
   inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& in);
-  
-  
-  #if defined(ARMA_GOOD_COMPILER)
-  
+
   template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op< Op<T1,op_diagmat>, op_inv>& in);
-  
-  template<typename eT>
-  inline static void apply_diagvec(Mat<eT>& out, const Mat<eT>& X);
-  
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Op< Op<Mat<eT>,op_diagmat_vec>, op_inv>& in);
-  
-  #endif
-  
+  inline static void apply_diag(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type, T1>& X);
+
   };
 
 

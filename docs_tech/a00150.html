@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_u32&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: eop_ones_diag Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,38 +29,87 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_u32&lt; T1 &gt; Struct Template Reference<br/>
+<h1>eop_ones_diag Class Reference<br/>
 <small>
-[<a class="el" href="a00742.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_u32" -->
-<p><code>#include &lt;<a class="el" href="a00596_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00744.html">Eop_core</a>]</small>
+</h1><!-- doxytag: class="eop_ones_diag" --><!-- doxytag: inherits="eop_core&lt; eop_ones_diag &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00545_source.html">eop_core_proto.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for eop_ones_diag:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00150.gif" usemap="#eop_ones_diag_map" alt=""/>
+  <map id="eop_ones_diag_map" name="eop_ones_diag_map">
+<area href="a00106.html" alt="eop_core&lt; eop_ones_diag &gt;" shape="rect" coords="0,0,176,24"/>
+</map>
+ </div>
+</div>
 
-<p><a href="a00889.html">List of all members.</a></p>
+<p><a href="a01010.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a3c65766b10ae82e21f5f5afe824eab4d">value</a> = false</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#aa7225d8353dfb3c9d249ea2822df8fad">error_msg</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00150.html#a7315141558da55191e4c6ed9da702a5c">size_ok</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct is_u32&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00596_source.html#l00320">320</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a3c65766b10ae82e21f5f5afe824eab4d"></a><!-- doxytag: member="is_u32::value" ref="a3c65766b10ae82e21f5f5afe824eab4d" args="" -->
+<p>Definition at line <a class="el" href="a00545_source.html#l00083">83</a> of file <a class="el" href="a00545_source.html">eop_core_proto.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aa7225d8353dfb3c9d249ea2822df8fad"></a><!-- doxytag: member="eop_ones_diag::error_msg" ref="aa7225d8353dfb3c9d249ea2822df8fad" args="()" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00150.html">is_u32</a>&lt; T1 &gt;::<a class="el" href="a00150.html#a3c65766b10ae82e21f5f5afe824eab4d">value</a> = false<code> [static]</code></td>
+          <td class="memname">static arma_inline const char* eop_ones_diag::error_msg </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00596_source.html#l00321">321</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+<p>Reimplemented from <a class="el" href="a00106.html#a35ca2b93fafe9aea6a3c287dad358d85">eop_core&lt; eop_ones_diag &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="a00545_source.html#l00087">87</a> of file <a class="el" href="a00545_source.html">eop_core_proto.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00087"></a>00087 { <span class="keywordflow">return</span> <span class="stringliteral">&quot;eye(): given size is not square&quot;</span>; }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a7315141558da55191e4c6ed9da702a5c"></a><!-- doxytag: member="eop_ones_diag::size_ok" ref="a7315141558da55191e4c6ed9da702a5c" args="(const u32 n_rows, const u32 n_cols)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline const bool eop_ones_diag::size_ok </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>n_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>n_cols</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="a00106.html#ada70211acdcccde2bfc5ba7bb93c517a">eop_core&lt; eop_ones_diag &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="a00545_source.html#l00089">89</a> of file <a class="el" href="a00545_source.html">eop_core_proto.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00089"></a>00089 { <span class="keywordflow">return</span> (n_rows == n_cols); }
+</pre></div></p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; s32, u32 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: diskio::is_supported_type&lt; eT &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -27,48 +27,53 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
+  <div class="navpath"><a class="el" href="a00079.html">diskio</a>::<a class="el" href="a00275.html">is_supported_type</a>
+  </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; s32, u32 &gt; Struct Template Reference<br/>
-<small>
-[<a class="el" href="a00742.html">Traits</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; s32, u32 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00596_source.html">traits.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; s32, u32 &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00275.gif" usemap="#promote_type&lt; s32, u32 &gt;_map" alt=""/>
-  <map id="promote_type&lt; s32, u32 &gt;_map" name="promote_type&lt; s32, u32 &gt;_map">
-<area href="a00322.html" alt="promote_type_ok" shape="rect" coords="0,0,162,24"/>
-</map>
- </div>
-</div>
+<h1>diskio::is_supported_type&lt; eT &gt; Struct Template Reference</h1><!-- doxytag: class="diskio::is_supported_type" -->
+<p><code>#include &lt;<a class="el" href="a00532_source.html">diskio_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01013.html">List of all members.</a></p>
+<p><a href="a00939.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00275.html#a4d0a286260c28f80da19f5a611937d40">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00275.html#aa758d243e0f25a44ccf018ed5d060305">value</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; s32, u32 &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ struct diskio::is_supported_type&lt; eT &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00596_source.html#l00578">578</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a4d0a286260c28f80da19f5a611937d40"></a><!-- doxytag: member="promote_type&lt; s32, u32 &gt;::result" ref="a4d0a286260c28f80da19f5a611937d40" args="" -->
+<p>Definition at line <a class="el" href="a00532_source.html#l00028">28</a> of file <a class="el" href="a00532_source.html">diskio_proto.hpp</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aa758d243e0f25a44ccf018ed5d060305"></a><!-- doxytag: member="diskio::is_supported_type::value" ref="aa758d243e0f25a44ccf018ed5d060305" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> <a class="el" href="a00244.html">promote_type</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;::<a class="el" href="a00275.html#a4d0a286260c28f80da19f5a611937d40">result</a></td>
+          <td class="memname">const bool <a class="el" href="a00275.html">diskio::is_supported_type</a>&lt; eT &gt;::<a class="el" href="a00275.html#aa758d243e0f25a44ccf018ed5d060305">value</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00596_source.html#l00578">578</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+<b>Initial value:</b><div class="fragment"><pre class="fragment"> 
+      (
+      <span class="keyword">false</span>
+      || <a class="code" href="a00280.html">is_u8&lt;eT&gt;::value</a>
+      || <a class="code" href="a00258.html">is_s8&lt;eT&gt;::value</a>
+      || <a class="code" href="a00276.html">is_u16&lt;eT&gt;::value</a>
+      || <a class="code" href="a00254.html">is_s16&lt;eT&gt;::value</a>
+      || <a class="code" href="a00278.html">is_u32&lt;eT&gt;::value</a>
+      || <a class="code" href="a00256.html">is_s32&lt;eT&gt;::value</a>
+      || <a class="code" href="a00224.html">is_float&lt;eT&gt;::value</a>
+      || <a class="code" href="a00218.html">is_double&lt;eT&gt;::value</a>
+      || <a class="code" href="a00208.html">is_complex_float&lt;eT&gt;::value</a>
+      || <a class="code" href="a00206.html">is_complex_double&lt;eT&gt;::value</a>
+      )
+</pre></div>
+<p>Definition at line <a class="el" href="a00532_source.html#l00030">30</a> of file <a class="el" href="a00532_source.html">diskio_proto.hpp</a>.</p>
 
 </div>
 </div>

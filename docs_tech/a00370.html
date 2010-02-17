@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt; Class Template Reference</title>
+<title>Armadillo Technical: promote_type&lt; T1, T2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,212 +29,70 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt; Class Template Reference<br/>
+<h1>promote_type&lt; T1, T2 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00744.html">Unwrap</a>]</small>
-</h1><!-- doxytag: class="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00598_source.html">unwrap.hpp</a>&gt;</code></p>
+[<a class="el" href="a00848.html">Promote_type</a>]</small>
+</h1><!-- doxytag: class="promote_type" -->
+<p><code>#include &lt;<a class="el" href="a00689_source.html">promote_type.hpp</a>&gt;</code></p>
 
-<p><a href="a01108.html">List of all members.</a></p>
+<p><a href="a01225.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a></td></tr>
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#ad18841a4cdc3ba21992d6a82930c38b0">unwrap_to_elem_access</a> (const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;A)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#a49b404d39ca7cd62c7a6b5e111a610d9">operator[]</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#ad3f5e473e6a2e579927854cdfa14d3cf">operator()</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#af3b4a2d02e83892a85ef88d7bb7103a1">operator()</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#a1dbad72f71e307733b0dc2752dff304f">at</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00176.html">Mat</a>&lt; <a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#a9e8efc5ce4b3284583144a91bdc052bf">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html#af84f38f42cfb0d891487c3273c521f2d">check</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1, typename T2, typename glue_type&gt;<br/>
- class unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</h3>
+<h3>template&lt;typename T1, typename T2&gt;<br/>
+ struct promote_type&lt; T1, T2 &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00598_source.html#l00323">323</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00689_source.html#l00023">23</a> of file <a class="el" href="a00689_source.html">promote_type.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a27caf6bc496d380c74576337edbb845e"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::elem_type" ref="a27caf6bc496d380c74576337edbb845e" args="" -->
+<a class="anchor" id="a9e8efc5ce4b3284583144a91bdc052bf"></a><!-- doxytag: member="promote_type::result" ref="a9e8efc5ce4b3284583144a91bdc052bf" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+template&lt;typename T1, typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T1::elem_type <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a></td>
+          <td class="memname">typedef T1 <a class="el" href="a00370.html">promote_type</a>&lt; T1, T2 &gt;::<a class="el" href="a00370.html#a9e8efc5ce4b3284583144a91bdc052bf">result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00598_source.html#l00326">326</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad18841a4cdc3ba21992d6a82930c38b0"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::unwrap_to_elem_access" ref="ad18841a4cdc3ba21992d6a82930c38b0" args="(const Glue&lt; T1, T2, glue_type &gt; &amp;A)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00368.html">unwrap_to_elem_access</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00328">328</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00329"></a>00329     : <a class="code" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a>(A)
-<a name="l00330"></a>00330     {
-<a name="l00331"></a>00331     arma_extra_debug_sigprint();
-<a name="l00332"></a>00332     }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00689_source.html#l00031">31</a> of file <a class="el" href="a00689_source.html">promote_type.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a49b404d39ca7cd62c7a6b5e111a610d9"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::operator[]" ref="a49b404d39ca7cd62c7a6b5e111a610d9" args="(const u32 i) const " -->
+<a class="anchor" id="af84f38f42cfb0d891487c3273c521f2d"></a><!-- doxytag: member="promote_type::check" ref="af84f38f42cfb0d891487c3273c521f2d" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+template&lt;typename T1, typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a> <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::operator[] </td>
+          <td class="memname">static void <a class="el" href="a00370.html">promote_type</a>&lt; T1, T2 &gt;::check </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
+          <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00598_source.html#l00334">334</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00689_source.html#l00025">25</a> of file <a class="el" href="a00689_source.html">promote_type.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00334"></a>00334 { <span class="keywordflow">return</span> <a class="code" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a>[i]; }
+<p>Referenced by <a class="el" href="a00569_source.html#l00044">kron()</a>, <a class="el" href="a00678_source.html#l00046">operator%()</a>, <a class="el" href="a00686_source.html#l00112">operator*()</a>, <a class="el" href="a00676_source.html#l00094">operator+()</a>, <a class="el" href="a00675_source.html#l00110">operator-()</a>, and <a class="el" href="a00674_source.html#l00078">operator/()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00026"></a>00026     {
+<a name="l00027"></a>00027     arma_static_assert&lt;false&gt; ERROR___UNSUPPORTED_MIXTURE_OF_TYPES;
+<a name="l00028"></a>00028     ERROR___UNSUPPORTED_MIXTURE_OF_TYPES = ERROR___UNSUPPORTED_MIXTURE_OF_TYPES;
+<a name="l00029"></a>00029     }
 </pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ad3f5e473e6a2e579927854cdfa14d3cf"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::operator()" ref="ad3f5e473e6a2e579927854cdfa14d3cf" args="(const u32 i) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a> <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::operator() </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00335">335</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00335"></a>00335 { <span class="keywordflow">return</span> <a class="code" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a>(i); }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="af3b4a2d02e83892a85ef88d7bb7103a1"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::operator()" ref="af3b4a2d02e83892a85ef88d7bb7103a1" args="(const u32 in_row, const u32 in_col) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a> <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::operator() </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_row</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_col</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00337">337</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00337"></a>00337 { <span class="keywordflow">return</span> <a class="code" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a>(in_row,in_col);    }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="a1dbad72f71e307733b0dc2752dff304f"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::at" ref="a1dbad72f71e307733b0dc2752dff304f" args="(const u32 in_row, const u32 in_col) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a> <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_row</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_col</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00338">338</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00338"></a>00338 { <span class="keywordflow">return</span> <a class="code" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a>.<a class="code" href="a00687.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(in_row,in_col); }
-</pre></div></p>
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aee2d5f3c8f8f913f52bf3fb590f11219"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::M" ref="aee2d5f3c8f8f913f52bf3fb590f11219" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00176.html">Mat</a>&lt;<a class="el" href="a00370.html#a27caf6bc496d380c74576337edbb845e">elem_type</a>&gt; <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00370.html#aee2d5f3c8f8f913f52bf3fb590f11219">M</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00340">340</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

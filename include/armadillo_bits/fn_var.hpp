@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -25,17 +26,12 @@ var(const Base<typename T1::elem_type,T1>& X, const u32 norm_type = 0, const u32
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> A_tmp(X.get_ref());
-
-  // if T1 is a complex matrix,
-  // pod_type is the underlying type used by std::complex;
-  // otherwise pod_type is the same as elem_type
-  
   typedef typename T1::elem_type  in_eT;
   typedef typename T1::pod_type  out_eT;
 
-  const Mat<in_eT>& A = A_tmp.M;
-  
+  const unwrap<T1>      tmp(X.get_ref());
+  const Mat<in_eT>& A = tmp.M;
+
   Mat<out_eT> out;
   
   op_var::apply(out, A, norm_type, dim);
@@ -48,23 +44,8 @@ var(const Base<typename T1::elem_type,T1>& X, const u32 norm_type = 0, const u32
 //! Immediate 'find the variance of a row vector' operation
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 var(const Row<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
-  
-  return op_var::direct_var(A.mem, A.n_elem, norm_type);
-  }
-
-
-
-//! Immediate 'find the variance of a row vector' operation (version for complex numbers)
-template<typename T>
-inline
-T
-var(const Row< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   
@@ -78,7 +59,7 @@ var(const Row< std::complex<T> >& A, const u32 norm_type = 0)
 //! Immediate 'find the variance of a column vector' operation
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 var(const Col<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
@@ -90,24 +71,9 @@ var(const Col<eT>& A, const u32 norm_type = 0)
 
 
 
-//! Immediate 'find the variance of a column vector' operation (version for complex numbers)
-template<typename T>
-inline
-T
-var(const Col< std::complex<T> >& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
-  
-  return op_var::direct_var(A.mem, A.n_elem, norm_type);
-  }
-
-
-
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 var(const subview_row<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
@@ -119,23 +85,9 @@ var(const subview_row<eT>& A, const u32 norm_type = 0)
 
 
 
-template<typename T>
-inline
-T
-var(const subview_row< std::complex<T> >& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
-  
-  return op_var::direct_var(A, norm_type);
-  }
-
-
-
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 var(const subview_col<eT>& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
@@ -147,38 +99,10 @@ var(const subview_col<eT>& A, const u32 norm_type = 0)
 
 
 
-template<typename T>
-inline
-T
-var(const subview_col< std::complex<T> >& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
-  
-  return op_var::direct_var(A, norm_type);
-  }
-
-
-
 template<typename eT>
 inline
-eT
+typename get_pod_type<eT>::result
 var(const diagview<eT>& A, const u32 norm_type = 0)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_check( (A.n_elem == 0), "var(): given vector has no elements" );
-  
-  return op_var::direct_var(A, norm_type);
-  }
-
-
-
-template<typename T>
-inline
-T
-var(const diagview< std::complex<T> >& A, const u32 norm_type = 0)
   {
   arma_extra_debug_sigprint();
   

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -26,7 +27,7 @@
 //! NOTE: this function works differently than in Matlab/Octave.
 
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_sum>
 sum(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
   {
@@ -39,7 +40,7 @@ sum(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
 //! \brief
 //! Immediate 'sum all values' operation for a row vector
 template<typename eT>
-inline
+arma_inline
 eT
 sum(const Row<eT>& X)
   {
@@ -53,7 +54,7 @@ sum(const Row<eT>& X)
 //! \brief
 //! Immediate 'sum all values' operation for a column vector
 template<typename eT>
-inline
+arma_inline
 eT
 sum(const Col<eT>& X)
   {
@@ -69,7 +70,7 @@ sum(const Col<eT>& X)
 //! invoked, for example, by: sum(sum(A))
 
 template<typename T1>
-inline
+arma_inline
 typename T1::elem_type
 sum(const Op<T1, op_sum>& in)
   {
@@ -82,7 +83,7 @@ sum(const Op<T1, op_sum>& in)
 
 
 template<typename T1>
-inline
+arma_inline
 const Op<Op<T1, op_sum>, op_sum>
 sum(const Op<T1, op_sum>& in, const u32 dim)
   {
@@ -95,7 +96,7 @@ sum(const Op<T1, op_sum>& in, const u32 dim)
 
 //! sum all values of a subview_row
 template<typename eT>
-inline
+arma_inline
 eT
 sum(const subview_row<eT>& X)
   {
@@ -108,7 +109,7 @@ sum(const subview_row<eT>& X)
 
 //! sum all values of a subview_col
 template<typename eT>
-inline
+arma_inline
 eT
 sum(const subview_col<eT>& X)
   {
@@ -121,7 +122,7 @@ sum(const subview_col<eT>& X)
 
 //! sum all values of a diagview
 template<typename eT>
-inline
+arma_inline
 eT
 sum(const diagview<eT>& X)
   {

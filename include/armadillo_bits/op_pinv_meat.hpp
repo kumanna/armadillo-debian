@@ -1,5 +1,5 @@
-// Copyright (C) 2009 NICTA
-// Copyright (C) 2009 Dimitrios Bouzas
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -36,12 +36,18 @@ op_pinv::direct_pinv(Mat<eT>& out, const Mat<eT>& A, eT tol)
   Col<eT> s;
   Mat<eT> V;
   
-  (n_cols > n_rows) ? svd(U,s,V,trans(A)) : svd(U,s,V,A);
-   
+  const bool status = (n_cols > n_rows) ? svd(U,s,V,trans(A)) : svd(U,s,V,A);
+  
+  if(status == false)
+    {
+    out.set_size(0,0);
+    return;
+    }
+  
   // set tolerance to default if it hasn't been specified as an argument
   if(tol == eT(0))
     {
-    tol = (std::max)(n_rows,n_cols) * op_eps::direct_eps(max(s));
+    tol = (std::max)(n_rows,n_cols) * eop_aux::direct_eps(max(s));
     }
    
   // count non zero valued elements in s
@@ -97,12 +103,18 @@ op_pinv::direct_pinv(Mat< std::complex<T> >& out, const Mat< std::complex<T> >& 
   Col< T> s;
   Mat<eT> V;
   
-  (n_cols > n_rows) ? svd(U,s,V,htrans(A)) : svd(U,s,V,A);
+  const bool status = (n_cols > n_rows) ? svd(U,s,V,htrans(A)) : svd(U,s,V,A);
+  
+  if(status == false)
+    {
+    out.set_size(0,0);
+    return;
+    }
  
   // set tolerance to default if it hasn't been specified as an argument 
   if(tol == T(0))
     {
-    tol = (std::max)(n_rows,n_cols) * op_eps::direct_eps(max(s));
+    tol = (std::max)(n_rows,n_cols) * eop_aux::direct_eps(max(s));
     }
   
   

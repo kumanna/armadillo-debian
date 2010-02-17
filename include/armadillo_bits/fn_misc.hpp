@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -16,41 +17,55 @@
 //! \addtogroup fn_misc
 //! @{
 
+
+
 //! \brief
 //! Generate a vector with 'num' elements.
 //! The values of the elements linearly increase from 'start' upto (and including) 'end'.
 
-template<typename eT>
+template<typename vec_type>
 inline
-Mat<eT>
-linspace(const eT start, const eT end, const u32 num, const u32 dim = 0)
+vec_type
+linspace
+  (
+  const typename vec_type::pod_type start,
+  const typename vec_type::pod_type end,
+  const u32 num,
+  const u32 dim = 0
+  )
   {
   arma_extra_debug_sigprint();
   
+  arma_type_check< (is_Mat<vec_type>::value == false) >::apply();
+  
   arma_debug_check( (num < 2), "linspace(): num must be >= 2");
   
-  Mat<eT> x;
+  arma_warn( (dim != 0), "linspace(): the 'dim' argument is deprecated -- please use template based specification instead" );
   
-  if(dim == 0)
-    {
-    x.set_size(num,1);  // column vector
-    }
-  else
-    {
-    x.set_size(1,num);  // row vector
-    }
+  typedef typename vec_type::elem_type eT;
+  typedef typename vec_type::pod_type   T;
   
+  // // this will be the default in the future:
+  // const u32 n_rows = (is_Row<vec_type>::value == true) ? 1   : num;
+  // const u32 n_cols = (is_Row<vec_type>::value == true) ? num : 1;
   
-  const eT delta = (end-start)/(num-1);
+  // for temporary compatibility with old user code:
+  const u32 n_rows = (is_Row<vec_type>::value == true) ? 1   : ( (dim == 0) ? num : 1   );
+  const u32 n_cols = (is_Row<vec_type>::value == true) ? num : ( (dim == 0) ? 1   : num );
   
-  x[0] = start;
+  const eT delta = (end-start)/T(num-1);
+  
+  Mat<eT> x(n_rows, n_cols);
+  eT* x_mem = x.memptr();
+  
+  x_mem[0] = start;
   
   for(u32 i=1; i<num; ++i)
     {
-    x[i] = x[i-1] + delta;
+    x_mem[i] = x_mem[i-1] + delta;
     }
   
-  return x; 
+  return x;
   }
 
 
@@ -60,7 +75,7 @@ mat
 linspace(const double start, const double end, const u32 num, const u32 dim = 0)
   {
   arma_extra_debug_sigprint();
-  return linspace<double>(start, end, num, dim);
+  return linspace<mat>(start, end, num, dim);
   }
 
 
@@ -68,26 +83,48 @@ linspace(const double start, const double end, const u32 num, const u32 dim = 0)
 //
 // real
 
-template<typename T, typename T1>
-inline
-Mat<T>
-real(const Base<std::complex<T>, T1>& X)
+template<typename T1>
+arma_inline
+const T1&
+real(const Base<typename T1::pod_type, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef std::complex<T> eT;
+  return X.get_ref();
+  }
 
-  const unwrap<T1> A_tmp(X.get_ref());
-  const Mat<eT>& A = A_tmp.M;
+
+
+template<typename T1>
+arma_inline
+const T1&
+real(const BaseCube<typename T1::pod_type, T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  return X.get_ref();
+  }
+
+
+
+template<typename T1>
+inline
+Mat<typename T1::pod_type>
+real(const Base<std::complex<typename T1::pod_type>, T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::pod_type T;
+  
+  const Proxy<T1> A(X.get_ref());
   
   Mat<T> out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
   T* out_mem = out.memptr();
   
   for(u32 i=0; i<out.n_elem; ++i)
     {
-    out_mem[i] = std::real(A_mem[i]);
+    out_mem[i] = std::real(A[i]);
     }
   
   return out;
@@ -95,26 +132,24 @@ real(const Base<std::complex<T>, T1>& X)
 
 
 
-template<typename T, typename T1>
+template<typename T1>
 inline
-Cube<T>
-real(const BaseCube<std::complex<T>, T1>& X)
+Cube<typename T1::pod_type>
+real(const BaseCube<std::complex<typename T1::pod_type>, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef std::complex<T> eT;
-
-  const unwrap_cube<T1> A_tmp(X.get_ref());
-  const Cube<eT>& A   = A_tmp.M;
+  typedef typename T1::pod_type T;
+  
+  const ProxyCube<T1> A(X.get_ref());
   
   Cube<T> out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
   T* out_mem = out.memptr();
   
   for(u32 i=0; i<out.n_elem; ++i)
     {
-    out_mem[i] = std::real(A_mem[i]);
+    out_mem[i] = std::real(A[i]);
     }
   
   return out;
@@ -125,26 +160,52 @@ real(const BaseCube<std::complex<T>, T1>& X)
 //
 // imag
 
-template<typename T, typename T1>
+template<typename T1>
 inline
-Mat<T>
-imag(const Base<std::complex<T>,T1>& X)
+const eOp<Mat<typename T1::pod_type>, eop_zeros>
+imag(const Base<typename T1::pod_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef std::complex<T> eT;
+  const Proxy<T1> A(X.get_ref());
+  
+  return eOp<Mat<typename T1::pod_type>, eop_zeros>(A.n_rows, A.n_cols);
+  }
 
-  const unwrap<T1> A_tmp(X.get_ref());
-  const Mat<eT>& A = A_tmp.M;
+
+
+template<typename T1>
+inline
+const eOpCube<Cube<typename T1::pod_type>, eop_cube_zeros>
+imag(const BaseCube<typename T1::pod_type,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const ProxyCube<T1> A(X.get_ref());
+  
+  return eOpCube<Cube<typename T1::pod_type>, eop_cube_zeros>(A.n_rows, A.n_cols, A.n_slices);
+  }
+
+
+
+template<typename T1>
+inline
+Mat<typename T1::pod_type>
+imag(const Base<std::complex<typename T1::pod_type>,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::pod_type T;
+  
+  const Proxy<T1> A(X.get_ref());
   
   Mat<T> out(A.n_rows, A.n_cols);
   
-  const eT* A_mem = A.mem;
   T* out_mem = out.memptr();
   
   for(u32 i=0; i<out.n_elem; ++i)
     {
-    out_mem[i] = std::imag(A_mem[i]);
+    out_mem[i] = std::imag(A[i]);
     }
   
   return out;
@@ -152,26 +213,24 @@ imag(const Base<std::complex<T>,T1>& X)
 
 
 
-template<typename T, typename T1>
+template<typename T1>
 inline
-Cube<T>
-imag(const BaseCube<std::complex<T>,T1>& X)
+Cube<typename T1::pod_type>
+imag(const BaseCube<std::complex<typename T1::pod_type>,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef std::complex<T> eT;
-
-  const unwrap_cube<T1> A_tmp(X.get_ref());
-  const Cube<eT>& A   = A_tmp.M;
+  typedef typename T1::pod_type T;
+  
+  const ProxyCube<T1> A(X.get_ref());
   
   Cube<T> out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
   T* out_mem = out.memptr();
   
   for(u32 i=0; i<out.n_elem; ++i)
     {
-    out_mem[i] = std::imag(A_mem[i]);
+    out_mem[i] = std::imag(A[i]);
     }
   
   return out;
@@ -210,74 +269,29 @@ log_add(eT log_a, eT log_b)
 
 
 
-template<typename eT>
-inline
-eT
-trunc_log(const eT x)
-  {
-  if(std::numeric_limits<eT>::is_iec559)
-    {
-    if(x == std::numeric_limits<eT>::infinity())
-      {
-      return Math<eT>::log_max();
-      }
-    if(x <= 0)
-      {
-      return Math<eT>::log_min();
-      }
-    else
-      {
-      return std::log(x);
-      }
-    }
-  else
-    {
-    return std::log(x);
-    }
-  }
-
-
-
-template<typename eT>
-inline
-eT
-trunc_exp(const eT x)
-  {
-  if(std::numeric_limits<eT>::is_iec559 && (x >= Math<eT>::log_max() ))
-    {
-    return std::numeric_limits<eT>::max();
-    }
-  else
-    {
-    return std::exp(x);
-    }
-  }
-
-
-
 //
 // log
 
 template<typename T1>
-inline
-const Op<T1, op_log>
+arma_inline
+const eOp<T1, eop_log>
 log(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_log>(A.get_ref());
+  return eOp<T1, eop_log>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_log>
+arma_inline
+const eOpCube<T1, eop_cube_log>
 log(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_log>(A.get_ref());
+  return eOpCube<T1, eop_cube_log>(A.get_ref());
   }
 
 
@@ -286,25 +300,25 @@ log(const BaseCube<typename T1::elem_type,T1>& A)
 // trunc_log
 
 template<typename T1>
-inline
-const Op<T1, op_trunc_log>
+arma_inline
+const eOp<T1, eop_trunc_log>
 trunc_log(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_trunc_log>(A.get_ref());
+  return eOp<T1, eop_trunc_log>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_trunc_log>
+arma_inline
+const eOpCube<T1, eop_cube_trunc_log>
 trunc_log(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_trunc_log>(A.get_ref());
+  return eOpCube<T1, eop_cube_trunc_log>(A.get_ref());
   }
 
 
@@ -313,25 +327,25 @@ trunc_log(const BaseCube<typename T1::elem_type,T1>& A)
 // log10
 
 template<typename T1>
-inline
-const Op<T1, op_log10>
+arma_inline
+const eOp<T1, eop_log10>
 log10(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_log10>(A.get_ref());
+  return eOp<T1, eop_log10>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_log10>
+arma_inline
+const eOpCube<T1, eop_cube_log10>
 log10(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_log10>(A.get_ref());
+  return eOpCube<T1, eop_cube_log10>(A.get_ref());
   }
 
 
@@ -340,25 +354,25 @@ log10(const BaseCube<typename T1::elem_type,T1>& A)
 // exp
 
 template<typename T1>
-inline
-const Op<T1, op_exp>
+arma_inline
+const eOp<T1, eop_exp>
 exp(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_exp>(A.get_ref());
+  return eOp<T1, eop_exp>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_exp>
+arma_inline
+const eOpCube<T1, eop_cube_exp>
 exp(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_exp>(A.get_ref());
+  return eOpCube<T1, eop_cube_exp>(A.get_ref());
   }
 
 
@@ -367,25 +381,25 @@ exp(const BaseCube<typename T1::elem_type,T1>& A)
 // trunc_exp
 
 template<typename T1>
-inline
-const Op<T1, op_trunc_exp>
+arma_inline
+const eOp<T1, eop_trunc_exp>
 trunc_exp(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_trunc_exp>(A.get_ref());
+  return eOp<T1, eop_trunc_exp>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_trunc_exp>
+arma_inline
+const eOpCube<T1, eop_cube_trunc_exp>
 trunc_exp(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_trunc_exp>(A.get_ref());
+  return eOpCube<T1, eop_cube_trunc_exp>(A.get_ref());
   }
 
 
@@ -393,14 +407,39 @@ trunc_exp(const BaseCube<typename T1::elem_type,T1>& A)
 //
 // abs
 
+
 template<typename T1>
-inline
-Mat<typename T1::pod_type>
+arma_inline
+const eOp<T1, eop_abs>
 abs(const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> A_tmp(X.get_ref());
+  return eOp<T1, eop_abs>(X.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_abs>
+abs(const BaseCube<typename T1::elem_type,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOpCube<T1, eop_cube_abs>(X.get_ref());
+  }
+
+
+
+template<typename T1>
+inline
+Mat<typename T1::pod_type>
+abs(const Base< std::complex<typename T1::pod_type>,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Proxy<T1> A(X.get_ref());
 
   // if T1 is a complex matrix,
   // pod_type is the underlying type used by std::complex;
@@ -409,16 +448,13 @@ abs(const Base<typename T1::elem_type,T1>& X)
   typedef typename T1::elem_type  in_eT;
   typedef typename T1::pod_type  out_eT;
 
-  const Mat<in_eT>& A = A_tmp.M;
-  
   Mat<out_eT> out(A.n_rows, A.n_cols);
   
-  const in_eT* A_mem   = A.mem;
-  out_eT*      out_mem = out.memptr();
+  out_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<out.n_elem; ++i)
     {
-    out_mem[i] = std::abs(A_mem[i]);
+    out_mem[i] = std::abs(A[i]);
     }
   
   return out;
@@ -428,12 +464,12 @@ abs(const Base<typename T1::elem_type,T1>& X)
 
 template<typename T1>
 inline
-Cube<typename T1::pod_type>
-abs(const BaseCube<typename T1::elem_type,T1>& X)
+Mat<typename T1::pod_type>
+abs(const BaseCube< std::complex<typename T1::pod_type>,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> A_tmp(X.get_ref());
+  const ProxyCube<T1> A(X.get_ref());
 
   // if T1 is a complex matrix,
   // pod_type is the underlying type used by std::complex;
@@ -442,16 +478,13 @@ abs(const BaseCube<typename T1::elem_type,T1>& X)
   typedef typename T1::elem_type  in_eT;
   typedef typename T1::pod_type  out_eT;
 
-  const Cube<in_eT>& A = A_tmp.M;
-  
   Cube<out_eT> out(A.n_rows, A.n_cols, A.n_slices);
   
-  const in_eT* A_mem   = A.mem;
-  out_eT*      out_mem = out.memptr();
+  out_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<out.n_elem; ++i)
     {
-    out_mem[i] = std::abs(A_mem[i]);
+    out_mem[i] = std::abs(A[i]);
     }
   
   return out;
@@ -463,25 +496,49 @@ abs(const BaseCube<typename T1::elem_type,T1>& X)
 // fabs
 
 template<typename T1>
-inline
-Mat<typename T1::pod_type>
-fabs(const Base<typename T1::elem_type,T1>& A)
+arma_inline
+const eOp<T1, eop_abs>
+fabs(const Base<typename T1::pod_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  return abs(A);
+  return eOp<T1, eop_abs>(X.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-Cube<typename T1::pod_type>
-fabs(const BaseCube<typename T1::elem_type,T1>& A)
+arma_inline
+const eOpCube<T1, eop_cube_abs>
+fabs(const BaseCube<typename T1::pod_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  return abs(A);
+  return eOpCube<T1, eop_cube_abs>(X.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+Mat<typename T1::pod_type>
+fabs(const Base< std::complex<typename T1::pod_type>,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  return abs(X);
+  }
+
+
+
+template<typename T1>
+arma_inline
+Mat<typename T1::pod_type>
+fabs(const BaseCube< std::complex<typename T1::pod_type>,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  return abs(X);
   }
 
 
@@ -490,25 +547,25 @@ fabs(const BaseCube<typename T1::elem_type,T1>& A)
 // square
 
 template<typename T1>
-inline
-const Op<T1, op_square>
+arma_inline
+const eOp<T1, eop_square>
 square(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_square>(A.get_ref());
+  return eOp<T1, eop_square>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_square>
+arma_inline
+const eOpCube<T1, eop_cube_square>
 square(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_square>(A.get_ref());
+  return eOpCube<T1, eop_cube_square>(A.get_ref());
   }
 
 
@@ -517,51 +574,142 @@ square(const BaseCube<typename T1::elem_type,T1>& A)
 // sqrt
 
 template<typename T1>
-inline
-const Op<T1, op_sqrt>
+arma_inline
+const eOp<T1, eop_sqrt>
 sqrt(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_sqrt>(A.get_ref());
+  return eOp<T1, eop_sqrt>(A.get_ref());
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_sqrt>
+arma_inline
+const eOpCube<T1, eop_cube_sqrt>
 sqrt(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_sqrt>(A.get_ref());
+  return eOpCube<T1, eop_cube_sqrt>(A.get_ref());
   }
+
+
+
+//
+// conj
+
+template<typename T1>
+arma_inline
+const T1&
+conj(const Base<typename T1::pod_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+
+  return A.get_ref();
+  }
+
+
+
+template<typename T1>
+arma_inline
+const T1&
+conj(const BaseCube<typename T1::pod_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+
+  return A.get_ref();
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOp<T1, eop_conj>
+conj(const Base<std::complex<typename T1::pod_type>,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+
+  return eOp<T1, eop_conj>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_conj>
+conj(const BaseCube<std::complex<typename T1::pod_type>,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+
+  return eOpCube<T1, eop_cube_conj>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const T1&
+conj(const eOp<T1, eop_conj>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return A.m;
+  }
+
+
+
+template<typename T1>
+arma_inline
+const T1&
+conj(const eOpCube<T1, eop_cube_conj>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return A.m;
+  }
+
+
+
+// TODO: this needs a more elaborate template restriction mechanism to work properly,
+//       i.e. an overloaded version of thus function should do nothing if the input type is non-complex
+// 
+// //! the conjugate of the transpose of a complex matrix is the same as the hermitian transpose
+// template<typename T1>
+// arma_inline
+// const Op<T1, op_htrans>
+// conj(const Op<T1, op_trans>& A)
+//   {
+//   arma_extra_debug_sigprint();
+//   
+//   return Op<T1, op_htrans>(A.m);
+//   }
 
 
 
 // pow
 
 template<typename T1>
-inline
-const Op<T1, op_pow>
+arma_inline
+const eOp<T1, eop_pow>
 pow(const Base<typename T1::elem_type,T1>& A, const typename T1::elem_type exponent)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_pow>(A.get_ref(), exponent);
+  return eOp<T1, eop_pow>(A.get_ref(), exponent);
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_pow>
+arma_inline
+const eOpCube<T1, eop_cube_pow>
 pow(const BaseCube<typename T1::elem_type,T1>& A, const typename T1::elem_type exponent)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_pow>(A.get_ref(), exponent);
+  return eOpCube<T1, eop_cube_pow>(A.get_ref(), exponent);
   }
 
 
@@ -569,25 +717,29 @@ pow(const BaseCube<typename T1::elem_type,T1>& A, const typename T1::elem_type e
 // pow, specialised handling (non-complex exponent for complex matrices)
 
 template<typename T1>
-inline
-const Op<T1, op_pow>
+arma_inline
+const eOp<T1, eop_pow>
 pow(const Base<typename T1::elem_type,T1>& A, const typename T1::elem_type::value_type exponent)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_pow>(A.get_ref(), eT(exponent));
+  typedef typename T1::elem_type eT;
+  
+  return eOp<T1, eop_pow>(A.get_ref(), eT(exponent));
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_pow>
+arma_inline
+const eOpCube<T1, eop_cube_pow>
 pow(const BaseCube<typename T1::elem_type,T1>& A, const typename T1::elem_type::value_type exponent)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_pow>(A.get_ref(), eT(exponent));
+  typedef typename T1::elem_type eT;
+  
+  return eOpCube<T1, eop_cube_pow>(A.get_ref(), eT(exponent));
   }
 
 
@@ -598,38 +750,38 @@ pow(const BaseCube<typename T1::elem_type,T1>& A, const typename T1::elem_type::
 // pow_s32  (integer exponent)
 
 template<typename T1>
-inline
-const Op<T1, op_pow_s32>
-pow(const Base<typename T1::elem_type,T1>& A, const s32 exponent)
+arma_inline
+const eOp<T1, eop_pow_int>
+pow(const Base<typename T1::elem_type,T1>& A, const int exponent)
   {
   arma_extra_debug_sigprint();
   
   if(exponent >= 0)
     {
-    return Op<T1, op_pow_s32>(A.get_ref(), exponent, 0);
+    return eOp<T1, eop_pow_int>(A.get_ref(), exponent, 0);
     }
   else
     {
-    return Op<T1, op_pow_s32>(A.get_ref(), -exponent, 1);
+    return eOp<T1, eop_pow_int>(A.get_ref(), -exponent, 1);
     }
   }
 
 
 
 template<typename T1>
-inline
-const OpCube<T1, op_pow_s32>
-pow(const BaseCube<typename T1::elem_type,T1>& A, const s32 exponent)
+arma_inline
+const eOpCube<T1, eop_cube_pow_int>
+pow(const BaseCube<typename T1::elem_type,T1>& A, const int exponent)
   {
   arma_extra_debug_sigprint();
   
   if(exponent >= 0)
     {
-    return OpCube<T1, op_pow_s32>(A.get_ref(), exponent, 0);
+    return eOpCube<T1, eop_cube_pow_int>(A.get_ref(),  exponent, 0);
     }
   else
     {
-    return OpCube<T1, op_pow_s32>(A.get_ref(), -exponent, 1);
+    return eOpCube<T1, eop_cube_pow_int>(A.get_ref(), -exponent, 1);
     }
   }
 
@@ -637,69 +789,6 @@ pow(const BaseCube<typename T1::elem_type,T1>& A, const s32 exponent)
 
 #endif
 
-
-
-// conj
-
-template<typename T, typename T1>
-inline
-const Op<T1, op_conj>
-conj(const Base<std::complex<T>,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-
-  return Op<T1, op_conj>(A.get_ref());
-  }
-
-
-
-template<typename T, typename T1>
-inline
-const OpCube<T1, op_conj>
-conj(const BaseCube<std::complex<T>,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-
-  return OpCube<T1, op_conj>(A.get_ref());
-  }
-
-
-
-template<typename T1>
-inline
-const T1&
-conj(const Op<T1, op_conj>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return A.m;
-  }
-
-
-
-template<typename T1>
-inline
-const T1&
-conj(const OpCube<T1, op_conj>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return A.m;
-  }
-
-
-//! the conjugate of the transpose of a complex matrix is the same as the hermitian transpose
-template<typename T1>
-inline
-const Op<T1, op_htrans>
-conj(const Op<T1, op_trans>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_type_check< is_complex<typename T1::elem_type>::value == false >::apply();
-
-  return Op<T1, op_htrans>(A.m);
-  }
 
 
 //! @}

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -36,7 +37,7 @@ op_sum::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sum>& in)
   const Mat<eT>& X     = tmp.M;
   
   arma_debug_check( (X.n_elem < 1), "sum(): given object has no elements");
-
+  
   
   if(dim == 0)  // traverse across rows (i.e. find the sum in each column)
     {
@@ -56,7 +57,7 @@ op_sum::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sum>& in)
       out.at(0,col) = val;
       }
     }
-  else  // traverse across columns (i.e. find the sum in each rows)
+  else  // traverse across columns (i.e. find the sum in each row)
     {
     out.set_size(X.n_rows, 1);
     

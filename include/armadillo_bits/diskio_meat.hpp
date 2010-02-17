@@ -1,7 +1,9 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
+// - Ian Cullinan (ian dot cullinan at nicta dot com dot au)
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -456,47 +458,59 @@ diskio::save_raw_ascii(const Mat<eT>& x, const std::string& final_name)
     }
   else
     {
-    u32 cell_width;
-    
-    // TODO: need sane values for complex numbers
-    
-    if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
-      {
-      f.setf(ios::scientific);
-      f.precision(8);
-      cell_width = 16;
-      }
-    
-    for(u32 row=0; row < x.n_rows; ++row)
-      {
-      for(u32 col=0; col < x.n_cols; ++col)
-        {
-        f.put(' ');
-        
-        if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
-          {
-          f.width(cell_width);
-          }
-        
-        f << x.at(row,col);
-        }
-        
-      f.put('\n');
-      }
-    
+    diskio::save_raw_ascii(x, tmp_name, f);
     const bool writing_problem = (f.good() == false);
-    
-    arma_warn(writing_problem, "trouble writing ", tmp_name );
     
     f.flush();
     f.close();
+    
+    arma_warn(writing_problem, "trouble writing ", tmp_name);
     
     if(writing_problem == false)
       {
       diskio::safe_rename(tmp_name, final_name);
       }
     }
+  }
+
+
+
+//! Save a matrix as raw text (no header, human readable).
+//! Matrices can be loaded in Matlab and Octave, as long as they don't have complex elements.
+template<typename eT>
+inline
+void
+diskio::save_raw_ascii(const Mat<eT>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  u32 cell_width;
+  
+  // TODO: need sane values for complex numbers
+  
+  if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
+    {
+    f.setf(ios::scientific);
+    f.precision(8);
+    cell_width = 16;
+    }
+  
+  for(u32 row=0; row < x.n_rows; ++row)
+    {
+    for(u32 col=0; col < x.n_cols; ++col)
+      {
+      f.put(' ');
+      
+      if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
+        {
+        f.width(cell_width);
+        }
+      
+      f << x.at(row,col);
+      }
+      
+    f.put('\n');
+    }
   }
 
 
@@ -514,18 +528,25 @@ diskio::save_arma_ascii(const Mat<eT>& x, const std::string& final_name)
   
   std::ofstream f(tmp_name.c_str());
   
-  diskio::save_arma_ascii(x, tmp_name, f);
-  
-  const bool writing_problem = (f.good() == false);
-  
-  f.flush();
-  f.close();
-  
-  arma_warn( writing_problem, "trouble writing ", tmp_name );
-  
-  if(writing_problem == false)
+  if(f.is_open() == false)
     {
-    diskio::safe_rename(tmp_name, final_name);
+    arma_debug_print("unable to write ", tmp_name);
+    }
+  else
+    {
+    diskio::save_arma_ascii(x, tmp_name, f);
+    
+    const bool writing_problem = (f.good() == false);
+    
+    f.flush();
+    f.close();
+    
+    arma_warn( writing_problem, "trouble writing ", tmp_name );
+    
+    if(writing_problem == false)
+      {
+      diskio::safe_rename(tmp_name, final_name);
+      }
     }
   }
 
@@ -536,51 +557,44 @@ diskio::save_arma_ascii(const Mat<eT>& x, const std::string& final_name)
 template<typename eT>
 inline
 void 
-diskio::save_arma_ascii(const Mat<eT>& x, const std::string& name, std::ofstream& f)
+diskio::save_arma_ascii(const Mat<eT>& x, const std::string& name, std::ostream& f)
   {
   arma_extra_debug_sigprint();
   
-  if(f.is_open() == false)
+  const ios::fmtflags orig_flags = f.flags();
+  
+  f << diskio::gen_txt_header(x) << '\n';
+  f << x.n_rows << ' ' << x.n_cols << '\n';
+  
+  u32 cell_width;
+  
+  // TODO: need sane values for complex numbers
+  
+  if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
     {
-    arma_debug_print("unable to write ", name);
+    f.setf(ios::scientific);
+    f.precision(8);
+    cell_width = 16;
     }
-  else
+    
+  for(u32 row=0; row < x.n_rows; ++row)
     {
-    const ios::fmtflags orig_flags = f.flags();
-    
-    f << diskio::gen_txt_header(x) << '\n';
-    f << x.n_rows << ' ' << x.n_cols << '\n';
-    
-    u32 cell_width;
-    
-    // TODO: need sane values for complex numbers
-    
-    if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
+    for(u32 col=0; col < x.n_cols; ++col)
       {
-      f.setf(ios::scientific);
-      f.precision(8);
-      cell_width = 16;
-      }
+      f.put(' ');
       
-    for(u32 row=0; row < x.n_rows; ++row)
-      {
-      for(u32 col=0; col < x.n_cols; ++col)
+      if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )        
         {
-        f.put(' ');
-        
-        if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )        
-          {
-          f.width(cell_width);
-          }
-        
-        f << x.at(row,col);
+        f.width(cell_width);
         }
       
-      f.put('\n');
+      f << x.at(row,col);
       }
     
-    f.flags(orig_flags);
+    f.put('\n');
     }
+  
+  f.flags(orig_flags);
   }
 
 
@@ -598,18 +612,25 @@ diskio::save_arma_binary(const Mat<eT>& x, const std::string& final_name)
   
   std::ofstream f(tmp_name.c_str(), std::fstream::binary);
   
-  diskio::save_arma_binary(x, tmp_name, f);
-  
-  const bool writing_problem = (f.good() == false);
-  
-  f.flush();
-  f.close();
-  
-  arma_warn( writing_problem, "trouble writing ", tmp_name );
-  
-  if(writing_problem == false)
+  if(f.is_open() == false)
     {
-    diskio::safe_rename(tmp_name, final_name);
+    arma_print("unable to write ", tmp_name);
+    }
+  else
+    {  
+    diskio::save_arma_binary(x, tmp_name, f);
+    
+    const bool writing_problem = (f.good() == false);
+    
+    f.flush();
+    f.close();
+    
+    arma_warn( writing_problem, "trouble writing ", tmp_name );
+    
+    if(writing_problem == false)
+      {
+      diskio::safe_rename(tmp_name, final_name);
+      }
     }
   }
 
@@ -620,29 +641,17 @@ diskio::save_arma_binary(const Mat<eT>& x, const std::string& final_name)
 template<typename eT>
 inline
 void
-diskio::save_arma_binary(const Mat<eT>& x, const std::string& name, std::ofstream& f)
+diskio::save_arma_binary(const Mat<eT>& x, const std::string& name, std::ostream& f)
   {
   arma_extra_debug_sigprint();
+
+  f << diskio::gen_bin_header(x) << '\n';
+  f << x.n_rows << ' ' << x.n_cols << '\n';
   
-  if(f.is_open() == false)
-    {
-    arma_print("unable to write ", name);
-    }
-  else
-    {
-    f << diskio::gen_bin_header(x) << '\n';
-    f << x.n_rows << ' ' << x.n_cols << '\n';
-    
-    f.write(reinterpret_cast<const char*>(x.mem), x.n_elem*sizeof(eT));
-    }
-  
+  f.write(reinterpret_cast<const char*>(x.mem), x.n_elem*sizeof(eT));
   }
 
 
-//
-// TODO:
-// add functionality to save the image in a normalised format,
-// i.e. scaled so that every value falls in the [0,255] range.
 
 //! Save a matrix as a PGM greyscale image
 template<typename eT>
@@ -662,25 +671,7 @@ diskio::save_pgm_binary(const Mat<eT>& x, const std::string& final_name)
     }
   else
     {
-    f << "P5" << '\n';
-    f << x.n_cols << ' ' << x.n_rows << '\n';
-    f << 255 << '\n';
-    
-    const u32 n_elem = x.n_rows * x.n_cols;
-    podarray<u8> tmp(n_elem);
-    
-    u32 i = 0;
-    
-    for(u32 row=0; row < x.n_rows; ++row)
-      {
-      for(u32 col=0; col < x.n_cols; ++col)
-        {
-        tmp[i] = u8( x(row,col) );  // TODO: add round() ?
-        ++i;
-        }
-      }
-    
-    f.write(reinterpret_cast<const char*>(tmp.mem), n_elem);
+    diskio::save_pgm_binary(x, tmp_name, f);
     
     const bool writing_problem = (f.good() == false);
     
@@ -694,7 +685,42 @@ diskio::save_pgm_binary(const Mat<eT>& x, const std::string& final_name)
       diskio::safe_rename(tmp_name, final_name);
       }
     }
+  }
+
+
+
+//
+// TODO:
+// add functionality to save the image in a normalised format,
+// i.e. scaled so that every value falls in the [0,255] range.
+
+//! Save a matrix as a PGM greyscale image
+template<typename eT>
+inline
+void
+diskio::save_pgm_binary(const Mat<eT>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  f << "P5" << '\n';
+  f << x.n_cols << ' ' << x.n_rows << '\n';
+  f << 255 << '\n';
+  
+  const u32 n_elem = x.n_rows * x.n_cols;
+  podarray<u8> tmp(n_elem);
+  
+  u32 i = 0;
+  
+  for(u32 row=0; row < x.n_rows; ++row)
+    {
+    for(u32 col=0; col < x.n_cols; ++col)
+      {
+      tmp[i] = u8( x(row,col) );  // TODO: add round() ?
+      ++i;
+      }
+    }
+  
+  f.write(reinterpret_cast<const char*>(tmp.mem), n_elem);
   }
 
 
@@ -703,12 +729,26 @@ diskio::save_pgm_binary(const Mat<eT>& x, const std::string& final_name)
 template<typename T>
 inline
 void
-diskio::save_pgm_binary(const Mat< std::complex<T> >& x, const std::string& name)
+diskio::save_pgm_binary(const Mat< std::complex<T> >& x, const std::string& final_name)
   {
   arma_extra_debug_sigprint();
   
   const uchar_mat tmp = conv_to<uchar_mat>::from(x);
-  diskio::save_pgm_binary(tmp,name);
+  diskio::save_pgm_binary(tmp, final_name);
+  }
+
+
+
+//! Save a matrix as a PGM greyscale image
+template<typename T>
+inline
+void
+diskio::save_pgm_binary(const Mat< std::complex<T> >& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  const uchar_mat tmp = conv_to<uchar_mat>::from(x);
+  diskio::save_pgm_binary(tmp, name, f);
   }
 
 
@@ -726,96 +766,105 @@ diskio::load_raw_ascii(Mat<eT>& x, const std::string& name)
   std::fstream f;
   f.open(name.c_str(), std::fstream::in);
   
-  bool load_okay = true;
-  
   if(f.is_open() == false)
     {
-    load_okay = false;
+    x.reset();
     arma_extra_debug_print("unable to read ", name);
     }
   else
     {
-    //std::fstream::pos_type start = f.tellg();
-    
-    //
-    // work out the size
-    
-    
-    u32 f_n_rows = 0;
-    u32 f_n_cols = 0;
-    
-    bool f_n_cols_found = false;
-    
-    std::string line_string;
-    std::string token;
-    
-    while( (f.good() == true) && (load_okay == true) )
-      {
-      std::getline(f, line_string);
-      if(line_string.size() == 0)
-        break;
-      
-      std::stringstream line_stream(line_string);
-      
-      u32 line_n_cols = 0;
-      while (line_stream >> token)
-        line_n_cols++;
-      
-      if(f_n_cols_found == false)
-        {
-        f_n_cols = line_n_cols;
-        f_n_cols_found = true;
-        }
-      else
-        {
-        if(line_n_cols != f_n_cols)
-          {
-          arma_print("inconsistent number of columns in ", name );
-          load_okay = false;
-          }
-        }
-      
-      ++f_n_rows;
-      }
-      
-    if(load_okay == true)
-      {
-      f.clear();
-      f.seekg(0, ios::beg);
-      //f.seekg(start);
-      
-      x.set_size(f_n_rows, f_n_cols);
-    
-      eT val;
-      
-      for(u32 row=0; row < x.n_rows; ++row)
-        {
-        for(u32 col=0; col < x.n_cols; ++col)
-          {
-          // f >> token;
-          // x.at(row,col) = eT( strtod(token.c_str(), 0) );
-          
-          f >> val;
-          x.at(row,col) = val;
-          }
-        }
-      }
-    
-    if(f.good() == false)
-      {
-      arma_print("trouble reading ", name );
-      load_okay = false; 
-      }
-    
+    diskio::load_raw_ascii(x, name, f);
     f.close();
     }
+  }
+
+//! Load a matrix as raw text (no header, human readable).
+//! Can read matrices saved as text in Matlab and Octave.
+//! NOTE: this is much slower than reading a file with a header.
+template<typename eT>
+inline
+void
+diskio::load_raw_ascii(Mat<eT>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
+
+  bool load_okay = true;
   
+  //std::fstream::pos_type start = f.tellg();
+  
+  //
+  // work out the size
+  
+  u32 f_n_rows = 0;
+  u32 f_n_cols = 0;
+  
+  bool f_n_cols_found = false;
+  
+  std::string line_string;
+  std::string token;
+  
+  while( (f.good() == true) && (load_okay == true) )
+    {
+    std::getline(f, line_string);
+    if(line_string.size() == 0)
+      break;
+    
+    std::stringstream line_stream(line_string);
+    
+    u32 line_n_cols = 0;
+    while (line_stream >> token)
+      line_n_cols++;
+    
+    if(f_n_cols_found == false)
+      {
+      f_n_cols = line_n_cols;
+      f_n_cols_found = true;
+      }
+    else
+      {
+      if(line_n_cols != f_n_cols)
+        {
+        arma_print("inconsistent number of columns in ", name );
+        load_okay = false;
+        }
+      }
+    
+    ++f_n_rows;
+    }
+    
+  if(load_okay == true)
+    {
+    f.clear();
+    f.seekg(0, ios::beg);
+    //f.seekg(start);
+    
+    x.set_size(f_n_rows, f_n_cols);
+  
+    eT val;
+    
+    for(u32 row=0; row < x.n_rows; ++row)
+      {
+      for(u32 col=0; col < x.n_cols; ++col)
+        {
+        // f >> token;
+        // x.at(row,col) = eT( strtod(token.c_str(), 0) );
+        
+        f >> val;
+        x.at(row,col) = val;
+        }
+      }
+    }
+  
+  if(f.good() == false)
+    {
+    arma_print("trouble reading ", name );
+    load_okay = false; 
+    }
   
   if(load_okay == false)
     {
     x.reset();
     }
-  
   }
 
 
@@ -830,8 +879,16 @@ diskio::load_arma_ascii(Mat<eT>& x, const std::string& name)
   arma_extra_debug_sigprint();
   
   std::ifstream f(name.c_str());
-  diskio::load_arma_ascii(x, name, f);
-  f.close();
+  if(f.is_open() == false)
+    {
+    x.reset();
+    arma_extra_debug_print("unable to read ", name);
+    }
+  else
+    {
+    diskio::load_arma_ascii(x, name, f);
+    f.close();
+    }
   }
   
 
@@ -841,53 +898,43 @@ diskio::load_arma_ascii(Mat<eT>& x, const std::string& name)
 template<typename eT>
 inline
 void
-diskio::load_arma_ascii(Mat<eT>& x, const std::string& name, std::ifstream& f)
+diskio::load_arma_ascii(Mat<eT>& x, const std::string& name, std::istream& f)
   {
   arma_extra_debug_sigprint();
   
   bool load_okay = true;
   
-  if(f.is_open() == false)
+  std::string f_header;
+  u32 f_n_rows;
+  u32 f_n_cols;
+  
+  f >> f_header;
+  f >> f_n_rows;
+  f >> f_n_cols;
+  
+  if(f_header == diskio::gen_txt_header(x))
     {
-    load_okay = false;
-    arma_extra_debug_print("unable to read ", name);
+    x.set_size(f_n_rows, f_n_cols);
+    
+    for(u32 row=0; row < x.n_rows; ++row)
+      {
+      for(u32 col=0; col < x.n_cols; ++col)
+        {
+        f >> x.at(row,col);
+        }
+      }
+    
+    if(f.good() == false)
+      {
+      arma_print("trouble reading ", name);
+      load_okay = false;
+      }
     }
   else
     {
-    std::string f_header;
-    u32 f_n_rows;
-    u32 f_n_cols;
-    
-    f >> f_header;
-    f >> f_n_rows;
-    f >> f_n_cols;
-    
-    if(f_header == diskio::gen_txt_header(x))
-      {
-      x.set_size(f_n_rows, f_n_cols);
-      
-      for(u32 row=0; row < x.n_rows; ++row)
-        {
-        for(u32 col=0; col < x.n_cols; ++col)
-          {
-          f >> x.at(row,col);
-          }
-        }
-      
-      if(f.good() == false)
-        {
-        arma_print("trouble reading ", name);
-        load_okay = false;
-        }
-      }
-    else
-      {
-      arma_print("incorrect header in ", name );
-      load_okay = false;
-      }
-  
-    }
-  
+    arma_print("incorrect header in ", name );
+    load_okay = false;
+    } 
   
   if(load_okay == false)
     {
@@ -908,8 +955,17 @@ diskio::load_arma_binary(Mat<eT>& x, const std::string& name)
   
   std::ifstream f;
   f.open(name.c_str(), std::fstream::binary);
-  diskio::load_arma_binary(x, name, f);
-  f.close();
+  
+  if(f.is_open() == false)
+    {
+    x.reset();
+    arma_extra_debug_print("unable to read ", name);
+    }
+  else
+    {
+    diskio::load_arma_binary(x, name, f);
+    f.close();
+    }
   }
 
 
@@ -917,47 +973,38 @@ diskio::load_arma_binary(Mat<eT>& x, const std::string& name)
 template<typename eT>
 inline
 void
-diskio::load_arma_binary(Mat<eT>& x, const std::string& name, std::ifstream& f)
+diskio::load_arma_binary(Mat<eT>& x, const std::string& name, std::istream& f)
   {
   arma_extra_debug_sigprint();
   
   bool load_okay = true;
   
-  if(f.is_open() == false)
+  std::string f_header;
+  u32 f_n_rows;
+  u32 f_n_cols;
+  
+  f >> f_header;
+  f >> f_n_rows;
+  f >> f_n_cols;
+  
+  if(f_header == diskio::gen_bin_header(x))
     {
-    load_okay = false;
-    arma_extra_debug_print("unable to read ", name);
+    //f.seekg(1, ios::cur);  // NOTE: this may not be portable, as on a Windows machine a newline could be two characters
+    f.get();
+    
+    x.set_size(f_n_rows,f_n_cols);
+    f.read( reinterpret_cast<char *>(x.memptr()), x.n_elem*sizeof(eT));
+    
+    if(f.good() == false)
+      {
+      arma_print("trouble reading ", name);
+      load_okay = false;
+      }
     }
   else
     {
-    std::string f_header;
-    u32 f_n_rows;
-    u32 f_n_cols;
-    
-    f >> f_header;
-    f >> f_n_rows;
-    f >> f_n_cols;
-    
-    if(f_header == diskio::gen_bin_header(x))
-      {
-      //f.seekg(1, ios::cur);  // NOTE: this may not be portable, as on a Windows machine a newline could be two characters
-      f.get();
-      
-      x.set_size(f_n_rows,f_n_cols);
-      f.read( reinterpret_cast<char *>(x.memptr()), x.n_elem*sizeof(eT));
-      
-      if(f.good() == false)
-        {
-        arma_print("trouble reading ", name);
-        load_okay = false;
-        }
-      }
-    else
-      {
-      arma_print("incorrect header in ", name);
-      load_okay = false;
-      }
-    
+    arma_print("incorrect header in ", name);
+    load_okay = false;
     }
   
   if(load_okay == false)
@@ -975,12 +1022,16 @@ diskio::pnm_skip_comments(std::istream& f)
   while( isspace(f.peek()) )
     {
     while( isspace(f.peek()) )
+      {
       f.get();
+      }
   
     if(f.peek() == '#')
       {
       while( (f.peek() != '\r') && (f.peek()!='\n') )
+        {
         f.get();
+        }
       }
     }
   }
@@ -1118,7 +1169,22 @@ diskio::load_pgm_binary(Mat< std::complex<T> >& x, const std::string& name)
   arma_extra_debug_sigprint();
   
   uchar_mat tmp;
-  tmp.load(name);
+  diskio::load_pgm_binary(tmp, name);
+  x = conv_to< Mat< std::complex<T> > >::from(tmp);
+  }
+
+
+
+//! Load a PGM greyscale image as a matrix
+template<typename T>
+inline
+void
+diskio::load_pgm_binary(Mat< std::complex<T> >& x, const std::string& name, std::istream& is)
+  {
+  arma_extra_debug_sigprint();
+  
+  uchar_mat tmp;
+  diskio::load_pgm_binary(tmp, name, is);
   x = conv_to< Mat< std::complex<T> > >::from(tmp);
   }
 
@@ -1132,49 +1198,63 @@ diskio::load_auto_detect(Mat<eT>& x, const std::string& name)
   {
   arma_extra_debug_sigprint();
   
-  static const std::string ARMA_MAT_TXT = "ARMA_MAT_TXT";
-  static const std::string ARMA_MAT_BIN = "ARMA_MAT_BIN";
-  static const std::string           P5 = "P5";
-  
   std::fstream f;
   f.open(name.c_str(), std::fstream::in | std::fstream::binary);
   
   if(f.is_open() == false)
     {
-    x.reset();
     arma_extra_debug_print("unable to read ", name);
+    x.reset();
     }
   else
     {
-    podarray<char> raw_header(ARMA_MAT_TXT.length() + 1);
-    
-    f.read(raw_header.memptr(), ARMA_MAT_TXT.length());
-    raw_header[ARMA_MAT_TXT.length()] = '\0';
-    
-    const std::string header = raw_header.mem;
-    
-    if(ARMA_MAT_TXT == header.substr(0,ARMA_MAT_TXT.length()))
-      {
-      load_arma_ascii(x, name);
-      }
-    else
-    if(ARMA_MAT_BIN == header.substr(0,ARMA_MAT_BIN.length()))
-      {
-      load_arma_binary(x, name);
-      }
-    else
-    if(P5 == header.substr(0,P5.length()))
-      {
-      load_pgm_binary(x, name);
-      }
-    else
-      {
-      load_raw_ascii(x, name);
-      }
-    
+    diskio::load_auto_detect(x, name, f); // Do the actual load
     f.close();
     }
+  }
+
+
+//! Try to load a matrix by automatically determining its type
+template<typename eT>
+inline
+void
+diskio::load_auto_detect(Mat<eT>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  static const std::string ARMA_MAT_TXT = "ARMA_MAT_TXT";
+  static const std::string ARMA_MAT_BIN = "ARMA_MAT_BIN";
+  static const std::string           P5 = "P5";
+
+  podarray<char> raw_header(ARMA_MAT_TXT.length() + 1);
+  
+  std::streampos pos = f.tellg();
+    
+  f.read(raw_header.memptr(), ARMA_MAT_TXT.length());
+  raw_header[ARMA_MAT_TXT.length()] = '\0';
+  
+  f.seekg(pos);
+  
+  const std::string header = raw_header.mem;
+  
+  if(ARMA_MAT_TXT == header.substr(0,ARMA_MAT_TXT.length()))
+    {
+    load_arma_ascii(x, name, f);
+    }
+  else
+  if(ARMA_MAT_BIN == header.substr(0,ARMA_MAT_BIN.length()))
+    {
+    load_arma_binary(x, name, f);
+    }
+  else
+  if(P5 == header.substr(0,P5.length()))
+    {
+    load_pgm_binary(x, name, f);
+    }
+  else
+    {
+    load_raw_ascii(x, name, f);
+    }
   }
 
 
@@ -1201,36 +1281,7 @@ diskio::save_raw_ascii(const Cube<eT>& x, const std::string& final_name)
     }
   else
     {
-    u32 cell_width;
-    
-    // TODO: need sane values for complex numbers
-    
-    if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
-      {
-      f.setf(ios::scientific);
-      f.precision(8);
-      cell_width = 16;
-      }
-    
-    for(u32 slice=0; slice < x.n_slices; ++slice)
-      {
-      for(u32 row=0; row < x.n_rows; ++row)
-        {
-        for(u32 col=0; col < x.n_cols; ++col)
-          {
-          f.put(' ');
-          
-          if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
-            {
-            f.width(cell_width);
-            }
-          
-          f << x.at(row,col,slice);
-          }
-          
-        f.put('\n');
-        }
-      }
+    save_raw_ascii(x, tmp_name, f);
     
     const bool writing_problem = (f.good() == false);
     
@@ -1244,7 +1295,48 @@ diskio::save_raw_ascii(const Cube<eT>& x, const std::string& final_name)
       diskio::safe_rename(tmp_name, final_name);
       }
     }
+  }
+
+
+
+//! Save a cube as raw text (no header, human readable).
+template<typename eT>
+inline
+void
+diskio::save_raw_ascii(const Cube<eT>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  u32 cell_width;
+  
+  // TODO: need sane values for complex numbers
+  
+  if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
+    {
+    f.setf(ios::scientific);
+    f.precision(8);
+    cell_width = 16;
+    }
+  
+  for(u32 slice=0; slice < x.n_slices; ++slice)
+    {
+    for(u32 row=0; row < x.n_rows; ++row)
+      {
+      for(u32 col=0; col < x.n_cols; ++col)
+        {
+        f.put(' ');
+        
+        if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
+          {
+          f.width(cell_width);
+          }
+        
+        f << x.at(row,col,slice);
+        }
+        
+      f.put('\n');
+      }
+    }
   }
 
 
@@ -1262,18 +1354,25 @@ diskio::save_arma_ascii(const Cube<eT>& x, const std::string& final_name)
   
   std::ofstream f(tmp_name.c_str());
   
-  diskio::save_arma_ascii(x, tmp_name, f);
-  
-  const bool writing_problem = (f.good() == false);
-  
-  f.flush();
-  f.close();
-  
-  arma_warn( writing_problem, "trouble writing ", tmp_name );
-  
-  if(writing_problem == false)
+  if(f.is_open() == false)
     {
-    diskio::safe_rename(tmp_name, final_name);
+    arma_debug_print("unable to write ", tmp_name);
+    }
+  else
+    {
+    diskio::save_arma_ascii(x, tmp_name, f);
+    
+    const bool writing_problem = (f.good() == false);
+    
+    f.flush();
+    f.close();
+    
+    arma_warn( writing_problem, "trouble writing ", tmp_name );
+    
+    if(writing_problem == false)
+      {
+      diskio::safe_rename(tmp_name, final_name);
+      }
     }
   }
 
@@ -1284,54 +1383,47 @@ diskio::save_arma_ascii(const Cube<eT>& x, const std::string& final_name)
 template<typename eT>
 inline
 void 
-diskio::save_arma_ascii(const Cube<eT>& x, const std::string& name, std::ofstream& f)
+diskio::save_arma_ascii(const Cube<eT>& x, const std::string& name, std::ostream& f)
   {
   arma_extra_debug_sigprint();
   
-  if(f.is_open() == false)
+  const ios::fmtflags orig_flags = f.flags();
+  
+  f << diskio::gen_txt_header(x) << '\n';
+  f << x.n_rows << ' ' << x.n_cols << ' ' << x.n_slices << '\n';
+  
+  u32 cell_width;
+  
+  // TODO: need sane values for complex numbers
+  
+  if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
     {
-    arma_debug_print("unable to write ", name);
+    f.setf(ios::scientific);
+    f.precision(8);
+    cell_width = 16;
     }
-  else
+    
+  for(u32 slice=0; slice < x.n_slices; ++slice)
     {
-    const ios::fmtflags orig_flags = f.flags();
-    
-    f << diskio::gen_txt_header(x) << '\n';
-    f << x.n_rows << ' ' << x.n_cols << ' ' << x.n_slices << '\n';
-    
-    u32 cell_width;
-    
-    // TODO: need sane values for complex numbers
-    
-    if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )
+    for(u32 row=0; row < x.n_rows; ++row)
       {
-      f.setf(ios::scientific);
-      f.precision(8);
-      cell_width = 16;
-      }
-      
-    for(u32 slice=0; slice < x.n_slices; ++slice)
-      {
-      for(u32 row=0; row < x.n_rows; ++row)
+      for(u32 col=0; col < x.n_cols; ++col)
         {
-        for(u32 col=0; col < x.n_cols; ++col)
+        f.put(' ');
+        
+        if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )        
           {
-          f.put(' ');
-          
-          if( (is_float<eT>::value == true) || (is_double<eT>::value == true) )        
-            {
-            f.width(cell_width);
-            }
-          
-          f << x.at(row,col,slice);
+          f.width(cell_width);
           }
         
-        f.put('\n');
+        f << x.at(row,col,slice);
         }
+      
+      f.put('\n');
       }
-    
-    f.flags(orig_flags);
     }
+  
+  f.flags(orig_flags);
   }
 
 
@@ -1349,18 +1441,25 @@ diskio::save_arma_binary(const Cube<eT>& x, const std::string& final_name)
   
   std::ofstream f(tmp_name.c_str(), std::fstream::binary);
   
-  diskio::save_arma_binary(x, tmp_name, f);
-  
-  const bool writing_problem = (f.good() == false);
-  
-  f.flush();
-  f.close();
-  
-  arma_warn( writing_problem, "trouble writing ", tmp_name );
-  
-  if(writing_problem == false)
+  if(f.is_open() == false)
     {
-    diskio::safe_rename(tmp_name, final_name);
+    arma_print("unable to write ", tmp_name);
+    }
+  else
+    {
+    diskio::save_arma_binary(x, tmp_name, f);
+    
+    const bool writing_problem = (f.good() == false);
+    
+    f.flush();
+    f.close();
+    
+    arma_warn( writing_problem, "trouble writing ", tmp_name );
+    
+    if(writing_problem == false)
+      {
+      diskio::safe_rename(tmp_name, final_name);
+      }
     }
   }
 
@@ -1371,22 +1470,13 @@ diskio::save_arma_binary(const Cube<eT>& x, const std::string& final_name)
 template<typename eT>
 inline
 void
-diskio::save_arma_binary(const Cube<eT>& x, const std::string& name, std::ofstream& f)
+diskio::save_arma_binary(const Cube<eT>& x, const std::string& name, std::ostream& f)
   {
   arma_extra_debug_sigprint();
+  f << diskio::gen_bin_header(x) << '\n';
+  f << x.n_rows << ' ' << x.n_cols << ' ' << x.n_slices << '\n';
   
-  if(f.is_open() == false)
-    {
-    arma_print("unable to write ", name);
-    }
-  else
-    {
-    f << diskio::gen_bin_header(x) << '\n';
-    f << x.n_rows << ' ' << x.n_cols << ' ' << x.n_slices << '\n';
-    
-    f.write(reinterpret_cast<const char*>(x.mem), x.n_elem*sizeof(eT));
-    }
-  
+  f.write(reinterpret_cast<const char*>(x.mem), x.n_elem*sizeof(eT));
   }
 
 
@@ -1401,7 +1491,29 @@ diskio::load_raw_ascii(Cube<eT>& x, const std::string& name)
   arma_extra_debug_sigprint();
 
   Mat<eT> tmp;
-  tmp.load(name);
+  diskio::load_raw_ascii(tmp, name);
+  
+  x.set_size(tmp.n_rows, tmp.n_cols, 1);
+
+  if(x.n_slices > 0)
+    {
+    x.slice(0) = tmp;
+    }
+  }
+
+
+
+//! Load a cube as raw text (no header, human readable).
+//! NOTE: this is much slower than reading a file with a header.
+template<typename eT>
+inline
+void
+diskio::load_raw_ascii(Cube<eT>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
+
+  Mat<eT> tmp;
+  diskio::load_raw_ascii(tmp, name, f);
   
   x.set_size(tmp.n_rows, tmp.n_cols, 1);
 
@@ -1423,8 +1535,16 @@ diskio::load_arma_ascii(Cube<eT>& x, const std::string& name)
   arma_extra_debug_sigprint();
   
   std::ifstream f(name.c_str());
-  diskio::load_arma_ascii(x, name, f);
-  f.close();
+  
+  if(f.is_open() == false)
+    {
+    arma_extra_debug_print("unable to read ", name);
+    }
+  else
+    {
+    diskio::load_arma_ascii(x, name, f);
+    f.close();
+    }
   }
   
 
@@ -1434,58 +1554,48 @@ diskio::load_arma_ascii(Cube<eT>& x, const std::string& name)
 template<typename eT>
 inline
 void
-diskio::load_arma_ascii(Cube<eT>& x, const std::string& name, std::ifstream& f)
+diskio::load_arma_ascii(Cube<eT>& x, const std::string& name, std::istream& f)
   {
   arma_extra_debug_sigprint();
   
   bool load_okay = true;
   
-  if(f.is_open() == false)
+  std::string f_header;
+  u32 f_n_rows;
+  u32 f_n_cols;
+  u32 f_n_slices;
+  
+  f >> f_header;
+  f >> f_n_rows;
+  f >> f_n_cols;
+  f >> f_n_slices;
+  
+  if(f_header == diskio::gen_txt_header(x))
     {
-    load_okay = false;
-    arma_extra_debug_print("unable to read ", name);
+    x.set_size(f_n_rows, f_n_cols, f_n_slices);
+
+    for(u32 slice=0; slice < x.n_slices; ++slice)
+      {
+      for(u32 row=0; row < x.n_rows; ++row)
+        {
+        for(u32 col=0; col < x.n_cols; ++col)
+          {
+          f >> x.at(row,col,slice);
+          }
+        }
+      }
+    
+    if(f.good() == false)
+      {
+      arma_print("trouble reading ", name);
+      load_okay = false;
+      }
     }
   else
     {
-    std::string f_header;
-    u32 f_n_rows;
-    u32 f_n_cols;
-    u32 f_n_slices;
-    
-    f >> f_header;
-    f >> f_n_rows;
-    f >> f_n_cols;
-    f >> f_n_slices;
-    
-    if(f_header == diskio::gen_txt_header(x))
-      {
-      x.set_size(f_n_rows, f_n_cols, f_n_slices);
-
-      for(u32 slice=0; slice < x.n_slices; ++slice)
-        {
-        for(u32 row=0; row < x.n_rows; ++row)
-          {
-          for(u32 col=0; col < x.n_cols; ++col)
-            {
-            f >> x.at(row,col,slice);
-            }
-          }
-        }
-      
-      if(f.good() == false)
-        {
-        arma_print("trouble reading ", name);
-        load_okay = false;
-        }
-      }
-    else
-      {
-      arma_print("incorrect header in ", name );
-      load_okay = false;
-      }
-  
+    arma_print("incorrect header in ", name );
+    load_okay = false;
     }
-  
   
   if(load_okay == false)
     {
@@ -1506,8 +1616,16 @@ diskio::load_arma_binary(Cube<eT>& x, const std::string& name)
   
   std::ifstream f;
   f.open(name.c_str(), std::fstream::binary);
-  diskio::load_arma_binary(x, name, f);
-  f.close();
+  
+  if(f.is_open() == false)
+    {
+    arma_extra_debug_print("unable to read ", name);
+    }
+  else
+    {
+    diskio::load_arma_binary(x, name, f);
+    f.close();
+    }
   }
 
 
@@ -1515,49 +1633,40 @@ diskio::load_arma_binary(Cube<eT>& x, const std::string& name)
 template<typename eT>
 inline
 void
-diskio::load_arma_binary(Cube<eT>& x, const std::string& name, std::ifstream& f)
+diskio::load_arma_binary(Cube<eT>& x, const std::string& name, std::istream& f)
   {
   arma_extra_debug_sigprint();
   
   bool load_okay = true;
   
-  if(f.is_open() == false)
+  std::string f_header;
+  u32 f_n_rows;
+  u32 f_n_cols;
+  u32 f_n_slices;
+  
+  f >> f_header;
+  f >> f_n_rows;
+  f >> f_n_cols;
+  f >> f_n_slices;
+  
+  if(f_header == diskio::gen_bin_header(x))
     {
-    load_okay = false;
-    arma_extra_debug_print("unable to read ", name);
+    //f.seekg(1, ios::cur);  // NOTE: this may not be portable, as on a Windows machine a newline could be two characters
+    f.get();
+    
+    x.set_size(f_n_rows, f_n_cols, f_n_slices);
+    f.read( reinterpret_cast<char *>(x.memptr()), x.n_elem*sizeof(eT));
+    
+    if(f.good() == false)
+      {
+      arma_print("trouble reading ", name);
+      load_okay = false;
+      }
     }
   else
     {
-    std::string f_header;
-    u32 f_n_rows;
-    u32 f_n_cols;
-    u32 f_n_slices;
-    
-    f >> f_header;
-    f >> f_n_rows;
-    f >> f_n_cols;
-    f >> f_n_slices;
-    
-    if(f_header == diskio::gen_bin_header(x))
-      {
-      //f.seekg(1, ios::cur);  // NOTE: this may not be portable, as on a Windows machine a newline could be two characters
-      f.get();
-      
-      x.set_size(f_n_rows, f_n_cols, f_n_slices);
-      f.read( reinterpret_cast<char *>(x.memptr()), x.n_elem*sizeof(eT));
-      
-      if(f.good() == false)
-        {
-        arma_print("trouble reading ", name);
-        load_okay = false;
-        }
-      }
-    else
-      {
-      arma_print("incorrect header in ", name);
-      load_okay = false;
-      }
-    
+    arma_print("incorrect header in ", name);
+    load_okay = false;
     }
   
   if(load_okay == false)
@@ -1576,51 +1685,65 @@ diskio::load_auto_detect(Cube<eT>& x, const std::string& name)
   {
   arma_extra_debug_sigprint();
   
-  static const std::string ARMA_CUB_TXT = "ARMA_CUB_TXT";
-  static const std::string ARMA_CUB_BIN = "ARMA_CUB_BIN";
-  static const std::string           P6 = "P6";
-  
   std::fstream f;
   f.open(name.c_str(), std::fstream::in | std::fstream::binary);
   
   if(f.is_open() == false)
     {
-    x.reset();
     arma_extra_debug_print("unable to read ", name);
+    x.reset();
     }
   else
     {
-    podarray<char> raw_header(ARMA_CUB_TXT.length() + 1);
-    
-    f.read(raw_header.memptr(), ARMA_CUB_TXT.length());
-    raw_header[ARMA_CUB_TXT.length()] = '\0';
-    
-    const std::string header = raw_header.mem;
-    
-    if(ARMA_CUB_TXT == header.substr(0, ARMA_CUB_TXT.length()))
-      {
-      load_arma_ascii(x, name);
-      }
-    else
-    if(ARMA_CUB_BIN == header.substr(0, ARMA_CUB_BIN.length()))
-      {
-      load_arma_binary(x, name);
-      }
-    else
-    if(P6 == header.substr(0,P6.length()))
-      {
-      load_ppm_binary(x, name);
-      }
-    else
-      {
-      load_raw_ascii(x, name);
-      }
-    
+    diskio::load_auto_detect(x, name, f); // Do the actual load
     f.close();
     }
-  
   }
 
+
+
+//! Try to load a cube by automatically determining its type
+template<typename eT>
+inline
+void
+diskio::load_auto_detect(Cube<eT>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  static const std::string ARMA_CUB_TXT = "ARMA_CUB_TXT";
+  static const std::string ARMA_CUB_BIN = "ARMA_CUB_BIN";
+  static const std::string           P6 = "P6";
+  
+  podarray<char> raw_header(ARMA_CUB_TXT.length() + 1);
+  
+  std::streampos pos = f.tellg();
+  
+  f.read(raw_header.memptr(), ARMA_CUB_TXT.length());
+  raw_header[ARMA_CUB_TXT.length()] = '\0';
+  
+  f.seekg(pos);
+  
+  const std::string header = raw_header.mem;
+  
+  if(ARMA_CUB_TXT == header.substr(0, ARMA_CUB_TXT.length()))
+    {
+    load_arma_ascii(x, name, f);
+    }
+  else
+  if(ARMA_CUB_BIN == header.substr(0, ARMA_CUB_BIN.length()))
+    {
+    load_arma_binary(x, name, f);
+    }
+  else
+  if(P6 == header.substr(0,P6.length()))
+    {
+    load_ppm_binary(x, name, f);
+    }
+  else
+    {
+    load_raw_ascii(x, name, f);
+    }
+  }
 
 
 
@@ -1637,8 +1760,6 @@ diskio::save_arma_binary(const field<T1>& x, const std::string& final_name)
   {
   arma_extra_debug_sigprint();
   
-  arma_type_check< (is_Mat<T1>::value == false) && (is_Cube<T1>::value == false) >::apply();
-  
   const std::string tmp_name = diskio::gen_tmp_name(final_name);
   std::ofstream f( tmp_name.c_str(), std::fstream::binary );
   
@@ -1648,29 +1769,39 @@ diskio::save_arma_binary(const field<T1>& x, const std::string& final_name)
     }
   else
     {
-    f << "ARMA_FLD_BIN" << '\n';
-    f << x.n_rows << '\n';
-    f << x.n_cols << '\n';
-    
-    for(u32 i=0; i<x.n_elem; ++i)
-      {
-      diskio::save_arma_binary(x[i], tmp_name, f);
-      }
-    
+    diskio::save_arma_binary(x, tmp_name, f);
+
     const bool writing_problem = (f.good() == false);
-    
+
     arma_warn(writing_problem, "trouble writing ", tmp_name );
-    
+
     f.flush();
     f.close();
-    
+
     if(writing_problem == false)
       {
       diskio::safe_rename(tmp_name, final_name);
       }
-    
     }
+  }
+
+template<typename T1>
+inline
+void
+diskio::save_arma_binary(const field<T1>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  arma_type_check< (is_Mat<T1>::value == false) && (is_Cube<T1>::value == false) >::apply();
+  
+  f << "ARMA_FLD_BIN" << '\n';
+  f << x.n_rows << '\n';
+  f << x.n_cols << '\n';
+  
+  for(u32 i=0; i<x.n_elem; ++i)
+    {
+    diskio::save_arma_binary(x[i], name, f);
+    }
   }
 
 
@@ -1682,56 +1813,65 @@ diskio::load_arma_binary(field<T1>& x, const std::string& name)
   {
   arma_extra_debug_sigprint();
   
-  arma_type_check< (is_Mat<T1>::value == false) && (is_Cube<T1>::value == false) >::apply();
-  
-  bool load_okay = true;
-  
   std::ifstream f( name.c_str(), std::fstream::binary );
   
-  if(f.fail())
+  if(f.is_open() == false)
     {
-    load_okay = false;
     arma_extra_debug_print("unable to read ", name);
     }
   else
     {
-    std::string f_type;
-    f >> f_type;
+    diskio::load_arma_binary(x, name, f);
+    f.close();
+    }
+  }
+
+
+
+template<typename T1>
+inline
+void
+diskio::load_arma_binary(field<T1>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check< (is_Mat<T1>::value == false) && (is_Cube<T1>::value == false) >::apply();
+  
+  bool load_okay = true;
+  
+  std::string f_type;
+  f >> f_type;
+  
+  if(f_type != "ARMA_FLD_BIN")
+    {
+    arma_print("unsupported field type in ", name);
+    load_okay = false;
+    }
+  else
+    {
+    u32 f_n_rows;
+    u32 f_n_cols;
+  
+    f >> f_n_rows;
+    f >> f_n_cols;
     
-    if(f_type != "ARMA_FLD_BIN")
-      {
-      arma_print("unsupported field type in ", name);
-      load_okay = false;
-      }
-    else
-      {
-      u32 f_n_rows;
-      u32 f_n_cols;
+    x.set_size(f_n_rows, f_n_cols);
     
-      f >> f_n_rows;
-      f >> f_n_cols;
+    f.get();      
+    
+    for(u32 i=0; i<x.n_elem; ++i)
+      {
+      diskio::load_arma_binary(x[i], name, f);
       
-      x.set_size(f_n_rows, f_n_cols);
-      
-      f.get();      
-      
-      for(u32 i=0; i<x.n_elem; ++i)
+      if(f.good() == false)
         {
-        diskio::load_arma_binary(x[i], name, f);
-        
-        if(f.good() == false)
-          {
-          arma_print("trouble reading ", name);
-          load_okay = false;
-          break;
-          }
+        arma_print("trouble reading ", name);
+        load_okay = false;
+        break;
         }
       }
     }
-  
-  f.close();
-  
-  
+
   if(load_okay == false)
     {
     x.reset();
@@ -1755,24 +1895,9 @@ diskio::save_std_string(const field<std::string>& x, const std::string& final_na
     }
   else
     {
-    for(u32 row=0; row<x.n_rows; ++row)
-    for(u32 col=0; col<x.n_cols; ++col)
-      {
-      f << x.at(row,col);
-      
-      if(col < x.n_cols-1)
-        {
-        f << ' ';
-        }
-      else
-        {
-        f << '\n';
-        }
-      }
+    diskio::save_std_string(x, tmp_name, f);
     
     const bool writing_problem = (f.good() == false);
-    
-    arma_warn(writing_problem, "trouble writing ", tmp_name );
     
     f.flush();
     f.close();
@@ -1781,9 +1906,35 @@ diskio::save_std_string(const field<std::string>& x, const std::string& final_na
       {
       diskio::safe_rename(tmp_name, final_name);
       }
+    }
+  }
+
+
+
+inline
+void
+diskio::save_std_string(const field<std::string>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  for(u32 row=0; row<x.n_rows; ++row)
+  for(u32 col=0; col<x.n_cols; ++col)
+    {
+    f << x.at(row,col);
     
+    if(col < x.n_cols-1)
+      {
+      f << ' ';
+      }
+    else
+      {
+      f << '\n';
+      }
     }
   
+  const bool writing_problem = (f.good() == false);
+  
+  arma_warn(writing_problem, "trouble writing ", name );
   }
 
 
@@ -1794,89 +1945,97 @@ diskio::load_std_string(field<std::string>& x, const std::string& name)
   {
   arma_extra_debug_sigprint();
   
-  bool load_okay = true;
-  
   std::ifstream f( name.c_str() );
   
-  if(f.fail())
+  if(f.is_open() == false)
     {
-    load_okay = false;
-    arma_extra_debug_print("unable to read ", name);
+    arma_print("unable to read ", name);
     }
   else
     {
-    //
-    // work out the size
-    
-    u32 f_n_rows = 0;
-    u32 f_n_cols = 0;
-    
-    bool f_n_cols_found = false;
-    
-    std::string line_string;
-    std::string token;
-    
-    while( (f.good() == true) && (load_okay == true) )
-      {
-      std::getline(f, line_string);
-      if(line_string.size() == 0)
-        break;
-      
-      std::stringstream line_stream(line_string);
-      
-      u32 line_n_cols = 0;
-      while (line_stream >> token)
-        line_n_cols++;
-      
-      if(f_n_cols_found == false)
-        {
-        f_n_cols = line_n_cols;
-        f_n_cols_found = true;
-        }
-      else
-        {
-        if(line_n_cols != f_n_cols)
-          {
-          load_okay = false;
-          arma_print("inconsistent number of columns in ", name );
-          }
-        }
-      
-      ++f_n_rows;
-      }
-      
-    if(load_okay == true)
-      {
-      f.clear();
-      f.seekg(0, ios::beg);
-      //f.seekg(start);
-      
-      x.set_size(f_n_rows, f_n_cols);
-    
-      for(u32 row=0; row < x.n_rows; ++row)
-        {
-        for(u32 col=0; col < x.n_cols; ++col)
-          {
-          f >> x.at(row,col);
-          }
-        }
-      }
-    
-    if(f.good() == false)
-      {
-      load_okay = false; 
-      arma_print("trouble reading ", name );
-      }
+    diskio::load_std_string(x, name, f);
     
     f.close();
     }
+  }
+
+
+
+inline
+void
+diskio::load_std_string(field<std::string>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  bool load_okay = true;
+  
+  //
+  // work out the size
+  
+  u32 f_n_rows = 0;
+  u32 f_n_cols = 0;
+  
+  bool f_n_cols_found = false;
+  
+  std::string line_string;
+  std::string token;
+  
+  while( (f.good() == true) && (load_okay == true) )
+    {
+    std::getline(f, line_string);
+    if(line_string.size() == 0)
+      break;
+    
+    std::stringstream line_stream(line_string);
+    
+    u32 line_n_cols = 0;
+    while (line_stream >> token)
+      line_n_cols++;
+    
+    if(f_n_cols_found == false)
+      {
+      f_n_cols = line_n_cols;
+      f_n_cols_found = true;
+      }
+    else
+      {
+      if(line_n_cols != f_n_cols)
+        {
+        load_okay = false;
+        arma_print("inconsistent number of columns in ", name );
+        }
+      }
+    
+    ++f_n_rows;
+    }
+    
+  if(load_okay == true)
+    {
+    f.clear();
+    f.seekg(0, ios::beg);
+    //f.seekg(start);
+    
+    x.set_size(f_n_rows, f_n_cols);
+  
+    for(u32 row=0; row < x.n_rows; ++row)
+      {
+      for(u32 col=0; col < x.n_cols; ++col)
+        {
+        f >> x.at(row,col);
+        }
+      }
+    }
+  
+  if(f.good() == false)
+    {
+    load_okay = false; 
+    arma_print("trouble reading ", name );
+    }
   
   if(load_okay == false)
     {
     x.reset();
     }
-  
   }
 
 
@@ -1889,46 +2048,60 @@ diskio::load_auto_detect(field<T1>& x, const std::string& name)
   {
   arma_extra_debug_sigprint();
   
-  arma_type_check<is_Mat<T1>::value == false>::apply();
-  
-  static const std::string ARMA_FLD_BIN = "ARMA_FLD_BIN";
-  static const std::string           P6 = "P6";
-  
   std::fstream f;
   f.open(name.c_str(), std::fstream::in | std::fstream::binary);
   
   if(f.is_open() == false)
     {
-    x.reset();
     arma_extra_debug_print("unable to read ", name);
+    x.reset();
     }
   else
     {
-    podarray<char> raw_header(ARMA_FLD_BIN.length() + 1);
-    
-    f.read(raw_header.memptr(), ARMA_FLD_BIN.length());
-    raw_header[ARMA_FLD_BIN.length()] = '\0';
-    
-    const std::string header = raw_header.mem;
-    
-    if(ARMA_FLD_BIN == header.substr(0,ARMA_FLD_BIN.length()))
-      {
-      load_arma_binary(x, name);
-      }
-    else
-    if(P6 == header.substr(0,P6.length()))
-      {
-      load_ppm_binary(x, name);
-      }
-    else
-      {
-      arma_print("unsupported header in ", name);
-      x.reset();
-      }
-    
+    diskio::load_auto_detect(x, name, f); // Do the actual load
     f.close();
     }
+  }
+
+
+
+//! Try to load a field by automatically determining its type
+template<typename T1>
+inline
+void
+diskio::load_auto_detect(field<T1>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
   
+  arma_type_check<is_Mat<T1>::value == false>::apply();
+  
+  static const std::string ARMA_FLD_BIN = "ARMA_FLD_BIN";
+  static const std::string           P6 = "P6";
+  
+  podarray<char> raw_header(ARMA_FLD_BIN.length() + 1);
+  
+  std::streampos pos = f.tellg();
+  f.read(raw_header.memptr(), ARMA_FLD_BIN.length());
+  f.seekg(pos);
+
+  raw_header[ARMA_FLD_BIN.length()] = '\0';
+  
+  const std::string header = raw_header.mem;
+  
+  if(ARMA_FLD_BIN == header.substr(0,ARMA_FLD_BIN.length()))
+    {
+    load_arma_binary(x, name, f);
+    }
+  else
+  if(P6 == header.substr(0,P6.length()))
+    {
+    load_ppm_binary(x, name, f);
+    }
+  else
+    {
+    arma_print("unsupported header in ", name);
+    x.reset();
+    }
   }
 
 
@@ -1947,111 +2120,119 @@ diskio::load_ppm_binary(Cube<eT>& x, const std::string& name)
   std::fstream f;
   f.open(name.c_str(), std::fstream::in | std::fstream::binary);
   
-  bool load_okay = true;
-  
   if(f.is_open() == false)
     {
-    load_okay = false;
     arma_extra_debug_print("unable to read ", name);
     }
   else
     {
-    std::string f_header;
-    f >> f_header;
+    diskio::load_ppm_binary(x, name, f);
+    f.close();
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+diskio::load_ppm_binary(Cube<eT>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  bool load_okay = true;
+  
+  std::string f_header;
+  f >> f_header;
+  
+  if(f_header == "P6")
+    {
+    u32 f_n_rows = 0;
+    u32 f_n_cols = 0;
+    int f_maxval = 0;
+  
+    diskio::pnm_skip_comments(f);
+  
+    f >> f_n_cols;
+    diskio::pnm_skip_comments(f);
+  
+    f >> f_n_rows;
+    diskio::pnm_skip_comments(f);
+  
+    f >> f_maxval;
+    f.get();
     
-    if(f_header == "P6")
+    if( (f_maxval > 0) || (f_maxval <= 65535) )
       {
-      u32 f_n_rows = 0;
-      u32 f_n_cols = 0;
-      int f_maxval = 0;
-    
-      diskio::pnm_skip_comments(f);
-    
-      f >> f_n_cols;
-      diskio::pnm_skip_comments(f);
-    
-      f >> f_n_rows;
-      diskio::pnm_skip_comments(f);
-    
-      f >> f_maxval;
-      f.get();
+      x.set_size(f_n_rows, f_n_cols, 3);
       
-      if( (f_maxval > 0) || (f_maxval <= 65535) )
+      if(f_maxval <= 255)
         {
-        x.set_size(f_n_rows, f_n_cols, 3);
+        const u32 n_elem = 3*f_n_cols*f_n_rows;
+        podarray<u8> tmp(n_elem);
         
-        if(f_maxval <= 255)
+        f.read( reinterpret_cast<char*>(tmp.memptr()), n_elem);
+        
+        u32 i = 0;
+        
+        //cout << "f_n_cols = " << f_n_cols << endl;
+        //cout << "f_n_rows = " << f_n_rows << endl;
+        
+        
+        for(u32 row=0; row < f_n_rows; ++row)
           {
-          const u32 n_elem = 3*f_n_cols*f_n_rows;
-          podarray<u8> tmp(n_elem);
-          
-          f.read( reinterpret_cast<char*>(tmp.memptr()), n_elem);
-          
-          u32 i = 0;
-          
-          //cout << "f_n_cols = " << f_n_cols << endl;
-          //cout << "f_n_rows = " << f_n_rows << endl;
-          
-          
-          for(u32 row=0; row < f_n_rows; ++row)
+          for(u32 col=0; col < f_n_cols; ++col)
             {
-            for(u32 col=0; col < f_n_cols; ++col)
-              {
-              x.at(row,col,0) = eT(tmp[i+0]);
-              x.at(row,col,1) = eT(tmp[i+1]);
-              x.at(row,col,2) = eT(tmp[i+2]);
-              i+=3;
-              }
-            
-            }
-          }
-        else
-          {
-          const u32 n_elem = 3*f_n_cols*f_n_rows;
-          podarray<u16> tmp(n_elem);
-          
-          f.read( reinterpret_cast<char *>(tmp.memptr()), 2*n_elem);
-          
-          u32 i = 0;
-          
-          for(u32 row=0; row < f_n_rows; ++row)
-            {
-            for(u32 col=0; col < f_n_cols; ++col)
-              {
-              x.at(row,col,0) = eT(tmp[i+0]);
-              x.at(row,col,1) = eT(tmp[i+1]);
-              x.at(row,col,2) = eT(tmp[i+2]);
-              i+=3;
-              }
-            
+            x.at(row,col,0) = eT(tmp[i+0]);
+            x.at(row,col,1) = eT(tmp[i+1]);
+            x.at(row,col,2) = eT(tmp[i+2]);
+            i+=3;
             }
           
           }
-        
         }
-      
-      if(f.good() == false)
+      else
         {
-        arma_print("trouble reading ", name);
-        load_okay = false;
+        const u32 n_elem = 3*f_n_cols*f_n_rows;
+        podarray<u16> tmp(n_elem);
+        
+        f.read( reinterpret_cast<char *>(tmp.memptr()), 2*n_elem);
+        
+        u32 i = 0;
+        
+        for(u32 row=0; row < f_n_rows; ++row)
+          {
+          for(u32 col=0; col < f_n_cols; ++col)
+            {
+            x.at(row,col,0) = eT(tmp[i+0]);
+            x.at(row,col,1) = eT(tmp[i+1]);
+            x.at(row,col,2) = eT(tmp[i+2]);
+            i+=3;
+            }
+          
+          }
+        
         }
       
       }
-    else
+    
+    if(f.good() == false)
       {
-      arma_print("unsupported header in ", name);
+      arma_print("trouble reading ", name);
       load_okay = false;
       }
     
-    f.close();
     }
-  
+  else
+    {
+    arma_print("unsupported header in ", name);
+    load_okay = false;
+    }
   
   if(load_okay == false)
     {
     x.reset();
     }
-  
   }
 
 
@@ -2062,9 +2243,7 @@ void
 diskio::save_ppm_binary(const Cube<eT>& x, const std::string& final_name)
   {
   arma_extra_debug_sigprint();
-  
-  arma_debug_check( (x.n_slices != 3), "diskio::save_ppm_binary(): given cube must have exactly 3 slices" );
-  
+
   const std::string tmp_name = diskio::gen_tmp_name(final_name);
   std::ofstream f( tmp_name.c_str(), std::fstream::binary );
   
@@ -2074,33 +2253,9 @@ diskio::save_ppm_binary(const Cube<eT>& x, const std::string& final_name)
     }
   else
     {
-    const u32 n_elem = 3 * x.n_rows * x.n_cols;
-    podarray<u8> tmp(n_elem);
-
-    u32 i = 0;
-    for(u32 row=0; row < x.n_rows; ++row)
-      {
-      for(u32 col=0; col < x.n_cols; ++col)
-        {
-        tmp[i+0] = u8( x.at(row,col,0) );
-        tmp[i+1] = u8( x.at(row,col,1) );
-        tmp[i+2] = u8( x.at(row,col,2) );
-        
-        i+=3;
-        }
-      }
-    
-    f << "P6" << '\n';
-    f << x.n_cols << '\n';
-    f << x.n_rows << '\n';
-    f << 255 << '\n';
-
-    f.write(reinterpret_cast<const char*>(tmp.mem), n_elem);
+    diskio::save_ppm_binary(x, tmp_name, f);
     
     const bool writing_problem = (f.good() == false);
-    
-    arma_warn(writing_problem, "trouble writing ", tmp_name );
-    
     f.flush();
     f.close();
     
@@ -2108,9 +2263,46 @@ diskio::save_ppm_binary(const Cube<eT>& x, const std::string& final_name)
       {
       diskio::safe_rename(tmp_name, final_name);
       }
-    
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+diskio::save_ppm_binary(const Cube<eT>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (x.n_slices != 3), "diskio::save_ppm_binary(): given cube must have exactly 3 slices" );
+  
+  const u32 n_elem = 3 * x.n_rows * x.n_cols;
+  podarray<u8> tmp(n_elem);
+
+  u32 i = 0;
+  for(u32 row=0; row < x.n_rows; ++row)
+    {
+    for(u32 col=0; col < x.n_cols; ++col)
+      {
+      tmp[i+0] = u8( x.at(row,col,0) );
+      tmp[i+1] = u8( x.at(row,col,1) );
+      tmp[i+2] = u8( x.at(row,col,2) );
+      
+      i+=3;
+      }
     }
   
+  f << "P6" << '\n';
+  f << x.n_cols << '\n';
+  f << x.n_rows << '\n';
+  f << 255 << '\n';
+
+  f.write(reinterpret_cast<const char*>(tmp.mem), n_elem);
+  
+  const bool writing_problem = (f.good() == false);
+  
+  arma_warn(writing_problem, "trouble writing ", name );
   }
 
 
@@ -2122,118 +2314,127 @@ diskio::load_ppm_binary(field<T1>& x, const std::string& name)
   {
   arma_extra_debug_sigprint();
   
-  arma_type_check<is_Mat<T1>::value == false>::apply();
-  typedef typename T1::elem_type eT;
-  
   std::fstream f;
   f.open(name.c_str(), std::fstream::in | std::fstream::binary);
   
-  bool load_okay = true;
-  
   if(f.is_open() == false)
     {
-    load_okay = false;
     arma_extra_debug_print("unable to read ", name);
     }
   else
     {
-    std::string f_header;
-    f >> f_header;
+    diskio::load_ppm_binary(x, name, f);
+    f.close();
+    }
+  }  
+
+
+
+template<typename T1>
+inline
+void
+diskio::load_ppm_binary(field<T1>& x, const std::string& name, std::istream& f)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check<is_Mat<T1>::value == false>::apply();
+  typedef typename T1::elem_type eT;
+  
+  bool load_okay = true;
+  
+  std::string f_header;
+  f >> f_header;
+  
+  if(f_header == "P6")
+    {
+    u32 f_n_rows = 0;
+    u32 f_n_cols = 0;
+    int f_maxval = 0;
+  
+    diskio::pnm_skip_comments(f);
+  
+    f >> f_n_cols;
+    diskio::pnm_skip_comments(f);
+  
+    f >> f_n_rows;
+    diskio::pnm_skip_comments(f);
+  
+    f >> f_maxval;
+    f.get();
     
-    if(f_header == "P6")
+    if( (f_maxval > 0) || (f_maxval <= 65535) )
       {
-      u32 f_n_rows = 0;
-      u32 f_n_cols = 0;
-      int f_maxval = 0;
-    
-      diskio::pnm_skip_comments(f);
-    
-      f >> f_n_cols;
-      diskio::pnm_skip_comments(f);
-    
-      f >> f_n_rows;
-      diskio::pnm_skip_comments(f);
-    
-      f >> f_maxval;
-      f.get();
+      x.set_size(3);
+      Mat<eT>& R = x(0);
+      Mat<eT>& G = x(1);
+      Mat<eT>& B = x(2);
       
-      if( (f_maxval > 0) || (f_maxval <= 65535) )
+      R.set_size(f_n_rows,f_n_cols);
+      G.set_size(f_n_rows,f_n_cols);
+      B.set_size(f_n_rows,f_n_cols);
+      
+      if(f_maxval <= 255)
         {
-        x.set_size(3);
-        Mat<eT>& R = x(0);
-        Mat<eT>& G = x(1);
-        Mat<eT>& B = x(2);
+        const u32 n_elem = 3*f_n_cols*f_n_rows;
+        podarray<u8> tmp(n_elem);
         
-        R.set_size(f_n_rows,f_n_cols);
-        G.set_size(f_n_rows,f_n_cols);
-        B.set_size(f_n_rows,f_n_cols);
+        f.read( reinterpret_cast<char*>(tmp.memptr()), n_elem);
         
-        if(f_maxval <= 255)
+        u32 i = 0;
+        
+        //cout << "f_n_cols = " << f_n_cols << endl;
+        //cout << "f_n_rows = " << f_n_rows << endl;
+        
+        
+        for(u32 row=0; row < f_n_rows; ++row)
           {
-          const u32 n_elem = 3*f_n_cols*f_n_rows;
-          podarray<u8> tmp(n_elem);
-          
-          f.read( reinterpret_cast<char*>(tmp.memptr()), n_elem);
-          
-          u32 i = 0;
-          
-          //cout << "f_n_cols = " << f_n_cols << endl;
-          //cout << "f_n_rows = " << f_n_rows << endl;
-          
-          
-          for(u32 row=0; row < f_n_rows; ++row)
+          for(u32 col=0; col < f_n_cols; ++col)
             {
-            for(u32 col=0; col < f_n_cols; ++col)
-              {
-              R.at(row,col) = eT(tmp[i+0]);
-              G.at(row,col) = eT(tmp[i+1]);
-              B.at(row,col) = eT(tmp[i+2]);
-              i+=3;
-              }
-            
-            }
-          }
-        else
-          {
-          const u32 n_elem = 3*f_n_cols*f_n_rows;
-          podarray<u16> tmp(n_elem);
-          
-          f.read( reinterpret_cast<char *>(tmp.memptr()), 2*n_elem);
-          
-          u32 i = 0;
-          
-          for(u32 row=0; row < f_n_rows; ++row)
-            {
-            for(u32 col=0; col < f_n_cols; ++col)
-              {
-              R.at(row,col) = eT(tmp[i+0]);
-              G.at(row,col) = eT(tmp[i+1]);
-              B.at(row,col) = eT(tmp[i+2]);
-              i+=3;
-              }
-            
+            R.at(row,col) = eT(tmp[i+0]);
+            G.at(row,col) = eT(tmp[i+1]);
+            B.at(row,col) = eT(tmp[i+2]);
+            i+=3;
             }
           
           }
-        
         }
-      
-      if(f.good() == false)
+      else
         {
-        arma_print("trouble reading ", name);
-        load_okay = false;
+        const u32 n_elem = 3*f_n_cols*f_n_rows;
+        podarray<u16> tmp(n_elem);
+        
+        f.read( reinterpret_cast<char *>(tmp.memptr()), 2*n_elem);
+        
+        u32 i = 0;
+        
+        for(u32 row=0; row < f_n_rows; ++row)
+          {
+          for(u32 col=0; col < f_n_cols; ++col)
+            {
+            R.at(row,col) = eT(tmp[i+0]);
+            G.at(row,col) = eT(tmp[i+1]);
+            B.at(row,col) = eT(tmp[i+2]);
+            i+=3;
+            }
+          
+          }
+        
         }
       
       }
-    else
+    
+    if(f.good() == false)
       {
-      arma_print("unsupported header in ", name);
+      arma_print("trouble reading ", name);
       load_okay = false;
       }
     
-    f.close();
     }
-  
+  else
+    {
+    arma_print("unsupported header in ", name);
+    load_okay = false;
+    }
   
   if(load_okay == false)
     {
@@ -2251,7 +2452,39 @@ diskio::save_ppm_binary(const field<T1>& x, const std::string& final_name)
   {
   arma_extra_debug_sigprint();
   
+  const std::string tmp_name = diskio::gen_tmp_name(final_name);
+  std::ofstream f( tmp_name.c_str(), std::fstream::binary );
+  
+  if(f.is_open() == false)
+    {
+    arma_print("couldn't write ", tmp_name);
+    }
+  else
+    {
+    diskio::save_ppm_binary(x, tmp_name, f);
+    const bool writing_problem = (f.good() == false);
+    
+    f.flush();
+    f.close();
+    
+    if(writing_problem == false)
+      {
+      diskio::safe_rename(tmp_name, final_name);
+      }
+    }
+  }
+  
+
+
+template<typename T1>
+inline
+void
+diskio::save_ppm_binary(const field<T1>& x, const std::string& name, std::ostream& f)
+  {
+  arma_extra_debug_sigprint();
+  
   arma_type_check<is_Mat<T1>::value == false>::apply();
+  
   typedef typename T1::elem_type eT;
   
   arma_debug_check( (x.n_elem != 3), "diskio::save_ppm_binary(): given field must have exactly 3 matrices of equal size" );
@@ -2272,52 +2505,32 @@ diskio::save_ppm_binary(const field<T1>& x, const std::string& final_name)
   const Mat<eT>& G = x(1);
   const Mat<eT>& B = x(2);
   
-  const std::string tmp_name = diskio::gen_tmp_name(final_name);
-  std::ofstream f( tmp_name.c_str(), std::fstream::binary );
-  
-  if(f.is_open() == false)
-    {
-    arma_print("couldn't write ", tmp_name);
-    }
-  else
-    {
-    f << "P6" << '\n';
-    f << R.n_cols << '\n';
-    f << R.n_rows << '\n';
-    f << 255 << '\n';
+  f << "P6" << '\n';
+  f << R.n_cols << '\n';
+  f << R.n_rows << '\n';
+  f << 255 << '\n';
 
-    const u32 n_elem = 3 * R.n_rows * R.n_cols;
-    podarray<u8> tmp(n_elem);
+  const u32 n_elem = 3 * R.n_rows * R.n_cols;
+  podarray<u8> tmp(n_elem);
 
-    u32 i = 0;
-    for(u32 row=0; row < R.n_rows; ++row)
+  u32 i = 0;
+  for(u32 row=0; row < R.n_rows; ++row)
+    {
+    for(u32 col=0; col < R.n_cols; ++col)
       {
-      for(u32 col=0; col < R.n_cols; ++col)
-        {
-        tmp[i+0] = u8( R.at(row,col) );
-        tmp[i+1] = u8( G.at(row,col) );
-        tmp[i+2] = u8( B.at(row,col) );
-        
-        i+=3;
-        }
+      tmp[i+0] = u8( access::tmp_real( R.at(row,col) ) );
+      tmp[i+1] = u8( access::tmp_real( G.at(row,col) ) );
+      tmp[i+2] = u8( access::tmp_real( B.at(row,col) ) );
+      
+      i+=3;
       }
-    
-    f.write(reinterpret_cast<const char*>(tmp.mem), n_elem);
-    
-    const bool writing_problem = (f.good() == false);
-    
-    arma_warn(writing_problem, "trouble writing ", tmp_name );
-    
-    f.flush();
-    f.close();
-    
-    if(writing_problem == false)
-      {
-      diskio::safe_rename(tmp_name, final_name);
-      }
-    
     }
   
+  f.write(reinterpret_cast<const char*>(tmp.mem), n_elem);
+  
+  const bool writing_problem = (f.good() == false);
+  
+  arma_warn(writing_problem, "trouble writing ", name );
   }
 
 

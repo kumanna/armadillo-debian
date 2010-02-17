@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: operator_plus.hpp File Reference</title>
+<title>Armadillo Technical: fn_min.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,81 +25,37 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>operator_plus.hpp File Reference</h1>
+<h1>fn_min.hpp File Reference</h1>
 <p><a href="a00575_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00031.html">Base</a><br class="typebreak"/>
-&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gad2ae76ac9efeeddfc67d44057473fc21">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">unary plus operation (does nothing, but is required for completeness)  <a href="a00728.html#gad2ae76ac9efeeddfc67d44057473fc21"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00321.html">op_min</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11">min</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed 'minimum values' operation. The dimension, along which the minima are found, is set via 'dim'. For dim = 0, the maximum value of each column is found (i.e. searches by traversing across rows). For dim = 1, the maximum value of each row is found (i.e. searches by traversing across columns). The default is dim = 0. NOTE: This function works differently than in Matlab/Octave.  <a href="a00770.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#ga0c153ecb9ddfb733334dad4ab71c1706">min</a> (const <a class="el" href="a00466.html">Row</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the minimum value in a row vector' operation.  <a href="a00770.html#ga0c153ecb9ddfb733334dad4ab71c1706"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#ga83974aa3610d4c61b0a471ed163b8f90">min</a> (const <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the minimum value in a column vector'.  <a href="a00770.html#ga83974aa3610d4c61b0a471ed163b8f90"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00183.html">Op</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00224.html">op_scalar_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gacba238b1ab9cf22de06ea838a5466d9a">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const typename T1::elem_type k)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + scalar.  <a href="a00728.html#gacba238b1ab9cf22de06ea838a5466d9a"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#gaf5ec4689cf1b7b031b43bd988e95af83">min</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00321.html">op_min</a> &gt; &amp;in)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find minimum value' operation, invoked, for example, by: min(min(A)).  <a href="a00770.html#gaf5ec4689cf1b7b031b43bd988e95af83"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00183.html">Op</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00224.html">op_scalar_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga94b118f7c513fe86169c69e748770b9f">operator+</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00224.html">op_scalar_plus</a> &gt; &amp;X, const typename T1::elem_type k)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">op + scalar, level 2  <a href="a00728.html#ga94b118f7c513fe86169c69e748770b9f"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00183.html">Op</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00224.html">op_scalar_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gab51927679f64001dde1271f331e82323">operator+</a> (const typename T1::elem_type k, const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">scalar + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>  <a href="a00728.html#gab51927679f64001dde1271f331e82323"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, <a class="el" href="a00183.html">Op</a><br class="typebreak"/>
-&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt;<br class="typebreak"/>
-, <a class="el" href="a00082.html">glue_plus_diag</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gad8cf81fca1ce98fabffe9fac56c07a75">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; typename T2::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;Y)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + diagmat.  <a href="a00728.html#gad8cf81fca1ce98fabffe9fac56c07a75"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, <a class="el" href="a00183.html">Op</a><br class="typebreak"/>
-&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt;<br class="typebreak"/>
-, <a class="el" href="a00082.html">glue_plus_diag</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga0643b1f983b62274340bf05aa28dd11c">operator+</a> (const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;Y, const <a class="el" href="a00031.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">diagmat + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>  <a href="a00728.html#ga0643b1f983b62274340bf05aa28dd11c"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00176.html">Mat</a>&lt; typename <a class="el" href="a00244.html">promote_type</a><br class="typebreak"/>
-&lt; typename T1::elem_type, <br class="typebreak"/>
-typename T2::elem_type &gt;<br class="typebreak"/>
-::result &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga75a6079b5275627f51a15e6015d40d5d">operator+</a> (const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;X, const <a class="el" href="a00183.html">Op</a>&lt; T2, <a class="el" href="a00195.html">op_diagmat</a> &gt; &amp;Y)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">diagmat + diagmat  <a href="a00728.html#ga75a6079b5275627f51a15e6015d40d5d"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT1 , typename T1 , typename eT2 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00176.html">Mat</a>&lt; typename <br class="typebreak"/>
-<a class="el" href="a00244.html">promote_type</a>&lt; eT1, eT2 &gt;<br class="typebreak"/>
-::result &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga074abe1cea573ec0e21aef641eb81bc3">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; eT1, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; eT2, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> + <a class="el" href="a00031.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a>.  <a href="a00728.html#ga074abe1cea573ec0e21aef641eb81bc3"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga2239f2c648623e0a3250eddb51ef35d8">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; double &gt;, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; double &gt;, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gae594c3b16fd64ec1fed8b4831edb3e7a">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; float &gt;, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; std::complex&lt; float &gt;, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gadf4aa081cd03ea834410411281de7a9d">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; double, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; double, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga2cf07766c72761bf659550383204b465">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; float, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; float, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga430cd057d0d9f31c4b06f5a4115edd28">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga1c698c5066780f537d95ecbd7a299a45">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga04375fb4f2ad83794c79c71e51781412">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga8db5256de5b0d28c172aecd263f7ca96">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#gafbda96d761996724e0b0b4f2415f4cff">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00070.html">Glue</a>&lt; T1, T2, <br class="typebreak"/>
-<a class="el" href="a00081.html">glue_plus</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00728.html#ga25b8cd1a7e0fd8409c3f5dd3f18f1d6c">operator+</a> (const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, T1 &gt; &amp;X, const <a class="el" href="a00031.html">Base</a>&lt; <a class="el" href="a00743.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00307.html">Op</a>&lt; <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00321.html">op_min</a> &gt;<br class="typebreak"/>
+, <a class="el" href="a00321.html">op_min</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#gae26bf758004786c8f04cd52343edc39b">min</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00321.html">op_min</a> &gt; &amp;in, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#gafad20b298ac5c131dcbbe8aa0506e993">min</a> (const <a class="el" href="a00482.html">subview_row</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#ga3c9a0ed73796e556180db31e1fa28051">min</a> (const <a class="el" href="a00479.html">subview_col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#ga65992af664733a14ec02561b258daa88">min</a> (const <a class="el" href="a00078.html">diagview</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00770.html#gacb09c4835467c8cb1d381e912694a63a">min</a> (const <a class="el" href="a00307.html">Op</a>&lt; <a class="el" href="a00478.html">subview</a>&lt; eT &gt;, <a class="el" href="a00321.html">op_min</a> &gt; &amp;in)</td></tr>
 </table>
 </div>
 </BODY>

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,40 +19,34 @@
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 ucube
 operator==
-(const BaseCube<eT,T1>& X, const BaseCube<eT,T2>& Y)
+(const BaseCube<typename T1::elem_type,T1>& X, const BaseCube<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
+  typedef typename ucube::elem_type ucube_eT;
   
-  const Cube<eT>& A = tmp1.M;
-  const Cube<eT>& B = tmp2.M;
-    
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
+  
   arma_debug_assert_same_size(A, B, "operator==");
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
-  
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] == B_mem[i])
+    if(A[i] == B[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -60,40 +55,34 @@ operator==
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 ucube
 operator!=
-(const BaseCube<eT,T1>& X, const BaseCube<eT,T2>& Y)
+(const BaseCube<typename T1::elem_type,T1>& X, const BaseCube<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
+  typedef typename ucube::elem_type ucube_eT;
   
-  const Cube<eT>& A = tmp1.M;
-  const Cube<eT>& B = tmp2.M;
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator!=");
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
-  
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] != B_mem[i])
+    if(A[i] != B[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -102,40 +91,34 @@ operator!=
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 ucube
 operator>=
-(const BaseCube<eT,T1>& X, const BaseCube<eT,T2>& Y)
+(const BaseCube<typename T1::elem_type,T1>& X, const BaseCube<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
+  typedef typename ucube::elem_type ucube_eT;
   
-  const Cube<eT>& A = tmp1.M;
-  const Cube<eT>& B = tmp2.M;
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator>=");
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
-  
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] >= B_mem[i])
+    if(A[i] >= B[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -144,40 +127,34 @@ operator>=
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 ucube
 operator<=
-(const BaseCube<eT,T1>& X, const BaseCube<eT,T2>& Y)
+(const BaseCube<typename T1::elem_type,T1>& X, const BaseCube<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
+  typedef typename ucube::elem_type ucube_eT;
   
-  const Cube<eT>& A = tmp1.M;
-  const Cube<eT>& B = tmp2.M;
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator<=");
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
-  
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] <= B_mem[i])
+    if(A[i] <= B[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -186,40 +163,34 @@ operator<=
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 ucube
 operator>
-(const BaseCube<eT,T1>& X, const BaseCube<eT,T2>& Y)
+(const BaseCube<typename T1::elem_type,T1>& X, const BaseCube<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
+  typedef typename ucube::elem_type ucube_eT;
   
-  const Cube<eT>& A = tmp1.M;
-  const Cube<eT>& B = tmp2.M;
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator>");
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
-  
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] > B_mem[i])
+    if(A[i] > B[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -228,40 +199,34 @@ operator>
 
 
 
-template<typename eT, typename T1, typename T2>
+template<typename T1, typename T2>
 inline
 ucube
 operator<
-(const BaseCube<eT,T1>& X, const BaseCube<eT,T2>& Y)
+(const BaseCube<typename T1::elem_type,T1>& X, const BaseCube<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
-  
-  const Cube<eT>& A = tmp1.M;
-  const Cube<eT>& B = tmp2.M;
+  typedef typename ucube::elem_type ucube_eT;
+
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
     
   arma_debug_assert_same_size(A, B, "operator<");
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  const eT* B_mem = B.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
-  
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] < B_mem[i])
+    if(A[i] < B[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -278,27 +243,23 @@ operator==
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] == val)
+    if(A[i] == val)
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -315,27 +276,23 @@ operator!=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] != val)
+    if(A[i] != val)
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -352,27 +309,23 @@ operator>=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] >= val)
+    if(A[i] >= val)
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -389,27 +342,23 @@ operator<=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] <= val)
+    if(A[i] <= val)
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -426,27 +375,23 @@ operator>
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] > val)
+    if(A[i] > val)
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -463,27 +408,23 @@ operator<
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(A_mem[i] < val)
+    if(A[i] < val)
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -522,27 +463,23 @@ operator>=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val >= A_mem[i])
+    if(val >= A[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -559,27 +496,23 @@ operator<=
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val <= A_mem[i])
+    if(val <= A[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -596,27 +529,23 @@ operator>
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
     
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val > A_mem[i])
+    if(val > A[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   
@@ -633,27 +562,23 @@ operator<
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename ucube::elem_type ucube_eT;
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const Cube<eT>& A = tmp1.M;
+  const ProxyCube<T1> A(X.get_ref());
   
   ucube out(A.n_rows, A.n_cols, A.n_slices);
   
-  const eT* A_mem = A.mem;
-  
-  typedef typename ucube::elem_type ucube_elem_type;
-  ucube_elem_type* out_mem = out.memptr();
+  ucube_eT* out_mem = out.memptr();
   
   for(u32 i=0; i<A.n_elem; ++i)
     {
-    if(val < A_mem[i])
+    if(val < A[i])
       {
-      out_mem[i] = ucube_elem_type(1);
+      out_mem[i] = ucube_eT(1);
       }
     else
       {
-      out_mem[i] = ucube_elem_type(0);
+      out_mem[i] = ucube_eT(0);
       }
     }
   

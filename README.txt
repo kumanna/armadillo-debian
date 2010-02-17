@@ -19,9 +19,9 @@
 === 1. General Caveats ===
 
 While this library has gone through testing, not all possible
-cases have been covered yet. As such, its functionality may not 
-be 100% correct.  If you find a bug, either in the library or 
-the documentation, we are very interested in hearing about it.
+cases have been covered yet.  As such, its functionality may
+not be 100% correct.  If you find a bug, either in the library
+or the documentation, we are interested in hearing about it.
 
 Armadillo makes extensive use of template metaprogramming,
 recursive templates and template based function overloading.
@@ -168,17 +168,17 @@ you will need to modify "examples/Makefile" to tell tell the compiler
 where they are.
 
 If Armadillo was installed manually, you will also need to explicitly 
-link your programs with the libraries that were specified in 
-"include/armadillo_bits/config.hpp".  For example, if you specified
-that LAPACK and BLAS are available, under Linux you would use 
-"-llapack -lblas" instead of "-larmadillo". Under Mac OS, you would 
-use "-framework Accelerate" instead of "-larmadillo".
+link your programs with the libraries that were specified in
+"include/armadillo_bits/config.hpp".  If you specified that LAPACK and
+BLAS are available, instead of using "-larmadillo", use the following:
+ - under Linux, use "-llapack -lblas"
+ - under Mac OS X, use "-framework Accelerate"
+ - under the Sun Studio compiler, try "-library=sunperf"
 
 "example1.cpp" doesn't need any external libraries.
-"example2.cpp" requires the LAPACK library (Linux/Windows)
-or the Accelerate framework (Mac OS X).  You may get errors
-at compile or run time if the LAPACK library (or its equivalent)
-is not installed.
+"example2.cpp" requires the LAPACK library or its equivalent
+(e.g. the Accelerate framework on Mac OS X).  You may get errors
+at compile or run time if LAPACK functions are not available.
 
 NOTE: on Ubuntu and Debian based systems you may need to add 
 "-lgfortran" to the compiler flags.
@@ -222,7 +222,7 @@ Please see the "LICENSE.txt" file.
 === 8. Bug Reports ===
 
 If you find a bug, either in the library or the documentation,
-we are very interested in hearing about it. Please send a report to:
+we are interested in hearing about it.  Please send a report to:
 Conrad Sanderson <conradsand at ieee dot org>
 
 
@@ -235,16 +235,20 @@ Main developers:
 - Dimitrios Bouzas
 
 Contributors:
+- Eric R. Anderson
 - Justin Bedo
+- Darius Braziunas
+- Ted Campbell
 - Charles Gretton
 - Edmund Highcock
 - Kshitij Kulshreshtha
 - Oka Kurniawan
+- David Lawrence
 - Carlos Mendes
-- Pierre Moulon
 - Artem Novikov
 - Martin Orlob
 - Adam Piątyszek
+- Vikas Reddy
 - Ola Rinta-Koski
 - Laurianne Sitbon
 - Paul Torfs

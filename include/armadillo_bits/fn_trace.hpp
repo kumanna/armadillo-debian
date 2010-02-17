@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -27,10 +28,9 @@ trace(const Base<typename T1::elem_type,T1>& X)
   
   typedef typename T1::elem_type eT;
   
-  const unwrap<T1> A_tmp(X.get_ref());
-  const Mat<eT>& A = A_tmp.M;
+  const Proxy<T1> A(X.get_ref());
 
-  arma_debug_check( !A.is_square(), "trace(): matrix must be square" );
+  arma_debug_check( (A.n_rows != A.n_cols), "trace(): matrix must be square" );
   
   eT val = eT(0);
   
@@ -44,150 +44,28 @@ trace(const Base<typename T1::elem_type,T1>& X)
 
 
 
-#if defined(ARMA_GOOD_COMPILER)
-
-
-
-//! \brief
-//! Immediate trace (sum of diagonal elements) of A + B.
-//! A and B must be square and have the same dimensions.
-template<typename T1, typename T2>
+template<typename T1>
 inline
 typename T1::elem_type
-trace(const Glue<T1,T2,glue_plus>& X)
-  {
-  arma_extra_debug_sigprint();
-
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
-  
-  const unwrap<T1> tmp1(X.A);
-  const unwrap<T2> tmp2(X.B);
-  
-  typedef typename T1::elem_type eT;
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-  
-  arma_debug_assert_same_size(A, B, "matrix addition");
-  arma_debug_check( !A.is_square(), "trace(): matrices must be square");
-  
-  return trace(A) + trace(B);
-  }
-
-
-
-//! \brief
-//! Immediate trace (sum of diagonal elements) of A - B.
-//! A and B must be square and have the same dimensions.
-template<typename T1, typename T2>
-inline
-typename T1::elem_type
-trace(const Glue<T1,T2,glue_minus>& X)
-  {
-  arma_extra_debug_sigprint();
-
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
-  
-  const unwrap<T1> tmp1(X.A);
-  const unwrap<T2> tmp2(X.B);
-  
-  typedef typename T1::elem_type eT;
-  
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
-
-  arma_debug_assert_same_size(A, B, "matrix subtraction");
-  arma_debug_check( !A.is_square(), "trace(): matrices must be square");
-  
-  return trace(A) - trace(B);
-  }
-
-
-
-//! \brief
-//! Immediate trace (sum of diagonal elements) of A % B (where % is the element-wise multiplication operator).
-//! A and B must be square and have the same dimensions.
-template<typename T1, typename T2>
-inline
-typename T1::elem_type
-trace(const Glue<T1,T2,glue_schur>& X)
+trace(const Op<T1, op_diagmat>& X)
   {
   arma_extra_debug_sigprint();
   
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
-
-  const unwrap<T1> tmp1(X.A);
-  const unwrap<T2> tmp2(X.B);
-  
   typedef typename T1::elem_type eT;
   
-  const Mat<eT>& A = tmp1.M;
-  const Mat<eT>& B = tmp2.M;
+  const diagmat_proxy<T1> A(X.m);
   
-  arma_debug_assert_same_size(A, B, "matrix schur product");
-  arma_debug_check( !A.is_square(), "trace(): matrices must be square" );
+  const u32 N = A.n_elem;
   
   eT val = eT(0);
-  for(u32 i=0; i<A.n_rows; ++i)
+  
+  for(u32 i=0; i<N; ++i)
     {
-    val += A.at(i,i) * B.at(i,i);
+    val += A[i];
     }
   
   return val;
   }
-
-
-
-//! \brief
-//! trace (sum of diagonal elements) of k * T1,
-//! where k is a scalar and T1 is converted to a dense matrix.
-template<typename T1>
-inline
-typename T1::elem_type
-trace(const Op<T1,op_scalar_times>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const unwrap<T1> tmp(in.m);
-  const Mat<eT>& X = tmp.M;
-  
-  return trace(X) * in.aux;
-  }
-
-
-
-//! trace (sum of diagonal elements) of a diagonal matrix
-template<typename eT>
-inline
-eT
-trace(const Op<Mat<eT>, op_diagmat>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return trace(X.m);
-  }
-
-
-
-template<typename eT>
-inline
-eT
-trace(const Op<Mat<eT>, op_diagmat_vec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  const Mat<eT>& A = X.m;
-  arma_debug_check( !A.is_vec(), "trace(): internal error: can't interpret as a vector" );
-  
-  
-  return accu(X.m);
-  }
-
-
-
-#endif
 
 
 

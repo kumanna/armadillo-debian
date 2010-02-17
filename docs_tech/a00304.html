@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; u16, u32 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: itpp::Mat&lt; eT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -27,48 +27,232 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
+  <div class="navpath"><a class="el" href="a00720.html">itpp</a>::<a class="el" href="a00304.html">Mat</a>
+  </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; u16, u32 &gt; Struct Template Reference<br/>
-<small>
-[<a class="el" href="a00742.html">Traits</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; u16, u32 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00596_source.html">traits.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; u16, u32 &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00304.gif" usemap="#promote_type&lt; u16, u32 &gt;_map" alt=""/>
-  <map id="promote_type&lt; u16, u32 &gt;_map" name="promote_type&lt; u16, u32 &gt;_map">
-<area href="a00322.html" alt="promote_type_ok" shape="rect" coords="0,0,163,24"/>
-</map>
- </div>
-</div>
+<h1>itpp::Mat&lt; eT &gt; Class Template Reference</h1><!-- doxytag: class="itpp::Mat" -->
+<p><code>#include &lt;<a class="el" href="a00617_source.html">itpp_wrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01042.html">List of all members.</a></p>
+<p><a href="a01366.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#a6f9f0baae9c06caa6cea808278905b56">result</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#aed0c0d31a0f2a068e9a153325e473bd1">rows</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#ab9a5cee56fd3e1f93a84e546c392b01f">cols</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#ab55328c30276be434bd8079e1e52517a">size</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#a8fb708d9dda357f6c6f4c9a644188863">_data</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#a1058e278844f74813071d161a8d48fbc">_data</a> ()</td></tr>
+<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#af8759ab7b7512d1be23de4c90cdc602b">Mat</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#a2a49a999c156dee3fbee68b1643abf19">Mat</a> (const <a class="el" href="a00304.html">Mat</a> &amp;m)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00304.html">Mat</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#ac8db74e26cce790d51395d09014c0562">operator=</a> (const <a class="el" href="a00304.html">Mat</a> &amp;m)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00304.html#a3e8256af4c0194111a8a0296dce1e030">~Mat</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; u16, u32 &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ class itpp::Mat&lt; eT &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00596_source.html#l00657">657</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a6f9f0baae9c06caa6cea808278905b56"></a><!-- doxytag: member="promote_type&lt; u16, u32 &gt;::result" ref="a6f9f0baae9c06caa6cea808278905b56" args="" -->
+<p>Definition at line <a class="el" href="a00617_source.html#l00032">32</a> of file <a class="el" href="a00617_source.html">itpp_wrap.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af8759ab7b7512d1be23de4c90cdc602b"></a><!-- doxytag: member="itpp::Mat::Mat" ref="af8759ab7b7512d1be23de4c90cdc602b" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00244.html">promote_type</a>&lt; <a class="el" href="a00743.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;::<a class="el" href="a00304.html#a6f9f0baae9c06caa6cea808278905b56">result</a></td>
+          <td class="memname"><a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::<a class="el" href="a00304.html">Mat</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00596_source.html#l00657">657</a> of file <a class="el" href="a00596_source.html">traits.hpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a2a49a999c156dee3fbee68b1643abf19"></a><!-- doxytag: member="itpp::Mat::Mat" ref="a2a49a999c156dee3fbee68b1643abf19" args="(const Mat &amp;m)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::<a class="el" href="a00304.html">Mat</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3e8256af4c0194111a8a0296dce1e030"></a><!-- doxytag: member="itpp::Mat::~Mat" ref="a3e8256af4c0194111a8a0296dce1e030" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::~<a class="el" href="a00304.html">Mat</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aed0c0d31a0f2a068e9a153325e473bd1"></a><!-- doxytag: member="itpp::Mat::rows" ref="aed0c0d31a0f2a068e9a153325e473bd1" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::rows </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00617_source.html#l00036">36</a> of file <a class="el" href="a00617_source.html">itpp_wrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00036"></a>00036 { <span class="keywordflow">return</span> 0; }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ab9a5cee56fd3e1f93a84e546c392b01f"></a><!-- doxytag: member="itpp::Mat::cols" ref="ab9a5cee56fd3e1f93a84e546c392b01f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::cols </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00617_source.html#l00037">37</a> of file <a class="el" href="a00617_source.html">itpp_wrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00037"></a>00037 { <span class="keywordflow">return</span> 0; }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ab55328c30276be434bd8079e1e52517a"></a><!-- doxytag: member="itpp::Mat::size" ref="ab55328c30276be434bd8079e1e52517a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00617_source.html#l00038">38</a> of file <a class="el" href="a00617_source.html">itpp_wrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00038"></a>00038 { <span class="keywordflow">return</span> 0; }      
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a8fb708d9dda357f6c6f4c9a644188863"></a><!-- doxytag: member="itpp::Mat::_data" ref="a8fb708d9dda357f6c6f4c9a644188863" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const eT* <a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::_data </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00617_source.html#l00039">39</a> of file <a class="el" href="a00617_source.html">itpp_wrap.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00557_source.html#l00928">conv_to&lt; itpp::Mat&lt; out_eT &gt; &gt;::from()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00039"></a>00039 { <span class="keywordflow">return</span> 0; }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a1058e278844f74813071d161a8d48fbc"></a><!-- doxytag: member="itpp::Mat::_data" ref="a1058e278844f74813071d161a8d48fbc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">eT* <a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::_data </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00617_source.html#l00040">40</a> of file <a class="el" href="a00617_source.html">itpp_wrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00040"></a>00040 { <span class="keywordflow">return</span> 0; }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ac8db74e26cce790d51395d09014c0562"></a><!-- doxytag: member="itpp::Mat::operator=" ref="ac8db74e26cce790d51395d09014c0562" args="(const Mat &amp;m)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00304.html">Mat</a>&amp; <a class="el" href="a00304.html">itpp::Mat</a>&lt; eT &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
 </div>
 </div>

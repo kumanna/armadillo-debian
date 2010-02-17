@@ -1,5 +1,5 @@
-// Copyright (C) 2009 NICTA
-// Copyright (C) 2009 Dimitrios Bouzas
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -24,7 +24,7 @@
 //! kronecker product of two matrices,
 //! with the matrices having the same element type
 template<typename T1, typename T2>
-inline
+arma_inline
 const Glue<T1,T2,glue_kron>
 kron(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,T2>& B)
   {

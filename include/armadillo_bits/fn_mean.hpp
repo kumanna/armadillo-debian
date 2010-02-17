@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -19,7 +20,7 @@
 
 
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_mean>
 mean(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
   {
@@ -84,7 +85,7 @@ mean(const Op<T1, op_mean>& in)
 
 
 template<typename T1>
-inline
+arma_inline
 const Op< Op<T1, op_mean>, op_mean>
 mean(const Op<T1, op_mean>& in, const u32 dim)
   {

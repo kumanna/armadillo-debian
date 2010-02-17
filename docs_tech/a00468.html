@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: gemv.hpp File Reference</title>
+<title>Armadillo Technical: running_stat_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,30 +14,43 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>gemv.hpp File Reference</h1>
-<p><a href="a00468_source.html">Go to the source code of this file.</a></p>
+<h1>running_stat_aux Class Reference<br/>
+<small>
+[<a class="el" href="a00853.html">Running_stat</a>]</small>
+</h1><!-- doxytag: class="running_stat_aux" -->
+<p><code>#include &lt;<a class="el" href="a00696_source.html">running_stat_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a01323.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00067.html">gemv_arma&lt; do_trans_A, use_alpha, use_beta &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Partial emulation of ATLAS/BLAS gemv(). 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose).  <a href="a00067.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html">gemv&lt; do_trans_A, use_alpha, use_beta &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wrapper for ATLAS/BLAS <a class="el" href="a00066.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a> function, using template arguments to control the arguments passed to <a class="el" href="a00066.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a>. 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose).  <a href="a00066.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00853.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1">update_stats</a> (<a class="el" href="a00467.html">running_stat</a>&lt; eT &gt; &amp;x, const eT sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a00853.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00853.html#gad7918da5f93ef4342749886796fc3b71">update_stats</a> (<a class="el" href="a00467.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const T sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a00853.html#gad7918da5f93ef4342749886796fc3b71"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00853.html#gadab0edabc3cb036e2685ba255070b4ab">update_stats</a> (<a class="el" href="a00467.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const std::complex&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">alter statistics to reflect new sample (version for complex numbers)  <a href="a00853.html#gadab0edabc3cb036e2685ba255070b4ab"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+
+<p>Definition at line <a class="el" href="a00696_source.html#l00097">97</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

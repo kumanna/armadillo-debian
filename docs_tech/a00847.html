@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Member List</title>
+<title>Armadillo Technical: Podarray</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,23 +14,619 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
-      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
-    </ul>
-  </div>
 </div>
 <div class="contents">
-<h1>is_Glue&lt; T &gt; Member List</h1>This is the complete list of members for <a class="el" href="a00107.html">is_Glue&lt; T &gt;</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="a00107.html#a1611c2d20193dc0c7ffcd06e33a58e98">value</a></td><td><a class="el" href="a00107.html">is_Glue&lt; T &gt;</a></td><td><code> [static]</code></td></tr>
-</table></div>
+<h1>Podarray</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html">podarray&lt; eT &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A lightweight array for POD types. If the amount of memory requested is small, the stack is used.  <a href="a00369.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gaca51437715229b361e269ce8d6d3d5bc">podarray::~podarray</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gab527752ae95be3de9870fba12a0c005f">podarray::podarray</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga4a373bedc52fc07380f89c997ca30e92">podarray::podarray</a> (const <a class="el" href="a00369.html">podarray</a> &amp;x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00369.html">podarray</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga7f65dcf6b993170ed3826dc5560a05b0">podarray::operator=</a> (const <a class="el" href="a00369.html">podarray</a> &amp;x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga6d76f50e270992e6bdcee3ee220e8ae5">podarray::podarray</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gac8e5a25072024a13d9928dac3f5cf039">podarray::podarray</a> (const eT *X, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gaafcd6a05da4a5112d0b8ad59f1b210e2">podarray::operator[]</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gaeffb9fc790bec5b0b7c8b9144af2d0ef">podarray::operator[]</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gac1298818d0975914e567cb3703473199">podarray::operator()</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gad8fbd344d1ee4332a5aab16e10dd1b19">podarray::operator()</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga85a27914377a1d0758f4c84781dbe98d">podarray::set_size</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga3c0a841ec73e2a60b059b10b9edbafb3">podarray::fill</a> (const eT val)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gababca99d76dee6773c2819f52c9ac1ab">podarray::zeros</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gabac57230a7845dc5050fdb59694d358b">podarray::zeros</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga7368b988be82a13ef49879fd26c3654a">podarray::memptr</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gae46109c19a664566467119f7005b74da">podarray::memptr</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">podarray::init</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+</table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="gaca51437715229b361e269ce8d6d3d5bc"></a><!-- doxytag: member="podarray::~podarray" ref="gaca51437715229b361e269ce8d6d3d5bc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::~<a class="el" href="a00369.html">podarray</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00023">23</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00713_source.html#l00069">arma_config::debug</a>, <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00688_source.html#l00035">podarray&lt; eT &gt;::mem_local</a>, <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00024"></a>00024   {
+<a name="l00025"></a>00025   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00026"></a>00026   
+<a name="l00027"></a>00027   <span class="keywordflow">if</span>(<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> &gt; <span class="keyword">sizeof</span>(<a class="code" href="a00369.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>)/<span class="keyword">sizeof</span>(eT) )
+<a name="l00028"></a>00028     {
+<a name="l00029"></a>00029     <span class="keyword">delete</span> [] <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>;
+<a name="l00030"></a>00030     }
+<a name="l00031"></a>00031   
+<a name="l00032"></a>00032   <span class="keywordflow">if</span>(<a class="code" href="a00002.html#a7c60d1458dbc25f2433ef212ba618f2e">arma_config::debug</a> == <span class="keyword">true</span>)
+<a name="l00033"></a>00033     {
+<a name="l00034"></a>00034     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>) = 0;
+<a name="l00035"></a>00035     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>)    = 0;
+<a name="l00036"></a>00036     }
+<a name="l00037"></a>00037   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gab527752ae95be3de9870fba12a0c005f"></a><!-- doxytag: member="podarray::podarray" ref="gab527752ae95be3de9870fba12a0c005f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html">podarray</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00043">43</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00044"></a>00044   : <a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
+<a name="l00045"></a>00045   , <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
+<a name="l00046"></a>00046   {
+<a name="l00047"></a>00047   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00048"></a>00048   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga4a373bedc52fc07380f89c997ca30e92"></a><!-- doxytag: member="podarray::podarray" ref="ga4a373bedc52fc07380f89c997ca30e92" args="(const podarray &amp;x)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html">podarray</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00369.html">podarray</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00054">54</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00055"></a>00055   : <a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
+<a name="l00056"></a>00056   , <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
+<a name="l00057"></a>00057   {
+<a name="l00058"></a>00058   arma_extra_debug_sigprint();
+<a name="l00059"></a>00059   
+<a name="l00060"></a>00060   this-&gt;<a class="code" href="a00847.html#ga7f65dcf6b993170ed3826dc5560a05b0">operator=</a>(x);
+<a name="l00061"></a>00061   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga7f65dcf6b993170ed3826dc5560a05b0"></a><!-- doxytag: member="podarray::operator=" ref="ga7f65dcf6b993170ed3826dc5560a05b0" args="(const podarray &amp;x)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00369.html">podarray</a>&lt; eT &gt; &amp; <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00369.html">podarray</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00068">68</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>, <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00687_source.html#l00054">podarray&lt; eT &gt;::podarray()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00069"></a>00069   {
+<a name="l00070"></a>00070   arma_extra_debug_sigprint();
+<a name="l00071"></a>00071   
+<a name="l00072"></a>00072   <span class="keywordflow">if</span>(<span class="keyword">this</span> != &amp;x)
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074     <a class="code" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(x.<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>);
+<a name="l00075"></a>00075     
+<a name="l00076"></a>00076     <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>; ++i)
+<a name="l00077"></a>00077       {
+<a name="l00078"></a>00078       <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]) = x.<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i];
+<a name="l00079"></a>00079       }
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081   
+<a name="l00082"></a>00082   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00083"></a>00083   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga6d76f50e270992e6bdcee3ee220e8ae5"></a><!-- doxytag: member="podarray::podarray" ref="ga6d76f50e270992e6bdcee3ee220e8ae5" args="(const u32 new_N)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html">podarray</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>new_N</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, explicit, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00089">89</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00090"></a>00090   : <a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
+<a name="l00091"></a>00091   , <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
+<a name="l00092"></a>00092   {
+<a name="l00093"></a>00093   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00094"></a>00094   
+<a name="l00095"></a>00095   <a class="code" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
+<a name="l00096"></a>00096   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gac8e5a25072024a13d9928dac3f5cf039"></a><!-- doxytag: member="podarray::podarray" ref="gac8e5a25072024a13d9928dac3f5cf039" args="(const eT *X, const u32 new_N)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html">podarray</a> </td>
+          <td>(</td>
+          <td class="paramtype">const eT *&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>new_N</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, explicit, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00102">102</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>, <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00103"></a>00103   : <a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
+<a name="l00104"></a>00104   , <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
+<a name="l00105"></a>00105   {
+<a name="l00106"></a>00106   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
+<a name="l00107"></a>00107   
+<a name="l00108"></a>00108   <a class="code" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
+<a name="l00109"></a>00109   
+<a name="l00110"></a>00110   <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>; ++i)
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]) = X[i];
+<a name="l00113"></a>00113     }
+<a name="l00114"></a>00114   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaafcd6a05da4a5112d0b8ad59f1b210e2"></a><!-- doxytag: member="podarray::operator[]" ref="gaafcd6a05da4a5112d0b8ad59f1b210e2" args="(const u32 i) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline eT <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00121">121</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00122"></a>00122   {
+<a name="l00123"></a>00123   <span class="keywordflow">return</span> <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i];
+<a name="l00124"></a>00124   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaeffb9fc790bec5b0b7c8b9144af2d0ef"></a><!-- doxytag: member="podarray::operator[]" ref="gaeffb9fc790bec5b0b7c8b9144af2d0ef" args="(const u32 i)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline eT &amp; <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00131">131</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00132"></a>00132   {
+<a name="l00133"></a>00133   <span class="keywordflow">return</span> <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]);
+<a name="l00134"></a>00134   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gac1298818d0975914e567cb3703473199"></a><!-- doxytag: member="podarray::operator()" ref="gac1298818d0975914e567cb3703473199" args="(const u32 i) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline eT <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00141">141</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, and <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00142"></a>00142   {
+<a name="l00143"></a>00143   arma_debug_check( (i &gt;= <a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>), <span class="stringliteral">&quot;podarray::operator(): index out of bounds&quot;</span>);
+<a name="l00144"></a>00144   <span class="keywordflow">return</span> <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i];
+<a name="l00145"></a>00145   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gad8fbd344d1ee4332a5aab16e10dd1b19"></a><!-- doxytag: member="podarray::operator()" ref="gad8fbd344d1ee4332a5aab16e10dd1b19" args="(const u32 i)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline eT &amp; <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00152">152</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00153"></a>00153   {
+<a name="l00154"></a>00154   arma_debug_check( (i &gt;= <a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>), <span class="stringliteral">&quot;podarray::operator(): index out of bounds&quot;</span>);
+<a name="l00155"></a>00155   <span class="keywordflow">return</span> <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]);
+<a name="l00156"></a>00156   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga85a27914377a1d0758f4c84781dbe98d"></a><!-- doxytag: member="podarray::set_size" ref="ga85a27914377a1d0758f4c84781dbe98d" args="(const u32 new_n_elem)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::set_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>new_n_elem</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00163">163</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00514_source.html#l00202">auxlib::inv_inplace()</a>, <a class="el" href="a00514_source.html#l00026">auxlib::inv_noalias()</a>, <a class="el" href="a00514_source.html#l00611">auxlib::lu()</a>, <a class="el" href="a00514_source.html#l01122">auxlib::qr()</a>, and <a class="el" href="a00514_source.html#l01220">auxlib::svd()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00164"></a>00164   {
+<a name="l00165"></a>00165   arma_extra_debug_sigprint();
+<a name="l00166"></a>00166   
+<a name="l00167"></a>00167   <a class="code" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
+<a name="l00168"></a>00168   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga3c0a841ec73e2a60b059b10b9edbafb3"></a><!-- doxytag: member="podarray::fill" ref="ga3c0a841ec73e2a60b059b10b9edbafb3" args="(const eT val)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::fill </td>
+          <td>(</td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>val</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00175">175</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00687_source.html#l00190">podarray&lt; eT &gt;::zeros()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00176"></a>00176   {
+<a name="l00177"></a>00177   arma_extra_debug_sigprint();
+<a name="l00178"></a>00178   
+<a name="l00179"></a>00179   <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>; ++i)
+<a name="l00180"></a>00180     {
+<a name="l00181"></a>00181     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]) = val;
+<a name="l00182"></a>00182     }
+<a name="l00183"></a>00183   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gababca99d76dee6773c2819f52c9ac1ab"></a><!-- doxytag: member="podarray::zeros" ref="gababca99d76dee6773c2819f52c9ac1ab" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::zeros </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00190">190</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00175">podarray&lt; eT &gt;::fill()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00191"></a>00191   {
+<a name="l00192"></a>00192   arma_extra_debug_sigprint();
+<a name="l00193"></a>00193   
+<a name="l00194"></a>00194   <a class="code" href="a00847.html#ga3c0a841ec73e2a60b059b10b9edbafb3">fill</a>(eT(0));
+<a name="l00195"></a>00195   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gabac57230a7845dc5050fdb59694d358b"></a><!-- doxytag: member="podarray::zeros" ref="gabac57230a7845dc5050fdb59694d358b" args="(const u32 new_n_elem)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::zeros </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>new_n_elem</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00202">202</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00687_source.html#l00175">podarray&lt; eT &gt;::fill()</a>, and <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00203"></a>00203   {
+<a name="l00204"></a>00204   arma_extra_debug_sigprint();
+<a name="l00205"></a>00205   
+<a name="l00206"></a>00206   <a class="code" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
+<a name="l00207"></a>00207   <a class="code" href="a00847.html#ga3c0a841ec73e2a60b059b10b9edbafb3">fill</a>(0);
+<a name="l00208"></a>00208   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga7368b988be82a13ef49879fd26c3654a"></a><!-- doxytag: member="podarray::memptr" ref="ga7368b988be82a13ef49879fd26c3654a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline eT * <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::memptr </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00215">215</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>.</p>
+
+<p>Referenced by <a class="el" href="a00670_source.html#l00166">op_var::apply()</a>, <a class="el" href="a00664_source.html#l00028">op_stddev::apply()</a>, <a class="el" href="a00662_source.html#l00169">op_sort::apply()</a>, <a class="el" href="a00626_source.html#l00025">op_diagmat::apply()</a>, <a class="el" href="a00603_source.html#l00038">gemm_mixed_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00613_source.html#l00137">glue_times::apply_inplace()</a>, <a class="el" href="a00514_source.html#l00376">auxlib::det()</a>, <a class="el" href="a00670_source.html#l00102">op_var::direct_var()</a>, <a class="el" href="a00514_source.html#l00913">auxlib::eig_gen()</a>, <a class="el" href="a00514_source.html#l00733">auxlib::eig_sym()</a>, <a class="el" href="a00514_source.html#l00202">auxlib::inv_inplace()</a>, <a class="el" href="a00514_source.html#l00026">auxlib::inv_noalias()</a>, <a class="el" href="a00531_source.html#l01070">diskio::load_pgm_binary()</a>, <a class="el" href="a00531_source.html#l02139">diskio::load_ppm_binary()</a>, <a class="el" href="a00514_source.html#l00523">auxlib::log_det()</a>, <a class="el" href="a00514_source.html#l00611">auxlib::lu()</a>, <a class="el" href="a00514_source.html#l01122">auxlib::qr()</a>, <a class="el" href="a00514_source.html#l01557">auxlib::solve()</a>, <a class="el" href="a00514_source.html#l01594">auxlib::solve_od()</a>, <a class="el" href="a00514_source.html#l01658">auxlib::solve_ud()</a>, and <a class="el" href="a00514_source.html#l01220">auxlib::svd()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00216"></a>00216   {
+<a name="l00217"></a>00217   <span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span>eT*<span class="keyword">&gt;</span>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>);
+<a name="l00218"></a>00218   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gae46109c19a664566467119f7005b74da"></a><!-- doxytag: member="podarray::memptr" ref="gae46109c19a664566467119f7005b74da" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const eT * <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::memptr </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00225">225</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00226"></a>00226   {
+<a name="l00227"></a>00227   <span class="keywordflow">return</span> <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>;
+<a name="l00228"></a>00228   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga980a50acc2216b1c175edc6c2cb9e451"></a><!-- doxytag: member="podarray::init" ref="ga980a50acc2216b1c175edc6c2cb9e451" args="(const u32 new_n_elem)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::init </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>new_n_elem</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, protected, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00687_source.html#l00235">235</a> of file <a class="el" href="a00687_source.html">podarray_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00688_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00688_source.html#l00035">podarray&lt; eT &gt;::mem_local</a>, <a class="el" href="a00688_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00508_source.html#l00026">access::rw()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00687_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>, <a class="el" href="a00687_source.html#l00089">podarray&lt; eT &gt;::podarray()</a>, <a class="el" href="a00687_source.html#l00163">podarray&lt; eT &gt;::set_size()</a>, and <a class="el" href="a00687_source.html#l00202">podarray&lt; eT &gt;::zeros()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00236"></a>00236   {
+<a name="l00237"></a>00237   arma_extra_debug_sigprint();
+<a name="l00238"></a>00238   
+<a name="l00239"></a>00239   <span class="keywordflow">if</span>(<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> == new_n_elem)
+<a name="l00240"></a>00240     {
+<a name="l00241"></a>00241     <span class="keywordflow">return</span>;
+<a name="l00242"></a>00242     }
+<a name="l00243"></a>00243     
+<a name="l00244"></a>00244   <span class="keywordflow">if</span>(<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> &gt; <span class="keyword">sizeof</span>(<a class="code" href="a00369.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>)/<span class="keyword">sizeof</span>(eT) )
+<a name="l00245"></a>00245     {
+<a name="l00246"></a>00246     <span class="keyword">delete</span> [] <a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>;
+<a name="l00247"></a>00247     }
+<a name="l00248"></a>00248   
+<a name="l00249"></a>00249   <span class="keywordflow">if</span>(new_n_elem &lt;= <span class="keyword">sizeof</span>(<a class="code" href="a00369.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>)/<span class="keyword">sizeof</span>(eT) )
+<a name="l00250"></a>00250     {
+<a name="l00251"></a>00251     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>) = <a class="code" href="a00369.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>;
+<a name="l00252"></a>00252     }
+<a name="l00253"></a>00253   <span class="keywordflow">else</span>
+<a name="l00254"></a>00254     {
+<a name="l00255"></a>00255     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>) = <span class="keyword">new</span> eT[new_n_elem];
+<a name="l00256"></a>00256     }
+<a name="l00257"></a>00257   
+<a name="l00258"></a>00258   <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>) = new_n_elem;
+<a name="l00259"></a>00259   }
+</pre></div></p>
+
+</div>
+</div>
+</div>
 </BODY>
 </HTML>

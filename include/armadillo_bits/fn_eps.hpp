@@ -1,5 +1,5 @@
-// Copyright (C) 2009 NICTA
-// Copyright (C) 2009 Dimitrios Bouzas
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -25,16 +25,14 @@
 //! eps version for non-complex matrices and vectors
 template<typename T1>
 inline
-const Op<T1, op_eps>
+const eOp<T1, eop_eps>
 eps(const Base<typename T1::elem_type, T1>& X)
   {
   arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  isnt_fltpt<eT>::check();
-  
-  return Op<T1, op_eps>(X.get_ref());
+  return eOp<T1, eop_eps>(X.get_ref());
   }
 
 
@@ -51,59 +49,52 @@ eps(const Base< std::complex<typename T1::pod_type>, T1>& X)
   typedef typename T1::pod_type   T;
   typedef typename T1::elem_type eT;
   
-  isnt_fltpt<T>::check();
-  
   const unwrap<T1>   tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
   
-  Mat<T> out;
-  op_eps::direct_eps(out, A);
+  Mat<T> out(A.n_rows, A.n_cols);
+  
+         T* out_mem = out.memptr();
+  const eT* A_mem   = A.memptr();
+  const u32 n_elem  = A.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = eop_aux::direct_eps( A_mem[i] );
+    }
+  
   
   return out;
   }
 
 
 
-//! \brief
-//! eps version for scalars of type float
+template<typename eT>
 arma_inline
-float
-eps(const float x)
+typename arma_integral_only<eT>::result
+eps(const eT& x)
   {
-  return op_eps::direct_eps(x);
+  return eT(0);
   }
 
 
 
-//! \brief
-//! eps version for scalars of type double
+template<typename eT>
 arma_inline
-double
-eps(const double x)
+typename arma_float_only<eT>::result
+eps(const eT& x)
   {
-  return op_eps::direct_eps(x);
+  return eop_aux::direct_eps(x);
   }
 
 
 
-//! \brief
-//! eps version for std::complex<float>
+template<typename T>
 arma_inline
-float
-eps(const std::complex<float>& x)
+typename arma_float_only<T>::result
+eps(const std::complex<T>& x)
   {
-  return op_eps::direct_eps(x);
-  }
-
-
-
-//! \brief
-//! eps version for std::complex<double>
-arma_inline
-double
-eps(const std::complex<double>& x)
-  {
-  return op_eps::direct_eps(x);
+  return eop_aux::direct_eps(x);
   }
 
 
