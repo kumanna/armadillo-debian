@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -34,17 +35,5 @@
 #if defined(ARMA_USE_ATLAS)
   #if !defined(ARMA_ATLAS_INCLUDE_DIR)
     #define ARMA_ATLAS_INCLUDE_DIR  ${ARMA_ATLAS_INCLUDE_DIR}
-  #endif
-#endif
-
-#if defined(__CUDACC__)
-  #undef ARMA_HAVE_STD_ISFINITE
-  #undef ARMA_HAVE_STD_ISINF
-  #undef ARMA_HAVE_STD_ISNAN
-#endif
-
-#if defined(__INTEL_COMPILER)
-  #if (__INTEL_COMPILER <= 1110)
-    #undef ARMA_HAVE_STD_ISFINITE
   #endif
 #endif

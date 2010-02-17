@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,7 +19,7 @@
 
 
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_sort>
 sort(const Base<typename T1::elem_type,T1>& X, const u32 sort_type = 0, const u32 dim = 0)
   {
@@ -30,7 +31,7 @@ sort(const Base<typename T1::elem_type,T1>& X, const u32 sort_type = 0, const u3
 
 
 template<typename eT>
-inline
+arma_inline
 const Op<Col<eT>, op_sort>
 sort(const Col<eT>& X, const u32 sort_type = 0)
   {
@@ -44,7 +45,7 @@ sort(const Col<eT>& X, const u32 sort_type = 0)
 
 
 template<typename eT>
-inline
+arma_inline
 const Op<Row<eT>, op_sort>
 sort(const Row<eT>& X, const u32 sort_type = 0)
   {

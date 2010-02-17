@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt; Class Template Reference</title>
+<title>Armadillo Technical: podarray&lt; eT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,192 +29,113 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt; Class Template Reference<br/>
+<h1>podarray&lt; eT &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00744.html">Unwrap</a>]</small>
-</h1><!-- doxytag: class="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00598_source.html">unwrap.hpp</a>&gt;</code></p>
+[<a class="el" href="a00847.html">Podarray</a>]</small>
+</h1><!-- doxytag: class="podarray" -->
+<p>A lightweight array for POD types. If the amount of memory requested is small, the stack is used.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01107.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00688_source.html">podarray_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a01224.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a4c0df417fece8a05b91d638bb26f627b">unwrap_to_elem_access</a> (const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a3e14cecb2d1c1a6a39928eb742c5d012">operator[]</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#abd7a27a69d531d3dc9b8d32fd1516989">operator()</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#ad6ebfe3dd8c596058e06f46c1227543d">operator()</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a9c9b3780fad150c1c07343429a6dd55c">at</a> (const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gaca51437715229b361e269ce8d6d3d5bc">~podarray</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gab527752ae95be3de9870fba12a0c005f">podarray</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga4a373bedc52fc07380f89c997ca30e92">podarray</a> (const <a class="el" href="a00369.html">podarray</a> &amp;x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00369.html">podarray</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga7f65dcf6b993170ed3826dc5560a05b0">operator=</a> (const <a class="el" href="a00369.html">podarray</a> &amp;x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga6d76f50e270992e6bdcee3ee220e8ae5">podarray</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gac8e5a25072024a13d9928dac3f5cf039">podarray</a> (const eT *X, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gaeffb9fc790bec5b0b7c8b9144af2d0ef">operator[]</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gaafcd6a05da4a5112d0b8ad59f1b210e2">operator[]</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gad8fbd344d1ee4332a5aab16e10dd1b19">operator()</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gac1298818d0975914e567cb3703473199">operator()</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga85a27914377a1d0758f4c84781dbe98d">set_size</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga3c0a841ec73e2a60b059b10b9edbafb3">fill</a> (const eT val)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gababca99d76dee6773c2819f52c9ac1ab">zeros</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gabac57230a7845dc5050fdb59694d358b">zeros</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga7368b988be82a13ef49879fd26c3654a">memptr</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#gae46109c19a664566467119f7005b74da">memptr</a> () const </td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665">n_elem</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">number of elements held  <a href="#a36148e9cc723dedaea09b0b2ac89b665"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned const eT *const&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a60e4518d567993072301e86c2c4d0564">mem</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">pointer to memory used by the object  <a href="#a60e4518d567993072301e86c2c4d0564"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00847.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+<tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html#a286ccac4730168b52293a23863a51d53">mem_local</a> [16]</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal memory, to avoid calling the 'new' operator for small amounts of memory.  <a href="#a286ccac4730168b52293a23863a51d53"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;typename eT&gt;<br/>
- class unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;</h3>
+ class podarray&lt; eT &gt;</h3>
 
+<p>A lightweight array for POD types. If the amount of memory requested is small, the stack is used. </p>
 
-<p>Definition at line <a class="el" href="a00598_source.html#l00251">251</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4c0df417fece8a05b91d638bb26f627b"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;::unwrap_to_elem_access" ref="a4c0df417fece8a05b91d638bb26f627b" args="(const Col&lt; eT &gt; &amp;A)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00368.html">unwrap_to_elem_access</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00255">255</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00256"></a>00256     : <a class="code" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a>(A)
-<a name="l00257"></a>00257     {
-<a name="l00258"></a>00258     arma_extra_debug_sigprint();
-<a name="l00259"></a>00259     }
-</pre></div></p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a3e14cecb2d1c1a6a39928eb742c5d012"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;::operator[]" ref="a3e14cecb2d1c1a6a39928eb742c5d012" args="(const u32 i) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::operator[] </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00261">261</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00261"></a>00261 { <span class="keywordflow">return</span> <a class="code" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a>[i]; }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="abd7a27a69d531d3dc9b8d32fd1516989"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;::operator()" ref="abd7a27a69d531d3dc9b8d32fd1516989" args="(const u32 i) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::operator() </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00262">262</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00262"></a>00262 { <span class="keywordflow">return</span> <a class="code" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a>(i); }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ad6ebfe3dd8c596058e06f46c1227543d"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;::operator()" ref="ad6ebfe3dd8c596058e06f46c1227543d" args="(const u32 in_row, const u32 in_col) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::operator() </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_row</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_col</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00264">264</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00264"></a>00264 { <span class="keywordflow">return</span> <a class="code" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a>(in_row,in_col);    }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="a9c9b3780fad150c1c07343429a6dd55c"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;::at" ref="a9c9b3780fad150c1c07343429a6dd55c" args="(const u32 in_row, const u32 in_col) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">eT <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_row</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>in_col</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00598_source.html#l00265">265</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00265"></a>00265 { <span class="keywordflow">return</span> <a class="code" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a>.at(in_row,in_col); }
-</pre></div></p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00688_source.html#l00025">25</a> of file <a class="el" href="a00688_source.html">podarray_proto.hpp</a>.</p>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a4ce81ce476f22047c0d3784ec93d8463"></a><!-- doxytag: member="unwrap_to_elem_access&lt; Col&lt; eT &gt; &gt;::M" ref="a4ce81ce476f22047c0d3784ec93d8463" args="" -->
+<a class="anchor" id="a36148e9cc723dedaea09b0b2ac89b665"></a><!-- doxytag: member="podarray::n_elem" ref="a36148e9cc723dedaea09b0b2ac89b665" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename eT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00035.html">Col</a>&lt;eT&gt;&amp; <a class="el" href="a00368.html">unwrap_to_elem_access</a>&lt; <a class="el" href="a00035.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00369.html#a4ce81ce476f22047c0d3784ec93d8463">M</a></td>
+          <td class="memname">arma_aligned const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html#a36148e9cc723dedaea09b0b2ac89b665">n_elem</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00598_source.html#l00267">267</a> of file <a class="el" href="a00598_source.html">unwrap.hpp</a>.</p>
+<p>number of elements held </p>
+
+<p>Definition at line <a class="el" href="a00688_source.html#l00029">29</a> of file <a class="el" href="a00688_source.html">podarray_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00687_source.html#l00175">podarray&lt; eT &gt;::fill()</a>, <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>, <a class="el" href="a00514_source.html#l00680">auxlib::lu()</a>, <a class="el" href="a00687_source.html#l00141">podarray&lt; eT &gt;::operator()()</a>, <a class="el" href="a00687_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>, <a class="el" href="a00687_source.html#l00102">podarray&lt; eT &gt;::podarray()</a>, and <a class="el" href="a00687_source.html#l00023">podarray&lt; eT &gt;::~podarray()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a60e4518d567993072301e86c2c4d0564"></a><!-- doxytag: member="podarray::mem" ref="a60e4518d567993072301e86c2c4d0564" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned const eT* const <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html#a60e4518d567993072301e86c2c4d0564">mem</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>pointer to memory used by the object </p>
+
+<p>Definition at line <a class="el" href="a00688_source.html#l00030">30</a> of file <a class="el" href="a00688_source.html">podarray_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00514_source.html#l00376">auxlib::det()</a>, <a class="el" href="a00632_source.html#l00026">op_dotext::direct_rowvec_mat_colvec()</a>, <a class="el" href="a00632_source.html#l00083">op_dotext::direct_rowvec_transmat_colvec()</a>, <a class="el" href="a00687_source.html#l00175">podarray&lt; eT &gt;::fill()</a>, <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>, <a class="el" href="a00514_source.html#l00523">auxlib::log_det()</a>, <a class="el" href="a00687_source.html#l00215">podarray&lt; eT &gt;::memptr()</a>, <a class="el" href="a00687_source.html#l00141">podarray&lt; eT &gt;::operator()()</a>, <a class="el" href="a00687_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>, <a class="el" href="a00687_source.html#l00121">podarray&lt; eT &gt;::operator[]()</a>, <a class="el" href="a00687_source.html#l00102">podarray&lt; eT &gt;::podarray()</a>, <a class="el" href="a00531_source.html#l00701">diskio::save_pgm_binary()</a>, <a class="el" href="a00531_source.html#l02274">diskio::save_ppm_binary()</a>, and <a class="el" href="a00687_source.html#l00023">podarray&lt; eT &gt;::~podarray()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a286ccac4730168b52293a23863a51d53"></a><!-- doxytag: member="podarray::mem_local" ref="a286ccac4730168b52293a23863a51d53" args="[16]" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned eT <a class="el" href="a00369.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00369.html#a286ccac4730168b52293a23863a51d53">mem_local</a>[16]<code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Internal memory, to avoid calling the 'new' operator for small amounts of memory. </p>
+
+<p>Definition at line <a class="el" href="a00688_source.html#l00035">35</a> of file <a class="el" href="a00688_source.html">podarray_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00687_source.html#l00235">podarray&lt; eT &gt;::init()</a>, and <a class="el" href="a00687_source.html#l00023">podarray&lt; eT &gt;::~podarray()</a>.</p>
 
 </div>
 </div>

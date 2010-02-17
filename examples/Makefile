@@ -4,7 +4,7 @@
 #
 # You may need to edit this file to reflect the type and capabilities
 # of your system.  The defaults are for a Linux system and will need
-# to be changed for Mac OS X.
+# to be changed for other systems (e.g. Mac OS X).
 
 
 CXX=g++
@@ -12,6 +12,9 @@ CXX=g++
 ## Under MacOS you may have an old compiler as default (e.g. GCC 4.0).
 ## However, GCC 4.2 or later is available and preferable due to better
 ## handling of template code.
+
+#CXX=CC
+## When using the Sun Studio compiler
 
 
 ARMA_INCLUDE_FLAG = -I ../include
@@ -43,6 +46,10 @@ ARMA_INCLUDE_FLAG = -I ../include
 ## are present
 
 
+#EXTRA_LIB_FLAGS = -library=sunperf
+## When using the Sun Studio compiler
+
+
 LIB_FLAGS = $(EXTRA_LIB_FLAGS)
 ## NOTE: on Ubuntu and Debian based systems you may need to add 
 ## -lgfortran to LIB_FLAGS
@@ -56,6 +63,10 @@ OPT = -O1
 ## -O1: produces programs which achieve most of the possible speedup
 ## -O3: produces programs which have almost all possible speedups,
 ##      but compilation takes considerably longer
+
+
+#OPT = -xO4 -xannotate=no
+## When using the Sun Studio compiler
 
 
 #EXTRA_OPT = -fwhole-program

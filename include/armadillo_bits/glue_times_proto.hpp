@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -17,6 +18,51 @@
 //! @{
 
 
+
+//! \brief
+//! Template metaprogram depth_lhs
+//! calculates the number of Glue<Tx,Ty, glue_type> instances on the left hand side argument of Glue<Tx,Ty, glue_type>
+//! i.e. it recursively expands each Tx, until the type of Tx is not "Glue<..,.., glue_type>"  (i.e the "glue_type" changes)
+
+template<typename glue_type, typename T1>
+struct depth_lhs
+  {
+  static const u32 num = 0;
+  };
+
+template<typename glue_type, typename T1, typename T2>
+struct depth_lhs< glue_type, Glue<T1,T2,glue_type> >
+  {
+  static const u32 num = 1 + depth_lhs<glue_type, T1>::num;
+  };
+
+
+
+template<u32 N>
+struct glue_times_redirect
+  {
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X);
+  };
+
+
+template<>
+struct glue_times_redirect<3>
+  {
+  template<typename T1, typename T2, typename T3>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Glue<T1,T2,glue_times>,T3,glue_times>& X);
+  };
+
+
+template<>
+struct glue_times_redirect<4>
+  {
+  template<typename T1, typename T2, typename T3, typename T4>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Glue< Glue<T1,T2,glue_times>, T3, glue_times>, T4, glue_times>& X);
+  };
+
+
+
 //! Class which implements the immediate multiplication of two or more matrices
 class glue_times
   {
@@ -30,63 +76,25 @@ class glue_times
   template<typename T1>
   inline static void apply_inplace(Mat<typename T1::elem_type>& out, const T1& X);
   
+  template<typename T1, typename T2>
+  arma_hot inline static void apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times>& X, const s32 sign);
   
   template<typename eT1, typename eT2>
   inline static void apply_mixed(Mat<typename promote_type<eT1,eT2>::result>& out, const Mat<eT1>& X, const Mat<eT2>& Y);
   
   
   template<typename eT>
-  arma_inline static u32  mul_storage_cost(const Mat<eT>& X, const Mat<eT>& Y);
+  arma_inline static u32  mul_storage_cost(const Mat<eT>& A, const Mat<eT>& B, const bool do_trans_A, const bool do_trans_B);
   
   template<typename eT>
-  inline static void apply_noalias(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B);
+  arma_hot inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const eT val, const bool do_trans_A, const bool do_trans_B, const bool do_scalar_times);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B);
+  inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C, const eT val, const bool do_trans_A, const bool do_trans_B, const bool do_trans_C, const bool do_scalar_times);
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C);
-  
-  template<typename eT>
-  inline static eT direct_rowvec_mat_colvec(const eT* A_mem, const Mat<eT>& B, const eT* C_mem);
-  
-  template<typename eT>
-  inline static eT direct_rowvec_diagmat_colvec(const eT* A_mem, const Mat<eT>& B, const eT* C_mem);
-  
-  template<typename eT>
-  inline static eT direct_rowvec_invdiagmat_colvec(const eT* A_mem, const Mat<eT>& B, const eT* C_mem);
-  
-  template<typename eT>
-  inline static eT direct_rowvec_invdiagvec_colvec(const eT* A_mem, const Mat<eT>& B, const eT* C_mem);
-  
-  
-  #if defined(ARMA_GOOD_COMPILER)
-  
-  
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue<Mat<eT>,Mat<eT>,glue_times>& X);
-  
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue< Glue<Mat<eT>,Mat<eT>, glue_times>, Mat<eT>, glue_times>& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,Op<T2,op_trans>,glue_times >& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1,op_trans>,T2,glue_times>& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1,op_trans>,Op<T2,op_trans>,glue_times>& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue< Op<T1, op_neg>, T2, glue_times>& X);
-  
-  
-  template<typename T1, typename T2>
-  inline static void apply_inplace(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times>& X);
-  
-  #endif
-  
+  inline static void apply(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C, const Mat<eT>& D, const eT val, const bool do_trans_A, const bool do_trans_B, const bool do_trans_C, const bool do_trans_D, const bool do_scalar_times);
+
   };
 
 
@@ -96,62 +104,10 @@ class glue_times_diag
   public:
   
   template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const T1& A, const Op<T2,op_diagmat>& B);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_diagmat>& A, const T2& B);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_diagmat>& A, const Op<T2,op_diagmat>& B);
-  
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1, Op<T2,op_diagmat>, glue_times_diag>& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1,op_diagmat>, T2, glue_times_diag>& X);
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1,op_diagmat>, Op<T2,op_diagmat>, glue_times_diag>& X);
+  arma_hot inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times_diag>& X);
   
   };
 
-
-
-class glue_times_vec
-  {
-  public:
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1, T2, glue_times_vec>& X);
-  
-  
-  template<typename eT>
-  inline static void mul_col_row(Mat<eT>& out, const eT* A_mem, const eT* B_mem);
-
-  template<typename eT>
-  inline static void mul_col_row_inplace_add(Mat<eT>& out, const eT* A_mem, const eT* B_mem);
-  
-  
-  #if defined(ARMA_GOOD_COMPILER)
-
-
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue<Col<eT>, Row<eT>, glue_times_vec>& X);
-
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue< Op<Row<eT>, op_trans>, Row<eT>, glue_times_vec>& X);
-  
-  template<typename eT>
-  inline static void apply(Mat<eT>& out, const Glue< Col<eT>, Op<Col<eT>, op_trans>, glue_times_vec>& X);
-  
-  template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<Op<T1, op_trans>, Col<typename T1::elem_type>, glue_times_vec>& X);
-  
-  
-  #endif
-  
-  };
 
 
 //! @}

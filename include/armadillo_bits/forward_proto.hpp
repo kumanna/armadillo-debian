@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -38,43 +39,33 @@ class op_max;
 
 class op_trans;
 class op_htrans;
-class op_conj;
-class op_diagmat;
 class op_inv;
 class op_sum;
-class op_neg;
-class op_scalar_plus;
-class op_scalar_minus_pre;
-class op_scalar_minus_post;
-class op_scalar_times;
-class op_scalar_divide;
+class op_diagmat;
 
-class glue_div;
-class glue_minus;
-class glue_plus;
+class eop_conj;
+
 class glue_times;
-class glue_times_vec;
-class glue_schur;
-
-class glue_plus_diag;
-class glue_minus_diag;
 class glue_times_diag;
-class glue_schur_diag;
-
-class glue_cube_div;
-class glue_cube_minus;
-class glue_cube_plus;
-class glue_cube_schur;
-
 
 template<const bool, const bool, const bool, const bool> class gemm;
 template<const bool, const bool, const bool>             class gemv;
 
-template<typename T1, typename op_type> class Op; 
-template<typename T1, typename op_type> class OpCube; 
+template<typename T1, typename  op_type> class  Op; 
+template<typename T1, typename eop_type> class eOp;
 
-template<typename T1, typename T2, typename glue_type> class Glue;
-template<typename T1, typename T2, typename glue_type> class GlueCube;
+template<typename T1, typename  op_type> class  OpCube; 
+template<typename T1, typename eop_type> class eOpCube; 
+
+template<typename T1, typename T2, typename  glue_type> class  Glue;
+template<typename T1, typename T2, typename eglue_type> class eGlue;
+
+template<typename T1, typename T2, typename  glue_type> class  GlueCube;
+template<typename T1, typename T2, typename eglue_type> class eGlueCube;
+
+template<typename T1> class Proxy;
+template<typename T1> class ProxyCube;
+
 
 
 //! \addtogroup diskio

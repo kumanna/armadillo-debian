@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -503,6 +504,51 @@ Col<eT>::operator*=(const Op<T1, op_type>& X)
 
 
 
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+Col<eT>::Col(const eOp<T1, eop_type>& X)
+  : Mat<eT>(X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Col<eT>&
+Col<eT>::operator=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator=(X);
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col::operator=(): given matrix can't be interpreted as a column vector" );
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Col<eT>&
+Col<eT>::operator*=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator*=(X);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col::operator=(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
 //! construct a column vector from Glue, i.e. run the previously delayed operations; the result of the operations must have exactly one column
 template<typename eT>
 template<typename T1, typename T2, typename glue_type>
@@ -552,6 +598,53 @@ Col<eT>::operator*=(const Glue<T1, T2, glue_type>& X)
 
 
 
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+Col<eT>::Col(const eGlue<T1, T2, eglue_type>& X)
+  : Mat<eT>(X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Col<eT>&
+Col<eT>::operator=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator=(X);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Col<eT>&
+Col<eT>::operator*=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator*=(X);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
 //! change the number of rows
 template<typename eT>
 inline
@@ -565,7 +658,7 @@ Col<eT>::set_size(const u32 in_n_elem)
 
 
 
-//! change the number of rows  (this function re-implements mat::set_size() in order to check the number of columns)
+//! change the number of n_rows  (this function re-implements mat::set_size() in order to check the number of columns)
 template<typename eT>
 inline
 void
@@ -581,7 +674,7 @@ Col<eT>::set_size(const u32 in_n_rows, const u32 in_n_cols)
 
 
 
-//! change the number of rows  (this function re-implements mat::copy_size() in order to check the number of columns)
+//! change the number of n_rows  (this function re-implements mat::copy_size() in order to check the number of columns)
 template<typename eT>
 template<typename eT2>
 inline
@@ -684,6 +777,20 @@ Col<eT>::load(const std::string name, const file_type type)
   arma_extra_debug_sigprint();
   
   Mat<eT>::load(name,type);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+inline
+void
+Col<eT>::load(std::istream& is, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::load(is, type);
   
   arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   }

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -358,6 +359,7 @@ Cube<eT>::Cube(eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols, const u3
   , n_slices    (copy_aux_mem ? 0     : aux_n_slices                      )
   , n_elem      (copy_aux_mem ? 0     : aux_n_rows*aux_n_cols*aux_n_slices)
   , use_aux_mem (copy_aux_mem ? false : true                              )
+  , mat_ptrs    (mat_ptrs                                                 )
   , mem         (copy_aux_mem ? mem   : aux_mem                           )
   {
   arma_extra_debug_sigprint_this(this);
@@ -366,6 +368,10 @@ Cube<eT>::Cube(eT* aux_mem, const u32 aux_n_rows, const u32 aux_n_cols, const u3
     {
     init(aux_n_rows, aux_n_cols, aux_n_slices);
     syslib::copy_elem( memptr(), aux_mem, n_elem );
+    }
+  else
+    {
+    create_mat();
     }
   }
 
@@ -401,7 +407,17 @@ Cube<eT>::operator+=(const Cube<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_cube_plus::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "cube addition");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] += m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -415,7 +431,17 @@ Cube<eT>::operator-=(const Cube<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_cube_minus::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "cube subtraction");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] -= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -429,7 +455,17 @@ Cube<eT>::operator%=(const Cube<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_cube_schur::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "element-wise cube multiplication");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] *= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -443,7 +479,17 @@ Cube<eT>::operator/=(const Cube<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_cube_div::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "element-wise cube division");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] /= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -705,9 +751,9 @@ Cube<eT>::subcube(const u32 in_row1, const u32 in_col1, const u32 in_slice1, con
 
 //! create a cube from OpCube, i.e. run the previously delayed unary operations
 template<typename eT>
-template<typename T1, typename op_cube_type>
+template<typename T1, typename op_type>
 inline
-Cube<eT>::Cube(const OpCube<T1, op_cube_type>& X)
+Cube<eT>::Cube(const OpCube<T1, op_type>& X)
   : n_rows(0)
   , n_cols(0)
   , n_elem_slice(0)
@@ -721,23 +767,23 @@ Cube<eT>::Cube(const OpCube<T1, op_cube_type>& X)
 
   isnt_same_type<eT, typename T1::elem_type>::check();
   
-  op_cube_type::apply(*this, X);
+  op_type::apply(*this, X);
   }
 
 
 
 //! create a cube from OpCube, i.e. run the previously delayed unary operations
 template<typename eT>
-template<typename T1, typename op_cube_type>
+template<typename T1, typename op_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator=(const OpCube<T1, op_cube_type>& X)
+Cube<eT>::operator=(const OpCube<T1, op_type>& X)
   {
   arma_extra_debug_sigprint();
 
   isnt_same_type<eT, typename T1::elem_type>::check();
   
-  op_cube_type::apply(*this, X);
+  op_type::apply(*this, X);
   
   return *this;
   }
@@ -746,16 +792,27 @@ Cube<eT>::operator=(const OpCube<T1, op_cube_type>& X)
 
 //! in-place cube addition, with the right-hand-side operand having delayed operations
 template<typename eT>
-template<typename T1, typename op_cube_type>
+template<typename T1, typename op_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator+=(const OpCube<T1, op_cube_type>& X)
+Cube<eT>::operator+=(const OpCube<T1, op_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   
-  glue_cube_plus::apply_inplace(*this, X);
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "cube addition");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] += m_mem[i];
+    }
   
   return *this;
   }
@@ -764,16 +821,27 @@ Cube<eT>::operator+=(const OpCube<T1, op_cube_type>& X)
 
 //! in-place cube subtraction, with the right-hand-side operand having delayed operations
 template<typename eT>
-template<typename T1, typename op_cube_type>
+template<typename T1, typename op_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator-=(const OpCube<T1, op_cube_type>& X)
+Cube<eT>::operator-=(const OpCube<T1, op_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   
-  glue_cube_minus::apply_inplace(*this, X);
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "cube subtraction");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] -= m_mem[i];
+    }
   
   return *this;
   }
@@ -782,15 +850,27 @@ Cube<eT>::operator-=(const OpCube<T1, op_cube_type>& X)
 
 //! in-place cube element-wise multiplication, with the right-hand-side operand having delayed operations
 template<typename eT>
-template<typename T1, typename op_cube_type>
+template<typename T1, typename op_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator%=(const OpCube<T1, op_cube_type>& X)
+Cube<eT>::operator%=(const OpCube<T1, op_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
-  glue_cube_schur::apply_inplace(*this, X);
+  
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise cube multiplication");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] *= m_mem[i];
+    }
   
   return *this;
   }
@@ -799,15 +879,140 @@ Cube<eT>::operator%=(const OpCube<T1, op_cube_type>& X)
 
 //! in-place cube element-wise division, with the right-hand-side operand having delayed operations
 template<typename eT>
-template<typename T1, typename op_cube_type>
+template<typename T1, typename op_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator/=(const OpCube<T1, op_cube_type>& X)
+Cube<eT>::operator/=(const OpCube<T1, op_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
-  glue_cube_div::apply_inplace(*this, X);
+  
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise cube division");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] /= m_mem[i];
+    }
+  
+  return *this;
+  }
+
+
+
+//! create a cube from eOpCube, i.e. run the previously delayed unary operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+Cube<eT>::Cube(const eOpCube<T1, eop_type>& X)
+  : n_rows(0)
+  , n_cols(0)
+  , n_elem_slice(0)
+  , n_slices(0)
+  , n_elem(0)
+  , use_aux_mem(false)
+  , mat_ptrs(mat_ptrs)
+  , mem(mem)
+  {
+  arma_extra_debug_sigprint_this(this);
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply(*this, X);
+  }
+
+
+
+//! create a cube from eOpCube, i.e. run the previously delayed unary operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator=(const eOpCube<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube addition, with the right-hand-side operand having delayed operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator+=(const eOpCube<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply_inplace_plus(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube subtraction, with the right-hand-side operand having delayed operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator-=(const eOpCube<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply_inplace_minus(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube element-wise multiplication, with the right-hand-side operand having delayed operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator%=(const eOpCube<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+
+  eop_type::apply_inplace_schur(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube element-wise division, with the right-hand-side operand having delayed operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator/=(const eOpCube<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+
+  eop_type::apply_inplace_div(*this, X);
   
   return *this;
   }
@@ -816,9 +1021,9 @@ Cube<eT>::operator/=(const OpCube<T1, op_cube_type>& X)
 
 //! create a cube from Glue, i.e. run the previously delayed binary operations
 template<typename eT>
-template<typename T1, typename T2, typename glue_cube_type>
+template<typename T1, typename T2, typename glue_type>
 inline
-Cube<eT>::Cube(const GlueCube<T1, T2, glue_cube_type>& X)
+Cube<eT>::Cube(const GlueCube<T1, T2, glue_type>& X)
   : n_rows(0)
   , n_cols(0)
   , n_elem_slice(0)
@@ -836,17 +1041,17 @@ Cube<eT>::Cube(const GlueCube<T1, T2, glue_cube_type>& X)
 
 //! create a cube from Glue, i.e. run the previously delayed binary operations
 template<typename eT>
-template<typename T1, typename T2, typename glue_cube_type>
+template<typename T1, typename T2, typename glue_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator=(const GlueCube<T1, T2, glue_cube_type>& X)
+Cube<eT>::operator=(const GlueCube<T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_cube_type::apply(*this, X);
+  glue_type::apply(*this, X);
   
   return *this;
   }
@@ -854,17 +1059,28 @@ Cube<eT>::operator=(const GlueCube<T1, T2, glue_cube_type>& X)
 
 //! in-place cube addition, with the right-hand-side operands having delayed operations
 template<typename eT>
-template<typename T1, typename T2, typename glue_cube_type>
+template<typename T1, typename T2, typename glue_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator+=(const GlueCube<T1, T2, glue_cube_type>& X)
+Cube<eT>::operator+=(const GlueCube<T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_cube_plus::apply_inplace(*this, X);
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "cube addition");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] += m_mem[i];
+    }
   
   return *this;
   }
@@ -873,17 +1089,28 @@ Cube<eT>::operator+=(const GlueCube<T1, T2, glue_cube_type>& X)
 
 //! in-place cube subtraction, with the right-hand-side operands having delayed operations
 template<typename eT>
-template<typename T1, typename T2, typename glue_cube_type>
+template<typename T1, typename T2, typename glue_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator-=(const GlueCube<T1, T2, glue_cube_type>& X)
+Cube<eT>::operator-=(const GlueCube<T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_cube_minus::apply_inplace(*this, X);
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "cube subtraction");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] -= m_mem[i];
+    }
   
   return *this;
   }
@@ -892,17 +1119,29 @@ Cube<eT>::operator-=(const GlueCube<T1, T2, glue_cube_type>& X)
 
 //! in-place cube element-wise multiplication, with the right-hand-side operands having delayed operations
 template<typename eT>
-template<typename T1, typename T2, typename glue_cube_type>
+template<typename T1, typename T2, typename glue_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator%=(const GlueCube<T1, T2, glue_cube_type>& X)
+Cube<eT>::operator%=(const GlueCube<T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_cube_schur::apply_inplace(*this, X);
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise cube multiplication");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] *= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -910,17 +1149,143 @@ Cube<eT>::operator%=(const GlueCube<T1, T2, glue_cube_type>& X)
 
 //! in-place cube element-wise division, with the right-hand-side operands having delayed operations
 template<typename eT>
-template<typename T1, typename T2, typename glue_cube_type>
+template<typename T1, typename T2, typename glue_type>
 inline
 const Cube<eT>&
-Cube<eT>::operator/=(const GlueCube<T1, T2, glue_cube_type>& X)
+Cube<eT>::operator/=(const GlueCube<T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_cube_div::apply_inplace(*this, X);
+  const Cube<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise cube division");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] /= m_mem[i];
+    }
+  
+  return *this;
+  }
+
+
+
+//! create a cube from eGlue, i.e. run the previously delayed binary operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+Cube<eT>::Cube(const eGlueCube<T1, T2, eglue_type>& X)
+  : n_rows(0)
+  , n_cols(0)
+  , n_elem_slice(0)
+  , n_slices(0)
+  , n_elem(0)
+  , use_aux_mem(false)
+  , mat_ptrs(mat_ptrs)
+  , mem(mem)
+  {
+  arma_extra_debug_sigprint_this(this);
+  this->operator=(X);
+  }
+
+
+
+//! create a cube from Glue, i.e. run the previously delayed binary operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator=(const eGlueCube<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply(*this, X);
+  
+  return *this;
+  }
+
+
+//! in-place cube addition, with the right-hand-side operands having delayed operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator+=(const eGlueCube<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_plus(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube subtraction, with the right-hand-side operands having delayed operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator-=(const eGlueCube<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_minus(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube element-wise multiplication, with the right-hand-side operands having delayed operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator%=(const eGlueCube<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_schur(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place cube element-wise division, with the right-hand-side operands having delayed operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Cube<eT>&
+Cube<eT>::operator/=(const eGlueCube<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_div(*this, X);
+  
   return *this;
   }
 
@@ -1386,6 +1751,40 @@ Cube<eT>::save(const std::string name, const file_type type) const
 
 
 
+//! save the cube to a stream
+template<typename eT>
+inline
+void
+Cube<eT>::save(std::ostream& os, const file_type type) const
+  {
+  arma_extra_debug_sigprint();
+  
+  switch(type)
+    {
+    case raw_ascii:
+      diskio::save_raw_ascii(*this, "[ostream]", os);
+      break;
+    
+    case arma_ascii:
+      diskio::save_arma_ascii(*this, "[ostream]", os);
+      break;
+    
+    case arma_binary:
+      diskio::save_arma_binary(*this, "[ostream]", os);
+      break;
+      
+    case ppm_binary:
+      diskio::save_ppm_binary(*this, "[ostream]", os);
+      break;
+
+    default:
+      arma_stop("Cube::save(): unsupported file type");
+    }
+  
+  }
+
+
+
 //! load a cube from a file
 template<typename eT>
 inline
@@ -1416,6 +1815,44 @@ Cube<eT>::load(const std::string name, const file_type type)
       diskio::load_ppm_binary(*this, name);
       break;
 
+    default:
+      arma_stop("Cube::load(): unsupported file type");
+    }
+  
+  }
+
+
+
+//! load a cube from a stream
+template<typename eT>
+inline
+void
+Cube<eT>::load(std::istream& is, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  switch(type)
+    {
+    case auto_detect:
+      diskio::load_auto_detect(*this, "[istream]", is);
+      break;
+    
+    case raw_ascii:
+      diskio::load_raw_ascii(*this, "[istream]", is);
+      break;
+    
+    case arma_ascii:
+      diskio::load_arma_ascii(*this, "[istream]", is);
+      break;
+    
+    case arma_binary:
+      diskio::load_arma_binary(*this, "[istream]", is);
+      break;
+      
+    case ppm_binary:
+      diskio::load_ppm_binary(*this, "[istream]", is);
+      break;
+    
     default:
       arma_stop("Cube::load(): unsupported file type");
     }

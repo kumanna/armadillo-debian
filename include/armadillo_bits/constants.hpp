@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -156,74 +157,6 @@ typedef Math<double> math;
 
 typedef Phy<float>   fphy;
 typedef Phy<double>  phy;
-
-
-
-struct arma_version
-  {
-  static const unsigned int major = 0;
-  static const unsigned int minor = 8;
-  static const unsigned int patch = 2;
-  };
-
-
-
-struct arma_config
-  {
-  #if defined(ARMA_USE_ATLAS)
-    static const bool atlas = true;
-  #else
-    static const bool atlas = false;
-  #endif
-  
-  
-  #if defined(ARMA_USE_LAPACK)
-    static const bool lapack = true;
-  #else
-    static const bool lapack = false;
-  #endif
-  
-  
-  #if defined(ARMA_USE_BLAS)
-    static const bool blas = true;
-  #else
-    static const bool blas = false;
-  #endif
-
-
-  #if defined(ARMA_USE_BOOST)
-    static const bool boost = true;
-  #else
-    static const bool boost = false;
-  #endif
-  
-
-  #if defined(ARMA_USE_BOOST_DATE)
-    static const bool boost_date = true;
-  #else
-    static const bool boost_date = false;
-  #endif
-
-
-  #if !defined(ARMA_NO_DEBUG) && !defined(NDEBUG)
-    static const bool debug = true;
-  #else
-    static const bool debug = false;
-  #endif
-  
-  
-  #if defined(ARMA_EXTRA_DEBUG)
-    static const bool extra_debug = true;
-  #else
-    static const bool extra_debug = false;
-  #endif
-
-  #if defined(ARMA_GOOD_COMPILER)
-    static const bool good_comp = true;
-  #else
-    static const bool good_comp = false;
-  #endif
-  };
 
 
 

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -28,6 +29,7 @@ class gemv_arma
   public:
   
   template<typename eT>
+  arma_hot
   inline
   static
   void
@@ -126,11 +128,11 @@ class gemv
   inline
   static
   void
-  apply( eT* y, const Mat<eT>& A, const eT* x, const eT alpha = eT(1), const eT beta = eT(0) )
+  apply_blas_type( eT* y, const Mat<eT>& A, const eT* x, const eT alpha = eT(1), const eT beta = eT(0) )
     {
     arma_extra_debug_sigprint();
     
-    if( (A.n_elem <= 256u) || (is_supported_blas_type<eT>::value == false) )
+    if(A.n_elem <= 256u)
      {
      gemv_arma<do_trans_A, use_alpha, use_beta>::apply(y,A,x,alpha,beta);
      }
@@ -193,6 +195,87 @@ class gemv
       }
     
     }
+  
+  
+  
+  template<typename eT>
+  arma_inline
+  static
+  void
+  apply( eT* y, const Mat<eT>& A, const eT* x, const eT alpha = eT(1), const eT beta = eT(0) )
+    {
+    gemv_arma<do_trans_A, use_alpha, use_beta>::apply(y,A,x,alpha,beta);
+    }
+  
+  
+  
+  arma_inline
+  static
+  void
+  apply
+    (
+          float*      y,
+    const Mat<float>& A,
+    const float*      x,
+    const float       alpha = float(1),
+    const float       beta  = float(0)
+    )
+    {
+    gemv<do_trans_A, use_alpha, use_beta>::apply_blas_type(y,A,x,alpha,beta);
+    }
+
+
+  
+  arma_inline
+  static
+  void
+  apply
+    (
+          double*      y,
+    const Mat<double>& A,
+    const double*      x,
+    const double       alpha = double(1),
+    const double       beta  = double(0)
+    )
+    {
+    gemv<do_trans_A, use_alpha, use_beta>::apply_blas_type(y,A,x,alpha,beta);
+    }
+
+
+  
+  arma_inline
+  static
+  void
+  apply
+    (
+          std::complex<float>*         y,
+    const Mat< std::complex<float > >& A,
+    const std::complex<float>*         x,
+    const std::complex<float>          alpha = std::complex<float>(1),
+    const std::complex<float>          beta  = std::complex<float>(0)
+    )
+    {
+    gemv<do_trans_A, use_alpha, use_beta>::apply_blas_type(y,A,x,alpha,beta);
+    }
+
+
+  
+  arma_inline
+  static
+  void
+  apply
+    (
+          std::complex<double>*        y,
+    const Mat< std::complex<double> >& A,
+    const std::complex<double>*        x,
+    const std::complex<double>         alpha = std::complex<double>(1),
+    const std::complex<double>         beta  = std::complex<double>(0)
+    )
+    {
+    gemv<do_trans_A, use_alpha, use_beta>::apply_blas_type(y,A,x,alpha,beta);
+    }
+
+
   
   };
 

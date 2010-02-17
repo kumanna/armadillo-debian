@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -18,49 +19,72 @@
 
 
 
-//! \brief
 //! Generate a dense matrix with all elements set to random values in the [0,1] interval (uniform distribution)
-
-inline
-const Op<mat, op_rand>
+arma_inline
+const eOp<mat, eop_rand>
 rand(const u32 n_rows, const u32 n_cols)
   {
   arma_extra_debug_sigprint();
   
-  return Op<mat, op_rand>(n_rows, n_cols, 'j');
+  return eOp<mat, eop_rand>(n_rows, n_cols);
+  }
+
+
+
+arma_inline
+const eOpCube<cube, eop_cube_rand>
+rand(const u32 n_rows, const u32 n_cols, const u32 n_slices)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOpCube<cube, eop_cube_rand>(n_rows, n_cols, n_slices);
   }
 
 
 
 template<typename mat_type>
-inline
-const Op<mat_type,op_rand>
+arma_inline
+const eOp<mat_type, eop_rand>
 rand(const u32 n_rows, const u32 n_cols)
   {
   arma_extra_debug_sigprint();
   
   arma_type_check<is_Mat<mat_type>::value == false>::apply();
   
-  return Op<mat_type,op_rand>(n_rows, n_cols, 'j');
+  return eOp<mat_type, eop_rand>(n_rows, n_cols);
+  }
+
+
+
+template<typename cube_type>
+arma_inline
+const eOpCube<cube_type, eop_cube_rand>
+rand(const u32 n_rows, const u32 n_cols, const u32 n_slices)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check<is_Cube<cube_type>::value == false>::apply();
+  
+  return eOpCube<cube_type, eop_cube_rand>(n_rows, n_cols, n_slices);
   }
 
 
 
 //! Generate a vector with all elements set to random values in the [0,1] interval (uniform distribution)
-inline
-const Op<colvec, op_rand>
+arma_inline
+const eOp<colvec, eop_rand>
 rand(const u32 n_elem)
   {
   arma_extra_debug_sigprint();
   
-  return Op<colvec, op_rand>(n_elem, 1, 'j');
+  return eOp<colvec, eop_rand>(n_elem, 1);
   }
 
 
 
 template<typename vec_type>
-inline
-const Op<vec_type,op_rand>
+arma_inline
+const eOp<vec_type, eop_rand>
 rand(const u32 n_elem)
   {
   arma_extra_debug_sigprint();
@@ -69,44 +93,12 @@ rand(const u32 n_elem)
   
   if(is_Row<vec_type>::value == true)
     {
-    return Op<vec_type,op_rand>(1, n_elem, 'j');
+    return eOp<vec_type, eop_rand>(1, n_elem);
     }
   else
     {
-    return Op<vec_type,op_rand>(n_elem, 1, 'j');
+    return eOp<vec_type, eop_rand>(n_elem, 1);
     }
-  }
-
-
-
-//
-//
-// handling of cubes
-
-
-
-//! Generate a dense cube with all elements set to random values in the [0,1] interval (uniform distribution)
-inline
-const OpCube<cube, op_rand>
-rand(const u32 n_rows, const u32 n_cols, const u32 n_slices)
-  {
-  arma_extra_debug_sigprint();
-  
-  return OpCube<cube, op_rand>(n_rows, n_cols, n_slices);
-  }
-
-
-
-template<typename cube_type>
-inline
-const OpCube<cube_type,op_rand>
-rand(const u32 n_rows, const u32 n_cols, const u32 n_slices)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_type_check<is_Cube<cube_type>::value == false>::apply();
-  
-  return OpCube<cube_type,op_rand>(n_rows, n_cols, n_slices);
   }
 
 

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -22,7 +23,7 @@
 // conversions between various mat types
 
 template<typename out_eT, typename in_eT>
-inline
+arma_inline
 void
 copy_complex_elem(out_eT& out, const in_eT& in)
   {
@@ -34,7 +35,7 @@ copy_complex_elem(out_eT& out, const in_eT& in)
 
 
 template<typename out_eT, typename in_T>
-inline
+arma_inline
 void
 copy_complex_elem(out_eT& out, const std::complex<in_T>& in)
   {
@@ -46,7 +47,7 @@ copy_complex_elem(out_eT& out, const std::complex<in_T>& in)
 
 
 template<typename out_T, typename in_T>
-inline
+arma_inline
 void
 copy_complex_elem(std::complex<out_T>& out, const std::complex<in_T>& in)
   {

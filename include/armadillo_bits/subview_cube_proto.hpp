@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -27,8 +28,8 @@ class subview_cube : public BaseCube<eT, subview_cube<eT> >
   
   public:
   
-  typedef eT elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
+  typedef eT                                       elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
 
   const u32 aux_row1;
   const u32 aux_col1;

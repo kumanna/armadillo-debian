@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -40,11 +41,11 @@ template<typename eT>
 template<typename T1>
 inline
 void
-running_stat_vec<eT>::operator() (const Base<typename get_pod_type<eT>::pod_type, T1>& X)
+running_stat_vec<eT>::operator() (const Base<typename get_pod_type<eT>::result, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  //typedef typename get_pod_type<eT>::pod_type T;
+  //typedef typename get_pod_type<eT>::result T;
   
   const unwrap<T1>        tmp(X.get_ref());
   const Mat<eT>& sample = tmp.M;
@@ -61,11 +62,11 @@ template<typename eT>
 template<typename T1>
 inline
 void
-running_stat_vec<eT>::operator() (const Base<std::complex<typename get_pod_type<eT>::pod_type>, T1>& X)
+running_stat_vec<eT>::operator() (const Base<std::complex<typename get_pod_type<eT>::result>, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  //typedef typename std::complex<typename get_pod_type<eT>::pod_type> eT;
+  //typedef typename std::complex<typename get_pod_type<eT>::result> eT;
   
   const unwrap<T1>        tmp(X.get_ref());
   const Mat<eT>& sample = tmp.M;
@@ -117,7 +118,7 @@ running_stat_vec<eT>::mean()
 //! variance
 template<typename eT>
 inline
-Mat<typename get_pod_type<eT>::pod_type>
+Mat<typename get_pod_type<eT>::result>
 running_stat_vec<eT>::var(const u32 norm_type)
   const
   {
@@ -139,7 +140,7 @@ running_stat_vec<eT>::var(const u32 norm_type)
     }
   else
     {
-    return zeros< Mat<typename get_pod_type<eT>::pod_type> >(r_mean.n_rows, r_mean.n_cols);
+    return zeros< Mat<typename get_pod_type<eT>::result> >(r_mean.n_rows, r_mean.n_cols);
     }
   
   }
@@ -149,7 +150,7 @@ running_stat_vec<eT>::var(const u32 norm_type)
 //! standard deviation
 template<typename eT>
 inline
-Mat<typename get_pod_type<eT>::pod_type>
+Mat<typename get_pod_type<eT>::result>
 running_stat_vec<eT>::stddev(const u32 norm_type)
   const
   {

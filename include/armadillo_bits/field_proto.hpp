@@ -1,7 +1,9 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
+// - Ian Cullinan (ian dot cullinan at nicta dot com dot au)
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -56,7 +58,9 @@ class field
   
   inline void  set_size(const u32 n_obj_in);
   inline void  set_size(const u32 n_rows_in, const u32 n_cols_in);
-  inline void copy_size(const field& x);
+  
+  template<typename oT2>
+  inline void copy_size(const field<oT2>& x);
   
   arma_inline       oT& operator[](const u32 i);
   arma_inline const oT& operator[](const u32 i) const;
@@ -93,8 +97,11 @@ class field
   inline void reset();
   inline void reset_objects();
   
-  inline void save(const std::string name, const file_type type = arma_binary) const;
-  inline void load(const std::string name, const file_type type = auto_detect);
+  inline void save(const std::string   name, const file_type type = arma_binary) const;
+  inline void save(      std::ostream& os,   const file_type type = arma_binary) const;
+  
+  inline void load(const std::string   name, const file_type type = auto_detect);
+  inline void load(      std::istream& is,   const file_type type = auto_detect);
   
   
   private:
@@ -124,22 +131,34 @@ class field_aux
   
   
   template<typename oT> inline static void save(const field< oT >& x,          const std::string& name, const file_type type);
+  template<typename oT> inline static void save(const field< oT >& x,          std::ostream& os,        const file_type type);
   template<typename oT> inline static void load(      field< oT >& x,          const std::string& name, const file_type type);
+  template<typename oT> inline static void load(      field< oT >& x,          std::istream& is,        const file_type type);
 
   template<typename eT> inline static void save(const field< Mat<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Mat<eT> >& x,     std::ostream& os,        const file_type type);
   template<typename eT> inline static void load(      field< Mat<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Mat<eT> >& x,     std::istream& is,        const file_type type);
   
   template<typename eT> inline static void save(const field< Col<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Col<eT> >& x,     std::ostream& os,        const file_type type);
   template<typename eT> inline static void load(      field< Col<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Col<eT> >& x,     std::istream& is,        const file_type type);
   
   template<typename eT> inline static void save(const field< Row<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Row<eT> >& x,     std::ostream& os,        const file_type type);
   template<typename eT> inline static void load(      field< Row<eT> >& x,     const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Row<eT> >& x,     std::istream& is,        const file_type type);
 
   template<typename eT> inline static void save(const field< Cube<eT> >& x,    const std::string& name, const file_type type);
+  template<typename eT> inline static void save(const field< Cube<eT> >& x,    std::ostream& os,        const file_type type);
   template<typename eT> inline static void load(      field< Cube<eT> >& x,    const std::string& name, const file_type type);
+  template<typename eT> inline static void load(      field< Cube<eT> >& x,    std::istream& is,        const file_type type);
   
                         inline static void save(const field< std::string >& x, const std::string& name, const file_type type);
+                        inline static void save(const field< std::string >& x, std::ostream& os,        const file_type type);
                         inline static void load(      field< std::string >& x, const std::string& name, const file_type type);
+                        inline static void load(      field< std::string >& x, std::istream& is,        const file_type type);
   
   };
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_sort_index.hpp File Reference</title>
+<title>Armadillo Technical: Proxy&lt; Mat&lt; eT &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,41 +14,263 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_sort_index.hpp File Reference</h1>
-<p><a href="a00455_source.html">Go to the source code of this file.</a></p>
+<h1>Proxy&lt; Mat&lt; eT &gt; &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="a00849.html">Proxy</a>]</small>
+</h1><!-- doxytag: class="Proxy&lt; Mat&lt; eT &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00690_source.html">Proxy.hpp</a>&gt;</code></p>
+
+<p><a href="a01310.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025.html">arma_sort_index_packet_ascend&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00026.html">arma_sort_index_packet_descend&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00328.html">sort_index_result_type_deducer&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00329.html">sort_index_result_type_deducer&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00330.html">sort_index_result_type_deducer&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00656.html#gaef5fd214c7e1a494b42d99ab7ef4383c">operator&lt;</a> (const <a class="el" href="a00025.html">arma_sort_index_packet_ascend</a>&lt; T1, T2 &gt; &amp;A, const <a class="el" href="a00025.html">arma_sort_index_packet_ascend</a>&lt; T1, T2 &gt; &amp;B)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00656.html#ga1c0fa2e34ad258fd7431cdd55ad9c0d2">operator&lt;</a> (const <a class="el" href="a00026.html">arma_sort_index_packet_descend</a>&lt; T1, T2 &gt; &amp;A, const <a class="el" href="a00026.html">arma_sort_index_packet_descend</a>&lt; T1, T2 &gt; &amp;B)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename umat_elem_type , typename packet_type , typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00656.html#ga672928e7a40907d7b09e221a235cf859">sort_index_helper</a> (umat_elem_type *out_mem, std::vector&lt; packet_type &gt; &amp;packet_vec, const eT *in_mem)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00328.html">sort_index_result_type_deducer</a><br class="typebreak"/>
-&lt; T1 &gt;::out_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00656.html#gae1bfb7732f046956e29ae9c086f67bcf">sort_index</a> (const <a class="el" href="a00033.html">BaseVec</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> sort_type=0)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00187.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a3420b536b924d4603cef95d47ae0fc98">pod_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00303.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#ac36eb1c9d966b4164382e3e5a96ea625">stored_type</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a77e9cd2dc77b762c7d8fff621ede8664">Proxy</a> (const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#aa073471d3cd88ddb01bec546ea5064c0">operator[]</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a8d43e8c07d1ca6255169a6c33900de22">at</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col) const </td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a68daef9b0ca860be8a02762cf2dc607d">Q</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a92911639bf27d1bbda5482ee189a2690">n_rows</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#a6683ecbfd378625a803f5e404f7c800d">n_cols</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html#ab88444da6bd24016139a0fec5f705f8e">n_elem</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename eT&gt;<br/>
+ class Proxy&lt; Mat&lt; eT &gt; &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00035">35</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a9064af9efac0f9711317d60354ff7fb3"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::elem_type" ref="a9064af9efac0f9711317d60354ff7fb3" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef eT <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00039">39</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3420b536b924d4603cef95d47ae0fc98"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::pod_type" ref="a3420b536b924d4603cef95d47ae0fc98" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt;<a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a>&gt;::result <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00455.html#a3420b536b924d4603cef95d47ae0fc98">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00040">40</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac36eb1c9d966b4164382e3e5a96ea625"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::stored_type" ref="ac36eb1c9d966b4164382e3e5a96ea625" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00303.html">Mat</a>&lt;eT&gt; <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00303.html">stored_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00041">41</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a77e9cd2dc77b762c7d8fff621ede8664"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::Proxy" ref="a77e9cd2dc77b762c7d8fff621ede8664" args="(const Mat&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00449.html">Proxy</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00049">49</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00050"></a>00050     : <a class="code" href="a00455.html#a68daef9b0ca860be8a02762cf2dc607d">Q</a>(A)
+<a name="l00051"></a>00051     , <a class="code" href="a00455.html#a92911639bf27d1bbda5482ee189a2690">n_rows</a>(A.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>)
+<a name="l00052"></a>00052     , <a class="code" href="a00455.html#a6683ecbfd378625a803f5e404f7c800d">n_cols</a>(A.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>)
+<a name="l00053"></a>00053     , <a class="code" href="a00455.html#ab88444da6bd24016139a0fec5f705f8e">n_elem</a>(A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>)
+<a name="l00054"></a>00054     {
+<a name="l00055"></a>00055     arma_extra_debug_sigprint();
+<a name="l00056"></a>00056     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="aa073471d3cd88ddb01bec546ea5064c0"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::operator[]" ref="aa073471d3cd88ddb01bec546ea5064c0" args="(const u32 i) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a> <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00058">58</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00058"></a>00058 { <span class="keywordflow">return</span> <a class="code" href="a00455.html#a68daef9b0ca860be8a02762cf2dc607d">Q</a>[i];           }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a8d43e8c07d1ca6255169a6c33900de22"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::at" ref="a8d43e8c07d1ca6255169a6c33900de22" args="(const u32 row, const u32 col) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00455.html#a9064af9efac0f9711317d60354ff7fb3">elem_type</a> <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00059">59</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00059"></a>00059 { <span class="keywordflow">return</span> <a class="code" href="a00455.html#a68daef9b0ca860be8a02762cf2dc607d">Q</a>.at(row, col); }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a68daef9b0ca860be8a02762cf2dc607d"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::Q" ref="a68daef9b0ca860be8a02762cf2dc607d" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00303.html">Mat</a>&lt;eT&gt;&amp; <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00455.html#a68daef9b0ca860be8a02762cf2dc607d">Q</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00043">43</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a92911639bf27d1bbda5482ee189a2690"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::n_rows" ref="a92911639bf27d1bbda5482ee189a2690" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00455.html#a92911639bf27d1bbda5482ee189a2690">n_rows</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00045">45</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6683ecbfd378625a803f5e404f7c800d"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::n_cols" ref="a6683ecbfd378625a803f5e404f7c800d" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00455.html#a6683ecbfd378625a803f5e404f7c800d">n_cols</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00046">46</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab88444da6bd24016139a0fec5f705f8e"></a><!-- doxytag: member="Proxy&lt; Mat&lt; eT &gt; &gt;::n_elem" ref="ab88444da6bd24016139a0fec5f705f8e" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00449.html">Proxy</a>&lt; <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00455.html#ab88444da6bd24016139a0fec5f705f8e">n_elem</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00690_source.html#l00047">47</a> of file <a class="el" href="a00690_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

@@ -7,15 +7,23 @@ CXX=g++
 ## However, GCC 4.2 or later is available and preferable due to better
 ## handling of template code.
 
+#CXX=CC
+## When using the Sun Studio compiler
+
 
 # flags configured by CMake
 ifeq (${ARMA_OS},macos)
   EXTRA_LIB_FLAGS = -framework Accelerate
 endif
 
+#EXTRA_LIB_FLAGS = -library=sunperf
+## When using the Sun Studio compiler
+
+
 ifeq (${ARMA_USE_BOOST},true)
   BOOST_INCLUDE_FLAG = -I ${Boost_INCLUDE_DIR}
 endif
+
 
 
 LIB_FLAGS = -larmadillo $(EXTRA_LIB_FLAGS)
@@ -32,6 +40,10 @@ OPT = -O1
 ## -O1: produces programs which achieve most of the possible speedup
 ## -O3: produces programs which have almost all possible speedups,
 ##      but compilation takes considerably longer
+
+
+#OPT = -xO4 -xannotate=no
+## When using the Sun Studio compiler
 
 
 #EXTRA_OPT = -fwhole-program

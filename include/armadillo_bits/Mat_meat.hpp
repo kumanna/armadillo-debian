@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -502,7 +503,18 @@ Mat<eT>::operator+=(const Mat<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_plus::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "matrix addition");
+  
+  const u32 local_n_elem = m.n_elem;
+  
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] += m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -516,7 +528,18 @@ Mat<eT>::operator-=(const Mat<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_minus::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "matrix subtraction");
+  
+  const u32 local_n_elem = m.n_elem;
+  
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] -= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -544,7 +567,18 @@ Mat<eT>::operator%=(const Mat<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_schur::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "element-wise matrix multplication");
+  
+  const u32 local_n_elem = m.n_elem;
+  
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] *= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -558,7 +592,18 @@ Mat<eT>::operator/=(const Mat<eT>& m)
   {
   arma_extra_debug_sigprint();
   
-  glue_div::apply_inplace(*this, m);
+  arma_debug_assert_same_size(*this, m, "element-wise matrix division");
+  
+  const u32 local_n_elem = m.n_elem;
+  
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] /= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -676,7 +721,7 @@ Mat<eT>::operator*=(const subview<eT>& X)
   {
   arma_extra_debug_sigprint();
   
-  subview<eT>::times_inplace(*this, X);
+  glue_times::apply_inplace(*this, X);
   return *this;
   }
 
@@ -840,6 +885,75 @@ Mat<eT>::operator=(const diagview<eT>& X)
   arma_extra_debug_sigprint();
   
   diagview<eT>::extract(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place matrix addition (using a diagview on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator+=(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  diagview<eT>::plus_inplace(*this, X);
+  return *this;
+  }
+
+
+//! in-place matrix subtraction (using a diagview on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator-=(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  diagview<eT>::minus_inplace(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place matrix mutiplication (using a diagview on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator*=(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  glue_times::apply_inplace(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place element-wise matrix mutiplication (using a diagview on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator%=(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  diagview<eT>::schur_inplace(*this, X);
+  return *this;
+  }
+
+
+
+//! in-place element-wise matrix division (using a diagview on the right-hand-side)
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator/=(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  diagview<eT>::div_inplace(*this, X);
   return *this;
   }
 
@@ -1033,7 +1147,7 @@ Mat<eT>::diag(const s32 in_id)
   arma_debug_check
     (
     (row_offset >= n_rows) || (col_offset >= n_cols),
-    "Mat::diag(): out of bounds"
+    "Mat::diag(): requested diagonal out of bounds"
     );
   
   const u32 len = (std::min)(n_rows - row_offset, n_cols - col_offset);
@@ -1057,7 +1171,7 @@ Mat<eT>::diag(const s32 in_id) const
   arma_debug_check
     (
     (row_offset >= n_rows) || (col_offset >= n_cols),
-    "Mat::diag(): out of bounds"
+    "Mat::diag(): requested diagonal out of bounds"
     );
   
   
@@ -1173,7 +1287,18 @@ Mat<eT>::operator+=(const Op<T1, op_type>& X)
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   
-  glue_plus::apply_inplace(*this, X);
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "matrix addition");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] += m_mem[i];
+    }
   
   return *this;
   }
@@ -1191,7 +1316,18 @@ Mat<eT>::operator-=(const Op<T1, op_type>& X)
   
   isnt_same_type<eT, typename T1::elem_type>::check();
   
-  glue_minus::apply_inplace(*this, X);
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "matrix subtraction");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] -= m_mem[i];
+    }
   
   return *this;
   }
@@ -1226,7 +1362,19 @@ Mat<eT>::operator%=(const Op<T1, op_type>& X)
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
-  glue_schur::apply_inplace(*this, X);
+  
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise matrix multiplication");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] *= m_mem[i];
+    }
   
   return *this;
   }
@@ -1243,7 +1391,143 @@ Mat<eT>::operator/=(const Op<T1, op_type>& X)
   arma_extra_debug_sigprint();
   
   isnt_same_type<eT, typename T1::elem_type>::check();
-  glue_div::apply_inplace(*this, X);
+  
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise matrix division");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] /= m_mem[i];
+    }
+  
+  return *this;
+  }
+
+
+
+//! create a matrix from eOp, i.e. run the previously delayed unary operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+Mat<eT>::Mat(const eOp<T1, eop_type>& X)
+  : n_rows(0)
+  , n_cols(0)
+  , n_elem(0)
+  , use_aux_mem(false)
+  //, mem(0)
+  , mem(mem)
+  {
+  arma_extra_debug_sigprint_this(this);
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply(*this, X);
+  }
+
+
+
+//! create a matrix from eOp, i.e. run the previously delayed unary operations
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator+=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply_inplace_plus(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator-=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply_inplace_minus(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator*=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  glue_times::apply_inplace(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator%=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply_inplace_schur(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator/=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  
+  eop_type::apply_inplace_div(*this, X);
   
   return *this;
   }
@@ -1263,7 +1547,11 @@ Mat<eT>::Mat(const Glue<T1, T2, glue_type>& X)
   , mem(mem)
   {
   arma_extra_debug_sigprint_this(this);
-  this->operator=(X);
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  glue_type::apply(*this, X);
   }
 
 
@@ -1277,11 +1565,6 @@ Mat<eT>::operator=(const Glue<T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
-  // TODO:
-  // it may be simpler to pass the two objects (currently wrapped in X)
-  // directly to the apply function.
-  // (many adjustments throughout the source code will be required)
-  
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
@@ -1289,6 +1572,7 @@ Mat<eT>::operator=(const Glue<T1, T2, glue_type>& X)
   
   return *this;
   }
+
 
 
 //! in-place matrix addition, with the right-hand-side operands having delayed operations
@@ -1303,7 +1587,18 @@ Mat<eT>::operator+=(const Glue<T1, T2, glue_type>& X)
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_plus::apply_inplace(*this, X);
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "matrix addition");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] += m_mem[i];
+    }
   
   return *this;
   }
@@ -1322,7 +1617,18 @@ Mat<eT>::operator-=(const Glue<T1, T2, glue_type>& X)
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_minus::apply_inplace(*this, X);
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "matrix subtraction");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] -= m_mem[i];
+    }
   
   return *this;
   }
@@ -1342,6 +1648,7 @@ Mat<eT>::operator*=(const Glue<T1, T2, glue_type>& X)
   isnt_same_type<eT, typename T2::elem_type>::check();
   
   glue_times::apply_inplace(*this, X);
+  
   return *this;
   }
 
@@ -1359,7 +1666,19 @@ Mat<eT>::operator%=(const Glue<T1, T2, glue_type>& X)
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_schur::apply_inplace(*this, X);
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise matrix multiplication");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] *= m_mem[i];
+    }
+  
   return *this;
   }
 
@@ -1377,7 +1696,179 @@ Mat<eT>::operator/=(const Glue<T1, T2, glue_type>& X)
   isnt_same_type<eT, typename T1::elem_type>::check();
   isnt_same_type<eT, typename T2::elem_type>::check();
   
-  glue_div::apply_inplace(*this, X);
+  const Mat<eT> m(X);
+  
+  arma_debug_assert_same_size(*this, m, "element-wise matrix division");
+  
+        eT* out_mem      = (*this).memptr();
+  const eT* m_mem        = m.memptr();
+  const u32 local_n_elem = m.n_elem;
+  
+  for(u32 i=0; i<local_n_elem; ++i)
+    {
+    out_mem[i] /= m_mem[i];
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2>
+inline
+const Mat<eT>&
+Mat<eT>::operator+=(const Glue<T1, T2, glue_times>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  glue_times::apply_inplace_plus(*this, X, s32(+1));
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2>
+inline
+const Mat<eT>&
+Mat<eT>::operator-=(const Glue<T1, T2, glue_times>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  glue_times::apply_inplace_plus(*this, X, s32(-1));
+  
+  return *this;
+  }
+
+
+
+//! create a matrix from eGlue, i.e. run the previously delayed binary operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+Mat<eT>::Mat(const eGlue<T1, T2, eglue_type>& X)
+  : n_rows(0)
+  , n_cols(0)
+  , n_elem(0)
+  , use_aux_mem(false)
+  //, mem(0)
+  , mem(mem)
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply(*this, X);
+  }
+
+
+
+//! create a matrix from eGlue, i.e. run the previously delayed binary operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place matrix addition, with the right-hand-side operands having delayed operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator+=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_plus(*this, X);
+  
+  return *this;
+  }
+
+
+
+//! in-place matrix subtraction, with the right-hand-side operands having delayed operations
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator-=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_minus(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator*=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  glue_times::apply_inplace(*this, X);
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator%=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_schur(*this, X);
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::operator/=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  isnt_same_type<eT, typename T1::elem_type>::check();
+  isnt_same_type<eT, typename T2::elem_type>::check();
+  
+  eglue_type::apply_inplace_div(*this, X);
   return *this;
   }
 
@@ -1389,7 +1880,7 @@ arma_inline
 eT&
 Mat<eT>::operator() (const u32 i)
   {
-  arma_debug_check( (i >= n_elem), "Mat::operator(): index out of bounds");
+  arma_debug_check( (i >= n_elem), "Mat::operator(): out of bounds");
   return access::rw(mem[i]);
   }
 
@@ -1401,7 +1892,7 @@ arma_inline
 eT
 Mat<eT>::operator() (const u32 i) const
   {
-  arma_debug_check( (i >= n_elem), "Mat::operator(): index out of bounds");
+  arma_debug_check( (i >= n_elem), "Mat::operator(): out of bounds");
   return mem[i];
   }
 
@@ -1434,7 +1925,7 @@ arma_inline
 eT&
 Mat<eT>::operator() (const u32 in_row, const u32 in_col)
   {
-  arma_debug_check( ((in_row >= n_rows) || (in_col >= n_cols)), "Mat::operator(): index out of bounds");
+  arma_debug_check( ((in_row >= n_rows) || (in_col >= n_cols)), "Mat::operator(): out of bounds");
   return access::rw(mem[in_row + in_col*n_rows]);
   }
 
@@ -1446,7 +1937,7 @@ arma_inline
 eT
 Mat<eT>::operator() (const u32 in_row, const u32 in_col) const
   {
-  arma_debug_check( ((in_row >= n_rows) || (in_col >= n_cols)), "Mat::operator(): index out of bounds");
+  arma_debug_check( ((in_row >= n_rows) || (in_col >= n_cols)), "Mat::operator(): out of bounds");
   return mem[in_row + in_col*n_rows];
   }
 
@@ -1920,6 +2411,40 @@ Mat<eT>::save(const std::string name, const file_type type) const
 
 
 
+//! save the matrix to a stream
+template<typename eT>
+inline
+void
+Mat<eT>::save(std::ostream& os, const file_type type) const
+  {
+  arma_extra_debug_sigprint();
+  
+  switch(type)
+    {
+    case raw_ascii:
+      diskio::save_raw_ascii(*this, "[ostream]", os);
+      break;
+    
+    case arma_ascii:
+      diskio::save_arma_ascii(*this, "[ostream]", os);
+      break;
+    
+    case arma_binary:
+      diskio::save_arma_binary(*this, "[ostream]", os);
+      break;
+      
+    case pgm_binary:
+      diskio::save_pgm_binary(*this, "[ostream]", os);
+      break;
+    
+    default:
+      arma_stop("Mat::save(): unsupported file type");
+    }
+  
+  }
+
+
+
 //! load a matrix from a file
 template<typename eT>
 inline
@@ -1948,6 +2473,44 @@ Mat<eT>::load(const std::string name, const file_type type)
       
     case pgm_binary:
       diskio::load_pgm_binary(*this, name);
+      break;
+    
+    default:
+      arma_stop("Mat::load(): unsupported file type");
+    }
+  
+  }
+
+
+
+//! load a matrix from a stream
+template<typename eT>
+inline
+void
+Mat<eT>::load(std::istream& is, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  switch(type)
+    {
+    case auto_detect:
+      diskio::load_auto_detect(*this, "[istream]", is);
+      break;
+    
+    case raw_ascii:
+      diskio::load_raw_ascii(*this, "[istream]", is);
+      break;
+    
+    case arma_ascii:
+      diskio::load_arma_ascii(*this, "[istream]", is);
+      break;
+    
+    case arma_binary:
+      diskio::load_arma_binary(*this, "[istream]", is);
+      break;
+      
+    case pgm_binary:
+      diskio::load_pgm_binary(*this, "[istream]", is);
       break;
     
     default:

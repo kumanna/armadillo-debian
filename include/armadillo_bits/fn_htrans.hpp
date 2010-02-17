@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -17,46 +18,11 @@
 //! @{
 
 
-template<typename T>
-inline
-const Op<Mat< std::complex<T> >, op_htrans>
-htrans(const Mat< std::complex<T> >& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<Mat< std::complex<T> >, op_htrans>(X);
-  }
 
-
-
-template<typename T>
-inline
-const Op<Row< std::complex<T> >, op_htrans>
-htrans(const Row< std::complex<T> >& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<Row< std::complex<T> >, op_htrans>(X);
-  }
-
-
-
-template<typename T>
-inline
-const Op<Col< std::complex<T> >, op_htrans>
-htrans(const Col< std::complex<T> >& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<Col< std::complex<T> >, op_htrans>(X);
-  }
-
-
-
-template<typename T, typename T1>
-inline
+template<typename T1>
+arma_inline
 const Op<T1, op_htrans>
-htrans(const Base<std::complex<T>,T1>& X)
+htrans(const Base<std::complex<typename T1::pod_type>,T1>& X)
   {
   arma_extra_debug_sigprint();
   
@@ -65,9 +31,22 @@ htrans(const Base<std::complex<T>,T1>& X)
 
 
 
+template<typename T1>
+arma_inline
+const Op<T1, op_trans>
+htrans(const Base<typename T1::pod_type,T1>& X)
+  {
+  arma_extra_debug_sigprint();
+  arma_extra_debug_print("htrans(): non-complex object given -- using regular transpose");
+  
+  return Op<T1, op_trans>(X.get_ref());
+  }
+
+
+
 //! two consecutive hermitian transpose operations cancel each other
 template<typename T1>
-inline
+arma_inline
 const T1&
 htrans(const Op<T1, op_htrans>& X)
   {
@@ -76,6 +55,7 @@ htrans(const Op<T1, op_htrans>& X)
   
   return X.m;
   }
+
 
 
 //! @}

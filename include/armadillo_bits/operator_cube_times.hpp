@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -23,75 +24,33 @@
 //! BaseCube * scalar
 template<typename T1>
 arma_inline
-const OpCube<T1, op_scalar_times>
+const eOpCube<T1, eop_cube_scalar_times>
 operator*
-(const BaseCube<typename T1::elem_type,T1>& X, const typename T1::elem_type k)
+  (
+  const BaseCube<typename T1::elem_type,T1>& X,
+  const typename T1::elem_type               k
+  )
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_scalar_times>(X.get_ref(),k);
+  return eOpCube<T1, eop_cube_scalar_times>(X.get_ref(), k);
   }
 
 
 
-//! op * scalar, level 2
+//! scalar * BaseCube
 template<typename T1>
 arma_inline
-const OpCube<T1,op_scalar_times>
+const eOpCube<T1, eop_cube_scalar_times>
 operator*
-(const OpCube<T1,op_scalar_times>& X, const typename T1::elem_type k)
+  (
+  const typename T1::elem_type               k,
+  const BaseCube<typename T1::elem_type,T1>& X
+  )
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_scalar_times>(X.m, X.aux * k);
-  }
-
-
-
-//! OpCube<cube,op_ones_full> * scalar
-template<typename eT>
-arma_inline
-Cube<eT>
-operator*
-(const OpCube<Cube<eT>,op_ones_full>& X, const eT k)
-  {
-  arma_extra_debug_sigprint();
-    
-  Cube<eT> tmp(X.aux_u32_a, X.aux_u32_b, X.aux_u32_c);
-  tmp.fill(k);
-  
-  return tmp;
-  }
-
-
-
-//! scalar * Base
-template<typename T1>
-arma_inline
-const OpCube<T1, op_scalar_times>
-operator*
-(const typename T1::elem_type k, const BaseCube<typename T1::elem_type,T1>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return OpCube<T1, op_scalar_times>(X.get_ref(),k);  // NOTE: order is swapped
-  }
-
-
-
-//! scalar * OpCube<cube,op_ones_full>
-template<typename eT>
-arma_inline
-Cube<eT>
-operator*
-(const eT k, const OpCube<Cube<eT>,op_ones_full>& X)
-  {
-  arma_extra_debug_sigprint();
-    
-  Cube<eT> tmp(X.aux_u32_a, X.aux_u32_b, X.aux_u32_c);
-  tmp.fill(k);
-  
-  return tmp;
+  return eOpCube<T1, eop_cube_scalar_times>(X.get_ref(), k);
   }
 
 

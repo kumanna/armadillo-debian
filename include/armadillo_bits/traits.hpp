@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -19,11 +20,11 @@
 
 template<typename T1>
 struct get_pod_type
-  { typedef T1 pod_type; };
+  { typedef T1 result; };
 
 template<typename T2>
 struct get_pod_type< std::complex<T2> >
-  { typedef T2 pod_type; };
+  { typedef T2 result; };
 
 
 
@@ -170,6 +171,49 @@ struct is_glue_times< Glue<T1,T2,glue_times> >
   { static const bool value = true; };
 
 
+template<typename T>
+struct is_glue_times_diag
+  { static const bool value = false; };
+
+template<typename T1, typename T2>
+struct is_glue_times_diag< Glue<T1,T2,glue_times_diag> >
+  { static const bool value = true; };
+
+
+
+//
+//
+//
+
+
+
+
+template<typename T>
+struct is_eOp
+  { static const bool value = false; };
+ 
+template<typename T1, typename eop_type>
+struct is_eOp< eOp<T1,eop_type> >
+  { static const bool value = true; };
+ 
+
+template<typename T>
+struct is_eGlue
+  { static const bool value = false; };
+ 
+template<typename T1, typename T2, typename eglue_type>
+struct is_eGlue< eGlue<T1,T2,eglue_type> >
+  { static const bool value = true; };
+
+
+template<typename T>
+struct is_op_diagmat
+  { static const bool value = false; };
+ 
+template<typename T1>
+struct is_op_diagmat< Op<T1,op_diagmat> >
+  { static const bool value = true; };
+
 //
 //
 //
@@ -184,6 +228,8 @@ struct is_arma_type
   || is_Glue<T1>::value
   || is_subview<T1>::value
   || is_diagview<T1>::value
+  || is_eOp<T1>::value
+  || is_eGlue<T1>::value
   ;
   };
 
@@ -504,312 +550,24 @@ struct is_non_integral
 
 
 //
-// type promotion
+
+class arma_junk_class;
 
 template<typename T1, typename T2>
-struct promote_type
+struct force_different_type
   {
-  inline static void check()
-    {
-    arma_static_assert<false> ERROR___UNSUPPORTED_MIXTURE_OF_TYPES;
-    ERROR___UNSUPPORTED_MIXTURE_OF_TYPES = ERROR___UNSUPPORTED_MIXTURE_OF_TYPES;
-    }
-  
-  typedef T1 result;
+  typedef T1 T1_result;
+  typedef T2 T2_result;
   };
+  
 
-
-
-struct promote_type_ok
+template<typename T1>
+struct force_different_type<T1,T1>
   {
-  arma_inline static void check() {}
+  typedef T1              T1_result;
+  typedef arma_junk_class T2_result;
   };
-
-
-template<typename T>
-struct promote_type<T, T> : public promote_type_ok { typedef T result; };
-
-template<typename T>
-struct promote_type<std::complex<T>,     T>      : public promote_type_ok { typedef std::complex<T> result; };
-
-template<>
-struct promote_type<std::complex<double>, std::complex<float> > : public promote_type_ok { typedef std::complex<double> result; };
-
-template<>
-struct promote_type<std::complex<double>, float> : public promote_type_ok { typedef std::complex<double> result; };
-
-template<>
-struct promote_type<std::complex<float>, double> : public promote_type_ok { typedef std::complex<double> result; };
-
-template<typename T>
-struct promote_type<std::complex<T>, s32> : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<std::complex<T>, u32> : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<std::complex<T>, s16> : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<std::complex<T>, u16> : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<std::complex<T>, s8>  : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<std::complex<T>, u8>  : public promote_type_ok { typedef std::complex<T> result; };
-
-
-template<> struct promote_type<double, float> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<double, s32  > : public promote_type_ok { typedef double result; };
-template<> struct promote_type<double, u32  > : public promote_type_ok { typedef double result; };
-template<> struct promote_type<double, s16  > : public promote_type_ok { typedef double result; };
-template<> struct promote_type<double, u16  > : public promote_type_ok { typedef double result; };
-template<> struct promote_type<double, s8   > : public promote_type_ok { typedef double result; };
-template<> struct promote_type<double, u8   > : public promote_type_ok { typedef double result; };
-
-template<> struct promote_type<float, s32> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<float, u32> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<float, s16> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<float, u16> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<float, s8 > : public promote_type_ok { typedef float result; };
-template<> struct promote_type<float, u8 > : public promote_type_ok { typedef float result; };
-
-template<> struct promote_type<s32, u32> : public promote_type_ok { typedef s32 result; };  // float ?  
-template<> struct promote_type<s32, s16> : public promote_type_ok { typedef s32 result; };
-template<> struct promote_type<s32, u16> : public promote_type_ok { typedef s32 result; };
-template<> struct promote_type<s32, s8 > : public promote_type_ok { typedef s32 result; };
-template<> struct promote_type<s32, u8 > : public promote_type_ok { typedef s32 result; };
-
-template<> struct promote_type<u32, s16> : public promote_type_ok { typedef s32 result; };  // float ?
-template<> struct promote_type<u32, u16> : public promote_type_ok { typedef u32 result; };
-template<> struct promote_type<u32, s8 > : public promote_type_ok { typedef s32 result; };  // float ?
-template<> struct promote_type<u32, u8 > : public promote_type_ok { typedef u32 result; };
-
-template<> struct promote_type<s16, u16> : public promote_type_ok { typedef s16 result; };  // s32 ?
-template<> struct promote_type<s16, s8 > : public promote_type_ok { typedef s16 result; };
-template<> struct promote_type<s16, u8 > : public promote_type_ok { typedef s16 result; };
-
-template<> struct promote_type<u16, s8> : public promote_type_ok { typedef s16 result; };  // s32 ?
-template<> struct promote_type<u16, u8> : public promote_type_ok { typedef u16 result; };
-
-template<> struct promote_type<s8, u8> : public promote_type_ok { typedef s8 result; };  // s16 ?
-
-
-
-
-//
-// type promotion, mirrored versions
-
-template<typename T>
-struct promote_type<T, std::complex<T> > : public promote_type_ok { typedef std::complex<T> result; };
-
-template<>
-struct promote_type<std::complex<float>, std::complex<double> > : public promote_type_ok { typedef std::complex<double> result; };
-
-template<>
-struct promote_type<float, std::complex<double> > : public promote_type_ok { typedef std::complex<double> result; };
-
-template<>
-struct promote_type<double, std::complex<float> > : public promote_type_ok { typedef std::complex<double> result; };
-
-template<typename T>
-struct promote_type<s32, std::complex<T> > : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<u32, std::complex<T> > : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<s16, std::complex<T> > : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<u16, std::complex<T> > : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<s8, std::complex<T> >  : public promote_type_ok { typedef std::complex<T> result; };
-
-template<typename T>
-struct promote_type<u8, std::complex<T> >  : public promote_type_ok { typedef std::complex<T> result; };
-
-
-template<> struct promote_type<float, double> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<s32  , double> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<u32  , double> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<s16  , double> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<u16  , double> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<s8   , double> : public promote_type_ok { typedef double result; };
-template<> struct promote_type<u8   , double> : public promote_type_ok { typedef double result; };
-
-template<> struct promote_type<s32, float> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<u32, float> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<s16, float> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<u16, float> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<s8 , float> : public promote_type_ok { typedef float result; };
-template<> struct promote_type<u8 , float> : public promote_type_ok { typedef float result; };
-
-template<> struct promote_type<u32, s32> : public promote_type_ok { typedef s32 result; };  // float ?  
-template<> struct promote_type<s16, s32> : public promote_type_ok { typedef s32 result; };
-template<> struct promote_type<u16, s32> : public promote_type_ok { typedef s32 result; };
-template<> struct promote_type<s8 , s32> : public promote_type_ok { typedef s32 result; };
-template<> struct promote_type<u8 , s32> : public promote_type_ok { typedef s32 result; };
-
-template<> struct promote_type<s16, u32> : public promote_type_ok { typedef s32 result; };  // float ?
-template<> struct promote_type<u16, u32> : public promote_type_ok { typedef u32 result; };
-template<> struct promote_type<s8 , u32> : public promote_type_ok { typedef s32 result; };  // float ?
-template<> struct promote_type<u8 , u32> : public promote_type_ok { typedef u32 result; };
-
-template<> struct promote_type<u16, s16> : public promote_type_ok { typedef s16 result; };  // s32 ?
-template<> struct promote_type<s8 , s16> : public promote_type_ok { typedef s16 result; };
-template<> struct promote_type<u8 , s16> : public promote_type_ok { typedef s16 result; };
-
-template<> struct promote_type<s8, u16> : public promote_type_ok { typedef s16 result; };  // s32 ?
-template<> struct promote_type<u8, u16> : public promote_type_ok { typedef u16 result; };
-
-template<> struct promote_type<u8, s8> : public promote_type_ok { typedef s8 result; };  // s16 ?
-
-
-//
-//
-//
-
-
-//! upgrade_val is used to ensure an operation such as multiplication is possible between two types.
-//! values are upgraded only where necessary.
-//! used by:
-//! glue_div::apply_mixed(), glue_minus::apply_mixed(), glue_plus::apply_mixed(), glue_schur::apply_mixed()
-//! and glue_times::apply_mixed() via gemm_mixed().
-
-template<typename T1, typename T2>
-struct upgrade_val
-  {
-  typedef typename promote_type<T1,T2>::result T1_result;
-  typedef typename promote_type<T1,T2>::result T2_result;
   
-  arma_inline
-  static
-  const typename promote_type<T1,T2>::result
-  apply(const T1 x)
-    {
-    typedef typename promote_type<T1,T2>::result out_type;
-    return out_type(x);
-    }
   
-  arma_inline
-  static
-  const typename promote_type<T1,T2>::result
-  apply(const T2 x)
-    {
-    typedef typename promote_type<T1,T2>::result out_type;
-    return out_type(x);
-    }
-  
-  };
-
-
-// template<>
-template<typename T>
-struct upgrade_val<T,T>
-  {
-  typedef T T1_result;
-  typedef T T2_result;
-  
-  arma_inline static const T& apply(const T& x) { return x; }
-  };
-
-
-//! upgrade a type to allow multiplication with a complex type
-//! e.g. the int in "int * complex<double>" is upgraded to a double
-// template<>
-template<typename T, typename T2>
-struct upgrade_val< std::complex<T>, T2 >
-  {
-  typedef std::complex<T> T1_result;
-  typedef T               T2_result;
-  
-  arma_inline static const std::complex<T>& apply(const std::complex<T>& x) { return x;    }
-  arma_inline static const T                apply(const T2 x)               { return T(x); }
-  };
-
-
-// template<>
-template<typename T1, typename T>
-struct upgrade_val< T1, std::complex<T> >
-  {
-  typedef T               T1_result;
-  typedef std::complex<T> T2_result;
-  
-  arma_inline static const T                apply(const T1 x)               { return T(x); }
-  arma_inline static const std::complex<T>& apply(const std::complex<T>& x) { return x;    }
-  };
-
-
-//! ensure we don't lose precision when multiplying a complex number with a higher precision real number
-template<>
-struct upgrade_val< std::complex<float>, double >
-  {
-  typedef std::complex<double> T1_result;
-  typedef double               T2_result;
-  
-  arma_inline static const std::complex<double> apply(const std::complex<float>& x) { return std::complex<double>(x); }
-  arma_inline static const double               apply(const double x)               { return x; }
-  };
-
-
-template<>
-struct upgrade_val< double, std::complex<float> >
-  {
-  typedef double              T1_result;
-  typedef std::complex<float> T2_result;
-  
-  arma_inline static const double               apply(const double x)               { return x; }
-  arma_inline static const std::complex<double> apply(const std::complex<float>& x) { return std::complex<double>(x); }
-  };
-
-
-//! ensure we don't lose precision when multiplying complex numbers with different underlying types
-template<>
-struct upgrade_val< std::complex<float>, std::complex<double> >
-  {
-  typedef std::complex<double> T1_result;
-  typedef std::complex<double> T2_result;
-  
-  arma_inline static const std::complex<double>  apply(const std::complex<float>&  x) { return std::complex<double>(x); }
-  arma_inline static const std::complex<double>& apply(const std::complex<double>& x) { return x; }
-  };
-
-
-template<>
-struct upgrade_val< std::complex<double>, std::complex<float> >
-  {
-  typedef std::complex<double> T1_result;
-  typedef std::complex<double> T2_result;
-  
-  arma_inline static const std::complex<double>& apply(const std::complex<double>& x) { return x; }
-  arma_inline static const std::complex<double>  apply(const std::complex<float>&  x) { return std::complex<double>(x); }
-  };
-
-
-//! work around limitations in the complex class (at least as present in gcc 4.1 & 4.3)
-template<>
-struct upgrade_val< std::complex<double>, float >
-  {
-  typedef std::complex<double> T1_result;
-  typedef double               T2_result;
-  
-  arma_inline static const std::complex<double>& apply(const std::complex<double>& x) { return x; }
-  arma_inline static const double                apply(const float x)                 { return double(x); }
-  };
-
-
-template<>
-struct upgrade_val< float, std::complex<double> >
-  {
-  typedef double               T1_result;
-  typedef std::complex<double> T2_result;
-  
-  arma_inline static const double                apply(const float x)                 { return double(x); }
-  arma_inline static const std::complex<double>& apply(const std::complex<double>& x) { return x; }
-  };
-
 
 //! @}

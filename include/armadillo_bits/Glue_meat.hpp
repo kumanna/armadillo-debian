@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -26,8 +27,6 @@ Glue<T1,T2,glue_type>::Glue(const T1& in_A, const T2& in_B)
   , aux_u32(aux_u32)
   {
   arma_extra_debug_sigprint();
-  
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
   }
 
 
@@ -40,8 +39,6 @@ Glue<T1,T2,glue_type>::Glue(const T1& in_A, const T2& in_B, const u32 in_aux_u32
   , aux_u32(in_aux_u32)
   {
   arma_extra_debug_sigprint();
-  
-  isnt_same_type<typename T1::elem_type, typename T2::elem_type>::check();
   }
 
 

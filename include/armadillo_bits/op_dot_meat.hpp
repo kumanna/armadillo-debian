@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -21,6 +22,7 @@
 //! for two arrays
 template<typename eT>
 inline
+arma_hot
 arma_pure
 eT
 op_dot::direct_dot(const u32 n_elem, const eT* const A, const eT* const B)
@@ -50,6 +52,7 @@ op_dot::direct_dot(const u32 n_elem, const eT* const A, const eT* const B)
 //! for three arrays
 template<typename eT>
 inline
+arma_hot
 arma_pure
 eT
 op_dot::direct_dot(const u32 n_elem, const eT* const A, const eT* const B, const eT* C)
@@ -69,20 +72,64 @@ op_dot::direct_dot(const u32 n_elem, const eT* const A, const eT* const B, const
 
 
 template<typename T1, typename T2>
-inline
+arma_inline
+arma_hot
 typename T1::elem_type
-op_dot::apply(const Base<typename T1::elem_type,T1>& A_orig, const Base<typename T1::elem_type,T2>& B_orig)
+op_dot::apply(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
+  {
+  arma_extra_debug_sigprint();
+  
+  if( (is_Mat<T1>::value == true) && (is_Mat<T2>::value == true) )
+    {
+    return op_dot::apply_unwrap(X,Y);
+    }
+  else
+    {
+    return op_dot::apply_proxy(X,Y);
+    }
+  }
+
+
+
+template<typename T1, typename T2>
+arma_inline
+arma_hot
+typename T1::elem_type
+op_dot::apply_unwrap(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  const unwrap_to_elem_access<T1> A(A_orig.get_ref());
-  const unwrap_to_elem_access<T2> B(B_orig.get_ref());
-
-  arma_debug_check( (A.M.n_elem != B.M.n_elem), "dot(): objects must have the same number of elements" );
+  const unwrap<T1> tmp1(X.get_ref());
+  const unwrap<T2> tmp2(Y.get_ref());
   
-  const u32 n_elem = A.M.n_elem;
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+  
+  arma_debug_check( (A.n_elem != B.n_elem), "dot(): objects must have the same number of elements" );
+  
+  return op_dot::direct_dot(A.n_elem, A.mem, B.mem);
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+arma_hot
+typename T1::elem_type
+op_dot::apply_proxy(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
+  
+  arma_debug_check( (A.n_elem != B.n_elem), "dot(): objects must have the same number of elements" );
+  
+  const u32 n_elem = A.n_elem;
   eT val = eT(0);
   
   for(u32 i=0; i<n_elem; ++i)
@@ -95,27 +142,94 @@ op_dot::apply(const Base<typename T1::elem_type,T1>& A_orig, const Base<typename
 
 
 
+//
+
+
+
+template<typename T1, typename T2>
+arma_inline
+arma_hot
+typename T1::elem_type
+op_norm_dot::apply(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
+  {
+  arma_extra_debug_sigprint();
+  
+  if( (is_Mat<T1>::value == true) && (is_Mat<T2>::value == true) )
+    {
+    return op_norm_dot::apply_unwrap(X,Y);
+    }
+  else
+    {
+    return op_norm_dot::apply_proxy(X,Y);
+    }
+  }
+
+
+
 template<typename T1, typename T2>
 inline
+arma_hot
 typename T1::elem_type
-op_norm_dot::apply(const Base<typename T1::elem_type,T1>& A_orig, const Base<typename T1::elem_type,T2>& B_orig)
+op_norm_dot::apply_unwrap(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
   {
   arma_extra_debug_sigprint();
   
   typedef typename T1::elem_type eT;
   
-  const unwrap_to_elem_access<T1> A(A_orig.get_ref());
-  const unwrap_to_elem_access<T2> B(B_orig.get_ref());
-
-  arma_debug_check( (A.M.n_elem != B.M.n_elem), "norm_dot(): objects must have the same number of elements" );
+  const unwrap<T1> tmp1(X.get_ref());
+  const unwrap<T2> tmp2(Y.get_ref());
   
-  const u32 n_elem = A.M.n_elem;
+  const Mat<eT>& A = tmp1.M;
+  const Mat<eT>& B = tmp2.M;
+
+  arma_debug_check( (A.n_elem != B.n_elem), "norm_dot(): objects must have the same number of elements" );
+  
+  const eT* A_mem = A.memptr();
+  const eT* B_mem = B.memptr();
+  
+  const u32 N = A.n_elem;
   
   eT acc1 = eT(0);
   eT acc2 = eT(0);
   eT acc3 = eT(0);
   
-  for(u32 i=0; i<n_elem; ++i)
+  for(u32 i=0; i<N; ++i)
+    {
+    const eT tmpA = A_mem[i];
+    const eT tmpB = B_mem[i];
+    
+    acc1 += tmpA * tmpA;
+    acc2 += tmpB * tmpB;
+    acc3 += tmpA * tmpB;
+    }
+    
+  return acc3 / ( std::sqrt(acc1 * acc2) );   // TODO: this only makes sense for eT = float, double or complex
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+arma_hot
+typename T1::elem_type
+op_norm_dot::apply_proxy(const Base<typename T1::elem_type,T1>& X, const Base<typename T1::elem_type,T2>& Y)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT;
+  
+  const Proxy<T1> A(X.get_ref());
+  const Proxy<T2> B(Y.get_ref());
+
+  arma_debug_check( (A.n_elem != B.n_elem), "norm_dot(): objects must have the same number of elements" );
+  
+  const u32 N = A.n_elem;
+  
+  eT acc1 = eT(0);
+  eT acc2 = eT(0);
+  eT acc3 = eT(0);
+  
+  for(u32 i=0; i<N; ++i)
     {
     const eT tmpA = A[i];
     const eT tmpB = B[i];
@@ -127,6 +241,7 @@ op_norm_dot::apply(const Base<typename T1::elem_type,T1>& A_orig, const Base<typ
     
   return acc3 / ( std::sqrt(acc1 * acc2) );   // TODO: this only makes sense for eT = float, double or complex
   }
+
 
 
 //! @}

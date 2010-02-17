@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_atanh Class Reference</title>
+<title>Armadillo Technical: Glue&lt; T1, T2, glue_type &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,23 +29,151 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_atanh Class Reference<br/>
+<h1>Glue&lt; T1, T2, glue_type &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00715.html">Op_trig</a>]</small>
-</h1><!-- doxytag: class="op_atanh" -->
-<p><code>#include &lt;<a class="el" href="a00559_source.html">op_trig_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00802.html">Glue</a>]</small>
+</h1><!-- doxytag: class="Glue" --><!-- doxytag: inherits="Base&lt; T1::elem_type, Glue&lt; T1, T2, glue_type &gt; &gt;" -->
+<p>Class for storing data required for delayed binary operations, such as the operands (e.g. two matrices) and the binary operator (e.g. addition). The operands are stored as references (which can be optimised away), while the operator is "stored" through the template definition (glue_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than two matrices can be stored.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a00927.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00612_source.html">Glue_proto.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Glue&lt; T1, T2, glue_type &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00189.gif" usemap="#Glue&lt; T1, T2, glue_type &gt;_map" alt=""/>
+  <map id="Glue&lt; T1, T2, glue_type &gt;_map" name="Glue&lt; T1, T2, glue_type &gt;_map">
+<area href="a00054.html" alt="Base&lt; T1::elem_type, Glue&lt; T1, T2, glue_type &gt; &gt;" shape="rect" coords="0,0,301,24"/>
+</map>
+ </div>
+</div>
+
+<p><a href="a01046.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00715.html#ga6d3491870daddb67ce59ca2bfa7c6e4c">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00183.html">Op</a>&lt; T1, <a class="el" href="a00189.html">op_atanh</a> &gt; &amp;in)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00715.html#gaf0399ad6964a2b32cac885a8e935983e">apply</a> (<a class="el" href="a00043.html">Cube</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00241.html">OpCube</a>&lt; T1, <a class="el" href="a00189.html">op_atanh</a> &gt; &amp;in)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00189.html#a5c14af03281fb026c7a1e12c41100e8a">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00187.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00189.html#a5c14af03281fb026c7a1e12c41100e8a">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00189.html#a9f37e1e0af6b4766e737a849547650ad">pod_type</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00802.html#ga9ad833e067f7d4565af8ebf91f456dcb">Glue</a> (const T1 &amp;in_A, const T2 &amp;in_B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00802.html#gad8bc391729ccaa79628cccafb658d830">Glue</a> (const T1 &amp;in_A, const T2 &amp;in_B, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00802.html#ga256c787c4ac6df01fca21deb11a55523">~Glue</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00189.html#a22423031a9f05101ad23dfd897c6f1ab">A</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">first operand  <a href="#a22423031a9f05101ad23dfd897c6f1ab"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T2 &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00189.html#a1b3a6b5891d84915448f3084e66476c6">B</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">second operand  <a href="#a1b3a6b5891d84915448f3084e66476c6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00189.html#a1782dc0b650d7a8269ca2d6c75fb2901">aux_u32</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, u32 format  <a href="#a1782dc0b650d7a8269ca2d6c75fb2901"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T1, typename T2, typename glue_type&gt;<br/>
+ class Glue&lt; T1, T2, glue_type &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00559_source.html#l00155">155</a> of file <a class="el" href="a00559_source.html">op_trig_proto.hpp</a>.</p>
+<p>Class for storing data required for delayed binary operations, such as the operands (e.g. two matrices) and the binary operator (e.g. addition). The operands are stored as references (which can be optimised away), while the operator is "stored" through the template definition (glue_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than two matrices can be stored. </p>
+<p>For example, we could have: Glue&lt;Mat, Mat, glue_times&gt;</p>
+<p>Another example is: <a class="el" href="a00189.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>&lt; Op&lt;Mat, op_trans&gt;, Op&lt;Mat, op_inv&gt;, <a class="el" href="a00193.html" title="Class which implements the immediate multiplication of two or more matrices.">glue_times</a> &gt; </p>
+
+<p>Definition at line <a class="el" href="a00612_source.html#l00036">36</a> of file <a class="el" href="a00612_source.html">Glue_proto.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a5c14af03281fb026c7a1e12c41100e8a"></a><!-- doxytag: member="Glue::elem_type" ref="a5c14af03281fb026c7a1e12c41100e8a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename glue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html#a5c14af03281fb026c7a1e12c41100e8a">elem_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00612_source.html#l00040">40</a> of file <a class="el" href="a00612_source.html">Glue_proto.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f37e1e0af6b4766e737a849547650ad"></a><!-- doxytag: member="Glue::pod_type" ref="a9f37e1e0af6b4766e737a849547650ad" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename glue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt;<a class="el" href="a00189.html#a5c14af03281fb026c7a1e12c41100e8a">elem_type</a>&gt;::result <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html#a9f37e1e0af6b4766e737a849547650ad">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00612_source.html#l00041">41</a> of file <a class="el" href="a00612_source.html">Glue_proto.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a22423031a9f05101ad23dfd897c6f1ab"></a><!-- doxytag: member="Glue::A" ref="a22423031a9f05101ad23dfd897c6f1ab" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename glue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const T1&amp; <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html#a22423031a9f05101ad23dfd897c6f1ab">A</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>first operand </p>
+
+<p>Definition at line <a class="el" href="a00612_source.html#l00047">47</a> of file <a class="el" href="a00612_source.html">Glue_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00613_source.html#l00621">glue_times_diag::apply()</a>, <a class="el" href="a00613_source.html#l00026">glue_times_redirect&lt; N &gt;::apply()</a>, <a class="el" href="a00609_source.html#l00115">glue_kron::apply()</a>, <a class="el" href="a00607_source.html#l00134">glue_cov::apply()</a>, <a class="el" href="a00605_source.html#l00146">glue_cor::apply()</a>, <a class="el" href="a00555_source.html#l00071">as_scalar_redirect&lt; 2 &gt;::apply()</a>, and <a class="el" href="a00613_source.html#l00189">glue_times::apply_inplace_plus()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b3a6b5891d84915448f3084e66476c6"></a><!-- doxytag: member="Glue::B" ref="a1b3a6b5891d84915448f3084e66476c6" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename glue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const T2&amp; <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html#a1b3a6b5891d84915448f3084e66476c6">B</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>second operand </p>
+
+<p>Definition at line <a class="el" href="a00612_source.html#l00048">48</a> of file <a class="el" href="a00612_source.html">Glue_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00613_source.html#l00621">glue_times_diag::apply()</a>, <a class="el" href="a00613_source.html#l00026">glue_times_redirect&lt; N &gt;::apply()</a>, <a class="el" href="a00609_source.html#l00115">glue_kron::apply()</a>, <a class="el" href="a00607_source.html#l00134">glue_cov::apply()</a>, <a class="el" href="a00605_source.html#l00146">glue_cor::apply()</a>, <a class="el" href="a00555_source.html#l00071">as_scalar_redirect&lt; 2 &gt;::apply()</a>, and <a class="el" href="a00613_source.html#l00189">glue_times::apply_inplace_plus()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1782dc0b650d7a8269ca2d6c75fb2901"></a><!-- doxytag: member="Glue::aux_u32" ref="a1782dc0b650d7a8269ca2d6c75fb2901" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename glue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html#a1782dc0b650d7a8269ca2d6c75fb2901">aux_u32</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, u32 format </p>
+
+<p>Definition at line <a class="el" href="a00612_source.html#l00049">49</a> of file <a class="el" href="a00612_source.html">Glue_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00607_source.html#l00134">glue_cov::apply()</a>, and <a class="el" href="a00605_source.html#l00146">glue_cor::apply()</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

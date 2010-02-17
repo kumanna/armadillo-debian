@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -31,15 +32,13 @@ op_inv::apply(Mat<eT>& out, const Mat<eT>& A)
   
   arma_debug_check( !A.is_square(), "op_inv::apply(): matrix must be square" );
   
-  if(&out != &A)
-    {
-    auxlib::inv_noalias(out, A);
-    }
-  else
-    {
-    auxlib::inv_inplace(out);
-    }
+  const bool status = (&out != &A) ? auxlib::inv_noalias(out, A) : auxlib::inv_inplace(out);
   
+  if(status == false)
+    {
+    arma_warn( true, "inv(): matrix appears to be singular" );
+    out.set_size(0,0);
+    }
   }
 
 
@@ -48,125 +47,54 @@ op_inv::apply(Mat<eT>& out, const Mat<eT>& A)
 template<typename T1>
 inline
 void
-op_inv::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& in)
+op_inv::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& X)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(in.m);
-  
   typedef typename T1::elem_type eT;
-  const Mat<eT>& X = tmp.M;
   
-  op_inv::apply(out, X);
+  const strip_diagmat<T1> strip(X.m);
+  
+  if(strip.do_diagmat == true)
+    {
+    op_inv::apply_diag(out, strip.M);
+    }
+  else
+    {
+    const unwrap<T1>   tmp(X.m);
+    const Mat<eT>& A = tmp.M;
+  
+    op_inv::apply(out, A);
+    }
   }
 
 
 
-#if defined(ARMA_GOOD_COMPILER)
-
-
-
-//! inverse of diagmat(mat)
 template<typename T1>
 inline
 void
-op_inv::apply(Mat<typename T1::elem_type>& out, const Op< Op<T1,op_diagmat>, op_inv>& in)
+op_inv::apply_diag(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type, T1>& X)
   {
   arma_extra_debug_sigprint();
-  
-  const unwrap<T1> X_tmp(in.m.m);
   
   typedef typename T1::elem_type eT;
-  const Mat<eT>& X = X_tmp.M;
   
-  arma_debug_check( !X.is_square(), "op_inv::apply(): matrix must be square" );
+  const diagmat_proxy_check<T1> A(X.get_ref(), out);
   
-  if(&out != &X)
+  const u32 N = A.n_elem;
+  
+  out.set_size(N,N);
+  
+  for(u32 col=0; col<N; ++col)
     {
-    out.zeros(X.n_rows, X.n_rows);
+    for(u32 row=0; row<col; ++row)   { out.at(row,col) = eT(0); }
     
-    for(u32 i=0; i<X.n_rows; ++i)
-      {
-      out.at(i,i) = 1.0 / X.at(i,i);
-      }
-    }
-  else
-    {
-    podarray<eT> tmp(X.n_rows);
+    out.at(col,col) = eT(1) / A[col];
     
-    for(u32 i=0; i<X.n_rows; ++i)
-      {
-      tmp[i] = X.at(i,i);
-      }
-      
-    out.zeros(X.n_rows, X.n_rows);
-    
-    for(u32 i=0; i<X.n_rows; ++i)
-      {
-      out.at(i,i) = eT(1) / tmp.mem[i];
-      }
-    
+    for(u32 row=col+1; row<N; ++row) { out.at(row,col) = eT(0); }
     }
   
   }
-
-
-
-template<typename eT>
-inline
-void
-op_inv::apply_diagvec(Mat<eT>& out, const Mat<eT>& X)
-  {
-  arma_extra_debug_sigprint();
-
-  arma_debug_check( !X.is_vec(), "op_inv::apply_diagvec(): internal error: can't interpret as a vector");
-  
-  if(&out != &X)
-    {
-    out.zeros(X.n_elem, X.n_elem);
-    
-    for(u32 i=0; i<X.n_elem; ++i)
-      {
-      out.at(i,i) = eT(1) / X.mem[i];
-      }
-    }
-  else
-    {
-    podarray<eT> tmp(X.n_elem);
-    
-    for(u32 i=0; i<X.n_elem; ++i)
-      {
-      tmp[i] = X.mem[i];
-      }
-      
-    out.zeros(X.n_elem, X.n_elem);
-    
-    for(u32 i=0; i<X.n_elem; ++i)
-      {
-      out.at(i,i) = eT(1) / tmp.mem[i];
-      }
-    
-    }
-
-  }
-
-
-
-//! inverse of diagmat(colvec or rowvec)
-template<typename eT>
-inline
-void
-op_inv::apply(Mat<eT>& out, const Op< Op<Mat<eT>,op_diagmat_vec>, op_inv>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  const Mat<eT>& X = in.m.m;
-  op_inv::apply_diagvec(out, X);
-  }
-
-
-
-#endif
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: arma_scalar_only&lt; std::complex&lt; T &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: arma_ostream_state Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,38 +29,92 @@
   </div>
 </div>
 <div class="contents">
-<h1>arma_scalar_only&lt; std::complex&lt; T &gt; &gt; Struct Template Reference<br/>
+<h1>arma_ostream_state Class Reference<br/>
 <small>
-[<a class="el" href="a00624.html">Fn_as_scalar</a>]</small>
-</h1><!-- doxytag: class="arma_scalar_only&lt; std::complex&lt; T &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00423_source.html">fn_as_scalar.hpp</a>&gt;</code></p>
+[<a class="el" href="a00725.html">Arma_ostream</a>]</small>
+</h1><!-- doxytag: class="arma_ostream_state" -->
+<p><code>#include &lt;<a class="el" href="a00510_source.html">arma_ostream_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00764.html">List of all members.</a></p>
+<p><a href="a00884.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#afd4f717e319f06253ea4d7bd94ff75e1">result</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00725.html#ga8b91fb823ae840302fdda6b35cd18f3e">arma_ostream_state</a> (const std::ostream &amp;o)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00725.html#ga1a082d76629a45c9b080001b8f22194b">restore</a> (std::ostream &amp;o) const </td></tr>
+<tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const ios::fmtflags&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#ab0b426f8607783622e9d2b43e8314f3f">orig_flags</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const std::streamsize&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#a5a6a6bed718f477a6e8a8e36777e10e6">orig_precision</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const std::streamsize&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#a32f6f326c7bd989e9632470ddbc52249">orig_width</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00020.html#aecb77f06b929295dff3b538634a5c935">orig_fill</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T&gt;<br/>
- struct arma_scalar_only&lt; std::complex&lt; T &gt; &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00423_source.html#l00073">73</a> of file <a class="el" href="a00423_source.html">fn_as_scalar.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="afd4f717e319f06253ea4d7bd94ff75e1"></a><!-- doxytag: member="arma_scalar_only&lt; std::complex&lt; T &gt; &gt;::result" ref="afd4f717e319f06253ea4d7bd94ff75e1" args="" -->
+<p>Definition at line <a class="el" href="a00510_source.html#l00022">22</a> of file <a class="el" href="a00510_source.html">arma_ostream_proto.hpp</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ab0b426f8607783622e9d2b43e8314f3f"></a><!-- doxytag: member="arma_ostream_state::orig_flags" ref="ab0b426f8607783622e9d2b43e8314f3f" args="" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::complex&lt;T&gt; <a class="el" href="a00013.html">arma_scalar_only</a>&lt; std::complex&lt; T &gt; &gt;::<a class="el" href="a00020.html#afd4f717e319f06253ea4d7bd94ff75e1">result</a></td>
+          <td class="memname">const ios::fmtflags <a class="el" href="a00020.html#ab0b426f8607783622e9d2b43e8314f3f">arma_ostream_state::orig_flags</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00423_source.html#l00073">73</a> of file <a class="el" href="a00423_source.html">fn_as_scalar.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00510_source.html#l00026">26</a> of file <a class="el" href="a00510_source.html">arma_ostream_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00509_source.html#l00035">restore()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5a6a6bed718f477a6e8a8e36777e10e6"></a><!-- doxytag: member="arma_ostream_state::orig_precision" ref="a5a6a6bed718f477a6e8a8e36777e10e6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::streamsize <a class="el" href="a00020.html#a5a6a6bed718f477a6e8a8e36777e10e6">arma_ostream_state::orig_precision</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00510_source.html#l00027">27</a> of file <a class="el" href="a00510_source.html">arma_ostream_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00509_source.html#l00035">restore()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a32f6f326c7bd989e9632470ddbc52249"></a><!-- doxytag: member="arma_ostream_state::orig_width" ref="a32f6f326c7bd989e9632470ddbc52249" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::streamsize <a class="el" href="a00020.html#a32f6f326c7bd989e9632470ddbc52249">arma_ostream_state::orig_width</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00510_source.html#l00028">28</a> of file <a class="el" href="a00510_source.html">arma_ostream_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00509_source.html#l00035">restore()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecb77f06b929295dff3b538634a5c935"></a><!-- doxytag: member="arma_ostream_state::orig_fill" ref="aecb77f06b929295dff3b538634a5c935" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char <a class="el" href="a00020.html#aecb77f06b929295dff3b538634a5c935">arma_ostream_state::orig_fill</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00510_source.html#l00029">29</a> of file <a class="el" href="a00510_source.html">arma_ostream_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00509_source.html#l00035">restore()</a>.</p>
 
 </div>
 </div>

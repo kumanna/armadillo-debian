@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -22,10 +23,7 @@ class op_stddev
   public:
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Mat<eT>& X, const u32 norm_type, const u32 dim);
-  
-  template<typename T>
-  inline static void apply(Mat<T>& out, const Mat< std::complex<T> >& X, const u32 norm_type, const u32 dim);
+  inline static void apply(Mat< typename get_pod_type<eT>::result >& out, const Mat<eT>& X, const u32 norm_type, const u32 dim);
   
   };
 

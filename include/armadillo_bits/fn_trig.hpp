@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -27,199 +28,25 @@
 // cos
 
 template<typename T1>
-inline
-const Op<T1, op_cos>
+arma_inline
+const eOp<T1, eop_cos>
 cos(const Base<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return Op<T1, op_cos>(A.get_ref());
+  return eOp<T1, eop_cos>(A.get_ref());
   }
 
 
 
-//
-// acos
-
 template<typename T1>
-inline
-const Op<T1, op_acos>
-acos(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_acos>(A.get_ref());
-  }
-
-
-
-//
-// cosh
-
-template<typename T1>
-inline
-const Op<T1, op_cosh>
-cosh(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_cosh>(A.get_ref());
-  }
-
-
-
-//
-// acosh
-
-template<typename T1>
-inline
-const Op<T1, op_acosh>
-acosh(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_acosh>(A.get_ref());
-  }
-
-
-
-//
-// sin
-
-template<typename T1>
-inline
-const Op<T1, op_sin>
-sin(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_sin>(A.get_ref());
-  }
-
-
-
-//
-// asin
-
-template<typename T1>
-inline
-const Op<T1, op_asin>
-asin(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_asin>(A.get_ref());
-  }
-
-
-
-//
-// sinh
-
-template<typename T1>
-inline
-const Op<T1, op_sinh>
-sinh(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_sinh>(A.get_ref());
-  }
-
-
-
-//
-// asinh
-
-template<typename T1>
-inline
-const Op<T1, op_asinh>
-asinh(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_asinh>(A.get_ref());
-  }
-
-
-
-//
-// tan
-
-template<typename T1>
-inline
-const Op<T1, op_tan>
-tan(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_tan>(A.get_ref());
-  }
-
-
-
-//
-// atan
-
-template<typename T1>
-inline
-const Op<T1, op_atan>
-atan(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_atan>(A.get_ref());
-  }
-
-
-
-//
-// tanh
-
-template<typename T1>
-inline
-const Op<T1, op_tanh>
-tanh(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_tanh>(A.get_ref());
-  }
-
-
-
-//
-// atanh
-
-template<typename T1>
-inline
-const Op<T1, op_atanh>
-atanh(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return Op<T1, op_atanh>(A.get_ref());
-  }
-
-
-
-//
-//
-// handling of cubes
-
-
-
-//
-// cos
-
-template<typename T1>
-inline
-const OpCube<T1, op_cos>
+arma_inline
+const eOpCube<T1, eop_cube_cos>
 cos(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_cos>(A.get_ref());
+  return eOpCube<T1, eop_cube_cos>(A.get_ref());
   }
 
 
@@ -228,13 +55,25 @@ cos(const BaseCube<typename T1::elem_type,T1>& A)
 // acos
 
 template<typename T1>
-inline
-const OpCube<T1, op_acos>
+arma_inline
+const eOp<T1, eop_acos>
+acos(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_acos>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_acos>
 acos(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_acos>(A.get_ref());
+  return eOpCube<T1, eop_cube_acos>(A.get_ref());
   }
 
 
@@ -243,13 +82,25 @@ acos(const BaseCube<typename T1::elem_type,T1>& A)
 // cosh
 
 template<typename T1>
-inline
-const OpCube<T1, op_cosh>
+arma_inline
+const eOp<T1, eop_cosh>
+cosh(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_cosh>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_cosh>
 cosh(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_cosh>(A.get_ref());
+  return eOpCube<T1, eop_cube_cosh>(A.get_ref());
   }
 
 
@@ -258,13 +109,25 @@ cosh(const BaseCube<typename T1::elem_type,T1>& A)
 // acosh
 
 template<typename T1>
-inline
-const OpCube<T1, op_acosh>
+arma_inline
+const eOp<T1, eop_acosh>
+acosh(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_acosh>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_acosh>
 acosh(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_acosh>(A.get_ref());
+  return eOpCube<T1, eop_cube_acosh>(A.get_ref());
   }
 
 
@@ -273,13 +136,25 @@ acosh(const BaseCube<typename T1::elem_type,T1>& A)
 // sin
 
 template<typename T1>
-inline
-const OpCube<T1, op_sin>
+arma_inline
+const eOp<T1, eop_sin>
+sin(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_sin>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_sin>
 sin(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_sin>(A.get_ref());
+  return eOpCube<T1, eop_cube_sin>(A.get_ref());
   }
 
 
@@ -288,13 +163,25 @@ sin(const BaseCube<typename T1::elem_type,T1>& A)
 // asin
 
 template<typename T1>
-inline
-const OpCube<T1, op_asin>
+arma_inline
+const eOp<T1, eop_asin>
+asin(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_asin>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_asin>
 asin(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_asin>(A.get_ref());
+  return eOpCube<T1, eop_cube_asin>(A.get_ref());
   }
 
 
@@ -303,13 +190,25 @@ asin(const BaseCube<typename T1::elem_type,T1>& A)
 // sinh
 
 template<typename T1>
-inline
-const OpCube<T1, op_sinh>
+arma_inline
+const eOp<T1, eop_sinh>
+sinh(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_sinh>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_sinh>
 sinh(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_sinh>(A.get_ref());
+  return eOpCube<T1, eop_cube_sinh>(A.get_ref());
   }
 
 
@@ -318,13 +217,25 @@ sinh(const BaseCube<typename T1::elem_type,T1>& A)
 // asinh
 
 template<typename T1>
-inline
-const OpCube<T1, op_asinh>
+arma_inline
+const eOp<T1, eop_asinh>
+asinh(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_asinh>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_asinh>
 asinh(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_asinh>(A.get_ref());
+  return eOpCube<T1, eop_cube_asinh>(A.get_ref());
   }
 
 
@@ -333,13 +244,25 @@ asinh(const BaseCube<typename T1::elem_type,T1>& A)
 // tan
 
 template<typename T1>
-inline
-const OpCube<T1, op_tan>
+arma_inline
+const eOp<T1, eop_tan>
+tan(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_tan>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_tan>
 tan(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_tan>(A.get_ref());
+  return eOpCube<T1, eop_cube_tan>(A.get_ref());
   }
 
 
@@ -348,13 +271,25 @@ tan(const BaseCube<typename T1::elem_type,T1>& A)
 // atan
 
 template<typename T1>
-inline
-const OpCube<T1, op_atan>
+arma_inline
+const eOp<T1, eop_atan>
+atan(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_atan>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_atan>
 atan(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_atan>(A.get_ref());
+  return eOpCube<T1, eop_cube_atan>(A.get_ref());
   }
 
 
@@ -363,13 +298,25 @@ atan(const BaseCube<typename T1::elem_type,T1>& A)
 // tanh
 
 template<typename T1>
-inline
-const OpCube<T1, op_tanh>
+arma_inline
+const eOp<T1, eop_tanh>
+tanh(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_tanh>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_tanh>
 tanh(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_tanh>(A.get_ref());
+  return eOpCube<T1, eop_cube_tanh>(A.get_ref());
   }
 
 
@@ -378,13 +325,25 @@ tanh(const BaseCube<typename T1::elem_type,T1>& A)
 // atanh
 
 template<typename T1>
-inline
-const OpCube<T1, op_atanh>
+arma_inline
+const eOp<T1, eop_atanh>
+atanh(const Base<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_atanh>(A.get_ref());
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_cube_atanh>
 atanh(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_atanh>(A.get_ref());
+  return eOpCube<T1, eop_cube_atanh>(A.get_ref());
   }
 
 

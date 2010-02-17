@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -26,12 +27,16 @@ class diagview : public Base<eT, diagview<eT> >
   
   public:
   
-  typedef eT elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
+  typedef eT                                elem_type;
+  typedef typename get_pod_type<eT>::result pod_type;
 
   const u32 row_offset;
   const u32 col_offset;
+  
+  const u32 n_rows;  // equal to n_elem
+  const u32 n_cols;  // equal to one if n_elem > 0, otherwise equal to zero
   const u32 n_elem;
+  
   
   
   protected:
@@ -55,16 +60,22 @@ class diagview : public Base<eT, diagview<eT> >
   arma_inline eT& operator()(const u32 i);
   arma_inline eT  operator()(const u32 i) const;
 
-//   arma_inline double& at(const u32 in_n_row, in_n_col);
-//   arma_inline double  at(const u32 in_n_row, in_n_col) const;
-//    
-//   arma_inline double& operator()(const u32 in_n_row, in_n_col);
-//   arma_inline double  operator()(const u32 in_n_row, in_n_col) const;
+  arma_inline eT& at(const u32 in_n_row, const u32 in_n_col);
+  arma_inline eT  at(const u32 in_n_row, const u32 in_n_col) const;
+   
+  arma_inline eT& operator()(const u32 in_n_row, const u32 in_n_col);
+  arma_inline eT  operator()(const u32 in_n_row, const u32 in_n_col) const;
   
   inline void fill(const eT val);
   inline void zeros();
+  inline void ones();
   
   inline static void extract(Mat<eT>& out, const diagview& in);
+  
+  inline static void  plus_inplace(Mat<eT>& out, const diagview& in);
+  inline static void minus_inplace(Mat<eT>& out, const diagview& in);
+  inline static void schur_inplace(Mat<eT>& out, const diagview& in);
+  inline static void   div_inplace(Mat<eT>& out, const diagview& in);
   
   
   private:

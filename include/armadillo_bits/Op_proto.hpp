@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -33,15 +34,13 @@ class Op : public Base<typename T1::elem_type, Op<T1, op_type> >
   {
   public:
   
-  typedef typename T1::elem_type elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
-
+  typedef typename T1::elem_type                   elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
 
   inline explicit Op(const T1& in_m);
   inline          Op(const T1& in_m, const elem_type in_aux);
   inline          Op(const T1& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b);
   inline          Op(const T1& in_m, const elem_type in_aux, const u32 in_aux_u32_a, const u32 in_aux_u32_b);
-  inline          Op(const u32 in_aux_u32_a, const u32 in_aux_u32_b, const char junk);
   inline         ~Op();
     
   

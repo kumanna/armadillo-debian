@@ -1,5 +1,5 @@
-// Copyright (C) 2009 NICTA
-// Copyright (C) 2009 Dimitrios Bouzas
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -23,7 +23,7 @@
 //! \brief
 //! delayed 'repeat matrix' construction of a matrix
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_repmat>
 repmat(const Base<typename T1::elem_type,T1>& A, const u32 r, const u32 c)
   {

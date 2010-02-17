@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -52,7 +53,7 @@ class running_stat
   {
   public:
   
-  typedef typename get_pod_type<eT>::pod_type T;
+  typedef typename get_pod_type<eT>::result T;
   
   
   inline ~running_stat();

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -25,21 +26,20 @@
 //! The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'.
 //! Note that as 'Glue' can be one of the operands, more than two matrices can be stored.
 //!
-//! For example, we could have: Glue< Glue<Mat, Mat, glue_times>, Mat, glue_plus>
+//! For example, we could have: Glue<Mat, Mat, glue_times>
 //! 
 //! Another example is: Glue< Op<Mat, op_trans>, Op<Mat, op_inv>, glue_times >
-//!
-//! More complicated example: Glue< Op< Glue<Mat, Mat, glue_plus>, op_trans>, Op<Mat, op_inv>, glue_times >
-//! 
+
+
 
 template<typename T1, typename T2, typename glue_type>
 class Glue : public Base<typename T1::elem_type, Glue<T1, T2, glue_type> >
   {
   public:
   
-  typedef typename T1::elem_type elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
-
+  typedef typename T1::elem_type                   elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
+  
   arma_inline  Glue(const T1& in_A, const T2& in_B);
   arma_inline  Glue(const T1& in_A, const T2& in_B, const u32 in_aux_u32);
   arma_inline ~Glue();

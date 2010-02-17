@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -16,216 +17,94 @@
 //! \addtogroup operator_cube_div
 //! @{
 
+  
 
-
-//! Base / scalar
+//! BaseCube / scalar
 template<typename T1>
 arma_inline
-const OpCube<T1, op_scalar_div_post>
+const eOpCube<T1, eop_cube_scalar_div_post>
 operator/
-(const BaseCube<typename T1::elem_type,T1>& X, const typename T1::elem_type k)
+  (
+  const BaseCube<typename T1::elem_type,T1>& X,
+  const typename T1::elem_type               k
+  )
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_scalar_div_post>(X.get_ref(), k);
+  return eOpCube<T1, eop_cube_scalar_div_post>(X.get_ref(), k);
   }
 
 
 
-//! OpCube<mat,op_ones_full> / scalar
-template<typename eT>
-arma_inline
-Cube<eT>
-operator/
-(const OpCube<Cube<eT>,op_ones_full>& X, const eT k)
-  {
-  arma_extra_debug_sigprint();
-  
-  Cube<eT> tmp(X.aux_u32_a, X.aux_u32_b, X.aux_u32_c);
-  tmp.fill( eT(1)/k );
-  
-  return tmp;
-  }
-
-
-
-//! scalar / Base
+//! scalar / BaseCube
 template<typename T1>
 arma_inline
-const OpCube<T1, op_scalar_div_pre>
+const eOpCube<T1, eop_cube_scalar_div_pre>
 operator/
-(const typename T1::elem_type k, const BaseCube<typename T1::elem_type,T1>& X)
+  (
+  const typename T1::elem_type               k,
+  const BaseCube<typename T1::elem_type,T1>& X
+  )
   {
   arma_extra_debug_sigprint();
   
-  return OpCube<T1, op_scalar_div_pre>(X.get_ref(), k);
+  return eOpCube<T1, eop_cube_scalar_div_pre>(X.get_ref(), k);
   }
 
 
 
-//
-// element-wise division of Base objects with different element types
-//
-
-
-
-//! Base / Base
-template<typename eT1, typename T1, typename eT2, typename T2>
+//! element-wise division of BaseCube objects with same element type
+template<typename T1, typename T2>
 arma_inline
-Cube<typename promote_type<eT1,eT2>::result>
+const eGlueCube<T1, T2, eglue_cube_div>
 operator/
-(const BaseCube<eT1,T1>& X, const BaseCube<eT2,T2>& Y)
+  (
+  const BaseCube<typename T1::elem_type,T1>& X,
+  const BaseCube<typename T1::elem_type,T2>& Y
+  )
   {
   arma_extra_debug_sigprint();
+  
+  return eGlueCube<T1, T2, eglue_cube_div>(X.get_ref(), Y.get_ref());
+  }
+
+
+
+//! element-wise division of Base objects with different element types
+template<typename T1, typename T2>
+arma_inline
+Cube<typename promote_type<typename T1::elem_type, typename T2::elem_type>::result>
+operator/
+  (
+  const BaseCube< typename force_different_type<typename T1::elem_type, typename T2::elem_type>::T1_result, T1>& X,
+  const BaseCube< typename force_different_type<typename T1::elem_type, typename T2::elem_type>::T2_result, T2>& Y
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename T1::elem_type eT1;
+  typedef typename T2::elem_type eT2;
+  
+  typedef typename promote_type<eT1,eT2>::result out_eT;
   
   promote_type<eT1,eT2>::check();
   
-  const unwrap_cube<T1> tmp1(X.get_ref());
-  const unwrap_cube<T2> tmp2(Y.get_ref());
+  const ProxyCube<T1> A(X.get_ref());
+  const ProxyCube<T2> B(Y.get_ref());
   
-  const Cube<eT1>& A = tmp1.M;
-  const Cube<eT2>& B = tmp2.M;
+  arma_debug_assert_same_size(A, B, "element-wise cube division");
   
-  Cube< typename promote_type<eT1,eT2>::result > out;
-  glue_cube_div::apply_mixed(out, A, B);
+  Cube<out_eT> out(A.n_rows, A.n_cols, A.n_slices);
+
+        out_eT* out_mem = out.memptr();
+  const u32     n_elem  = out.n_elem;
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    out_mem[i] = upgrade_val<eT1,eT2>::apply(A[i]) / upgrade_val<eT1,eT2>::apply(B[i]);
+    }
   
   return out;
-  }
-
-
-
-//
-// element-wise division of Base objects with same element types
-//
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<std::complex<double>,T1>& X, const BaseCube<std::complex<double>,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<std::complex<float>,T1>& X, const BaseCube<std::complex<float>,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<double,T1>& X, const BaseCube<double,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<float,T1>& X, const BaseCube<float,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<s32,T1>& X, const BaseCube<s32,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<u32,T1>& X, const BaseCube<u32,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<s16,T1>& X, const BaseCube<s16,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<u16,T1>& X, const BaseCube<u16,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<s8,T1>& X, const BaseCube<s8,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
-  }
-
-
-
-template<typename T1, typename T2>
-arma_inline
-const GlueCube<T1, T2, glue_cube_div>
-operator/
-(const BaseCube<u8,T1>& X, const BaseCube<u8,T2>& Y)
-  {
-  arma_extra_debug_sigprint();
-  
-  return GlueCube<T1, T2, glue_cube_div>(X.get_ref(), Y.get_ref());
   }
 
 

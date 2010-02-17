@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -179,22 +180,20 @@ subview<eT>::operator= (const Base<eT,T1>& in)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(in.get_ref());
+  const Proxy<T1> x(in.get_ref());
   
-  const Mat<eT>&     x = tmp.M;
-        subview<eT>& t = *this;
+  subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "insert into submatrix");
   
   
   for(u32 col = 0; col<t.n_cols; ++col)
     {
-          eT* t_coldata = t.colptr(col);
-    const eT* x_coldata = x.colptr(col);
+    eT* t_coldata = t.colptr(col);
     
     for(u32 row = 0; row<t.n_rows; ++row)
       {
-      t_coldata[row] = x_coldata[row];
+      t_coldata[row] = x.at(row,col);
       }
       
     }
@@ -210,22 +209,20 @@ subview<eT>::operator+= (const Base<eT,T1>& in)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(in.get_ref());
+  const Proxy<T1> x(in.get_ref());
   
-  const Mat<eT>&     x = tmp.M;
-        subview<eT>& t = *this;
+  subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix addition");
   
   
   for(u32 col = 0; col<t.n_cols; ++col)
     {
-          eT* t_coldata = t.colptr(col);
-    const eT* x_coldata = x.colptr(col);
+    eT* t_coldata = t.colptr(col);
     
     for(u32 row = 0; row<t.n_rows; ++row)
       {
-      t_coldata[row] += x_coldata[row];
+      t_coldata[row] += x.at(row,col);
       }
     }
   
@@ -241,22 +238,20 @@ subview<eT>::operator-= (const Base<eT,T1>& in)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(in.get_ref());
+  const Proxy<T1> x(in.get_ref());
   
-  const Mat<eT>&     x = tmp.M;
-        subview<eT>& t = *this;
+  subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix subtraction");
   
   
   for(u32 col = 0; col<t.n_cols; ++col)
     {
-          eT* t_coldata = t.colptr(col);
-    const eT* x_coldata = x.colptr(col);
+     eT* t_coldata = t.colptr(col);
     
     for(u32 row = 0; row<t.n_rows; ++row)
       {
-      t_coldata[row] -= x_coldata[row];
+      t_coldata[row] -= x.at(row,col);
       }
     }
   
@@ -272,22 +267,20 @@ subview<eT>::operator%= (const Base<eT,T1>& in)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(in.get_ref());
+  const Proxy<T1> x(in.get_ref());
   
-  const Mat<eT>&     x = tmp.M;
-        subview<eT>& t = *this;
+  subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "matrix schur product");
   
   
   for(u32 col = 0; col<t.n_cols; ++col)
     {
-          eT* t_coldata = t.colptr(col);
-    const eT* x_coldata = x.colptr(col);
+    eT* t_coldata = t.colptr(col);
     
     for(u32 row = 0; row<t.n_rows; ++row)
       {
-      t_coldata[row] *= x_coldata[row];
+      t_coldata[row] *= x.at(row,col);
       }
     }
   
@@ -303,22 +296,20 @@ subview<eT>::operator/= (const Base<eT,T1>& in)
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(in.get_ref());
+  const Proxy<T1> x(in.get_ref());
   
-  const Mat<eT>&     x = tmp.M;
-        subview<eT>& t = *this;
+  subview<eT>& t = *this;
   
   arma_debug_assert_same_size(t, x, "element-wise matrix division");
   
   
   for(u32 col = 0; col<t.n_cols; ++col)
     {
-          eT* t_coldata = t.colptr(col);
-    const eT* x_coldata = x.colptr(col);
+    eT* t_coldata = t.colptr(col);
     
     for(u32 row = 0; row<t.n_rows; ++row)
       {
-      t_coldata[row] /= x_coldata[row];
+      t_coldata[row] /= x.at(row,col);
       }
     }
   
@@ -444,7 +435,7 @@ subview<eT>::operator-= (const subview<eT>& x_in)
 template<typename eT>
 inline
 void
-subview<eT>::operator%= (const subview<eT>& x_in)
+subview<eT>::operator%= (const subview& x_in)
   {
   arma_extra_debug_sigprint();
   
@@ -483,7 +474,7 @@ subview<eT>::operator%= (const subview<eT>& x_in)
 template<typename eT>
 inline
 void
-subview<eT>::operator/= (const subview<eT>& x_in)
+subview<eT>::operator/= (const subview& x_in)
   {
   arma_extra_debug_sigprint();
   
@@ -612,7 +603,7 @@ eT&
 subview<eT>::operator()(const u32 in_row, const u32 in_col)
   {
   arma_check( (m_ptr == 0), "subview::operator(): matrix is read-only");
-  arma_debug_check( ( (n_elem == 0) || (in_row >= n_rows) || (in_col >= n_cols)), "subview::operator(): index out of bounds");
+  arma_debug_check( ((in_row >= n_rows) || (in_col >= n_cols)), "subview::operator(): index out of bounds");
   
   const u32 index = (in_col + aux_col1)*m.n_rows + aux_row1 + in_row;
   return access::rw( (*m_ptr).mem[index] );
@@ -625,7 +616,7 @@ arma_inline
 eT
 subview<eT>::operator()(const u32 in_row, const u32 in_col) const
   {
-  arma_debug_check( ( (n_elem == 0) || (in_row >= n_rows) || (in_col >= n_cols)), "subview::operator(): index out of bounds");
+  arma_debug_check( ((in_row >= n_rows) || (in_col >= n_cols)), "subview::operator(): index out of bounds");
   
   const u32 index = (in_col + aux_col1)*m.n_rows + aux_row1 + in_row;
   return m.mem[index];
@@ -814,35 +805,19 @@ subview<eT>::plus_inplace(Mat<eT>& out, const subview<eT>& in)
   
   arma_debug_assert_same_size(out, in, "matrix addition");
   
-  if(&out != &in.m)
-    {
-    const u32 n_rows = out.n_rows;
-    const u32 n_cols = out.n_cols;
-    
-    for(u32 col = 0; col<n_cols; ++col)
-      {
-            eT* out_coldata = out.colptr(col);
-      const eT*  in_coldata =  in.colptr(col);
-      
-      for(u32 row = 0; row<n_rows; ++row)
-        {
-        out_coldata[row] += in_coldata[row];
-        }
-      }
-    }
-  else
-    {
-    // X += X.submat(...)
-    // this only makes sense if X and X.submat(...) are the same size
-    
-    eT* out_mem = out.memptr();
-    
-    for(u32 i=0; i<out.n_elem; ++i)
-      {
-      out_mem[i] *= eT(2);
-      }
-    }
+  const u32 n_rows = out.n_rows;
+  const u32 n_cols = out.n_cols;
   
+  for(u32 col = 0; col<n_cols; ++col)
+    {
+          eT* out_coldata = out.colptr(col);
+    const eT*  in_coldata =  in.colptr(col);
+    
+    for(u32 row = 0; row<n_rows; ++row)
+      {
+      out_coldata[row] += in_coldata[row];
+      }
+    }
   }
 
 
@@ -857,50 +832,19 @@ subview<eT>::minus_inplace(Mat<eT>& out, const subview<eT>& in)
   
   arma_debug_assert_same_size(out, in, "matrix subtraction");
   
-  if(&out != &in.m)
+  const u32 n_rows = out.n_rows;
+  const u32 n_cols = out.n_cols;
+  
+  for(u32 col = 0; col<n_cols; ++col)
     {
-    const u32 n_rows = out.n_rows;
-    const u32 n_cols = out.n_cols;
+          eT* out_coldata = out.colptr(col);
+    const eT*  in_coldata =  in.colptr(col);
     
-    for(u32 col = 0; col<n_cols; ++col)
+    for(u32 row = 0; row<n_rows; ++row)
       {
-            eT* out_coldata = out.colptr(col);
-      const eT*  in_coldata =  in.colptr(col);
-      
-      for(u32 row = 0; row<n_rows; ++row)
-        {
-        out_coldata[row] -= in_coldata[row];
-        }
+      out_coldata[row] -= in_coldata[row];
       }
     }
-  else
-    {
-    out.zeros();
-    }
-  
-  }
-
-
-
-//! X *= Y.submat(...)
-template<typename eT>
-inline
-void
-subview<eT>::times_inplace(Mat<eT>& out, const subview<eT>& in)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_debug_assert_mul_size(out, in, "matrix multiply");
-
-  if(&out != &in.m)
-    {
-    glue_times::apply_inplace(out, Mat<eT>(in));
-    }
-  else
-    {
-    glue_times::apply_inplace(out, out);
-    }
-  
   }
 
 
@@ -915,33 +859,19 @@ subview<eT>::schur_inplace(Mat<eT>& out, const subview<eT>& in)
   
   arma_debug_assert_same_size(out, in, "matrix schur product");
   
-  if(&out != &in.m)
-    {
-    const u32 n_rows = out.n_rows;
-    const u32 n_cols = out.n_cols;
-    
-    for(u32 col = 0; col<n_cols; ++col)
-      {
-            eT* out_coldata = out.colptr(col);
-      const eT*  in_coldata =  in.colptr(col);
-      
-      for(u32 row = 0; row<n_rows; ++row)
-        {
-        out_coldata[row] *= in_coldata[row];
-        }
-      }
-    }
-  else
-    {
-    eT* out_mem = out.memptr();
-    
-    for(u32 i=0; i<out.n_elem; ++i)
-      {
-      const eT tmp = out_mem[i];
-      out_mem[i] = tmp*tmp;
-      }
-    }
+  const u32 n_rows = out.n_rows;
+  const u32 n_cols = out.n_cols;
   
+  for(u32 col = 0; col<n_cols; ++col)
+    {
+          eT* out_coldata = out.colptr(col);
+    const eT*  in_coldata =  in.colptr(col);
+    
+    for(u32 row = 0; row<n_rows; ++row)
+      {
+      out_coldata[row] *= in_coldata[row];
+      }
+    }
   }
 
 
@@ -956,33 +886,19 @@ subview<eT>::div_inplace(Mat<eT>& out, const subview<eT>& in)
   
   arma_debug_assert_same_size(out, in, "element-wise matrix division");
   
-  if(&out != &in.m)
-    {
-    const u32 n_rows = out.n_rows;
-    const u32 n_cols = out.n_cols;
-    
-    for(u32 col = 0; col<n_cols; ++col)
-      {
-            eT* out_coldata = out.colptr(col);
-      const eT*  in_coldata =  in.colptr(col);
-      
-      for(u32 row = 0; row<n_rows; ++row)
-        {
-        out_coldata[row] /= in_coldata[row];
-        }
-      }
-    }
-  else
-    {
-    eT* out_mem = out.memptr();
-    
-    for(u32 i=0; i<out.n_elem; ++i)
-      {
-      const eT tmp = out_mem[i];
-      out_mem[i] = tmp/tmp;  // using tmp/tmp as tmp might be zero
-      }
-    }
+  const u32 n_rows = out.n_rows;
+  const u32 n_cols = out.n_cols;
   
+  for(u32 col = 0; col<n_cols; ++col)
+    {
+          eT* out_coldata = out.colptr(col);
+    const eT*  in_coldata =  in.colptr(col);
+    
+    for(u32 row = 0; row<n_rows; ++row)
+      {
+      out_coldata[row] /= in_coldata[row];
+      }
+    }
   }
 
 

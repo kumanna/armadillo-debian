@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_stddev Class Reference</title>
+<title>Armadillo Technical: is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,29 +29,41 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_stddev Class Reference<br/>
+<h1>is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00712.html">Op_stddev</a>]</small>
-</h1><!-- doxytag: class="op_stddev" -->
-<p>Class for finding the standard deviation.  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00861.html">Traits</a>]</small>
+</h1><!-- doxytag: class="is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00708_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00553_source.html">op_stddev_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a00970.html">List of all members.</a></p>
+<p><a href="a01089.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00712.html#ga3b439b8a56b2e9eeb3eb166fde960472">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00176.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">For each row or for each column, find the standard deviation. The result is stored in a dense matrix that has either one column or one row. The dimension for which the standard deviations are found is set via the <a class="el" href="a00657.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev()</a> function.  <a href="a00712.html#ga3b439b8a56b2e9eeb3eb166fde960472"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00712.html#ga151a559dfdf63e3ca9257055c18de472">apply</a> (<a class="el" href="a00176.html">Mat</a>&lt; T &gt; &amp;out, const <a class="el" href="a00176.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type, const <a class="el" href="a00743.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">implementation for complex numbers  <a href="a00712.html#ga151a559dfdf63e3ca9257055c18de472"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00232.html#a0d56e1f233d1978e5dc32874f7c702bf">value</a> = true</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Class for finding the standard deviation. </p>
+<h3>template&lt;typename T1, typename T2, typename glue_type&gt;<br/>
+ struct is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00553_source.html#l00020">20</a> of file <a class="el" href="a00553_source.html">op_stddev_proto.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00708_source.html#l00152">152</a> of file <a class="el" href="a00708_source.html">traits.hpp</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a0d56e1f233d1978e5dc32874f7c702bf"></a><!-- doxytag: member="is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;::value" ref="a0d56e1f233d1978e5dc32874f7c702bf" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00231.html">is_Glue</a>&lt; <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt; &gt;::<a class="el" href="a00232.html#a0d56e1f233d1978e5dc32874f7c702bf">value</a> = true<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00708_source.html#l00153">153</a> of file <a class="el" href="a00708_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

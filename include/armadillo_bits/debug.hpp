@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -15,6 +16,28 @@
 
 //! \addtogroup debug
 //! @{
+
+
+//
+// arma_stop
+
+//! print a message to std::cout and/or throw a run-time error exception
+template<typename T1>
+inline
+void
+arma_stop(const T1& x)
+  {
+  std::cerr.flush();
+  std::cout.flush();
+  
+  std::cout << '\n';
+  std::cout << "run-time error: " << x << '\n';
+  std::cout << '\n';
+  std::cout.flush();
+  
+  throw std::runtime_error("");
+  }
+
 
 
 //
@@ -206,7 +229,7 @@ arma_warn(const bool state, const T1& x, const T2& y)
 //
 // arma_check
 
-//! if state is true, throw a run-time error exception
+//! if state is true, abort program
 template<typename T1>
 inline
 void
@@ -215,7 +238,7 @@ arma_check(const bool state, const T1& x)
   {
   if(state==true)
     {
-    throw std::runtime_error(x);
+    arma_stop(x);
     }
   }
 
@@ -228,7 +251,7 @@ arma_check(const bool state, const T1& x, const T2& y)
   {
   if(state==true)
     {
-    throw std::runtime_error( std::string(x) + std::string(y) );
+    arma_stop( std::string(x) + std::string(y) );
     }
   }
 
@@ -242,7 +265,7 @@ arma_check(const bool state, const T1& x, const T2& y)
     {
     if(state==true)
       {
-      throw std::runtime_error(str(x));
+      arma_stop(str(x));
       }
     }
 #else
@@ -254,7 +277,7 @@ arma_check(const bool state, const T1& x, const T2& y)
     {
     if(state==true)
       {
-      throw std::runtime_error(str(x));
+      arma_stop(str(x));
       }
     }
 #endif
@@ -286,16 +309,13 @@ arma_assert_same_size(const u32 A_n_rows, const u32 A_n_cols, const u32 B_n_rows
   {
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
 
 
-//! if given matrices have different sizes, throw a run-time error exception
+//! stop if given matrices have different sizes
 template<typename eT1, typename eT2>
 inline
 void
@@ -304,44 +324,22 @@ arma_assert_same_size(const Mat<eT1>& A, const Mat<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
 
 
+//! stop if given proxies have different sizes
 template<typename eT1, typename eT2>
 inline
 void
 arma_hot
-arma_assert_same_size(const Mat<eT1>& A, const subview<eT2>& B, const char* x)
+arma_assert_same_size(const Proxy<eT1>& A, const Proxy<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
-    }
-  }
-
-
-
-template<typename eT1, typename eT2>
-inline
-void
-arma_hot
-arma_assert_same_size(const subview<eT1>& A, const Mat<eT2>& B, const char* x)
-  {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
-    {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -355,10 +353,91 @@ arma_assert_same_size(const subview<eT1>& A, const subview<eT2>& B, const char* 
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Mat<eT1>& A, const subview<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+    {
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const subview<eT1>& A, const Mat<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+    {
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Mat<eT1>& A, const Proxy<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+    {
+    arma_stop ( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Proxy<eT1>& A, const Mat<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+    {
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const Proxy<eT1>& A, const subview<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+    {
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const subview<eT1>& A, const Proxy<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+    {
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -389,16 +468,13 @@ arma_assert_same_size(const u32 A_n_rows, const u32 A_n_cols, const u32 A_n_slic
   {
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) || (A_n_slices != B_n_slices) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x) );
     }
   }
 
 
 
-//! if given cubes have different sizes, throw a run-time error exception
+//! stop if given cubes have different sizes
 template<typename eT1, typename eT2>
 inline
 void
@@ -407,10 +483,7 @@ arma_assert_same_size(const Cube<eT1>& A, const Cube<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -424,10 +497,7 @@ arma_assert_same_size(const Cube<eT1>& A, const subview_cube<eT2>& B, const char
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -441,10 +511,7 @@ arma_assert_same_size(const subview_cube<eT1>& A, const Cube<eT2>& B, const char
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -458,10 +525,22 @@ arma_assert_same_size(const subview_cube<eT1>& A, const subview_cube<eT2>& B, co
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices))
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
+    }
+  }
+
+
+
+//! stop if given cube proxies have different sizes
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_same_size(const ProxyCube<eT1>& A, const ProxyCube<eT2>& B, const char* x)
+  {
+  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices))
+    {
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -480,10 +559,7 @@ arma_assert_same_size(const Cube<eT1>& A, const Mat<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != 1) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x) );
     }
   }
 
@@ -497,10 +573,7 @@ arma_assert_same_size(const Mat<eT1>& A, const Cube<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (1 != B.n_slices) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -514,10 +587,7 @@ arma_assert_same_size(const subview_cube<eT1>& A, const Mat<eT2>& B, const char*
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != 1) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x) );
     }
   }
 
@@ -531,10 +601,7 @@ arma_assert_same_size(const Mat<eT1>& A, const subview_cube<eT2>& B, const char*
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (1 != B.n_slices) )
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -552,16 +619,13 @@ arma_assert_mul_size(const u32 A_n_rows, const u32 A_n_cols, const u32 B_n_rows,
   {
   if(A_n_cols != B_n_rows)
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
 
 
-//! if given matrices are incompatible for multiplication, throw a run-time error exception
+//! stop if given matrices are incompatible for multiplication
 template<typename eT1, typename eT2>
 inline
 void
@@ -570,10 +634,28 @@ arma_assert_mul_size(const Mat<eT1>& A, const Mat<eT2>& B, const char* x)
   {
   if(A.n_cols != B.n_rows)
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    }
+  }
+
+
+
+//! stop if given matrices are incompatible for multiplication
+template<typename eT1, typename eT2>
+inline
+void
+arma_hot
+arma_assert_mul_size(const Mat<eT1>& A, const Mat<eT2>& B, const bool do_trans_A, const bool do_trans_B, const char* x)
+  {
+  const u32 final_A_n_cols = (do_trans_A == false) ? A.n_cols : A.n_rows;
+  const u32 final_B_n_rows = (do_trans_B == false) ? B.n_rows : B.n_cols;
+    
+  if(final_A_n_cols != final_B_n_rows)
+    {
+    const u32 final_A_n_rows = (do_trans_A == false) ? A.n_rows : A.n_cols;
+    const u32 final_B_n_cols = (do_trans_B == false) ? B.n_cols : B.n_rows;
+    
+    arma_stop( arma_incompat_size_string(final_A_n_rows, final_A_n_cols, final_B_n_rows, final_B_n_cols, x) );
     }
   }
 
@@ -587,10 +669,7 @@ arma_assert_mul_size(const Mat<eT1>& A, const subview<eT2>& B, const char* x)
   {
   if(A.n_cols != B.n_rows)
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -604,10 +683,7 @@ arma_assert_mul_size(const subview<eT1>& A, const Mat<eT2>& B, const char* x)
   {
   if(A.n_cols != B.n_rows)
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -621,25 +697,8 @@ arma_assert_mul_size(const subview<eT1>& A, const subview<eT2>& B, const char* x
   {
   if(A.n_cols != B.n_rows)
     {
-    throw std::runtime_error
-      (
-      arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x)
-      );
+    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
-  }
-
-
-
-//
-// arma_stop
-
-//! throw a run-time error exception
-template<typename T1>
-inline
-void
-arma_stop(const T1& x)
-  {
-  arma_check(true, x);
   }
 
 

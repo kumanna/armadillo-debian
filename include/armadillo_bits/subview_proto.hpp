@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -27,8 +28,8 @@ class subview : public Base<eT, subview<eT> >
   
   public:
   
-  typedef eT elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
+  typedef eT                                       elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
 
   const u32 aux_row1;
   const u32 aux_col1;
@@ -72,7 +73,6 @@ class subview : public Base<eT, subview<eT> >
   inline static void extract(Mat<eT>& out, const subview& in);
   
   inline static void  plus_inplace(Mat<eT>& out, const subview& in);
-  inline static void times_inplace(Mat<eT>& out, const subview& in);
   inline static void minus_inplace(Mat<eT>& out, const subview& in);
   inline static void schur_inplace(Mat<eT>& out, const subview& in);
   inline static void   div_inplace(Mat<eT>& out, const subview& in);
@@ -113,8 +113,8 @@ class subview_col : public subview<eT>
   {
   public:
   
-  typedef eT elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
+  typedef eT                                       elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
   
   inline void operator= (const subview<eT>& x);
   inline void operator= (const subview_col& x);
@@ -147,8 +147,8 @@ class subview_row : public subview<eT>
   {
   public:
   
-  typedef eT elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
+  typedef eT                                       elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
   
   inline void operator= (const subview<eT>& x);
   inline void operator= (const subview_row& x);

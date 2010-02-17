@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -26,7 +27,7 @@
 //! NOTE: this function works differently than in Matlab/Octave.
 
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_prod>
 prod(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
   {

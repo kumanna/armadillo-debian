@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -28,6 +29,7 @@ class gemm_emul_cache
   public:
   
   template<typename eT>
+  arma_hot
   inline
   static
   void
@@ -211,6 +213,7 @@ class gemm_emul_simple
   public:
   
   template<typename eT>
+  arma_hot
   inline
   static
   void
@@ -502,7 +505,7 @@ class gemm
   
   
   
-  inline
+  arma_inline
   static
   void
   apply
@@ -519,7 +522,7 @@ class gemm
   
   
   
-  inline
+  arma_inline
   static
   void
   apply
@@ -536,7 +539,7 @@ class gemm
   
   
   
-  inline
+  arma_inline
   static
   void
   apply
@@ -553,7 +556,7 @@ class gemm
   
   
   
-  inline
+  arma_inline
   static
   void
   apply

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -16,9 +17,11 @@
 //! \addtogroup fn_inv
 //! @{
 
+
+
 //! delayed matrix inverse
 template<typename T1>
-inline
+arma_inline
 const Op<T1, op_inv>
 inv(const Base<typename T1::elem_type,T1>& X)
   {
@@ -31,7 +34,7 @@ inv(const Base<typename T1::elem_type,T1>& X)
 
 //! remove the inverse operation if applied twice consecutively
 template<typename T1>
-inline
+arma_inline
 const T1&
 inv(const Op<T1, op_inv>& X)
   {
@@ -39,5 +42,7 @@ inv(const Op<T1, op_inv>& X)
   
   return X.m;
   }
+
+
 
 //! @}

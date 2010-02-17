@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA and the authors listed below
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -23,21 +24,14 @@ class auxlib
   {
   public:
   
-  template<typename eT>
-  inline static const eT& tmp_real(const eT& X)              { return X; }
-  
-  template<typename T>
-  inline static const T&  tmp_real(const std::complex<T>& X) { return X.real(); }
-
-
   //
   // inv
   
   template<typename eT>
-  inline static void inv_noalias(Mat<eT>& out, const Mat<eT>& X);
+  inline static bool inv_noalias(Mat<eT>& out, const Mat<eT>& X);
   
   template<typename eT>
-  inline static void inv_inplace(Mat<eT>& X);
+  inline static bool inv_inplace(Mat<eT>& X);
   
   
   //
@@ -45,6 +39,9 @@ class auxlib
   
   template<typename eT>
   inline static eT det(const Mat<eT>& X);
+  
+  template<typename eT>
+  inline static void log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const Mat<eT>& X);
   
   
   //
@@ -84,14 +81,14 @@ class auxlib
   //
   // chol
   
-  template<typename eT> 
+  template<typename eT>
   inline static bool chol(Mat<eT>& out, const Mat<eT>& X);
   
   
   //
   // qr
   
-  template<typename eT> 
+  template<typename eT>
   inline static bool qr(Mat<eT>& Q, Mat<eT>& R, const Mat<eT>& X);
   
   
@@ -107,7 +104,7 @@ class auxlib
   template<typename eT>
   inline static bool svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X);
   
-  template<typename T> 
+  template<typename T>
   inline static bool svd(Mat< std::complex<T> >& U, Col<T>& S, Mat< std::complex<T> >& V, const Mat< std::complex<T> >& X);
   
   

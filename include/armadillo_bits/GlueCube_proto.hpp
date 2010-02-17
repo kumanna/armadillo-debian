@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -24,11 +25,9 @@ class GlueCube : public BaseCube<typename T1::elem_type, GlueCube<T1, T2, glue_t
   {
   public:
   
-  typedef typename T1::elem_type elem_type;
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
+  typedef typename T1::elem_type                   elem_type;
+  typedef typename get_pod_type<elem_type>::result pod_type;
 
-  //! deliberately requiring the elem_type to be the same for both arguments (experimental)
-  //! TODO:MAT the original Glue class should also have this restriction
   arma_inline  GlueCube(const BaseCube<typename T1::elem_type, T1>& in_A, const BaseCube<typename T1::elem_type, T2>& in_B);
   arma_inline ~GlueCube();
   

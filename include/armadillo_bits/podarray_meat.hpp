@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -17,41 +18,42 @@
 //! @{
 
 
-template<typename T1>
+template<typename eT>
 inline
-podarray<T1>::~podarray()
+podarray<eT>::~podarray()
   {
   arma_extra_debug_sigprint_this(this);
   
-  if(n_elem > sizeof(mem_local)/sizeof(T1) )
+  if(n_elem > sizeof(mem_local)/sizeof(eT) )
     {
     delete [] mem;
     }
-
+  
   if(arma_config::debug == true)
     {
-    access::rw(mem) = 0;
+    access::rw(n_elem) = 0;
+    access::rw(mem)    = 0;
     }
   }
 
 
 
-template<typename T1>
+template<typename eT>
 inline
-podarray<T1>::podarray()
+podarray<eT>::podarray()
   : n_elem(0)
-  , mem(0)
+  , mem   (0)
   {
   arma_extra_debug_sigprint_this(this);
   }
   
   
 
-template<typename T1>
+template<typename eT>
 inline
-podarray<T1>::podarray(const podarray& x)
+podarray<eT>::podarray(const podarray& x)
   : n_elem(0)
-  , mem(0)
+  , mem   (0)
   {
   arma_extra_debug_sigprint();
   
@@ -60,10 +62,10 @@ podarray<T1>::podarray(const podarray& x)
   
   
   
-template<typename T1>
+template<typename eT>
 inline
-const podarray<T1>&
-podarray<T1>::operator=(const podarray& x)
+const podarray<eT>&
+podarray<eT>::operator=(const podarray& x)
   {
   arma_extra_debug_sigprint();
   
@@ -76,17 +78,17 @@ podarray<T1>::operator=(const podarray& x)
       access::rw(mem[i]) = x.mem[i];
       }
     }
-        
+  
   return *this;
   }
-  
 
 
-template<typename T1>
+
+template<typename eT>
 arma_inline
-podarray<T1>::podarray(const u32 new_n_elem)
+podarray<eT>::podarray(const u32 new_n_elem)
   : n_elem(0)
-  , mem(0)
+  , mem   (0)
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -94,30 +96,49 @@ podarray<T1>::podarray(const u32 new_n_elem)
   }
 
 
-template<typename T1>
+
+template<typename eT>
 arma_inline
-T1
-podarray<T1>::operator[] (const u32 i) const
+podarray<eT>::podarray(const eT* X, const u32 new_n_elem)
+  : n_elem(0)
+  , mem   (0)
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init(new_n_elem);
+  
+  for(u32 i=0; i<n_elem; ++i)
+    {
+    access::rw(mem[i]) = X[i];
+    }
+  }
+
+
+
+template<typename eT>
+arma_inline
+eT
+podarray<eT>::operator[] (const u32 i) const
   {
   return mem[i];
   }
 
 
 
-template<typename T1>
+template<typename eT>
 arma_inline
-T1&
-podarray<T1>::operator[] (const u32 i)
+eT&
+podarray<eT>::operator[] (const u32 i)
   {
   return access::rw(mem[i]);
   }
   
   
   
-template<typename T1>
+template<typename eT>
 arma_inline
-T1
-podarray<T1>::operator() (const u32 i) const
+eT
+podarray<eT>::operator() (const u32 i) const
   {
   arma_debug_check( (i >= n_elem), "podarray::operator(): index out of bounds");
   return mem[i];
@@ -125,10 +146,10 @@ podarray<T1>::operator() (const u32 i) const
 
 
 
-template<typename T1>
+template<typename eT>
 arma_inline
-T1&
-podarray<T1>::operator() (const u32 i)
+eT&
+podarray<eT>::operator() (const u32 i)
   {
   arma_debug_check( (i >= n_elem), "podarray::operator(): index out of bounds");
   return access::rw(mem[i]);
@@ -136,10 +157,10 @@ podarray<T1>::operator() (const u32 i)
 
 
 
-template<typename T1>
+template<typename eT>
 inline
 void
-podarray<T1>::set_size(const u32 new_n_elem)
+podarray<eT>::set_size(const u32 new_n_elem)
   {
   arma_extra_debug_sigprint();
   
@@ -148,10 +169,10 @@ podarray<T1>::set_size(const u32 new_n_elem)
 
 
 
-template<typename T1>
+template<typename eT>
 inline
 void
-podarray<T1>::fill(const T1 val)
+podarray<eT>::fill(const eT val)
   {
   arma_extra_debug_sigprint();
   
@@ -163,22 +184,22 @@ podarray<T1>::fill(const T1 val)
 
 
 
-template<typename T1>
+template<typename eT>
 inline
 void
-podarray<T1>::zeros()
+podarray<eT>::zeros()
   {
   arma_extra_debug_sigprint();
   
-  fill(0);
+  fill(eT(0));
   }
 
 
 
-template<typename T1>
+template<typename eT>
 inline
 void
-podarray<T1>::zeros(const u32 new_n_elem)
+podarray<eT>::zeros(const u32 new_n_elem)
   {
   arma_extra_debug_sigprint();
   
@@ -188,30 +209,30 @@ podarray<T1>::zeros(const u32 new_n_elem)
 
 
 
-template<typename T1>
+template<typename eT>
 arma_inline
-T1*
-podarray<T1>::memptr()
+eT*
+podarray<eT>::memptr()
   {
-  return const_cast<T1*>(mem);
+  return const_cast<eT*>(mem);
   }
   
   
 
-template<typename T1>
+template<typename eT>
 arma_inline
-const T1*
-podarray<T1>::memptr() const
+const eT*
+podarray<eT>::memptr() const
   {
   return mem;
   }
 
 
 
-template<typename T1>
+template<typename eT>
 inline
 void
-podarray<T1>::init(const u32 new_n_elem)
+podarray<eT>::init(const u32 new_n_elem)
   {
   arma_extra_debug_sigprint();
   
@@ -220,23 +241,23 @@ podarray<T1>::init(const u32 new_n_elem)
     return;
     }
     
-  if(n_elem > sizeof(mem_local)/sizeof(T1) )
+  if(n_elem > sizeof(mem_local)/sizeof(eT) )
     {
     delete [] mem;
     }
   
-  if(new_n_elem <= sizeof(mem_local)/sizeof(T1) )
+  if(new_n_elem <= sizeof(mem_local)/sizeof(eT) )
     {
     access::rw(mem) = mem_local;
     }
   else
     {
-    access::rw(mem) = new T1[new_n_elem];
+    access::rw(mem) = new eT[new_n_elem];
     }
   
   access::rw(n_elem) = new_n_elem;
-  
-  
   }
+
+
 
 //! @}

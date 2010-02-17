@@ -1,5 +1,5 @@
-// Copyright (C) 2009 NICTA
-// Copyright (C) 2009 Dimitrios Bouzas
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -40,7 +40,7 @@ rank(const Base<typename T1::elem_type,T1>& X, typename T1::pod_type tol = 0.0)
     {
     if(tol == T(0))
       {
-      tol = (std::max)(A.n_rows, A.n_cols) * op_eps::direct_eps(max(s));
+      tol = (std::max)(A.n_rows, A.n_cols) * eop_aux::direct_eps(max(s));
       }
       
     // count non zero valued elements in s

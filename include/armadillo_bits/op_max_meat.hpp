@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -106,7 +107,7 @@ op_max::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_max>& in)
   typedef typename T1::elem_type eT;
   
   const unwrap_check<T1> tmp(in.m, out);
-  const Mat<eT>& X = tmp.M;
+  const Mat<eT>& X     = tmp.M;
   
   arma_debug_check( (X.n_elem == 0), "max(): given matrix has no elements" );
   

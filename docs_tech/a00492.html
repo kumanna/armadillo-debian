@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Glue_proto.hpp File Reference</title>
+<title>Armadillo Technical: unwrap_cube&lt; T1 &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,28 +14,109 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_38cddcd014493041ec0e09ca122cd6a7.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_d2a9d784411f3a7b80b31e6c134d975e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>Glue_proto.hpp File Reference</h1>
-<p><a href="a00492_source.html">Go to the source code of this file.</a></p>
+<h1>unwrap_cube&lt; T1 &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="a00864.html">Unwrap_cube</a>]</small>
+</h1><!-- doxytag: class="unwrap_cube" -->
+<p><code>#include &lt;<a class="el" href="a00711_source.html">unwrap_cube.hpp</a>&gt;</code></p>
+
+<p><a href="a01347.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html">Glue&lt; T1, T2, glue_type &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for storing data required for delayed binary operations, such as the operands (e.g. two matrices) and the binary operator (e.g. addition). The operands are stored as references (which can be optimised away), while the operator is "stored" through the template definition (glue_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than two matrices can be stored.  <a href="a00070.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00492.html#a5867e3a77c243fa38887ea8b6e7d5d4d">eT</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00492.html#a451f550f4dcc0aaeec579d2d6d9d7206">unwrap_cube</a> (const T1 &amp;A)</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00492.html#a5867e3a77c243fa38887ea8b6e7d5d4d">eT</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00492.html#abacf3b44800207c9780246fb1a1378fc">M</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T1&gt;<br/>
+ class unwrap_cube&lt; T1 &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00711_source.html#l00023">23</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a5867e3a77c243fa38887ea8b6e7d5d4d"></a><!-- doxytag: member="unwrap_cube::eT" ref="a5867e3a77c243fa38887ea8b6e7d5d4d" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00492.html">unwrap_cube</a>&lt; T1 &gt;::<a class="el" href="a00492.html#a5867e3a77c243fa38887ea8b6e7d5d4d">eT</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00711_source.html#l00027">27</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a451f550f4dcc0aaeec579d2d6d9d7206"></a><!-- doxytag: member="unwrap_cube::unwrap_cube" ref="a451f550f4dcc0aaeec579d2d6d9d7206" args="(const T1 &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00492.html">unwrap_cube</a>&lt; T1 &gt;::<a class="el" href="a00492.html">unwrap_cube</a> </td>
+          <td>(</td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00711_source.html#l00030">30</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031     : <a class="code" href="a00492.html#abacf3b44800207c9780246fb1a1378fc">M</a>(A)
+<a name="l00032"></a>00032     {
+<a name="l00033"></a>00033     arma_extra_debug_sigprint();
+<a name="l00034"></a>00034     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="abacf3b44800207c9780246fb1a1378fc"></a><!-- doxytag: member="unwrap_cube::M" ref="abacf3b44800207c9780246fb1a1378fc" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00066.html">Cube</a>&lt;<a class="el" href="a00492.html#a5867e3a77c243fa38887ea8b6e7d5d4d">eT</a>&gt; <a class="el" href="a00492.html">unwrap_cube</a>&lt; T1 &gt;::<a class="el" href="a00492.html#abacf3b44800207c9780246fb1a1378fc">M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00711_source.html#l00036">36</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00658_source.html#l00083">op_reshape::apply()</a>, and <a class="el" href="a00546_source.html#l00179">eop_cube_core&lt; eop_cube_type &gt;::apply_unwrap()</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -33,17 +34,20 @@ class op_trans
   inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans>& in);
   
   
-  #if defined(ARMA_GOOD_COMPILER)
-  
-  template<typename T1, typename T2>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<Glue<T1,T2,glue_plus>,op_trans>& in);
-  
-  #endif
-  
-  
   // inline static void apply_inplace(mat &out);
   
   };
 
 
+
+class op_trans2
+  {
+  public:
+  
+  template<typename T1>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans2>& in);
+  };
+
+  
+  
 //! @}

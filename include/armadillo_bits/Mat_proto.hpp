@@ -1,4 +1,5 @@
-// Copyright (C) 2009 NICTA
+// Copyright (C) 2010 NICTA and the authors listed below
+// http://nicta.com.au
 // 
 // Authors:
 // - Conrad Sanderson (conradsand at ieee dot org)
@@ -23,12 +24,8 @@ class Mat : public Base< eT, Mat<eT> >
   {
   public:
   
-  typedef eT elem_type;  //!< the type of elements stored in the matrix
-  
-  typedef typename get_pod_type<elem_type>::pod_type pod_type;
-  //!< if eT is std::complex, pod_type is the underlying type used by std::complex.
-  //!< otherwise pod_type is the same as elem_type
-  
+  typedef eT                                       elem_type;  //!< the type of elements stored in the matrix
+  typedef typename get_pod_type<elem_type>::result pod_type;   //!< if eT is non-complex, pod_type is same as eT. otherwise, pod_type is the underlying type used by std::complex
   
   const u32  n_rows;      //!< number of rows in the matrix (read-only)
   const u32  n_cols;      //!< number of columns in the matrix (read-only)
@@ -94,6 +91,11 @@ class Mat : public Base< eT, Mat<eT> >
   //inline explicit          Mat(const diagview<eT>& X);
   inline                   Mat(const diagview<eT>& X);
   inline const Mat&  operator=(const diagview<eT>& X);
+  inline const Mat& operator+=(const diagview<eT>& X);
+  inline const Mat& operator-=(const diagview<eT>& X);
+  inline const Mat& operator*=(const diagview<eT>& X);
+  inline const Mat& operator%=(const diagview<eT>& X);
+  inline const Mat& operator/=(const diagview<eT>& X);
   
   arma_inline       subview_row<eT> row(const u32 row_num);
   arma_inline const subview_row<eT> row(const u32 row_num) const;
@@ -124,6 +126,14 @@ class Mat : public Base< eT, Mat<eT> >
   template<typename T1, typename op_type> inline const Mat& operator%=(const Op<T1, op_type>& X);
   template<typename T1, typename op_type> inline const Mat& operator/=(const Op<T1, op_type>& X);
   
+  template<typename T1, typename eop_type> inline                   Mat(const eOp<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Mat&  operator=(const eOp<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Mat& operator+=(const eOp<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Mat& operator-=(const eOp<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Mat& operator*=(const eOp<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Mat& operator%=(const eOp<T1, eop_type>& X);
+  template<typename T1, typename eop_type> inline const Mat& operator/=(const eOp<T1, eop_type>& X);
+  
   template<typename T1, typename T2, typename glue_type> inline                   Mat(const Glue<T1, T2, glue_type>& X);
   template<typename T1, typename T2, typename glue_type> inline const Mat&  operator=(const Glue<T1, T2, glue_type>& X);
   template<typename T1, typename T2, typename glue_type> inline const Mat& operator+=(const Glue<T1, T2, glue_type>& X);
@@ -131,6 +141,17 @@ class Mat : public Base< eT, Mat<eT> >
   template<typename T1, typename T2, typename glue_type> inline const Mat& operator*=(const Glue<T1, T2, glue_type>& X);
   template<typename T1, typename T2, typename glue_type> inline const Mat& operator%=(const Glue<T1, T2, glue_type>& X);
   template<typename T1, typename T2, typename glue_type> inline const Mat& operator/=(const Glue<T1, T2, glue_type>& X);
+  
+  template<typename T1, typename T2>                     inline const Mat& operator+=(const Glue<T1, T2, glue_times>& X);
+  template<typename T1, typename T2>                     inline const Mat& operator-=(const Glue<T1, T2, glue_times>& X);
+  
+  template<typename T1, typename T2, typename eglue_type> inline                   Mat(const eGlue<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Mat&  operator=(const eGlue<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Mat& operator+=(const eGlue<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Mat& operator-=(const eGlue<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Mat& operator*=(const eGlue<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Mat& operator%=(const eGlue<T1, T2, eglue_type>& X);
+  template<typename T1, typename T2, typename eglue_type> inline const Mat& operator/=(const eGlue<T1, T2, eglue_type>& X);
   
   
   arma_inline eT& operator[] (const u32 i);
@@ -186,8 +207,11 @@ class Mat : public Base< eT, Mat<eT> >
   
   inline void reset();
   
-  inline void save(const std::string name, const file_type type = arma_binary) const;
-  inline void load(const std::string name, const file_type type = auto_detect);
+  inline void save(const std::string   name, const file_type type = arma_binary) const;
+  inline void save(      std::ostream& os,   const file_type type = arma_binary) const;
+  
+  inline void load(const std::string   name, const file_type type = auto_detect);
+  inline void load(      std::istream& is,   const file_type type = auto_detect);
   
   
   protected: 
