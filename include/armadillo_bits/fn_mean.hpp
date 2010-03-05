@@ -34,6 +34,7 @@ mean(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
 //! Immediate 'find the mean value of a row vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 mean(const Row<eT>& A)
   {
@@ -49,6 +50,7 @@ mean(const Row<eT>& A)
 //! Immediate 'find the mean value of a column vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 mean(const Col<eT>& A)
   {
@@ -66,6 +68,7 @@ mean(const Col<eT>& A)
 //! invoked, for example, by: mean(mean(A))
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 mean(const Op<T1, op_mean>& in)
   {
@@ -98,6 +101,7 @@ mean(const Op<T1, op_mean>& in, const u32 dim)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 mean(const subview_row<eT>& A)
   {
@@ -112,6 +116,7 @@ mean(const subview_row<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 mean(const subview_col<eT>& A)
   {
@@ -126,6 +131,7 @@ mean(const subview_col<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 mean(const Op<subview<eT>, op_mean>& in)
   {
@@ -143,6 +149,7 @@ mean(const Op<subview<eT>, op_mean>& in)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 mean(const diagview<eT>& A)
   {

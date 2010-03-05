@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_var.hpp Source File</title>
+<title>Armadillo Technical: fn_zeros.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_var.hpp</h1><a href="a00598.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_zeros.hpp</h1><a href="a00598.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,106 +45,95 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_var</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_zeros</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00023"></a>00023 <span class="keyword">inline</span>
-<a name="l00024"></a>00024 <a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;typename T1::pod_type&gt;</a>
-<a name="l00025"></a><a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">00025</a> <a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">var</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
-<a name="l00026"></a>00026   {
-<a name="l00027"></a>00027   arma_extra_debug_sigprint();
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type  in_eT;
-<a name="l00030"></a>00030   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::pod_type  out_eT;
+<a name="l00020"></a>00020 <span class="comment"></span>
+<a name="l00021"></a>00021 <span class="comment">//! Generate a dense matrix with all elements set to zero</span>
+<a name="l00022"></a>00022 <span class="comment"></span>arma_inline
+<a name="l00023"></a>00023 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;mat, eop_zeros&gt;</a>
+<a name="l00024"></a>00024 <a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e" title="Generate a dense matrix with all elements set to zero.">zeros</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)
+<a name="l00025"></a>00025   {
+<a name="l00026"></a>00026   arma_extra_debug_sigprint();
+<a name="l00027"></a>00027   
+<a name="l00028"></a>00028   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;mat, eop_zeros&gt;</a>(n_rows, n_cols);
+<a name="l00029"></a>00029   }
+<a name="l00030"></a>00030 
 <a name="l00031"></a>00031 
-<a name="l00032"></a>00032   <span class="keyword">const</span> <a class="code" href="a00484.html">unwrap&lt;T1&gt;</a>      tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00033"></a>00033   <span class="keyword">const</span> <a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;in_eT&gt;</a>&amp; A = tmp.M;
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035   <a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;out_eT&gt;</a> out;
-<a name="l00036"></a>00036   
-<a name="l00037"></a>00037   <a class="code" href="a00832.html#ga2701432bd796dfd7a062c70dfa973012" title="For each row or for each column, find the variance. The result is stored in a dense...">op_var::apply</a>(out, A, norm_type, dim);
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 arma_inline
+<a name="l00034"></a>00034 <span class="keyword">const</span> <a class="code" href="a00171.html">eOpCube&lt;cube, eop_cube_zeros&gt;</a>
+<a name="l00035"></a>00035 <a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e" title="Generate a dense matrix with all elements set to zero.">zeros</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices)
+<a name="l00036"></a>00036   {
+<a name="l00037"></a>00037   arma_extra_debug_sigprint();
 <a name="l00038"></a>00038   
-<a name="l00039"></a>00039   <span class="keywordflow">return</span> out;
+<a name="l00039"></a>00039   <span class="keywordflow">return</span> <a class="code" href="a00171.html">eOpCube&lt;cube, eop_cube_zeros&gt;</a>(n_rows, n_cols, n_slices);
 <a name="l00040"></a>00040   }
 <a name="l00041"></a>00041 
 <a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="comment"></span>
-<a name="l00044"></a>00044 <span class="comment">//! Immediate &apos;find the variance of a row vector&apos; operation</span>
-<a name="l00045"></a>00045 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00046"></a>00046 <span class="keyword">inline</span>
-<a name="l00047"></a>00047 <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;eT&gt;::result</a>
-<a name="l00048"></a><a class="code" href="a00793.html#ga086e5231507d3f0d13c68c754dc20e43">00048</a> <a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">var</a>(<span class="keyword">const</span> <a class="code" href="a00466.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0)
-<a name="l00049"></a>00049   {
-<a name="l00050"></a>00050   arma_extra_debug_sigprint();
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   arma_debug_check( (A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;var(): given vector has no elements&quot;</span> );
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   <span class="keywordflow">return</span> <a class="code" href="a00832.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>(A.<a class="code" href="a00303.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>, norm_type);
-<a name="l00055"></a>00055   }
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> mat_type&gt;
+<a name="l00045"></a>00045 arma_inline
+<a name="l00046"></a>00046 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;mat_type, eop_zeros&gt;</a>
+<a name="l00047"></a><a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e">00047</a> <a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e" title="Generate a dense matrix with all elements set to zero.">zeros</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)
+<a name="l00048"></a>00048   {
+<a name="l00049"></a>00049   arma_extra_debug_sigprint();
+<a name="l00050"></a>00050   
+<a name="l00051"></a>00051   <a class="code" href="a00043.html">arma_type_check&lt;is_Mat&lt;mat_type&gt;::value</a> == <span class="keyword">false</span>&gt;::apply();
+<a name="l00052"></a>00052   
+<a name="l00053"></a>00053   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;mat_type, eop_zeros&gt;</a>(n_rows, n_cols);
+<a name="l00054"></a>00054   }
+<a name="l00055"></a>00055 
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">//! Immediate &apos;find the variance of a column vector&apos; operation</span>
-<a name="l00060"></a>00060 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00061"></a>00061 <span class="keyword">inline</span>
-<a name="l00062"></a>00062 <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;eT&gt;::result</a>
-<a name="l00063"></a><a class="code" href="a00793.html#gaf8efb82cb51059f236021a0eb36d4e38">00063</a> <a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">var</a>(<span class="keyword">const</span> <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0)
-<a name="l00064"></a>00064   {
-<a name="l00065"></a>00065   arma_extra_debug_sigprint();
+<a name="l00058"></a>00058 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> cube_type&gt;
+<a name="l00059"></a>00059 arma_inline
+<a name="l00060"></a>00060 <span class="keyword">const</span> <a class="code" href="a00171.html">eOpCube&lt;cube_type, eop_cube_zeros&gt;</a>
+<a name="l00061"></a><a class="code" href="a00796.html#ga912eb80a8a0e2f1f4a4e61079706f94d">00061</a> <a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e" title="Generate a dense matrix with all elements set to zero.">zeros</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices)
+<a name="l00062"></a>00062   {
+<a name="l00063"></a>00063   arma_extra_debug_sigprint();
+<a name="l00064"></a>00064   
+<a name="l00065"></a>00065   <a class="code" href="a00043.html">arma_type_check&lt;is_Cube&lt;cube_type&gt;::value</a> == <span class="keyword">false</span>&gt;::apply();
 <a name="l00066"></a>00066   
-<a name="l00067"></a>00067   arma_debug_check( (A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;var(): given vector has no elements&quot;</span> );
-<a name="l00068"></a>00068   
-<a name="l00069"></a>00069   <span class="keywordflow">return</span> <a class="code" href="a00832.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>(A.<a class="code" href="a00303.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>, norm_type);
-<a name="l00070"></a>00070   }
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00075"></a>00075 <span class="keyword">inline</span>
-<a name="l00076"></a>00076 <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;eT&gt;::result</a>
-<a name="l00077"></a><a class="code" href="a00793.html#ga19f6307bba78de7be30e77cd3fb3c5ba">00077</a> <a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">var</a>(<span class="keyword">const</span> <a class="code" href="a00482.html">subview_row&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0)
-<a name="l00078"></a>00078   {
-<a name="l00079"></a>00079   arma_extra_debug_sigprint();
-<a name="l00080"></a>00080   
-<a name="l00081"></a>00081   arma_debug_check( (A.<a class="code" href="a00478.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;var(): given vector has no elements&quot;</span> );
-<a name="l00082"></a>00082   
-<a name="l00083"></a>00083   <span class="keywordflow">return</span> <a class="code" href="a00832.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>(A, norm_type);
-<a name="l00084"></a>00084   }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00089"></a>00089 <span class="keyword">inline</span>
-<a name="l00090"></a>00090 <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;eT&gt;::result</a>
-<a name="l00091"></a><a class="code" href="a00793.html#ga8eaad1ef895f9e49433710ee0cbf0d1f">00091</a> <a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">var</a>(<span class="keyword">const</span> <a class="code" href="a00479.html">subview_col&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0)
-<a name="l00092"></a>00092   {
-<a name="l00093"></a>00093   arma_extra_debug_sigprint();
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   arma_debug_check( (A.<a class="code" href="a00478.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;var(): given vector has no elements&quot;</span> );
-<a name="l00096"></a>00096   
-<a name="l00097"></a>00097   <span class="keywordflow">return</span> <a class="code" href="a00832.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>(A, norm_type);
-<a name="l00098"></a>00098   }
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00103"></a>00103 <span class="keyword">inline</span>
-<a name="l00104"></a>00104 <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;eT&gt;::result</a>
-<a name="l00105"></a><a class="code" href="a00793.html#ga28baf336a4be1bf67c29395249bd4260">00105</a> <a class="code" href="a00793.html#ga739920839a13fd75c445c66d8f90b5cb">var</a>(<span class="keyword">const</span> <a class="code" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = 0)
-<a name="l00106"></a>00106   {
-<a name="l00107"></a>00107   arma_extra_debug_sigprint();
-<a name="l00108"></a>00108   
-<a name="l00109"></a>00109   arma_debug_check( (A.<a class="code" href="a00078.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a> == 0), <span class="stringliteral">&quot;var(): given vector has no elements&quot;</span> );
-<a name="l00110"></a>00110   
-<a name="l00111"></a>00111   <span class="keywordflow">return</span> <a class="code" href="a00832.html#gae3a582d5d3035053edfe82248612d9b5" title="find the variance of an array">op_var::direct_var</a>(A, norm_type);
-<a name="l00112"></a>00112   }
-<a name="l00113"></a>00113 
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115 <span class="comment"></span>
-<a name="l00116"></a>00116 <span class="comment">//! @}</span>
+<a name="l00067"></a>00067   <span class="keywordflow">return</span> <a class="code" href="a00171.html">eOpCube&lt;cube_type, eop_cube_zeros&gt;</a>(n_rows, n_cols, n_slices);
+<a name="l00068"></a>00068   }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 <span class="comment"></span>
+<a name="l00072"></a>00072 <span class="comment">//! Generate a vector with all elements set to zero</span>
+<a name="l00073"></a>00073 <span class="comment"></span>arma_inline
+<a name="l00074"></a>00074 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;colvec, eop_zeros&gt;</a>
+<a name="l00075"></a>00075 <a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e" title="Generate a dense matrix with all elements set to zero.">zeros</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)
+<a name="l00076"></a>00076   {
+<a name="l00077"></a>00077   arma_extra_debug_sigprint();
+<a name="l00078"></a>00078   
+<a name="l00079"></a>00079   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;colvec, eop_zeros&gt;</a>(n_elem, 1);
+<a name="l00080"></a>00080   }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> vec_type&gt;
+<a name="l00085"></a>00085 arma_inline
+<a name="l00086"></a>00086 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;vec_type, eop_zeros&gt;</a>
+<a name="l00087"></a><a class="code" href="a00796.html#ga4dfcf635c00fe68e0244e26060e03134">00087</a> <a class="code" href="a00796.html#ga7c88fa05833fc4cd8334872900d1c93e" title="Generate a dense matrix with all elements set to zero.">zeros</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)
+<a name="l00088"></a>00088   {
+<a name="l00089"></a>00089   arma_extra_debug_sigprint();
+<a name="l00090"></a>00090   
+<a name="l00091"></a>00091   <a class="code" href="a00043.html">arma_type_check&lt; (is_Col&lt;vec_type&gt;::value</a> == <span class="keyword">false</span>) &amp;&amp; (<a class="code" href="a00252.html">is_Row&lt;vec_type&gt;::value</a> == <span class="keyword">false</span>) &gt;::apply();
+<a name="l00092"></a>00092   
+<a name="l00093"></a>00093   <span class="keywordflow">if</span>(<a class="code" href="a00252.html">is_Row&lt;vec_type&gt;::value</a> == <span class="keyword">true</span>)
+<a name="l00094"></a>00094     {
+<a name="l00095"></a>00095     <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;vec_type, eop_zeros&gt;</a>(1, n_elem);
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097   <span class="keywordflow">else</span>
+<a name="l00098"></a>00098     {
+<a name="l00099"></a>00099     <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;vec_type, eop_zeros&gt;</a>(n_elem, 1);
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101   }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

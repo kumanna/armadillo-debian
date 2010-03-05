@@ -197,7 +197,7 @@ class Mat : public Base< eT, Mat<eT> >
   
   inline void  set_size(const u32 in_rows, const u32 in_cols);
   
-  inline void fill(const eT val);
+  arma_hot inline void fill(const eT val);
   
   inline void zeros();
   inline void zeros(const u32 in_rows, const u32 in_cols);

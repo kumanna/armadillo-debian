@@ -78,13 +78,13 @@ eglue_cube_core<eglue_type>::apply(Cube<typename T1::elem_type>& out, const eGlu
   
   typedef typename T1::elem_type eT;
   
-  out.set_size(x.n_rows, x.n_cols, x.n_slices);
+  const ProxyCube<T1>& P1 = x.P1;
+  const ProxyCube<T2>& P2 = x.P2;
   
-        eT*            out_mem = out.memptr();
-  const ProxyCube<T1>& P1      = x.P1;
-  const ProxyCube<T2>& P2      = x.P2;
-  const u32            n_elem  = x.n_elem;
+  out.set_size(P1.n_rows, P1.n_cols, P1.n_slices);
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_cube_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] = P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_cube_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] = P1[i] - P2[i]; }
@@ -109,13 +109,13 @@ eglue_cube_core<eglue_type>::apply_inplace_plus(Cube<typename T1::elem_type>& ou
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "cube addition");
+  const ProxyCube<T1>& P1 = x.P1;
+  const ProxyCube<T2>& P2 = x.P2;
   
-        eT*            out_mem = out.memptr();
-  const ProxyCube<T1>& P1      = x.P1;
-  const ProxyCube<T2>& P2      = x.P2;
-  const u32            n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P1.n_rows, P1.n_cols, P1.n_slices, "cube addition");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_cube_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] += P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_cube_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] += P1[i] - P2[i]; }
@@ -140,13 +140,13 @@ eglue_cube_core<eglue_type>::apply_inplace_minus(Cube<typename T1::elem_type>& o
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "cube subtraction");
+  const ProxyCube<T1>& P1 = x.P1;
+  const ProxyCube<T2>& P2 = x.P2;
   
-        eT*            out_mem = out.memptr();
-  const ProxyCube<T1>& P1      = x.P1;
-  const ProxyCube<T2>& P2      = x.P2;
-  const u32            n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P1.n_rows, P1.n_cols, P1.n_slices, "cube subtraction");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_cube_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] -= P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_cube_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] -= P1[i] - P2[i]; }
@@ -171,13 +171,13 @@ eglue_cube_core<eglue_type>::apply_inplace_schur(Cube<typename T1::elem_type>& o
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "element-wise cube multiplication");
+  const ProxyCube<T1>& P1 = x.P1;
+  const ProxyCube<T2>& P2 = x.P2;
   
-        eT*            out_mem = out.memptr();
-  const ProxyCube<T1>& P1      = x.P1;
-  const ProxyCube<T2>& P2      = x.P2;
-  const u32            n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P1.n_rows, P1.n_cols, P1.n_slices, "element-wise cube multiplication");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_cube_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] *= P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_cube_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] *= P1[i] - P2[i]; }
@@ -202,13 +202,13 @@ eglue_cube_core<eglue_type>::apply_inplace_div(Cube<typename T1::elem_type>& out
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "element-wise cube division");
+  const ProxyCube<T1>& P1 = x.P1;
+  const ProxyCube<T2>& P2 = x.P2;
   
-        eT*            out_mem = out.memptr();
-  const ProxyCube<T1>& P1      = x.P1;
-  const ProxyCube<T2>& P2      = x.P2;
-  const u32            n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P1.n_rows, P1.n_cols, P1.n_slices, "element-wise cube division");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_cube_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] /= P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_cube_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] /= P1[i] - P2[i]; }

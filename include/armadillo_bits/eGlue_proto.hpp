@@ -29,10 +29,6 @@ class eGlue : public Base<typename T1::elem_type, eGlue<T1, T2, eglue_type> >
   const Proxy<T1> P1;
   const Proxy<T2> P2;
   
-  const u32  n_rows;
-  const u32  n_cols;
-  const u32  n_elem;
-  
   arma_inline ~eGlue();
   arma_inline  eGlue(const T1& in_A, const T2& in_B);
   

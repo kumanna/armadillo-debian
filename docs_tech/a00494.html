@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_cube_check&lt; T1 &gt; Class Template Reference</title>
+<title>Armadillo Technical: upgrade_val&lt; T1, T2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,102 +29,126 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_cube_check&lt; T1 &gt; Class Template Reference<br/>
+<h1>upgrade_val&lt; T1, T2 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00864.html">Unwrap_cube</a>]</small>
-</h1><!-- doxytag: class="unwrap_cube_check" -->
-<p><code>#include &lt;<a class="el" href="a00711_source.html">unwrap_cube.hpp</a>&gt;</code></p>
+[<a class="el" href="a00868.html">Upgrade_val</a>]</small>
+</h1><!-- doxytag: class="upgrade_val" -->
+<p><a class="el" href="a00494.html" title="upgrade_val is used to ensure an operation such as multiplication is possible between...">upgrade_val</a> is used to ensure an operation such as multiplication is possible between two types. values are upgraded only where necessary.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01349.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00713_source.html">upgrade_val.hpp</a>&gt;</code></p>
+
+<p><a href="a01352.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Private Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#a58dee99df4e872f44915c78b8d900c0b">eT</a></td></tr>
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#a384b535e41dc8236eae40b46b495308f">unwrap_cube_check</a> (const T1 &amp;A, const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00494.html#a58dee99df4e872f44915c78b8d900c0b">eT</a> &gt; &amp;B)</td></tr>
-<tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00494.html#a58dee99df4e872f44915c78b8d900c0b">eT</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#a04a66668ce6796326fdcb1cb95a054ac">M</a></td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00371.html">promote_type</a>&lt; T1, T2 &gt;<br class="typebreak"/>
+::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#a3ee942bcac8c8aa4257f90fbc0599fb9">T1_result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00371.html">promote_type</a>&lt; T1, T2 &gt;<br class="typebreak"/>
+::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#a162c47e1ed15cea9cb2786994bab4ca2">T2_result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
+<a class="el" href="a00371.html">promote_type</a>&lt; T1, T2 &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#a690e536c7b488b4db54bb0e751309ac7">apply</a> (const T1 x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
+<a class="el" href="a00371.html">promote_type</a>&lt; T1, T2 &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00494.html#ae3794635a0917c58601f194f58e245da">apply</a> (const T2 x)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- class unwrap_cube_check&lt; T1 &gt;</h3>
+<h3>template&lt;typename T1, typename T2&gt;<br/>
+ struct upgrade_val&lt; T1, T2 &gt;</h3>
 
+<p><a class="el" href="a00494.html" title="upgrade_val is used to ensure an operation such as multiplication is possible between...">upgrade_val</a> is used to ensure an operation such as multiplication is possible between two types. values are upgraded only where necessary. </p>
 
-<p>Definition at line <a class="el" href="a00711_source.html#l00065">65</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00026">26</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a58dee99df4e872f44915c78b8d900c0b"></a><!-- doxytag: member="unwrap_cube_check::eT" ref="a58dee99df4e872f44915c78b8d900c0b" args="" -->
+<a class="anchor" id="a3ee942bcac8c8aa4257f90fbc0599fb9"></a><!-- doxytag: member="upgrade_val::T1_result" ref="a3ee942bcac8c8aa4257f90fbc0599fb9" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1&gt; </div>
+template&lt;typename T1, typename T2&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T1::elem_type <a class="el" href="a00494.html">unwrap_cube_check</a>&lt; T1 &gt;::<a class="el" href="a00494.html#a58dee99df4e872f44915c78b8d900c0b">eT</a><code> [private]</code></td>
+          <td class="memname">typedef <a class="el" href="a00371.html">promote_type</a>&lt;T1,T2&gt;::result <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, T2 &gt;::<a class="el" href="a00494.html#a3ee942bcac8c8aa4257f90fbc0599fb9">T1_result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00711_source.html#l00067">67</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00028">28</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 
 </div>
 </div>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a384b535e41dc8236eae40b46b495308f"></a><!-- doxytag: member="unwrap_cube_check::unwrap_cube_check" ref="a384b535e41dc8236eae40b46b495308f" args="(const T1 &amp;A, const Cube&lt; eT &gt; &amp;B)" -->
+<a class="anchor" id="a162c47e1ed15cea9cb2786994bab4ca2"></a><!-- doxytag: member="upgrade_val::T2_result" ref="a162c47e1ed15cea9cb2786994bab4ca2" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1&gt; </div>
+template&lt;typename T1, typename T2&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00494.html">unwrap_cube_check</a>&lt; T1 &gt;::<a class="el" href="a00494.html">unwrap_cube_check</a> </td>
+          <td class="memname">typedef <a class="el" href="a00371.html">promote_type</a>&lt;T1,T2&gt;::result <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, T2 &gt;::<a class="el" href="a00494.html#a162c47e1ed15cea9cb2786994bab4ca2">T2_result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00713_source.html#l00029">29</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a690e536c7b488b4db54bb0e751309ac7"></a><!-- doxytag: member="upgrade_val::apply" ref="a690e536c7b488b4db54bb0e751309ac7" args="(const T1 x)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline const <a class="el" href="a00371.html">promote_type</a>&lt;T1,T2&gt;::result <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, T2 &gt;::apply </td>
           <td>(</td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00494.html#a58dee99df4e872f44915c78b8d900c0b">eT</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, private]</code></td>
+          <td class="paramtype">const T1&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00711_source.html#l00070">70</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00034">34</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00071"></a>00071     : <a class="code" href="a00494.html#a04a66668ce6796326fdcb1cb95a054ac">M</a>(A)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073     arma_extra_debug_sigprint();
-<a name="l00074"></a>00074     
-<a name="l00075"></a>00075     <a class="code" href="a00043.html">arma_type_check&lt; is_arma_cube_type&lt;T1&gt;::value</a> == <span class="keyword">false</span> &gt;::apply();
-<a name="l00076"></a>00076     }
+<p>Referenced by <a class="el" href="a00679_source.html#l00046">operator%()</a>, <a class="el" href="a00687_source.html#l00112">operator*()</a>, <a class="el" href="a00677_source.html#l00094">operator+()</a>, <a class="el" href="a00676_source.html#l00110">operator-()</a>, and <a class="el" href="a00675_source.html#l00078">operator/()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00035"></a>00035     {
+<a name="l00036"></a>00036     <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00371.html">promote_type&lt;T1,T2&gt;::result</a> out_type;
+<a name="l00037"></a>00037     <span class="keywordflow">return</span> out_type(x);
+<a name="l00038"></a>00038     }
 </pre></div></p>
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a04a66668ce6796326fdcb1cb95a054ac"></a><!-- doxytag: member="unwrap_cube_check::M" ref="a04a66668ce6796326fdcb1cb95a054ac" args="" -->
+<a class="anchor" id="ae3794635a0917c58601f194f58e245da"></a><!-- doxytag: member="upgrade_val::apply" ref="ae3794635a0917c58601f194f58e245da" args="(const T2 x)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1&gt; </div>
+template&lt;typename T1, typename T2&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00066.html">Cube</a>&lt;<a class="el" href="a00494.html#a58dee99df4e872f44915c78b8d900c0b">eT</a>&gt; <a class="el" href="a00494.html">unwrap_cube_check</a>&lt; T1 &gt;::<a class="el" href="a00494.html#a04a66668ce6796326fdcb1cb95a054ac">M</a><code> [private]</code></td>
+          <td class="memname">static arma_inline const <a class="el" href="a00371.html">promote_type</a>&lt;T1,T2&gt;::result <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, T2 &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">const T2&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00711_source.html#l00078">78</a> of file <a class="el" href="a00711_source.html">unwrap_cube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00043">43</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="a00658_source.html#l00083">op_reshape::apply()</a>.</p>
+<p><div class="fragment"><pre class="fragment"><a name="l00044"></a>00044     {
+<a name="l00045"></a>00045     <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00371.html">promote_type&lt;T1,T2&gt;::result</a> out_type;
+<a name="l00046"></a>00046     <span class="keywordflow">return</span> out_type(x);
+<a name="l00047"></a>00047     }
+</pre></div></p>
 
 </div>
 </div>

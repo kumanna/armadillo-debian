@@ -49,12 +49,24 @@ op_princomp::direct_princomp
     // subtract the mean - use score_out as temporary matrix
     score_out = in - repmat(mean(in), n_rows, 1);
  	  
-   	// singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col<eT> s;
     
     const bool svd_ok = svd(U,s,coeff_out,score_out);
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      score_out.reset();
+      latent_out.reset();
+      tsquared_out.reset();
+      
+      return;
+      }
+    
     
     //U.reset();  // TODO: do we need this ?  U will get automatically deleted anyway
     
@@ -146,12 +158,23 @@ op_princomp::direct_princomp
     // subtract the mean - use score_out as temporary matrix
     score_out = in - repmat(mean(in), n_rows, 1);
  	  
-   	// singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col<eT> s;
     
     const bool svd_ok = svd(U,s,coeff_out,score_out);
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      score_out.reset();
+      latent_out.reset();
+      
+      return;
+      }
+    
     
     // U.reset();
     
@@ -223,12 +246,21 @@ op_princomp::direct_princomp
     // subtract the mean - use score_out as temporary matrix
     score_out = in - repmat(mean(in), n_rows, 1);
  	  
-   	// singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col<eT> s;
     
     const bool svd_ok = svd(U,s,coeff_out,score_out);
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      score_out.reset();
+      
+      return;
+      }
     
     // U.reset();
     
@@ -282,13 +314,20 @@ op_princomp::direct_princomp
   
   if(in.n_elem != 0)
     {
- 	  // singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col<eT> s;
     
-    const bool svd_ok = svd(U,s,coeff_out, (in - repmat(mean(in), in.n_rows, 1)));
+    const Mat<eT> tmp = in - repmat(mean(in), in.n_rows, 1);
     
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    const bool svd_ok = svd(U,s,coeff_out, tmp);
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      }
     }
   else
     {
@@ -329,12 +368,24 @@ op_princomp::direct_princomp
     // subtract the mean - use score_out as temporary matrix
     score_out = in - repmat(mean(in), n_rows, 1);
  	  
-   	// singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col<T> s;
     
     const bool svd_ok = svd(U,s,coeff_out,score_out); 
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      score_out.reset();
+      latent_out.reset();
+      tsquared_out.reset();
+      
+      return;
+      }
+    
     
     //U.reset();
     
@@ -360,7 +411,7 @@ op_princomp::direct_princomp
     else
       {
       // compute the Hotelling's T-squared   
-      const Mat<eT> S = score_out * diagmat(Col<T>(eT(1) / s));                     
+      const Mat<eT> S = score_out * diagmat(Col<T>(T(1) / s));                     
       tsquared_out = sum(S%S,1);
       }
     
@@ -424,12 +475,23 @@ op_princomp::direct_princomp
     // subtract the mean - use score_out as temporary matrix
     score_out = in - repmat(mean(in), n_rows, 1);
  	  
-   	// singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col< T> s;
     
     const bool svd_ok = svd(U,s,coeff_out,score_out);
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      score_out.reset();
+      latent_out.reset();
+      
+      return;
+      }
+    
     
     // U.reset();
     
@@ -500,12 +562,21 @@ op_princomp::direct_princomp
     // subtract the mean - use score_out as temporary matrix
     score_out = in - repmat(mean(in), n_rows, 1);
  	  
-   	// singular value decomposition
- 	  Mat<eT> U;
+    // singular value decomposition
+    Mat<eT> U;
     Col< T> s;
     
     const bool svd_ok = svd(U,s,coeff_out,score_out);
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      score_out.reset();
+      
+      return;
+      }
     
     // U.reset();
     
@@ -563,8 +634,16 @@ op_princomp::direct_princomp
  	  Mat<eT> U;
     Col< T> s;
     
-    const bool svd_ok = svd(U,s,coeff_out, (in - repmat(mean(in), in.n_rows, 1)));
-    arma_debug_check(svd_ok == false, "princomp(): singular value decomposition failed");
+    const Mat<eT> tmp = in - repmat(mean(in), in.n_rows, 1);
+    
+    const bool svd_ok = svd(U,s,coeff_out, tmp);
+    
+    if(svd_ok == false)
+      {
+      arma_print("princomp(): singular value decomposition failed");
+      
+      coeff_out.reset();
+      }
     }
   else
     {

@@ -102,13 +102,13 @@ eglue_core<eglue_type>::apply_proxy(Mat<typename T1::elem_type>& out, const eGlu
   
   typedef typename T1::elem_type eT;
   
-  out.set_size(x.n_rows, x.n_cols);
+  const Proxy<T1>& P1 = x.P1;
+  const Proxy<T2>& P2 = x.P2;
   
-        eT*        out_mem = out.memptr();
-  const Proxy<T1>& P1      = x.P1;
-  const Proxy<T2>& P2      = x.P2;
-  const u32        n_elem  = x.n_elem;
+  out.set_size(P1.n_rows, P1.n_cols);
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] = P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] = P1[i] - P2[i]; }
@@ -133,19 +133,18 @@ eglue_core<eglue_type>::apply_unwrap(Mat<typename T1::elem_type>& out, const eGl
   
   typedef typename T1::elem_type eT;
   
-  out.set_size(x.n_rows, x.n_cols);
-  
   const unwrap<typename Proxy<T1>::stored_type> tmp1(x.P1.Q);
   const unwrap<typename Proxy<T2>::stored_type> tmp2(x.P2.Q);
-  
   
   const Mat<eT>& A = tmp1.M;
   const Mat<eT>& B = tmp2.M;
   
+  out.set_size(A.n_rows, A.n_cols);
+  
         eT* out_mem = out.memptr();
   const eT* A_mem   = A.memptr();
   const eT* B_mem   = B.memptr();
-  const u32 n_elem  = x.n_elem;
+  const u32 n_elem  = A.n_elem;
   
        if(is_same_type<eglue_type, eglue_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] = A_mem[i] + B_mem[i]; }
   else if(is_same_type<eglue_type, eglue_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] = A_mem[i] - B_mem[i]; }
@@ -170,13 +169,13 @@ eglue_core<eglue_type>::apply_inplace_plus(Mat<typename T1::elem_type>& out, con
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, x.n_rows, x.n_cols, "matrix addition");
+  const Proxy<T1>& P1 = x.P1;
+  const Proxy<T2>& P2 = x.P2;
   
-        eT*        out_mem = out.memptr();
-  const Proxy<T1>& P1      = x.P1;
-  const Proxy<T2>& P2      = x.P2;
-  const u32        n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, P1.n_rows, P1.n_cols, "matrix addition");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] += P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] += P1[i] - P2[i]; }
@@ -201,13 +200,13 @@ eglue_core<eglue_type>::apply_inplace_minus(Mat<typename T1::elem_type>& out, co
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, x.n_rows, x.n_cols, "matrix subtraction");
+  const Proxy<T1>& P1 = x.P1;
+  const Proxy<T2>& P2 = x.P2;
   
-        eT*        out_mem = out.memptr();
-  const Proxy<T1>& P1      = x.P1;
-  const Proxy<T2>& P2      = x.P2;
-  const u32        n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, P1.n_rows, P1.n_cols, "matrix subtraction");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] -= P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] -= P1[i] - P2[i]; }
@@ -232,13 +231,13 @@ eglue_core<eglue_type>::apply_inplace_schur(Mat<typename T1::elem_type>& out, co
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, x.n_rows, x.n_cols, "element-wise matrix multiplication");
+  const Proxy<T1>& P1 = x.P1;
+  const Proxy<T2>& P2 = x.P2;
   
-        eT*        out_mem = out.memptr();
-  const Proxy<T1>& P1      = x.P1;
-  const Proxy<T2>& P2      = x.P2;
-  const u32        n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, P1.n_rows, P1.n_cols, "element-wise matrix multiplication");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] *= P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] *= P1[i] - P2[i]; }
@@ -263,13 +262,13 @@ eglue_core<eglue_type>::apply_inplace_div(Mat<typename T1::elem_type>& out, cons
   
   typedef typename T1::elem_type eT;
   
-  arma_assert_same_size(out.n_rows, out.n_cols, x.n_rows, x.n_cols, "element-wise matrix division");
+  const Proxy<T1>& P1 = x.P1;
+  const Proxy<T2>& P2 = x.P2;
   
-        eT*        out_mem = out.memptr();
-  const Proxy<T1>& P1      = x.P1;
-  const Proxy<T2>& P2      = x.P2;
-  const u32        n_elem  = x.n_elem;
+  arma_assert_same_size(out.n_rows, out.n_cols, P1.n_rows, P1.n_cols, "element-wise matrix division");
   
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P1.n_elem;
   
        if(is_same_type<eglue_type, eglue_plus >::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] /= P1[i] + P2[i]; }
   else if(is_same_type<eglue_type, eglue_minus>::value == true) for(u32 i=0; i<n_elem; ++i) { out_mem[i] /= P1[i] - P2[i]; }

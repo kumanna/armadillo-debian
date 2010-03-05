@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Proxy.hpp File Reference</title>
+<title>Armadillo Technical: promote_type.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,24 +25,93 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>Proxy.hpp File Reference</h1>
+<h1>promote_type.hpp File Reference</h1>
 <p><a href="a00690_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00449.html">Proxy&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html">Proxy&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html">Proxy&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00457.html">Proxy&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00456.html">Proxy&lt; Op&lt; T1, op_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00454.html">Proxy&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00458.html">Proxy&lt; subview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00451.html">Proxy&lt; diagview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00453.html">Proxy&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00452.html">Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00371.html">promote_type&lt; T1, T2 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00449.html">promote_type_ok</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00424.html">promote_type&lt; T, T &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00419.html">promote_type&lt; std::complex&lt; T &gt;, T &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00413.html">promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00412.html">promote_type&lt; std::complex&lt; double &gt;, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00414.html">promote_type&lt; std::complex&lt; float &gt;, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00417.html">promote_type&lt; std::complex&lt; T &gt;, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00421.html">promote_type&lt; std::complex&lt; T &gt;, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00416.html">promote_type&lt; std::complex&lt; T &gt;, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00420.html">promote_type&lt; std::complex&lt; T &gt;, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00418.html">promote_type&lt; std::complex&lt; T &gt;, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00422.html">promote_type&lt; std::complex&lt; T &gt;, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00372.html">promote_type&lt; double, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00374.html">promote_type&lt; double, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00378.html">promote_type&lt; double, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00373.html">promote_type&lt; double, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00377.html">promote_type&lt; double, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html">promote_type&lt; double, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00379.html">promote_type&lt; double, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00382.html">promote_type&lt; float, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00386.html">promote_type&lt; float, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00381.html">promote_type&lt; float, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00385.html">promote_type&lt; float, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00383.html">promote_type&lt; float, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00387.html">promote_type&lt; float, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00402.html">promote_type&lt; s32, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00398.html">promote_type&lt; s32, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00401.html">promote_type&lt; s32, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00399.html">promote_type&lt; s32, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00403.html">promote_type&lt; s32, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00435.html">promote_type&lt; u32, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00439.html">promote_type&lt; u32, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00437.html">promote_type&lt; u32, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00440.html">promote_type&lt; u32, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00393.html">promote_type&lt; s16, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00391.html">promote_type&lt; s16, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00395.html">promote_type&lt; s16, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00429.html">promote_type&lt; u16, s8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00432.html">promote_type&lt; u16, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00411.html">promote_type&lt; s8, u8 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00423.html">promote_type&lt; T, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00415.html">promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html">promote_type&lt; float, std::complex&lt; double &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00376.html">promote_type&lt; double, std::complex&lt; float &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00400.html">promote_type&lt; s32, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00438.html">promote_type&lt; u32, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00392.html">promote_type&lt; s16, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00430.html">promote_type&lt; u16, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00408.html">promote_type&lt; s8, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00446.html">promote_type&lt; u8, std::complex&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00380.html">promote_type&lt; float, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00396.html">promote_type&lt; s32, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00433.html">promote_type&lt; u32, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00388.html">promote_type&lt; s16, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00425.html">promote_type&lt; u16, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00404.html">promote_type&lt; s8, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00441.html">promote_type&lt; u8, double &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00397.html">promote_type&lt; s32, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00434.html">promote_type&lt; u32, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00389.html">promote_type&lt; s16, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00426.html">promote_type&lt; u16, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00405.html">promote_type&lt; s8, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00442.html">promote_type&lt; u8, float &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00436.html">promote_type&lt; u32, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00390.html">promote_type&lt; s16, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00428.html">promote_type&lt; u16, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00407.html">promote_type&lt; s8, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00444.html">promote_type&lt; u8, s32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html">promote_type&lt; s16, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00431.html">promote_type&lt; u16, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00410.html">promote_type&lt; s8, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00448.html">promote_type&lt; u8, u32 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00427.html">promote_type&lt; u16, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00406.html">promote_type&lt; s8, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00443.html">promote_type&lt; u8, s16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00409.html">promote_type&lt; s8, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00447.html">promote_type&lt; u8, u16 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00445.html">promote_type&lt; u8, s8 &gt;</a></td></tr>
 </table>
 </div>
 </BODY>

@@ -16,10 +16,12 @@
   <tbody>
     <tr>
       <td>
-        <h2><b>Reference for Armadillo 0.9.0</b></h2>
+        <h2><b>Reference for Armadillo 0.9.2</b></h2>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
+        <br>
+        <b><a href="http://nicta.com.au">to NICTA home page</a></b>
       </td>
     </tr>
   </tbody>
@@ -172,6 +174,7 @@ use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 <a href="#lu">lu</a>&nbsp;&middot;
 <a href="#pinv">pinv</a>&nbsp;&middot;
 <a href="#princomp">princomp</a>&nbsp;&middot;
+<a href="#princomp_cov">princomp_cov</a>&nbsp;&middot;
 <a href="#qr">qr</a>&nbsp;&middot;
 <a href="#solve">solve</a>&nbsp;&middot;
 <a href="#svd">svd</a>
@@ -4070,10 +4073,14 @@ eig_sym(eigval, eigvec, B);
 </li>
 <br>
 <li>
-See also: <a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a>
-</li>
+See also:
+<ul>
+<li><a href="#princomp_cov">princomp_cov()</a></li>
+<li><a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a></li>
 </ul>
+</li>
 <br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="eig_gen"></a>
@@ -4219,8 +4226,8 @@ See also: <a href="http://en.wikipedia.org/wiki/LU_decomposition">LU decompositi
 
 <ul>
 <li>Moore-Penrose pseudo-inverse of matrix A.</li><br>
-<li>The computation is based on singular value decomposition (SVD).</li><br>
-<li>If the SVD fails, an error message is printed and the output matrix has no elements.</li><br>
+<li>The computation is based on singular value decomposition (SVD).
+If the SVD fails, an error message is printed and the output matrix has no elements.</li><br>
 <li>Any singular values less than tol are treated as zero.</li><br>
 <li>For matrix A with m rows and n columns, the default tolerance is max(m,n)*norm(A)*math::eps(),
 where math::eps() denotes the difference between 1 and the least value greater than 1 that is representable.</li>
@@ -4263,14 +4270,14 @@ See also:
 <br><b>princomp(cx_mat coeff, cx_mat score, colvec latent, cx_colvec tsquared, cx_mat X)</b><br>
 <br>
 <ul>
-<li>Principal components analysis of matrix X.</li><br>
+<li>Principal component analysis of matrix X.</li><br>
 <li>Each row of X is an observation and each column is a variable.</li><br>
-<li>The computation is based on singular value decomposition.</li><br>
 <li>coeff: principal component coefficients.</li><br>
 <li>score: projected data.</li><br>
 <li>latent: eigenvalues of the covariance matrix of X.</li><br>
 <li>tsquared: Hotteling's statistic for each sample.</li><br>
-<br>
+<li>The computation is based on singular value decomposition (SVD).
+If the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
 <li>
 Examples:
 <ul>
@@ -4290,14 +4297,58 @@ princomp(coeff, score, latent, tsquared, A);
 <li>
 See also:
 <ul>
+<li><a href="#princomp_cov">princomp_cov()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Principal_component_analysis">principal components analysis in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/PrincipalComponentAnalysis.html">principal components analysis in MathWorld</a></li>
 </ul>
 </li>
-</ul>
 <br>
+</ul>
 <hr class="greyline"><br>
 
+<a name="princomp_cov"></a>
+<b>mat coeff = princomp_cov(mat X)</b>
+<br><b>cx_mat coeff = princomp_cov(cx_mat X)</b><br>
+
+<br><b>princomp_cov(mat coeff, colvec latent, mat X)</b>
+<br><b>princomp_cov(cx_mat coeff, colvec latent, cx_mat X)</b><br>
+
+<br><b>princomp_cov(mat coeff, colvec latent, colvec explained, mat X)</b>
+<br><b>princomp_cov(cx_mat coeff, colvec latent, colvec explained, cx_mat X)</b><br>
+
+<ul>
+<li>Principal component analysis of the covariance matrix of the input matrix X.</li><br>
+<li>coeff: principal component coefficients.</li><br>
+<li>latent: principal component variances.</li><br>
+<li>explained: percentage of the total variance explained by each principal component.</li><br>
+<li>The computation is based on singular value decomposition (SVD).
+If the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = rand&lt;mat&gt;(5,4);
+
+mat coeff;
+colvec latent;
+colvec explained; 
+princomp_cov(coeff, latent, explained, A);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#princomp">princomp()</a></li>
+<li><a href="#cov">cov()</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Principal_component_analysis">principal components analysis in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/PrincipalComponentAnalysis.html">principal components analysis in MathWorld</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
 
 <a name="qr"></a>
 <b>qr(Q,R,X)</b>
@@ -5789,7 +5840,7 @@ cx_double is a typedef for std::complex&lt;double&gt;
 If you save the program below as <i>arma_prog.cpp</i>,
 under Linux you can compile it using:
 <br>
-g++ -O1 -o arma_prog arma_prog.cpp -larmadillo
+g++ arma_prog.cpp -o arma_prog -O1 -larmadillo
 </li>
 <br>
 <li>

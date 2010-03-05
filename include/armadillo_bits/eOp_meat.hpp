@@ -22,16 +22,13 @@
 template<typename T1, typename eop_type>
 eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m)
   : P(in_m.get_ref())
-  , n_rows(P.n_rows)
-  , n_cols(P.n_cols)
-  , n_elem(P.n_elem)
   , aux(aux)
   , aux_u32_a(aux_u32_a)
   , aux_u32_b(aux_u32_b)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (eop_type::size_ok(n_rows, n_cols) == false), eop_type::error_msg() );
+  arma_debug_check( (eop_type::size_ok(P.n_rows, P.n_cols) == false), eop_type::error_msg() );
   }
   
 
@@ -39,16 +36,13 @@ eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m)
 template<typename T1, typename eop_type>
 eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m, const typename T1::elem_type in_aux)
   : P(in_m.get_ref())
-  , n_rows(P.n_rows)
-  , n_cols(P.n_cols)
-  , n_elem(P.n_elem)
   , aux(in_aux)
   , aux_u32_a(aux_u32_a)
   , aux_u32_b(aux_u32_b)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (eop_type::size_ok(n_rows, n_cols) == false), eop_type::error_msg() );
+  arma_debug_check( (eop_type::size_ok(P.n_rows, P.n_cols) == false), eop_type::error_msg() );
   }
   
 
@@ -56,16 +50,13 @@ eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m, const typen
 template<typename T1, typename eop_type>
 eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b)
   : P(in_m.get_ref())
-  , n_rows(P.n_rows)
-  , n_cols(P.n_cols)
-  , n_elem(P.n_elem)
   , aux(aux)
   , aux_u32_a(in_aux_u32_a)
   , aux_u32_b(in_aux_u32_b)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (eop_type::size_ok(n_rows, n_cols) == false), eop_type::error_msg() );
+  arma_debug_check( (eop_type::size_ok(P.n_rows, P.n_cols) == false), eop_type::error_msg() );
   }
 
 
@@ -73,33 +64,27 @@ eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m, const u32 i
 template<typename T1, typename eop_type>
 eOp<T1, eop_type>::eOp(const Base<typename T1::elem_type, T1>& in_m, const typename T1::elem_type in_aux, const u32 in_aux_u32_a, const u32 in_aux_u32_b)
   : P(in_m.get_ref())
-  , n_rows(P.n_rows)
-  , n_cols(P.n_cols)
-  , n_elem(P.n_elem)
   , aux(in_aux)
   , aux_u32_a(in_aux_u32_a)
   , aux_u32_b(in_aux_u32_b)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (eop_type::size_ok(n_rows, n_cols) == false), eop_type::error_msg() );
+  arma_debug_check( (eop_type::size_ok(P.n_rows, P.n_cols) == false), eop_type::error_msg() );
   }
 
 
 
 template<typename T1, typename eop_type>
 eOp<T1, eop_type>::eOp(const u32 in_n_rows, const u32 in_n_cols)
-  : P(P)
-  , n_rows(in_n_rows)
-  , n_cols(in_n_cols)
-  , n_elem(n_rows*n_cols)
+  : P(in_n_rows, in_n_cols)
   , aux(aux)
   , aux_u32_a(aux_u32_a)
   , aux_u32_b(aux_u32_b)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (eop_type::size_ok(n_rows, n_cols) == false), eop_type::error_msg() );
+  arma_debug_check( (eop_type::size_ok(P.n_rows, P.n_cols) == false), eop_type::error_msg() );
   }
   
 

@@ -16,11 +16,12 @@
 
 
 #define arma_hot
+#define arma_cold
 #define arma_pure
 #define arma_const
-#define arma_inline   inline
+#define arma_inline  inline
 #define arma_aligned
-
+#define arma_warn_unused
 
 #if defined(__GNUG__)
 
@@ -30,18 +31,23 @@
   
   #if (__GNUC_MINOR__ >= 3)
     #undef  arma_hot
-    #define arma_hot __attribute__((hot))
+    #undef  arma_cold
+    
+    #define arma_hot  __attribute__((hot))
+    #define arma_cold __attribute__((cold))
   #endif
 
   #undef  arma_pure
   #undef  arma_const
   #undef  arma_inline
   #undef  arma_aligned
+  #undef  arma_warn_unused
 
-  #define arma_pure           __attribute__((pure))
-  #define arma_const          __attribute__((const))
-  #define arma_inline  inline __attribute__((always_inline))
-  #define arma_aligned        __attribute__((aligned))
+  #define arma_pure               __attribute__((pure))
+  #define arma_const              __attribute__((const))
+  #define arma_inline      inline __attribute__((always_inline))
+  #define arma_aligned            __attribute__((aligned))
+  #define arma_warn_unused        __attribute__((warn_unused_result))
   
   #define ARMA_GOOD_COMPILER
   

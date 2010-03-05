@@ -32,16 +32,26 @@ accu_unwrap(const Base<typename T1::elem_type,T1>& X)
   const unwrap<T1>   tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
   
-  const u32 N = A.n_elem;
+  const eT* A_mem = A.memptr();
+  const u32 N     = A.n_elem;
   
-  eT val = eT(0);
+  eT val1 = eT(0);
+  eT val2 = eT(0);
   
-  for(u32 i=0; i<N; ++i)
+  u32 i,j;
+  
+  for(i=0, j=1; j<N; i+=2, j+=2)
     {
-    val += A[i];
+    val1 += A_mem[i];
+    val2 += A_mem[j];
     }
   
-  return val;
+  if(i < N)
+    {
+    val1 += A_mem[i];
+    }
+  
+  return val1 + val2;
   }
 
 
@@ -75,6 +85,7 @@ accu_proxy(const Base<typename T1::elem_type,T1>& X)
 //! accumulate the elements of a matrix
 template<typename T1>
 arma_inline
+arma_warn_unused
 typename T1::elem_type
 accu(const Base<typename T1::elem_type,T1>& X)
   {
@@ -88,6 +99,7 @@ accu(const Base<typename T1::elem_type,T1>& X)
 //! accumulate the elements of a cube
 template<typename T1>
 arma_hot
+arma_warn_unused
 inline
 typename T1::elem_type
 accu(const BaseCube<typename T1::elem_type,T1>& X)
@@ -114,6 +126,8 @@ accu(const BaseCube<typename T1::elem_type,T1>& X)
 
 //! accumulate the elements of a diagview
 template<typename eT>
+arma_pure
+arma_warn_unused
 inline
 eT
 accu(const diagview<eT>& X)
@@ -135,6 +149,8 @@ accu(const diagview<eT>& X)
 
 //! accumulate the elements of a subview (submatrix)
 template<typename eT>
+arma_pure
+arma_warn_unused
 inline
 eT
 accu(const subview<eT>& S)
@@ -161,6 +177,8 @@ accu(const subview<eT>& S)
 
 //! accumulate the elements of a subview_row
 template<typename eT>
+arma_pure
+arma_warn_unused
 inline
 eT
 accu(const subview_row<eT>& S)
@@ -187,6 +205,8 @@ accu(const subview_row<eT>& S)
 
 //! accumulate the elements of a subview_col
 template<typename eT>
+arma_pure
+arma_warn_unused
 inline
 eT
 accu(const subview_col<eT>& S)

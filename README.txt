@@ -185,7 +185,7 @@ NOTE: on Ubuntu and Debian based systems you may need to add
 
 
 
-=== 4. Reference Manual / User Documentation ===
+=== 4. User Documentation / Reference Manual ===
 
 A quick reference manual is available at http://arma.sourceforge.net
 or in the "docs_user" directory.  Use a web browser to open the 

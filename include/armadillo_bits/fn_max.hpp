@@ -40,6 +40,7 @@ max(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
 //! Immediate 'find the maximum value in a row vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 max(const Row<eT>& A)
   {
@@ -55,6 +56,7 @@ max(const Row<eT>& A)
 //! Immediate 'find the maximum value in a column vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 max(const Col<eT>& A)
   {
@@ -72,6 +74,7 @@ max(const Col<eT>& A)
 //! invoked, for example, by: max(max(A))
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 max(const Op<T1, op_max>& in)
   {
@@ -104,6 +107,7 @@ max(const Op<T1, op_max>& in, const u32 dim)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 max(const subview_row<eT>& A)
   {
@@ -118,6 +122,7 @@ max(const subview_row<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 max(const subview_col<eT>& A)
   {
@@ -132,6 +137,7 @@ max(const subview_col<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 max(const Op<subview<eT>, op_max>& in)
   {
@@ -149,6 +155,7 @@ max(const Op<subview<eT>, op_max>& in)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 max(const diagview<eT>& A)
   {

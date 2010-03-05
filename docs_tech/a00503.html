@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: upgrade_val&lt; T1, std::complex&lt; T &gt; &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,76 +29,97 @@
   </div>
 </div>
 <div class="contents">
-<h1>upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt; Struct Template Reference<br/>
+<h1>upgrade_val&lt; T1, std::complex&lt; T &gt; &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00865.html">Upgrade_val</a>]</small>
-</h1><!-- doxytag: class="upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;" -->
-<p>upgrade a type to allow multiplication with a complex type e.g. the int in "int * complex&lt;double&gt;" is upgraded to a double  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00868.html">Upgrade_val</a>]</small>
+</h1><!-- doxytag: class="upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00713_source.html">upgrade_val.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00712_source.html">upgrade_val.hpp</a>&gt;</code></p>
-
-<p><a href="a01358.html">List of all members.</a></p>
+<p><a href="a01361.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#a20af210315b1870e9225f55f5bfda709">T1_result</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#a2842884456cd7af0f2be6b06a67fbe9c">T2_result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#ac61a54f36f1a122f3073a98917ffd85e">T1_result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#a50450f16353fcd71e1ee5ea7b39ffd92">T2_result</a></td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#aed767aa35a423b594042262805311483">apply</a> (const T1 x)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
-std::complex&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#a049d92965a4f6a69d404aa3182a89ff4">apply</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const T&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#a6a333d34abc9856beeeda43c1b8f08c0">apply</a> (const T2 x)</td></tr>
+std::complex&lt; T &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00503.html#a37d42b6fdd9101ca39f31f772d63a917">apply</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T, typename T2&gt;<br/>
- struct upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;</h3>
+<h3>template&lt;typename T1, typename T&gt;<br/>
+ struct upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;</h3>
 
-<p>upgrade a type to allow multiplication with a complex type e.g. the int in "int * complex&lt;double&gt;" is upgraded to a double </p>
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00067">67</a> of file <a class="el" href="a00712_source.html">upgrade_val.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00079">79</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a20af210315b1870e9225f55f5bfda709"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;::T1_result" ref="a20af210315b1870e9225f55f5bfda709" args="" -->
+<a class="anchor" id="ac61a54f36f1a122f3073a98917ffd85e"></a><!-- doxytag: member="upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;::T1_result" ref="ac61a54f36f1a122f3073a98917ffd85e" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename T2 &gt; </div>
+template&lt;typename T1 , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::complex&lt;T&gt; <a class="el" href="a00496.html">upgrade_val</a>&lt; std::complex&lt; T &gt;, T2 &gt;::<a class="el" href="a00503.html#a20af210315b1870e9225f55f5bfda709">T1_result</a></td>
+          <td class="memname">typedef T <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, std::complex&lt; T &gt; &gt;::<a class="el" href="a00503.html#ac61a54f36f1a122f3073a98917ffd85e">T1_result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00069">69</a> of file <a class="el" href="a00712_source.html">upgrade_val.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00081">81</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2842884456cd7af0f2be6b06a67fbe9c"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;::T2_result" ref="a2842884456cd7af0f2be6b06a67fbe9c" args="" -->
+<a class="anchor" id="a50450f16353fcd71e1ee5ea7b39ffd92"></a><!-- doxytag: member="upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;::T2_result" ref="a50450f16353fcd71e1ee5ea7b39ffd92" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename T2 &gt; </div>
+template&lt;typename T1 , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T <a class="el" href="a00496.html">upgrade_val</a>&lt; std::complex&lt; T &gt;, T2 &gt;::<a class="el" href="a00503.html#a2842884456cd7af0f2be6b06a67fbe9c">T2_result</a></td>
+          <td class="memname">typedef std::complex&lt;T&gt; <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, std::complex&lt; T &gt; &gt;::<a class="el" href="a00503.html#a50450f16353fcd71e1ee5ea7b39ffd92">T2_result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00070">70</a> of file <a class="el" href="a00712_source.html">upgrade_val.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00082">82</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a049d92965a4f6a69d404aa3182a89ff4"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;::apply" ref="a049d92965a4f6a69d404aa3182a89ff4" args="(const std::complex&lt; T &gt; &amp;x)" -->
+<a class="anchor" id="aed767aa35a423b594042262805311483"></a><!-- doxytag: member="upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;::apply" ref="aed767aa35a423b594042262805311483" args="(const T1 x)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename T2 &gt; </div>
+template&lt;typename T1 , typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_inline const std::complex&lt;T&gt;&amp; <a class="el" href="a00496.html">upgrade_val</a>&lt; std::complex&lt; T &gt;, T2 &gt;::apply </td>
+          <td class="memname">static arma_inline const T <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, std::complex&lt; T &gt; &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">const T1&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00713_source.html#l00084">84</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00084"></a>00084 { <span class="keywordflow">return</span> T(x); }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a37d42b6fdd9101ca39f31f772d63a917"></a><!-- doxytag: member="upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;::apply" ref="a37d42b6fdd9101ca39f31f772d63a917" args="(const std::complex&lt; T &gt; &amp;x)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline const std::complex&lt;T&gt;&amp; <a class="el" href="a00494.html">upgrade_val</a>&lt; T1, std::complex&lt; T &gt; &gt;::apply </td>
           <td>(</td>
           <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>x</em></td>
@@ -109,34 +130,9 @@ template&lt;typename T , typename T2 &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00072">72</a> of file <a class="el" href="a00712_source.html">upgrade_val.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00713_source.html#l00085">85</a> of file <a class="el" href="a00713_source.html">upgrade_val.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00072"></a>00072 { <span class="keywordflow">return</span> x;    }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="a6a333d34abc9856beeeda43c1b8f08c0"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;::apply" ref="a6a333d34abc9856beeeda43c1b8f08c0" args="(const T2 x)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename T2 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static arma_inline const T <a class="el" href="a00496.html">upgrade_val</a>&lt; std::complex&lt; T &gt;, T2 &gt;::apply </td>
-          <td>(</td>
-          <td class="paramtype">const T2&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00712_source.html#l00073">73</a> of file <a class="el" href="a00712_source.html">upgrade_val.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00073"></a>00073 { <span class="keywordflow">return</span> T(x); }
+<p><div class="fragment"><pre class="fragment"><a name="l00085"></a>00085 { <span class="keywordflow">return</span> x;    }
 </pre></div></p>
 
 </div>

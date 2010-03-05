@@ -29,12 +29,6 @@ class eGlueCube : public BaseCube<typename T1::elem_type, eGlueCube<T1, T2, eglu
   const ProxyCube<T1> P1;
   const ProxyCube<T2> P2;
   
-  const u32  n_rows;
-  const u32  n_cols;
-  const u32  n_elem_slice;
-  const u32  n_slices;
-  const u32  n_elem;
-  
   arma_inline ~eGlueCube();
   arma_inline  eGlueCube(const T1& in_A, const T2& in_B);
   

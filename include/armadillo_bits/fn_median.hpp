@@ -32,6 +32,7 @@ median(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
 //! Immediate 'find the median value of a row vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 median(const Row<eT>& A)
   {
@@ -47,6 +48,7 @@ median(const Row<eT>& A)
 //! Immediate 'find the median value of a column vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 median(const Col<eT>& A)
   {
@@ -62,6 +64,7 @@ median(const Col<eT>& A)
 //! Immediate 'find the median value of a row vector' operation (complex number version)
 template<typename T>
 inline
+arma_warn_unused
 std::complex<T>
 median(const Row< std::complex<T> >& A)
   {
@@ -81,6 +84,7 @@ median(const Row< std::complex<T> >& A)
 //! Immediate 'find the median value of a column vector' operation (complex number version)
 template<typename T>
 inline
+arma_warn_unused
 std::complex<T>
 median(const Col< std::complex<T> >& A)
   {
@@ -100,6 +104,7 @@ median(const Col< std::complex<T> >& A)
 //! find the median value of a subview_row
 template<typename eT>
 inline
+arma_warn_unused
 eT
 median(const subview_row<eT>& A)
   {
@@ -115,6 +120,7 @@ median(const subview_row<eT>& A)
 //! find the median value of a subview_col
 template<typename eT>
 inline
+arma_warn_unused
 eT
 median(const subview_col<eT>& A)
   {
@@ -130,6 +136,7 @@ median(const subview_col<eT>& A)
 //! find the median value of a subview_row (complex number version)
 template<typename T>
 inline
+arma_warn_unused
 std::complex<T>
 median(const subview_row< std::complex<T> >& A)
   {
@@ -149,6 +156,7 @@ median(const subview_row< std::complex<T> >& A)
 //! find the median value of a subview_col (complex number version)
 template<typename T>
 inline
+arma_warn_unused
 std::complex<T>
 median(const subview_col< std::complex<T> >& A)
   {
@@ -167,6 +175,7 @@ median(const subview_col< std::complex<T> >& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 median(const diagview<eT>& A)
   {
@@ -181,6 +190,7 @@ median(const diagview<eT>& A)
 
 template<typename T>
 inline
+arma_warn_unused
 std::complex<T>
 median(const diagview< std::complex<T> >& A)
   {

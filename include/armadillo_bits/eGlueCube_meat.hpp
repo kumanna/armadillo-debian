@@ -31,13 +31,8 @@ eGlueCube<T1,T2,eglue_type>::~eGlueCube()
 template<typename T1, typename T2, typename eglue_type>
 arma_inline
 eGlueCube<T1,T2,eglue_type>::eGlueCube(const T1& in_A, const T2& in_B)
-  : P1          (in_A)
-  , P2          (in_B)
-  , n_rows      (P1.n_rows)
-  , n_cols      (P1.n_cols)
-  , n_elem_slice(P1.n_elem_slice)
-  , n_slices    (P1.n_slices)
-  , n_elem      (P1.n_elem)
+  : P1(in_A)
+  , P2(in_B)
   {
   arma_extra_debug_sigprint();
   

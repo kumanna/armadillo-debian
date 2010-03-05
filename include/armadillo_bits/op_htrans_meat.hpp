@@ -18,6 +18,7 @@
 //! @{
 
 
+
 //! Immediate transpose of a complex matrix
 template<typename T>
 inline
@@ -40,8 +41,6 @@ op_htrans::apply_noalias(Mat< std::complex<T> >& out, const Mat< std::complex<T>
     }
   
   }
-
-
 
 
 
@@ -72,10 +71,12 @@ op_htrans::apply(Mat< std::complex<T> >& out, const Mat< std::complex<T> >& A)
         {
         eT* coldata = out.colptr(col);
         
+        out.at(col,col) = std::conj( out.at(col,col) );
+        
         for(u32 row=(col+1); row<n_rows; ++row)
           {
-          eT val1 = std::conj(coldata[row]);
-          eT val2 = std::conj(out.at(col,row));
+          const eT val1 = std::conj(coldata[row]);
+          const eT val2 = std::conj(out.at(col,row));
           
           out.at(col,row) = val1;
           coldata[row]    = val2;
@@ -85,7 +86,7 @@ op_htrans::apply(Mat< std::complex<T> >& out, const Mat< std::complex<T> >& A)
     else
       {
       const Mat<eT> A_copy = A;
-      op_trans::apply_noalias(out, A_copy);
+      op_htrans::apply_noalias(out, A_copy);
       }
     }
   
@@ -101,47 +102,13 @@ op_htrans::apply(Mat< std::complex<T> >& out, const Op<T1,op_htrans>& in)
   arma_extra_debug_sigprint();
   
   typedef typename std::complex<T> eT;
-
+  
   isnt_same_type<eT,typename T1::elem_type>::check();
-
+  
   const unwrap<T1> tmp(in.m);
   const Mat<eT>& A = tmp.M;
   
-  if(&out != &A)
-    {
-    op_htrans::apply_noalias(out, A);
-    }
-  else
-    {
-    if(out.n_rows == out.n_cols)
-      {
-      arma_extra_debug_print("doing in-place hermitian transpose of a square matrix");
-      
-      const u32 n_rows = out.n_rows;
-      const u32 n_cols = out.n_cols;
-      
-      for(u32 col=0; col<n_cols; ++col)
-        {
-        eT* coldata = out.colptr(col);
-        
-        for(u32 row=(col+1); row<n_rows; ++row)
-          {
-          eT val1 = std::conj(coldata[row]);
-          eT val2 = std::conj(out.at(col,row));
-          
-          out.at(col,row) = val1;
-          coldata[row]    = val2;
-          }
-        }
-      }
-    else
-      {
-      const Mat<eT> A_copy = A;
-      op_trans::apply_noalias(out, A_copy);
-      }
-    }
-  
-  
+  op_htrans::apply(out, A);
   }
 
 

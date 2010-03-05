@@ -18,6 +18,7 @@
 //! @{
 
 
+
 //! Immediate transpose of a dense matrix
 template<typename eT>
 inline
@@ -28,7 +29,6 @@ op_trans::apply_noalias(Mat<eT>& out, const Mat<eT>& A)
   
   const u32 A_n_cols = A.n_cols;
   const u32 A_n_rows = A.n_rows;
-  
   
   out.set_size(A_n_cols, A_n_rows);
   
@@ -106,36 +106,7 @@ op_trans::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_trans>& in)
   const unwrap<T1> tmp(in.m);
   const Mat<eT>& A = tmp.M;
   
-  if(&out != &A)
-    {
-    op_trans::apply_noalias(out, A);
-    }
-  else
-    {
-    if(out.n_rows == out.n_cols)
-      {
-      arma_extra_debug_print("op_trans::apply(): doing in-place transpose of a square matrix");
-      
-      const u32 n_rows = out.n_rows;
-      const u32 n_cols = out.n_cols;
-      
-      for(u32 col=0; col<n_cols; ++col)
-        {
-        eT* coldata = out.colptr(col);
-        
-        for(u32 row=(col+1); row<n_rows; ++row)
-          {
-          std::swap( out.at(col,row), coldata[row] );
-          }
-        }
-      }
-    else
-      {
-      const Mat<eT> A_copy = A;
-      op_trans::apply_noalias(out, A_copy);
-      }
-    }
-  
+  op_trans::apply(out, A);
   }
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_reshape.hpp Source File</title>
+<title>Armadillo Technical: fn_shuffle.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,64 +25,51 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_reshape.hpp</h1><a href="a00587.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_shuffle.hpp</h1><a href="a00587.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
 <a name="l00005"></a>00005 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
-<a name="l00006"></a>00006 <span class="comment">// </span>
-<a name="l00007"></a>00007 <span class="comment">// This file is part of the Armadillo C++ library.</span>
-<a name="l00008"></a>00008 <span class="comment">// It is provided without any warranty of fitness</span>
-<a name="l00009"></a>00009 <span class="comment">// for any purpose. You can redistribute this file</span>
-<a name="l00010"></a>00010 <span class="comment">// and/or modify it under the terms of the GNU</span>
-<a name="l00011"></a>00011 <span class="comment">// Lesser General Public License (LGPL) as published</span>
-<a name="l00012"></a>00012 <span class="comment">// by the Free Software Foundation, either version 3</span>
-<a name="l00013"></a>00013 <span class="comment">// of the License or (at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_reshape</span>
-<a name="l00018"></a>00018 <span class="comment">//! @{</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00023"></a>00023 <span class="keyword">inline</span>
-<a name="l00024"></a>00024 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_reshape&gt;</a>
-<a name="l00025"></a><a class="code" href="a00782.html#ga38528907ac773221998281f618ae2575">00025</a> <a class="code" href="a00782.html#ga38528907ac773221998281f618ae2575">reshape</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_rows, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_cols, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
-<a name="l00026"></a>00026   {
-<a name="l00027"></a>00027   arma_extra_debug_sigprint();
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029   arma_debug_check( (dim &gt; 1), <span class="stringliteral">&quot;reshape(): dim must be 0 or 1&quot;</span>);
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00032"></a>00032   
-<a name="l00033"></a>00033   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_reshape&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), eT(dim), in_n_rows, in_n_cols);
-<a name="l00034"></a>00034   }
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00039"></a>00039 <span class="keyword">inline</span>
-<a name="l00040"></a>00040 <span class="keyword">const</span> <a class="code" href="a00335.html" title="Analog of the Op class, intended for cubes.">OpCube&lt;T1, op_reshape&gt;</a>
-<a name="l00041"></a><a class="code" href="a00782.html#ga8c1f8b92f0b6cc1dd6676bd3d3dd959a">00041</a> <a class="code" href="a00782.html#ga38528907ac773221998281f618ae2575">reshape</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_rows, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_cols, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_slices, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
-<a name="l00042"></a>00042   {
-<a name="l00043"></a>00043   arma_extra_debug_sigprint();
-<a name="l00044"></a>00044   
-<a name="l00045"></a>00045   arma_debug_check( (dim &gt; 1), <span class="stringliteral">&quot;reshape(): dim must be 0 or 1&quot;</span>);
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   <span class="keywordflow">return</span> <a class="code" href="a00335.html" title="Analog of the Op class, intended for cubes.">OpCube&lt;T1, op_reshape&gt;</a>(X.<a class="code" href="a00055.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), eT(dim), in_n_rows, in_n_cols, in_n_slices);
-<a name="l00050"></a>00050   }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="comment"></span>
-<a name="l00054"></a>00054 <span class="comment">//! @}</span>
+<a name="l00006"></a>00006 <span class="comment">// - Dimitrios Bouzas (dimitris dot mpouzas at gmail dot com)</span>
+<a name="l00007"></a>00007 <span class="comment">// </span>
+<a name="l00008"></a>00008 <span class="comment">// This file is part of the Armadillo C++ library.</span>
+<a name="l00009"></a>00009 <span class="comment">// It is provided without any warranty of fitness</span>
+<a name="l00010"></a>00010 <span class="comment">// for any purpose. You can redistribute this file</span>
+<a name="l00011"></a>00011 <span class="comment">// and/or modify it under the terms of the GNU</span>
+<a name="l00012"></a>00012 <span class="comment">// Lesser General Public License (LGPL) as published</span>
+<a name="l00013"></a>00013 <span class="comment">// by the Free Software Foundation, either version 3</span>
+<a name="l00014"></a>00014 <span class="comment">// of the License or (at your option) any later version.</span>
+<a name="l00015"></a>00015 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="comment"></span>
+<a name="l00019"></a>00019 <span class="comment">//! \addtogroup fn_shuffle</span>
+<a name="l00020"></a>00020 <span class="comment">//! @{</span>
+<a name="l00021"></a>00021 <span class="comment"></span><span class="comment"></span>
+<a name="l00022"></a>00022 <span class="comment">//! \brief</span>
+<a name="l00023"></a>00023 <span class="comment">//! Shuffle the rows or the columns of a matrix or vector in random fashion.</span>
+<a name="l00024"></a>00024 <span class="comment">//! If dim = 0, shuffle the columns (default operation).</span>
+<a name="l00025"></a>00025 <span class="comment">//! If dim = 1, shuffle the rows.</span>
+<a name="l00026"></a>00026 <span class="comment"></span>
+<a name="l00027"></a>00027 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00028"></a>00028 <span class="keyword">inline</span>
+<a name="l00029"></a>00029 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_shuffle&gt;</a>
+<a name="l00030"></a><a class="code" href="a00785.html#ga88492e52e69a13e3423a6c40a59d73c1">00030</a> <a class="code" href="a00785.html#ga88492e52e69a13e3423a6c40a59d73c1" title="Shuffle the rows or the columns of a matrix or vector in random fashion. If dim =...">shuffle</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
+<a name="l00031"></a>00031   {
+<a name="l00032"></a>00032   arma_extra_debug_sigprint();
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   arma_debug_check( (dim &gt; 1), <span class="stringliteral">&quot;shuffle(): dim must be 0 or 1&quot;</span>);
+<a name="l00035"></a>00035   
+<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_shuffle&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
+<a name="l00037"></a>00037   }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="comment"></span>
+<a name="l00041"></a>00041 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

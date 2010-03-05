@@ -168,6 +168,7 @@ norm_proxy(const Base<typename T1::elem_type,T1>& X, const u32 k)
 
 template<typename T1>
 arma_inline
+arma_warn_unused
 typename T1::elem_type
 norm(const Base<typename T1::elem_type,T1>& X, const u32 k)
   {

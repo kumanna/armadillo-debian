@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: running_stat&lt; eT &gt; Class Template Reference</title>
+<title>Armadillo Technical: Row&lt; eT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,223 +29,207 @@
   </div>
 </div>
 <div class="contents">
-<h1>running_stat&lt; eT &gt; Class Template Reference<br/>
+<h1>Row&lt; eT &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00853.html">Running_stat</a>]</small>
-</h1><!-- doxytag: class="running_stat" -->
-<p>Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory.  
+[<a class="el" href="a00855.html">Row</a>]</small>
+</h1><!-- doxytag: class="Row" --><!-- doxytag: inherits="Mat,BaseVec&lt; eT, Row&lt; eT &gt; &gt;" -->
+<p>Class for row vectors (matrices with only one row).  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="a00696_source.html">running_stat_proto.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00695_source.html">Row_proto.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Row&lt; eT &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00467.gif" usemap="#Row&lt; eT &gt;_map" alt=""/>
+  <map id="Row&lt; eT &gt;_map" name="Row&lt; eT &gt;_map">
+<area href="a00304.html" alt="Mat&lt; eT &gt;" shape="rect" coords="0,56,172,80"/>
+<area href="a00056.html" alt="BaseVec&lt; eT, Row&lt; eT &gt; &gt;" shape="rect" coords="182,56,354,80"/>
+<area href="a00054.html" alt="Base&lt; eT, Mat&lt; eT &gt; &gt;" shape="rect" coords="0,0,172,24"/>
+</map>
+ </div>
+</div>
 
-<p><a href="a01322.html">List of all members.</a></p>
+<p><a href="a01325.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt; eT &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#aec0f589b61e71a94e416afe386602275">elem_type</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the type of elements stored in the matrix  <a href="#aec0f589b61e71a94e416afe386602275"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00187.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00467.html#aec0f589b61e71a94e416afe386602275">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#aec4f0a287b7df7e1618c1b06f5be0c38">pod_type</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">if eT is non-complex, pod_type is same as eT. otherwise, pod_type is the underlying type used by std::complex  <a href="#aec4f0a287b7df7e1618c1b06f5be0c38"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#ga9afbbf89f85f493366e6ea2ba30f3cc9">~running_stat</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#ga2e40a6700ed69cd672ef9a7ecaae21ec">running_stat</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#gaf87fd94c84249dea511fb04001ee7ac3">operator()</a> (const <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a> sample)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a00853.html#gaf87fd94c84249dea511fb04001ee7ac3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#gaaefb6a4b7a62dbd91b14faed3d53626a">operator()</a> (const std::complex&lt; <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a> &gt; &amp;sample)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a00853.html#gaaefb6a4b7a62dbd91b14faed3d53626a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#gab5299a8b23735c18f080c64cbce6863b">reset</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">set all statistics to zero  <a href="a00853.html#gab5299a8b23735c18f080c64cbce6863b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#gafe2b34beaa4ee979f0532912f0d25998">mean</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">mean or average value  <a href="a00853.html#gafe2b34beaa4ee979f0532912f0d25998"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#ga7bc25b1019c59c0b0660e60906031945">var</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">variance  <a href="a00853.html#ga7bc25b1019c59c0b0660e60906031945"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#ga72614524303dfa76bf3b5a608f05d7b7">stddev</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">standard deviation  <a href="a00853.html#ga72614524303dfa76bf3b5a608f05d7b7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#ga73317e1b093f70a4122eeaa229c901c9">min</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">minimum value  <a href="a00853.html#ga73317e1b093f70a4122eeaa229c901c9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00853.html#ga8366b2cc630340027bd1417b3aab5f05">max</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">maximum value  <a href="a00853.html#ga8366b2cc630340027bd1417b3aab5f05"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00003.html">arma_counter</a>&lt; <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a1aef557777807037eabecae815f97a83">max_val</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a></td></tr>
-<tr><td colspan="2"><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a023283c40f15021283a336abd40b68e2">running_stat_aux</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga355101834fb8be458a06347cb367018e">Row</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gad32a324fb4086b12519836ec1656b841">Row</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga762ba6826e9c958caf7462e40037d0d2">Row</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_rows, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_cols)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga6ee1cb390dd21fa63d61454ab0978d3d">Row</a> (const char *text)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga75fc05cdb44b99a64fa9a357ad9c4b3b">operator=</a> (const char *text)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create the matrix from a textual description  <a href="a00855.html#ga75fc05cdb44b99a64fa9a357ad9c4b3b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gada573401d5fdedf95b9aed04e7d8f60c">Row</a> (const std::string &amp;text)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga8e8a923a3d56d143dbbf3c0b32fbdbc9">operator=</a> (const std::string &amp;text)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create the matrix from a textual description  <a href="a00855.html#ga8e8a923a3d56d143dbbf3c0b32fbdbc9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga186b8d8bb10e11ebcd4eb5d2c5bbd3cf">Row</a> (const <a class="el" href="a00467.html">Row</a> &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga336a2a5dcddefd0c5e12ef195f30c0cd">operator=</a> (const <a class="el" href="a00467.html">Row</a> &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a matrix from a given matrix  <a href="a00855.html#ga336a2a5dcddefd0c5e12ef195f30c0cd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a8f2258c50d31d87641866a14f3cba224">operator*=</a> (const <a class="el" href="a00467.html">Row</a> &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">in-place matrix multiplication  <a href="#a8f2258c50d31d87641866a14f3cba224"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gad028555ab948e74dd6f77f33b8008e49">Row</a> (const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gae5837299809bee175fbb77ba522dad57">operator=</a> (const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga09ab0ab5ebcdde644a0bbfe360fbf19b">operator*=</a> (const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga7e795f87f234c3d38336baf911f2bda8">Row</a> (eT *aux_mem, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> aux_n_rows, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> aux_n_cols, const bool copy_aux_mem=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a row vector from a given auxiliary array  <a href="a00855.html#ga7e795f87f234c3d38336baf911f2bda8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga7ddec6afa4e2fffaa1fda855e113d304">Row</a> (const eT *aux_mem, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> aux_n_rows, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> aux_n_cols)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a row vector from a given auxiliary array  <a href="a00855.html#ga7ddec6afa4e2fffaa1fda855e113d304"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gafa306eae69098836bf2eb17ff2518699">Row</a> (eT *aux_mem, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> aux_length, const bool copy_aux_mem=true)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a row vector from a given auxiliary array  <a href="a00855.html#gafa306eae69098836bf2eb17ff2518699"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gaf753732789394e3ac34eb313dbadd4e1">Row</a> (const eT *aux_mem, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> aux_length)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a row vector from a given auxiliary array  <a href="a00855.html#gaf753732789394e3ac34eb313dbadd4e1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga380e4dc1bcae846070fbd3ff7b79ea0e">Row</a> (const <a class="el" href="a00054.html">Base</a>&lt; <a class="el" href="a00467.html#aec4f0a287b7df7e1618c1b06f5be0c38">pod_type</a>, T1 &gt; &amp;A, const <a class="el" href="a00054.html">Base</a>&lt; <a class="el" href="a00467.html#aec4f0a287b7df7e1618c1b06f5be0c38">pod_type</a>, T2 &gt; &amp;B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga5d00241e41fff3e3a31b634ec2c40f35">Row</a> (const <a class="el" href="a00476.html">subview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga2b644b4435ad69c1bb4621a1a8634846">operator=</a> (const <a class="el" href="a00476.html">subview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a matrix from <a class="el" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (e.g. construct a matrix from a delayed submatrix operation)  <a href="a00855.html#ga2b644b4435ad69c1bb4621a1a8634846"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga193087e528c05f609360e99c098fddff">operator*=</a> (const <a class="el" href="a00476.html">subview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">in-place matrix mutiplication (using a submatrix on the right-hand-side)  <a href="a00855.html#ga193087e528c05f609360e99c098fddff"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gaef260f4943c32275fa987989a7dc6e12">Row</a> (const <a class="el" href="a00478.html">subview_cube</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gab6e24c021ec2126aee931f7f7c1dcbde">operator=</a> (const <a class="el" href="a00478.html">subview_cube</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a matrix from a <a class="el" href="a00478.html" title="Class for storing data required to construct or apply operations to a subcube (i...">subview_cube</a> instance  <a href="a00855.html#gab6e24c021ec2126aee931f7f7c1dcbde"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga7771587bc57bc539007ccec10e1ce5db">operator*=</a> (const <a class="el" href="a00478.html">subview_cube</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">in-place matrix mutiplication (using a single-slice subcube on the right-hand-side)  <a href="a00855.html#ga7771587bc57bc539007ccec10e1ce5db"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga407f2c5a2f5742eba00afbae2701432d">Row</a> (const <a class="el" href="a00078.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a row vector from given a <a class="el" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00855.html#ga407f2c5a2f5742eba00afbae2701432d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga458cb2c4ab5479d5aff116b5849eb42a">operator=</a> (const <a class="el" href="a00078.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">construct a row vector from given a <a class="el" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00855.html#ga458cb2c4ab5479d5aff116b5849eb42a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga392180369d2bdef10471995357d32435">operator*=</a> (const <a class="el" href="a00078.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">in-place matrix mutiplication (using a <a class="el" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> on the right-hand-side)  <a href="a00855.html#ga392180369d2bdef10471995357d32435"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gabef3b9ba97d3401ee8f00f82562382b6">col</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col_num)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">creation of <a class="el" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (column vector)  <a href="a00855.html#gabef3b9ba97d3401ee8f00f82562382b6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga1d235b5e149d209f3d4b2342b200b0b5">col</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col_num) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">creation of <a class="el" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (column vector)  <a href="a00855.html#ga1d235b5e149d209f3d4b2342b200b0b5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00480.html">subview_row</a>&lt; eT &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga6a1fd1906a6e8efafa9ea34d8521a464">cols</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">creation of <a class="el" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (submatrix comprised of specified column vectors)  <a href="a00855.html#ga6a1fd1906a6e8efafa9ea34d8521a464"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00480.html">subview_row</a>&lt; eT &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gafa882d92558005554a421aeb6bcae0ab">cols</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">creation of <a class="el" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (submatrix comprised of specified column vectors)  <a href="a00855.html#gafa882d92558005554a421aeb6bcae0ab"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename op_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga70774d2cfd18429443f09236b96b8a91">Row</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, op_type &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename op_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#gab178cf911cfb5801f4d4e430807eb51c">operator=</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, op_type &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create a matrix from <a class="el" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, i.e. run the previously delayed unary operations  <a href="a00855.html#gab178cf911cfb5801f4d4e430807eb51c"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename op_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga71a5ccbdbdc36094507917536030e03d">operator*=</a> (const <a class="el" href="a00307.html">Op</a>&lt; T1, op_type &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">in-place matrix multiplication, with the right-hand-side operand having delayed operations  <a href="a00855.html#ga71a5ccbdbdc36094507917536030e03d"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename eop_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga4fc38b34fcfcb5dae6b25c4ee13e8f58">Row</a> (const <a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename eop_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga4abd0ceec64cfa28fdf78fa7f62e7907">operator=</a> (const <a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create a matrix from <a class="el" href="a00092.html">eOp</a>, i.e. run the previously delayed unary operations  <a href="a00855.html#ga4abd0ceec64cfa28fdf78fa7f62e7907"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename eop_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#gaec5fa477127f4752db2aada8aab31f8a">operator*=</a> (const <a class="el" href="a00092.html">eOp</a>&lt; T1, eop_type &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename glue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#gaebd4b17b3194a62ad786aeccc774bb50">Row</a> (const <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename glue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga7750a63902d439be11534b63abf57873">operator=</a> (const <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create a matrix from <a class="el" href="a00189.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, i.e. run the previously delayed binary operations  <a href="a00855.html#ga7750a63902d439be11534b63abf57873"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename glue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga1b396abf8142488acf5943fe0f74fed3">operator*=</a> (const <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">in-place matrix multiplications, with the right-hand-side operands having delayed operations  <a href="a00855.html#ga1b396abf8142488acf5943fe0f74fed3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename eglue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#gaf19b48bb6d14034a1f00be38a379fcf3">Row</a> (const <a class="el" href="a00080.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename eglue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#gab05176a3f46a4675c3a875a32ed93ee1">operator=</a> (const <a class="el" href="a00080.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">create a matrix from <a class="el" href="a00080.html">eGlue</a>, i.e. run the previously delayed binary operations  <a href="a00855.html#gab05176a3f46a4675c3a875a32ed93ee1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename eglue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00467.html">Row</a> &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga44b46aced12854a979d6002eaa935c7a">operator*=</a> (const <a class="el" href="a00080.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;X)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gaaeb5af80e64e24b8d727f6f9adc38436">set_size</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga6137e389486354c825d4416cd20f59bd">set_size</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6">n_rows</a>, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00304.html#a163bed70780a1d181594d126295d5a09">n_cols</a>)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">change the matrix to have user specified dimensions (data is not preserved)  <a href="a00855.html#ga6137e389486354c825d4416cd20f59bd"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00855.html#ga6de6165c99af62ce3a928611d9113a91">copy_size</a> (const <a class="el" href="a00304.html">Mat</a>&lt; eT2 &gt; &amp;m)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gadacde0e92d10b02217a6443d754ec8b3">zeros</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga46c1d3e080ee6105d5c300bc372dd14f">zeros</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga761af13923663f143fd3096521bae765">zeros</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6">n_rows</a>, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00304.html#a163bed70780a1d181594d126295d5a09">n_cols</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga9f7abf25aa3be08e318740194b21a0fc">ones</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gaf11b763d3df57a7e1c8187069f4f58a0">ones</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#gaa3f22cdc3994fd09209b1e7c88b3dcf8">ones</a> (const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6">n_rows</a>, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00304.html#a163bed70780a1d181594d126295d5a09">n_cols</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga28f65f7a7874ba2b81d2d83cfe232185">load</a> (const std::string name, const <a class="el" href="a00737.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type=auto_detect)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">load a matrix from a file  <a href="a00855.html#ga28f65f7a7874ba2b81d2d83cfe232185"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00855.html#ga44e18b6af94a82cd84f991e31fb8ff3a">load</a> (std::istream &amp;is, const <a class="el" href="a00737.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> type=auto_detect)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">load a matrix from a stream  <a href="a00855.html#ga44e18b6af94a82cd84f991e31fb8ff3a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;typename eT&gt;<br/>
- class running_stat&lt; eT &gt;</h3>
+ class Row&lt; eT &gt;</h3>
 
-<p>Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory. </p>
+<p>Class for row vectors (matrices with only one row). </p>
 
-<p>Definition at line <a class="el" href="a00696_source.html#l00052">52</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00695_source.html#l00023">23</a> of file <a class="el" href="a00695_source.html">Row_proto.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="acd31ba0e0fd1e2da5ecf65e5cd2f4636"></a><!-- doxytag: member="running_stat::T" ref="acd31ba0e0fd1e2da5ecf65e5cd2f4636" args="" -->
+<a class="anchor" id="aec0f589b61e71a94e416afe386602275"></a><!-- doxytag: member="Row::elem_type" ref="aec0f589b61e71a94e416afe386602275" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename eT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt;eT&gt;::result <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a></td>
+          <td class="memname">typedef eT <a class="el" href="a00467.html">Row</a>&lt; eT &gt;::<a class="el" href="a00467.html#aec0f589b61e71a94e416afe386602275">elem_type</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00696_source.html#l00056">56</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
+<p>the type of elements stored in the matrix </p>
+
+<p>Reimplemented from <a class="el" href="a00304.html#a3b7c1109cca98fb4bf493b8be33c4299">Mat&lt; eT &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="a00695_source.html#l00027">27</a> of file <a class="el" href="a00695_source.html">Row_proto.hpp</a>.</p>
 
 </div>
 </div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a023283c40f15021283a336abd40b68e2"></a><!-- doxytag: member="running_stat::running_stat_aux" ref="a023283c40f15021283a336abd40b68e2" args="" -->
+<a class="anchor" id="aec4f0a287b7df7e1618c1b06f5be0c38"></a><!-- doxytag: member="Row::pod_type" ref="aec4f0a287b7df7e1618c1b06f5be0c38" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename eT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">friend class <a class="el" href="a00468.html">running_stat_aux</a><code> [friend]</code></td>
+          <td class="memname">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt;<a class="el" href="a00467.html#aec0f589b61e71a94e416afe386602275">elem_type</a>&gt;::result <a class="el" href="a00467.html">Row</a>&lt; eT &gt;::<a class="el" href="a00467.html#aec4f0a287b7df7e1618c1b06f5be0c38">pod_type</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00696_source.html#l00092">92</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
+<p>if eT is non-complex, pod_type is same as eT. otherwise, pod_type is the underlying type used by std::complex </p>
+
+<p>Reimplemented from <a class="el" href="a00304.html#a364ff14c17bd94689ca7284aea2af5c9">Mat&lt; eT &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="a00695_source.html#l00028">28</a> of file <a class="el" href="a00695_source.html">Row_proto.hpp</a>.</p>
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a1cf715d47fe777ad98bbe0a4279216ac"></a><!-- doxytag: member="running_stat::counter" ref="a1cf715d47fe777ad98bbe0a4279216ac" args="" -->
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a8f2258c50d31d87641866a14f3cba224"></a><!-- doxytag: member="Row::operator*=" ref="a8f2258c50d31d87641866a14f3cba224" args="(const Row &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename eT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00003.html">arma_counter</a>&lt;<a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a>&gt; <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#a1cf715d47fe777ad98bbe0a4279216ac">counter</a><code> [private]</code></td>
+          <td class="memname">const <a class="el" href="a00467.html">Row</a>&amp; <a class="el" href="a00467.html">Row</a>&lt; eT &gt;::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00467.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>m</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00696_source.html#l00080">80</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
+<p>in-place matrix multiplication </p>
 
-<p>Referenced by <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>, <a class="el" href="a00695_source.html#l00307">running_stat_aux::update_stats()</a>, and <a class="el" href="a00695_source.html#l00234">running_stat&lt; eT &gt;::var()</a>.</p>
+<p>Reimplemented from <a class="el" href="a00809.html#ga02175c61f90586cbb998d5ae62e3d81e">Mat&lt; eT &gt;</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="a91928a6ae7c221153b43d58b9e59f916"></a><!-- doxytag: member="running_stat::r_mean" ref="a91928a6ae7c221153b43d58b9e59f916" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_aligned eT <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#a91928a6ae7c221153b43d58b9e59f916">r_mean</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00696_source.html#l00082">82</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00695_source.html#l00220">running_stat&lt; eT &gt;::mean()</a>, <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>, and <a class="el" href="a00695_source.html#l00307">running_stat_aux::update_stats()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abd969db4dff1f0e98012fb128ae62b2c"></a><!-- doxytag: member="running_stat::r_var" ref="abd969db4dff1f0e98012fb128ae62b2c" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a> <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#abd969db4dff1f0e98012fb128ae62b2c">r_var</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00696_source.html#l00083">83</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>, <a class="el" href="a00695_source.html#l00307">running_stat_aux::update_stats()</a>, and <a class="el" href="a00695_source.html#l00234">running_stat&lt; eT &gt;::var()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa2f1a124bccd0cac93eea7eef4660300"></a><!-- doxytag: member="running_stat::min_val" ref="aa2f1a124bccd0cac93eea7eef4660300" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_aligned eT <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#aa2f1a124bccd0cac93eea7eef4660300">min_val</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00696_source.html#l00085">85</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00695_source.html#l00279">running_stat&lt; eT &gt;::min()</a>, <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>, and <a class="el" href="a00695_source.html#l00307">running_stat_aux::update_stats()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1aef557777807037eabecae815f97a83"></a><!-- doxytag: member="running_stat::max_val" ref="a1aef557777807037eabecae815f97a83" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_aligned eT <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#a1aef557777807037eabecae815f97a83">max_val</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00696_source.html#l00086">86</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00695_source.html#l00293">running_stat&lt; eT &gt;::max()</a>, <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>, and <a class="el" href="a00695_source.html#l00307">running_stat_aux::update_stats()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9e8966b8f470b83c05ac55632377b797"></a><!-- doxytag: member="running_stat::min_val_norm" ref="a9e8966b8f470b83c05ac55632377b797" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a> <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#a9e8966b8f470b83c05ac55632377b797">min_val_norm</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00696_source.html#l00088">88</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a23acc03908c0a20a8d8f7311998711dd"></a><!-- doxytag: member="running_stat::max_val_norm" ref="a23acc03908c0a20a8d8f7311998711dd" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00467.html#acd31ba0e0fd1e2da5ecf65e5cd2f4636">T</a> <a class="el" href="a00467.html">running_stat</a>&lt; eT &gt;::<a class="el" href="a00467.html#a23acc03908c0a20a8d8f7311998711dd">max_val_norm</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00696_source.html#l00089">89</a> of file <a class="el" href="a00696_source.html">running_stat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00695_source.html#l00196">running_stat&lt; eT &gt;::reset()</a>.</p>
+<p>Referenced by <a class="el" href="a00694_source.html#l00160">Row&lt; eT &gt;::operator*=()</a>.</p>
 
 </div>
 </div>

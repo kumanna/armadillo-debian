@@ -72,7 +72,7 @@ arma_print(const T1& x, const T2& y)
 
 
 
-#ifdef ARMA_USE_BOOST
+#ifdef ARMA_USE_BOOST_FORMAT
   template<typename T1>
   inline
   void
@@ -139,7 +139,7 @@ arma_bktprint(const T1& x, const T2& y)
 
 
 
-#ifdef ARMA_USE_BOOST
+#ifdef ARMA_USE_BOOST_FORMAT
   template<typename T1>
   inline
   void
@@ -202,7 +202,7 @@ arma_warn(const bool state, const T1& x, const T2& y)
   }
 
 
-#ifdef ARMA_USE_BOOST
+#ifdef ARMA_USE_BOOST_FORMAT
   template<typename T1>
   inline
   void
@@ -256,7 +256,7 @@ arma_check(const bool state, const T1& x, const T2& y)
   }
 
 
-#ifdef ARMA_USE_BOOST
+#ifdef ARMA_USE_BOOST_FORMAT
   template<typename T1>
   inline
   void

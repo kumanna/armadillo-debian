@@ -55,6 +55,15 @@ class Proxy< Mat<eT> >
     arma_extra_debug_sigprint();
     }
   
+  inline explicit Proxy(const u32 in_n_rows, const u32 in_n_cols)
+    : Q(Q)
+    , n_rows(in_n_rows)
+    , n_cols(in_n_cols)
+    , n_elem(in_n_rows*in_n_cols)
+    {
+    arma_extra_debug_sigprint();
+    }
+  
   arma_inline elem_type operator[] (const u32 i)                  const { return Q[i];           }
   arma_inline elem_type at         (const u32 row, const u32 col) const { return Q.at(row, col); }
   };
@@ -85,6 +94,15 @@ class Proxy< Col<eT> >
     arma_extra_debug_sigprint();
     }
   
+  inline explicit Proxy(const u32 in_n_rows, const u32 in_n_cols)
+    : Q(Q)
+    , n_rows(in_n_rows)
+    , n_cols(in_n_cols)
+    , n_elem(in_n_rows*in_n_cols)
+    {
+    arma_extra_debug_sigprint();
+    }
+  
   arma_inline elem_type operator[] (const u32 i)                  const { return Q[i];           }
   arma_inline elem_type at         (const u32 row, const u32 col) const { return Q.at(row, col); }
   };
@@ -111,6 +129,15 @@ class Proxy< Row<eT> >
     , n_rows(A.n_rows)
     , n_cols(A.n_cols)
     , n_elem(A.n_elem)
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  inline explicit Proxy(const u32 in_n_rows, const u32 in_n_cols)
+    : Q(Q)
+    , n_rows(in_n_rows)
+    , n_cols(in_n_cols)
+    , n_elem(in_n_rows*in_n_cols)
     {
     arma_extra_debug_sigprint();
     }
@@ -260,9 +287,9 @@ class Proxy< eOp<T1, eop_type > >
   
   inline explicit Proxy(const eOp<T1, eop_type>& A)
     : Q(A)
-    , n_rows(A.n_rows)
-    , n_cols(A.n_cols)
-    , n_elem(A.n_elem)
+    , n_rows(A.P.n_rows)
+    , n_cols(A.P.n_cols)
+    , n_elem(A.P.n_elem)
     {
     arma_extra_debug_sigprint();
     }
@@ -290,9 +317,9 @@ class Proxy< eGlue<T1, T2, eglue_type > >
   
   inline explicit Proxy(const eGlue<T1, T2, eglue_type>& A)
     : Q(A)
-    , n_rows(A.n_rows)
-    , n_cols(A.n_cols)
-    , n_elem(A.n_elem)
+    , n_rows(A.P1.n_rows)
+    , n_cols(A.P1.n_cols)
+    , n_elem(A.P1.n_elem)
     {
     arma_extra_debug_sigprint();
     }

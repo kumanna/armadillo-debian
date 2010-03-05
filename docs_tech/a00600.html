@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: format_wrap.hpp File Reference</title>
+<title>Armadillo Technical: forward_proto.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,47 +25,26 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>format_wrap.hpp File Reference</h1>
+<h1>forward_proto.hpp File Reference</h1>
 <p><a href="a00600_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html">arma_boost::format</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057.html">arma_boost::basic_format&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00177.html">arma_boost::format_metaprog&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00178.html">arma_boost::format_metaprog&lt; basic_format&lt; T1, T2 &gt; &gt;</a></td></tr>
-<tr><td colspan="2"><h2>Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00717.html">arma_boost</a></td></tr>
-
-<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>namespace for functions and classes which partially emulate Boost functionality </p>
-<br/></td></tr>
-</p>
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00717.html#a7f0220bc07f064e151f68879d89a966f">arma_boost::arma_snprintf</a> (char *out, size_t size, const char *fmt,...)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">basic_format&lt; format, T2 &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#a6a9d6376d195eb21845025571f008110">arma_boost::operator%</a> (const format &amp;X, const T2 &amp;arg)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">basic_format&lt; basic_format&lt; T1, <br class="typebreak"/>
-T2 &gt;, T3 &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#ac09d68bdba55b8195b79ba542eba0c0c">arma_boost::operator%</a> (const basic_format&lt; T1, T2 &gt; &amp;X, const T3 &amp;arg)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#a232ae1b1886103a99c85f5f2ce23a21c">arma_boost::str</a> (const basic_format&lt; format, T2 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#ab564d198b27b14b51fca93dfa2bf8158">arma_boost::str</a> (const basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#a2a01ecf85016b3005fea4332c8ecaa7a">arma_boost::str</a> (const basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 , typename T5 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#a1e62dc25a0140bb11175c5b5ca257e42">arma_boost::str</a> (const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 , typename T5 , typename T6 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#ae5faf9a9d0eb2d72b597ec3cdd0b5a6b">arma_boost::str</a> (const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#a3c3377c5dcbec395bc29f1fde9403459">arma_boost::str</a> (const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt;, T7 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#ab4335e5be0651676c274c93c41b737de">arma_boost::str</a> (const basic_format&lt; T1, T2 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00717.html#a9ffc51bb0df3e96a67a747f1c63f249d">arma_boost::operator&lt;&lt;</a> (std::ostream &amp;o, const basic_format&lt; T1, T2 &gt; &amp;X)</td></tr>
+<tr><td colspan="2"><h2>Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00737.html#gaaf047b6ce458f7c55fd215920656d128">file_type</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="a00737.html#ggaaf047b6ce458f7c55fd215920656d128ab23ff78608de192c57782353f7562e41">auto_detect</a>, 
+<a class="el" href="a00737.html#ggaaf047b6ce458f7c55fd215920656d128a628746bcaf26dfa0c59b37713c27eea3">raw_ascii</a>, 
+<a class="el" href="a00737.html#ggaaf047b6ce458f7c55fd215920656d128aa8404637cbf0a8edb1b2697ed8be514c">arma_ascii</a>, 
+<a class="el" href="a00737.html#ggaaf047b6ce458f7c55fd215920656d128a84c7cef68df29f3a127038737c4cbdb6">arma_binary</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="a00737.html#ggaaf047b6ce458f7c55fd215920656d128a0b14fb78700351dca695ede008144dda">pgm_binary</a>, 
+<a class="el" href="a00737.html#ggaaf047b6ce458f7c55fd215920656d128a152928479a10a889bbde6f10f480ac08">ppm_binary</a>
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>file types supported by Armadillo </p>
+ <a href="a00737.html#gaaf047b6ce458f7c55fd215920656d128">More...</a><br/></td></tr>
 </table>
 </div>
 </BODY>
