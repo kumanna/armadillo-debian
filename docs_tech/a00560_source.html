@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_det.hpp Source File</title>
+<title>Armadillo Technical: fn_diagvec.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_det.hpp</h1><a href="a00560.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_diagvec.hpp</h1><a href="a00560.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,95 +45,24 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_det</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_diagvec</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="comment"></span>
-<a name="l00022"></a>00022 <span class="comment">//! determinant of mat</span>
-<a name="l00023"></a>00023 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00024"></a>00024 <span class="keyword">inline</span>
-<a name="l00025"></a>00025 <span class="keyword">typename</span> T1::elem_type
-<a name="l00026"></a><a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8">00026</a> <a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8" title="determinant of mat">det</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X)
-<a name="l00027"></a>00027   {
-<a name="l00028"></a>00028   arma_extra_debug_sigprint();
-<a name="l00029"></a>00029   
-<a name="l00030"></a>00030   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00031"></a>00031   
-<a name="l00032"></a>00032   <span class="keyword">const</span> <a class="code" href="a00484.html">unwrap&lt;T1&gt;</a>   tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00033"></a>00033   <span class="keyword">const</span> <a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
-<a name="l00034"></a>00034   
-<a name="l00035"></a>00035   arma_debug_check( !A.is_square(), <span class="stringliteral">&quot;det(): matrix must be square&quot;</span> );
-<a name="l00036"></a>00036   
-<a name="l00037"></a>00037   <span class="keywordflow">return</span> <a class="code" href="a00726.html#ga2577f6a49ab7d0896493ed90dd7c06d3" title="immediate determinant of a matrix using ATLAS or LAPACK">auxlib::det</a>(A);
-<a name="l00038"></a>00038   }
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="comment"></span>
-<a name="l00042"></a>00042 <span class="comment">//! determinant of diagmat</span>
-<a name="l00043"></a>00043 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00044"></a>00044 <span class="keyword">inline</span>
-<a name="l00045"></a>00045 <span class="keyword">typename</span> T1::elem_type
-<a name="l00046"></a><a class="code" href="a00755.html#ga9bebe255e8f027d129718319e68dffef">00046</a> <a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8" title="determinant of mat">det</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagmat&gt;</a>&amp; X)
-<a name="l00047"></a>00047   {
-<a name="l00048"></a>00048   arma_extra_debug_sigprint();
-<a name="l00049"></a>00049   
-<a name="l00050"></a>00050   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keyword">const</span> <a class="code" href="a00070.html">diagmat_proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   arma_debug_check( (A.<a class="code" href="a00070.html#a4c874d9b7bd13520dfbb4ba0444dcc26">n_elem</a> == 0), <span class="stringliteral">&quot;det(): given object has no elements&quot;</span> );
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   eT val = A[0];
-<a name="l00057"></a>00057   
-<a name="l00058"></a>00058   <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=1; i&lt;A.<a class="code" href="a00070.html#a4c874d9b7bd13520dfbb4ba0444dcc26">n_elem</a>; ++i)
-<a name="l00059"></a>00059     {
-<a name="l00060"></a>00060     val *= A[i];
-<a name="l00061"></a>00061     }
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   <span class="keywordflow">return</span> val;
-<a name="l00064"></a>00064   }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">//! determinant of inv(A), without doing the inverse operation</span>
-<a name="l00069"></a>00069 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00070"></a>00070 <span class="keyword">inline</span>
-<a name="l00071"></a>00071 <span class="keyword">typename</span> T1::elem_type
-<a name="l00072"></a><a class="code" href="a00755.html#gae81d7d0d954ee0f8cd0283fe2e303b84">00072</a> <a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8" title="determinant of mat">det</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_inv&gt;</a>&amp; in)
-<a name="l00073"></a>00073   {
-<a name="l00074"></a>00074   arma_extra_debug_sigprint();
-<a name="l00075"></a>00075   
-<a name="l00076"></a>00076   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00077"></a>00077   <a class="code" href="a00282.html#a619b91c73e919027b45a57e7925933af">isnt_fltpt&lt;eT&gt;::check</a>();
-<a name="l00078"></a>00078   
-<a name="l00079"></a>00079   eT tmp = <a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8" title="determinant of mat">det</a>(in.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00080"></a>00080   <a class="code" href="a00733.html#gad87c496c718f00ff529987ac00095eb4" title="if state is true, print a message on cout">arma_warn</a>( (tmp == eT(0)), <span class="stringliteral">&quot;det(): warning: denominator is zero&quot;</span> );
-<a name="l00081"></a>00081   
-<a name="l00082"></a>00082   <span class="keywordflow">return</span> eT(1) / tmp;
-<a name="l00083"></a>00083   }
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">//! determinant of trans(A)</span>
-<a name="l00088"></a>00088 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00089"></a>00089 <span class="keyword">inline</span>
-<a name="l00090"></a>00090 <span class="keyword">typename</span> T1::elem_type
-<a name="l00091"></a><a class="code" href="a00755.html#ga28df30905a3d72e0b652efb58d906fda">00091</a> <a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8" title="determinant of mat">det</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_trans&gt;</a>&amp; in)
-<a name="l00092"></a>00092   {
-<a name="l00093"></a>00093   arma_extra_debug_sigprint();
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00096"></a>00096   
-<a name="l00097"></a>00097   <span class="keyword">const</span> <a class="code" href="a00484.html">unwrap&lt;T1&gt;</a>   tmp(in.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00098"></a>00098   <span class="keyword">const</span> <a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X = tmp.<a class="code" href="a00484.html#a7b6f1a49bc9f7264a9be753f9e327342">M</a>;
-<a name="l00099"></a>00099 
-<a name="l00100"></a>00100   <span class="keywordflow">return</span> <a class="code" href="a00755.html#gabad15c10b221096280687444cebd22f8" title="determinant of mat">det</a>(X);
-<a name="l00101"></a>00101   }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">//! @}</span>
+<a name="l00020"></a>00020 <span class="comment"></span>
+<a name="l00021"></a>00021 <span class="comment">//! extract a diagonal from a matrix</span>
+<a name="l00022"></a>00022 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00023"></a>00023 arma_inline
+<a name="l00024"></a>00024 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagvec&gt;</a>
+<a name="l00025"></a><a class="code" href="a00758.html#ga78c18c534b948913e699c9a011fa017f">00025</a> <a class="code" href="a00758.html#ga78c18c534b948913e699c9a011fa017f" title="extract a diagonal from a matrix">diagvec</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00865.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> diag_id = 0)
+<a name="l00026"></a>00026   {
+<a name="l00027"></a>00027   arma_extra_debug_sigprint();
+<a name="l00028"></a>00028   
+<a name="l00029"></a>00029   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagvec&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), ((diag_id &lt; 0) ? -diag_id : diag_id), ((diag_id &lt; 0) ? 1 : 0) );
+<a name="l00030"></a>00030   }
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="comment"></span>
+<a name="l00034"></a>00034 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

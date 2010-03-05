@@ -60,6 +60,17 @@ class ProxyCube< Cube<eT> >
     arma_extra_debug_sigprint();
     }
   
+  inline explicit ProxyCube(const u32 in_n_rows, const u32 in_n_cols, const u32 in_n_slices)
+    : Q           (Q)
+    , n_rows      (in_n_rows)
+    , n_cols      (in_n_cols)
+    , n_elem_slice(in_n_rows*in_n_cols)
+    , n_slices    (in_n_slices)
+    , n_elem      (in_n_rows*in_n_cols*in_n_slices)
+    {
+    arma_extra_debug_sigprint();
+    }
+  
   arma_inline elem_type operator[] (const u32 i)                                   const { return Q[i];                  }
   arma_inline elem_type at         (const u32 row, const u32 col, const u32 slice) const { return Q.at(row, col, slice); }
   };
@@ -188,11 +199,11 @@ class ProxyCube< eOpCube<T1, eop_type > >
   
   inline explicit ProxyCube(const eOpCube<T1, eop_type>& A)
     : Q           (A)
-    , n_rows      (A.n_rows)
-    , n_cols      (A.n_cols)
-    , n_elem_slice(A.n_elem_slice)
-    , n_slices    (A.n_slices)
-    , n_elem      (A.n_elem)
+    , n_rows      (A.P.n_rows)
+    , n_cols      (A.P.n_cols)
+    , n_elem_slice(A.P.n_elem_slice)
+    , n_slices    (A.P.n_slices)
+    , n_elem      (A.P.n_elem)
     {
     arma_extra_debug_sigprint();
     }
@@ -222,11 +233,11 @@ class ProxyCube< eGlueCube<T1, T2, eglue_type > >
   
   inline explicit ProxyCube(const eGlueCube<T1, T2, eglue_type>& A)
     : Q           (A)
-    , n_rows      (A.n_rows)
-    , n_cols      (A.n_cols)
-    , n_elem_slice(A.n_elem_slice)
-    , n_slices    (A.n_slices)
-    , n_elem      (A.n_elem)
+    , n_rows      (A.P1.n_rows)
+    , n_cols      (A.P1.n_cols)
+    , n_elem_slice(A.P1.n_elem_slice)
+    , n_slices    (A.P1.n_slices)
+    , n_elem      (A.P1.n_elem)
     {
     arma_extra_debug_sigprint();
     }

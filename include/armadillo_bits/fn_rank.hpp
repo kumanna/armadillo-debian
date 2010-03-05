@@ -22,6 +22,7 @@
 
 template<typename T1>
 inline
+arma_warn_unused
 u32
 rank(const Base<typename T1::elem_type,T1>& X, typename T1::pod_type tol = 0.0)
   {

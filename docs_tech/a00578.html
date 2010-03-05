@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_ones.hpp File Reference</title>
+<title>Armadillo Technical: fn_princomp.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,25 +25,26 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_ones.hpp File Reference</h1>
+<h1>fn_princomp.hpp File Reference</h1>
 <p><a href="a00578_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00092.html">eOp</a>&lt; <a class="el" href="a00303.html">mat</a>, <br class="typebreak"/>
-<a class="el" href="a00151.html">eop_ones_full</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00773.html#ga0f98f108301b32d050ed84ebab6b745c">ones</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed generation of a dense matrix with all elements set to one.  <a href="a00773.html#ga0f98f108301b32d050ed84ebab6b745c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00171.html">eOpCube</a><br class="typebreak"/>
-&lt; <a class="el" href="a00066.html">cube</a>, <a class="el" href="a00125.html">eop_cube_ones_full</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00773.html#ga6c239aa571794af7df26cd2b54ffa0d6">ones</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00092.html">eOp</a>&lt; <a class="el" href="a00058.html">colvec</a>, <br class="typebreak"/>
-<a class="el" href="a00151.html">eop_ones_full</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00773.html#ga3cab9113519f5d53d135dc912758269d">ones</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a vector with all elements set to one.  <a href="a00773.html#ga3cab9113519f5d53d135dc912758269d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00092.html">eOp</a>&lt; <a class="el" href="a00303.html">mat</a>, <br class="typebreak"/>
-<a class="el" href="a00150.html">eop_ones_diag</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00773.html#ga4dc01ff89dd41d26a00ae4379ddf80a9">eye</a> (const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed generation of a diagonal matrix with the diagonal elements set to one.  <a href="a00773.html#ga4dc01ff89dd41d26a00ae4379ddf80a9"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00776.html#ga2fb76e9c047c50aea44281c97ef9ca5c">princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;score_out, <a class="el" href="a00058.html">Col</a>&lt; typename T1::pod_type &gt; &amp;latent_out, <a class="el" href="a00058.html">Col</a>&lt; typename T1::elem_type &gt; &amp;tsquared_out, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 4 arguments version coeff_out -&gt; principal component coefficients score_out -&gt; projected samples latent_out -&gt; eigenvalues of principal vectors tsquared_out -&gt; Hotelling's T^2 statistic  <a href="a00776.html#ga2fb76e9c047c50aea44281c97ef9ca5c"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00776.html#gaf3802af371c2f8d2521f53e960e0659c">princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;score_out, <a class="el" href="a00058.html">Col</a>&lt; typename T1::pod_type &gt; &amp;latent_out, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 3 arguments version coeff_out -&gt; principal component coefficients score_out -&gt; projected samples latent_out -&gt; eigenvalues of principal vectors  <a href="a00776.html#gaf3802af371c2f8d2521f53e960e0659c"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00776.html#ga4c5826929279d86355691af654f03591">princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;score_out, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 2 arguments version coeff_out -&gt; principal component coefficients score_out -&gt; projected samples  <a href="a00776.html#ga4c5826929279d86355691af654f03591"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00324.html">op_princomp</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00776.html#ga33dffa89e0fe444f18499afc8ebc51cc">princomp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 1 argument version coeff_out -&gt; principal component coefficients  <a href="a00776.html#ga33dffa89e0fe444f18499afc8ebc51cc"></a><br/></td></tr>
 </table>
 </div>
 </BODY>

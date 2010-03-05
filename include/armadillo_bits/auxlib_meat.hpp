@@ -1225,19 +1225,19 @@ auxlib::svd(Col<eT>& S, const Mat<eT>& X)
     {
     Mat<eT> A = X;
     
+    Mat<eT> U(1, 1);
+    Mat<eT> V(1, A.n_cols);
+    
     char jobu  = 'N';
     char jobvt = 'N';
     
     int  m     = A.n_rows;
     int  n     = A.n_cols;
     int  lda   = A.n_rows;
-    int  ldu   = A.n_rows;
-    int  ldvt  = A.n_cols;
-    int  lwork = 2;
+    int  ldu   = U.n_rows;
+    int  ldvt  = V.n_rows;
+    int  lwork = 2 * (std::max)(1, (std::max)( (3*(std::min)(m,n) + (std::max)(m,n)), 5*(std::min)(m,n) ) );
     int  info;
-    
-    Mat<eT> U(1,1);
-    Mat<eT> V(1,1);
     
     S.set_size( (std::min)(m, n) );
     
@@ -1261,8 +1261,13 @@ auxlib::svd(Col<eT>& S, const Mat<eT>& X)
     
     if(info == 0)
       {
-      lwork = static_cast<int>(work[0]);
-      work.set_size(lwork);
+      int proposed_lwork = static_cast<int>(work[0]);
+      
+      if(proposed_lwork > lwork)
+        {
+        lwork = proposed_lwork;
+        work.set_size(lwork);
+        }
       
       lapack::gesvd_<eT>
         (
@@ -1275,13 +1280,9 @@ auxlib::svd(Col<eT>& S, const Mat<eT>& X)
         work.memptr(), &lwork,
         &info
         );
-      
-      return (info == 0);
       }
-    else
-      {
-      return false;
-      }
+    
+    return (info == 0);
     }
   #else
     {
@@ -1306,19 +1307,19 @@ auxlib::svd(Col<T>& S, const Mat< std::complex<T> >& X)
     {
     Mat<eT> A = X;
     
+    Mat<eT> U(1, 1);
+    Mat<eT> V(1, A.n_cols);
+    
     char jobu  = 'N';
     char jobvt = 'N';
     
     int  m     = A.n_rows;
     int  n     = A.n_cols;
     int  lda   = A.n_rows;
-    int  ldu   = A.n_rows;
-    int  ldvt  = A.n_cols;
-    int  lwork = 2 * (std::min)(m,n) + (std::max)(m,n);
+    int  ldu   = U.n_rows;
+    int  ldvt  = V.n_rows;
+    int  lwork = 2 * (std::max)(1, 2*(std::min)(m,n)+(std::max)(m,n) );
     int  info;
-    
-    Mat<eT> U(1,1);
-    Mat<eT> V(1,1);
     
     S.set_size( (std::min)(m,n) );
     
@@ -1362,13 +1363,9 @@ auxlib::svd(Col<T>& S, const Mat< std::complex<T> >& X)
         rwork.memptr(),
         &info
         );
-      
-      return (info == 0);
       }
-    else
-      {
-      return false;
-      }
+        
+    return (info == 0);
     }
   #else
     {
@@ -1391,19 +1388,20 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X)
     {
     Mat<eT> A = X;
     
+    U.set_size(A.n_rows, A.n_rows);
+    V.set_size(A.n_cols, A.n_cols);
+    
     char jobu  = 'A';
     char jobvt = 'A';
     
     int  m     = A.n_rows;
     int  n     = A.n_cols;
     int  lda   = A.n_rows;
-    int  ldu   = A.n_rows;
-    int  ldvt  = A.n_cols;
-    int  lwork = 2;
+    int  ldu   = U.n_rows;
+    int  ldvt  = V.n_rows;
+    int  lwork = 2 * (std::max)(1, (std::max)( (3*(std::min)(m,n) + (std::max)(m,n)), 5*(std::min)(m,n) ) );
     int  info;
     
-    U.set_size(m,m);
-    V.set_size(n,n);
     
     S.set_size( (std::min)(m,n) );
     podarray<eT> work(lwork);
@@ -1425,8 +1423,12 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X)
     
     if(info == 0)
       {
-      lwork = static_cast<int>(work[0]);
-      work.set_size(lwork);
+      int proposed_lwork = static_cast<int>(work[0]);
+      if(proposed_lwork > lwork)
+        {
+        lwork = proposed_lwork;
+        work.set_size(lwork);
+        }
       
       lapack::gesvd_<eT>
         (
@@ -1441,13 +1443,9 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X)
         );
       
       op_trans::apply(V,V);  // op_trans will work out that an in-place transpose can be done
-      
-      return (info == 0);
       }
-    else
-      {
-      return false;
-      }
+    
+    return (info == 0);
     }
   #else
     {
@@ -1462,7 +1460,7 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Mat<eT>& X)
 template<typename T>
 inline
 bool
-auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, const Mat< std::complex<T> >& X)
+auxlib::svd(Mat< std::complex<T> >& U, Col<T>& S, Mat< std::complex<T> >& V, const Mat< std::complex<T> >& X)
   {
   arma_extra_debug_sigprint();
   
@@ -1472,19 +1470,19 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, con
     {
     Mat<eT> A = X;
     
+    U.set_size(A.n_rows, A.n_rows);
+    V.set_size(A.n_cols, A.n_cols);
+    
     char jobu  = 'A';
     char jobvt = 'A';
     
     int  m     = A.n_rows;
     int  n     = A.n_cols;
     int  lda   = A.n_rows;
-    int  ldu   = A.n_rows;
-    int  ldvt  = A.n_cols;
-    int  lwork = 2;
+    int  ldu   = U.n_rows;
+    int  ldvt  = V.n_rows;
+    int  lwork = 2 * (std::max)(1, 2*(std::min)(m,n)+(std::max)(m,n) );
     int  info;
-    
-    U.set_size(m,m);
-    V.set_size(n,n);
     
     S.set_size( (std::min)(m,n) );
     
@@ -1508,8 +1506,12 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, con
     
     if(info == 0)
       {
-      lwork = static_cast<int>(real(work[0]));
-      work.set_size(lwork);
+      int proposed_lwork = static_cast<int>(real(work[0]));
+      if(proposed_lwork > lwork)
+        {
+        lwork = proposed_lwork;
+        work.set_size(lwork);
+        }
       
       lapack::cx_gesvd_<T>
         (
@@ -1525,18 +1527,9 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T> &S, Mat< std::complex<T> >& V, con
         );
       
       op_htrans::apply(V,V);  // op_htrans will work out that an in-place transpose can be done
-      
-      for(u32 i=0; i<A.n_cols; ++i)
-        {
-        V.at(i,i) = std::conj( V.at(i,i) );
-        }
-      
-      return (info == 0);
       }
-    else
-      {
-      return false;
-      }
+    
+    return (info == 0);
     }
   #else
     {

@@ -141,14 +141,15 @@ eop_cube_core<eop_cube_type>::apply_proxy(Cube<typename T1::elem_type>& out, con
   
   typedef typename T1::elem_type eT;
   
+  const ProxyCube<T1>& P = x.P;
+  
+  out.set_size(P.n_rows, P.n_cols, P.n_slices);
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P.n_elem;
   
   if(is_cube_generator<eop_cube_type>::value == true)
     {
-    out.set_size(x.n_rows, x.n_cols, x.n_slices);
-    
-          eT* out_mem = out.memptr();
-    const u32 n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] = eop_aux::generate<eT,eop_cube_type>();
@@ -156,12 +157,6 @@ eop_cube_core<eop_cube_type>::apply_proxy(Cube<typename T1::elem_type>& out, con
     }
   else
     {
-    out.set_size(x.n_rows, x.n_cols, x.n_slices);
-    
-          eT*            out_mem = out.memptr();
-    const ProxyCube<T1>& P       = x.P;
-    const u32            n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] = eop_cube_core<eop_cube_type>::process(x, P[i]);
@@ -182,16 +177,15 @@ eop_cube_core<eop_cube_type>::apply_unwrap(Cube<typename T1::elem_type>& out, co
   
   typedef typename T1::elem_type eT;
   
-  const unwrap_cube<typename ProxyCube<T1>::stored_type> tmp(x.P.Q);
-  const Cube<eT>& A = tmp.M;
+  const ProxyCube<T1>& P = x.P;
+  
+  out.set_size(P.n_rows, P.n_cols, P.n_slices);
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P.n_elem;
   
   if(is_cube_generator<eop_cube_type>::value == true)
     {
-    out.set_size(x.n_rows, x.n_cols, x.n_slices);
-    
-          eT* out_mem = out.memptr();
-    const u32 n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] = eop_aux::generate<eT,eop_cube_type>();
@@ -199,11 +193,10 @@ eop_cube_core<eop_cube_type>::apply_unwrap(Cube<typename T1::elem_type>& out, co
     }
   else
     {
-    out.set_size(x.n_rows, x.n_cols, x.n_slices);
+    const unwrap_cube<typename ProxyCube<T1>::stored_type> tmp(P.Q);
     
-          eT* out_mem = out.memptr();
-    const eT* A_mem   = A.memptr();
-    const u32 n_elem  = x.n_elem;
+    const Cube<eT>& A     = tmp.M;
+    const eT*       A_mem = A.memptr();
     
     for(u32 i=0; i<n_elem; ++i)
       {
@@ -225,13 +218,15 @@ eop_cube_core<eop_cube_type>::apply_inplace_plus(Cube<typename T1::elem_type>& o
   
   typedef typename T1::elem_type eT;
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "cube addition");
+  const ProxyCube<T1>& P = x.P;
+  
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P.n_rows, P.n_cols, P.n_slices, "cube addition");
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P.n_elem;
   
   if(is_cube_generator<eop_cube_type>::value == true)
     {
-          eT* out_mem = out.memptr();
-    const u32 n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] += eop_aux::generate<eT,eop_cube_type>();
@@ -239,10 +234,6 @@ eop_cube_core<eop_cube_type>::apply_inplace_plus(Cube<typename T1::elem_type>& o
     }
   else
     {
-          eT*            out_mem = out.memptr();
-    const ProxyCube<T1>& P       = x.P;
-    const u32            n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] += eop_cube_core<eop_cube_type>::process(x, P[i]);
@@ -263,13 +254,15 @@ eop_cube_core<eop_cube_type>::apply_inplace_minus(Cube<typename T1::elem_type>& 
   
   typedef typename T1::elem_type eT;
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "cube subtraction");
+  const ProxyCube<T1>& P = x.P;
+  
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P.n_rows, P.n_cols, P.n_slices, "cube subtraction");
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P.n_elem;
   
   if(is_cube_generator<eop_cube_type>::value == true)
     {
-          eT* out_mem = out.memptr();
-    const u32 n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] -= eop_aux::generate<eT,eop_cube_type>();
@@ -277,10 +270,6 @@ eop_cube_core<eop_cube_type>::apply_inplace_minus(Cube<typename T1::elem_type>& 
     }
   else
     {
-          eT*            out_mem = out.memptr();
-    const ProxyCube<T1>& P       = x.P;
-    const u32            n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] -= eop_cube_core<eop_cube_type>::process(x, P[i]);
@@ -301,13 +290,15 @@ eop_cube_core<eop_cube_type>::apply_inplace_schur(Cube<typename T1::elem_type>& 
   
   typedef typename T1::elem_type eT;
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "element-wise cube multiplication");
-
+  const ProxyCube<T1>& P = x.P;
+  
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P.n_rows, P.n_cols, P.n_slices, "element-wise cube multiplication");
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P.n_elem;
+  
   if(is_cube_generator<eop_cube_type>::value == true)
     {
-          eT* out_mem = out.memptr();
-    const u32 n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] *= eop_aux::generate<eT,eop_cube_type>();
@@ -315,10 +306,6 @@ eop_cube_core<eop_cube_type>::apply_inplace_schur(Cube<typename T1::elem_type>& 
     }
   else
     {
-          eT*            out_mem = out.memptr();
-    const ProxyCube<T1>& P       = x.P;
-    const u32            n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] *= eop_cube_core<eop_cube_type>::process(x, P[i]);
@@ -339,13 +326,15 @@ eop_cube_core<eop_cube_type>::apply_inplace_div(Cube<typename T1::elem_type>& ou
   
   typedef typename T1::elem_type eT;
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, x.n_rows, x.n_cols, x.n_slices, "element-wise cube division");
+  const ProxyCube<T1>& P = x.P;
+  
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, P.n_rows, P.n_cols, P.n_slices, "element-wise cube division");
+  
+        eT* out_mem = out.memptr();
+  const u32 n_elem  = P.n_elem;
   
   if(is_cube_generator<eop_cube_type>::value == true)
     {
-          eT* out_mem = out.memptr();
-    const u32 n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] /= eop_aux::generate<eT,eop_cube_type>();
@@ -353,10 +342,6 @@ eop_cube_core<eop_cube_type>::apply_inplace_div(Cube<typename T1::elem_type>& ou
     }
   else
     {
-          eT*            out_mem = out.memptr();
-    const ProxyCube<T1>& P       = x.P;
-    const u32            n_elem  = x.n_elem;
-    
     for(u32 i=0; i<n_elem; ++i)
       {
       out_mem[i] /= eop_cube_core<eop_cube_type>::process(x, P[i]);

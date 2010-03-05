@@ -22,6 +22,7 @@
 //! determinant of mat
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 det(const Base<typename T1::elem_type,T1>& X)
   {
@@ -42,6 +43,7 @@ det(const Base<typename T1::elem_type,T1>& X)
 //! determinant of diagmat
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 det(const Op<T1, op_diagmat>& X)
   {
@@ -68,6 +70,7 @@ det(const Op<T1, op_diagmat>& X)
 //! determinant of inv(A), without doing the inverse operation
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 det(const Op<T1,op_inv>& in)
   {
@@ -87,6 +90,7 @@ det(const Op<T1,op_inv>& in)
 //! determinant of trans(A)
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 det(const Op<T1,op_trans>& in)
   {

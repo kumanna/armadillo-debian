@@ -21,16 +21,11 @@
 
 template<typename T1, typename eop_type>
 eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m)
-  : P           (in_m.get_ref())
-  , n_rows      (P.n_rows)
-  , n_cols      (P.n_cols)
-  , n_elem_slice(P.n_elem_slice)
-  , n_slices    (P.n_slices)
-  , n_elem      (P.n_elem)
-  , aux         (aux)
-  , aux_u32_a   (aux_u32_a)
-  , aux_u32_b   (aux_u32_b)
-  , aux_u32_c   (aux_u32_c)
+  : P         (in_m.get_ref())
+  , aux       (aux)
+  , aux_u32_a (aux_u32_a)
+  , aux_u32_b (aux_u32_b)
+  , aux_u32_c (aux_u32_c)
   {
   arma_extra_debug_sigprint();
   }
@@ -39,16 +34,11 @@ eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m)
 
 template<typename T1, typename eop_type>
 eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m, const typename T1::elem_type in_aux)
-  : P           (in_m.get_ref())
-  , n_rows      (P.n_rows)
-  , n_cols      (P.n_cols)
-  , n_elem_slice(P.n_elem_slice)
-  , n_slices    (P.n_slices)
-  , n_elem      (P.n_elem)
-  , aux         (in_aux)
-  , aux_u32_a   (aux_u32_a)
-  , aux_u32_b   (aux_u32_b)
-  , aux_u32_c   (aux_u32_c)
+  : P         (in_m.get_ref())
+  , aux       (in_aux)
+  , aux_u32_a (aux_u32_a)
+  , aux_u32_b (aux_u32_b)
+  , aux_u32_c (aux_u32_c)
   {
   arma_extra_debug_sigprint();
   }
@@ -57,16 +47,11 @@ eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m,
 
 template<typename T1, typename eop_type>
 eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b)
-  : P           (in_m.get_ref())
-  , n_rows      (P.n_rows)
-  , n_cols      (P.n_cols)
-  , n_elem_slice(P.n_elem_slice)
-  , n_slices    (P.n_slices)
-  , n_elem      (P.n_elem)
-  , aux         (aux)
-  , aux_u32_a   (in_aux_u32_a)
-  , aux_u32_b   (in_aux_u32_b)
-  , aux_u32_c   (aux_u32_c)
+  : P         (in_m.get_ref())
+  , aux       (aux)
+  , aux_u32_a (in_aux_u32_a)
+  , aux_u32_b (in_aux_u32_b)
+  , aux_u32_c (aux_u32_c)
   {
   arma_extra_debug_sigprint();
   }
@@ -75,16 +60,11 @@ eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m,
 
 template<typename T1, typename eop_type>
 eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m, const u32 in_aux_u32_a, const u32 in_aux_u32_b, const u32 in_aux_u32_c)
-  : P           (in_m.get_ref())
-  , n_rows      (P.n_rows)
-  , n_cols      (P.n_cols)
-  , n_elem_slice(P.n_elem_slice)
-  , n_slices    (P.n_slices)
-  , n_elem      (P.n_elem)
-  , aux         (aux)
-  , aux_u32_a   (in_aux_u32_a)
-  , aux_u32_b   (in_aux_u32_b)
-  , aux_u32_c   (in_aux_u32_c)
+  : P         (in_m.get_ref())
+  , aux       (aux)
+  , aux_u32_a (in_aux_u32_a)
+  , aux_u32_b (in_aux_u32_b)
+  , aux_u32_c (in_aux_u32_c)
   {
   arma_extra_debug_sigprint();
   }
@@ -93,16 +73,11 @@ eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m,
 
 template<typename T1, typename eop_type>
 eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m, const typename T1::elem_type in_aux, const u32 in_aux_u32_a, const u32 in_aux_u32_b, const u32 in_aux_u32_c)
-  : P           (in_m.get_ref())
-  , n_rows      (P.n_rows)
-  , n_cols      (P.n_cols)
-  , n_elem_slice(P.n_elem_slice)
-  , n_slices    (P.n_slices)
-  , n_elem      (P.n_elem)
-  , aux         (in_aux)
-  , aux_u32_a   (in_aux_u32_a)
-  , aux_u32_b   (in_aux_u32_b)
-  , aux_u32_c   (in_aux_u32_c)
+  : P         (in_m.get_ref())
+  , aux       (in_aux)
+  , aux_u32_a (in_aux_u32_a)
+  , aux_u32_b (in_aux_u32_b)
+  , aux_u32_c (in_aux_u32_c)
   {
   arma_extra_debug_sigprint();
   }
@@ -111,16 +86,11 @@ eOpCube<T1, eop_type>::eOpCube(const BaseCube<typename T1::elem_type, T1>& in_m,
 
 template<typename T1, typename eop_type>
 eOpCube<T1, eop_type>::eOpCube(const u32 in_n_rows, const u32 in_n_cols, const u32 in_n_slices)
-  : P           (P)
-  , n_rows      (in_n_rows)
-  , n_cols      (in_n_cols)
-  , n_elem_slice(n_rows*n_cols)
-  , n_slices    (in_n_slices)
-  , n_elem      (n_elem_slice*n_slices)
-  , aux         (aux)
-  , aux_u32_a   (aux_u32_a)
-  , aux_u32_b   (aux_u32_b)
-  , aux_u32_c   (aux_u32_c)
+  : P         (in_n_rows, in_n_cols, in_n_slices)
+  , aux       (aux)
+  , aux_u32_a (aux_u32_a)
+  , aux_u32_b (aux_u32_b)
+  , aux_u32_c (aux_u32_c)
   {
   arma_extra_debug_sigprint();
   }

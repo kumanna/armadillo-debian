@@ -229,9 +229,20 @@ Cube<eT>::operator+=(const eT val)
   {
   arma_extra_debug_sigprint();
   
-  for(u32 i=0; i<n_elem; ++i)
+        eT* local_ptr    = memptr();
+  const u32 local_n_elem = n_elem;
+    
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
     {
-    access::rw(mem[i]) += val;
+    local_ptr[i] += val;
+    local_ptr[j] += val;
+    }
+  
+  if(i < local_n_elem)
+    {
+    local_ptr[i] += val;
     }
   
   return *this;
@@ -247,11 +258,22 @@ Cube<eT>::operator-=(const eT val)
   {
   arma_extra_debug_sigprint();
   
-  for(u32 i=0; i<n_elem; ++i)
+        eT* local_ptr    = memptr();
+  const u32 local_n_elem = n_elem;
+    
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
     {
-    access::rw(mem[i]) -= val;
+    local_ptr[i] -= val;
+    local_ptr[j] -= val;
     }
-      
+  
+  if(i < local_n_elem)
+    {
+    local_ptr[i] -= val;
+    }
+  
   return *this;
   }
 
@@ -265,9 +287,20 @@ Cube<eT>::operator*=(const eT val)
   {
   arma_extra_debug_sigprint();
   
-  for(u32 i=0; i<n_elem; ++i)
+        eT* local_ptr    = memptr();
+  const u32 local_n_elem = n_elem;
+    
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
     {
-    access::rw(mem[i]) *= val;
+    local_ptr[i] *= val;
+    local_ptr[j] *= val;
+    }
+  
+  if(i < local_n_elem)
+    {
+    local_ptr[i] *= val;
     }
   
   return *this;
@@ -283,9 +316,20 @@ Cube<eT>::operator/=(const eT val)
   {
   arma_extra_debug_sigprint();
   
-  for(u32 i=0; i<n_elem; ++i)
+        eT* local_ptr    = memptr();
+  const u32 local_n_elem = n_elem;
+    
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
     {
-    access::rw(mem[i]) /= val;
+    local_ptr[i] /= val;
+    local_ptr[j] /= val;
+    }
+  
+  if(i < local_n_elem)
+    {
+    local_ptr[i] /= val;
     }
   
   return *this;
@@ -409,11 +453,20 @@ Cube<eT>::operator+=(const Cube<eT>& m)
   
   arma_debug_assert_same_size(*this, m, "cube addition");
   
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
   const u32 local_n_elem = m.n_elem;
   
-  for(u32 i=0; i<local_n_elem; ++i)
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
+    {
+    out_mem[i] += m_mem[i];
+    out_mem[j] += m_mem[j];
+    }
+  
+  if(i < local_n_elem)
     {
     out_mem[i] += m_mem[i];
     }
@@ -433,11 +486,20 @@ Cube<eT>::operator-=(const Cube<eT>& m)
   
   arma_debug_assert_same_size(*this, m, "cube subtraction");
   
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
   const u32 local_n_elem = m.n_elem;
   
-  for(u32 i=0; i<local_n_elem; ++i)
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
+    {
+    out_mem[i] -= m_mem[i];
+    out_mem[j] -= m_mem[j];
+    }
+  
+  if(i < local_n_elem)
     {
     out_mem[i] -= m_mem[i];
     }
@@ -457,11 +519,20 @@ Cube<eT>::operator%=(const Cube<eT>& m)
   
   arma_debug_assert_same_size(*this, m, "element-wise cube multiplication");
   
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
   const u32 local_n_elem = m.n_elem;
   
-  for(u32 i=0; i<local_n_elem; ++i)
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
+    {
+    out_mem[i] *= m_mem[i];
+    out_mem[j] *= m_mem[j];
+    }
+  
+  if(i < local_n_elem)
     {
     out_mem[i] *= m_mem[i];
     }
@@ -481,11 +552,20 @@ Cube<eT>::operator/=(const Cube<eT>& m)
   
   arma_debug_assert_same_size(*this, m, "element-wise cube division");
   
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
   const u32 local_n_elem = m.n_elem;
   
-  for(u32 i=0; i<local_n_elem; ++i)
+        eT* out_mem = (*this).memptr();
+  const eT* m_mem   = m.memptr();
+  
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
+    {
+    out_mem[i] /= m_mem[i];
+    out_mem[j] /= m_mem[j];
+    }
+  
+  if(i < local_n_elem)
     {
     out_mem[i] /= m_mem[i];
     }
@@ -803,18 +883,7 @@ Cube<eT>::operator+=(const OpCube<T1, op_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "cube addition");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] += m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator+=(m);
   }
 
 
@@ -832,18 +901,7 @@ Cube<eT>::operator-=(const OpCube<T1, op_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "cube subtraction");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] -= m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator-=(m);
   }
 
 
@@ -861,18 +919,7 @@ Cube<eT>::operator%=(const OpCube<T1, op_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "element-wise cube multiplication");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] *= m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator%=(m);
   }
 
 
@@ -890,18 +937,7 @@ Cube<eT>::operator/=(const OpCube<T1, op_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "element-wise cube division");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] /= m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator/=(m);
   }
 
 
@@ -1071,18 +1107,7 @@ Cube<eT>::operator+=(const GlueCube<T1, T2, glue_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "cube addition");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] += m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator+=(m);
   }
 
 
@@ -1101,18 +1126,7 @@ Cube<eT>::operator-=(const GlueCube<T1, T2, glue_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "cube subtraction");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] -= m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator-=(m);
   }
 
 
@@ -1131,18 +1145,7 @@ Cube<eT>::operator%=(const GlueCube<T1, T2, glue_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "element-wise cube multiplication");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] *= m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator%=(m);
   }
 
 
@@ -1161,18 +1164,7 @@ Cube<eT>::operator/=(const GlueCube<T1, T2, glue_type>& X)
   
   const Cube<eT> m(X);
   
-  arma_debug_assert_same_size(*this, m, "element-wise cube division");
-  
-        eT* out_mem      = (*this).memptr();
-  const eT* m_mem        = m.memptr();
-  const u32 local_n_elem = m.n_elem;
-  
-  for(u32 i=0; i<local_n_elem; ++i)
-    {
-    out_mem[i] /= m_mem[i];
-    }
-  
-  return *this;
+  return (*this).operator/=(m);
   }
 
 
@@ -1647,9 +1639,20 @@ Cube<eT>::fill(const eT val)
   {
   arma_extra_debug_sigprint();
   
-  for(u32 i=0; i<n_elem; ++i)
+        eT* local_ptr    = memptr();
+  const u32 local_n_elem = n_elem;
+  
+  u32 i,j;
+  
+  for(i=0, j=1; j<local_n_elem; i+=2, j+=2)
     {
-    access::rw(mem[i]) = val;
+    local_ptr[i] = val;
+    local_ptr[j] = val;
+    }
+  
+  if(i < local_n_elem)
+    {
+    local_ptr[i] = val;
     }
   }
 
@@ -1869,8 +1872,16 @@ Cube_aux::prefix_pp(Cube<eT>& x)
   {
         eT* memptr = x.memptr();
   const u32 n_elem = x.n_elem;
+  
+  u32 i,j;
 
-  for(u32 i=0; i<n_elem; ++i)
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
+    {
+    ++(memptr[i]);
+    ++(memptr[j]);
+    }
+  
+  if(i < n_elem)
     {
     ++(memptr[i]);
     }
@@ -1897,8 +1908,16 @@ Cube_aux::postfix_pp(Cube<eT>& x)
   {
         eT* memptr = x.memptr();
   const u32 n_elem = x.n_elem;
-
-  for(u32 i=0; i<n_elem; ++i)
+  
+  u32 i,j;
+  
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
+    {
+    (memptr[i])++;
+    (memptr[j])++;
+    }
+  
+  if(i < n_elem)
     {
     (memptr[i])++;
     }
@@ -1926,7 +1945,15 @@ Cube_aux::prefix_mm(Cube<eT>& x)
         eT* memptr = x.memptr();
   const u32 n_elem = x.n_elem;
 
-  for(u32 i=0; i<n_elem; ++i)
+  u32 i,j;
+
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
+    {
+    --(memptr[i]);
+    --(memptr[j]);
+    }
+  
+  if(i < n_elem)
     {
     --(memptr[i]);
     }
@@ -1954,7 +1981,15 @@ Cube_aux::postfix_mm(Cube<eT>& x)
         eT* memptr = x.memptr();
   const u32 n_elem = x.n_elem;
 
-  for(u32 i=0; i<n_elem; ++i)
+  u32 i,j;
+
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
+    {
+    (memptr[i])--;
+    (memptr[j])--;
+    }
+  
+  if(i < n_elem)
     {
     (memptr[i])--;
     }

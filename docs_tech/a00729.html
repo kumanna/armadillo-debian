@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Cmath_wrap</title>
+<title>Armadillo Technical: BaseCube</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,159 +21,11 @@
   </div>
 </div>
 <div class="contents">
-<h1>Cmath_wrap</h1><table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00729.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a> (eT val)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00729.html#gae1691ae0fa8dab5503a41dfd0122a0d5">arma_isfinite</a> (float x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00729.html#gaae65ba5c907ab13ba719aca48ef695bc">arma_isfinite</a> (double x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00729.html#ga8bcfcb0e5611dd0694759db9add1f982">arma_isfinite</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<h1>BaseCube</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00055.html">BaseCube&lt; elem_type, derived &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Analog of the <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> class, intended for cubes.  <a href="a00055.html#_details">More...</a><br/></td></tr>
 </table>
-<hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga45b15200b888678d0a473de2dfd602fc"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="ga45b15200b888678d0a473de2dfd602fc" args="(eT val)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline bool arma_isfinite </td>
-          <td>(</td>
-          <td class="paramtype">eT&nbsp;</td>
-          <td class="paramname"> <em>val</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00519_source.html#l00026">26</a> of file <a class="el" href="a00519_source.html">cmath_wrap.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00519_source.html#l00078">arma_isfinite()</a>, <a class="el" href="a00620_source.html#l02040">Mat&lt; eT &gt;::is_finite()</a>, <a class="el" href="a00525_source.html#l01451">Cube&lt; eT &gt;::is_finite()</a>, <a class="el" href="a00576_source.html#l00247">log_add()</a>, and <a class="el" href="a00695_source.html#l00164">running_stat&lt; eT &gt;::operator()()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00027"></a>00027   {
-<a name="l00028"></a>00028   <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00029"></a>00029   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="gae1691ae0fa8dab5503a41dfd0122a0d5"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="gae1691ae0fa8dab5503a41dfd0122a0d5" args="(float x)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline bool arma_isfinite </td>
-          <td>(</td>
-          <td class="paramtype">float&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00519_source.html#l00036">36</a> of file <a class="el" href="a00519_source.html">cmath_wrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00037"></a>00037   {
-<a name="l00038"></a>00038 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_ISFINITE)</span>
-<a name="l00039"></a>00039 <span class="preprocessor"></span>    {
-<a name="l00040"></a>00040     <span class="keywordflow">return</span> (std::isfinite(x) != 0);
-<a name="l00041"></a>00041     }
-<a name="l00042"></a>00042 <span class="preprocessor">  #else</span>
-<a name="l00043"></a>00043 <span class="preprocessor"></span>    {
-<a name="l00044"></a>00044     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_inf = ( (x == x) &amp;&amp; ((x - x) != float(0)) );
-<a name="l00045"></a>00045     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_nan = (x != x);
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047     <span class="keywordflow">return</span> ( (x_is_inf == <span class="keyword">false</span>) &amp;&amp; (x_is_nan == <span class="keyword">false</span>) );
-<a name="l00048"></a>00048     }
-<a name="l00049"></a>00049 <span class="preprocessor">  #endif</span>
-<a name="l00050"></a>00050 <span class="preprocessor"></span>  }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="gaae65ba5c907ab13ba719aca48ef695bc"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="gaae65ba5c907ab13ba719aca48ef695bc" args="(double x)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline bool arma_isfinite </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00519_source.html#l00057">57</a> of file <a class="el" href="a00519_source.html">cmath_wrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00058"></a>00058   {
-<a name="l00059"></a>00059 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_ISFINITE)</span>
-<a name="l00060"></a>00060 <span class="preprocessor"></span>    {
-<a name="l00061"></a>00061     <span class="keywordflow">return</span> (std::isfinite(x) != 0);
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063 <span class="preprocessor">  #else</span>
-<a name="l00064"></a>00064 <span class="preprocessor"></span>    {
-<a name="l00065"></a>00065     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_inf = ( (x == x) &amp;&amp; ((x - x) != double(0)) );
-<a name="l00066"></a>00066     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_nan = (x != x);
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068     <span class="keywordflow">return</span> ( (x_is_inf == <span class="keyword">false</span>) &amp;&amp; (x_is_nan == <span class="keyword">false</span>) );
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 <span class="preprocessor">  #endif</span>
-<a name="l00071"></a>00071 <span class="preprocessor"></span>  }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ga8bcfcb0e5611dd0694759db9add1f982"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="ga8bcfcb0e5611dd0694759db9add1f982" args="(const std::complex&lt; T &gt; &amp;x)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline bool arma_isfinite </td>
-          <td>(</td>
-          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00519_source.html#l00078">78</a> of file <a class="el" href="a00519_source.html">cmath_wrap.hpp</a>.</p>
-
-<p>References <a class="el" href="a00519_source.html#l00026">arma_isfinite()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00079"></a>00079   {
-<a name="l00080"></a>00080   <span class="keywordflow">if</span>( (<a class="code" href="a00729.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a>(x.real()) == <span class="keyword">false</span>) || (<a class="code" href="a00729.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a>(x.imag()) == <span class="keyword">false</span>) )
-<a name="l00081"></a>00081     {
-<a name="l00082"></a>00082     <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00083"></a>00083     }
-<a name="l00084"></a>00084   <span class="keywordflow">else</span>
-<a name="l00085"></a>00085     {
-<a name="l00086"></a>00086     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00087"></a>00087     }
-<a name="l00088"></a>00088   }
-</pre></div></p>
-
-</div>
-</div>
 </div>
 </BODY>
 </HTML>

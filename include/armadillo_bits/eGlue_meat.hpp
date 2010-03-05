@@ -33,9 +33,6 @@ arma_inline
 eGlue<T1,T2,eglue_type>::eGlue(const T1& in_A, const T2& in_B)
   : P1(in_A)
   , P2(in_B)
-  , n_rows(P1.n_rows)
-  , n_cols(P1.n_cols)
-  , n_elem(P1.n_elem)
   {
   arma_extra_debug_sigprint();
   

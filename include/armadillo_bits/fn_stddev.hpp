@@ -44,6 +44,7 @@ stddev(const Base<typename T1::elem_type,T1>& X, const u32 norm_type = 0, const 
 //! Immediate 'find the standard deviation of a row vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 stddev(const Row<eT>& A, const u32 norm_type = 0)
   {
@@ -59,6 +60,7 @@ stddev(const Row<eT>& A, const u32 norm_type = 0)
 //! Immediate 'find the standard deviation of a column vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 stddev(const Col<eT>& A, const u32 norm_type = 0)
   {
@@ -74,6 +76,7 @@ stddev(const Col<eT>& A, const u32 norm_type = 0)
 //! find the standard deviation of a subview_row
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 stddev(const subview_row<eT>& A, const u32 norm_type = 0)
   {
@@ -89,6 +92,7 @@ stddev(const subview_row<eT>& A, const u32 norm_type = 0)
 //! find the standard deviation of a subview_col
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 stddev(const subview_col<eT>& A, const u32 norm_type = 0)
   {
@@ -104,6 +108,7 @@ stddev(const subview_col<eT>& A, const u32 norm_type = 0)
 //! find the standard deviation of a diagview
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 stddev(const diagview<eT>& A, const u32 norm_type = 0)
   {

@@ -31,25 +31,25 @@
 <div class="contents">
 <h1>gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00796.html">Gemm</a>]</small>
+[<a class="el" href="a00798.html">Gemm</a>]</small>
 </h1><!-- doxytag: class="gemm" -->
 <p>Wrapper for ATLAS/BLAS dgemm function, using template arguments to control the arguments passed to dgemm. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes).  
 <a href="#_details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="a00602_source.html">gemm.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00601_source.html">gemm.hpp</a>&gt;</code></p>
 
-<p><a href="a01036.html">List of all members.</a></p>
+<p><a href="a01039.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00179.html#a8ace3ff0f2fa9ae7e2157ebe327c5c9b">apply_blas_type</a> (<a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;C, const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;B, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00179.html#a8ace3ff0f2fa9ae7e2157ebe327c5c9b">apply_blas_type</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;C, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;B, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00179.html#a1db233d70afd6b5932ac0fc1145bfa4f">apply</a> (<a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;C, const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;B, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00179.html#a1db233d70afd6b5932ac0fc1145bfa4f">apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;C, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;B, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate multiplication of matrices A and B, storing the result in C  <a href="#a1db233d70afd6b5932ac0fc1145bfa4f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a70799d24f15e37510f01cc2ccc87e751">apply</a> (<a class="el" href="a00303.html">Mat</a>&lt; float &gt; &amp;C, const <a class="el" href="a00303.html">Mat</a>&lt; float &gt; &amp;A, const <a class="el" href="a00303.html">Mat</a>&lt; float &gt; &amp;B, const float alpha=float(1), const float beta=float(0))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a7a434635dda9ab9159c1a9301dd6e69c">apply</a> (<a class="el" href="a00303.html">Mat</a>&lt; double &gt; &amp;C, const <a class="el" href="a00303.html">Mat</a>&lt; double &gt; &amp;A, const <a class="el" href="a00303.html">Mat</a>&lt; double &gt; &amp;B, const double alpha=double(1), const double beta=double(0))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a695acfce7283040673bccd3ff89029d1">apply</a> (<a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;C, const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;A, const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;B, const std::complex&lt; float &gt; alpha=std::complex&lt; float &gt;(1), const std::complex&lt; float &gt; beta=std::complex&lt; float &gt;(0))</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a99de39ccc1652002ac7d44aa0aadf58f">apply</a> (<a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;C, const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;A, const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;B, const std::complex&lt; double &gt; alpha=std::complex&lt; double &gt;(1), const std::complex&lt; double &gt; beta=std::complex&lt; double &gt;(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a70799d24f15e37510f01cc2ccc87e751">apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; float &gt; &amp;C, const <a class="el" href="a00304.html">Mat</a>&lt; float &gt; &amp;A, const <a class="el" href="a00304.html">Mat</a>&lt; float &gt; &amp;B, const float alpha=float(1), const float beta=float(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a7a434635dda9ab9159c1a9301dd6e69c">apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; double &gt; &amp;C, const <a class="el" href="a00304.html">Mat</a>&lt; double &gt; &amp;A, const <a class="el" href="a00304.html">Mat</a>&lt; double &gt; &amp;B, const double alpha=double(1), const double beta=double(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a695acfce7283040673bccd3ff89029d1">apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;C, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;A, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;B, const std::complex&lt; float &gt; alpha=std::complex&lt; float &gt;(1), const std::complex&lt; float &gt; beta=std::complex&lt; float &gt;(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00179.html#a99de39ccc1652002ac7d44aa0aadf58f">apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;C, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;A, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;B, const std::complex&lt; double &gt; alpha=std::complex&lt; double &gt;(1), const std::complex&lt; double &gt; beta=std::complex&lt; double &gt;(0))</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const bool use_alpha = false, const bool use_beta = false&gt;<br/>
@@ -57,7 +57,7 @@
 
 <p>Wrapper for ATLAS/BLAS dgemm function, using template arguments to control the arguments passed to dgemm. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes). </p>
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00401">401</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00401">401</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a8ace3ff0f2fa9ae7e2157ebe327c5c9b"></a><!-- doxytag: member="gemm::apply_blas_type" ref="a8ace3ff0f2fa9ae7e2157ebe327c5c9b" args="(Mat&lt; eT &gt; &amp;C, const Mat&lt; eT &gt; &amp;A, const Mat&lt; eT &gt; &amp;B, const eT alpha=eT(1), const eT beta=eT(0))" -->
 <div class="memitem">
@@ -70,19 +70,19 @@ template&lt;typename eT &gt; </div>
         <tr>
           <td class="memname">static void <a class="el" href="a00179.html">gemm</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em>, </td>
         </tr>
         <tr>
@@ -106,16 +106,16 @@ template&lt;typename eT &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00409">409</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00409">409</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 
-<p>References <a class="el" href="a00602_source.html#l00494">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00621_source.html#l00035">Mat&lt; eT &gt;::mem</a>, <a class="el" href="a00620_source.html#l02081">Mat&lt; eT &gt;::memptr()</a>, <a class="el" href="a00621_source.html#l00031">Mat&lt; eT &gt;::n_cols</a>, <a class="el" href="a00621_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00621_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>.</p>
+<p>References <a class="el" href="a00601_source.html#l00494">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00620_source.html#l00035">Mat&lt; eT &gt;::mem</a>, <a class="el" href="a00619_source.html#l02069">Mat&lt; eT &gt;::memptr()</a>, <a class="el" href="a00620_source.html#l00031">Mat&lt; eT &gt;::n_cols</a>, <a class="el" href="a00620_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00620_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>.</p>
 
-<p>Referenced by <a class="el" href="a00602_source.html#l00512">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>.</p>
+<p>Referenced by <a class="el" href="a00601_source.html#l00512">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00410"></a>00410     {
 <a name="l00411"></a>00411     arma_extra_debug_sigprint();
 <a name="l00412"></a>00412     
-<a name="l00413"></a>00413     <span class="keywordflow">if</span>( ((A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) &amp;&amp; (B.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u)) )
+<a name="l00413"></a>00413     <span class="keywordflow">if</span>( ((A.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) &amp;&amp; (B.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u)) )
 <a name="l00414"></a>00414       {
 <a name="l00415"></a>00415       <a class="code" href="a00179.html#a1db233d70afd6b5932ac0fc1145bfa4f" title="immediate multiplication of matrices A and B, storing the result in C">gemm_emul_simple&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply</a>(C,A,B,alpha,beta);
 <a name="l00416"></a>00416       }
@@ -130,17 +130,17 @@ template&lt;typename eT &gt; </div>
 <a name="l00425"></a>00425           atlas::CblasColMajor,
 <a name="l00426"></a>00426           (do_trans_A) ? atlas::CblasTrans : atlas::CblasNoTrans,
 <a name="l00427"></a>00427           (do_trans_B) ? atlas::CblasTrans : atlas::CblasNoTrans,
-<a name="l00428"></a>00428           C.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>,
-<a name="l00429"></a>00429           C.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>,
-<a name="l00430"></a>00430           (do_trans_A) ? A.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : A.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>,
+<a name="l00428"></a>00428           C.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>,
+<a name="l00429"></a>00429           C.<a class="code" href="a00304.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>,
+<a name="l00430"></a>00430           (do_trans_A) ? A.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : A.<a class="code" href="a00304.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>,
 <a name="l00431"></a>00431           (use_alpha) ? alpha : eT(1),
-<a name="l00432"></a>00432           A.<a class="code" href="a00303.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
-<a name="l00433"></a>00433           (do_trans_A) ? A.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : C.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>,
-<a name="l00434"></a>00434           B.<a class="code" href="a00303.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
-<a name="l00435"></a>00435           (do_trans_B) ? C.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a> : ( (do_trans_A) ? A.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : A.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a> ),
+<a name="l00432"></a>00432           A.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
+<a name="l00433"></a>00433           (do_trans_A) ? A.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : C.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>,
+<a name="l00434"></a>00434           B.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
+<a name="l00435"></a>00435           (do_trans_B) ? C.<a class="code" href="a00304.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a> : ( (do_trans_A) ? A.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : A.<a class="code" href="a00304.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a> ),
 <a name="l00436"></a>00436           (use_beta) ? beta : eT(0),
-<a name="l00437"></a>00437           C.<a class="code" href="a00807.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(),
-<a name="l00438"></a>00438           C.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>
+<a name="l00437"></a>00437           C.<a class="code" href="a00809.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(),
+<a name="l00438"></a>00438           C.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>
 <a name="l00439"></a>00439           );
 <a name="l00440"></a>00440         }
 <a name="l00441"></a>00441 <span class="preprocessor">      #elif defined(ARMA_USE_BLAS)</span>
@@ -150,9 +150,9 @@ template&lt;typename eT &gt; </div>
 <a name="l00445"></a>00445         <span class="keyword">const</span> <span class="keywordtype">char</span> trans_A = (do_trans_A) ? <span class="charliteral">&apos;T&apos;</span> : <span class="charliteral">&apos;N&apos;</span>;
 <a name="l00446"></a>00446         <span class="keyword">const</span> <span class="keywordtype">char</span> trans_B = (do_trans_B) ? <span class="charliteral">&apos;T&apos;</span> : <span class="charliteral">&apos;N&apos;</span>;
 <a name="l00447"></a>00447         
-<a name="l00448"></a>00448         <span class="keyword">const</span> <span class="keywordtype">int</span> m   = C.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
-<a name="l00449"></a>00449         <span class="keyword">const</span> <span class="keywordtype">int</span> n   = C.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>;
-<a name="l00450"></a>00450         <span class="keyword">const</span> <span class="keywordtype">int</span> k   = (do_trans_A) ? A.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : A.<a class="code" href="a00303.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>;
+<a name="l00448"></a>00448         <span class="keyword">const</span> <span class="keywordtype">int</span> m   = C.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
+<a name="l00449"></a>00449         <span class="keyword">const</span> <span class="keywordtype">int</span> n   = C.<a class="code" href="a00304.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>;
+<a name="l00450"></a>00450         <span class="keyword">const</span> <span class="keywordtype">int</span> k   = (do_trans_A) ? A.<a class="code" href="a00304.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> : A.<a class="code" href="a00304.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>;
 <a name="l00451"></a>00451         
 <a name="l00452"></a>00452         <span class="keyword">const</span> eT local_alpha = (use_alpha) ? alpha : eT(1);
 <a name="l00453"></a>00453         
@@ -172,12 +172,12 @@ template&lt;typename eT &gt; </div>
 <a name="l00467"></a>00467           &amp;n,
 <a name="l00468"></a>00468           &amp;k,
 <a name="l00469"></a>00469           &amp;local_alpha,
-<a name="l00470"></a>00470           A.<a class="code" href="a00303.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
+<a name="l00470"></a>00470           A.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
 <a name="l00471"></a>00471           &amp;lda,
-<a name="l00472"></a>00472           B.<a class="code" href="a00303.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
+<a name="l00472"></a>00472           B.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
 <a name="l00473"></a>00473           &amp;ldb,
 <a name="l00474"></a>00474           &amp;local_beta,
-<a name="l00475"></a>00475           C.<a class="code" href="a00807.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(),
+<a name="l00475"></a>00475           C.<a class="code" href="a00809.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(),
 <a name="l00476"></a>00476           &amp;m
 <a name="l00477"></a>00477           );
 <a name="l00478"></a>00478         }
@@ -203,19 +203,19 @@ template&lt;typename eT &gt; </div>
         <tr>
           <td class="memname">static void <a class="el" href="a00179.html">gemm</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em>, </td>
         </tr>
         <tr>
@@ -241,14 +241,14 @@ template&lt;typename eT &gt; </div>
 
 <p>immediate multiplication of matrices A and B, storing the result in C </p>
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00494">494</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00494">494</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 
-<p>References <a class="el" href="a00621_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
+<p>References <a class="el" href="a00620_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
 
-<p>Referenced by <a class="el" href="a00613_source.html#l00382">glue_times::apply()</a>, and <a class="el" href="a00602_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+<p>Referenced by <a class="el" href="a00612_source.html#l00382">glue_times::apply()</a>, and <a class="el" href="a00601_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00495"></a>00495     {
-<a name="l00496"></a>00496     <span class="keywordflow">if</span>( (A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) &amp;&amp; (B.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) )
+<a name="l00496"></a>00496     <span class="keywordflow">if</span>( (A.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) &amp;&amp; (B.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) )
 <a name="l00497"></a>00497       {
 <a name="l00498"></a>00498       <a class="code" href="a00179.html#a1db233d70afd6b5932ac0fc1145bfa4f" title="immediate multiplication of matrices A and B, storing the result in C">gemm_emul_simple&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply</a>(C,A,B,alpha,beta);
 <a name="l00499"></a>00499       }
@@ -270,19 +270,19 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
         <tr>
           <td class="memname">static arma_inline void <a class="el" href="a00179.html">gemm</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00303.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em>, </td>
         </tr>
         <tr>
@@ -306,9 +306,9 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00512">512</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00512">512</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 
-<p>References <a class="el" href="a00602_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+<p>References <a class="el" href="a00601_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00519"></a>00519     {
 <a name="l00520"></a>00520     <a class="code" href="a00179.html#a8ace3ff0f2fa9ae7e2157ebe327c5c9b">gemm&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply_blas_type</a>(C,A,B,alpha,beta);
@@ -326,19 +326,19 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
         <tr>
           <td class="memname">static arma_inline void <a class="el" href="a00179.html">gemm</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00303.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em>, </td>
         </tr>
         <tr>
@@ -362,9 +362,9 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00529">529</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00529">529</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 
-<p>References <a class="el" href="a00602_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+<p>References <a class="el" href="a00601_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00536"></a>00536     {
 <a name="l00537"></a>00537     <a class="code" href="a00179.html#a8ace3ff0f2fa9ae7e2157ebe327c5c9b">gemm&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply_blas_type</a>(C,A,B,alpha,beta);
@@ -382,19 +382,19 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
         <tr>
           <td class="memname">static arma_inline void <a class="el" href="a00179.html">gemm</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em>, </td>
         </tr>
         <tr>
@@ -418,9 +418,9 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00546">546</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00546">546</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 
-<p>References <a class="el" href="a00602_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+<p>References <a class="el" href="a00601_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00553"></a>00553     {
 <a name="l00554"></a>00554     <a class="code" href="a00179.html#a8ace3ff0f2fa9ae7e2157ebe327c5c9b">gemm&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply_blas_type</a>(C,A,B,alpha,beta);
@@ -438,19 +438,19 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
         <tr>
           <td class="memname">static arma_inline void <a class="el" href="a00179.html">gemm</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>C</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00303.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em>, </td>
         </tr>
         <tr>
@@ -474,9 +474,9 @@ template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const 
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00602_source.html#l00563">563</a> of file <a class="el" href="a00602_source.html">gemm.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00563">563</a> of file <a class="el" href="a00601_source.html">gemm.hpp</a>.</p>
 
-<p>References <a class="el" href="a00602_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+<p>References <a class="el" href="a00601_source.html#l00409">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00570"></a>00570     {
 <a name="l00571"></a>00571     <a class="code" href="a00179.html#a8ace3ff0f2fa9ae7e2157ebe327c5c9b">gemm&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply_blas_type</a>(C,A,B,alpha,beta);

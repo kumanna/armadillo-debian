@@ -21,6 +21,7 @@
 //! Immediate trace (sum of diagonal elements) of a square dense matrix
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 trace(const Base<typename T1::elem_type,T1>& X)
   {
@@ -46,6 +47,7 @@ trace(const Base<typename T1::elem_type,T1>& X)
 
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 trace(const Op<T1, op_diagmat>& X)
   {

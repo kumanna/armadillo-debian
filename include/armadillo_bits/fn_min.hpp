@@ -39,6 +39,7 @@ min(const Base<typename T1::elem_type,T1>& X, const u32 dim = 0)
 //! Immediate 'find the minimum value in a row vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 eT
 min(const Row<eT>& A)
   {
@@ -54,6 +55,7 @@ min(const Row<eT>& A)
 //! Immediate 'find the minimum value in a column vector'
 template<typename eT>
 inline
+arma_warn_unused
 eT
 min(const Col<eT>& A)
   {
@@ -71,6 +73,7 @@ min(const Col<eT>& A)
 //! invoked, for example, by: min(min(A))
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 min(const Op<T1, op_min>& in)
   {
@@ -103,6 +106,7 @@ min(const Op<T1, op_min>& in, const u32 dim)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 min(const subview_row<eT>& A)
   {
@@ -117,6 +121,7 @@ min(const subview_row<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 min(const subview_col<eT>& A)
   {
@@ -131,6 +136,7 @@ min(const subview_col<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 min(const diagview<eT>& A)
   {
@@ -145,6 +151,7 @@ min(const diagview<eT>& A)
 
 template<typename eT>
 inline
+arma_warn_unused
 eT
 min(const Op<subview<eT>, op_min>& in)
   {

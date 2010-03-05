@@ -71,6 +71,7 @@ eps(const Base< std::complex<typename T1::pod_type>, T1>& X)
 
 template<typename eT>
 arma_inline
+arma_warn_unused
 typename arma_integral_only<eT>::result
 eps(const eT& x)
   {
@@ -81,6 +82,7 @@ eps(const eT& x)
 
 template<typename eT>
 arma_inline
+arma_warn_unused
 typename arma_float_only<eT>::result
 eps(const eT& x)
   {
@@ -91,6 +93,7 @@ eps(const eT& x)
 
 template<typename T>
 arma_inline
+arma_warn_unused
 typename arma_float_only<T>::result
 eps(const std::complex<T>& x)
   {

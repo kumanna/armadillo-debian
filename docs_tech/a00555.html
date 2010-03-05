@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_as_scalar.hpp File Reference</title>
+<title>Armadillo Technical: fn_conv_to.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,33 +25,28 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_as_scalar.hpp File Reference</h1>
+<h1>fn_conv_to.hpp File Reference</h1>
 <p><a href="a00555_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00050.html">as_scalar_redirect&lt; N &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00051.html">as_scalar_redirect&lt; 2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00052.html">as_scalar_redirect&lt; 3 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059.html">conv_to&lt; out_eT &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00064.html">conv_to&lt; Mat&lt; out_eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00065.html">conv_to&lt; Row&lt; out_eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00060.html">conv_to&lt; Col&lt; out_eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00061.html">conv_to&lt; Cube&lt; out_eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00062.html">conv_to&lt; itpp::Mat&lt; out_eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063.html">conv_to&lt; itpp::Vec&lt; out_eT &gt; &gt;</a></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#ga0cac4483d7aa4312e9dfc17de537a495">as_scalar_diag</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#ga7ea926e416339421023eb6029d3172cb">as_scalar_diag</a> (const <a class="el" href="a00189.html">Glue</a>&lt; <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, <a class="el" href="a00194.html">glue_times_diag</a> &gt;, T3, <a class="el" href="a00193.html">glue_times</a> &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#ga9be6c2692c6ff45cf77335e57f8bee35">as_scalar</a> (const <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, <a class="el" href="a00193.html">glue_times</a> &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#gacb7278423f9ac4d6f52cf1cb02378adc">as_scalar</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#ga299ff5d9dd32009d367991ff7809678c">as_scalar</a> (const <a class="el" href="a00092.html">eOp</a>&lt; T1, <a class="el" href="a00149.html">eop_neg</a> &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#ga0d3f86946387b69887cc7a6d496f8e10">as_scalar</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <br class="typebreak"/>
-<a class="el" href="a00023.html">arma_scalar_only</a>&lt; T &gt;::result &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00750.html#ga00e606687dbfe59377b82d0a8dec6411">as_scalar</a> (const T &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename out_eT , typename in_eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00753.html#ga57cb5dff504a859b2b030af848e797da">copy_complex_elem</a> (out_eT &amp;out, const in_eT &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename out_eT , typename in_T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00753.html#ga95922fc26e2f244ea5cf8b1c1937d45f">copy_complex_elem</a> (out_eT &amp;out, const std::complex&lt; in_T &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename out_T , typename in_T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00753.html#gacd8abeb8bb6bfdadf7f8677be36cf6fb">copy_complex_elem</a> (std::complex&lt; out_T &gt; &amp;out, const std::complex&lt; in_T &gt; &amp;in)</td></tr>
 </table>
 </div>
 </BODY>

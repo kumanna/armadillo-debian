@@ -44,6 +44,7 @@ var(const Base<typename T1::elem_type,T1>& X, const u32 norm_type = 0, const u32
 //! Immediate 'find the variance of a row vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 var(const Row<eT>& A, const u32 norm_type = 0)
   {
@@ -59,6 +60,7 @@ var(const Row<eT>& A, const u32 norm_type = 0)
 //! Immediate 'find the variance of a column vector' operation
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 var(const Col<eT>& A, const u32 norm_type = 0)
   {
@@ -73,6 +75,7 @@ var(const Col<eT>& A, const u32 norm_type = 0)
 
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 var(const subview_row<eT>& A, const u32 norm_type = 0)
   {
@@ -87,6 +90,7 @@ var(const subview_row<eT>& A, const u32 norm_type = 0)
 
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 var(const subview_col<eT>& A, const u32 norm_type = 0)
   {
@@ -101,6 +105,7 @@ var(const subview_col<eT>& A, const u32 norm_type = 0)
 
 template<typename eT>
 inline
+arma_warn_unused
 typename get_pod_type<eT>::result
 var(const diagview<eT>& A, const u32 norm_type = 0)
   {

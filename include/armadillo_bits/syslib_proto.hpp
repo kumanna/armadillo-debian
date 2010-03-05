@@ -31,7 +31,15 @@ class syslib
     {
     if( n_elem <= (128/sizeof(eT)) )
       {
-      for(u32 i=0; i<n_elem; ++i)
+      u32 i,j;
+      
+      for(i=0, j=1; j<n_elem; i+=2, j+=2)
+        {
+        dest[i] = src[i];
+        dest[j] = src[j];
+        }
+      
+      if(i < n_elem)
         {
         dest[i] = src[i];
         }

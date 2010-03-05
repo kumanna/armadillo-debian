@@ -38,16 +38,21 @@
 
 #if defined(ARMA_HAVE_GETTIMEOFDAY)
   #include <sys/time.h>
+  #undef ARMA_USE_BOOST_DATE
 #endif
 
 
 #if defined(ARMA_USE_BOOST)
-  #include <boost/format.hpp>
-  #include <boost/current_function.hpp>
   #include <boost/math/complex.hpp>
   #include <boost/math/special_functions/acosh.hpp>
   #include <boost/math/special_functions/asinh.hpp>
   #include <boost/math/special_functions/atanh.hpp>
+  #include <boost/current_function.hpp>
+
+  #if defined(ARMA_EXTRA_DEBUG)
+    #include <boost/format.hpp>
+    #define ARMA_USE_BOOST_FORMAT
+  #endif
 #endif
 
 
@@ -171,6 +176,7 @@ namespace arma
   #include "armadillo_bits/op_dotext_proto.hpp"
   #include "armadillo_bits/op_flip_proto.hpp"
   #include "armadillo_bits/op_princomp_proto.hpp"
+  #include "armadillo_bits/op_princomp_cov_proto.hpp"
   
   #include "armadillo_bits/glue_times_proto.hpp"
   #include "armadillo_bits/glue_cov_proto.hpp"
@@ -294,6 +300,7 @@ namespace arma
   #include "armadillo_bits/fn_flip.hpp"
   #include "armadillo_bits/fn_as_scalar.hpp"
   #include "armadillo_bits/fn_princomp.hpp"
+  #include "armadillo_bits/fn_princomp_cov.hpp"
   
   //
   // class meat
@@ -350,6 +357,7 @@ namespace arma
   #include "armadillo_bits/op_dotext_meat.hpp"
   #include "armadillo_bits/op_flip_meat.hpp"
   #include "armadillo_bits/op_princomp_meat.hpp"
+  #include "armadillo_bits/op_princomp_cov_meat.hpp"
   
   #include "armadillo_bits/glue_times_meat.hpp"
   #include "armadillo_bits/glue_cov_meat.hpp"

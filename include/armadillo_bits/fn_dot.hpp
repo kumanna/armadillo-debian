@@ -20,6 +20,7 @@
 
 template<typename T1, typename T2>
 arma_inline
+arma_warn_unused
 typename T1::elem_type
 dot(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,T2>& B)
   {
@@ -32,6 +33,7 @@ dot(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,
 
 template<typename T1, typename T2>
 arma_inline
+arma_warn_unused
 typename T1::elem_type
 norm_dot(const Base<typename T1::elem_type,T1>& A, const Base<typename T1::elem_type,T2>& B)
   {

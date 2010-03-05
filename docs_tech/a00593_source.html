@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_sum.hpp Source File</title>
+<title>Armadillo Technical: fn_svd.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_sum.hpp</h1><a href="a00593.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_svd.hpp</h1><a href="a00593.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,126 +45,93 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_sum</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_svd</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment">//! \brief</span>
-<a name="l00022"></a>00022 <span class="comment">//! Delayed sum of elements of a matrix along a specified dimension (either rows or columns).</span>
-<a name="l00023"></a>00023 <span class="comment">//! The result is stored in a dense matrix that has either one column or one row.</span>
-<a name="l00024"></a>00024 <span class="comment">//! For dim = 0, find the sum of each column.</span>
-<a name="l00025"></a>00025 <span class="comment">//! For dim = 1, find the sum of each row.</span>
-<a name="l00026"></a>00026 <span class="comment">//! The default is dim = 0.</span>
-<a name="l00027"></a>00027 <span class="comment">//! NOTE: this function works differently than in Matlab/Octave.</span>
-<a name="l00028"></a>00028 <span class="comment"></span>
-<a name="l00029"></a>00029 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00030"></a>00030 arma_inline
-<a name="l00031"></a>00031 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>
-<a name="l00032"></a><a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081">00032</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
-<a name="l00033"></a>00033   {
-<a name="l00034"></a>00034   arma_extra_debug_sigprint();
-<a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
-<a name="l00037"></a>00037   }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="comment"></span>
-<a name="l00040"></a>00040 <span class="comment">//! \brief</span>
-<a name="l00041"></a>00041 <span class="comment">//! Immediate &apos;sum all values&apos; operation for a row vector</span>
-<a name="l00042"></a>00042 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00043"></a>00043 arma_inline
-<a name="l00044"></a>00044 eT
-<a name="l00045"></a><a class="code" href="a00788.html#ga8e22bda9525de7c645e2b83e389a5b93">00045</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00466.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a>&amp; X)
-<a name="l00046"></a>00046   {
-<a name="l00047"></a>00047   arma_extra_debug_sigprint();
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   <span class="keywordflow">return</span> <a class="code" href="a00749.html#ga38399f8b2bbc6075ce143d5d007c2b5d" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00050"></a>00050   }
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="comment"></span>
-<a name="l00054"></a>00054 <span class="comment">//! \brief</span>
-<a name="l00055"></a>00055 <span class="comment">//! Immediate &apos;sum all values&apos; operation for a column vector</span>
-<a name="l00056"></a>00056 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00057"></a>00057 arma_inline
-<a name="l00058"></a>00058 eT
-<a name="l00059"></a><a class="code" href="a00788.html#ga45c612bacf9c276645597911a2a457bb">00059</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; X)
-<a name="l00060"></a>00060   {
-<a name="l00061"></a>00061   arma_extra_debug_sigprint();
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   <span class="keywordflow">return</span> <a class="code" href="a00749.html#ga38399f8b2bbc6075ce143d5d007c2b5d" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00064"></a>00064   }
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 <span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">//! \brief</span>
-<a name="l00069"></a>00069 <span class="comment">//! Immediate &apos;sum all values&apos; operation,</span>
-<a name="l00070"></a>00070 <span class="comment">//! invoked, for example, by: sum(sum(A))</span>
-<a name="l00071"></a>00071 <span class="comment"></span>
-<a name="l00072"></a>00072 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00073"></a>00073 arma_inline
-<a name="l00074"></a>00074 <span class="keyword">typename</span> T1::elem_type
-<a name="l00075"></a><a class="code" href="a00788.html#gac8b4c96f8b36d2a9344698d368292077">00075</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>&amp; in)
-<a name="l00076"></a>00076   {
-<a name="l00077"></a>00077   arma_extra_debug_sigprint();
-<a name="l00078"></a>00078   arma_extra_debug_print(<span class="stringliteral">&quot;sum(): two consecutive sum() calls detected&quot;</span>);
-<a name="l00079"></a>00079   
-<a name="l00080"></a>00080   <span class="keywordflow">return</span> <a class="code" href="a00749.html#ga38399f8b2bbc6075ce143d5d007c2b5d" title="accumulate the elements of a matrix">accu</a>(in.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00081"></a>00081   }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00086"></a>00086 arma_inline
-<a name="l00087"></a>00087 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Op&lt;T1, op_sum&gt;</a>, <a class="code" href="a00331.html" title="Class for finding sums of values in a matrix (e.g. along rows or columns).">op_sum</a>&gt;
-<a name="l00088"></a><a class="code" href="a00788.html#gaaf522d79a5a629af25d5bb84513a476a">00088</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>&amp; in, <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)
-<a name="l00089"></a>00089   {
-<a name="l00090"></a>00090   arma_extra_debug_sigprint();
-<a name="l00091"></a>00091   
-<a name="l00092"></a>00092   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Op&lt;T1, op_sum&gt;</a>, <a class="code" href="a00331.html" title="Class for finding sums of values in a matrix (e.g. along rows or columns).">op_sum</a>&gt;(in, dim, 0);
-<a name="l00093"></a>00093   }
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">//! sum all values of a subview_row</span>
-<a name="l00098"></a>00098 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00099"></a>00099 arma_inline
-<a name="l00100"></a>00100 eT
-<a name="l00101"></a><a class="code" href="a00788.html#gadbb5e56c6dcf6940d7ebbc0c96139568">00101</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00482.html">subview_row&lt;eT&gt;</a>&amp; X)
-<a name="l00102"></a>00102   {
-<a name="l00103"></a>00103   arma_extra_debug_sigprint();
-<a name="l00104"></a>00104   
-<a name="l00105"></a>00105   <span class="keywordflow">return</span> <a class="code" href="a00749.html#ga38399f8b2bbc6075ce143d5d007c2b5d" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00106"></a>00106   }
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 <span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">//! sum all values of a subview_col</span>
-<a name="l00111"></a>00111 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00112"></a>00112 arma_inline
-<a name="l00113"></a>00113 eT
-<a name="l00114"></a><a class="code" href="a00788.html#gaa917b797688cf860a353b209fcf2fef3">00114</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00479.html">subview_col&lt;eT&gt;</a>&amp; X)
-<a name="l00115"></a>00115   {
-<a name="l00116"></a>00116   arma_extra_debug_sigprint();
-<a name="l00117"></a>00117   
-<a name="l00118"></a>00118   <span class="keywordflow">return</span> <a class="code" href="a00749.html#ga38399f8b2bbc6075ce143d5d007c2b5d" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00119"></a>00119   }
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 <span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">//! sum all values of a diagview</span>
-<a name="l00124"></a>00124 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00125"></a>00125 arma_inline
-<a name="l00126"></a>00126 eT
-<a name="l00127"></a><a class="code" href="a00788.html#ga6f4f0098e9ff0883a8bc35bdf27dd5f1">00127</a> <a class="code" href="a00788.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; X)
-<a name="l00128"></a>00128   {
-<a name="l00129"></a>00129   arma_extra_debug_sigprint();
-<a name="l00130"></a>00130   
-<a name="l00131"></a>00131   <span class="keywordflow">return</span> <a class="code" href="a00749.html#ga38399f8b2bbc6075ce143d5d007c2b5d" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00132"></a>00132   }
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135 <span class="comment"></span>
-<a name="l00136"></a>00136 <span class="comment">//! @}</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00023"></a>00023 <span class="keyword">inline</span>
+<a name="l00024"></a>00024 <span class="keywordtype">bool</span>
+<a name="l00025"></a><a class="code" href="a00791.html#ga23b02dd473a36aa9cb05816523b51faf">00025</a> <a class="code" href="a00791.html#ga23b02dd473a36aa9cb05816523b51faf">svd</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;typename T1::pod_type&gt;</a>&amp; S, <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X)
+<a name="l00026"></a>00026   {
+<a name="l00027"></a>00027   arma_extra_debug_sigprint();
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   <span class="comment">// unwrap_check not used as T1::elem_type and T1::pod_type may not be the same.</span>
+<a name="l00032"></a>00032   <span class="comment">// furthermore, it doesn&apos;t matter if A is an alias of S, as auxlib::svd() makes a copy of A</span>
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   <span class="keyword">const</span> <a class="code" href="a00482.html">unwrap&lt;T1&gt;</a> tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00035"></a>00035   <span class="keyword">const</span> <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
+<a name="l00036"></a>00036   
+<a name="l00037"></a>00037   <span class="keyword">const</span> <span class="keywordtype">bool</span> status = <a class="code" href="a00727.html#gaf634c5679d890587a320dbf8a975b5f7">auxlib::svd</a>(S, A);
+<a name="l00038"></a>00038     
+<a name="l00039"></a>00039   <span class="keywordflow">if</span>(status == <span class="keyword">false</span>)
+<a name="l00040"></a>00040     {
+<a name="l00041"></a>00041     <a class="code" href="a00734.html#gadcf220676d0c7293eb01474a2d67e080">arma_print</a>(<span class="stringliteral">&quot;svd(): singular value decomposition failed&quot;</span>);
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043   
+<a name="l00044"></a>00044   <span class="keywordflow">return</span> status;
+<a name="l00045"></a>00045   }
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00050"></a>00050 <span class="keyword">inline</span>
+<a name="l00051"></a>00051 <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;typename T1::pod_type&gt;</a>
+<a name="l00052"></a><a class="code" href="a00791.html#gad0838722a6d349f669dc222d5c7f5c4a">00052</a> <a class="code" href="a00791.html#ga23b02dd473a36aa9cb05816523b51faf">svd</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X)
+<a name="l00053"></a>00053   {
+<a name="l00054"></a>00054   arma_extra_debug_sigprint();
+<a name="l00055"></a>00055   
+<a name="l00056"></a>00056   <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;typename T1::pod_type&gt;</a> out;
+<a name="l00057"></a>00057   
+<a name="l00058"></a>00058   <span class="keyword">const</span> <span class="keywordtype">bool</span> status = <a class="code" href="a00791.html#ga23b02dd473a36aa9cb05816523b51faf">svd</a>(out, X);
+<a name="l00059"></a>00059   
+<a name="l00060"></a>00060   <span class="keywordflow">if</span>(status == <span class="keyword">false</span>)
+<a name="l00061"></a>00061     {
+<a name="l00062"></a>00062     out.<a class="code" href="a00731.html#gafe0582791c7dbb1022f0edcc9ec27ee2" title="change the number of rows">set_size</a>(0);
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064   
+<a name="l00065"></a>00065   <span class="keywordflow">return</span> out;
+<a name="l00066"></a>00066   }
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00071"></a>00071 <span class="keyword">inline</span>
+<a name="l00072"></a>00072 <span class="keywordtype">bool</span>
+<a name="l00073"></a>00073 <a class="code" href="a00791.html#ga23b02dd473a36aa9cb05816523b51faf">svd</a>
+<a name="l00074"></a><a class="code" href="a00791.html#ga5e7bda15e55649eecccfb2945e5dfabe">00074</a>   (
+<a name="l00075"></a>00075          <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp;    U,
+<a name="l00076"></a>00076          <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;typename T1::pod_type&gt;</a>&amp;     S,
+<a name="l00077"></a>00077          <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp;    V,
+<a name="l00078"></a>00078   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X
+<a name="l00079"></a>00079   )
+<a name="l00080"></a>00080   {
+<a name="l00081"></a>00081   arma_extra_debug_sigprint();
+<a name="l00082"></a>00082   
+<a name="l00083"></a>00083   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00084"></a>00084   
+<a name="l00085"></a>00085   arma_debug_check( ( ((<span class="keywordtype">void</span>*)(&amp;U) == (<span class="keywordtype">void</span>*)(&amp;S)) || (&amp;U == &amp;V) || ((<span class="keywordtype">void</span>*)(&amp;S) == (<span class="keywordtype">void</span>*)(&amp;V)) ), <span class="stringliteral">&quot;svd(): two or more output objects are the same object&quot;</span> );
+<a name="l00086"></a>00086   
+<a name="l00087"></a>00087   <span class="keyword">const</span> <a class="code" href="a00482.html">unwrap&lt;T1&gt;</a>   tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00088"></a>00088   <span class="keyword">const</span> <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
+<a name="l00089"></a>00089   
+<a name="l00090"></a>00090   <span class="comment">// auxlib::svd() makes an internal copy of A</span>
+<a name="l00091"></a>00091   <span class="keyword">const</span> <span class="keywordtype">bool</span> status = <a class="code" href="a00727.html#gaf634c5679d890587a320dbf8a975b5f7">auxlib::svd</a>(U, S, V, A);
+<a name="l00092"></a>00092   
+<a name="l00093"></a>00093   <span class="keywordflow">if</span>(status == <span class="keyword">false</span>)
+<a name="l00094"></a>00094     {
+<a name="l00095"></a>00095     <a class="code" href="a00734.html#gadcf220676d0c7293eb01474a2d67e080">arma_print</a>(<span class="stringliteral">&quot;svd(): singular value decomposition failed&quot;</span>);
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097   
+<a name="l00098"></a>00098   <span class="keywordflow">return</span> status;
+<a name="l00099"></a>00099   }
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

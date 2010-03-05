@@ -317,6 +317,7 @@ as_scalar_diag(const Glue< Glue<T1, T2, glue_times_diag>, T3, glue_times >& X)
 
 template<typename T1, typename T2>
 arma_inline
+arma_warn_unused
 typename T1::elem_type
 as_scalar(const Glue<T1, T2, glue_times>& X)
   {
@@ -340,6 +341,7 @@ as_scalar(const Glue<T1, T2, glue_times>& X)
 
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 as_scalar(const Base<typename T1::elem_type,T1>& X)
   {
@@ -359,6 +361,7 @@ as_scalar(const Base<typename T1::elem_type,T1>& X)
 
 template<typename T1>
 arma_inline
+arma_warn_unused
 typename T1::elem_type
 as_scalar(const eOp<T1, eop_neg>& X)
   {
@@ -371,6 +374,7 @@ as_scalar(const eOp<T1, eop_neg>& X)
 
 template<typename T1>
 inline
+arma_warn_unused
 typename T1::elem_type
 as_scalar(const BaseCube<typename T1::elem_type,T1>& X)
   {
@@ -390,6 +394,7 @@ as_scalar(const BaseCube<typename T1::elem_type,T1>& X)
 
 template<typename T>
 arma_inline
+arma_warn_unused
 const typename arma_scalar_only<T>::result &
 as_scalar(const T& x)
   {

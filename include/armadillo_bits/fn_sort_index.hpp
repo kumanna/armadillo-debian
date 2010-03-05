@@ -83,36 +83,10 @@ sort_index_helper(umat_elem_type* out_mem, std::vector<packet_type>& packet_vec,
 
 
 
-template<typename T>
-struct sort_index_result_type_deducer
-  {
-  typedef umat out_type;
-  };
-  
-
-
-//template<>
-template<typename eT>
-struct sort_index_result_type_deducer< Col<eT> >
-  {
-  typedef ucolvec out_type;
-  };
-
-
-
-//template<>
-template<typename eT>
-struct sort_index_result_type_deducer< Row<eT> >
-  {
-  typedef urowvec out_type;
-  };
-
-
-
 template<typename T1>
 inline
-typename sort_index_result_type_deducer<T1>::out_type
-sort_index(const BaseVec<typename T1::elem_type,T1>& X, const u32 sort_type = 0)
+umat
+sort_index(const Base<typename T1::elem_type,T1>& X, const u32 sort_type = 0)
   {
   arma_extra_debug_sigprint();
   
@@ -123,31 +97,26 @@ sort_index(const BaseVec<typename T1::elem_type,T1>& X, const u32 sort_type = 0)
   const unwrap<T1> tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
   
-  arma_debug_check( (A.is_vec() == false), "sort_index(): internal error: expected a vector");
+  arma_debug_check( (A.is_vec() == false), "sort_index(): currently only handles vectors");
   
-  typedef typename sort_index_result_type_deducer<T1>::out_type out_type;
-  typedef typename out_type::elem_type out_elem_type;
+  typedef typename umat::elem_type out_elem_type;
   
-  out_type out(A.n_elem);
-  
+  umat out(A.n_rows, A.n_cols);
   
   if(sort_type == 0)
     {
     std::vector< arma_sort_index_packet_ascend<eT,out_elem_type> > packet_vec(A.n_elem);
     
     sort_index_helper(out.memptr(), packet_vec, A.mem);
-    
-    return out;
     }
   else
     {
     std::vector< arma_sort_index_packet_descend<eT,out_elem_type> > packet_vec(A.n_elem);
     
     sort_index_helper(out.memptr(), packet_vec, A.mem);
-    
-    return out;
     }
   
+  return out;
   }
 
 

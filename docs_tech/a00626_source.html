@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_diagmat_meat.hpp Source File</title>
+<title>Armadillo Technical: op_diagmat_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_271095b85d31bec439cc297c125fd40b.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_3f61a4017834ec16d605e5ef89ce3d35.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>op_diagmat_meat.hpp</h1><a href="a00626.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>op_diagmat_proto.hpp</h1><a href="a00626.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -50,75 +50,17 @@
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00023"></a>00023 <span class="keyword">inline</span>
-<a name="l00024"></a>00024 <span class="keywordtype">void</span>
-<a name="l00025"></a><a class="code" href="a00810.html#gabcac5e746e33544c020afe2556da8859">00025</a> <a class="code" href="a00810.html#gabcac5e746e33544c020afe2556da8859">op_diagmat::apply</a>(<a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagmat&gt;</a>&amp; X)
-<a name="l00026"></a>00026   {
-<a name="l00027"></a>00027   arma_extra_debug_sigprint();
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00030"></a>00030   
-<a name="l00031"></a>00031   <span class="keyword">const</span> <a class="code" href="a00484.html">unwrap&lt;T1&gt;</a>   tmp(X.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00032"></a>00032   <span class="keyword">const</span> <a class="code" href="a00303.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.<a class="code" href="a00484.html#a7b6f1a49bc9f7264a9be753f9e327342">M</a>;
-<a name="l00033"></a>00033   
-<a name="l00034"></a>00034   <span class="keywordflow">if</span>(A.<a class="code" href="a00807.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>() == <span class="keyword">true</span>)
-<a name="l00035"></a>00035     {
-<a name="l00036"></a>00036     <span class="comment">// generate a diagonal matrix out of a vector</span>
-<a name="l00037"></a>00037     
-<a name="l00038"></a>00038     <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N     = A.<a class="code" href="a00303.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
-<a name="l00039"></a>00039     <span class="keyword">const</span> eT* A_mem = A.<a class="code" href="a00807.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
-<a name="l00040"></a>00040     
-<a name="l00041"></a>00041     <span class="keywordflow">if</span>(&amp;out != &amp;A)
-<a name="l00042"></a>00042       {
-<a name="l00043"></a>00043       <span class="comment">// no aliasing</span>
-<a name="l00044"></a>00044       out.<a class="code" href="a00807.html#ga58ecc7b31c7c7e5efa725afb7d0622ae">zeros</a>(N,N);
-<a name="l00045"></a>00045       
-<a name="l00046"></a>00046       <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N; ++i)
-<a name="l00047"></a>00047         {
-<a name="l00048"></a>00048         out.<a class="code" href="a00807.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(i,i) = A_mem[i];
-<a name="l00049"></a>00049         }
-<a name="l00050"></a>00050       }
-<a name="l00051"></a>00051     <span class="keywordflow">else</span>
-<a name="l00052"></a>00052       {
-<a name="l00053"></a>00053       <span class="comment">// aliasing</span>
-<a name="l00054"></a>00054       
-<a name="l00055"></a>00055       <span class="keyword">const</span> <a class="code" href="a00369.html" title="A lightweight array for POD types. If the amount of memory requested is small, the...">podarray&lt;eT&gt;</a> tmp(A_mem, N);
-<a name="l00056"></a>00056       
-<a name="l00057"></a>00057       <span class="keyword">const</span> eT* tmp_mem = tmp.<a class="code" href="a00847.html#ga7368b988be82a13ef49879fd26c3654a">memptr</a>();
-<a name="l00058"></a>00058       
-<a name="l00059"></a>00059       out.<a class="code" href="a00807.html#ga58ecc7b31c7c7e5efa725afb7d0622ae">zeros</a>(N,N);
-<a name="l00060"></a>00060       
-<a name="l00061"></a>00061       <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N; ++i)
-<a name="l00062"></a>00062         {
-<a name="l00063"></a>00063         out.<a class="code" href="a00807.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(i,i) = tmp_mem[i];
-<a name="l00064"></a>00064         }
-<a name="l00065"></a>00065       }
-<a name="l00066"></a>00066     }
-<a name="l00067"></a>00067   <span class="keywordflow">else</span>
-<a name="l00068"></a>00068     {
-<a name="l00069"></a>00069     <span class="comment">// generate a diagonal matrix out of a matrix</span>
-<a name="l00070"></a>00070     
-<a name="l00071"></a>00071     arma_debug_check( (A.<a class="code" href="a00807.html#gaebcde5b059098f2ee43b9ae0a3d3f0b7" title="returns true if the object has the same number of non-zero rows and columnns">is_square</a>() == <span class="keyword">false</span>), <span class="stringliteral">&quot;diagmat(): given matrix is not square&quot;</span> );
-<a name="l00072"></a>00072     
-<a name="l00073"></a>00073     <span class="keyword">const</span> <a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.<a class="code" href="a00303.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
-<a name="l00074"></a>00074     
-<a name="l00075"></a>00075     out.<a class="code" href="a00807.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(N,N);
-<a name="l00076"></a>00076     
-<a name="l00077"></a>00077     <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;N; ++col)
-<a name="l00078"></a>00078       {
-<a name="l00079"></a>00079       <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0;     row&lt;col; ++row) { out.<a class="code" href="a00807.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,col) = eT(0); }
-<a name="l00080"></a>00080       
-<a name="l00081"></a>00081       out.<a class="code" href="a00807.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(col,col) = A.<a class="code" href="a00807.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(col,col);
-<a name="l00082"></a>00082       
-<a name="l00083"></a>00083       <span class="keywordflow">for</span>(<a class="code" href="a00862.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=col+1; row&lt;N;   ++row) { out.<a class="code" href="a00807.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,col) = eT(0); }
-<a name="l00084"></a>00084       }
-<a name="l00085"></a>00085     }
-<a name="l00086"></a>00086   }
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">//! @}</span>
+<a name="l00022"></a><a class="code" href="a00310.html">00022</a> <span class="keyword">class </span><a class="code" href="a00310.html">op_diagmat</a>
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024   <span class="keyword">public</span>:
+<a name="l00025"></a>00025   
+<a name="l00026"></a>00026   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00027"></a>00027   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00812.html#gabcac5e746e33544c020afe2556da8859">apply</a>(<a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_diagmat&gt;</a>&amp; X);
+<a name="l00028"></a>00028   };
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="comment"></span>
+<a name="l00032"></a>00032 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

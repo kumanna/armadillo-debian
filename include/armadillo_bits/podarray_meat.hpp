@@ -73,10 +73,7 @@ podarray<eT>::operator=(const podarray& x)
     {
     init(x.n_elem);
     
-    for(u32 i=0; i<n_elem; ++i)
-      {
-      access::rw(mem[i]) = x.mem[i];
-      }
+    syslib::copy_elem( memptr(), x.memptr(), n_elem );
     }
   
   return *this;
@@ -107,10 +104,7 @@ podarray<eT>::podarray(const eT* X, const u32 new_n_elem)
   
   init(new_n_elem);
   
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    access::rw(mem[i]) = X[i];
-    }
+  syslib::copy_elem( memptr(), X, new_n_elem );
   }
 
 
