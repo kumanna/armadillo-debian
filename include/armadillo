@@ -182,6 +182,7 @@ namespace arma
   #include "armadillo_bits/glue_cov_proto.hpp"
   #include "armadillo_bits/glue_cor_proto.hpp"
   #include "armadillo_bits/glue_kron_proto.hpp"
+  #include "armadillo_bits/glue_cross_proto.hpp"
   
   
   //
@@ -301,6 +302,7 @@ namespace arma
   #include "armadillo_bits/fn_as_scalar.hpp"
   #include "armadillo_bits/fn_princomp.hpp"
   #include "armadillo_bits/fn_princomp_cov.hpp"
+  #include "armadillo_bits/fn_cross.hpp"
   
   //
   // class meat
@@ -363,6 +365,7 @@ namespace arma
   #include "armadillo_bits/glue_cov_meat.hpp"
   #include "armadillo_bits/glue_cor_meat.hpp"
   #include "armadillo_bits/glue_kron_meat.hpp"
+  #include "armadillo_bits/glue_cross_meat.hpp"
   }
   
 #endif

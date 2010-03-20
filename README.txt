@@ -5,7 +5,8 @@
 2. Installation
    2.1. Manual Installation
    2.2. Installation via CMake
-   2.3  Support for Intel MKL
+   2.3. Support for Intel MKL
+   2.4. Old versions of the ATLAS library
 3. Example Programs and Linking
 4. Reference Manual / User Documentation
 5. Technical Documentation
@@ -75,6 +76,9 @@ present: LAPACK, BLAS, ATLAS and Boost.  LAPACK and BLAS are the most
 important. If you have ATLAS and Boost, it's also necessary to have 
 the corresponding header files installed.
 
+NOTE: the minimum recommended version of ATLAS is 3.8.
+See section 2.4 for more details.
+
 On a Mac OS X system it's recommended that the Boost libraries are
 present.  This includes the Boost header files.
 
@@ -94,6 +98,9 @@ Alternatively, you can use the "include" directory directly.
 
 You may also want to modify "include/armadillo_bits/config.hpp" 
 to indicate which libraries are currently available on your system.
+For example, if you have LAPACK present, uncomment the line
+#define ARMA_USE_LAPACK
+
 Note that to use the ATLAS and Boost libraries, their header files
 also need to be present.
 
@@ -154,6 +161,17 @@ to be in MKL, not SELinux.
 If you want to enable support for MKL within Armadillo,
 uncomment the line with "INCLUDE(ARMA_FindMKL)" in the 
 "CMakeLists.txt" file and run the CMake based installation.
+
+
+
+=== 2.4. Old versions of the ATLAS library ===
+
+Old versions of the ATLAS library (e.g. 3.6) can produce incorrect
+results as well as corrupting memory, leading to random crashes.
+
+The minimum recommended version is 3.8.  Users of Ubuntu and
+Debian based systems should explicitly check that version 3.6
+is not installed.
 
 
 
@@ -247,6 +265,7 @@ Contributors:
 - Carlos Mendes
 - Artem Novikov
 - Martin Orlob
+- Ken Panici
 - Adam Piątyszek
 - Vikas Reddy
 - Ola Rinta-Koski

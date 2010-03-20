@@ -1,3 +1,9 @@
+armadillo (0.9.4-1) unstable; urgency=low
+
+  * New Upstream Release.
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 20 Mar 2010 08:53:13 -0500
+
 armadillo (0.9.2-1) unstable; urgency=low
 
   * New upstream release.

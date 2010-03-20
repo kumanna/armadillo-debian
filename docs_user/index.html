@@ -16,7 +16,7 @@
   <tbody>
     <tr>
       <td>
-        <h2><b>Reference for Armadillo 0.9.2</b></h2>
+        <h2><b>Reference for Armadillo 0.9.4</b></h2>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -152,6 +152,7 @@ use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 <a href="#conj">conj</a>&nbsp;&middot;
 <a href="#cor">cor</a>&nbsp;&middot;
 <a href="#cov">cov</a>&nbsp;&middot;
+<a href="#cross">cross</a>&nbsp;&middot;
 <a href="#diagmat">diagmat</a>&nbsp;&middot;
 <a href="#flip">fliplr/flipud</a>&nbsp;&middot;
 <a href="#htrans">htrans</a>&nbsp;&middot;
@@ -3090,7 +3091,12 @@ double x = dot(a,b);
 </ul>
 </li>
 <br>
-<li>See also: <a href="#as_scalar">as_scalar()</a></li>
+<li>See also:
+<ul>
+<li><a href="#as_scalar">as_scalar()</a></li>
+<li><a href="#cross">cross()</a></li>
+</ul>
+</li>
 <br>
 </ul>
 <hr class="greyline"><br>
@@ -3690,6 +3696,37 @@ See also:
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
 <li><a href="#stats_fns">statistics functions</a></li>
 <li><a href="http://mathworld.wolfram.com/Covariance.html">Covariance in MathWorld</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
+
+<a name="cross"></a>
+<b>cross(A, B)</b>
+<ul>
+<li>
+Calculate the cross product between A and B, under the assumption that A and B are 3 dimensional vectors.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+colvec a = rand&lt;colvec&gt;(3);
+colvec b = rand&lt;colvec&gt;(3);
+
+colvec c = cross(a,b);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#dot">dot()</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Cross_product">Cross product in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/CrossProduct.html">Cross product in MathWorld</a></li>
 </ul>
 </li>
 </ul>
@@ -4378,7 +4415,7 @@ See also: <a href="http://mathworld.wolfram.com/QRDecomposition.html">QR decompo
 
 <a name="solve"></a>
 <b>solve(colvec x, mat A, colvec b)</b> 
-<br><b>solve(mat X, mat A, mat B)</b>, 
+<br><b>solve(mat X, mat A, mat B)</b>
 <br>
 <br><b>colvec x = solve(mat A, colvec b)</b>
 <br><b>mat X = solve(mat A, mat B)</b>
@@ -4387,15 +4424,23 @@ See also: <a href="http://mathworld.wolfram.com/QRDecomposition.html">QR decompo
 <br>
 <li>For a square matrix A, this function is conceptually the same as X = inv(A)*B, but is done more efficiently.</li>
 <br>
+<li>Similar functionality to the "\" (left division operator) operator in Matlab/Octave, i.e., X&nbsp;=&nbsp;A&nbsp;\&nbsp;B.</li>
+<br>
 <li>The number of rows in A and B must be the same.</li>
 <br>
 <li>This function will also try to provide approximate solutions to under-determined as well as over-determined systems (where matrix A is non-square).</li>
 <br>
-<li>Similar functionality to the "\" (left division operator) operator in Matlab/Octave, i.e., X&nbsp;=&nbsp;A&nbsp;\&nbsp;B.</li>
+<li>
+If no solution is found:
+<ul>
+<li>the two argument version will output a zero length vector/matrix</li>
+<li>the three argument versions output a bool set to <i>false</i></li>
+</ul>
+</li>
 <br>
 <li>
-<b>NOTE:</b> ATLAS 3.6 provides an implementation of the LAPACK library that may crash when solving under/over determined systems.
-Later versions of ATLAS may work (not yet tested).
+<b>NOTE:</b> Old versions of the ATLAS library (e.g.&nbsp;3.6) have a bug which can corrupt memory and crash your program
+-- later versions of ATLAS (e.g.&nbsp;3.8) should work.
 Using the standard LAPACK library works without problems.
 </li>
 <br>
@@ -4409,6 +4454,9 @@ mat B    = rand&lt;mat&gt;(5,5);
 
 colvec x = solve(A,b);
 mat X    = solve(A,B);
+
+colvec x2;
+bool status = solve(x2, A, b);
 </pre>
 </ul>
 </li>
@@ -4453,6 +4501,12 @@ If the decomposition fails:
 <li>the single argument version will output a zero length vector</li>
 <li>the two and four argument versions output a bool set to <i>false</i></li>
 </ul>
+</li>
+<br>
+<li>
+<b>NOTE:</b> Old versions of the ATLAS library (e.g.&nbsp;3.6) have a bug which can corrupt memory and crash your program
+-- later versions of ATLAS (e.g.&nbsp;3.8) should work.
+Using the standard LAPACK library works without problems.
 </li>
 <br>
 <li>
