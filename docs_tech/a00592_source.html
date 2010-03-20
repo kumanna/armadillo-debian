@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_sum.hpp Source File</title>
+<title>Armadillo Technical: fn_sort_index.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_sum.hpp</h1><a href="a00592.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_sort_index.hpp</h1><a href="a00592.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,132 +45,113 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_sum</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_sort_index</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment">//! \brief</span>
-<a name="l00022"></a>00022 <span class="comment">//! Delayed sum of elements of a matrix along a specified dimension (either rows or columns).</span>
-<a name="l00023"></a>00023 <span class="comment">//! The result is stored in a dense matrix that has either one column or one row.</span>
-<a name="l00024"></a>00024 <span class="comment">//! For dim = 0, find the sum of each column.</span>
-<a name="l00025"></a>00025 <span class="comment">//! For dim = 1, find the sum of each row.</span>
-<a name="l00026"></a>00026 <span class="comment">//! The default is dim = 0.</span>
-<a name="l00027"></a>00027 <span class="comment">//! NOTE: this function works differently than in Matlab/Octave.</span>
-<a name="l00028"></a>00028 <span class="comment"></span>
-<a name="l00029"></a>00029 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00030"></a>00030 arma_inline
-<a name="l00031"></a>00031 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>
-<a name="l00032"></a><a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081">00032</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
-<a name="l00033"></a>00033   {
-<a name="l00034"></a>00034   arma_extra_debug_sigprint();
-<a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
-<a name="l00037"></a>00037   }
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00024"></a><a class="code" href="a00040.html">00024</a> <span class="keyword">struct </span><a class="code" href="a00040.html">arma_sort_index_packet_ascend</a>
+<a name="l00025"></a>00025   {
+<a name="l00026"></a><a class="code" href="a00040.html#a3b39d137f9d42fdd4f453ef07a4dd5fc">00026</a>   T1 <a class="code" href="a00040.html#a3b39d137f9d42fdd4f453ef07a4dd5fc">val</a>;
+<a name="l00027"></a><a class="code" href="a00040.html#aa3b9b0241d150148fcad648f4ec986fa">00027</a>   T2 <a class="code" href="a00040.html#aa3b9b0241d150148fcad648f4ec986fa">index</a>;
+<a name="l00028"></a>00028   };
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00033"></a><a class="code" href="a00041.html">00033</a> <span class="keyword">struct </span><a class="code" href="a00041.html">arma_sort_index_packet_descend</a>
+<a name="l00034"></a>00034   {
+<a name="l00035"></a><a class="code" href="a00041.html#ae4375a1934ab353eb26a0c3a3d391f7f">00035</a>   T1 <a class="code" href="a00041.html#ae4375a1934ab353eb26a0c3a3d391f7f">val</a>;
+<a name="l00036"></a><a class="code" href="a00041.html#a007b20daa19874bf6b1568a9cad8da5c">00036</a>   T2 <a class="code" href="a00041.html#a007b20daa19874bf6b1568a9cad8da5c">index</a>;
+<a name="l00037"></a>00037   };
 <a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="comment"></span>
-<a name="l00040"></a>00040 <span class="comment">//! \brief</span>
-<a name="l00041"></a>00041 <span class="comment">//! Immediate &apos;sum all values&apos; operation for a row vector</span>
-<a name="l00042"></a>00042 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00043"></a>00043 arma_inline
-<a name="l00044"></a>00044 arma_warn_unused
-<a name="l00045"></a>00045 eT
-<a name="l00046"></a><a class="code" href="a00790.html#gad7d2a35d3dc077fd7c92b55bbe0f3c1e">00046</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00467.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a>&amp; X)
-<a name="l00047"></a>00047   {
-<a name="l00048"></a>00048   arma_extra_debug_sigprint();
-<a name="l00049"></a>00049   
-<a name="l00050"></a>00050   <span class="keywordflow">return</span> <a class="code" href="a00750.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00051"></a>00051   }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="comment"></span>
-<a name="l00055"></a>00055 <span class="comment">//! \brief</span>
-<a name="l00056"></a>00056 <span class="comment">//! Immediate &apos;sum all values&apos; operation for a column vector</span>
-<a name="l00057"></a>00057 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00058"></a>00058 arma_inline
-<a name="l00059"></a>00059 arma_warn_unused
-<a name="l00060"></a>00060 eT
-<a name="l00061"></a><a class="code" href="a00790.html#gaef4ab16deb384660432834e3d46b1941">00061</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; X)
-<a name="l00062"></a>00062   {
-<a name="l00063"></a>00063   arma_extra_debug_sigprint();
-<a name="l00064"></a>00064   
-<a name="l00065"></a>00065   <span class="keywordflow">return</span> <a class="code" href="a00750.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00066"></a>00066   }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="comment"></span>
-<a name="l00070"></a>00070 <span class="comment">//! \brief</span>
-<a name="l00071"></a>00071 <span class="comment">//! Immediate &apos;sum all values&apos; operation,</span>
-<a name="l00072"></a>00072 <span class="comment">//! invoked, for example, by: sum(sum(A))</span>
-<a name="l00073"></a>00073 <span class="comment"></span>
-<a name="l00074"></a>00074 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00075"></a>00075 arma_inline
-<a name="l00076"></a>00076 arma_warn_unused
-<a name="l00077"></a>00077 <span class="keyword">typename</span> T1::elem_type
-<a name="l00078"></a><a class="code" href="a00790.html#ga842f677d1e0ecf8b407ed37624222cd9">00078</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>&amp; in)
-<a name="l00079"></a>00079   {
-<a name="l00080"></a>00080   arma_extra_debug_sigprint();
-<a name="l00081"></a>00081   arma_extra_debug_print(<span class="stringliteral">&quot;sum(): two consecutive sum() calls detected&quot;</span>);
-<a name="l00082"></a>00082   
-<a name="l00083"></a>00083   <span class="keywordflow">return</span> <a class="code" href="a00750.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(in.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00084"></a>00084   }
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00042"></a>00042 <span class="keyword">inline</span>
+<a name="l00043"></a>00043 <span class="keywordtype">bool</span>
+<a name="l00044"></a><a class="code" href="a00793.html#gaef5fd214c7e1a494b42d99ab7ef4383c">00044</a> operator&lt; (const arma_sort_index_packet_ascend&lt;T1,T2&gt;&amp; A, <span class="keyword">const</span> <a class="code" href="a00040.html">arma_sort_index_packet_ascend&lt;T1,T2&gt;</a>&amp; B)
+<a name="l00045"></a>00045   {
+<a name="l00046"></a>00046   <span class="keywordflow">return</span> A.val &lt; B.val;
+<a name="l00047"></a>00047   }
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00052"></a>00052 <span class="keyword">inline</span>
+<a name="l00053"></a>00053 <span class="keywordtype">bool</span>
+<a name="l00054"></a><a class="code" href="a00793.html#ga1c0fa2e34ad258fd7431cdd55ad9c0d2">00054</a> operator&lt; (const arma_sort_index_packet_descend&lt;T1,T2&gt;&amp; A, <span class="keyword">const</span> <a class="code" href="a00041.html">arma_sort_index_packet_descend&lt;T1,T2&gt;</a>&amp; B)
+<a name="l00055"></a>00055   {
+<a name="l00056"></a>00056   <span class="keywordflow">return</span> A.val &gt; B.val;
+<a name="l00057"></a>00057   }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> umat_elem_type, <span class="keyword">typename</span> packet_type, <span class="keyword">typename</span> eT&gt;
+<a name="l00062"></a>00062 <span class="keywordtype">void</span>
+<a name="l00063"></a>00063 <span class="keyword">inline</span>
+<a name="l00064"></a><a class="code" href="a00793.html#ga672928e7a40907d7b09e221a235cf859">00064</a> <a class="code" href="a00793.html#ga672928e7a40907d7b09e221a235cf859">sort_index_helper</a>(umat_elem_type* out_mem, std::vector&lt;packet_type&gt;&amp; packet_vec, <span class="keyword">const</span> eT* in_mem)
+<a name="l00065"></a>00065   {
+<a name="l00066"></a>00066   arma_extra_debug_sigprint();
+<a name="l00067"></a>00067   
+<a name="l00068"></a>00068   <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = packet_vec.size();
+<a name="l00069"></a>00069   
+<a name="l00070"></a>00070   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00071"></a>00071     {
+<a name="l00072"></a>00072     packet_vec[i].val   = in_mem[i];
+<a name="l00073"></a>00073     packet_vec[i].index = i;
+<a name="l00074"></a>00074     }
+<a name="l00075"></a>00075   
+<a name="l00076"></a>00076   <a class="code" href="a00792.html#ga873a4a79a19cfe74d27f2dfe67e116ac">std::sort</a>( packet_vec.begin(), packet_vec.end() );
+<a name="l00077"></a>00077   
+<a name="l00078"></a>00078   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00079"></a>00079     {
+<a name="l00080"></a>00080     out_mem[i] = packet_vec[i].index;
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082   }
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
 <a name="l00085"></a>00085 
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00089"></a>00089 arma_inline
-<a name="l00090"></a>00090 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Op&lt;T1, op_sum&gt;</a>, <a class="code" href="a00332.html" title="Class for finding sums of values in a matrix (e.g. along rows or columns).">op_sum</a>&gt;
-<a name="l00091"></a><a class="code" href="a00790.html#gaaf522d79a5a629af25d5bb84513a476a">00091</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>&amp; in, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)
-<a name="l00092"></a>00092   {
-<a name="l00093"></a>00093   arma_extra_debug_sigprint();
+<a name="l00086"></a>00086 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00087"></a>00087 <span class="keyword">inline</span>
+<a name="l00088"></a>00088 <a class="code" href="a00305.html" title="Dense matrix class.">umat</a>
+<a name="l00089"></a><a class="code" href="a00793.html#ga116a4820c44a2d08ec580a0fdece422b">00089</a> <a class="code" href="a00793.html#ga116a4820c44a2d08ec580a0fdece422b">sort_index</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> sort_type = 0)
+<a name="l00090"></a>00090   {
+<a name="l00091"></a>00091   arma_extra_debug_sigprint();
+<a name="l00092"></a>00092   
+<a name="l00093"></a>00093   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
 <a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Op&lt;T1, op_sum&gt;</a>, <a class="code" href="a00332.html" title="Class for finding sums of values in a matrix (e.g. along rows or columns).">op_sum</a>&gt;(in, dim, 0);
-<a name="l00096"></a>00096   }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">//! sum all values of a subview_row</span>
-<a name="l00101"></a>00101 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00102"></a>00102 arma_inline
-<a name="l00103"></a>00103 arma_warn_unused
-<a name="l00104"></a>00104 eT
-<a name="l00105"></a><a class="code" href="a00790.html#gab0be454343c14742827a1a555c254638">00105</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00480.html">subview_row&lt;eT&gt;</a>&amp; X)
-<a name="l00106"></a>00106   {
-<a name="l00107"></a>00107   arma_extra_debug_sigprint();
-<a name="l00108"></a>00108   
-<a name="l00109"></a>00109   <span class="keywordflow">return</span> <a class="code" href="a00750.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00110"></a>00110   }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">//! sum all values of a subview_col</span>
-<a name="l00115"></a>00115 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00116"></a>00116 arma_inline
-<a name="l00117"></a>00117 arma_warn_unused
-<a name="l00118"></a>00118 eT
-<a name="l00119"></a><a class="code" href="a00790.html#gaf8168a9b85da2b44e01903bc4b13d399">00119</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00477.html">subview_col&lt;eT&gt;</a>&amp; X)
-<a name="l00120"></a>00120   {
-<a name="l00121"></a>00121   arma_extra_debug_sigprint();
-<a name="l00122"></a>00122   
-<a name="l00123"></a>00123   <span class="keywordflow">return</span> <a class="code" href="a00750.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00124"></a>00124   }
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 
-<a name="l00127"></a>00127 <span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">//! sum all values of a diagview</span>
-<a name="l00129"></a>00129 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00130"></a>00130 arma_inline
-<a name="l00131"></a>00131 arma_warn_unused
-<a name="l00132"></a>00132 eT
-<a name="l00133"></a><a class="code" href="a00790.html#ga130aba2d8dc60e60db304b44b06ff169">00133</a> <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(<span class="keyword">const</span> <a class="code" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; X)
-<a name="l00134"></a>00134   {
-<a name="l00135"></a>00135   arma_extra_debug_sigprint();
-<a name="l00136"></a>00136   
-<a name="l00137"></a>00137   <span class="keywordflow">return</span> <a class="code" href="a00750.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
-<a name="l00138"></a>00138   }
-<a name="l00139"></a>00139 
-<a name="l00140"></a>00140 
-<a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">//! @}</span>
+<a name="l00095"></a>00095   <a class="code" href="a00043.html">arma_type_check&lt; is_complex&lt;eT&gt;::value</a> == <span class="keyword">true</span>&gt;::apply();
+<a name="l00096"></a>00096   
+<a name="l00097"></a>00097   <span class="keyword">const</span> <a class="code" href="a00483.html">unwrap&lt;T1&gt;</a> tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00098"></a>00098   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
+<a name="l00099"></a>00099   
+<a name="l00100"></a>00100   arma_debug_check( (A.is_vec() == <span class="keyword">false</span>), <span class="stringliteral">&quot;sort_index(): currently only handles vectors&quot;</span>);
+<a name="l00101"></a>00101   
+<a name="l00102"></a>00102   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00305.html#a3b7c1109cca98fb4bf493b8be33c4299" title="the type of elements stored in the matrix">umat::elem_type</a> out_elem_type;
+<a name="l00103"></a>00103   
+<a name="l00104"></a>00104   <a class="code" href="a00305.html" title="Dense matrix class.">umat</a> out(A.n_rows, A.n_cols);
+<a name="l00105"></a>00105   
+<a name="l00106"></a>00106   <span class="keywordflow">if</span>(sort_type == 0)
+<a name="l00107"></a>00107     {
+<a name="l00108"></a>00108     std::vector&lt; arma_sort_index_packet_ascend&lt;eT,out_elem_type&gt; &gt; packet_vec(A.n_elem);
+<a name="l00109"></a>00109     
+<a name="l00110"></a>00110     <a class="code" href="a00793.html#ga672928e7a40907d7b09e221a235cf859">sort_index_helper</a>(out.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(), packet_vec, A.mem);
+<a name="l00111"></a>00111     }
+<a name="l00112"></a>00112   <span class="keywordflow">else</span>
+<a name="l00113"></a>00113     {
+<a name="l00114"></a>00114     std::vector&lt; arma_sort_index_packet_descend&lt;eT,out_elem_type&gt; &gt; packet_vec(A.n_elem);
+<a name="l00115"></a>00115     
+<a name="l00116"></a>00116     <a class="code" href="a00793.html#ga672928e7a40907d7b09e221a235cf859">sort_index_helper</a>(out.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>(), packet_vec, A.mem);
+<a name="l00117"></a>00117     }
+<a name="l00118"></a>00118   
+<a name="l00119"></a>00119   <span class="keywordflow">return</span> out;
+<a name="l00120"></a>00120   }
+<a name="l00121"></a>00121 
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

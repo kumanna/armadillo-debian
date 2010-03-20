@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_min.hpp Source File</title>
+<title>Armadillo Technical: fn_mean.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_min.hpp</h1><a href="a00573.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_mean.hpp</h1><a href="a00573.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,160 +45,155 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_min</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_mean</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
-<a name="l00019"></a>00019 <span class="comment"></span><span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment">//! \brief</span>
-<a name="l00021"></a>00021 <span class="comment">//! Delayed &apos;minimum values&apos; operation.</span>
-<a name="l00022"></a>00022 <span class="comment">//! The dimension, along which the minima are found, is set via &apos;dim&apos;.</span>
-<a name="l00023"></a>00023 <span class="comment">//! For dim = 0, the maximum value of each column is found (i.e. searches by traversing across rows).</span>
-<a name="l00024"></a>00024 <span class="comment">//! For dim = 1, the maximum value of each row is found (i.e. searches by traversing across columns).</span>
-<a name="l00025"></a>00025 <span class="comment">//! The default is dim = 0.</span>
-<a name="l00026"></a>00026 <span class="comment">//! NOTE: This function works differently than in Matlab/Octave.</span>
-<a name="l00027"></a>00027 <span class="comment"></span>
-<a name="l00028"></a>00028 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00029"></a>00029 arma_inline
-<a name="l00030"></a>00030 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_min&gt;</a>
-<a name="l00031"></a><a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11">00031</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
-<a name="l00032"></a>00032   {
-<a name="l00033"></a>00033   arma_extra_debug_sigprint();
-<a name="l00034"></a>00034   
-<a name="l00035"></a>00035   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_min&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
-<a name="l00036"></a>00036   }
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="comment"></span>
-<a name="l00039"></a>00039 <span class="comment">//! Immediate &apos;find the minimum value in a row vector&apos; operation</span>
-<a name="l00040"></a>00040 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00041"></a>00041 <span class="keyword">inline</span>
-<a name="l00042"></a>00042 arma_warn_unused
-<a name="l00043"></a>00043 eT
-<a name="l00044"></a><a class="code" href="a00771.html#ga22da884e4639335bb2e471868bf198f1">00044</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00467.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a>&amp; A)
-<a name="l00045"></a>00045   {
-<a name="l00046"></a>00046   arma_extra_debug_sigprint();
-<a name="l00047"></a>00047   
-<a name="l00048"></a>00048   arma_debug_check( (A.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
-<a name="l00049"></a>00049   
-<a name="l00050"></a>00050   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
-<a name="l00051"></a>00051   }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="comment"></span>
-<a name="l00055"></a>00055 <span class="comment">//! Immediate &apos;find the minimum value in a column vector&apos;</span>
-<a name="l00056"></a>00056 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00057"></a>00057 <span class="keyword">inline</span>
-<a name="l00058"></a>00058 arma_warn_unused
-<a name="l00059"></a>00059 eT
-<a name="l00060"></a><a class="code" href="a00771.html#ga568d4ca5195560040d625e3898485d2f">00060</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; A)
-<a name="l00061"></a>00061   {
-<a name="l00062"></a>00062   arma_extra_debug_sigprint();
-<a name="l00063"></a>00063   
-<a name="l00064"></a>00064   arma_debug_check( (A.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
-<a name="l00065"></a>00065   
-<a name="l00066"></a>00066   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
-<a name="l00067"></a>00067   }
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">//! \brief</span>
-<a name="l00072"></a>00072 <span class="comment">//! Immediate &apos;find minimum value&apos; operation,</span>
-<a name="l00073"></a>00073 <span class="comment">//! invoked, for example, by: min(min(A))</span>
-<a name="l00074"></a>00074 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00075"></a>00075 <span class="keyword">inline</span>
-<a name="l00076"></a>00076 arma_warn_unused
-<a name="l00077"></a>00077 <span class="keyword">typename</span> T1::elem_type
-<a name="l00078"></a><a class="code" href="a00771.html#gadb28da2daaf152004bb52379d5d561d4">00078</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_min&gt;</a>&amp; in)
-<a name="l00079"></a>00079   {
-<a name="l00080"></a>00080   arma_extra_debug_sigprint();
-<a name="l00081"></a>00081   arma_extra_debug_print(<span class="stringliteral">&quot;min(): two consecutive min() calls detected&quot;</span>);
+<a name="l00019"></a>00019 <span class="comment"></span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00023"></a>00023 arma_inline
+<a name="l00024"></a>00024 <span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_mean&gt;</a>
+<a name="l00025"></a><a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">00025</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = 0)
+<a name="l00026"></a>00026   {
+<a name="l00027"></a>00027   arma_extra_debug_sigprint();
+<a name="l00028"></a>00028   
+<a name="l00029"></a>00029   <span class="keywordflow">return</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_mean&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
+<a name="l00030"></a>00030   }
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033 <span class="comment"></span>
+<a name="l00034"></a>00034 <span class="comment">//! Immediate &apos;find the mean value of a row vector&apos; operation</span>
+<a name="l00035"></a>00035 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00036"></a>00036 <span class="keyword">inline</span>
+<a name="l00037"></a>00037 arma_warn_unused
+<a name="l00038"></a>00038 eT
+<a name="l00039"></a><a class="code" href="a00774.html#gaceba290d9e1395cbc298d9dd4f9d6924">00039</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00468.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a>&amp; A)
+<a name="l00040"></a>00040   {
+<a name="l00041"></a>00041   arma_extra_debug_sigprint();
+<a name="l00042"></a>00042   
+<a name="l00043"></a>00043   arma_debug_check( (A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given vector has no elements&quot;</span> );
+<a name="l00044"></a>00044   
+<a name="l00045"></a>00045   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(A.<a class="code" href="a00305.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00046"></a>00046   }
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="comment"></span>
+<a name="l00050"></a>00050 <span class="comment">//! Immediate &apos;find the mean value of a column vector&apos; operation</span>
+<a name="l00051"></a>00051 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00052"></a>00052 <span class="keyword">inline</span>
+<a name="l00053"></a>00053 arma_warn_unused
+<a name="l00054"></a>00054 eT
+<a name="l00055"></a><a class="code" href="a00774.html#gaa2b5c83827ad2fd7cca87b99db826bf5">00055</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; A)
+<a name="l00056"></a>00056   {
+<a name="l00057"></a>00057   arma_extra_debug_sigprint();
+<a name="l00058"></a>00058   
+<a name="l00059"></a>00059   arma_debug_check( (A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given vector has no elements&quot;</span> );
+<a name="l00060"></a>00060   
+<a name="l00061"></a>00061   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(A.<a class="code" href="a00305.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00062"></a>00062   }
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">//! \brief</span>
+<a name="l00067"></a>00067 <span class="comment">//! Immediate &apos;find mean value&apos; operation,</span>
+<a name="l00068"></a>00068 <span class="comment">//! invoked, for example, by: mean(mean(A))</span>
+<a name="l00069"></a>00069 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00070"></a>00070 <span class="keyword">inline</span>
+<a name="l00071"></a>00071 arma_warn_unused
+<a name="l00072"></a>00072 <span class="keyword">typename</span> T1::elem_type
+<a name="l00073"></a><a class="code" href="a00774.html#ga1d968915b369b7fe31c936375f34eedd">00073</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_mean&gt;</a>&amp; in)
+<a name="l00074"></a>00074   {
+<a name="l00075"></a>00075   arma_extra_debug_sigprint();
+<a name="l00076"></a>00076   arma_extra_debug_print(<span class="stringliteral">&quot;mean(): two consecutive mean() calls detected&quot;</span>);
+<a name="l00077"></a>00077   
+<a name="l00078"></a>00078   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00079"></a>00079   
+<a name="l00080"></a>00080   <span class="keyword">const</span> <a class="code" href="a00483.html">unwrap&lt;T1&gt;</a> tmp1(in.<a class="code" href="a00308.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
+<a name="l00081"></a>00081   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X = tmp1.<a class="code" href="a00483.html#a7b6f1a49bc9f7264a9be753f9e327342">M</a>;
 <a name="l00082"></a>00082   
-<a name="l00083"></a>00083   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00083"></a>00083   arma_debug_check( (X.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given matrix has no elements&quot;</span> );
 <a name="l00084"></a>00084   
-<a name="l00085"></a>00085   <span class="keyword">const</span> <a class="code" href="a00482.html">unwrap&lt;T1&gt;</a> tmp1(in.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
-<a name="l00086"></a>00086   <span class="keyword">const</span> <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X = tmp1.<a class="code" href="a00482.html#a7b6f1a49bc9f7264a9be753f9e327342">M</a>;
-<a name="l00087"></a>00087   
-<a name="l00088"></a>00088   arma_debug_check( (X.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given matrix has no elements&quot;</span> );
-<a name="l00089"></a>00089   
-<a name="l00090"></a>00090   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(X.<a class="code" href="a00304.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, X.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
-<a name="l00091"></a>00091   }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00096"></a>00096 <span class="keyword">inline</span>
-<a name="l00097"></a>00097 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt; Op&lt;T1, op_min&gt;</a>, <a class="code" href="a00321.html" title="Class for finding minimum values in a matrix.">op_min</a>&gt;
-<a name="l00098"></a><a class="code" href="a00771.html#gae26bf758004786c8f04cd52343edc39b">00098</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_min&gt;</a>&amp; in, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)
-<a name="l00099"></a>00099   {
-<a name="l00100"></a>00100   arma_extra_debug_sigprint();
-<a name="l00101"></a>00101   
-<a name="l00102"></a>00102   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt; Op&lt;T1, op_min&gt;</a>, <a class="code" href="a00321.html" title="Class for finding minimum values in a matrix.">op_min</a>&gt;(in, dim, 0);
-<a name="l00103"></a>00103   }
-<a name="l00104"></a>00104 
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00108"></a>00108 <span class="keyword">inline</span>
-<a name="l00109"></a>00109 arma_warn_unused
-<a name="l00110"></a>00110 eT
-<a name="l00111"></a><a class="code" href="a00771.html#ga3cfda058523dcf4de8821b9da7cb6645">00111</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00480.html">subview_row&lt;eT&gt;</a>&amp; A)
-<a name="l00112"></a>00112   {
-<a name="l00113"></a>00113   arma_extra_debug_sigprint();
-<a name="l00114"></a>00114   
-<a name="l00115"></a>00115   arma_debug_check( (A.<a class="code" href="a00476.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
-<a name="l00116"></a>00116   
-<a name="l00117"></a>00117   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A);
-<a name="l00118"></a>00118   }
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00123"></a>00123 <span class="keyword">inline</span>
-<a name="l00124"></a>00124 arma_warn_unused
-<a name="l00125"></a>00125 eT
-<a name="l00126"></a><a class="code" href="a00771.html#gab6c3ab930a58e71004e7ddc6c50d4066">00126</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00477.html">subview_col&lt;eT&gt;</a>&amp; A)
-<a name="l00127"></a>00127   {
-<a name="l00128"></a>00128   arma_extra_debug_sigprint();
-<a name="l00129"></a>00129   
-<a name="l00130"></a>00130   arma_debug_check( (A.<a class="code" href="a00476.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
-<a name="l00131"></a>00131   
-<a name="l00132"></a>00132   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A);
-<a name="l00133"></a>00133   }
-<a name="l00134"></a>00134 
-<a name="l00135"></a>00135 
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00138"></a>00138 <span class="keyword">inline</span>
-<a name="l00139"></a>00139 arma_warn_unused
-<a name="l00140"></a>00140 eT
-<a name="l00141"></a><a class="code" href="a00771.html#ga985c0c855fd94fdbef3f6f63f04a3f45">00141</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; A)
-<a name="l00142"></a>00142   {
-<a name="l00143"></a>00143   arma_extra_debug_sigprint();
+<a name="l00085"></a>00085   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(X.<a class="code" href="a00305.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, X.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00086"></a>00086   }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00091"></a>00091 arma_inline
+<a name="l00092"></a>00092 <span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt; Op&lt;T1, op_mean&gt;</a>, <a class="code" href="a00320.html" title="Class for finding mean values of a matrix.">op_mean</a>&gt;
+<a name="l00093"></a><a class="code" href="a00774.html#gacffcee473845b73e9e19112a19f17c51">00093</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_mean&gt;</a>&amp; in, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)
+<a name="l00094"></a>00094   {
+<a name="l00095"></a>00095   arma_extra_debug_sigprint();
+<a name="l00096"></a>00096   
+<a name="l00097"></a>00097   <span class="keywordflow">return</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt; Op&lt;T1, op_mean&gt;</a>, <a class="code" href="a00320.html" title="Class for finding mean values of a matrix.">op_mean</a>&gt;(in, dim, 0);
+<a name="l00098"></a>00098   }
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00103"></a>00103 <span class="keyword">inline</span>
+<a name="l00104"></a>00104 arma_warn_unused
+<a name="l00105"></a>00105 eT
+<a name="l00106"></a><a class="code" href="a00774.html#gad671539e5ee3389ab7fdf67a87a7152d">00106</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00481.html">subview_row&lt;eT&gt;</a>&amp; A)
+<a name="l00107"></a>00107   {
+<a name="l00108"></a>00108   arma_extra_debug_sigprint();
+<a name="l00109"></a>00109   
+<a name="l00110"></a>00110   arma_debug_check( (A.<a class="code" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given vector has no elements&quot;</span> );
+<a name="l00111"></a>00111   
+<a name="l00112"></a>00112   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(A);
+<a name="l00113"></a>00113   }
+<a name="l00114"></a>00114 
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 
+<a name="l00117"></a>00117 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00118"></a>00118 <span class="keyword">inline</span>
+<a name="l00119"></a>00119 arma_warn_unused
+<a name="l00120"></a>00120 eT
+<a name="l00121"></a><a class="code" href="a00774.html#gae8183780a56f8a51f3ee75f4ea7fe6cc">00121</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00478.html">subview_col&lt;eT&gt;</a>&amp; A)
+<a name="l00122"></a>00122   {
+<a name="l00123"></a>00123   arma_extra_debug_sigprint();
+<a name="l00124"></a>00124   
+<a name="l00125"></a>00125   arma_debug_check( (A.<a class="code" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given vector has no elements&quot;</span> );
+<a name="l00126"></a>00126   
+<a name="l00127"></a>00127   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(A);
+<a name="l00128"></a>00128   }
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00133"></a>00133 <span class="keyword">inline</span>
+<a name="l00134"></a>00134 arma_warn_unused
+<a name="l00135"></a>00135 eT
+<a name="l00136"></a><a class="code" href="a00774.html#gab7d52c24759219a94638c0243f4ba54b">00136</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>&lt;<a class="code" href="a00477.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>, <a class="code" href="a00320.html" title="Class for finding mean values of a matrix.">op_mean</a>&gt;&amp; in)
+<a name="l00137"></a>00137   {
+<a name="l00138"></a>00138   arma_extra_debug_sigprint();
+<a name="l00139"></a>00139   arma_extra_debug_print(<span class="stringliteral">&quot;mean(): two consecutive mean() calls detected&quot;</span>);
+<a name="l00140"></a>00140   
+<a name="l00141"></a>00141   <span class="keyword">const</span> <a class="code" href="a00477.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>&amp; X = in.m;
+<a name="l00142"></a>00142   
+<a name="l00143"></a>00143   arma_debug_check( (X.<a class="code" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given matrix has no elements&quot;</span> );
 <a name="l00144"></a>00144   
-<a name="l00145"></a>00145   arma_debug_check( (A.<a class="code" href="a00078.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
-<a name="l00146"></a>00146   
-<a name="l00147"></a>00147   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A);
-<a name="l00148"></a>00148   }
+<a name="l00145"></a>00145   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(X);
+<a name="l00146"></a>00146   }
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148 
 <a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00153"></a>00153 <span class="keyword">inline</span>
-<a name="l00154"></a>00154 arma_warn_unused
-<a name="l00155"></a>00155 eT
-<a name="l00156"></a><a class="code" href="a00771.html#gac685f6162becd6a9d207a1a2eaceb97a">00156</a> <a class="code" href="a00771.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" title="Delayed &amp;#39;minimum values&amp;#39; operation. The dimension, along which the minima...">min</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>&lt;<a class="code" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>, <a class="code" href="a00321.html" title="Class for finding minimum values in a matrix.">op_min</a>&gt;&amp; in)
-<a name="l00157"></a>00157   {
-<a name="l00158"></a>00158   arma_extra_debug_sigprint();
-<a name="l00159"></a>00159   arma_extra_debug_print(<span class="stringliteral">&quot;max(): two consecutive max() calls detected&quot;</span>);
-<a name="l00160"></a>00160   
-<a name="l00161"></a>00161   <span class="keyword">const</span> <a class="code" href="a00476.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>&amp; X = in.m;
-<a name="l00162"></a>00162   
-<a name="l00163"></a>00163   arma_debug_check( (X.<a class="code" href="a00476.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;max(): given matrix has no elements&quot;</span> );
-<a name="l00164"></a>00164   
-<a name="l00165"></a>00165   <span class="keywordflow">return</span> <a class="code" href="a00823.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(X);
-<a name="l00166"></a>00166   }
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169 <span class="comment"></span>
-<a name="l00170"></a>00170 <span class="comment">//! @}</span>
+<a name="l00150"></a>00150 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00151"></a>00151 <span class="keyword">inline</span>
+<a name="l00152"></a>00152 arma_warn_unused
+<a name="l00153"></a>00153 eT
+<a name="l00154"></a><a class="code" href="a00774.html#ga3365f3a522c8c83dcf8138c9c4bbf185">00154</a> <a class="code" href="a00774.html#ga34b282c4adf1f9adb92da94528e8f06f">mean</a>(<span class="keyword">const</span> <a class="code" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; A)
+<a name="l00155"></a>00155   {
+<a name="l00156"></a>00156   arma_extra_debug_sigprint();
+<a name="l00157"></a>00157   
+<a name="l00158"></a>00158   arma_debug_check( (A.<a class="code" href="a00078.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given vector has no elements&quot;</span> );
+<a name="l00159"></a>00159   
+<a name="l00160"></a>00160   <span class="keywordflow">return</span> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(A);
+<a name="l00161"></a>00161   }
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163 
+<a name="l00164"></a>00164 <span class="comment"></span>
+<a name="l00165"></a>00165 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

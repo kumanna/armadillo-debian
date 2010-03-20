@@ -216,6 +216,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<true,         false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_cols == 1)
       {
       gemv<false,        false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -232,6 +233,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<true,         true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_cols == 1)
       {
       gemv<false,        true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -248,6 +250,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<true,        false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_cols == 1)
       {
       gemv<true,        false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -264,6 +267,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<true,        true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_cols == 1)
       {
       gemv<true,        true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -280,6 +284,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<false,       false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<false,       false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -296,6 +301,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<false,       true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<false,       true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -312,6 +318,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<false,      false, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<true,       false, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -328,6 +335,7 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
       {
       gemv<false,      true, true>::apply(out.memptr(), B, A.memptr(), alpha, eT(1));
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<true,       true, true>::apply(out.memptr(), A, B.memptr(), alpha, eT(1));
@@ -457,6 +465,7 @@ glue_times::apply
       {
       gemv<true,        true, false>::apply(out.memptr(), B, A.memptr(), alpha);
       }
+    else
     if(B.n_cols == 1)
       {
       gemv<true,        true, false>::apply(out.memptr(), A, B.memptr(), alpha);
@@ -473,6 +482,7 @@ glue_times::apply
       {
       gemv<false,       false, false>::apply(out.memptr(), B, A.memptr());
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<false,       false, false>::apply(out.memptr(), A, B.memptr());
@@ -489,6 +499,7 @@ glue_times::apply
       {
       gemv<false,       true, false>::apply(out.memptr(), B, A.memptr(), alpha);
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<false,       true, false>::apply(out.memptr(), A, B.memptr(), alpha);
@@ -505,6 +516,7 @@ glue_times::apply
       {
       gemv<false,      false, false>::apply(out.memptr(), B, A.memptr());
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<true,       false, false>::apply(out.memptr(), A, B.memptr());
@@ -521,6 +533,7 @@ glue_times::apply
       {
       gemv<false,      true, false>::apply(out.memptr(), B, A.memptr(), alpha);
       }
+    else
     if(B.n_rows == 1)
       {
       gemv<true,       true, false>::apply(out.memptr(), A, B.memptr(), alpha);

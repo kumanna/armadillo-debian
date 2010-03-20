@@ -42,21 +42,30 @@ solve(Mat<eT>& X, const Base<eT,T1>& A_in, const Base<eT,T2>& B_in)
   
   arma_debug_check( (A.n_rows != B.n_rows), "solve(): number of rows in A and B must be the same" );
   
+  bool status;
+  
   if(A.n_rows == A.n_cols)
     {
-    return auxlib::solve(X, A, B);
+    status = auxlib::solve(X, A, B);
     }
   else
   if(A.n_rows > A.n_cols)
     {
     arma_extra_debug_print("solve(): detected over-determined system");
-    return auxlib::solve_od(X, A, B);
+    status = auxlib::solve_od(X, A, B);
     }
   else
     {
     arma_extra_debug_print("solve(): detected under-determined system");
-    return auxlib::solve_ud(X, A, B);
+    status = auxlib::solve_ud(X, A, B);
     }
+  
+  if(status == false)
+    {
+    X.reset();
+    }
+  
+  return status;
   }
 
 
@@ -69,11 +78,13 @@ solve(const Base<eT,T1>& A_in, const Base<eT,T2>& B_in)
   arma_extra_debug_sigprint();
   
   Mat<eT> X;
-  bool info = solve(X, A_in, B_in);
+  const bool status = solve(X, A_in, B_in);
   
-  if(info == false)
+  if(status == false)
     {
     arma_print("solve(): solution not found");
+    
+    X.reset();
     }
   
   return X;

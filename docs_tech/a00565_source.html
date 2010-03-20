@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_htrans.hpp Source File</title>
+<title>Armadillo Technical: fn_eps.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,71 +25,115 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_htrans.hpp</h1><a href="a00565.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_eps.hpp</h1><a href="a00565.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
 <a name="l00005"></a>00005 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
-<a name="l00006"></a>00006 <span class="comment">// </span>
-<a name="l00007"></a>00007 <span class="comment">// This file is part of the Armadillo C++ library.</span>
-<a name="l00008"></a>00008 <span class="comment">// It is provided without any warranty of fitness</span>
-<a name="l00009"></a>00009 <span class="comment">// for any purpose. You can redistribute this file</span>
-<a name="l00010"></a>00010 <span class="comment">// and/or modify it under the terms of the GNU</span>
-<a name="l00011"></a>00011 <span class="comment">// Lesser General Public License (LGPL) as published</span>
-<a name="l00012"></a>00012 <span class="comment">// by the Free Software Foundation, either version 3</span>
-<a name="l00013"></a>00013 <span class="comment">// of the License or (at your option) any later version.</span>
-<a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_htrans</span>
-<a name="l00018"></a>00018 <span class="comment">//! @{</span>
-<a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 
-<a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00023"></a>00023 arma_inline
-<a name="l00024"></a>00024 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_htrans&gt;</a>
-<a name="l00025"></a><a class="code" href="a00763.html#ga1f0fae2b15517ef1f127f450238d9304">00025</a> <a class="code" href="a00763.html#ga1f0fae2b15517ef1f127f450238d9304">htrans</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base</a>&lt;std::complex&lt;typename T1::pod_type&gt;,T1&gt;&amp; X)
-<a name="l00026"></a>00026   {
-<a name="l00027"></a>00027   arma_extra_debug_sigprint();
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_htrans&gt;</a>(X.get_ref());
-<a name="l00030"></a>00030   }
-<a name="l00031"></a>00031 
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00035"></a>00035 arma_inline
-<a name="l00036"></a>00036 <span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_trans&gt;</a>
-<a name="l00037"></a><a class="code" href="a00763.html#ga85e57533ff812f768b5addbd9db614d4">00037</a> <a class="code" href="a00763.html#ga1f0fae2b15517ef1f127f450238d9304">htrans</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::pod_type,T1&gt;</a>&amp; X)
-<a name="l00038"></a>00038   {
-<a name="l00039"></a>00039   arma_extra_debug_sigprint();
-<a name="l00040"></a>00040   arma_extra_debug_print(<span class="stringliteral">&quot;htrans(): non-complex object given -- using regular transpose&quot;</span>);
-<a name="l00041"></a>00041   
-<a name="l00042"></a>00042   <span class="keywordflow">return</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_trans&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00043"></a>00043   }
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="comment"></span>
-<a name="l00047"></a>00047 <span class="comment">//! two consecutive hermitian transpose operations cancel each other</span>
-<a name="l00048"></a>00048 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00049"></a>00049 arma_inline
-<a name="l00050"></a>00050 <span class="keyword">const</span> T1&amp;
-<a name="l00051"></a><a class="code" href="a00763.html#ga26ac8e2840d06fc577d2d25c1aca2fc9">00051</a> <a class="code" href="a00763.html#ga1f0fae2b15517ef1f127f450238d9304">htrans</a>(<span class="keyword">const</span> <a class="code" href="a00307.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_htrans&gt;</a>&amp; X)
-<a name="l00052"></a>00052   {
-<a name="l00053"></a>00053   arma_extra_debug_sigprint();
-<a name="l00054"></a>00054   arma_extra_debug_print(<span class="stringliteral">&quot;htrans(): removing op_htrans&quot;</span>);
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   <span class="keywordflow">return</span> X.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>;
-<a name="l00057"></a>00057   }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="comment"></span>
-<a name="l00061"></a>00061 <span class="comment">//! @}</span>
+<a name="l00006"></a>00006 <span class="comment">// - Dimitrios Bouzas (dimitris dot mpouzas at gmail dot com)</span>
+<a name="l00007"></a>00007 <span class="comment">// </span>
+<a name="l00008"></a>00008 <span class="comment">// This file is part of the Armadillo C++ library.</span>
+<a name="l00009"></a>00009 <span class="comment">// It is provided without any warranty of fitness</span>
+<a name="l00010"></a>00010 <span class="comment">// for any purpose. You can redistribute this file</span>
+<a name="l00011"></a>00011 <span class="comment">// and/or modify it under the terms of the GNU</span>
+<a name="l00012"></a>00012 <span class="comment">// Lesser General Public License (LGPL) as published</span>
+<a name="l00013"></a>00013 <span class="comment">// by the Free Software Foundation, either version 3</span>
+<a name="l00014"></a>00014 <span class="comment">// of the License or (at your option) any later version.</span>
+<a name="l00015"></a>00015 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="comment"></span>
+<a name="l00019"></a>00019 <span class="comment">//! \addtogroup fn_eps</span>
+<a name="l00020"></a>00020 <span class="comment">//! @{</span>
+<a name="l00021"></a>00021 <span class="comment"></span>
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 <span class="comment"></span>
+<a name="l00024"></a>00024 <span class="comment">//! \brief</span>
+<a name="l00025"></a>00025 <span class="comment">//! eps version for non-complex matrices and vectors</span>
+<a name="l00026"></a>00026 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00027"></a>00027 <span class="keyword">inline</span>
+<a name="l00028"></a>00028 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_eps&gt;</a>
+<a name="l00029"></a><a class="code" href="a00766.html#ga169c15211be8cac047e93cbd1509dd59">00029</a> <a class="code" href="a00766.html#ga169c15211be8cac047e93cbd1509dd59" title="eps version for non-complex matrices and vectors">eps</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type, T1&gt;</a>&amp; X)
+<a name="l00030"></a>00030   {
+<a name="l00031"></a>00031   arma_extra_debug_sigprint();
+<a name="l00032"></a>00032   
+<a name="l00033"></a>00033   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_eps&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00036"></a>00036   }
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="comment"></span>
+<a name="l00040"></a>00040 <span class="comment">//! \brief</span>
+<a name="l00041"></a>00041 <span class="comment">//! eps version for complex matrices and vectors</span>
+<a name="l00042"></a>00042 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00043"></a>00043 <span class="keyword">inline</span>
+<a name="l00044"></a>00044 <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt; typename T1::pod_type &gt;</a>
+<a name="l00045"></a><a class="code" href="a00766.html#ga5ada04d2b69abe884bcb01beaec0e4c1">00045</a> <a class="code" href="a00766.html#ga169c15211be8cac047e93cbd1509dd59" title="eps version for non-complex matrices and vectors">eps</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base</a>&lt; std::complex&lt;typename T1::pod_type&gt;, T1&gt;&amp; X)
+<a name="l00046"></a>00046   {
+<a name="l00047"></a>00047   arma_extra_debug_sigprint();
+<a name="l00048"></a>00048   
+<a name="l00049"></a>00049   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::pod_type   T;
+<a name="l00050"></a>00050   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00051"></a>00051   
+<a name="l00052"></a>00052   <span class="keyword">const</span> <a class="code" href="a00483.html">unwrap&lt;T1&gt;</a>   tmp(X.get_ref());
+<a name="l00053"></a>00053   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
+<a name="l00054"></a>00054   
+<a name="l00055"></a>00055   <a class="code" href="a00305.html">Mat&lt;T&gt;</a> out(A.n_rows, A.n_cols);
+<a name="l00056"></a>00056   
+<a name="l00057"></a>00057          T* out_mem = out.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
+<a name="l00058"></a>00058   <span class="keyword">const</span> eT* A_mem   = A.memptr();
+<a name="l00059"></a>00059   <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem  = A.n_elem;
+<a name="l00060"></a>00060   
+<a name="l00061"></a>00061   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063     out_mem[i] = <a class="code" href="a00100.html#a5526b2f818efa0897ca6443e65aa1a38">eop_aux::direct_eps</a>( A_mem[i] );
+<a name="l00064"></a>00064     }
+<a name="l00065"></a>00065   
+<a name="l00066"></a>00066   
+<a name="l00067"></a>00067   <span class="keywordflow">return</span> out;
+<a name="l00068"></a>00068   }
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00073"></a>00073 arma_inline
+<a name="l00074"></a>00074 arma_warn_unused
+<a name="l00075"></a>00075 <span class="keyword">typename</span> <a class="code" href="a00010.html">arma_integral_only&lt;eT&gt;::result</a>
+<a name="l00076"></a>00076 <a class="code" href="a00766.html#ga169c15211be8cac047e93cbd1509dd59" title="eps version for non-complex matrices and vectors">eps</a>(<span class="keyword">const</span> eT&amp; x)
+<a name="l00077"></a>00077   {
+<a name="l00078"></a>00078   <span class="keywordflow">return</span> eT(0);
+<a name="l00079"></a>00079   }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00084"></a>00084 arma_inline
+<a name="l00085"></a>00085 arma_warn_unused
+<a name="l00086"></a>00086 <span class="keyword">typename</span> <a class="code" href="a00007.html">arma_float_only&lt;eT&gt;::result</a>
+<a name="l00087"></a><a class="code" href="a00766.html#ga924cd38c08a1535c75dbda19cd28885d">00087</a> <a class="code" href="a00766.html#ga169c15211be8cac047e93cbd1509dd59" title="eps version for non-complex matrices and vectors">eps</a>(<span class="keyword">const</span> eT&amp; x)
+<a name="l00088"></a>00088   {
+<a name="l00089"></a>00089   <span class="keywordflow">return</span> <a class="code" href="a00100.html#a5526b2f818efa0897ca6443e65aa1a38">eop_aux::direct_eps</a>(x);
+<a name="l00090"></a>00090   }
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00095"></a>00095 arma_inline
+<a name="l00096"></a>00096 arma_warn_unused
+<a name="l00097"></a>00097 <span class="keyword">typename</span> <a class="code" href="a00007.html">arma_float_only&lt;T&gt;::result</a>
+<a name="l00098"></a><a class="code" href="a00766.html#ga6087c776c51d1a9b4808ba9e5c0cb95b">00098</a> <a class="code" href="a00766.html#ga169c15211be8cac047e93cbd1509dd59" title="eps version for non-complex matrices and vectors">eps</a>(<span class="keyword">const</span> std::complex&lt;T&gt;&amp; x)
+<a name="l00099"></a>00099   {
+<a name="l00100"></a>00100   <span class="keywordflow">return</span> <a class="code" href="a00100.html#a5526b2f818efa0897ca6443e65aa1a38">eop_aux::direct_eps</a>(x);
+<a name="l00101"></a>00101   }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104 <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

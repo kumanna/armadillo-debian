@@ -1,5 +1,5 @@
 Name:           armadillo
-Version:        0.9.2
+Version:        0.9.4
 Release:        1%{?dist}
 Summary:        Fast C++ matrix library with interfaces to LAPACK and ATLAS
 
@@ -8,7 +8,7 @@ License:        LGPLv3+
 URL:            http://arma.sourceforge.net/
 Source:         http://download.sourceforge.net/arma/%{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires:  cmake, boost-devel, lapack-devel, atlas-devel
+BuildRequires:  cmake, boost-devel, blas-devel, lapack-devel, atlas-devel
 
 %description
 Armadillo is a C++ linear algebra library (matrix maths)
@@ -30,7 +30,7 @@ than another language like Matlab or Octave.
 Summary:        Development headers and documentation for the Armadillo C++ library
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
-Requires:       boost-devel, atlas-devel, libstdc++-devel
+Requires:       boost-devel, blas-devel, lapack-devel, atlas-devel, libstdc++-devel
 
 # The header files of Armadillo include some Boost and ATLAS header files,
 # delivered within the boost-devel and atlas-devel sub-packages, respectively.
@@ -98,6 +98,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_docdir}/%{name}-%{version}/docs_tech/
 
 %changelog
+* Tue Mar 16 2010 Conrad Sanderson  <conradsand ! ieee ! org> - 0.9.4-1
+- spec updated for Armadillo 0.9.4
+
+* Tue Mar 02 2010 Conrad Sanderson  <conradsand ! ieee ! org> - 0.9.2-2
+- added explicit dependencies to the devel package
+
 * Tue Mar 02 2010 Conrad Sanderson  <conradsand ! ieee ! org> - 0.9.2-1
 - spec updated for Armadillo 0.9.2
 

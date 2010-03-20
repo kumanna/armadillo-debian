@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: operator_schur.hpp Source File</title>
+<title>Armadillo Technical: operator_minus.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>operator_schur.hpp</h1><a href="a00686.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>operator_minus.hpp</h1><a href="a00686.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,70 +45,130 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup operator_schur</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup operator_minus</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="comment">// operator %, which we define it to do a schur product (element-wise multiplication)</span>
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="comment"></span>
-<a name="l00024"></a>00024 <span class="comment">//! element-wise multiplication of Base objects with same element type</span>
-<a name="l00025"></a>00025 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00026"></a>00026 arma_inline
-<a name="l00027"></a>00027 <span class="keyword">const</span> <a class="code" href="a00080.html">eGlue&lt;T1, T2, eglue_schur&gt;</a>
-<a name="l00028"></a>00028 <span class="keyword">operator</span>%
-<a name="l00029"></a><a class="code" href="a00848.html#gaafb7cf900a63e5427f694916c4445928">00029</a>   (
-<a name="l00030"></a>00030   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X,
-<a name="l00031"></a>00031   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T2&gt;</a>&amp; Y
-<a name="l00032"></a>00032   )
-<a name="l00033"></a>00033   {
-<a name="l00034"></a>00034   arma_extra_debug_sigprint();
-<a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00080.html">eGlue&lt;T1, T2, eglue_schur&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.get_ref());
-<a name="l00037"></a>00037   }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment"></span>
-<a name="l00041"></a>00041 <span class="comment">//! element-wise multiplication of Base objects with different element types</span>
-<a name="l00042"></a>00042 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
-<a name="l00043"></a>00043 arma_inline
-<a name="l00044"></a>00044 <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;typename promote_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::result</a>&gt;
-<a name="l00045"></a>00045 <span class="keyword">operator</span>%
-<a name="l00046"></a><a class="code" href="a00848.html#ga0ec8f7ff59fee714c2e34dafed268486">00046</a>   (
-<a name="l00047"></a>00047   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt; typename force_different_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::T1_result</a>, T1&gt;&amp; X,
-<a name="l00048"></a>00048   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt; typename force_different_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::T2_result</a>, T2&gt;&amp; Y
-<a name="l00049"></a>00049   )
-<a name="l00050"></a>00050   {
-<a name="l00051"></a>00051   arma_extra_debug_sigprint();
-<a name="l00052"></a>00052   
-<a name="l00053"></a>00053   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT1;
-<a name="l00054"></a>00054   <span class="keyword">typedef</span> <span class="keyword">typename</span> T2::elem_type eT2;
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00371.html">promote_type&lt;eT1,eT2&gt;::result</a> out_eT;
-<a name="l00057"></a>00057   
-<a name="l00058"></a>00058   <a class="code" href="a00371.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   <span class="keyword">const</span> <a class="code" href="a00450.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00061"></a>00061   <span class="keyword">const</span> <a class="code" href="a00450.html">Proxy&lt;T2&gt;</a> B(Y.get_ref());
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;element-wise matrix multiplication&quot;</span>);
-<a name="l00064"></a>00064   
-<a name="l00065"></a>00065   <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;out_eT&gt;</a> out(A.n_rows, A.n_cols);
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         out_eT* out_mem = out.<a class="code" href="a00809.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
-<a name="l00068"></a>00068   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>     n_elem  = out.<a class="code" href="a00304.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
-<a name="l00069"></a>00069   
-<a name="l00070"></a>00070   <span class="keywordflow">for</span>(<a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00071"></a>00071     {
-<a name="l00072"></a>00072     out_mem[i] = <a class="code" href="a00494.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(A[i]) * <a class="code" href="a00494.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(B[i]);
-<a name="l00073"></a>00073     }
-<a name="l00074"></a>00074   
-<a name="l00075"></a>00075   <span class="keywordflow">return</span> out;
-<a name="l00076"></a>00076   }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 <span class="comment"></span>
-<a name="l00080"></a>00080 <span class="comment">//! @}</span>
+<a name="l00021"></a>00021 <span class="comment"></span>
+<a name="l00022"></a>00022 <span class="comment">//! unary -</span>
+<a name="l00023"></a>00023 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00024"></a>00024 arma_inline
+<a name="l00025"></a>00025 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_neg&gt;</a>
+<a name="l00026"></a>00026 <span class="keyword">operator</span>-
+<a name="l00027"></a><a class="code" href="a00850.html#ga24ed72e853af4bcc1c8604b241b75acd">00027</a> (<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X)
+<a name="l00028"></a>00028   {
+<a name="l00029"></a>00029   arma_extra_debug_sigprint();
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;T1,eop_neg&gt;</a>(X.get_ref());
+<a name="l00032"></a>00032   }
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment"></span>
+<a name="l00036"></a>00036 <span class="comment">//! cancellation of two consecutive negations: -(-T1)</span>
+<a name="l00037"></a>00037 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00038"></a>00038 arma_inline
+<a name="l00039"></a>00039 <span class="keyword">const</span> T1&amp;
+<a name="l00040"></a>00040 <span class="keyword">operator</span>-
+<a name="l00041"></a><a class="code" href="a00850.html#ga0c9268c7da2bf11cc7425a0ea4e34ee5">00041</a> (<span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_neg&gt;</a>&amp; X)
+<a name="l00042"></a>00042   {
+<a name="l00043"></a>00043   arma_extra_debug_sigprint();
+<a name="l00044"></a>00044   
+<a name="l00045"></a>00045   <span class="keywordflow">return</span> X.m;
+<a name="l00046"></a>00046   }
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="comment"></span>
+<a name="l00050"></a>00050 <span class="comment">//! Base - scalar</span>
+<a name="l00051"></a>00051 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00052"></a>00052 arma_inline
+<a name="l00053"></a>00053 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_scalar_minus_post&gt;</a>
+<a name="l00054"></a>00054 <span class="keyword">operator</span>-
+<a name="l00055"></a><a class="code" href="a00850.html#gaf133fcb6ca8f19f8e7f7191fd0c12bce">00055</a>   (
+<a name="l00056"></a>00056   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X,
+<a name="l00057"></a>00057   <span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type           k
+<a name="l00058"></a>00058   )
+<a name="l00059"></a>00059   {
+<a name="l00060"></a>00060   arma_extra_debug_sigprint();
+<a name="l00061"></a>00061   
+<a name="l00062"></a>00062   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_scalar_minus_post&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), k);
+<a name="l00063"></a>00063   }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066 <span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">//! scalar - Base</span>
+<a name="l00068"></a>00068 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00069"></a>00069 arma_inline
+<a name="l00070"></a>00070 <span class="keyword">const</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_scalar_minus_pre&gt;</a>
+<a name="l00071"></a>00071 <span class="keyword">operator</span>-
+<a name="l00072"></a><a class="code" href="a00850.html#gabb3ab1b6ee992aad849600b454dafa3b">00072</a>   (
+<a name="l00073"></a>00073   <span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type           k,
+<a name="l00074"></a>00074   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X
+<a name="l00075"></a>00075   )
+<a name="l00076"></a>00076   {
+<a name="l00077"></a>00077   arma_extra_debug_sigprint();
+<a name="l00078"></a>00078   
+<a name="l00079"></a>00079   <span class="keywordflow">return</span> <a class="code" href="a00092.html">eOp&lt;T1, eop_scalar_minus_pre&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), k);
+<a name="l00080"></a>00080   }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="comment"></span>
+<a name="l00084"></a>00084 <span class="comment">//! subtraction of Base objects with same element type</span>
+<a name="l00085"></a>00085 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00086"></a>00086 arma_inline
+<a name="l00087"></a>00087 <span class="keyword">const</span> <a class="code" href="a00080.html">eGlue&lt;T1, T2, eglue_minus&gt;</a>
+<a name="l00088"></a>00088 <span class="keyword">operator</span>-
+<a name="l00089"></a><a class="code" href="a00850.html#ga23cb4c0dc6a097d76ac75fb3541a2b0e">00089</a>   (
+<a name="l00090"></a>00090   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X,
+<a name="l00091"></a>00091   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T2&gt;</a>&amp; Y
+<a name="l00092"></a>00092   )
+<a name="l00093"></a>00093   {
+<a name="l00094"></a>00094   arma_extra_debug_sigprint();
+<a name="l00095"></a>00095   
+<a name="l00096"></a>00096   <span class="keywordflow">return</span> <a class="code" href="a00080.html">eGlue&lt;T1, T2, eglue_minus&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.get_ref());
+<a name="l00097"></a>00097   }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">//! subtraction of Base objects with different element types</span>
+<a name="l00102"></a>00102 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00103"></a>00103 arma_inline
+<a name="l00104"></a>00104 <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;typename promote_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::result</a>&gt;
+<a name="l00105"></a>00105 <span class="keyword">operator</span>-
+<a name="l00106"></a><a class="code" href="a00850.html#gaf636f0168854edb0f7167f7b53678578">00106</a>   (
+<a name="l00107"></a>00107   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt; typename force_different_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::T1_result</a>, T1&gt;&amp; X,
+<a name="l00108"></a>00108   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt; typename force_different_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::T2_result</a>, T2&gt;&amp; Y
+<a name="l00109"></a>00109   )
+<a name="l00110"></a>00110   {
+<a name="l00111"></a>00111   arma_extra_debug_sigprint();
+<a name="l00112"></a>00112   
+<a name="l00113"></a>00113   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT1;
+<a name="l00114"></a>00114   <span class="keyword">typedef</span> <span class="keyword">typename</span> T2::elem_type eT2;
+<a name="l00115"></a>00115   
+<a name="l00116"></a>00116   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00372.html">promote_type&lt;eT1,eT2&gt;::result</a> out_eT;
+<a name="l00117"></a>00117   
+<a name="l00118"></a>00118   <a class="code" href="a00372.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
+<a name="l00119"></a>00119   
+<a name="l00120"></a>00120   <span class="keyword">const</span> <a class="code" href="a00451.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00121"></a>00121   <span class="keyword">const</span> <a class="code" href="a00451.html">Proxy&lt;T2&gt;</a> B(Y.get_ref());
+<a name="l00122"></a>00122   
+<a name="l00123"></a>00123   arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;matrix subtraction&quot;</span>);
+<a name="l00124"></a>00124   
+<a name="l00125"></a>00125   <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;out_eT&gt;</a> out(A.n_rows, A.n_cols);
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127         out_eT* out_mem = out.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
+<a name="l00128"></a>00128   <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>     n_elem  = out.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
+<a name="l00129"></a>00129   
+<a name="l00130"></a>00130   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00131"></a>00131     {
+<a name="l00132"></a>00132     out_mem[i] = <a class="code" href="a00495.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(A[i]) - <a class="code" href="a00495.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(B[i]);
+<a name="l00133"></a>00133     }
+<a name="l00134"></a>00134   
+<a name="l00135"></a>00135   <span class="keywordflow">return</span> out;
+<a name="l00136"></a>00136   }
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 <span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

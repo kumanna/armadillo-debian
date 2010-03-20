@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_qr.hpp File Reference</title>
+<title>Armadillo Technical: fn_princomp_cov.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,17 +25,23 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_qr.hpp File Reference</h1>
+<h1>fn_princomp_cov.hpp File Reference</h1>
 <p><a href="a00581_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00779.html#ga77f7af796bd31d8d13dba803ce216bf0">qr</a> (<a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;Q, <a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;R, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">QR decomposition.  <a href="a00779.html#ga77f7af796bd31d8d13dba803ce216bf0"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00782.html#gaab3059078d07df0f2baef334c3db2f64">princomp_cov</a> (<a class="el" href="a00305.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;coeff_out, <a class="el" href="a00058.html">Col</a>&lt; typename T1::pod_type &gt; &amp;latent_out, <a class="el" href="a00058.html">Col</a>&lt; typename T1::pod_type &gt; &amp;explained_out, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis of a covariance matrix -- 3 arguments version coeff_out -&gt; principal component coefficients latent_out -&gt; principal component variances explained_out -&gt; percentage of the total variance explained by each principal component.  <a href="a00782.html#gaab3059078d07df0f2baef334c3db2f64"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00782.html#ga7ebead335905e7763c7039169687bd2d">princomp_cov</a> (<a class="el" href="a00305.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;coeff_out, <a class="el" href="a00058.html">Col</a>&lt; typename T1::pod_type &gt; &amp;latent_out, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis of a covariance matrix -- 2 arguments version coeff_out -&gt; principal component coefficients latent_out -&gt; principal component variances  <a href="a00782.html#ga7ebead335905e7763c7039169687bd2d"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00308.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_princomp_cov</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00782.html#gac378a25dc3c5be45d4aa2c2654b82640">princomp_cov</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis of a covariance matrix -- 1 argument version coeff_out -&gt; principal component coefficients  <a href="a00782.html#gac378a25dc3c5be45d4aa2c2654b82640"></a><br/></td></tr>
 </table>
 </div>
 </BODY>

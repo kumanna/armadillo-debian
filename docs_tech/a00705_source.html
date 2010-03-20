@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: subview_field_proto.hpp Source File</title>
+<title>Armadillo Technical: strip.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>subview_field_proto.hpp</h1><a href="a00705.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>strip.hpp</h1><a href="a00705.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,74 +45,84 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup subview_field</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup strip</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment">//! Class for storing data required to construct or apply operations to a subfield</span>
-<a name="l00022"></a>00022 <span class="comment">//! (i.e. where the subfield starts and ends as well as a reference/pointer to the original field),</span>
-<a name="l00023"></a>00023 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> oT&gt;
-<a name="l00024"></a><a class="code" href="a00479.html">00024</a> <span class="keyword">class </span><a class="code" href="a00479.html" title="Class for storing data required to construct or apply operations to a subfield (i...">subview_field</a>
-<a name="l00025"></a>00025   {
-<a name="l00026"></a><a class="code" href="a00479.html#a02dab89969f02aeeda0229ecdf9a393b">00026</a>   <span class="keyword">public</span>:  <span class="keyword">const</span> <a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>&amp; <a class="code" href="a00479.html#a02dab89969f02aeeda0229ecdf9a393b">f</a>;
-<a name="l00027"></a><a class="code" href="a00479.html#a603bdde7110989533ef1746ea008473a">00027</a>   <span class="keyword">protected</span>:     <a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>* <a class="code" href="a00479.html#a603bdde7110989533ef1746ea008473a">f_ptr</a>;
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   <span class="keyword">public</span>:
-<a name="l00030"></a>00030   
-<a name="l00031"></a><a class="code" href="a00479.html#a03c62719a317372b2d9387c360f41b72">00031</a>   <span class="keyword">typedef</span> oT <a class="code" href="a00479.html#a03c62719a317372b2d9387c360f41b72">object_type</a>;
-<a name="l00032"></a>00032   
-<a name="l00033"></a><a class="code" href="a00479.html#a65f6874aa813bd60942eec7eafe419fa">00033</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#a65f6874aa813bd60942eec7eafe419fa">aux_row1</a>;
-<a name="l00034"></a><a class="code" href="a00479.html#a0a88ef30cbccb12cad02c100c4fe0795">00034</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#a0a88ef30cbccb12cad02c100c4fe0795">aux_col1</a>;
-<a name="l00035"></a>00035   
-<a name="l00036"></a><a class="code" href="a00479.html#a48b1b38803a239de09dd6aac5d241971">00036</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#a48b1b38803a239de09dd6aac5d241971">aux_row2</a>;
-<a name="l00037"></a><a class="code" href="a00479.html#acad8f01a7868b8603a6800b0d4accc28">00037</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#acad8f01a7868b8603a6800b0d4accc28">aux_col2</a>;
-<a name="l00038"></a>00038   
-<a name="l00039"></a><a class="code" href="a00479.html#a9b97254949488b6cf7556dd7bc5736cb">00039</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#a9b97254949488b6cf7556dd7bc5736cb">n_rows</a>;
-<a name="l00040"></a><a class="code" href="a00479.html#a20479b3133919c297ab67e0a4d50221e">00040</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#a20479b3133919c297ab67e0a4d50221e">n_cols</a>;
-<a name="l00041"></a><a class="code" href="a00479.html#af684dfbf99d45667412846035c14faeb">00041</a>   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00479.html#af684dfbf99d45667412846035c14faeb">n_elem</a>;
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043   
-<a name="l00044"></a>00044   <span class="keyword">protected</span>:
-<a name="l00045"></a>00045   
-<a name="l00046"></a>00046   arma_inline <a class="code" href="a00479.html#af54bac98ccaea43ba060c885fc1de2db">subview_field</a>(<span class="keyword">const</span> <a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>&amp; in_f, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row1, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row2,  <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2);
-<a name="l00047"></a>00047   arma_inline <a class="code" href="a00479.html#af54bac98ccaea43ba060c885fc1de2db">subview_field</a>(      <a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>&amp; in_f, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row1, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row2,  <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2);
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   
-<a name="l00050"></a>00050   <span class="keyword">public</span>:
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00023"></a><a class="code" href="a00473.html">00023</a> <span class="keyword">struct </span><a class="code" href="a00473.html">strip_diagmat</a>
+<a name="l00024"></a>00024   {
+<a name="l00025"></a><a class="code" href="a00473.html#ab088088e04d5067878967361563500d9">00025</a>   <span class="keyword">typedef</span> T1 <a class="code" href="a00473.html#ab088088e04d5067878967361563500d9">stored_type</a>;
+<a name="l00026"></a>00026   
+<a name="l00027"></a><a class="code" href="a00473.html#a17afa0c554e394d5633e451169ecb8c5">00027</a>   <span class="keyword">inline</span> <a class="code" href="a00473.html#a17afa0c554e394d5633e451169ecb8c5">strip_diagmat</a>(<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type, T1&gt;</a>&amp; X)
+<a name="l00028"></a>00028     : <a class="code" href="a00473.html#a9dff80656cca8f592c522efde63eaf77">do_diagmat</a>(false)
+<a name="l00029"></a>00029     , <a class="code" href="a00473.html#af9b90d483c667cf60b6156a658fd9871">M</a>         (X.get_ref())
+<a name="l00030"></a>00030     {
+<a name="l00031"></a>00031     arma_extra_debug_sigprint();
+<a name="l00032"></a>00032     }
+<a name="l00033"></a>00033   
+<a name="l00034"></a><a class="code" href="a00473.html#a9dff80656cca8f592c522efde63eaf77">00034</a>   <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00473.html#a9dff80656cca8f592c522efde63eaf77">do_diagmat</a>;
+<a name="l00035"></a><a class="code" href="a00473.html#af9b90d483c667cf60b6156a658fd9871">00035</a>   <span class="keyword">const</span> T1&amp;  <a class="code" href="a00473.html#af9b90d483c667cf60b6156a658fd9871">M</a>;
+<a name="l00036"></a>00036   };
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00041"></a><a class="code" href="a00474.html">00041</a> <span class="keyword">struct </span><a class="code" href="a00473.html">strip_diagmat</a>&lt; <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>&lt;T1, <a class="code" href="a00311.html">op_diagmat</a>&gt; &gt;
+<a name="l00042"></a>00042   {
+<a name="l00043"></a><a class="code" href="a00474.html#af2c29e7538f1b098790edbf000009c9c">00043</a>   <span class="keyword">typedef</span> T1 <a class="code" href="a00474.html#af2c29e7538f1b098790edbf000009c9c">stored_type</a>;
+<a name="l00044"></a>00044   
+<a name="l00045"></a><a class="code" href="a00474.html#a1d28ba0932f005443d8c9b04a3137b19">00045</a>   <span class="keyword">inline</span> <a class="code" href="a00473.html#a17afa0c554e394d5633e451169ecb8c5">strip_diagmat</a>(<span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagmat&gt;</a>&amp; X)
+<a name="l00046"></a>00046     : <a class="code" href="a00473.html#a9dff80656cca8f592c522efde63eaf77">do_diagmat</a>(true)
+<a name="l00047"></a>00047     , <a class="code" href="a00473.html#af9b90d483c667cf60b6156a658fd9871">M</a>         (X.m)
+<a name="l00048"></a>00048     {
+<a name="l00049"></a>00049     arma_extra_debug_sigprint();
+<a name="l00050"></a>00050     }
 <a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keyword">inline</span> <a class="code" href="a00861.html#gad1f126d04d4d6a6e5802b0ccaceeaa72">~subview_field</a>();
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="a00861.html#ga3beea796d8e3519309700b196ab96fdc">operator= </a>(<span class="keyword">const</span> <a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>&amp; x);
-<a name="l00055"></a>00055   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="a00861.html#ga3beea796d8e3519309700b196ab96fdc">operator= </a>(<span class="keyword">const</span> <a class="code" href="a00479.html" title="Class for storing data required to construct or apply operations to a subfield (i...">subview_field</a>&amp; x);
-<a name="l00056"></a>00056   
-<a name="l00057"></a>00057   arma_inline       oT&amp; <a class="code" href="a00861.html#gae8df114b3301f003c478ec65200bc52a">operator[]</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i);
-<a name="l00058"></a>00058   arma_inline <span class="keyword">const</span> oT&amp; <a class="code" href="a00861.html#gae8df114b3301f003c478ec65200bc52a">operator[]</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) <span class="keyword">const</span>;
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   arma_inline       oT&amp; <a class="code" href="a00861.html#gaafe4174ce36b1bdd4e1db2707fd814f7">operator()</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i);
-<a name="l00061"></a>00061   arma_inline <span class="keyword">const</span> oT&amp; <a class="code" href="a00861.html#gaafe4174ce36b1bdd4e1db2707fd814f7">operator()</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) <span class="keyword">const</span>;
+<a name="l00052"></a><a class="code" href="a00474.html#afedef8e6280abf63cff13c95df143462">00052</a>   <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00473.html#a9dff80656cca8f592c522efde63eaf77">do_diagmat</a>;
+<a name="l00053"></a><a class="code" href="a00474.html#a6b31bc32575e20ff9c4514b38b7fdaed">00053</a>   <span class="keyword">const</span> T1&amp;  <a class="code" href="a00473.html#af9b90d483c667cf60b6156a658fd9871">M</a>;
+<a name="l00054"></a>00054   };
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00059"></a><a class="code" href="a00475.html">00059</a> <span class="keyword">struct </span><a class="code" href="a00475.html">strip_inv</a>
+<a name="l00060"></a>00060   {
+<a name="l00061"></a><a class="code" href="a00475.html#aa9a218e59f2e4d11daaedaaadb138f63">00061</a>   <span class="keyword">typedef</span> T1 <a class="code" href="a00475.html#aa9a218e59f2e4d11daaedaaadb138f63">stored_type</a>;
 <a name="l00062"></a>00062   
-<a name="l00063"></a>00063   arma_inline       oT&amp;         <a class="code" href="a00861.html#ga460e14fb9b9a7a1713d7d29abf2c4bdc">at</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col);
-<a name="l00064"></a>00064   arma_inline <span class="keyword">const</span> oT&amp;         <a class="code" href="a00861.html#ga460e14fb9b9a7a1713d7d29abf2c4bdc">at</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col) <span class="keyword">const</span>;
-<a name="l00065"></a>00065   
-<a name="l00066"></a>00066   arma_inline       oT&amp; <a class="code" href="a00861.html#gaafe4174ce36b1bdd4e1db2707fd814f7">operator()</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col);
-<a name="l00067"></a>00067   arma_inline <span class="keyword">const</span> oT&amp; <a class="code" href="a00861.html#gaafe4174ce36b1bdd4e1db2707fd814f7">operator()</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col) <span class="keyword">const</span>;
-<a name="l00068"></a>00068   
-<a name="l00069"></a>00069   <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="a00861.html#ga64dafb60b2c1ab389097afe679eb71c2">check_overlap</a>(<span class="keyword">const</span> <a class="code" href="a00479.html" title="Class for storing data required to construct or apply operations to a subfield (i...">subview_field</a>&amp; x) <span class="keyword">const</span>;
-<a name="l00070"></a>00070   
-<a name="l00071"></a>00071   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00861.html#gaf25325b79bda05aa606604c63d650fbe" title="X = Y.subfield(...).">extract</a>(<a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00479.html" title="Class for storing data required to construct or apply operations to a subfield (i...">subview_field</a>&amp; in);
-<a name="l00072"></a>00072   
-<a name="l00073"></a>00073   
-<a name="l00074"></a>00074   <span class="keyword">private</span>:
-<a name="l00075"></a>00075   
-<a name="l00076"></a><a class="code" href="a00479.html#ac0b467aa26322d24a68f2ae8779deb42">00076</a>   <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field</a>&lt;oT&gt;;
-<a name="l00077"></a>00077   
-<a name="l00078"></a>00078   
-<a name="l00079"></a>00079   <a class="code" href="a00479.html#af54bac98ccaea43ba060c885fc1de2db">subview_field</a>();
-<a name="l00080"></a>00080   <span class="comment">//subview_field(const subview_field&amp;);</span>
-<a name="l00081"></a>00081   };
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="comment"></span>
-<a name="l00084"></a>00084 <span class="comment">//! @}</span>
+<a name="l00063"></a><a class="code" href="a00475.html#a8d85a091e2be3233af606c6e5d79eba8">00063</a>   <span class="keyword">inline</span> <a class="code" href="a00475.html#a8d85a091e2be3233af606c6e5d79eba8">strip_inv</a>(<span class="keyword">const</span> T1&amp; X)
+<a name="l00064"></a>00064     : <a class="code" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a>(false)
+<a name="l00065"></a>00065     , <a class="code" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a>     (X)
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067     arma_extra_debug_sigprint();
+<a name="l00068"></a>00068     }
+<a name="l00069"></a>00069   
+<a name="l00070"></a><a class="code" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">00070</a>   <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a>;
+<a name="l00071"></a><a class="code" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">00071</a>   <span class="keyword">const</span> T1&amp;  <a class="code" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a>;
+<a name="l00072"></a>00072   };
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00077"></a><a class="code" href="a00476.html">00077</a> <span class="keyword">struct </span><a class="code" href="a00475.html">strip_inv</a>&lt; <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>&lt;T1, <a class="code" href="a00318.html" title="&amp;#39;invert matrix&amp;#39; operation">op_inv</a>&gt; &gt;
+<a name="l00078"></a>00078   {
+<a name="l00079"></a><a class="code" href="a00476.html#a4c5cbbc022d20fb882e7adca2a539c83">00079</a>   <span class="keyword">typedef</span> T1 <a class="code" href="a00476.html#a4c5cbbc022d20fb882e7adca2a539c83">stored_type</a>;
+<a name="l00080"></a>00080   
+<a name="l00081"></a><a class="code" href="a00476.html#ab2ffeb01955e55a4dc32687f9cfaaf1e">00081</a>   <span class="keyword">inline</span> <a class="code" href="a00475.html#a8d85a091e2be3233af606c6e5d79eba8">strip_inv</a>(<span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_inv&gt;</a>&amp; X)
+<a name="l00082"></a>00082     : <a class="code" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a>(true)
+<a name="l00083"></a>00083     , <a class="code" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a>     (X.m)
+<a name="l00084"></a>00084     {
+<a name="l00085"></a>00085     arma_extra_debug_sigprint();
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087   
+<a name="l00088"></a><a class="code" href="a00476.html#a7287e51632419d7f6e57c3db66182f1e">00088</a>   <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a>;
+<a name="l00089"></a><a class="code" href="a00476.html#a6e57b89ded5db79a0786e295dc3a2cf0">00089</a>   <span class="keyword">const</span> T1&amp;  <a class="code" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a>;
+<a name="l00090"></a>00090   };
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

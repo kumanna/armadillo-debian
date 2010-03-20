@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Op_cor</title>
+<title>Armadillo Technical: Glue</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,193 +21,122 @@
   </div>
 </div>
 <div class="contents">
-<h1>Op_cor</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>Glue</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00308.html">op_cor</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00189.html">Glue&lt; T1, T2, glue_type &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for storing data required for delayed binary operations, such as the operands (e.g. two matrices) and the binary operator (e.g. addition). The operands are stored as references (which can be optimised away), while the operator is "stored" through the template definition (glue_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than two matrices can be stored.  <a href="a00189.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00810.html#ga75c44873f2fa33b50dd38edb09e304c1">op_cor::direct_cor</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00810.html#gac367006514b181bca615b671f4168591">op_cor::direct_cor</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00810.html#ga5154a1095da552eccfed0ed5dfea0c29">op_cor::apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00308.html">op_cor</a> &gt; &amp;in)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00810.html#ga9ad833e067f7d4565af8ebf91f456dcb">Glue::Glue</a> (const T1 &amp;in_A, const T2 &amp;in_B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00810.html#gad8bc391729ccaa79628cccafb658d830">Glue::Glue</a> (const T1 &amp;in_A, const T2 &amp;in_B, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00810.html#ga256c787c4ac6df01fca21deb11a55523">Glue::~Glue</a> ()</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga75c44873f2fa33b50dd38edb09e304c1"></a><!-- doxytag: member="op_cor::direct_cor" ref="ga75c44873f2fa33b50dd38edb09e304c1" args="(Mat&lt; eT &gt; &amp;out, const Mat&lt; eT &gt; &amp;X, const u32 norm_type)" -->
+<a class="anchor" id="ga9ad833e067f7d4565af8ebf91f456dcb"></a><!-- doxytag: member="Glue::Glue" ref="ga9ad833e067f7d4565af8ebf91f456dcb" args="(const T1 &amp;in_A, const T2 &amp;in_B)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void op_cor::direct_cor </td>
+          <td class="memname"><a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html">Glue</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>norm_type</em></td><td>&nbsp;</td>
+          <td class="paramtype">const T2 &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_B</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td></td><td></td><td><code> [inline, inherited]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00621_source.html#l00027">27</a> of file <a class="el" href="a00621_source.html">op_cor_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00614_source.html#l00024">24</a> of file <a class="el" href="a00614_source.html">Glue_meat.hpp</a>.</p>
 
-<p>References <a class="el" href="a00619_source.html#l02006">Mat&lt; eT &gt;::is_vec()</a>, <a class="el" href="a00620_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>, <a class="el" href="a00619_source.html#l02267">Mat&lt; eT &gt;::set_size()</a>, <a class="el" href="a00591_source.html#l00025">stddev()</a>, <a class="el" href="a00592_source.html#l00032">sum()</a>, and <a class="el" href="a00595_source.html#l00024">trans()</a>.</p>
-
-<p>Referenced by <a class="el" href="a00621_source.html#l00089">apply()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028   {
+<p><div class="fragment"><pre class="fragment"><a name="l00025"></a>00025   : <a class="code" href="a00189.html#a22423031a9f05101ad23dfd897c6f1ab" title="first operand">A</a>(in_A)
+<a name="l00026"></a>00026   , <a class="code" href="a00189.html#a1b3a6b5891d84915448f3084e66476c6" title="second operand">B</a>(in_B)
+<a name="l00027"></a>00027   , <a class="code" href="a00189.html#a1782dc0b650d7a8269ca2d6c75fb2901" title="storage of auxiliary data, u32 format">aux_u32</a>(<a class="code" href="a00189.html#a1782dc0b650d7a8269ca2d6c75fb2901" title="storage of auxiliary data, u32 format">aux_u32</a>)
+<a name="l00028"></a>00028   {
 <a name="l00029"></a>00029   arma_extra_debug_sigprint();
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031   <span class="keywordflow">if</span>(A.is_vec())
-<a name="l00032"></a>00032     {
-<a name="l00033"></a>00033     out.<a class="code" href="a00809.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1,1);
-<a name="l00034"></a>00034     out[0] = eT(1);
-<a name="l00035"></a>00035     }
-<a name="l00036"></a>00036   <span class="keywordflow">else</span>
-<a name="l00037"></a>00037     {
-<a name="l00038"></a>00038     <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.n_rows;
-<a name="l00039"></a>00039     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (N &gt; 1) ? eT(N-1) : eT(1) ) : eT(N);
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041     <span class="keyword">const</span> <a class="code" href="a00467.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a> acc = <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(A);
-<a name="l00042"></a>00042     <span class="keyword">const</span> <a class="code" href="a00467.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a> sd  = <a class="code" href="a00789.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(A);
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044     out = (<a class="code" href="a00793.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(A) * A);
-<a name="l00045"></a>00045     out -= (<a class="code" href="a00793.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(acc) * acc)/eT(N);
-<a name="l00046"></a>00046     out /= norm_val;
-<a name="l00047"></a>00047     out /= <a class="code" href="a00793.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(sd) * sd;
-<a name="l00048"></a>00048     }
-<a name="l00049"></a>00049   }
+<a name="l00030"></a>00030   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gac367006514b181bca615b671f4168591"></a><!-- doxytag: member="op_cor::direct_cor" ref="gac367006514b181bca615b671f4168591" args="(Mat&lt; std::complex&lt; T &gt; &gt; &amp;out, const Mat&lt; std::complex&lt; T &gt; &gt; &amp;X, const u32 norm_type)" -->
+<a class="anchor" id="gad8bc391729ccaa79628cccafb658d830"></a><!-- doxytag: member="Glue::Glue" ref="gad8bc391729ccaa79628cccafb658d830" args="(const T1 &amp;in_A, const T2 &amp;in_B, const u32 in_aux_u32)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void op_cor::direct_cor </td>
+          <td class="memname"><a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::<a class="el" href="a00189.html">Glue</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em>, </td>
+          <td class="paramtype">const T2 &amp;&nbsp;</td>
+          <td class="paramname"> <em>in_B</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>norm_type</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>in_aux_u32</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td></td><td></td><td><code> [inline, inherited]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00621_source.html#l00056">56</a> of file <a class="el" href="a00621_source.html">op_cor_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00614_source.html#l00036">36</a> of file <a class="el" href="a00614_source.html">Glue_meat.hpp</a>.</p>
 
-<p>References <a class="el" href="a00574_source.html#l00606">conj()</a>, <a class="el" href="a00591_source.html#l00025">stddev()</a>, <a class="el" href="a00592_source.html#l00032">sum()</a>, and <a class="el" href="a00595_source.html#l00024">trans()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00057"></a>00057   {
-<a name="l00058"></a>00058   arma_extra_debug_sigprint();
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060   <span class="keyword">typedef</span> <span class="keyword">typename</span> std::complex&lt;T&gt; eT;
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062   <span class="keywordflow">if</span>(A.is_vec())
-<a name="l00063"></a>00063     {
-<a name="l00064"></a>00064     out.<a class="code" href="a00809.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1,1);
-<a name="l00065"></a>00065     out[0] = eT(1);
-<a name="l00066"></a>00066     }
-<a name="l00067"></a>00067   <span class="keywordflow">else</span>
-<a name="l00068"></a>00068     {
-<a name="l00069"></a>00069     <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.n_rows;
-<a name="l00070"></a>00070     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (N &gt; 1) ? eT(N-1) : eT(1) ) : eT(N);
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072     <span class="keyword">const</span> <a class="code" href="a00467.html" title="Class for row vectors (matrices with only one row).">Row&lt;eT&gt;</a> acc = <a class="code" href="a00790.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(A);
-<a name="l00073"></a>00073     <span class="keyword">const</span> <a class="code" href="a00467.html" title="Class for row vectors (matrices with only one row).">Row&lt;T&gt;</a>  sd  = <a class="code" href="a00789.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(A);
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075     out = <a class="code" href="a00793.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00772.html#gaa391c64e4ebc063dd39dc13a1330055c">conj</a>(A)) * A;
-<a name="l00076"></a>00076     out -= (<a class="code" href="a00793.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00772.html#gaa391c64e4ebc063dd39dc13a1330055c">conj</a>(acc)) * acc)/eT(N);
-<a name="l00077"></a>00077     out /= norm_val;
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079     <span class="comment">//out = out / (trans(sd) * sd);</span>
-<a name="l00080"></a>00080     out /= <a class="code" href="a00059.html">conv_to&lt; Mat&lt;eT&gt;</a> &gt;::from(<a class="code" href="a00793.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(sd) * sd);
-<a name="l00081"></a>00081     }
-<a name="l00082"></a>00082   }
+<p><div class="fragment"><pre class="fragment"><a name="l00037"></a>00037   : <a class="code" href="a00189.html#a22423031a9f05101ad23dfd897c6f1ab" title="first operand">A</a>(in_A)
+<a name="l00038"></a>00038   , <a class="code" href="a00189.html#a1b3a6b5891d84915448f3084e66476c6" title="second operand">B</a>(in_B)
+<a name="l00039"></a>00039   , <a class="code" href="a00189.html#a1782dc0b650d7a8269ca2d6c75fb2901" title="storage of auxiliary data, u32 format">aux_u32</a>(in_aux_u32)
+<a name="l00040"></a>00040   {
+<a name="l00041"></a>00041   arma_extra_debug_sigprint();
+<a name="l00042"></a>00042   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga5154a1095da552eccfed0ed5dfea0c29"></a><!-- doxytag: member="op_cor::apply" ref="ga5154a1095da552eccfed0ed5dfea0c29" args="(Mat&lt; typename T1::elem_type &gt; &amp;out, const Op&lt; T1, op_cor &gt; &amp;in)" -->
+<a class="anchor" id="ga256c787c4ac6df01fca21deb11a55523"></a><!-- doxytag: member="Glue::~Glue" ref="ga256c787c4ac6df01fca21deb11a55523" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 &gt; </div>
+template&lt;typename T1 , typename T2 , typename glue_type &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void op_cor::apply </td>
+          <td class="memname"><a class="el" href="a00189.html">Glue</a>&lt; T1, T2, glue_type &gt;::~<a class="el" href="a00189.html">Glue</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00308.html">op_cor</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>in</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, inherited]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00621_source.html#l00089">89</a> of file <a class="el" href="a00621_source.html">op_cor_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00614_source.html#l00048">48</a> of file <a class="el" href="a00614_source.html">Glue_meat.hpp</a>.</p>
 
-<p>References <a class="el" href="a00656_source.html#l00049">Op&lt; T1, op_type &gt;::aux_u32_a</a>, <a class="el" href="a00621_source.html#l00027">direct_cor()</a>, <a class="el" href="a00711_source.html#l00113">unwrap_check&lt; T1 &gt;::M</a>, and <a class="el" href="a00656_source.html#l00047">Op&lt; T1, op_type &gt;::m</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00090"></a>00090   {
-<a name="l00091"></a>00091   arma_extra_debug_sigprint();
-<a name="l00092"></a>00092   
-<a name="l00093"></a>00093   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="keyword">const</span> <a class="code" href="a00486.html">unwrap_check&lt;T1&gt;</a> tmp(in.<a class="code" href="a00307.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>, out);
-<a name="l00096"></a>00096   <span class="keyword">const</span> <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A     = tmp.M;
-<a name="l00097"></a>00097   
-<a name="l00098"></a>00098   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = in.<a class="code" href="a00307.html#a5bb8e0047ae5979de97353676d0b483b" title="storage of auxiliary data, u32 format">aux_u32_a</a>;
-<a name="l00099"></a>00099   
-<a name="l00100"></a>00100   <a class="code" href="a00810.html#ga75c44873f2fa33b50dd38edb09e304c1">op_cor::direct_cor</a>(out, A, norm_type);
-<a name="l00101"></a>00101   }
+<p><div class="fragment"><pre class="fragment"><a name="l00049"></a>00049   {
+<a name="l00050"></a>00050   arma_extra_debug_sigprint();
+<a name="l00051"></a>00051   }
 </pre></div></p>
 
 </div>

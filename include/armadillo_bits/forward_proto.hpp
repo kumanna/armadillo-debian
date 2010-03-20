@@ -80,7 +80,7 @@ enum file_type
   arma_ascii,   //!< Armadillo ASCII format (text), with information about matrix type and size
   arma_binary,  //!< Armadillo binary format
   pgm_binary,   //!< Portable Grey Map (greyscale image)
-  ppm_binary    //!< Portable Pixel Map (colour image), used by the field class only
+  ppm_binary    //!< Portable Pixel Map (colour image), used by the field and cube classes
   };
 
 

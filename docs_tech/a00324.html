@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_princomp Class Reference</title>
+<title>Armadillo Technical: op_pinv Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,45 +29,66 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_princomp Class Reference<br/>
+<h1>op_pinv Class Reference<br/>
 <small>
-[<a class="el" href="a00826.html">Op_princomp</a>]</small>
-</h1><!-- doxytag: class="op_princomp" -->
-<p><code>#include &lt;<a class="el" href="a00653_source.html">op_princomp_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00830.html">Op_pinv</a>]</small>
+</h1><!-- doxytag: class="op_pinv" -->
+<p><code>#include &lt;<a class="el" href="a00653_source.html">op_pinv_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01182.html">List of all members.</a></p>
+<p><a href="a01188.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00830.html#gad49ca84a60c7f337e66bd3d4bc860d62">direct_pinv</a> (<a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, T tol)</td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#ga0911c764af7e5e2fd9634e9a869792b2">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;coeff_out, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 1 argument version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients  <a href="a00826.html#ga0911c764af7e5e2fd9634e9a869792b2"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00830.html#gaaf1dee44afa48e1bf4c90281dad5959a">direct_pinv</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;X, eT tol)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#gab59fc28202ab4298362ce620f980ea60">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;score_out, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 2 arguments version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients score_out -&gt; projected samples  <a href="a00826.html#gab59fc28202ab4298362ce620f980ea60"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#gaf68450fb213d435fb506655b4fd5ecc7">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;score_out, <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;latent_out, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 3 arguments version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients score_out -&gt; projected samples latent_out -&gt; eigenvalues of principal vectors  <a href="a00826.html#gaf68450fb213d435fb506655b4fd5ecc7"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#gabd5967c2ef64aec4dc6e47ee43f1c7d4">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;score_out, <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;latent_out, <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;tsquared_out, const <a class="el" href="a00304.html">Mat</a>&lt; eT &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 4 arguments version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients score_out -&gt; projected samples latent_out -&gt; eigenvalues of principal vectors tsquared_out -&gt; Hotelling's T^2 statistic  <a href="a00826.html#gabd5967c2ef64aec4dc6e47ee43f1c7d4"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#ga131534f913acb84cd6085f0c751766f5">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;coeff_out, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 1 argument complex version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients  <a href="a00826.html#ga131534f913acb84cd6085f0c751766f5"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#gaa0de34971dcb0ca00a0894886b923808">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;score_out, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 2 arguments complex version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients score_out -&gt; projected samples  <a href="a00826.html#gaa0de34971dcb0ca00a0894886b923808"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#ga326b128a59160886373bb54d3cb3bdef">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;score_out, <a class="el" href="a00058.html">Col</a>&lt; T &gt; &amp;latent_out, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 3 arguments complex version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients score_out -&gt; projected samples latent_out -&gt; eigenvalues of principal vectors  <a href="a00826.html#ga326b128a59160886373bb54d3cb3bdef"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#ga1e2b9aa6c1461b6d88b1dcb23a6417c2">direct_princomp</a> (<a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;coeff_out, <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;score_out, <a class="el" href="a00058.html">Col</a>&lt; T &gt; &amp;latent_out, <a class="el" href="a00058.html">Col</a>&lt; std::complex&lt; T &gt; &gt; &amp;tsquared_out, const <a class="el" href="a00304.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">principal component analysis -- 4 arguments complex version computation is done via singular value decomposition coeff_out -&gt; principal component coefficients score_out -&gt; projected samples latent_out -&gt; eigenvalues of principal vectors tsquared_out -&gt; Hotelling's T^2 statistic  <a href="a00826.html#ga1e2b9aa6c1461b6d88b1dcb23a6417c2"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00324.html#a34b87c926fa689fe40b0b80d17714b71">direct_pinv</a> (<a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; eT &gt; &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; eT &gt; &gt; &amp;X, eT tol)</td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00826.html#ga6da628683cf3cf5f9b91c39efb4c7a59">apply</a> (<a class="el" href="a00304.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00307.html">Op</a>&lt; T1, <a class="el" href="a00324.html">op_princomp</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00830.html#ga150addfdd58c0987267d921ef8c09fa4">apply</a> (<a class="el" href="a00305.html">Mat</a>&lt; typename T1::pod_type &gt; &amp;out, const <a class="el" href="a00308.html">Op</a>&lt; T1, <a class="el" href="a00324.html">op_pinv</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00830.html#ga12ffe915f0607794a2ac0deb571ff419">apply</a> (<a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; typename T1::pod_type &gt; &gt; &amp;out, const <a class="el" href="a00308.html">Op</a>&lt; T1, <a class="el" href="a00324.html">op_pinv</a> &gt; &amp;in)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="a00653_source.html#l00023">23</a> of file <a class="el" href="a00653_source.html">op_princomp_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00653_source.html#l00024">24</a> of file <a class="el" href="a00653_source.html">op_pinv_proto.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a34b87c926fa689fe40b0b80d17714b71"></a><!-- doxytag: member="op_pinv::direct_pinv" ref="a34b87c926fa689fe40b0b80d17714b71" args="(Mat&lt; std::complex&lt; eT &gt; &gt; &amp;out, const Mat&lt; std::complex&lt; eT &gt; &gt; &amp;X, eT tol)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void op_pinv::direct_pinv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; eT &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; eT &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">eT&nbsp;</td>
+          <td class="paramname"> <em>tol</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

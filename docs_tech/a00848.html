@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Operator_schur</title>
+<title>Armadillo Technical: Operator_cube_times</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,37 +21,35 @@
   </div>
 </div>
 <div class="contents">
-<h1>Operator_schur</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>Operator_cube_times</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00080.html">eGlue</a>&lt; T1, <br class="typebreak"/>
-T2, <a class="el" href="a00090.html">eglue_schur</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00848.html#gaafb7cf900a63e5427f694916c4445928">operator%</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">element-wise multiplication of <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> objects with same element type  <a href="#gaafb7cf900a63e5427f694916c4445928"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00304.html">Mat</a>&lt; typename <br class="typebreak"/>
-<a class="el" href="a00371.html">promote_type</a>&lt; typename <br class="typebreak"/>
-T1::elem_type, typename <br class="typebreak"/>
-T2::elem_type &gt;::result &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00848.html#ga0ec8f7ff59fee714c2e34dafed268486">operator%</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename <a class="el" href="a00174.html">force_different_type</a>&lt; typename T1::elem_type, typename T2::elem_type &gt;::T1_result, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename <a class="el" href="a00174.html">force_different_type</a>&lt; typename T1::elem_type, typename T2::elem_type &gt;::T2_result, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">element-wise multiplication of <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> objects with different element types  <a href="#ga0ec8f7ff59fee714c2e34dafed268486"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00171.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00135.html">eop_cube_scalar_times</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00848.html#gabe90e3cdd33f65f439eea84006803567">operator*</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const typename T1::elem_type k)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube</a> * scalar.  <a href="#gabe90e3cdd33f65f439eea84006803567"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00171.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00135.html">eop_cube_scalar_times</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00848.html#ga2ec8a69b2b105db0a11a67fc16b5faf8">operator*</a> (const typename T1::elem_type k, const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">scalar * <a class="el" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube</a>  <a href="#ga2ec8a69b2b105db0a11a67fc16b5faf8"></a><br/></td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gaafb7cf900a63e5427f694916c4445928"></a><!-- doxytag: member="operator_schur.hpp::operator%" ref="gaafb7cf900a63e5427f694916c4445928" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X, const Base&lt; typename T1::elem_type, T2 &gt; &amp;Y)" -->
+<a class="anchor" id="gabe90e3cdd33f65f439eea84006803567"></a><!-- doxytag: member="operator_cube_times.hpp::operator*" ref="gabe90e3cdd33f65f439eea84006803567" args="(const BaseCube&lt; typename T1::elem_type, T1 &gt; &amp;X, const typename T1::elem_type k)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline const <a class="el" href="a00080.html">eGlue</a>&lt;T1, T2, <a class="el" href="a00090.html">eglue_schur</a>&gt; operator% </td>
+          <td class="memname">arma_inline const <a class="el" href="a00171.html">eOpCube</a>&lt;T1, <a class="el" href="a00135.html">eop_cube_scalar_times</a>&gt; operator* </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>X</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+          <td class="paramtype">const typename T1::elem_type&nbsp;</td>
+          <td class="paramname"> <em>k</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -62,38 +60,38 @@ template&lt;typename T1 , typename T2 &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>element-wise multiplication of <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> objects with same element type </p>
+<p><a class="el" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube</a> * scalar. </p>
 
-<p>Definition at line <a class="el" href="a00686_source.html#l00029">29</a> of file <a class="el" href="a00686_source.html">operator_schur.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00684_source.html#l00029">29</a> of file <a class="el" href="a00684_source.html">operator_cube_times.hpp</a>.</p>
 
-<p>References <a class="el" href="a00514_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+<p>References <a class="el" href="a00516_source.html#l00029">BaseCube&lt; elem_type, derived &gt;::get_ref()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00033"></a>00033   {
 <a name="l00034"></a>00034   arma_extra_debug_sigprint();
 <a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00080.html">eGlue&lt;T1, T2, eglue_schur&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00171.html">eOpCube&lt;T1, eop_cube_scalar_times&gt;</a>(X.<a class="code" href="a00055.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), k);
 <a name="l00037"></a>00037   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga0ec8f7ff59fee714c2e34dafed268486"></a><!-- doxytag: member="operator_schur.hpp::operator%" ref="ga0ec8f7ff59fee714c2e34dafed268486" args="(const Base&lt; typename force_different_type&lt; typename T1::elem_type, typename T2::elem_type &gt;::T1_result, T1 &gt; &amp;X, const Base&lt; typename force_different_type&lt; typename T1::elem_type, typename T2::elem_type &gt;::T2_result, T2 &gt; &amp;Y)" -->
+<a class="anchor" id="ga2ec8a69b2b105db0a11a67fc16b5faf8"></a><!-- doxytag: member="operator_cube_times.hpp::operator*" ref="ga2ec8a69b2b105db0a11a67fc16b5faf8" args="(const typename T1::elem_type k, const BaseCube&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline <a class="el" href="a00304.html">Mat</a>&lt;typename <a class="el" href="a00371.html">promote_type</a>&lt;typename T1::elem_type, typename T2::elem_type&gt;::result&gt; operator% </td>
+          <td class="memname">arma_inline const <a class="el" href="a00171.html">eOpCube</a>&lt;T1, <a class="el" href="a00135.html">eop_cube_scalar_times</a>&gt; operator* </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename <a class="el" href="a00174.html">force_different_type</a>&lt; typename T1::elem_type, typename T2::elem_type &gt;::T1_result, T1 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em>, </td>
+          <td class="paramtype">const typename T1::elem_type&nbsp;</td>
+          <td class="paramname"> <em>k</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename <a class="el" href="a00174.html">force_different_type</a>&lt; typename T1::elem_type, typename T2::elem_type &gt;::T2_result, T2 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>Y</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -104,39 +102,17 @@ template&lt;typename T1 , typename T2 &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>element-wise multiplication of <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> objects with different element types </p>
+<p>scalar * <a class="el" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube</a> </p>
 
-<p>Definition at line <a class="el" href="a00686_source.html#l00046">46</a> of file <a class="el" href="a00686_source.html">operator_schur.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00684_source.html#l00046">46</a> of file <a class="el" href="a00684_source.html">operator_cube_times.hpp</a>.</p>
 
-<p>References <a class="el" href="a00713_source.html#l00034">upgrade_val&lt; T1, T2 &gt;::apply()</a>, <a class="el" href="a00690_source.html#l00025">promote_type&lt; T1, T2 &gt;::check()</a>, <a class="el" href="a00514_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>, <a class="el" href="a00619_source.html#l02069">Mat&lt; eT &gt;::memptr()</a>, and <a class="el" href="a00620_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
+<p>References <a class="el" href="a00516_source.html#l00029">BaseCube&lt; elem_type, derived &gt;::get_ref()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00050"></a>00050   {
 <a name="l00051"></a>00051   arma_extra_debug_sigprint();
 <a name="l00052"></a>00052   
-<a name="l00053"></a>00053   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT1;
-<a name="l00054"></a>00054   <span class="keyword">typedef</span> <span class="keyword">typename</span> T2::elem_type eT2;
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00371.html">promote_type&lt;eT1,eT2&gt;::result</a> out_eT;
-<a name="l00057"></a>00057   
-<a name="l00058"></a>00058   <a class="code" href="a00371.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   <span class="keyword">const</span> <a class="code" href="a00450.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00061"></a>00061   <span class="keyword">const</span> <a class="code" href="a00450.html">Proxy&lt;T2&gt;</a> B(Y.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;element-wise matrix multiplication&quot;</span>);
-<a name="l00064"></a>00064   
-<a name="l00065"></a>00065   <a class="code" href="a00304.html" title="Dense matrix class.">Mat&lt;out_eT&gt;</a> out(A.n_rows, A.n_cols);
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         out_eT* out_mem = out.memptr();
-<a name="l00068"></a>00068   <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>     n_elem  = out.n_elem;
-<a name="l00069"></a>00069   
-<a name="l00070"></a>00070   <span class="keywordflow">for</span>(<a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00071"></a>00071     {
-<a name="l00072"></a>00072     out_mem[i] = <a class="code" href="a00494.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(A[i]) * <a class="code" href="a00494.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(B[i]);
-<a name="l00073"></a>00073     }
-<a name="l00074"></a>00074   
-<a name="l00075"></a>00075   <span class="keywordflow">return</span> out;
-<a name="l00076"></a>00076   }
+<a name="l00053"></a>00053   <span class="keywordflow">return</span> <a class="code" href="a00171.html">eOpCube&lt;T1, eop_cube_scalar_times&gt;</a>(X.<a class="code" href="a00055.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>(), k);
+<a name="l00054"></a>00054   }
 </pre></div></p>
 
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eGlue_meat.hpp Source File</title>
+<title>Armadillo Technical: eglue_cube_misc.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>eGlue_meat.hpp</h1><a href="a00536.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>eglue_cube_misc.hpp</h1><a href="a00536.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,34 +45,48 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup eGlue</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup eglue_cube_misc</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> eglue_type&gt;
-<a name="l00023"></a>00023 arma_inline
-<a name="l00024"></a><a class="code" href="a00741.html#gab71b6b416915db2f87811a2f2f1eddfd">00024</a> <a class="code" href="a00741.html#gab71b6b416915db2f87811a2f2f1eddfd">eGlue&lt;T1,T2,eglue_type&gt;::~eGlue</a>()
-<a name="l00025"></a>00025   {
-<a name="l00026"></a>00026   arma_extra_debug_sigprint();
-<a name="l00027"></a>00027   }
+<a name="l00022"></a><a class="code" href="a00085.html">00022</a> <span class="keyword">class </span><a class="code" href="a00085.html">eglue_cube_plus</a> : <span class="keyword">public</span> <a class="code" href="a00082.html">eglue_cube_core</a>&lt;eglue_cube_plus&gt;
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024   <span class="keyword">public</span>:
+<a name="l00025"></a>00025   
+<a name="l00026"></a><a class="code" href="a00085.html#acafb0dd4a8edaf3f6f3d28205a0afa4e">00026</a>   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00085.html#acafb0dd4a8edaf3f6f3d28205a0afa4e">id</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;cube addition&quot;</span>; }
+<a name="l00027"></a>00027   };
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029 
 <a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> eglue_type&gt;
-<a name="l00032"></a>00032 arma_inline
-<a name="l00033"></a><a class="code" href="a00741.html#ga9a12c4b94e4b347f93024a5558e0dbee">00033</a> <a class="code" href="a00741.html#ga9a12c4b94e4b347f93024a5558e0dbee">eGlue&lt;T1,T2,eglue_type&gt;::eGlue</a>(<span class="keyword">const</span> T1&amp; in_A, <span class="keyword">const</span> T2&amp; in_B)
-<a name="l00034"></a>00034   : P1(in_A)
-<a name="l00035"></a>00035   , P2(in_B)
-<a name="l00036"></a>00036   {
-<a name="l00037"></a>00037   arma_extra_debug_sigprint();
-<a name="l00038"></a>00038   
-<a name="l00039"></a>00039   <a class="code" href="a00734.html#gaed62a3eceba5209655f9deefba4fc7cc">arma_assert_same_size</a>(<a class="code" href="a00080.html#a0eaa3647cc6c7b96b5f7001c5d974866">P1</a>.n_rows, <a class="code" href="a00080.html#a0eaa3647cc6c7b96b5f7001c5d974866">P1</a>.n_cols, <a class="code" href="a00080.html#aa2b5e16e9240804f4f0a9b7a39a384e0">P2</a>.n_rows, <a class="code" href="a00080.html#aa2b5e16e9240804f4f0a9b7a39a384e0">P2</a>.n_cols, eglue_type::id());
-<a name="l00040"></a>00040   }
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="comment"></span>
-<a name="l00044"></a>00044 <span class="comment">//! @}</span>
+<a name="l00031"></a><a class="code" href="a00084.html">00031</a> <span class="keyword">class </span><a class="code" href="a00084.html">eglue_cube_minus</a> : <span class="keyword">public</span> <a class="code" href="a00082.html">eglue_cube_core</a>&lt;eglue_cube_minus&gt;
+<a name="l00032"></a>00032   {
+<a name="l00033"></a>00033   <span class="keyword">public</span>:
+<a name="l00034"></a>00034   
+<a name="l00035"></a><a class="code" href="a00084.html#a41438dfab07bb6160ea3dd3a3d361181">00035</a>   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00084.html#a41438dfab07bb6160ea3dd3a3d361181">id</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;cube subtraction&quot;</span>; }
+<a name="l00036"></a>00036   };
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00040"></a><a class="code" href="a00083.html">00040</a> <span class="keyword">class </span><a class="code" href="a00083.html">eglue_cube_div</a> : <span class="keyword">public</span> <a class="code" href="a00082.html">eglue_cube_core</a>&lt;eglue_cube_div&gt;
+<a name="l00041"></a>00041   {
+<a name="l00042"></a>00042   <span class="keyword">public</span>:
+<a name="l00043"></a>00043   
+<a name="l00044"></a><a class="code" href="a00083.html#a0cade03d0ae5725df4306564cf86f5d0">00044</a>   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00083.html#a0cade03d0ae5725df4306564cf86f5d0">id</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;element-wise cube division&quot;</span>; }
+<a name="l00045"></a>00045   };
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 
+<a name="l00049"></a><a class="code" href="a00086.html">00049</a> <span class="keyword">class </span><a class="code" href="a00086.html">eglue_cube_schur</a> : <span class="keyword">public</span> <a class="code" href="a00082.html">eglue_cube_core</a>&lt;eglue_cube_schur&gt;
+<a name="l00050"></a>00050   {
+<a name="l00051"></a>00051   <span class="keyword">public</span>:
+<a name="l00052"></a>00052   
+<a name="l00053"></a><a class="code" href="a00086.html#a89d38e85d6e73d74e13ecc3b69da9aec">00053</a>   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00086.html#a89d38e85d6e73d74e13ecc3b69da9aec">id</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;element-wise cube multiplication&quot;</span>; }
+<a name="l00054"></a>00054   };
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="comment"></span>
+<a name="l00058"></a>00058 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

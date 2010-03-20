@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: unwrap_cube_check&lt; Cube&lt; eT &gt; &gt; Class Template Reference</title>
+<title>Armadillo Technical: unwrap_cube_check&lt; T1 &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,129 +29,102 @@
   </div>
 </div>
 <div class="contents">
-<h1>unwrap_cube_check&lt; Cube&lt; eT &gt; &gt; Class Template Reference<br/>
+<h1>unwrap_cube_check&lt; T1 &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00867.html">Unwrap_cube</a>]</small>
-</h1><!-- doxytag: class="unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00712_source.html">unwrap_cube.hpp</a>&gt;</code></p>
+[<a class="el" href="a00873.html">Unwrap_cube</a>]</small>
+</h1><!-- doxytag: class="unwrap_cube_check" -->
+<p><code>#include &lt;<a class="el" href="a00716_source.html">unwrap_cube.hpp</a>&gt;</code></p>
 
-<p><a href="a01351.html">List of all members.</a></p>
+<p><a href="a01357.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#a0ff1794a94dcf18221878573bec49375">unwrap_cube_check</a> (const <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &amp;B)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#a29aaaebf69f3e71db9f451e26ecdb26b">~unwrap_cube_check</a> ()</td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#aa639264d4a1202bcbd7af0eebb709afd">M_local</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#a0bfc572a7c10c0456570dc6c38861bf4">M</a></td></tr>
+<tr><td colspan="2"><h2>Private Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#a58dee99df4e872f44915c78b8d900c0b">eT</a></td></tr>
+<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#a384b535e41dc8236eae40b46b495308f">unwrap_cube_check</a> (const T1 &amp;A, const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00493.html#a58dee99df4e872f44915c78b8d900c0b">eT</a> &gt; &amp;B)</td></tr>
+<tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00493.html#a58dee99df4e872f44915c78b8d900c0b">eT</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00493.html#a04a66668ce6796326fdcb1cb95a054ac">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename eT&gt;<br/>
- class unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;</h3>
+<h3>template&lt;typename T1&gt;<br/>
+ class unwrap_cube_check&lt; T1 &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00084">84</a> of file <a class="el" href="a00712_source.html">unwrap_cube.hpp</a>.</p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0ff1794a94dcf18221878573bec49375"></a><!-- doxytag: member="unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;::unwrap_cube_check" ref="a0ff1794a94dcf18221878573bec49375" args="(const Cube&lt; eT &gt; &amp;A, const Cube&lt; eT &gt; &amp;B)" -->
+<p>Definition at line <a class="el" href="a00716_source.html#l00065">65</a> of file <a class="el" href="a00716_source.html">unwrap_cube.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a58dee99df4e872f44915c78b8d900c0b"></a><!-- doxytag: member="unwrap_cube_check::eT" ref="a58dee99df4e872f44915c78b8d900c0b" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00492.html">unwrap_cube_check</a>&lt; <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &gt;::<a class="el" href="a00492.html">unwrap_cube_check</a> </td>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00493.html">unwrap_cube_check</a>&lt; T1 &gt;::<a class="el" href="a00493.html#a58dee99df4e872f44915c78b8d900c0b">eT</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00716_source.html#l00067">67</a> of file <a class="el" href="a00716_source.html">unwrap_cube.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a384b535e41dc8236eae40b46b495308f"></a><!-- doxytag: member="unwrap_cube_check::unwrap_cube_check" ref="a384b535e41dc8236eae40b46b495308f" args="(const T1 &amp;A, const Cube&lt; eT &gt; &amp;B)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00493.html">unwrap_cube_check</a>&lt; T1 &gt;::<a class="el" href="a00493.html">unwrap_cube_check</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
           <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00066.html">Cube</a>&lt; <a class="el" href="a00493.html#a58dee99df4e872f44915c78b8d900c0b">eT</a> &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
+          <td></td><td></td><td><code> [inline, private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00089">89</a> of file <a class="el" href="a00712_source.html">unwrap_cube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00716_source.html#l00070">70</a> of file <a class="el" href="a00716_source.html">unwrap_cube.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00090"></a>00090     : <a class="code" href="a00493.html#aa639264d4a1202bcbd7af0eebb709afd">M_local</a>( (&amp;A == &amp;B) ? <span class="keyword">new</span> <a class="code" href="a00066.html" title="Dense cube class.">Cube&lt;eT&gt;</a>(A) : 0 )
-<a name="l00091"></a>00091     , <a class="code" href="a00493.html#a0bfc572a7c10c0456570dc6c38861bf4">M</a>      ( (&amp;A == &amp;B) ? (*<a class="code" href="a00493.html#aa639264d4a1202bcbd7af0eebb709afd">M_local</a>)      : A )
-<a name="l00092"></a>00092     {
-<a name="l00093"></a>00093     arma_extra_debug_sigprint();
-<a name="l00094"></a>00094     }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="a29aaaebf69f3e71db9f451e26ecdb26b"></a><!-- doxytag: member="unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;::~unwrap_cube_check" ref="a29aaaebf69f3e71db9f451e26ecdb26b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00492.html">unwrap_cube_check</a>&lt; <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &gt;::~<a class="el" href="a00492.html">unwrap_cube_check</a> </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00712_source.html#l00098">98</a> of file <a class="el" href="a00712_source.html">unwrap_cube.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00099"></a>00099     {
-<a name="l00100"></a>00100     arma_extra_debug_sigprint();
-<a name="l00101"></a>00101     
-<a name="l00102"></a>00102     <span class="keywordflow">if</span>(<a class="code" href="a00493.html#aa639264d4a1202bcbd7af0eebb709afd">M_local</a>)
-<a name="l00103"></a>00103       {
-<a name="l00104"></a>00104       <span class="keyword">delete</span> <a class="code" href="a00493.html#aa639264d4a1202bcbd7af0eebb709afd">M_local</a>;
-<a name="l00105"></a>00105       }
-<a name="l00106"></a>00106     }
+<p><div class="fragment"><pre class="fragment"><a name="l00071"></a>00071     : <a class="code" href="a00493.html#a04a66668ce6796326fdcb1cb95a054ac">M</a>(A)
+<a name="l00072"></a>00072     {
+<a name="l00073"></a>00073     arma_extra_debug_sigprint();
+<a name="l00074"></a>00074     
+<a name="l00075"></a>00075     <a class="code" href="a00043.html">arma_type_check&lt; is_arma_cube_type&lt;T1&gt;::value</a> == <span class="keyword">false</span> &gt;::apply();
+<a name="l00076"></a>00076     }
 </pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="aa639264d4a1202bcbd7af0eebb709afd"></a><!-- doxytag: member="unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;::M_local" ref="aa639264d4a1202bcbd7af0eebb709afd" args="" -->
+<a class="anchor" id="a04a66668ce6796326fdcb1cb95a054ac"></a><!-- doxytag: member="unwrap_cube_check::M" ref="a04a66668ce6796326fdcb1cb95a054ac" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00066.html">Cube</a>&lt;eT&gt;* <a class="el" href="a00492.html">unwrap_cube_check</a>&lt; <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &gt;::<a class="el" href="a00493.html#aa639264d4a1202bcbd7af0eebb709afd">M_local</a></td>
+          <td class="memname">const <a class="el" href="a00066.html">Cube</a>&lt;<a class="el" href="a00493.html#a58dee99df4e872f44915c78b8d900c0b">eT</a>&gt; <a class="el" href="a00493.html">unwrap_cube_check</a>&lt; T1 &gt;::<a class="el" href="a00493.html#a04a66668ce6796326fdcb1cb95a054ac">M</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00712_source.html#l00110">110</a> of file <a class="el" href="a00712_source.html">unwrap_cube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00716_source.html#l00078">78</a> of file <a class="el" href="a00716_source.html">unwrap_cube.hpp</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="a0bfc572a7c10c0456570dc6c38861bf4"></a><!-- doxytag: member="unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;::M" ref="a0bfc572a7c10c0456570dc6c38861bf4" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00066.html">Cube</a>&lt;eT&gt;&amp; <a class="el" href="a00492.html">unwrap_cube_check</a>&lt; <a class="el" href="a00066.html">Cube</a>&lt; eT &gt; &gt;::<a class="el" href="a00493.html#a0bfc572a7c10c0456570dc6c38861bf4">M</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00712_source.html#l00111">111</a> of file <a class="el" href="a00712_source.html">unwrap_cube.hpp</a>.</p>
+<p>Referenced by <a class="el" href="a00663_source.html#l00083">op_reshape::apply()</a>.</p>
 
 </div>
 </div>

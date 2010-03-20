@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eOpCube_proto.hpp Source File</title>
+<title>Armadillo Technical: eOpCube_meat.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_a467dea6d9269e79d48e334827b5b6dd.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_39fe8108aa8feb8d6970cb16ac070c16.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>eOpCube_proto.hpp</h1><a href="a00549.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>eOpCube_meat.hpp</h1><a href="a00549.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -51,33 +51,92 @@
 <a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
-<a name="l00023"></a><a class="code" href="a00171.html">00023</a> <span class="keyword">class </span><a class="code" href="a00171.html">eOpCube</a> : <span class="keyword">public</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube</a>&lt;typename T1::elem_type, eOpCube&lt;T1, eop_type&gt; &gt;
-<a name="l00024"></a>00024   {
-<a name="l00025"></a>00025   <span class="keyword">public</span>:
-<a name="l00026"></a>00026   
-<a name="l00027"></a><a class="code" href="a00171.html#ac716ac688620dddfd2546f903e458aa7">00027</a>   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type                   <a class="code" href="a00171.html#ac716ac688620dddfd2546f903e458aa7">elem_type</a>;
-<a name="l00028"></a><a class="code" href="a00171.html#a073b144622a9fa213de8b8afb582eb51">00028</a>   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;elem_type&gt;::result</a> <a class="code" href="a00171.html#a073b144622a9fa213de8b8afb582eb51">pod_type</a>;
-<a name="l00029"></a>00029   
-<a name="l00030"></a><a class="code" href="a00171.html#a3ffee9628dfe84fd67d99f6905f823cd">00030</a>   <span class="keyword">const</span> <a class="code" href="a00460.html">ProxyCube&lt;T1&gt;</a> <a class="code" href="a00171.html#a3ffee9628dfe84fd67d99f6905f823cd">P</a>;
-<a name="l00031"></a>00031   
-<a name="l00032"></a><a class="code" href="a00171.html#a88008dbd4ecc5f5d45778effb039ffbd">00032</a>   <span class="keyword">const</span> <a class="code" href="a00171.html#ac716ac688620dddfd2546f903e458aa7">elem_type</a> <a class="code" href="a00171.html#a88008dbd4ecc5f5d45778effb039ffbd" title="storage of auxiliary data, user defined format">aux</a>;        <span class="comment">//!&lt; storage of auxiliary data, user defined format</span>
-<a name="l00033"></a><a class="code" href="a00171.html#a20b3e10029f2537f41c3efdb376468dd">00033</a> <span class="comment"></span>  <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>       <a class="code" href="a00171.html#a20b3e10029f2537f41c3efdb376468dd" title="storage of auxiliary data, u32 format">aux_u32_a</a>;  <span class="comment">//!&lt; storage of auxiliary data, u32 format</span>
-<a name="l00034"></a><a class="code" href="a00171.html#a8a86c9a57ce92ba23fd03058ac2c00dd">00034</a> <span class="comment"></span>  <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>       <a class="code" href="a00171.html#a8a86c9a57ce92ba23fd03058ac2c00dd" title="storage of auxiliary data, u32 format">aux_u32_b</a>;  <span class="comment">//!&lt; storage of auxiliary data, u32 format</span>
-<a name="l00035"></a><a class="code" href="a00171.html#a9670ccab580ae5d18ebe9f78ce98cae3">00035</a> <span class="comment"></span>  <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>       <a class="code" href="a00171.html#a9670ccab580ae5d18ebe9f78ce98cae3" title="storage of auxiliary data, u32 format">aux_u32_c</a>;  <span class="comment">//!&lt; storage of auxiliary data, u32 format</span>
-<a name="l00036"></a>00036 <span class="comment"></span>  
-<a name="l00037"></a>00037   <span class="keyword">inline</span>         <a class="code" href="a00748.html#ga4735179e9a3e1a366586596fd19ba30a">~eOpCube</a>();
-<a name="l00038"></a>00038   <span class="keyword">inline</span> <span class="keyword">explicit</span> <a class="code" href="a00748.html#gaeaa0170fe4b4566a936323b063678448">eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m);
-<a name="l00039"></a>00039   <span class="keyword">inline</span>          <a class="code" href="a00748.html#gaeaa0170fe4b4566a936323b063678448">eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <a class="code" href="a00171.html#ac716ac688620dddfd2546f903e458aa7">elem_type</a> in_aux);
-<a name="l00040"></a>00040   <span class="keyword">inline</span>          <a class="code" href="a00748.html#gaeaa0170fe4b4566a936323b063678448">eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b);
-<a name="l00041"></a>00041   <span class="keyword">inline</span>          <a class="code" href="a00748.html#gaeaa0170fe4b4566a936323b063678448">eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c);
-<a name="l00042"></a>00042   <span class="keyword">inline</span>          <a class="code" href="a00748.html#gaeaa0170fe4b4566a936323b063678448">eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <a class="code" href="a00171.html#ac716ac688620dddfd2546f903e458aa7">elem_type</a> in_aux, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c);
-<a name="l00043"></a>00043   <span class="keyword">inline</span>          <a class="code" href="a00748.html#gaeaa0170fe4b4566a936323b063678448">eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_rows, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_cols, <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_slices);
-<a name="l00044"></a>00044   
-<a name="l00045"></a>00045   };
+<a name="l00023"></a><a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">00023</a> <a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">eOpCube&lt;T1, eop_type&gt;::eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m)
+<a name="l00024"></a>00024   : P         (in_m.get_ref())
+<a name="l00025"></a>00025   , aux       (aux)
+<a name="l00026"></a>00026   , aux_u32_a (aux_u32_a)
+<a name="l00027"></a>00027   , aux_u32_b (aux_u32_b)
+<a name="l00028"></a>00028   , aux_u32_c (aux_u32_c)
+<a name="l00029"></a>00029   {
+<a name="l00030"></a>00030   arma_extra_debug_sigprint();
+<a name="l00031"></a>00031   }
+<a name="l00032"></a>00032   
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
+<a name="l00036"></a><a class="code" href="a00752.html#gac0dfb7a3c9830acb4f4c3bf4b6432170">00036</a> <a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">eOpCube&lt;T1, eop_type&gt;::eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type in_aux)
+<a name="l00037"></a>00037   : P         (in_m.get_ref())
+<a name="l00038"></a>00038   , aux       (in_aux)
+<a name="l00039"></a>00039   , aux_u32_a (aux_u32_a)
+<a name="l00040"></a>00040   , aux_u32_b (aux_u32_b)
+<a name="l00041"></a>00041   , aux_u32_c (aux_u32_c)
+<a name="l00042"></a>00042   {
+<a name="l00043"></a>00043   arma_extra_debug_sigprint();
+<a name="l00044"></a>00044   }
+<a name="l00045"></a>00045   
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="comment"></span>
-<a name="l00049"></a>00049 <span class="comment">//! @}</span>
+<a name="l00048"></a>00048 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
+<a name="l00049"></a><a class="code" href="a00752.html#gada22635946ffa940a86ccdb6990bedbe">00049</a> <a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">eOpCube&lt;T1, eop_type&gt;::eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b)
+<a name="l00050"></a>00050   : P         (in_m.get_ref())
+<a name="l00051"></a>00051   , aux       (aux)
+<a name="l00052"></a>00052   , aux_u32_a (in_aux_u32_a)
+<a name="l00053"></a>00053   , aux_u32_b (in_aux_u32_b)
+<a name="l00054"></a>00054   , aux_u32_c (aux_u32_c)
+<a name="l00055"></a>00055   {
+<a name="l00056"></a>00056   arma_extra_debug_sigprint();
+<a name="l00057"></a>00057   }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
+<a name="l00062"></a><a class="code" href="a00752.html#ga63c409fd6bb9261f6c7f755c8331a974">00062</a> <a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">eOpCube&lt;T1, eop_type&gt;::eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c)
+<a name="l00063"></a>00063   : P         (in_m.get_ref())
+<a name="l00064"></a>00064   , aux       (aux)
+<a name="l00065"></a>00065   , aux_u32_a (in_aux_u32_a)
+<a name="l00066"></a>00066   , aux_u32_b (in_aux_u32_b)
+<a name="l00067"></a>00067   , aux_u32_c (in_aux_u32_c)
+<a name="l00068"></a>00068   {
+<a name="l00069"></a>00069   arma_extra_debug_sigprint();
+<a name="l00070"></a>00070   }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
+<a name="l00075"></a><a class="code" href="a00752.html#gaf1c47c557ebc78f8338779ea316cccf7">00075</a> <a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">eOpCube&lt;T1, eop_type&gt;::eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00055.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type, T1&gt;</a>&amp; in_m, <span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type in_aux, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_c)
+<a name="l00076"></a>00076   : P         (in_m.get_ref())
+<a name="l00077"></a>00077   , aux       (in_aux)
+<a name="l00078"></a>00078   , aux_u32_a (in_aux_u32_a)
+<a name="l00079"></a>00079   , aux_u32_b (in_aux_u32_b)
+<a name="l00080"></a>00080   , aux_u32_c (in_aux_u32_c)
+<a name="l00081"></a>00081   {
+<a name="l00082"></a>00082   arma_extra_debug_sigprint();
+<a name="l00083"></a>00083   }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 
+<a name="l00087"></a>00087 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
+<a name="l00088"></a><a class="code" href="a00752.html#ga23de68c459b1911966973d938559fa4a">00088</a> <a class="code" href="a00752.html#gaeaa0170fe4b4566a936323b063678448">eOpCube&lt;T1, eop_type&gt;::eOpCube</a>(<span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_rows, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_cols, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_n_slices)
+<a name="l00089"></a>00089   : P         (in_n_rows, in_n_cols, in_n_slices)
+<a name="l00090"></a>00090   , aux       (aux)
+<a name="l00091"></a>00091   , aux_u32_a (aux_u32_a)
+<a name="l00092"></a>00092   , aux_u32_b (aux_u32_b)
+<a name="l00093"></a>00093   , aux_u32_c (aux_u32_c)
+<a name="l00094"></a>00094   {
+<a name="l00095"></a>00095   arma_extra_debug_sigprint();
+<a name="l00096"></a>00096   }
+<a name="l00097"></a>00097   
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> eop_type&gt;
+<a name="l00101"></a><a class="code" href="a00752.html#ga4735179e9a3e1a366586596fd19ba30a">00101</a> <a class="code" href="a00752.html#ga4735179e9a3e1a366586596fd19ba30a">eOpCube&lt;T1, eop_type&gt;::~eOpCube</a>()
+<a name="l00102"></a>00102   {
+<a name="l00103"></a>00103   arma_extra_debug_sigprint();
+<a name="l00104"></a>00104   }
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

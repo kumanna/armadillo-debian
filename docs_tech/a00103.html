@@ -31,11 +31,11 @@
 <div class="contents">
 <h1>eop_aux_randn&lt; eT &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00744.html">Eop_aux</a>]</small>
+[<a class="el" href="a00748.html">Eop_aux</a>]</small>
 </h1><!-- doxytag: class="eop_aux_randn" -->
-<p><code>#include &lt;<a class="el" href="a00541_source.html">eop_aux.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="a00542_source.html">eop_aux.hpp</a>&gt;</code></p>
 
-<p><a href="a00966.html">List of all members.</a></p>
+<p><a href="a00972.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00103.html#a9b2de61f28478fad776afe72b4172e4e">operator eT</a> () const </td></tr>
@@ -45,7 +45,7 @@
  struct eop_aux_randn&lt; eT &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00541_source.html#l00047">47</a> of file <a class="el" href="a00541_source.html">eop_aux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00542_source.html#l00047">47</a> of file <a class="el" href="a00542_source.html">eop_aux.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a9b2de61f28478fad776afe72b4172e4e"></a><!-- doxytag: member="eop_aux_randn::operator eT" ref="a9b2de61f28478fad776afe72b4172e4e" args="() const " -->
 <div class="memitem">
@@ -64,20 +64,20 @@ template&lt;typename eT &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00541_source.html#l00059">59</a> of file <a class="el" href="a00541_source.html">eop_aux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00542_source.html#l00059">59</a> of file <a class="el" href="a00542_source.html">eop_aux.hpp</a>.</p>
 
-<p>References <a class="el" href="a00582_source.html#l00048">rand()</a>.</p>
+<p>References <a class="el" href="a00584_source.html#l00048">rand()</a>.</p>
 
 <p><div class="fragment"><pre class="fragment"><a name="l00060"></a>00060     {
-<a name="l00061"></a>00061     <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N  = 12;  <span class="comment">// N must be &gt;= 12 and an even number</span>
-<a name="l00062"></a>00062     <span class="keyword">const</span> <a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N2 = N/2;
+<a name="l00061"></a>00061     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N  = 12;  <span class="comment">// N must be &gt;= 12 and an even number</span>
+<a name="l00062"></a>00062     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N2 = N/2;
 <a name="l00063"></a>00063     
 <a name="l00064"></a>00064     eT acc = eT(0);
 <a name="l00065"></a>00065     
-<a name="l00066"></a>00066     <span class="keywordflow">for</span>(<a class="code" href="a00865.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N2; ++i)
+<a name="l00066"></a>00066     <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N2; ++i)
 <a name="l00067"></a>00067       {
-<a name="l00068"></a>00068       <span class="keyword">const</span> eT tmp1 = eT(<a class="code" href="a00780.html#gabbba00b92b2a32c3a5cf5cf15cef1ea5" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / eT(RAND_MAX);
-<a name="l00069"></a>00069       <span class="keyword">const</span> eT tmp2 = eT(<a class="code" href="a00780.html#gabbba00b92b2a32c3a5cf5cf15cef1ea5" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / eT(RAND_MAX);
+<a name="l00068"></a>00068       <span class="keyword">const</span> eT tmp1 = eT(<a class="code" href="a00785.html#gabbba00b92b2a32c3a5cf5cf15cef1ea5" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / eT(RAND_MAX);
+<a name="l00069"></a>00069       <span class="keyword">const</span> eT tmp2 = eT(<a class="code" href="a00785.html#gabbba00b92b2a32c3a5cf5cf15cef1ea5" title="Generate a dense matrix with all elements set to random values in the [0,1] interval...">std::rand</a>()) / eT(RAND_MAX);
 <a name="l00070"></a>00070       acc += tmp1+tmp2;
 <a name="l00071"></a>00071       }
 <a name="l00072"></a>00072     

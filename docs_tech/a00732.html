@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Constants</title>
+<title>Armadillo Technical: Base</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,78 +21,12 @@
   </div>
 </div>
 <div class="contents">
-<h1>Constants</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>Base</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00306.html">Math&lt; eT &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00369.html">Phy&lt; eT &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Physical constants taken from NIST and WolframAlpha on 2009-06-23 <a href="http://physics.nist.gov/cuu/Constants">http://physics.nist.gov/cuu/Constants</a> <a href="http://www.wolframalpha.com">http://www.wolframalpha.com</a> See also <a href="http://en.wikipedia.org/wiki/Physical_constant.">http://en.wikipedia.org/wiki/Physical_constant.</a>  <a href="a00369.html#_details">More...</a><br/></td></tr>
-<tr><td colspan="2"><h2>Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00306.html">Math</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00732.html#ga82de1a3157601797a4be2a4785ff8628">fmath</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00306.html">Math</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00732.html#ga0bd446b62822e28790e007fd13b91e7d">math</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00369.html">Phy</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00732.html#gab9b5ac332dcf6a5dfb1e496ff99c21b4">fphy</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00369.html">Phy</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00732.html#gaa95d18f12982a215849e23556f0ae1ea">phy</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054.html">Base&lt; elem_type, derived &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00305.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00189.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00477.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00305.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00483.html">unwrap</a> class.  <a href="a00054.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056.html">BaseVec&lt; elem_type, derived &gt;</a></td></tr>
 </table>
-<hr/><h2>Typedef Documentation</h2>
-<a class="anchor" id="ga82de1a3157601797a4be2a4785ff8628"></a><!-- doxytag: member="constants.hpp::fmath" ref="ga82de1a3157601797a4be2a4785ff8628" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00306.html">Math</a>&lt;float&gt; <a class="el" href="a00306.html">fmath</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00522_source.html#l00155">155</a> of file <a class="el" href="a00522_source.html">constants.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga0bd446b62822e28790e007fd13b91e7d"></a><!-- doxytag: member="constants.hpp::math" ref="ga0bd446b62822e28790e007fd13b91e7d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00306.html">Math</a>&lt;double&gt; <a class="el" href="a00306.html">math</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00522_source.html#l00156">156</a> of file <a class="el" href="a00522_source.html">constants.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gab9b5ac332dcf6a5dfb1e496ff99c21b4"></a><!-- doxytag: member="constants.hpp::fphy" ref="gab9b5ac332dcf6a5dfb1e496ff99c21b4" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00369.html">Phy</a>&lt;float&gt; <a class="el" href="a00369.html">fphy</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00522_source.html#l00158">158</a> of file <a class="el" href="a00522_source.html">constants.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gaa95d18f12982a215849e23556f0ae1ea"></a><!-- doxytag: member="constants.hpp::phy" ref="gaa95d18f12982a215849e23556f0ae1ea" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00369.html">Phy</a>&lt;double&gt; <a class="el" href="a00369.html">phy</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00522_source.html#l00159">159</a> of file <a class="el" href="a00522_source.html">constants.hpp</a>.</p>
-
-</div>
-</div>
 </div>
 </BODY>
 </HTML>
