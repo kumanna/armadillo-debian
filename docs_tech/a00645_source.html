@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_mean_meat.hpp Source File</title>
+<title>Armadillo Technical: op_dotext_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>op_mean_meat.hpp</h1><a href="a00645.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>op_dotext_proto.hpp</h1><a href="a00645.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,129 +45,37 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup op_mean</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup op_dotext</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment">//! find the mean value of an array</span>
-<a name="l00022"></a>00022 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00023"></a>00023 <span class="keyword">inline</span> 
-<a name="l00024"></a>00024 eT
-<a name="l00025"></a><a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b">00025</a> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(<span class="keyword">const</span> eT* <span class="keyword">const</span> X, <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)
-<a name="l00026"></a>00026   {
-<a name="l00027"></a>00027   arma_extra_debug_sigprint();
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   eT val = eT(0);
-<a name="l00030"></a>00030   
-<a name="l00031"></a>00031   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00032"></a>00032     {
-<a name="l00033"></a>00033     val += X[i];
-<a name="l00034"></a>00034     }
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a><a class="code" href="a00318.html">00022</a> <span class="keyword">class </span><a class="code" href="a00318.html">op_dotext</a>
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024   <span class="keyword">public</span>:
+<a name="l00025"></a>00025   
+<a name="l00026"></a>00026   
+<a name="l00027"></a>00027   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00028"></a>00028   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00833.html#ga55868ff8904b5abfc75cb2d9aa2b77cc">direct_rowvec_mat_colvec</a>       (<span class="keyword">const</span> eT* A_mem, <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B, <span class="keyword">const</span> eT* C_mem);
+<a name="l00029"></a>00029   
+<a name="l00030"></a>00030   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00031"></a>00031   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00833.html#gad2dfe2e374b20467d38333b5b8dc7c65">direct_rowvec_transmat_colvec</a>  (<span class="keyword">const</span> eT* A_mem, <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B, <span class="keyword">const</span> eT* C_mem);
+<a name="l00032"></a>00032   
+<a name="l00033"></a>00033   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00034"></a>00034   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00833.html#ga3217683c62406f4331c2a1a62b5d212e">direct_rowvec_diagmat_colvec</a>   (<span class="keyword">const</span> eT* A_mem, <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B, <span class="keyword">const</span> eT* C_mem);
 <a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keywordflow">return</span> val / eT(n_elem);
-<a name="l00037"></a>00037   }
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment"></span>
-<a name="l00041"></a>00041 <span class="comment">//! find the mean value of a subview</span>
-<a name="l00042"></a>00042 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00043"></a>00043 <span class="keyword">inline</span> 
-<a name="l00044"></a>00044 eT
-<a name="l00045"></a><a class="code" href="a00826.html#ga576dbfee2d2ab22eea6894d7b8bd17ab">00045</a> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(<span class="keyword">const</span> <a class="code" href="a00477.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>&amp; X)
-<a name="l00046"></a>00046   {
-<a name="l00047"></a>00047   arma_extra_debug_sigprint();
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   eT val = eT(0);
-<a name="l00050"></a>00050   
-<a name="l00051"></a>00051   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;X.<a class="code" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a>; ++i)
-<a name="l00052"></a>00052     {
-<a name="l00053"></a>00053     val += X[i];
-<a name="l00054"></a>00054     }
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   <span class="keywordflow">return</span> val / eT(X.<a class="code" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a>);
-<a name="l00057"></a>00057   }
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060 <span class="comment"></span>
-<a name="l00061"></a>00061 <span class="comment">//! find the mean value of a diagview</span>
-<a name="l00062"></a>00062 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00063"></a>00063 <span class="keyword">inline</span> 
-<a name="l00064"></a>00064 eT
-<a name="l00065"></a><a class="code" href="a00826.html#gae5f996a0d9ee79d212cda3fb6310e408">00065</a> <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>(<span class="keyword">const</span> <a class="code" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; X)
-<a name="l00066"></a>00066   {
-<a name="l00067"></a>00067   arma_extra_debug_sigprint();
-<a name="l00068"></a>00068   
-<a name="l00069"></a>00069   eT val = eT(0);
-<a name="l00070"></a>00070   
-<a name="l00071"></a>00071   <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;X.<a class="code" href="a00078.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a>; ++i)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073     val += X[i];
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075   
-<a name="l00076"></a>00076   <span class="keywordflow">return</span> val / eT(X.<a class="code" href="a00078.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a>);
-<a name="l00077"></a>00077   }
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080 <span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">//! \brief</span>
-<a name="l00082"></a>00082 <span class="comment">//! For each row or for each column, find the mean value.</span>
-<a name="l00083"></a>00083 <span class="comment">//! The result is stored in a dense matrix that has either one column or one row.</span>
-<a name="l00084"></a>00084 <span class="comment">//! The dimension, for which the means are found, is set via the mean() function.</span>
-<a name="l00085"></a>00085 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00086"></a>00086 <span class="keyword">inline</span>
-<a name="l00087"></a>00087 <span class="keywordtype">void</span>
-<a name="l00088"></a><a class="code" href="a00826.html#ga3436aaba77f64b4f0ac2339dfb23d23a">00088</a> <a class="code" href="a00826.html#ga3436aaba77f64b4f0ac2339dfb23d23a" title="For each row or for each column, find the mean value. The result is stored in a dense...">op_mean::apply</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_mean&gt;</a>&amp; in)
-<a name="l00089"></a>00089   {
-<a name="l00090"></a>00090   arma_extra_debug_sigprint();
-<a name="l00091"></a>00091   
-<a name="l00092"></a>00092   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00093"></a>00093   
-<a name="l00094"></a>00094   <span class="keyword">const</span> <a class="code" href="a00487.html">unwrap_check&lt;T1&gt;</a> tmp(in.<a class="code" href="a00308.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>, out);
-<a name="l00095"></a>00095   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X = tmp.<a class="code" href="a00487.html#aa2b5f655cf585ebd8aeb9c806e0fb51b">M</a>;
-<a name="l00096"></a>00096   
-<a name="l00097"></a>00097   arma_debug_check( (X.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;mean(): given matrix has no elements&quot;</span> );
-<a name="l00098"></a>00098   
-<a name="l00099"></a>00099   <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim = in.<a class="code" href="a00308.html#a5bb8e0047ae5979de97353676d0b483b" title="storage of auxiliary data, u32 format">aux_u32_a</a>;
-<a name="l00100"></a>00100   arma_debug_check( (dim &gt; 1), <span class="stringliteral">&quot;mean(): incorrect usage. dim must be 0 or 1&quot;</span>);
-<a name="l00101"></a>00101   
-<a name="l00102"></a>00102   
-<a name="l00103"></a>00103   <span class="keywordflow">if</span>(dim == 0)
-<a name="l00104"></a>00104     {
-<a name="l00105"></a>00105     arma_extra_debug_print(<span class="stringliteral">&quot;op_mean::apply(), dim = 0&quot;</span>);
-<a name="l00106"></a>00106     
-<a name="l00107"></a>00107     out.<a class="code" href="a00815.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1, X.<a class="code" href="a00305.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>);
-<a name="l00108"></a>00108     
-<a name="l00109"></a>00109     <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;X.<a class="code" href="a00305.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>; ++col)
-<a name="l00110"></a>00110       {
-<a name="l00111"></a>00111       out[col] = <a class="code" href="a00826.html#ga41d0224a4d02368b2f8754fe6966150b" title="find the mean value of an array">op_mean::direct_mean</a>( X.<a class="code" href="a00815.html#ga9355267e66e1ce202e16b2bc9e486585" title="returns a pointer to array of eTs for a specified column; no bounds check">colptr</a>(col), X.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> );
-<a name="l00112"></a>00112       }
-<a name="l00113"></a>00113     }
-<a name="l00114"></a>00114   <span class="keywordflow">else</span>
-<a name="l00115"></a>00115   <span class="keywordflow">if</span>(dim == 1)
-<a name="l00116"></a>00116     {
-<a name="l00117"></a>00117     arma_extra_debug_print(<span class="stringliteral">&quot;op_mean::apply(), dim = 1&quot;</span>);
-<a name="l00118"></a>00118     
-<a name="l00119"></a>00119     out.<a class="code" href="a00815.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(X.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>, 1);
-<a name="l00120"></a>00120     
-<a name="l00121"></a>00121     <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row&lt;X.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>; ++row)
-<a name="l00122"></a>00122       {
-<a name="l00123"></a>00123       eT val = eT(0);
-<a name="l00124"></a>00124       
-<a name="l00125"></a>00125       <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;X.<a class="code" href="a00305.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>; ++col)
-<a name="l00126"></a>00126         {
-<a name="l00127"></a>00127         val += X.<a class="code" href="a00815.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,col);
-<a name="l00128"></a>00128         }
-<a name="l00129"></a>00129       
-<a name="l00130"></a>00130       out[row] = val / eT(X.<a class="code" href="a00305.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>);
-<a name="l00131"></a>00131       
-<a name="l00132"></a>00132       }
-<a name="l00133"></a>00133     
-<a name="l00134"></a>00134     }
-<a name="l00135"></a>00135   
-<a name="l00136"></a>00136   }
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138 <span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">//! @}</span>
-</span></pre></div></div>
+<a name="l00036"></a>00036   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00037"></a>00037   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00833.html#ga7fb64d4173c6d5f5b4c21c9cd2efb617">direct_rowvec_invdiagmat_colvec</a>(<span class="keyword">const</span> eT* A_mem, <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B, <span class="keyword">const</span> eT* C_mem);
+<a name="l00038"></a>00038   
+<a name="l00039"></a>00039   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00040"></a>00040   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00833.html#gae64812d1b4a1a2e980b899b1acf8da68">direct_rowvec_invdiagvec_colvec</a>(<span class="keyword">const</span> eT* A_mem, <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B, <span class="keyword">const</span> eT* C_mem);
+<a name="l00041"></a>00041   
+<a name="l00042"></a>00042   };
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="comment"></span>
+<a name="l00046"></a>00046 <span class="comment">//! @}</span>
+<a name="l00047"></a>00047 <span class="comment"></span>
+</pre></div></div>
 </BODY>
 </HTML>

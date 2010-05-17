@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_cov Class Reference</title>
+<title>Armadillo Technical: Mat_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,25 +29,43 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_cov Class Reference<br/>
+<h1>Mat_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00817.html">Op_cov</a>]</small>
-</h1><!-- doxytag: class="op_cov" -->
-<p><code>#include &lt;<a class="el" href="a00628_source.html">op_cov_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00827.html">Mat</a>]</small>
+</h1><!-- doxytag: class="Mat_aux" -->
+<p><code>#include &lt;<a class="el" href="a00633_source.html">Mat_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01174.html">List of all members.</a></p>
+<p><a href="a01187.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00817.html#ga7120586724f23d2c41a33a3e5893b8a8">direct_cov</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#ga60f8fb4710f0daef98a72d325fb758fe">prefix_pp</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++  <a href="a00827.html#ga60f8fb4710f0daef98a72d325fb758fe"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00817.html#ga8fa0e021e87d26a50d088761f20697d3">direct_cov</a> (<a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00817.html#gaa95cbc7adfee319632b508d2527c0b06">apply</a> (<a class="el" href="a00305.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00308.html">Op</a>&lt; T1, <a class="el" href="a00310.html">op_cov</a> &gt; &amp;in)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#ga333e5af902099468cf71f3e0fecea53f">prefix_pp</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00827.html#ga333e5af902099468cf71f3e0fecea53f"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#ga418f66d6147dd7013369348f17e877dd">postfix_pp</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++  <a href="a00827.html#ga418f66d6147dd7013369348f17e877dd"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#ga9db358de5f2c13edc8cb04c5d6964fb3">postfix_pp</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00827.html#ga9db358de5f2c13edc8cb04c5d6964fb3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#gaa2454014e64ae0eb8ecc1be5430837d3">prefix_mm</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix --  <a href="a00827.html#gaa2454014e64ae0eb8ecc1be5430837d3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#gad99e9c0ba6abb8c705c0f8e0f47fc444">prefix_mm</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix -- for complex numbers (work around for limitations of the std::complex class)  <a href="a00827.html#gad99e9c0ba6abb8c705c0f8e0f47fc444"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#ga18b475124a951608fd7ae474feb85c5b">postfix_mm</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix --  <a href="a00827.html#ga18b475124a951608fd7ae474feb85c5b"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00827.html#ga405b85bf686fd7768d41a3ee530a9c3e">postfix_mm</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00827.html#ga405b85bf686fd7768d41a3ee530a9c3e"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="a00628_source.html#l00024">24</a> of file <a class="el" href="a00628_source.html">op_cov_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00633_source.html#l00304">304</a> of file <a class="el" href="a00633_source.html">Mat_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: subview_field&lt; oT &gt; Class Template Reference</title>
+<title>Armadillo Technical: strip_inv&lt; T1 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,287 +29,112 @@
   </div>
 </div>
 <div class="contents">
-<h1>subview_field&lt; oT &gt; Class Template Reference<br/>
+<h1>strip_inv&lt; T1 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00867.html">Subview_field</a>]</small>
-</h1><!-- doxytag: class="subview_field" -->
-<p>Class for storing data required to construct or apply operations to a subfield (i.e. where the subfield starts and ends as well as a reference/pointer to the original <a class="el" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field</a>),.  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00877.html">Strip</a>]</small>
+</h1><!-- doxytag: class="strip_inv" -->
+<p><code>#include &lt;<a class="el" href="a00714_source.html">strip.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00709_source.html">subview_field_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a01344.html">List of all members.</a></p>
+<p><a href="a01356.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef oT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a03c62719a317372b2d9387c360f41b72">object_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#aa9a218e59f2e4d11daaedaaadb138f63">stored_type</a></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#gad1f126d04d4d6a6e5802b0ccaceeaa72">~subview_field</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga3beea796d8e3519309700b196ab96fdc">operator=</a> (const <a class="el" href="a00172.html">field</a>&lt; oT &gt; &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga0d4cfd7ba9ee67d3b4135ad4fbbe8b0a">operator=</a> (const <a class="el" href="a00480.html">subview_field</a> &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">x.subfield(...) = y.subfield(...)  <a href="a00867.html#ga0d4cfd7ba9ee67d3b4135ad4fbbe8b0a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#gae8df114b3301f003c478ec65200bc52a">operator[]</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga5c987ef6754a89c9ba7e5eb771af272f">operator[]</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#gaafe4174ce36b1bdd4e1db2707fd814f7">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#gab2671dc0310f6cbc6866d11a2667c4d8">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga460e14fb9b9a7a1713d7d29abf2c4bdc">at</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga3236db3588fc2b62f807a82423fe6dd3">at</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga29517d6d4e73ff2bc74b15fbc7c82141">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga1fd193b6eb938b22a51c6659f519694a">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga64dafb60b2c1ab389097afe679eb71c2">check_overlap</a> (const <a class="el" href="a00480.html">subview_field</a> &amp;x) const </td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#gaf25325b79bda05aa606604c63d650fbe">extract</a> (<a class="el" href="a00172.html">field</a>&lt; oT &gt; &amp;out, const <a class="el" href="a00480.html">subview_field</a> &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X = Y.subfield(...).  <a href="a00867.html#gaf25325b79bda05aa606604c63d650fbe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a8d85a091e2be3233af606c6e5d79eba8">strip_inv</a> (const T1 &amp;X)</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00172.html">field</a>&lt; oT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a02dab89969f02aeeda0229ecdf9a393b">f</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a65f6874aa813bd60942eec7eafe419fa">aux_row1</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a0a88ef30cbccb12cad02c100c4fe0795">aux_col1</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a48b1b38803a239de09dd6aac5d241971">aux_row2</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#acad8f01a7868b8603a6800b0d4accc28">aux_col2</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a9b97254949488b6cf7556dd7bc5736cb">n_rows</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a20479b3133919c297ab67e0a4d50221e">n_cols</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#af684dfbf99d45667412846035c14faeb">n_elem</a></td></tr>
-<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#ga10b1dc6405f6d16d3dc844ee32599214">subview_field</a> (const <a class="el" href="a00172.html">field</a>&lt; oT &gt; &amp;in_f, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row2, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00867.html#gab46fe85fdd342a5ddb68aaad03bb43bd">subview_field</a> (<a class="el" href="a00172.html">field</a>&lt; oT &gt; &amp;in_f, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row2, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2)</td></tr>
-<tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00172.html">field</a>&lt; oT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#a603bdde7110989533ef1746ea008473a">f_ptr</a></td></tr>
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#af54bac98ccaea43ba060c885fc1de2db">subview_field</a> ()</td></tr>
-<tr><td colspan="2"><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#ac0b467aa26322d24a68f2ae8779deb42">field&lt; oT &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00480.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename oT&gt;<br/>
- class subview_field&lt; oT &gt;</h3>
+<h3>template&lt;typename T1&gt;<br/>
+ struct strip_inv&lt; T1 &gt;</h3>
 
-<p>Class for storing data required to construct or apply operations to a subfield (i.e. where the subfield starts and ends as well as a reference/pointer to the original <a class="el" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field</a>),. </p>
 
-<p>Definition at line <a class="el" href="a00709_source.html#l00024">24</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00714_source.html#l00059">59</a> of file <a class="el" href="a00714_source.html">strip.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a03c62719a317372b2d9387c360f41b72"></a><!-- doxytag: member="subview_field::object_type" ref="a03c62719a317372b2d9387c360f41b72" args="" -->
+<a class="anchor" id="aa9a218e59f2e4d11daaedaaadb138f63"></a><!-- doxytag: member="strip_inv::stored_type" ref="aa9a218e59f2e4d11daaedaaadb138f63" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename oT&gt; </div>
+template&lt;typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef oT <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a03c62719a317372b2d9387c360f41b72">object_type</a></td>
+          <td class="memname">typedef T1 <a class="el" href="a00480.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00480.html#aa9a218e59f2e4d11daaedaaadb138f63">stored_type</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00709_source.html#l00031">31</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00714_source.html#l00061">61</a> of file <a class="el" href="a00714_source.html">strip.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="af54bac98ccaea43ba060c885fc1de2db"></a><!-- doxytag: member="subview_field::subview_field" ref="af54bac98ccaea43ba060c885fc1de2db" args="()" -->
+<a class="anchor" id="a8d85a091e2be3233af606c6e5d79eba8"></a><!-- doxytag: member="strip_inv::strip_inv" ref="a8d85a091e2be3233af606c6e5d79eba8" args="(const T1 &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename oT&gt; </div>
+template&lt;typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html">subview_field</a> </td>
+          <td class="memname"><a class="el" href="a00480.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00480.html">strip_inv</a> </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="ac0b467aa26322d24a68f2ae8779deb42"></a><!-- doxytag: member="subview_field::field&lt; oT &gt;" ref="ac0b467aa26322d24a68f2ae8779deb42" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">friend class <a class="el" href="a00172.html">field</a>&lt; oT &gt;<code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>Definition at line <a class="el" href="a00714_source.html#l00063">63</a> of file <a class="el" href="a00714_source.html">strip.hpp</a>.</p>
 
-<p>Definition at line <a class="el" href="a00709_source.html#l00076">76</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
+<p><div class="fragment"><pre class="fragment"><a name="l00064"></a>00064     : <a class="code" href="a00480.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a>(<span class="keyword">false</span>)
+<a name="l00065"></a>00065     , <a class="code" href="a00480.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a>     (X)
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067     arma_extra_debug_sigprint();
+<a name="l00068"></a>00068     }
+</pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a02dab89969f02aeeda0229ecdf9a393b"></a><!-- doxytag: member="subview_field::f" ref="a02dab89969f02aeeda0229ecdf9a393b" args="" -->
+<a class="anchor" id="abdd3ff8d20d8824eee29e97c7b927f54"></a><!-- doxytag: member="strip_inv::do_inv" ref="abdd3ff8d20d8824eee29e97c7b927f54" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename oT&gt; </div>
+template&lt;typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00172.html">field</a>&lt;oT&gt;&amp; <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a02dab89969f02aeeda0229ecdf9a393b">f</a></td>
+          <td class="memname">const bool <a class="el" href="a00480.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00480.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00709_source.html#l00026">26</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00714_source.html#l00070">70</a> of file <a class="el" href="a00714_source.html">strip.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="a00708_source.html#l00236">subview_field&lt; oT &gt;::at()</a>, <a class="el" href="a00708_source.html#l00266">subview_field&lt; oT &gt;::check_overlap()</a>, <a class="el" href="a00708_source.html#l00301">subview_field&lt; oT &gt;::extract()</a>, <a class="el" href="a00708_source.html#l00172">subview_field&lt; oT &gt;::operator()()</a>, <a class="el" href="a00708_source.html#l00106">subview_field&lt; oT &gt;::operator=()</a>, and <a class="el" href="a00708_source.html#l00140">subview_field&lt; oT &gt;::operator[]()</a>.</p>
+<p>Referenced by <a class="el" href="a00559_source.html#l00104">as_scalar_redirect&lt; 3 &gt;::apply()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a603bdde7110989533ef1746ea008473a"></a><!-- doxytag: member="subview_field::f_ptr" ref="a603bdde7110989533ef1746ea008473a" args="" -->
+<a class="anchor" id="ac6fc8d9c73ad5b08e34fe60abfee1d95"></a><!-- doxytag: member="strip_inv::M" ref="ac6fc8d9c73ad5b08e34fe60abfee1d95" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename oT&gt; </div>
+template&lt;typename T1&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00172.html">field</a>&lt;oT&gt;* <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a603bdde7110989533ef1746ea008473a">f_ptr</a><code> [protected]</code></td>
+          <td class="memname">const T1&amp; <a class="el" href="a00480.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00480.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00709_source.html#l00027">27</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00714_source.html#l00071">71</a> of file <a class="el" href="a00714_source.html">strip.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="a00708_source.html#l00236">subview_field&lt; oT &gt;::at()</a>, <a class="el" href="a00708_source.html#l00172">subview_field&lt; oT &gt;::operator()()</a>, and <a class="el" href="a00708_source.html#l00140">subview_field&lt; oT &gt;::operator[]()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a65f6874aa813bd60942eec7eafe419fa"></a><!-- doxytag: member="subview_field::aux_row1" ref="a65f6874aa813bd60942eec7eafe419fa" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a65f6874aa813bd60942eec7eafe419fa">aux_row1</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00033">33</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00236">subview_field&lt; oT &gt;::at()</a>, <a class="el" href="a00708_source.html#l00266">subview_field&lt; oT &gt;::check_overlap()</a>, <a class="el" href="a00708_source.html#l00172">subview_field&lt; oT &gt;::operator()()</a>, <a class="el" href="a00708_source.html#l00106">subview_field&lt; oT &gt;::operator=()</a>, and <a class="el" href="a00708_source.html#l00140">subview_field&lt; oT &gt;::operator[]()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0a88ef30cbccb12cad02c100c4fe0795"></a><!-- doxytag: member="subview_field::aux_col1" ref="a0a88ef30cbccb12cad02c100c4fe0795" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a0a88ef30cbccb12cad02c100c4fe0795">aux_col1</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00034">34</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00236">subview_field&lt; oT &gt;::at()</a>, <a class="el" href="a00708_source.html#l00266">subview_field&lt; oT &gt;::check_overlap()</a>, <a class="el" href="a00708_source.html#l00172">subview_field&lt; oT &gt;::operator()()</a>, <a class="el" href="a00708_source.html#l00106">subview_field&lt; oT &gt;::operator=()</a>, and <a class="el" href="a00708_source.html#l00140">subview_field&lt; oT &gt;::operator[]()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a48b1b38803a239de09dd6aac5d241971"></a><!-- doxytag: member="subview_field::aux_row2" ref="a48b1b38803a239de09dd6aac5d241971" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a48b1b38803a239de09dd6aac5d241971">aux_row2</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00036">36</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00266">subview_field&lt; oT &gt;::check_overlap()</a>, and <a class="el" href="a00708_source.html#l00106">subview_field&lt; oT &gt;::operator=()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="acad8f01a7868b8603a6800b0d4accc28"></a><!-- doxytag: member="subview_field::aux_col2" ref="acad8f01a7868b8603a6800b0d4accc28" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#acad8f01a7868b8603a6800b0d4accc28">aux_col2</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00037">37</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00266">subview_field&lt; oT &gt;::check_overlap()</a>, and <a class="el" href="a00708_source.html#l00106">subview_field&lt; oT &gt;::operator=()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9b97254949488b6cf7556dd7bc5736cb"></a><!-- doxytag: member="subview_field::n_rows" ref="a9b97254949488b6cf7556dd7bc5736cb" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a9b97254949488b6cf7556dd7bc5736cb">n_rows</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00039">39</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00301">subview_field&lt; oT &gt;::extract()</a>, <a class="el" href="a00708_source.html#l00172">subview_field&lt; oT &gt;::operator()()</a>, <a class="el" href="a00708_source.html#l00083">subview_field&lt; oT &gt;::operator=()</a>, <a class="el" href="a00708_source.html#l00140">subview_field&lt; oT &gt;::operator[]()</a>, and <a class="el" href="a00508_source.html#l00322">arma_ostream::print()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a20479b3133919c297ab67e0a4d50221e"></a><!-- doxytag: member="subview_field::n_cols" ref="a20479b3133919c297ab67e0a4d50221e" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#a20479b3133919c297ab67e0a4d50221e">n_cols</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00040">40</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00301">subview_field&lt; oT &gt;::extract()</a>, <a class="el" href="a00708_source.html#l00207">subview_field&lt; oT &gt;::operator()()</a>, <a class="el" href="a00708_source.html#l00083">subview_field&lt; oT &gt;::operator=()</a>, and <a class="el" href="a00508_source.html#l00322">arma_ostream::print()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af684dfbf99d45667412846035c14faeb"></a><!-- doxytag: member="subview_field::n_elem" ref="af684dfbf99d45667412846035c14faeb" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename oT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00480.html">subview_field</a>&lt; oT &gt;::<a class="el" href="a00480.html#af684dfbf99d45667412846035c14faeb">n_elem</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00709_source.html#l00041">41</a> of file <a class="el" href="a00709_source.html">subview_field_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00708_source.html#l00172">subview_field&lt; oT &gt;::operator()()</a>.</p>
+<p>Referenced by <a class="el" href="a00559_source.html#l00104">as_scalar_redirect&lt; 3 &gt;::apply()</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: arma_boost::format Class Reference</title>
+<title>Armadillo Technical: force_different_type&lt; T1, T2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -27,109 +27,58 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="a00722.html">arma_boost</a>::<a class="el" href="a00176.html">format</a>
-  </div>
 </div>
 <div class="contents">
-<h1>arma_boost::format Class Reference</h1><!-- doxytag: class="arma_boost::format" -->
-<p><code>#include &lt;<a class="el" href="a00601_source.html">format_wrap.hpp</a>&gt;</code></p>
+<h1>force_different_type&lt; T1, T2 &gt; Struct Template Reference<br/>
+<small>
+[<a class="el" href="a00882.html">Traits</a>]</small>
+</h1><!-- doxytag: class="force_different_type" -->
+<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><a href="a01370.html">List of all members.</a></p>
+<p><a href="a01057.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a5bb0e7483a9d57fe40ee182aa461a3ce">format</a> (const char *in_fmt)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a82ee9119652791fd4c2c9f5da7bd8f19">format</a> (const std::string &amp;in_fmt)</td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a1615a2a7b6f1febc898f6e536cf16267">A</a></td></tr>
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#a1d716d7d9e47cccc1457b91fc71f5369">format</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#af8407ddd6176bc5b273ad313c920a350">T1_result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T2&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00176.html#acdf3209f9a5959b6294056eaf5f34972">T2_result</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T1, typename T2&gt;<br/>
+ struct force_different_type&lt; T1, T2 &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00601_source.html#l00064">64</a> of file <a class="el" href="a00601_source.html">format_wrap.hpp</a>.</p>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a5bb0e7483a9d57fe40ee182aa461a3ce"></a><!-- doxytag: member="arma_boost::format::format" ref="a5bb0e7483a9d57fe40ee182aa461a3ce" args="(const char *in_fmt)" -->
+
+<p>Definition at line <a class="el" href="a00722_source.html#l00557">557</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="af8407ddd6176bc5b273ad313c920a350"></a><!-- doxytag: member="force_different_type::T1_result" ref="af8407ddd6176bc5b273ad313c920a350" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_boost::format::format </td>
-          <td>(</td>
-          <td class="paramtype">const char *&nbsp;</td>
-          <td class="paramname"> <em>in_fmt</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">typedef T1 <a class="el" href="a00176.html">force_different_type</a>&lt; T1, T2 &gt;::<a class="el" href="a00176.html#af8407ddd6176bc5b273ad313c920a350">T1_result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00601_source.html#l00068">68</a> of file <a class="el" href="a00601_source.html">format_wrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00069"></a>00069         : <a class="code" href="a00176.html#a1615a2a7b6f1febc898f6e536cf16267">A</a>(in_fmt)
-<a name="l00070"></a>00070         {
-<a name="l00071"></a>00071         }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00559">559</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a82ee9119652791fd4c2c9f5da7bd8f19"></a><!-- doxytag: member="arma_boost::format::format" ref="a82ee9119652791fd4c2c9f5da7bd8f19" args="(const std::string &amp;in_fmt)" -->
+<a class="anchor" id="acdf3209f9a5959b6294056eaf5f34972"></a><!-- doxytag: member="force_different_type::T2_result" ref="acdf3209f9a5959b6294056eaf5f34972" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_boost::format::format </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&nbsp;</td>
-          <td class="paramname"> <em>in_fmt</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
+          <td class="memname">typedef T2 <a class="el" href="a00176.html">force_different_type</a>&lt; T1, T2 &gt;::<a class="el" href="a00176.html#acdf3209f9a5959b6294056eaf5f34972">T2_result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00601_source.html#l00073">73</a> of file <a class="el" href="a00601_source.html">format_wrap.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00074"></a>00074         : <a class="code" href="a00176.html#a1615a2a7b6f1febc898f6e536cf16267">A</a>(in_fmt)
-<a name="l00075"></a>00075         {
-<a name="l00076"></a>00076         }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="a1d716d7d9e47cccc1457b91fc71f5369"></a><!-- doxytag: member="arma_boost::format::format" ref="a1d716d7d9e47cccc1457b91fc71f5369" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_boost::format::format </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a1615a2a7b6f1febc898f6e536cf16267"></a><!-- doxytag: member="arma_boost::format::A" ref="a1615a2a7b6f1febc898f6e536cf16267" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::string <a class="el" href="a00176.html#a1615a2a7b6f1febc898f6e536cf16267">arma_boost::format::A</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00601_source.html#l00079">79</a> of file <a class="el" href="a00601_source.html">format_wrap.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00601_source.html#l00130">arma_boost::str()</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00560">560</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 
 </div>
 </div>

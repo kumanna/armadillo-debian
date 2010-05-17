@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: isnt_supported_elem_type&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: isnt_fltpt_false Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,34 +29,43 @@
   </div>
 </div>
 <div class="contents">
-<h1>isnt_supported_elem_type&lt; T1 &gt; Struct Template Reference<br/>
+<h1>isnt_fltpt_false Struct Reference<br/>
 <small>
-[<a class="el" href="a00870.html">Traits</a>]</small>
-</h1><!-- doxytag: class="isnt_supported_elem_type" -->
-<p><code>#include &lt;<a class="el" href="a00713_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00882.html">Traits</a>]</small>
+</h1><!-- doxytag: class="isnt_fltpt_false" -->
+<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for isnt_fltpt_false:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00292.gif" usemap="#isnt_fltpt_false_map" alt=""/>
+  <map id="isnt_fltpt_false_map" name="isnt_fltpt_false_map">
+<area href="a00287.html" alt="isnt_fltpt&lt; double &gt;" shape="rect" coords="0,56,212,80"/>
+<area href="a00288.html" alt="isnt_fltpt&lt; float &gt;" shape="rect" coords="222,56,434,80"/>
+<area href="a00289.html" alt="isnt_fltpt&lt; long double &gt;" shape="rect" coords="444,56,656,80"/>
+<area href="a00290.html" alt="isnt_fltpt&lt; std::complex&lt; double &gt; &gt;" shape="rect" coords="666,56,878,80"/>
+<area href="a00291.html" alt="isnt_fltpt&lt; std::complex&lt; float &gt; &gt;" shape="rect" coords="888,56,1100,80"/>
+</map>
+ </div>
+</div>
 
-<p><a href="a01157.html">List of all members.</a></p>
+<p><a href="a01169.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00292.html#a543c4809a65ba3d394d3d9034dc01d02">check</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00292.html#add57f871207d13fcc0b2f12a5dbedc61">check</a> ()</td></tr>
 <tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00292.html#a54b9f9b2d04ba9e5f61f9773b26ae48f">value</a> = true</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00292.html#aa6a179cd46549fd8c1fd2999ab5fe45a">value</a> = false</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct isnt_supported_elem_type&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00713_source.html#l00489">489</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00308">308</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a543c4809a65ba3d394d3d9034dc01d02"></a><!-- doxytag: member="isnt_supported_elem_type::check" ref="a543c4809a65ba3d394d3d9034dc01d02" args="()" -->
+<a class="anchor" id="add57f871207d13fcc0b2f12a5dbedc61"></a><!-- doxytag: member="isnt_fltpt_false::check" ref="add57f871207d13fcc0b2f12a5dbedc61" args="()" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static void <a class="el" href="a00292.html">isnt_supported_elem_type</a>&lt; T1 &gt;::check </td>
+          <td class="memname">static arma_inline void isnt_fltpt_false::check </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -66,31 +75,26 @@ template&lt;typename T1 &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00493">493</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00312">312</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00494"></a>00494     {
-<a name="l00495"></a>00495     arma_static_assert&lt;false&gt; ERROR___UNSUPPORTED_ELEMENT_TYPE;
-<a name="l00496"></a>00496     ERROR___UNSUPPORTED_ELEMENT_TYPE = ERROR___UNSUPPORTED_ELEMENT_TYPE;
-<a name="l00497"></a>00497     }
+<p><div class="fragment"><pre class="fragment"><a name="l00312"></a>00312 {}
 </pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a54b9f9b2d04ba9e5f61f9773b26ae48f"></a><!-- doxytag: member="isnt_supported_elem_type::value" ref="a54b9f9b2d04ba9e5f61f9773b26ae48f" args="" -->
+<a class="anchor" id="aa6a179cd46549fd8c1fd2999ab5fe45a"></a><!-- doxytag: member="isnt_fltpt_false::value" ref="aa6a179cd46549fd8c1fd2999ab5fe45a" args="" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00292.html">isnt_supported_elem_type</a>&lt; T1 &gt;::<a class="el" href="a00292.html#a54b9f9b2d04ba9e5f61f9773b26ae48f">value</a> = true<code> [static]</code></td>
+          <td class="memname">const bool <a class="el" href="a00292.html#aa6a179cd46549fd8c1fd2999ab5fe45a">isnt_fltpt_false::value</a> = false<code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00491">491</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00310">310</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_Col&lt; Col&lt; eT &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: is_arma_cube_type&lt; T1 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,38 +29,42 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_Col&lt; Col&lt; eT &gt; &gt; Struct Template Reference<br/>
+<h1>is_arma_cube_type&lt; T1 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00870.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_Col&lt; Col&lt; eT &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00713_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00882.html">Traits</a>]</small>
+</h1><!-- doxytag: class="is_arma_cube_type" -->
+<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><a href="a01069.html">List of all members.</a></p>
+<p><a href="a01081.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00203.html#a4238cc22e64bbdb3474d350c4619ed8d">value</a> = true</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00203.html#a4f0e05237276802d2b97c801d7b19447">value</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename eT&gt;<br/>
- struct is_Col&lt; Col&lt; eT &gt; &gt;</h3>
+<h3>template&lt;typename T1&gt;<br/>
+ struct is_arma_cube_type&lt; T1 &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00074">74</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00239">239</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a4238cc22e64bbdb3474d350c4619ed8d"></a><!-- doxytag: member="is_Col&lt; Col&lt; eT &gt; &gt;::value" ref="a4238cc22e64bbdb3474d350c4619ed8d" args="" -->
+<a class="anchor" id="a4f0e05237276802d2b97c801d7b19447"></a><!-- doxytag: member="is_arma_cube_type::value" ref="a4f0e05237276802d2b97c801d7b19447" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00202.html">is_Col</a>&lt; <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00203.html#a4238cc22e64bbdb3474d350c4619ed8d">value</a> = true<code> [static]</code></td>
+          <td class="memname">const bool <a class="el" href="a00203.html">is_arma_cube_type</a>&lt; T1 &gt;::<a class="el" href="a00203.html#a4f0e05237276802d2b97c801d7b19447">value</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00713_source.html#l00075">75</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<b>Initial value:</b><div class="fragment"><pre class="fragment">  <a class="code" href="a00213.html">is_Cube&lt;T1&gt;::value</a>
+  || <a class="code" href="a00254.html">is_OpCube&lt;T1&gt;::value</a>
+  || <a class="code" href="a00241.html">is_GlueCube&lt;T1&gt;::value</a>
+  || <a class="code" href="a00269.html">is_subview_cube&lt;T1&gt;::value</a>
+</pre></div>
+<p>Definition at line <a class="el" href="a00722_source.html#l00242">242</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 
 </div>
 </div>

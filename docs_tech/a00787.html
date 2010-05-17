@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Fn_rank</title>
+<title>Armadillo Technical: Fn_min</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,20 +21,41 @@
   </div>
 </div>
 <div class="contents">
-<h1>Fn_rank</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>Fn_min</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#ga9833be47b757f1439f96aa143dd734cc">rank</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, typename T1::pod_type tol=0.0)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_min</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11">min</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed 'minimum values' operation. The dimension, along which the minima are found, is set via 'dim'. For dim = 0, the maximum value of each column is found (i.e. searches by traversing across rows). For dim = 1, the maximum value of each row is found (i.e. searches by traversing across columns). The default is dim = 0. NOTE: This function works differently than in Matlab/Octave.  <a href="#gaf79aa6bbdf2c90c99a2cdfcf77ce7b11"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#ga22da884e4639335bb2e471868bf198f1">min</a> (const <a class="el" href="a00472.html">Row</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the minimum value in a row vector' operation.  <a href="#ga22da884e4639335bb2e471868bf198f1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#ga568d4ca5195560040d625e3898485d2f">min</a> (const <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find the minimum value in a column vector'.  <a href="#ga568d4ca5195560040d625e3898485d2f"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#gadb28da2daaf152004bb52379d5d561d4">min</a> (const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_min</a> &gt; &amp;in)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'find minimum value' operation, invoked, for example, by: min(min(A)).  <a href="#gadb28da2daaf152004bb52379d5d561d4"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00312.html">Op</a>&lt; <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_min</a> &gt;<br class="typebreak"/>
+, <a class="el" href="a00326.html">op_min</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#gae26bf758004786c8f04cd52343edc39b">min</a> (const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_min</a> &gt; &amp;in, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#ga3cfda058523dcf4de8821b9da7cb6645">min</a> (const <a class="el" href="a00486.html">subview_row</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#gab6c3ab930a58e71004e7ddc6c50d4066">min</a> (const <a class="el" href="a00483.html">subview_col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#ga985c0c855fd94fdbef3f6f63f04a3f45">min</a> (const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00787.html#gac685f6162becd6a9d207a1a2eaceb97a">min</a> (const <a class="el" href="a00312.html">Op</a>&lt; <a class="el" href="a00482.html">subview</a>&lt; eT &gt;, <a class="el" href="a00326.html">op_min</a> &gt; &amp;in)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga9833be47b757f1439f96aa143dd734cc"></a><!-- doxytag: member="fn_rank.hpp::rank" ref="ga9833be47b757f1439f96aa143dd734cc" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X, typename T1::pod_type tol=0.0)" -->
+<a class="anchor" id="gaf79aa6bbdf2c90c99a2cdfcf77ce7b11"></a><!-- doxytag: member="fn_min.hpp::min" ref="gaf79aa6bbdf2c90c99a2cdfcf77ce7b11" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X, const u32 dim=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_warn_unused <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> rank </td>
+          <td class="memname">arma_inline const <a class="el" href="a00312.html">Op</a>&lt;T1, <a class="el" href="a00326.html">op_min</a>&gt; min </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
           <td class="paramname"> <em>X</em>, </td>
@@ -42,8 +63,8 @@ template&lt;typename T1 &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename T1::pod_type&nbsp;</td>
-          <td class="paramname"> <em>tol</em> = <code>0.0</code></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>dim</em> = <code>0</code></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -54,52 +75,303 @@ template&lt;typename T1 &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00586_source.html#l00027">27</a> of file <a class="el" href="a00586_source.html">fn_rank.hpp</a>.</p>
+<p>Delayed 'minimum values' operation. The dimension, along which the minima are found, is set via 'dim'. For dim = 0, the maximum value of each column is found (i.e. searches by traversing across rows). For dim = 1, the maximum value of each row is found (i.e. searches by traversing across columns). The default is dim = 0. NOTE: This function works differently than in Matlab/Octave. </p>
 
-<p>References <a class="el" href="a00526_source.html#l00049">arma_print()</a>, <a class="el" href="a00542_source.html#l00268">eop_aux::direct_eps()</a>, <a class="el" href="a00515_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>, <a class="el" href="a00572_source.html#l00032">max()</a>, <a class="el" href="a00623_source.html#l02069">Mat&lt; eT &gt;::memptr()</a>, <a class="el" href="a00624_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00513_source.html#l01220">auxlib::svd()</a>.</p>
+<p>Definition at line <a class="el" href="a00582_source.html#l00031">31</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00028"></a>00028   {
-<a name="l00029"></a>00029   arma_extra_debug_sigprint();
-<a name="l00030"></a>00030   
-<a name="l00031"></a>00031   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00032"></a>00032   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::pod_type   T;
-<a name="l00033"></a>00033   
-<a name="l00034"></a>00034   <span class="keyword">const</span> <a class="code" href="a00483.html">unwrap&lt;T1&gt;</a>   tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00035"></a>00035   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
-<a name="l00036"></a>00036   
-<a name="l00037"></a>00037   <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a> s;
-<a name="l00038"></a>00038   <span class="keyword">const</span> <span class="keywordtype">bool</span> status = <a class="code" href="a00731.html#gaf634c5679d890587a320dbf8a975b5f7">auxlib::svd</a>(s, A);
-<a name="l00039"></a>00039   
-<a name="l00040"></a>00040   <span class="keywordflow">if</span>(status == <span class="keyword">true</span>)
-<a name="l00041"></a>00041     {
-<a name="l00042"></a>00042     <span class="keywordflow">if</span>(tol == T(0))
-<a name="l00043"></a>00043       {
-<a name="l00044"></a>00044       tol = (<a class="code" href="a00773.html#ga789487ba61e48fd9c76bd382ca68d195" title="Delayed &amp;#39;maximum values&amp;#39; operation. The dimension, along which the maxima...">std::max</a>)(A.n_rows, A.n_cols) * <a class="code" href="a00100.html#a5526b2f818efa0897ca6443e65aa1a38">eop_aux::direct_eps</a>(<a class="code" href="a00773.html#ga789487ba61e48fd9c76bd382ca68d195" title="Delayed &amp;#39;maximum values&amp;#39; operation. The dimension, along which the maxima...">max</a>(s));
-<a name="l00045"></a>00045       }
-<a name="l00046"></a>00046       
-<a name="l00047"></a>00047     <span class="comment">// count non zero valued elements in s</span>
-<a name="l00048"></a>00048     
-<a name="l00049"></a>00049     <span class="keyword">const</span> T*  s_mem  = s.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
-<a name="l00050"></a>00050     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = s.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
-<a name="l00051"></a>00051           <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> count  = 0;
-<a name="l00052"></a>00052     
-<a name="l00053"></a>00053     <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
-<a name="l00054"></a>00054       {
-<a name="l00055"></a>00055       <span class="keywordflow">if</span>(s_mem[i] &gt; tol)
-<a name="l00056"></a>00056         {
-<a name="l00057"></a>00057         ++count;
-<a name="l00058"></a>00058         }
-<a name="l00059"></a>00059       }
-<a name="l00060"></a>00060     
-<a name="l00061"></a>00061     <span class="keywordflow">return</span> count;
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063   <span class="keywordflow">else</span>
-<a name="l00064"></a>00064     {
-<a name="l00065"></a>00065     <a class="code" href="a00738.html#gadcf220676d0c7293eb01474a2d67e080">arma_print</a>(<span class="stringliteral">&quot;rank(): singular value decomposition failed&quot;</span>);
-<a name="l00066"></a>00066     <span class="keywordflow">return</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>(0);
-<a name="l00067"></a>00067     }
-<a name="l00068"></a>00068    
-<a name="l00069"></a>00069   }
+<p>References <a class="el" href="a00520_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00707_source.html#l00652">Row&lt; eT &gt;::copy_size()</a>, <a class="el" href="a00524_source.html#l00682">Col&lt; eT &gt;::copy_size()</a>, <a class="el" href="a00632_source.html#l01216">Mat&lt; eT &gt;::diag()</a>, <a class="el" href="a00528_source.html#l00048">Math&lt; eT &gt;::log_min()</a>, <a class="el" href="a00707_source.html#l00730">Row&lt; eT &gt;::ones()</a>, <a class="el" href="a00524_source.html#l00760">Col&lt; eT &gt;::ones()</a>, <a class="el" href="a00518_source.html#l01122">auxlib::qr()</a>, <a class="el" href="a00707_source.html#l00636">Row&lt; eT &gt;::set_size()</a>, <a class="el" href="a00524_source.html#l00665">Col&lt; eT &gt;::set_size()</a>, <a class="el" href="a00518_source.html#l01220">auxlib::svd()</a>, <a class="el" href="a00707_source.html#l00691">Row&lt; eT &gt;::zeros()</a>, and <a class="el" href="a00524_source.html#l00721">Col&lt; eT &gt;::zeros()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00032"></a>00032   {
+<a name="l00033"></a>00033   arma_extra_debug_sigprint();
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   <span class="keywordflow">return</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_min&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
+<a name="l00036"></a>00036   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga22da884e4639335bb2e471868bf198f1"></a><!-- doxytag: member="fn_min.hpp::min" ref="ga22da884e4639335bb2e471868bf198f1" args="(const Row&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused eT min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00472.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Immediate 'find the minimum value in a row vector' operation. </p>
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00044">44</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, <a class="el" href="a00633_source.html#l00035">Mat&lt; eT &gt;::mem</a>, and <a class="el" href="a00633_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00045"></a>00045   {
+<a name="l00046"></a>00046   arma_extra_debug_sigprint();
+<a name="l00047"></a>00047   
+<a name="l00048"></a>00048   arma_debug_check( (A.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
+<a name="l00049"></a>00049   
+<a name="l00050"></a>00050   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A.<a class="code" href="a00308.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00051"></a>00051   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga568d4ca5195560040d625e3898485d2f"></a><!-- doxytag: member="fn_min.hpp::min" ref="ga568d4ca5195560040d625e3898485d2f" args="(const Col&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused eT min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Immediate 'find the minimum value in a column vector'. </p>
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00060">60</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, <a class="el" href="a00633_source.html#l00035">Mat&lt; eT &gt;::mem</a>, and <a class="el" href="a00633_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00061"></a>00061   {
+<a name="l00062"></a>00062   arma_extra_debug_sigprint();
+<a name="l00063"></a>00063   
+<a name="l00064"></a>00064   arma_debug_check( (A.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
+<a name="l00065"></a>00065   
+<a name="l00066"></a>00066   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A.<a class="code" href="a00308.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, A.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00067"></a>00067   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gadb28da2daaf152004bb52379d5d561d4"></a><!-- doxytag: member="fn_min.hpp::min" ref="gadb28da2daaf152004bb52379d5d561d4" args="(const Op&lt; T1, op_min &gt; &amp;in)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused T1::elem_type min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_min</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Immediate 'find minimum value' operation, invoked, for example, by: min(min(A)). </p>
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00078">78</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, <a class="el" href="a00724_source.html#l00035">unwrap&lt; T1 &gt;::M</a>, <a class="el" href="a00669_source.html#l00047">Op&lt; T1, op_type &gt;::m</a>, <a class="el" href="a00633_source.html#l00035">Mat&lt; eT &gt;::mem</a>, and <a class="el" href="a00633_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00079"></a>00079   {
+<a name="l00080"></a>00080   arma_extra_debug_sigprint();
+<a name="l00081"></a>00081   arma_extra_debug_print(<span class="stringliteral">&quot;min(): two consecutive min() calls detected&quot;</span>);
+<a name="l00082"></a>00082   
+<a name="l00083"></a>00083   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00084"></a>00084   
+<a name="l00085"></a>00085   <span class="keyword">const</span> <a class="code" href="a00488.html">unwrap&lt;T1&gt;</a> tmp1(in.<a class="code" href="a00312.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
+<a name="l00086"></a>00086   <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X = tmp1.M;
+<a name="l00087"></a>00087   
+<a name="l00088"></a>00088   arma_debug_check( (X.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given matrix has no elements&quot;</span> );
+<a name="l00089"></a>00089   
+<a name="l00090"></a>00090   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(X.<a class="code" href="a00308.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>, X.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>);
+<a name="l00091"></a>00091   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gae26bf758004786c8f04cd52343edc39b"></a><!-- doxytag: member="fn_min.hpp::min" ref="gae26bf758004786c8f04cd52343edc39b" args="(const Op&lt; T1, op_min &gt; &amp;in, const u32 dim)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00312.html">Op</a>&lt; <a class="el" href="a00312.html">Op</a>&lt;T1, <a class="el" href="a00326.html">op_min</a>&gt;, <a class="el" href="a00326.html">op_min</a>&gt; min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00326.html">op_min</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>dim</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00098">98</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00099"></a>00099   {
+<a name="l00100"></a>00100   arma_extra_debug_sigprint();
+<a name="l00101"></a>00101   
+<a name="l00102"></a>00102   <span class="keywordflow">return</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt; Op&lt;T1, op_min&gt;</a>, <a class="code" href="a00326.html" title="Class for finding minimum values in a matrix.">op_min</a>&gt;(in, dim, 0);
+<a name="l00103"></a>00103   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga3cfda058523dcf4de8821b9da7cb6645"></a><!-- doxytag: member="fn_min.hpp::min" ref="ga3cfda058523dcf4de8821b9da7cb6645" args="(const subview_row&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused eT min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00486.html">subview_row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00111">111</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, and <a class="el" href="a00720_source.html#l00042">subview&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00112"></a>00112   {
+<a name="l00113"></a>00113   arma_extra_debug_sigprint();
+<a name="l00114"></a>00114   
+<a name="l00115"></a>00115   arma_debug_check( (A.<a class="code" href="a00482.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
+<a name="l00116"></a>00116   
+<a name="l00117"></a>00117   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A);
+<a name="l00118"></a>00118   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gab6c3ab930a58e71004e7ddc6c50d4066"></a><!-- doxytag: member="fn_min.hpp::min" ref="gab6c3ab930a58e71004e7ddc6c50d4066" args="(const subview_col&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused eT min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00483.html">subview_col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00126">126</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, and <a class="el" href="a00720_source.html#l00042">subview&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00127"></a>00127   {
+<a name="l00128"></a>00128   arma_extra_debug_sigprint();
+<a name="l00129"></a>00129   
+<a name="l00130"></a>00130   arma_debug_check( (A.<a class="code" href="a00482.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
+<a name="l00131"></a>00131   
+<a name="l00132"></a>00132   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A);
+<a name="l00133"></a>00133   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga985c0c855fd94fdbef3f6f63f04a3f45"></a><!-- doxytag: member="fn_min.hpp::min" ref="ga985c0c855fd94fdbef3f6f63f04a3f45" args="(const diagview&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused eT min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00141">141</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, and <a class="el" href="a00534_source.html#l00038">diagview&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00142"></a>00142   {
+<a name="l00143"></a>00143   arma_extra_debug_sigprint();
+<a name="l00144"></a>00144   
+<a name="l00145"></a>00145   arma_debug_check( (A.<a class="code" href="a00080.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a> == 0), <span class="stringliteral">&quot;min(): given vector has no elements&quot;</span> );
+<a name="l00146"></a>00146   
+<a name="l00147"></a>00147   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(A);
+<a name="l00148"></a>00148   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gac685f6162becd6a9d207a1a2eaceb97a"></a><!-- doxytag: member="fn_min.hpp::min" ref="gac685f6162becd6a9d207a1a2eaceb97a" args="(const Op&lt; subview&lt; eT &gt;, op_min &gt; &amp;in)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_warn_unused eT min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00312.html">Op</a>&lt; <a class="el" href="a00482.html">subview</a>&lt; eT &gt;, <a class="el" href="a00326.html">op_min</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00582_source.html#l00156">156</a> of file <a class="el" href="a00582_source.html">fn_min.hpp</a>.</p>
+
+<p>References <a class="el" href="a00659_source.html#l00025">op_min::direct_min()</a>, and <a class="el" href="a00720_source.html#l00042">subview&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00157"></a>00157   {
+<a name="l00158"></a>00158   arma_extra_debug_sigprint();
+<a name="l00159"></a>00159   arma_extra_debug_print(<span class="stringliteral">&quot;max(): two consecutive max() calls detected&quot;</span>);
+<a name="l00160"></a>00160   
+<a name="l00161"></a>00161   <span class="keyword">const</span> <a class="code" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>&amp; X = in.<a class="code" href="a00312.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>;
+<a name="l00162"></a>00162   
+<a name="l00163"></a>00163   arma_debug_check( (X.<a class="code" href="a00482.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a> == 0), <span class="stringliteral">&quot;max(): given matrix has no elements&quot;</span> );
+<a name="l00164"></a>00164   
+<a name="l00165"></a>00165   <span class="keywordflow">return</span> <a class="code" href="a00841.html#ga0df0f705cc4c6b54207c313a72af5e4f" title="Find the minimum value in an array.">op_min::direct_min</a>(X);
+<a name="l00166"></a>00166   }
 </pre></div></p>
 
 </div>

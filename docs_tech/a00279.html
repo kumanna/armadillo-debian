@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_u32&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: diskio::is_supported_type&lt; eT &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -27,40 +27,53 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
+  <div class="navpath"><a class="el" href="a00081.html">diskio</a>::<a class="el" href="a00279.html">is_supported_type</a>
+  </div>
 </div>
 <div class="contents">
-<h1>is_u32&lt; T1 &gt; Struct Template Reference<br/>
-<small>
-[<a class="el" href="a00870.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_u32" -->
-<p><code>#include &lt;<a class="el" href="a00713_source.html">traits.hpp</a>&gt;</code></p>
+<h1>diskio::is_supported_type&lt; eT &gt; Struct Template Reference</h1><!-- doxytag: class="diskio::is_supported_type" -->
+<p><code>#include &lt;<a class="el" href="a00536_source.html">diskio_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01144.html">List of all members.</a></p>
+<p><a href="a00960.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00279.html#a3c65766b10ae82e21f5f5afe824eab4d">value</a> = false</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00279.html#aa758d243e0f25a44ccf018ed5d060305">value</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct is_u32&lt; T1 &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ struct diskio::is_supported_type&lt; eT &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00366">366</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00536_source.html#l00028">28</a> of file <a class="el" href="a00536_source.html">diskio_proto.hpp</a>.</p>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a3c65766b10ae82e21f5f5afe824eab4d"></a><!-- doxytag: member="is_u32::value" ref="a3c65766b10ae82e21f5f5afe824eab4d" args="" -->
+<a class="anchor" id="aa758d243e0f25a44ccf018ed5d060305"></a><!-- doxytag: member="diskio::is_supported_type::value" ref="aa758d243e0f25a44ccf018ed5d060305" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00279.html">is_u32</a>&lt; T1 &gt;::<a class="el" href="a00279.html#a3c65766b10ae82e21f5f5afe824eab4d">value</a> = false<code> [static]</code></td>
+          <td class="memname">const bool <a class="el" href="a00279.html">diskio::is_supported_type</a>&lt; eT &gt;::<a class="el" href="a00279.html#aa758d243e0f25a44ccf018ed5d060305">value</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00713_source.html#l00367">367</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<b>Initial value:</b><div class="fragment"><pre class="fragment"> 
+      (
+      <span class="keyword">false</span>
+      || <a class="code" href="a00284.html">is_u8&lt;eT&gt;::value</a>
+      || <a class="code" href="a00262.html">is_s8&lt;eT&gt;::value</a>
+      || <a class="code" href="a00280.html">is_u16&lt;eT&gt;::value</a>
+      || <a class="code" href="a00258.html">is_s16&lt;eT&gt;::value</a>
+      || <a class="code" href="a00282.html">is_u32&lt;eT&gt;::value</a>
+      || <a class="code" href="a00260.html">is_s32&lt;eT&gt;::value</a>
+      || <a class="code" href="a00228.html">is_float&lt;eT&gt;::value</a>
+      || <a class="code" href="a00222.html">is_double&lt;eT&gt;::value</a>
+      || <a class="code" href="a00212.html">is_complex_float&lt;eT&gt;::value</a>
+      || <a class="code" href="a00210.html">is_complex_double&lt;eT&gt;::value</a>
+      )
+</pre></div>
+<p>Definition at line <a class="el" href="a00536_source.html#l00030">30</a> of file <a class="el" href="a00536_source.html">diskio_proto.hpp</a>.</p>
 
 </div>
 </div>

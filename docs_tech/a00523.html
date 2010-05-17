@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: constants.hpp File Reference</title>
+<title>Armadillo Technical: cmath_wrap.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,22 +25,22 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>constants.hpp File Reference</h1>
+<h1>cmath_wrap.hpp File Reference</h1>
 <p><a href="a00523_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00307.html">Math&lt; eT &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00370.html">Phy&lt; eT &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Physical constants taken from NIST and WolframAlpha on 2009-06-23 <a href="http://physics.nist.gov/cuu/Constants">http://physics.nist.gov/cuu/Constants</a> <a href="http://www.wolframalpha.com">http://www.wolframalpha.com</a> See also <a href="http://en.wikipedia.org/wiki/Physical_constant.">http://en.wikipedia.org/wiki/Physical_constant.</a>  <a href="a00370.html#_details">More...</a><br/></td></tr>
-<tr><td colspan="2"><h2>Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00307.html">Math</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00736.html#ga82de1a3157601797a4be2a4785ff8628">fmath</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00307.html">Math</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00736.html#ga0bd446b62822e28790e007fd13b91e7d">math</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00370.html">Phy</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00736.html#gab9b5ac332dcf6a5dfb1e496ff99c21b4">fphy</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00370.html">Phy</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00736.html#gaa95d18f12982a215849e23556f0ae1ea">phy</a></td></tr>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00743.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a> (eT val)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00743.html#gae1691ae0fa8dab5503a41dfd0122a0d5">arma_isfinite</a> (float x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00743.html#gaae65ba5c907ab13ba719aca48ef695bc">arma_isfinite</a> (double x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00743.html#ga8bcfcb0e5611dd0694759db9add1f982">arma_isfinite</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
 </table>
 </div>
 </BODY>

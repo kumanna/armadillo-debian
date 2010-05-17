@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eop_abs Class Reference</title>
+<title>Armadillo Technical: eGlueCube&lt; T1, T2, eglue_type &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,28 +29,115 @@
   </div>
 </div>
 <div class="contents">
-<h1>eop_abs Class Reference<br/>
+<h1>eGlueCube&lt; T1, T2, eglue_type &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00749.html">Eop_core</a>]</small>
-</h1><!-- doxytag: class="eop_abs" --><!-- doxytag: inherits="eop_core&lt; eop_abs &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00544_source.html">eop_core_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a00756.html">EGlueCube</a>]</small>
+</h1><!-- doxytag: class="eGlueCube" --><!-- doxytag: inherits="BaseCube&lt; T1::elem_type, eGlueCube&lt; T1, T2, eglue_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00546_source.html">eGlueCube_proto.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for eop_abs:</div>
+Inheritance diagram for eGlueCube&lt; T1, T2, eglue_type &gt;:</div>
 <div class="dynsection">
  <div class="center">
-  <img src="a00093.gif" usemap="#eop_abs_map" alt=""/>
-  <map id="eop_abs_map" name="eop_abs_map">
-<area href="a00106.html" alt="eop_core&lt; eop_abs &gt;" shape="rect" coords="0,0,138,24"/>
+  <img src="a00093.gif" usemap="#eGlueCube&lt; T1, T2, eglue_type &gt;_map" alt=""/>
+  <map id="eGlueCube&lt; T1, T2, eglue_type &gt;_map" name="eGlueCube&lt; T1, T2, eglue_type &gt;_map">
+<area href="a00055.html" alt="BaseCube&lt; T1::elem_type, eGlueCube&lt; T1, T2, eglue_type &gt; &gt;" shape="rect" coords="0,0,375,24"/>
 </map>
  </div>
 </div>
 
-<p><a href="a00962.html">List of all members.</a></p>
+<p><a href="a00972.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#a7213449aaa780a9948a960be0c88da68">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00189.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00093.html#a7213449aaa780a9948a960be0c88da68">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#ad03d9aed95415a1eba187fd0186ced5e">pod_type</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00756.html#ga689edb8553fc5a7bb4b30a6733def4ef">~eGlueCube</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00756.html#ga1de324f96441e72c3159150d11244cf0">eGlueCube</a> (const T1 &amp;in_A, const T2 &amp;in_B)</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00465.html">ProxyCube</a>&lt; T1 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00465.html">ProxyCube</a>&lt; T2 &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093.html#a7889f4ad7a21eb584459eb1073f1dd32">P2</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T1, typename T2, typename eglue_type&gt;<br/>
+ class eGlueCube&lt; T1, T2, eglue_type &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00544_source.html#l00078">78</a> of file <a class="el" href="a00544_source.html">eop_core_proto.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00546_source.html#l00022">22</a> of file <a class="el" href="a00546_source.html">eGlueCube_proto.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a7213449aaa780a9948a960be0c88da68"></a><!-- doxytag: member="eGlueCube::elem_type" ref="a7213449aaa780a9948a960be0c88da68" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename eglue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt;::<a class="el" href="a00093.html#a7213449aaa780a9948a960be0c88da68">elem_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00546_source.html#l00026">26</a> of file <a class="el" href="a00546_source.html">eGlueCube_proto.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad03d9aed95415a1eba187fd0186ced5e"></a><!-- doxytag: member="eGlueCube::pod_type" ref="ad03d9aed95415a1eba187fd0186ced5e" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename eglue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00189.html">get_pod_type</a>&lt;<a class="el" href="a00093.html#a7213449aaa780a9948a960be0c88da68">elem_type</a>&gt;::result <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt;::<a class="el" href="a00093.html#ad03d9aed95415a1eba187fd0186ced5e">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00546_source.html#l00027">27</a> of file <a class="el" href="a00546_source.html">eGlueCube_proto.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a27ae83fc7a6442e9890fdb2736358d7a"></a><!-- doxytag: member="eGlueCube::P1" ref="a27ae83fc7a6442e9890fdb2736358d7a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename eglue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00465.html">ProxyCube</a>&lt;T1&gt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt;::<a class="el" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00546_source.html#l00029">29</a> of file <a class="el" href="a00546_source.html">eGlueCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00539_source.html#l00071">eglue_cube_core&lt; eglue_type &gt;::apply()</a>, <a class="el" href="a00539_source.html#l00199">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_div()</a>, <a class="el" href="a00539_source.html#l00137">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_minus()</a>, <a class="el" href="a00539_source.html#l00106">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_plus()</a>, <a class="el" href="a00539_source.html#l00168">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_schur()</a>, <a class="el" href="a00545_source.html#l00033">eGlueCube&lt; T1, T2, eglue_type &gt;::eGlueCube()</a>, and <a class="el" href="a00539_source.html#l00026">eglue_cube_core&lt; eglue_type &gt;::get_elem()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7889f4ad7a21eb584459eb1073f1dd32"></a><!-- doxytag: member="eGlueCube::P2" ref="a7889f4ad7a21eb584459eb1073f1dd32" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2, typename eglue_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00465.html">ProxyCube</a>&lt;T2&gt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt;::<a class="el" href="a00093.html#a7889f4ad7a21eb584459eb1073f1dd32">P2</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00546_source.html#l00030">30</a> of file <a class="el" href="a00546_source.html">eGlueCube_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00539_source.html#l00071">eglue_cube_core&lt; eglue_type &gt;::apply()</a>, <a class="el" href="a00539_source.html#l00199">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_div()</a>, <a class="el" href="a00539_source.html#l00137">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_minus()</a>, <a class="el" href="a00539_source.html#l00106">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_plus()</a>, <a class="el" href="a00539_source.html#l00168">eglue_cube_core&lt; eglue_type &gt;::apply_inplace_schur()</a>, <a class="el" href="a00545_source.html#l00033">eGlueCube&lt; T1, T2, eglue_type &gt;::eGlueCube()</a>, and <a class="el" href="a00539_source.html#l00026">eglue_cube_core&lt; eglue_type &gt;::get_elem()</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

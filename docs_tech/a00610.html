@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: glue_cross_meat.hpp File Reference</title>
+<title>Armadillo Technical: gemm.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,13 +25,20 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>glue_cross_meat.hpp File Reference</h1>
+<h1>gemm.hpp File Reference</h1>
 <p><a href="a00610_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00182.html">gemm_emul_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Partial emulation of ATLAS/BLAS gemm(), using caching for speedup. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes).  <a href="a00182.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00183.html">gemm_emul_simple&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Partial emulation of ATLAS/BLAS gemm(), non-cached version. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes).  <a href="a00183.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00181.html">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Wrapper for ATLAS/BLAS dgemm function, using template arguments to control the arguments passed to dgemm. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes).  <a href="a00181.html#_details">More...</a><br/></td></tr>
 </table>
 </div>
 </BODY>

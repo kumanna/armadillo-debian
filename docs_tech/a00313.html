@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_dot Class Reference</title>
+<title>Armadillo Technical: op_cor Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,36 +29,25 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_dot Class Reference<br/>
+<h1>op_cor Class Reference<br/>
 <small>
-[<a class="el" href="a00820.html">Op_dot</a>]</small>
-</h1><!-- doxytag: class="op_dot" -->
-<p>dot product operation  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00828.html">Op_cor</a>]</small>
+</h1><!-- doxytag: class="op_cor" -->
+<p><code>#include &lt;<a class="el" href="a00635_source.html">op_cor_proto.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00634_source.html">op_dot_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a01177.html">List of all members.</a></p>
+<p><a href="a01190.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_hot static arma_pure eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00820.html#gad6e8af2a02ebbec85f085882ff3f3d68">direct_dot</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem, const eT *const A, const eT *const B)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">for two arrays  <a href="a00820.html#gad6e8af2a02ebbec85f085882ff3f3d68"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_hot static arma_pure eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00820.html#gaadc393f3b56dc5fc1eb9e832f4bee48d">direct_dot</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem, const eT *const A, const eT *const B, const eT *C)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">for three arrays  <a href="a00820.html#gaadc393f3b56dc5fc1eb9e832f4bee48d"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline static arma_hot <br class="typebreak"/>
-T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00820.html#ga0ea530ac5cec37677ffb2913dc5e701d">apply</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00820.html#gad5ee317edec298d72f10d2c60e82b880">apply_unwrap</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00820.html#gaf9f7ac52f729be81da8f095d91c2889f">apply_proxy</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00828.html#ga75c44873f2fa33b50dd38edb09e304c1">direct_cor</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00828.html#gac367006514b181bca615b671f4168591">direct_cor</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00828.html#ga5154a1095da552eccfed0ed5dfea0c29">apply</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00313.html">op_cor</a> &gt; &amp;in)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>dot product operation </p>
 
-<p>Definition at line <a class="el" href="a00634_source.html#l00023">23</a> of file <a class="el" href="a00634_source.html">op_dot_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00635_source.html#l00024">24</a> of file <a class="el" href="a00635_source.html">op_cor_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

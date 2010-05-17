@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: get_pod_type&lt; std::complex&lt; T2 &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: gemv_arma&lt; do_trans_A, use_alpha, use_beta &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,38 +29,157 @@
   </div>
 </div>
 <div class="contents">
-<h1>get_pod_type&lt; std::complex&lt; T2 &gt; &gt; Struct Template Reference<br/>
+<h1>gemv_arma&lt; do_trans_A, use_alpha, use_beta &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00870.html">Traits</a>]</small>
-</h1><!-- doxytag: class="get_pod_type&lt; std::complex&lt; T2 &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00713_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00816.html">Gemv</a>]</small>
+</h1><!-- doxytag: class="gemv_arma" -->
+<p>Partial emulation of ATLAS/BLAS gemv(). 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose).  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01054.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00612_source.html">gemv.hpp</a>&gt;</code></p>
+
+<p><a href="a01066.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T2&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00188.html#a3037711a42554fdb57a23d6351099efe">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00188.html#a9d69255ded7c4d54eabefe1d68757fb8">apply</a> (eT *y, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A, const eT *x, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T2&gt;<br/>
- struct get_pod_type&lt; std::complex&lt; T2 &gt; &gt;</h3>
+<h3>template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt;<br/>
+ class gemv_arma&lt; do_trans_A, use_alpha, use_beta &gt;</h3>
 
+<p>Partial emulation of ATLAS/BLAS gemv(). 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose). </p>
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00026">26</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a3037711a42554fdb57a23d6351099efe"></a><!-- doxytag: member="get_pod_type&lt; std::complex&lt; T2 &gt; &gt;::result" ref="a3037711a42554fdb57a23d6351099efe" args="" -->
+<p>Definition at line <a class="el" href="a00612_source.html#l00027">27</a> of file <a class="el" href="a00612_source.html">gemv.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a9d69255ded7c4d54eabefe1d68757fb8"></a><!-- doxytag: member="gemv_arma::apply" ref="a9d69255ded7c4d54eabefe1d68757fb8" args="(eT *y, const Mat&lt; eT &gt; &amp;A, const eT *x, const eT alpha=eT(1), const eT beta=eT(0))" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T2 &gt; </div>
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T2 <a class="el" href="a00187.html">get_pod_type</a>&lt; std::complex&lt; T2 &gt; &gt;::<a class="el" href="a00188.html#a3037711a42554fdb57a23d6351099efe">result</a></td>
+          <td class="memname">static arma_hot void <a class="el" href="a00188.html">gemv_arma</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">eT *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>eT(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>eT(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00027">27</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00612_source.html#l00036">36</a> of file <a class="el" href="a00612_source.html">gemv.hpp</a>.</p>
+
+<p>References <a class="el" href="a00632_source.html#l01938">Mat&lt; eT &gt;::at()</a>, <a class="el" href="a00632_source.html#l02047">Mat&lt; eT &gt;::colptr()</a>, <a class="el" href="a00633_source.html#l00031">Mat&lt; eT &gt;::n_cols</a>, and <a class="el" href="a00633_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00037"></a>00037     {
+<a name="l00038"></a>00038     arma_extra_debug_sigprint();
+<a name="l00039"></a>00039     
+<a name="l00040"></a>00040     <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> A_n_rows = A.<a class="code" href="a00308.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
+<a name="l00041"></a>00041     <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> A_n_cols = A.<a class="code" href="a00308.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>;
+<a name="l00042"></a>00042     
+<a name="l00043"></a>00043     <span class="keywordflow">if</span>(do_trans_A == <span class="keyword">false</span>)
+<a name="l00044"></a>00044       {
+<a name="l00045"></a>00045       <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row &lt; A_n_rows; ++row)
+<a name="l00046"></a>00046         {
+<a name="l00047"></a>00047         
+<a name="l00048"></a>00048         eT acc = eT(0);
+<a name="l00049"></a>00049         <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col &lt; A_n_cols; ++col)
+<a name="l00050"></a>00050           {
+<a name="l00051"></a>00051           acc += A.<a class="code" href="a00827.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,col) * x[col];
+<a name="l00052"></a>00052           }
+<a name="l00053"></a>00053           
+<a name="l00054"></a>00054         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">false</span>) &amp;&amp; (use_beta == <span class="keyword">false</span>) )
+<a name="l00055"></a>00055           {
+<a name="l00056"></a>00056           y[row] = acc;
+<a name="l00057"></a>00057           }
+<a name="l00058"></a>00058         <span class="keywordflow">else</span>
+<a name="l00059"></a>00059         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">true</span>) &amp;&amp; (use_beta == <span class="keyword">false</span>) )
+<a name="l00060"></a>00060           {
+<a name="l00061"></a>00061           y[row] = alpha * acc;
+<a name="l00062"></a>00062           }
+<a name="l00063"></a>00063         <span class="keywordflow">else</span>
+<a name="l00064"></a>00064         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">false</span>) &amp;&amp; (use_beta == <span class="keyword">true</span>) )
+<a name="l00065"></a>00065           {
+<a name="l00066"></a>00066           y[row] = acc + beta*y[row];
+<a name="l00067"></a>00067           }
+<a name="l00068"></a>00068         <span class="keywordflow">else</span>
+<a name="l00069"></a>00069         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">true</span>) &amp;&amp; (use_beta == <span class="keyword">true</span>) )
+<a name="l00070"></a>00070           {
+<a name="l00071"></a>00071           y[row] = alpha*acc + beta*y[row];
+<a name="l00072"></a>00072           }
+<a name="l00073"></a>00073         }
+<a name="l00074"></a>00074       }
+<a name="l00075"></a>00075     <span class="keywordflow">else</span>
+<a name="l00076"></a>00076     <span class="keywordflow">if</span>(do_trans_A == <span class="keyword">true</span>)
+<a name="l00077"></a>00077       {
+<a name="l00078"></a>00078       <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col &lt; A_n_cols; ++col)
+<a name="l00079"></a>00079         {
+<a name="l00080"></a>00080         <span class="comment">// col is interpreted as row when storing the results in &apos;y&apos;</span>
+<a name="l00081"></a>00081         
+<a name="l00082"></a>00082         <span class="keyword">const</span> eT* A_coldata = A.<a class="code" href="a00827.html#ga9355267e66e1ce202e16b2bc9e486585" title="returns a pointer to array of eTs for a specified column; no bounds check">colptr</a>(col);
+<a name="l00083"></a>00083         
+<a name="l00084"></a>00084         eT acc = eT(0);
+<a name="l00085"></a>00085         <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row &lt; A_n_rows; ++row)
+<a name="l00086"></a>00086           {
+<a name="l00087"></a>00087           acc += A_coldata[row] * x[row];
+<a name="l00088"></a>00088           }
+<a name="l00089"></a>00089       
+<a name="l00090"></a>00090         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">false</span>) &amp;&amp; (use_beta == <span class="keyword">false</span>) )
+<a name="l00091"></a>00091           {
+<a name="l00092"></a>00092           y[col] = acc;
+<a name="l00093"></a>00093           }
+<a name="l00094"></a>00094         <span class="keywordflow">else</span>
+<a name="l00095"></a>00095         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">true</span>) &amp;&amp; (use_beta == <span class="keyword">false</span>) )
+<a name="l00096"></a>00096           {
+<a name="l00097"></a>00097           y[col] = alpha * acc;
+<a name="l00098"></a>00098           }
+<a name="l00099"></a>00099         <span class="keywordflow">else</span>
+<a name="l00100"></a>00100         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">false</span>) &amp;&amp; (use_beta == <span class="keyword">true</span>) )
+<a name="l00101"></a>00101           {
+<a name="l00102"></a>00102           y[col] = acc + beta*y[col];
+<a name="l00103"></a>00103           }
+<a name="l00104"></a>00104         <span class="keywordflow">else</span>
+<a name="l00105"></a>00105         <span class="keywordflow">if</span>( (use_alpha == <span class="keyword">true</span>) &amp;&amp; (use_beta == <span class="keyword">true</span>) )
+<a name="l00106"></a>00106           {
+<a name="l00107"></a>00107           y[col] = alpha*acc + beta*y[col];
+<a name="l00108"></a>00108           }
+<a name="l00109"></a>00109         
+<a name="l00110"></a>00110         }
+<a name="l00111"></a>00111       }
+<a name="l00112"></a>00112     }
+</pre></div></p>
 
 </div>
 </div>

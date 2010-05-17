@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: auxlib_proto.hpp Source File</title>
+<title>Armadillo Technical: arma_ostream_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,135 +25,70 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>auxlib_proto.hpp</h1><a href="a00514.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>arma_ostream_proto.hpp</h1><a href="a00514.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
 <a name="l00005"></a>00005 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
-<a name="l00006"></a>00006 <span class="comment">// - Edmund Highcock (edmund dot highcock at merton dot ox dot ac dot uk)</span>
-<a name="l00007"></a>00007 <span class="comment">// </span>
-<a name="l00008"></a>00008 <span class="comment">// This file is part of the Armadillo C++ library.</span>
-<a name="l00009"></a>00009 <span class="comment">// It is provided without any warranty of fitness</span>
-<a name="l00010"></a>00010 <span class="comment">// for any purpose. You can redistribute this file</span>
-<a name="l00011"></a>00011 <span class="comment">// and/or modify it under the terms of the GNU</span>
-<a name="l00012"></a>00012 <span class="comment">// Lesser General Public License (LGPL) as published</span>
-<a name="l00013"></a>00013 <span class="comment">// by the Free Software Foundation, either version 3</span>
-<a name="l00014"></a>00014 <span class="comment">// of the License or (at your option) any later version.</span>
-<a name="l00015"></a>00015 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="comment"></span>
-<a name="l00018"></a>00018 <span class="comment">//! \addtogroup auxlib</span>
-<a name="l00019"></a>00019 <span class="comment">//! @{</span>
-<a name="l00020"></a>00020 <span class="comment"></span>
-<a name="l00021"></a>00021 <span class="comment"></span>
-<a name="l00022"></a>00022 <span class="comment">//! wrapper for accessing external functions defined in ATLAS, LAPACK or BLAS libraries</span>
-<a name="l00023"></a><a class="code" href="a00053.html">00023</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="a00053.html" title="wrapper for accessing external functions defined in ATLAS, LAPACK or BLAS libraries...">auxlib</a>
-<a name="l00024"></a>00024   {
-<a name="l00025"></a>00025   <span class="keyword">public</span>:
-<a name="l00026"></a>00026   
-<a name="l00027"></a>00027   <span class="comment">//</span>
-<a name="l00028"></a>00028   <span class="comment">// inv</span>
-<a name="l00029"></a>00029   
-<a name="l00030"></a>00030   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00031"></a>00031   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gac32b3e0cce5a4f3a08018dcdad1c31fa" title="immediate matrix inverse">inv_noalias</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00032"></a>00032   
-<a name="l00033"></a>00033   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00034"></a>00034   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#ga7d4c2aa0734bf34289f1ffa92bd78a91" title="immediate inplace matrix inverse">inv_inplace</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
+<a name="l00006"></a>00006 <span class="comment">// </span>
+<a name="l00007"></a>00007 <span class="comment">// This file is part of the Armadillo C++ library.</span>
+<a name="l00008"></a>00008 <span class="comment">// It is provided without any warranty of fitness</span>
+<a name="l00009"></a>00009 <span class="comment">// for any purpose. You can redistribute this file</span>
+<a name="l00010"></a>00010 <span class="comment">// and/or modify it under the terms of the GNU</span>
+<a name="l00011"></a>00011 <span class="comment">// Lesser General Public License (LGPL) as published</span>
+<a name="l00012"></a>00012 <span class="comment">// by the Free Software Foundation, either version 3</span>
+<a name="l00013"></a>00013 <span class="comment">// of the License or (at your option) any later version.</span>
+<a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 <span class="comment"></span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup arma_ostream</span>
+<a name="l00018"></a>00018 <span class="comment">//! @{</span>
+<a name="l00019"></a>00019 <span class="comment"></span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 
+<a name="l00022"></a><a class="code" href="a00020.html">00022</a> <span class="keyword">class </span><a class="code" href="a00020.html">arma_ostream_state</a>
+<a name="l00023"></a>00023   {
+<a name="l00024"></a>00024   <span class="keyword">private</span>:
+<a name="l00025"></a>00025 
+<a name="l00026"></a><a class="code" href="a00020.html#ab0b426f8607783622e9d2b43e8314f3f">00026</a>   <span class="keyword">const</span> ios::fmtflags   <a class="code" href="a00020.html#ab0b426f8607783622e9d2b43e8314f3f">orig_flags</a>;
+<a name="l00027"></a><a class="code" href="a00020.html#a5a6a6bed718f477a6e8a8e36777e10e6">00027</a>   <span class="keyword">const</span> std::streamsize <a class="code" href="a00020.html#a5a6a6bed718f477a6e8a8e36777e10e6">orig_precision</a>;
+<a name="l00028"></a><a class="code" href="a00020.html#a32f6f326c7bd989e9632470ddbc52249">00028</a>   <span class="keyword">const</span> std::streamsize <a class="code" href="a00020.html#a32f6f326c7bd989e9632470ddbc52249">orig_width</a>;
+<a name="l00029"></a><a class="code" href="a00020.html#aecb77f06b929295dff3b538634a5c935">00029</a>   <span class="keyword">const</span> <span class="keywordtype">char</span>            <a class="code" href="a00020.html#aecb77f06b929295dff3b538634a5c935">orig_fill</a>;
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032   <span class="keyword">public</span>:
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034   <span class="keyword">inline</span> <a class="code" href="a00739.html#ga8b91fb823ae840302fdda6b35cd18f3e">arma_ostream_state</a>(<span class="keyword">const</span> std::ostream&amp; o);
 <a name="l00035"></a>00035   
-<a name="l00036"></a>00036   
-<a name="l00037"></a>00037   <span class="comment">//</span>
-<a name="l00038"></a>00038   <span class="comment">// det</span>
-<a name="l00039"></a>00039   
-<a name="l00040"></a>00040   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00041"></a>00041   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00731.html#ga2577f6a49ab7d0896493ed90dd7c06d3" title="immediate determinant of a matrix using ATLAS or LAPACK">det</a>(<span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00044"></a>00044   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#gac7dd9e20ecb6f412b6d189eb98e74034" title="immediate log determinant of a matrix using ATLAS or LAPACK">log_det</a>(eT&amp; out_val, <span class="keyword">typename</span> <a class="code" href="a00187.html">get_pod_type&lt;eT&gt;::result</a>&amp; out_sign, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00045"></a>00045   
-<a name="l00046"></a>00046   
-<a name="l00047"></a>00047   <span class="comment">//</span>
-<a name="l00048"></a>00048   <span class="comment">// lu</span>
-<a name="l00049"></a>00049   
-<a name="l00050"></a>00050   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00051"></a>00051   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#gaf3cf664bbbe8966c69df2d6205f1da52" title="immediate LU decomposition of a matrix using ATLAS or LAPACK">lu</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; L, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; U, <a class="code" href="a00371.html" title="A lightweight array for POD types. If the amount of memory requested is small, the...">podarray&lt;int&gt;</a>&amp; ipiv, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X_orig);
-<a name="l00052"></a>00052   
-<a name="l00053"></a>00053   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00054"></a>00054   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#gaf3cf664bbbe8966c69df2d6205f1da52" title="immediate LU decomposition of a matrix using ATLAS or LAPACK">lu</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; L, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; U, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; P, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00057"></a>00057   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#gaf3cf664bbbe8966c69df2d6205f1da52" title="immediate LU decomposition of a matrix using ATLAS or LAPACK">lu</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; L, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; U, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00058"></a>00058   
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   <span class="comment">//</span>
-<a name="l00061"></a>00061   <span class="comment">// eig</span>
-<a name="l00062"></a>00062   
-<a name="l00063"></a>00063   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt; 
-<a name="l00064"></a>00064   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#ga18b5cbd325b5ce9882435f14914a3fa6" title="immediate eigenvalues of a symmetric real matrix using LAPACK">eig_sym</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; eigval, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A);
-<a name="l00065"></a>00065   
-<a name="l00066"></a>00066   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; 
-<a name="l00067"></a>00067   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#ga18b5cbd325b5ce9882435f14914a3fa6" title="immediate eigenvalues of a symmetric real matrix using LAPACK">eig_sym</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; eigval, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; A);
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00070"></a>00070   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#ga18b5cbd325b5ce9882435f14914a3fa6" title="immediate eigenvalues of a symmetric real matrix using LAPACK">eig_sym</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; eigval, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; eigvec, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A);
-<a name="l00071"></a>00071   
-<a name="l00072"></a>00072   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00073"></a>00073   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00731.html#ga18b5cbd325b5ce9882435f14914a3fa6" title="immediate eigenvalues of a symmetric real matrix using LAPACK">eig_sym</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; eigval, <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; eigvec, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; A);
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00076"></a>00076   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00053.html#aa750947c06ec347311418666741bdbbe">eig_gen</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col</a>&lt; std::complex&lt;eT&gt; &gt;&amp; eigval, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; l_eigvec, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; r_eigvec, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <span class="keywordtype">char</span> side);
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00079"></a>00079   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00053.html#aa750947c06ec347311418666741bdbbe">eig_gen</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col</a>&lt; std::complex&lt;T&gt; &gt;&amp; eigval, <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; l_eigvec, <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; r_eigvec, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; A, <span class="keyword">const</span> <span class="keywordtype">char</span> side);
-<a name="l00080"></a>00080   
-<a name="l00081"></a>00081   <span class="comment">//</span>
-<a name="l00082"></a>00082   <span class="comment">// chol</span>
-<a name="l00083"></a>00083   
-<a name="l00084"></a>00084   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00085"></a>00085   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#ga210cac0db9a4ab5dd738ef1ff34b2a5a">chol</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00086"></a>00086   
-<a name="l00087"></a>00087   
-<a name="l00088"></a>00088   <span class="comment">//</span>
-<a name="l00089"></a>00089   <span class="comment">// qr</span>
-<a name="l00090"></a>00090   
-<a name="l00091"></a>00091   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00092"></a>00092   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#ga87dcec76b360b81315b3451087a034e2">qr</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; Q, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; R, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00093"></a>00093   
-<a name="l00094"></a>00094   
-<a name="l00095"></a>00095   <span class="comment">//</span>
-<a name="l00096"></a>00096   <span class="comment">// svd</span>
-<a name="l00097"></a>00097   
-<a name="l00098"></a>00098   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00099"></a>00099   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gaf634c5679d890587a320dbf8a975b5f7">svd</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; S, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00100"></a>00100   
-<a name="l00101"></a>00101   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00102"></a>00102   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gaf634c5679d890587a320dbf8a975b5f7">svd</a>(<a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; S, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; X);
-<a name="l00103"></a>00103   
-<a name="l00104"></a>00104   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00105"></a>00105   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gaf634c5679d890587a320dbf8a975b5f7">svd</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; U, <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; S, <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; V, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X);
-<a name="l00106"></a>00106   
-<a name="l00107"></a>00107   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00108"></a>00108   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gaf634c5679d890587a320dbf8a975b5f7">svd</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; U, <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; S, <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; V, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; X);
-<a name="l00109"></a>00109   
-<a name="l00110"></a>00110   
-<a name="l00111"></a>00111   <span class="comment">// solve</span>
-<a name="l00112"></a>00112   
-<a name="l00113"></a>00113   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00114"></a>00114   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gaeb882f9ebd40ecd3f138ff5f2d4eb50a" title="Solve a system of linear equations Assumes that A.n_rows = A.n_cols and B.n_rows...">solve</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B);
-<a name="l00115"></a>00115   
-<a name="l00116"></a>00116   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00117"></a>00117   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#gade3d6439a4cce0ecd344de86e3ff0cd3" title="Solve an over-determined system. Assumes that A.n_rows &amp;gt; A.n_cols and B.n_rows...">solve_od</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B);
-<a name="l00118"></a>00118   
-<a name="l00119"></a>00119   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00120"></a>00120   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="a00731.html#ga7f0cc5b573a8da91df9ea3c55b716db3" title="Solve an under-determined system. Assumes that A.n_rows &amp;lt; A.n_cols and B.n_rows...">solve_ud</a>(<a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A, <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B);
-<a name="l00121"></a>00121   
-<a name="l00122"></a>00122   };
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">//! @}</span>
+<a name="l00036"></a>00036   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga1a082d76629a45c9b080001b8f22194b">restore</a>(std::ostream&amp; o) <span class="keyword">const</span>;
+<a name="l00037"></a>00037   };
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 
+<a name="l00041"></a><a class="code" href="a00019.html">00041</a> <span class="keyword">class </span><a class="code" href="a00019.html">arma_ostream</a>
+<a name="l00042"></a>00042   {
+<a name="l00043"></a>00043   <span class="keyword">public</span>:
+<a name="l00044"></a>00044   
+<a name="l00045"></a>00045   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt; <span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00739.html#gaf8367fae8c5fc5bebf278da89ad11029">modify_stream</a>(std::ostream&amp; o, <span class="keyword">const</span> eT*              data, <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem);
+<a name="l00046"></a>00046   <span class="keyword">template</span>&lt;<span class="keyword">typename</span>  T&gt; <span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="code" href="a00739.html#gaf8367fae8c5fc5bebf278da89ad11029">modify_stream</a>(std::ostream&amp; o, <span class="keyword">const</span> std::complex&lt;T&gt;* data, <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem);
+<a name="l00047"></a>00047   
+<a name="l00048"></a>00048   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt; arma_inline <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga6ac6fbfdf26609fdd7b747d0e21c4c51" title="Print an element to the specified stream.">print_elem</a>(std::ostream&amp; o, <span class="keyword">const</span> eT&amp;              x);
+<a name="l00049"></a>00049   <span class="keyword">template</span>&lt;<span class="keyword">typename</span>  T&gt; arma_inline <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga6ac6fbfdf26609fdd7b747d0e21c4c51" title="Print an element to the specified stream.">print_elem</a>(std::ostream&amp; o, <span class="keyword">const</span> std::complex&lt;T&gt;&amp; x);
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt; <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">print</a>(std::ostream&amp; o, <span class="keyword">const</span>  <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; m, <span class="keyword">const</span> <span class="keywordtype">bool</span> modify);
+<a name="l00052"></a>00052   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt; <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">print</a>(std::ostream&amp; o, <span class="keyword">const</span> <a class="code" href="a00068.html" title="Dense cube class.">Cube&lt;eT&gt;</a>&amp; m, <span class="keyword">const</span> <span class="keywordtype">bool</span> modify);
+<a name="l00053"></a>00053   
+<a name="l00054"></a>00054   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> oT&gt; <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">print</a>(std::ostream&amp; o, <span class="keyword">const</span> <a class="code" href="a00174.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field&lt;oT&gt;</a>&amp;         m);
+<a name="l00055"></a>00055   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> oT&gt; <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00739.html#ga0326f7d71112c2ae199dab64c9616859" title="Print a matrix to the specified stream.">print</a>(std::ostream&amp; o, <span class="keyword">const</span> <a class="code" href="a00485.html" title="Class for storing data required to construct or apply operations to a subfield (i...">subview_field&lt;oT&gt;</a>&amp; m);
+<a name="l00056"></a>00056   };
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="comment"></span>
+<a name="l00060"></a>00060 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

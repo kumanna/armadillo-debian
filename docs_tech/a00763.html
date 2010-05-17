@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Fn_diagvec</title>
+<title>Armadillo Technical: Fn_accu</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,52 +21,390 @@
   </div>
 </div>
 <div class="contents">
-<h1>Fn_diagvec</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>Fn_accu</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00308.html">Op</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00312.html">op_diagvec</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#ga78c18c534b948913e699c9a011fa017f">diagvec</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00871.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> diag_id=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">extract a diagonal from a matrix  <a href="#ga78c18c534b948913e699c9a011fa017f"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#gaafb4510c9863bc4579a3044db3f58a4e">accu_unwrap</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#gaf9d86705a428c6e7f7994694f8e3f88d">accu_proxy</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused <br class="typebreak"/>
+T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907">accu</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">accumulate the elements of a matrix  <a href="#gae2b3d34531e302cf44eb2fd914277907"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_hot arma_warn_unused <br class="typebreak"/>
+T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#ga6a03cfb61c2076bd90fcc7d3156b1499">accu</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">accumulate the elements of a cube  <a href="#ga6a03cfb61c2076bd90fcc7d3156b1499"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_pure arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#gad543e90d733430ad78a8f7966be3daec">accu</a> (const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">accumulate the elements of a <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="#gad543e90d733430ad78a8f7966be3daec"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_pure arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#ga0138ab3c91a09cc94ee2e030a051b5b4">accu</a> (const <a class="el" href="a00482.html">subview</a>&lt; eT &gt; &amp;S)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">accumulate the elements of a <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (submatrix)  <a href="#ga0138ab3c91a09cc94ee2e030a051b5b4"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_pure arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#ga0d1856ae6e562e9f55e6c0ad60f0c1ed">accu</a> (const <a class="el" href="a00486.html">subview_row</a>&lt; eT &gt; &amp;S)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">accumulate the elements of a <a class="el" href="a00486.html">subview_row</a>  <a href="#ga0d1856ae6e562e9f55e6c0ad60f0c1ed"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_pure arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00763.html#gaa11e1bd94f9a743321efddb4335d7958">accu</a> (const <a class="el" href="a00483.html">subview_col</a>&lt; eT &gt; &amp;S)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">accumulate the elements of a <a class="el" href="a00483.html">subview_col</a>  <a href="#gaa11e1bd94f9a743321efddb4335d7958"></a><br/></td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga78c18c534b948913e699c9a011fa017f"></a><!-- doxytag: member="fn_diagvec.hpp::diagvec" ref="ga78c18c534b948913e699c9a011fa017f" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X, const s32 diag_id=0)" -->
+<a class="anchor" id="gaafb4510c9863bc4579a3044db3f58a4e"></a><!-- doxytag: member="fn_accu.hpp::accu_unwrap" ref="gaafb4510c9863bc4579a3044db3f58a4e" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline const <a class="el" href="a00308.html">Op</a>&lt;T1, <a class="el" href="a00312.html">op_diagvec</a>&gt; diagvec </td>
+          <td class="memname">arma_hot T1::elem_type accu_unwrap </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00871.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&nbsp;</td>
-          <td class="paramname"> <em>diag_id</em> = <code>0</code></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline]</code></td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>extract a diagonal from a matrix </p>
+<p>Definition at line <a class="el" href="a00558_source.html#l00026">26</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
 
-<p>Definition at line <a class="el" href="a00562_source.html#l00025">25</a> of file <a class="el" href="a00562_source.html">fn_diagvec.hpp</a>.</p>
+<p>References <a class="el" href="a00520_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
 
-<p>References <a class="el" href="a00515_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+<p>Referenced by <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00026"></a>00026   {
-<a name="l00027"></a>00027   arma_extra_debug_sigprint();
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   <span class="keywordflow">return</span> <a class="code" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagvec&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), ((diag_id &lt; 0) ? -diag_id : diag_id), ((diag_id &lt; 0) ? 1 : 0) );
-<a name="l00030"></a>00030   }
+<p><div class="fragment"><pre class="fragment"><a name="l00027"></a>00027   {
+<a name="l00028"></a>00028   arma_extra_debug_sigprint();
+<a name="l00029"></a>00029   
+<a name="l00030"></a>00030   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00031"></a>00031   
+<a name="l00032"></a>00032   <span class="keyword">const</span> <a class="code" href="a00488.html">unwrap&lt;T1&gt;</a>   tmp(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00033"></a>00033   <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = tmp.M;
+<a name="l00034"></a>00034   
+<a name="l00035"></a>00035   <span class="keyword">const</span> eT* A_mem = A.memptr();
+<a name="l00036"></a>00036   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N     = A.n_elem;
+<a name="l00037"></a>00037   
+<a name="l00038"></a>00038   eT val1 = eT(0);
+<a name="l00039"></a>00039   eT val2 = eT(0);
+<a name="l00040"></a>00040   
+<a name="l00041"></a>00041   <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i,j;
+<a name="l00042"></a>00042   
+<a name="l00043"></a>00043   <span class="keywordflow">for</span>(i=0, j=1; j&lt;N; i+=2, j+=2)
+<a name="l00044"></a>00044     {
+<a name="l00045"></a>00045     val1 += A_mem[i];
+<a name="l00046"></a>00046     val2 += A_mem[j];
+<a name="l00047"></a>00047     }
+<a name="l00048"></a>00048   
+<a name="l00049"></a>00049   <span class="keywordflow">if</span>(i &lt; N)
+<a name="l00050"></a>00050     {
+<a name="l00051"></a>00051     val1 += A_mem[i];
+<a name="l00052"></a>00052     }
+<a name="l00053"></a>00053   
+<a name="l00054"></a>00054   <span class="keywordflow">return</span> val1 + val2;
+<a name="l00055"></a>00055   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaf9d86705a428c6e7f7994694f8e3f88d"></a><!-- doxytag: member="fn_accu.hpp::accu_proxy" ref="gaf9d86705a428c6e7f7994694f8e3f88d" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_hot T1::elem_type accu_proxy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00063">63</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00520_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00064"></a>00064   {
+<a name="l00065"></a>00065   arma_extra_debug_sigprint();
+<a name="l00066"></a>00066   
+<a name="l00067"></a>00067   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00068"></a>00068   
+<a name="l00069"></a>00069   <span class="keyword">const</span> <a class="code" href="a00455.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00070"></a>00070   
+<a name="l00071"></a>00071   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.n_elem;
+<a name="l00072"></a>00072   
+<a name="l00073"></a>00073   eT val = eT(0);
+<a name="l00074"></a>00074   
+<a name="l00075"></a>00075   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N; ++i)
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077     val += A[i];
+<a name="l00078"></a>00078     }
+<a name="l00079"></a>00079   
+<a name="l00080"></a>00080   <span class="keywordflow">return</span> val;
+<a name="l00081"></a>00081   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gae2b3d34531e302cf44eb2fd914277907"></a><!-- doxytag: member="fn_accu.hpp::accu" ref="gae2b3d34531e302cf44eb2fd914277907" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline arma_warn_unused T1::elem_type accu </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>accumulate the elements of a matrix </p>
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00090">90</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00558_source.html#l00063">accu_proxy()</a>, and <a class="el" href="a00558_source.html#l00026">accu_unwrap()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00601_source.html#l00046">sum()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00091"></a>00091   {
+<a name="l00092"></a>00092   arma_extra_debug_sigprint();
+<a name="l00093"></a>00093   
+<a name="l00094"></a>00094   <span class="keywordflow">return</span> (<a class="code" href="a00243.html">is_Mat&lt;T1&gt;::value</a> == <span class="keyword">true</span>) ? <a class="code" href="a00763.html#gaafb4510c9863bc4579a3044db3f58a4e">accu_unwrap</a>(X) : <a class="code" href="a00763.html#gaf9d86705a428c6e7f7994694f8e3f88d">accu_proxy</a>(X);
+<a name="l00095"></a>00095   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga6a03cfb61c2076bd90fcc7d3156b1499"></a><!-- doxytag: member="fn_accu.hpp::accu" ref="ga6a03cfb61c2076bd90fcc7d3156b1499" args="(const BaseCube&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_hot arma_warn_unused T1::elem_type accu </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>accumulate the elements of a cube </p>
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00105">105</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00521_source.html#l00029">BaseCube&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00106"></a>00106   {
+<a name="l00107"></a>00107   arma_extra_debug_sigprint();
+<a name="l00108"></a>00108   
+<a name="l00109"></a>00109   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00110"></a>00110   
+<a name="l00111"></a>00111   <span class="keyword">const</span> <a class="code" href="a00465.html">ProxyCube&lt;T1&gt;</a> A(X.<a class="code" href="a00055.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>());
+<a name="l00112"></a>00112   
+<a name="l00113"></a>00113   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = A.n_elem;
+<a name="l00114"></a>00114   
+<a name="l00115"></a>00115   eT val = eT(0);
+<a name="l00116"></a>00116   
+<a name="l00117"></a>00117   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00118"></a>00118     {
+<a name="l00119"></a>00119     val += A[i];
+<a name="l00120"></a>00120     }
+<a name="l00121"></a>00121   
+<a name="l00122"></a>00122   <span class="keywordflow">return</span> val;
+<a name="l00123"></a>00123   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gad543e90d733430ad78a8f7966be3daec"></a><!-- doxytag: member="fn_accu.hpp::accu" ref="gad543e90d733430ad78a8f7966be3daec" args="(const diagview&lt; eT &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_pure arma_warn_unused eT accu </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>accumulate the elements of a <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> </p>
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00133">133</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00534_source.html#l00038">diagview&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00134"></a>00134   {
+<a name="l00135"></a>00135   arma_extra_debug_sigprint();  
+<a name="l00136"></a>00136   
+<a name="l00137"></a>00137   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem = X.<a class="code" href="a00080.html#a4add84ecd3604906a28621db79f5e4ee">n_elem</a>;
+<a name="l00138"></a>00138   eT val = eT(0);
+<a name="l00139"></a>00139   
+<a name="l00140"></a>00140   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00141"></a>00141     {
+<a name="l00142"></a>00142     val += X[i];
+<a name="l00143"></a>00143     }
+<a name="l00144"></a>00144   
+<a name="l00145"></a>00145   <span class="keywordflow">return</span> val;
+<a name="l00146"></a>00146   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga0138ab3c91a09cc94ee2e030a051b5b4"></a><!-- doxytag: member="fn_accu.hpp::accu" ref="ga0138ab3c91a09cc94ee2e030a051b5b4" args="(const subview&lt; eT &gt; &amp;S)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_pure arma_warn_unused eT accu </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00482.html">subview</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>S</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>accumulate the elements of a <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (submatrix) </p>
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00156">156</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00654">subview&lt; eT &gt;::colptr()</a>, <a class="el" href="a00720_source.html#l00041">subview&lt; eT &gt;::n_cols</a>, and <a class="el" href="a00720_source.html#l00040">subview&lt; eT &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00157"></a>00157   {
+<a name="l00158"></a>00158   arma_extra_debug_sigprint();  
+<a name="l00159"></a>00159   
+<a name="l00160"></a>00160   eT val = eT(0);
+<a name="l00161"></a>00161   
+<a name="l00162"></a>00162   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=0; col&lt;S.<a class="code" href="a00482.html#a7dd5700e185b2ac3e1d2caae4dc169e4">n_cols</a>; ++col)
+<a name="l00163"></a>00163     {
+<a name="l00164"></a>00164     <span class="keyword">const</span> eT* coldata = S.<a class="code" href="a00880.html#ga0af6fd067f903b3d8cc5f24df1eaff8f">colptr</a>(col);
+<a name="l00165"></a>00165     
+<a name="l00166"></a>00166     <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row&lt;S.<a class="code" href="a00482.html#a22fb374d8955c266bff842713cc14dab">n_rows</a>; ++row)
+<a name="l00167"></a>00167       {
+<a name="l00168"></a>00168       val += coldata[row];
+<a name="l00169"></a>00169       }
+<a name="l00170"></a>00170     
+<a name="l00171"></a>00171     }
+<a name="l00172"></a>00172   
+<a name="l00173"></a>00173   <span class="keywordflow">return</span> val;
+<a name="l00174"></a>00174   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga0d1856ae6e562e9f55e6c0ad60f0c1ed"></a><!-- doxytag: member="fn_accu.hpp::accu" ref="ga0d1856ae6e562e9f55e6c0ad60f0c1ed" args="(const subview_row&lt; eT &gt; &amp;S)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_pure arma_warn_unused eT accu </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00486.html">subview_row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>S</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>accumulate the elements of a <a class="el" href="a00486.html">subview_row</a> </p>
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00184">184</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00632_source.html#l01938">Mat&lt; eT &gt;::at()</a>, <a class="el" href="a00720_source.html#l00035">subview&lt; eT &gt;::aux_col1</a>, <a class="el" href="a00720_source.html#l00038">subview&lt; eT &gt;::aux_col2</a>, <a class="el" href="a00720_source.html#l00034">subview&lt; eT &gt;::aux_row1</a>, and <a class="el" href="a00720_source.html#l00026">subview&lt; eT &gt;::m</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00185"></a>00185   {
+<a name="l00186"></a>00186   arma_extra_debug_sigprint();  
+<a name="l00187"></a>00187   
+<a name="l00188"></a>00188   <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; X = S.<a class="code" href="a00482.html#a9aadaa57c96bff1553010266f8628968">m</a>;
+<a name="l00189"></a>00189   
+<a name="l00190"></a>00190   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row       = S.<a class="code" href="a00482.html#a1f92d1905c9cb70ae1b48b0ec6b90c62">aux_row1</a>;
+<a name="l00191"></a>00191   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> start_col = S.<a class="code" href="a00482.html#aa5e0f9acd2a3979934d199c127ebaa20">aux_col1</a>;
+<a name="l00192"></a>00192   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> end_col   = S.<a class="code" href="a00482.html#ad455e1ca55a60aef81efa4781b06fa64">aux_col2</a>;
+<a name="l00193"></a>00193   
+<a name="l00194"></a>00194   eT val = eT(0);
+<a name="l00195"></a>00195   
+<a name="l00196"></a>00196   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col=start_col; col&lt;=end_col; ++col)
+<a name="l00197"></a>00197     {
+<a name="l00198"></a>00198     val += X.<a class="code" href="a00827.html#ga6e3952e7bf8575ff6423340f4ad1807a" title="element accessor; no bounds check">at</a>(row,col);
+<a name="l00199"></a>00199     }
+<a name="l00200"></a>00200   
+<a name="l00201"></a>00201   <span class="keywordflow">return</span> val;
+<a name="l00202"></a>00202   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaa11e1bd94f9a743321efddb4335d7958"></a><!-- doxytag: member="fn_accu.hpp::accu" ref="gaa11e1bd94f9a743321efddb4335d7958" args="(const subview_col&lt; eT &gt; &amp;S)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_pure arma_warn_unused eT accu </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00483.html">subview_col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>S</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>accumulate the elements of a <a class="el" href="a00483.html">subview_col</a> </p>
+
+<p>Definition at line <a class="el" href="a00558_source.html#l00212">212</a> of file <a class="el" href="a00558_source.html">fn_accu.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00654">subview&lt; eT &gt;::colptr()</a>, and <a class="el" href="a00720_source.html#l00040">subview&lt; eT &gt;::n_rows</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00213"></a>00213   {
+<a name="l00214"></a>00214   arma_extra_debug_sigprint();
+<a name="l00215"></a>00215   
+<a name="l00216"></a>00216   <span class="keyword">const</span> eT* S_colptr = S.<a class="code" href="a00880.html#ga0af6fd067f903b3d8cc5f24df1eaff8f">colptr</a>(0);
+<a name="l00217"></a>00217   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows   = S.<a class="code" href="a00482.html#a22fb374d8955c266bff842713cc14dab">n_rows</a>;
+<a name="l00218"></a>00218   
+<a name="l00219"></a>00219   eT val = eT(0);
+<a name="l00220"></a>00220   
+<a name="l00221"></a>00221   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row=0; row&lt;n_rows; ++row)
+<a name="l00222"></a>00222     {
+<a name="l00223"></a>00223     val += S_colptr[row];
+<a name="l00224"></a>00224     }
+<a name="l00225"></a>00225   
+<a name="l00226"></a>00226   <span class="keywordflow">return</span> val;
+<a name="l00227"></a>00227   }
 </pre></div></p>
 
 </div>

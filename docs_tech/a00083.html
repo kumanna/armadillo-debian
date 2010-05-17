@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eglue_cube_div Class Reference</title>
+<title>Armadillo Technical: eglue_core&lt; eglue_type &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,53 +29,40 @@
   </div>
 </div>
 <div class="contents">
-<h1>eglue_cube_div Class Reference<br/>
+<h1>eglue_core&lt; eglue_type &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00744.html">Eglue_cube_misc</a>]</small>
-</h1><!-- doxytag: class="eglue_cube_div" --><!-- doxytag: inherits="eglue_cube_core&lt; eglue_cube_div &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00536_source.html">eglue_cube_misc.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for eglue_cube_div:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00083.gif" usemap="#eglue_cube_div_map" alt=""/>
-  <map id="eglue_cube_div_map" name="eglue_cube_div_map">
-<area href="a00082.html" alt="eglue_cube_core&lt; eglue_cube_div &gt;" shape="rect" coords="0,0,225,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00751.html">Eglue_core</a>]</small>
+</h1><!-- doxytag: class="eglue_core" -->
+<p><code>#include &lt;<a class="el" href="a00538_source.html">eglue_core_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a00952.html">List of all members.</a></p>
+<p><a href="a00962.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083.html#a0cade03d0ae5725df4306564cf86f5d0">id</a> ()</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga8685da4ee629ce030328bfb00f80233e">get_elem</a> (const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga9442ef52867a93cd3919be712f63197a">get_elem</a> (const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga18b142e149fa4166d829085c71802036">apply</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga626e21d56951189b5bc2e4ba86731739">apply_proxy</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga4c47e4be32955c7a37b60c014acd493c">apply_unwrap</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga9b1fc6ec950fa1abb5b421db58268331">apply_inplace_plus</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga8aa2ba7e18c62743d1022cd927c08518">apply_inplace_minus</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga660d6668fc54385862a97d67f0fcb2b2">apply_inplace_schur</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00751.html#ga306dddece4d1b8c52162d31dc348aacd">apply_inplace_div</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00082.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;x)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename eglue_type&gt;<br/>
+ struct eglue_core&lt; eglue_type &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00536_source.html#l00040">40</a> of file <a class="el" href="a00536_source.html">eglue_cube_misc.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a0cade03d0ae5725df4306564cf86f5d0"></a><!-- doxytag: member="eglue_cube_div::id" ref="a0cade03d0ae5725df4306564cf86f5d0" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static const char* eglue_cube_div::id </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00536_source.html#l00044">44</a> of file <a class="el" href="a00536_source.html">eglue_cube_misc.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00044"></a>00044 { <span class="keywordflow">return</span> <span class="stringliteral">&quot;element-wise cube division&quot;</span>; }
-</pre></div></p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00538_source.html#l00023">23</a> of file <a class="el" href="a00538_source.html">eglue_core_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Glue_cor</title>
+<title>Armadillo Technical: Fn_sum</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,274 +21,312 @@
   </div>
 </div>
 <div class="contents">
-<h1>Glue_cor</h1><table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00190.html">glue_cor</a></td></tr>
+<h1>Fn_sum</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00337.html">op_sum</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#ga294778a7cda1288c1d01572b5eb0f081">sum</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Delayed sum of elements of a matrix along a specified dimension (either rows or columns). The result is stored in a dense matrix that has either one column or one row. For dim = 0, find the sum of each column. For dim = 1, find the sum of each row. The default is dim = 0. NOTE: this function works differently than in Matlab/Octave.  <a href="#ga294778a7cda1288c1d01572b5eb0f081"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#gac3b31a28afb9e10dc107e62841c85152">glue_cor::direct_cor</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;B, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#ga4a3910ad0e5392737c4d4fab9852acb0">glue_cor::direct_cor</a> (<a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;B, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#ga91829b1a3b782893cccac1990ca8dd25">glue_cor::apply</a> (<a class="el" href="a00305.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, <a class="el" href="a00190.html">glue_cor</a> &gt; &amp;X)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#gad7d2a35d3dc077fd7c92b55bbe0f3c1e">sum</a> (const <a class="el" href="a00472.html">Row</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'sum all values' operation for a row vector.  <a href="#gad7d2a35d3dc077fd7c92b55bbe0f3c1e"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#gaef4ab16deb384660432834e3d46b1941">sum</a> (const <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'sum all values' operation for a column vector.  <a href="#gaef4ab16deb384660432834e3d46b1941"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused <br class="typebreak"/>
+T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#ga842f677d1e0ecf8b407ed37624222cd9">sum</a> (const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00337.html">op_sum</a> &gt; &amp;in)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate 'sum all values' operation, invoked, for example, by: sum(sum(A)).  <a href="#ga842f677d1e0ecf8b407ed37624222cd9"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00312.html">Op</a>&lt; <a class="el" href="a00312.html">Op</a>&lt; T1, <br class="typebreak"/>
+<a class="el" href="a00337.html">op_sum</a> &gt;, <a class="el" href="a00337.html">op_sum</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#gaaf522d79a5a629af25d5bb84513a476a">sum</a> (const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00337.html">op_sum</a> &gt; &amp;in, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#gab0be454343c14742827a1a555c254638">sum</a> (const <a class="el" href="a00486.html">subview_row</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sum all values of a <a class="el" href="a00486.html">subview_row</a>  <a href="#gab0be454343c14742827a1a555c254638"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#gaf8168a9b85da2b44e01903bc4b13d399">sum</a> (const <a class="el" href="a00483.html">subview_col</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sum all values of a <a class="el" href="a00483.html">subview_col</a>  <a href="#gaf8168a9b85da2b44e01903bc4b13d399"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline arma_warn_unused eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00806.html#ga130aba2d8dc60e60db304b44b06ff169">sum</a> (const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">sum all values of a <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="#ga130aba2d8dc60e60db304b44b06ff169"></a><br/></td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gac3b31a28afb9e10dc107e62841c85152"></a><!-- doxytag: member="glue_cor::direct_cor" ref="gac3b31a28afb9e10dc107e62841c85152" args="(Mat&lt; eT &gt; &amp;out, const Mat&lt; eT &gt; &amp;A, const Mat&lt; eT &gt; &amp;B, const u32 norm_type)" -->
+<a class="anchor" id="ga294778a7cda1288c1d01572b5eb0f081"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="ga294778a7cda1288c1d01572b5eb0f081" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X, const u32 dim=0)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00312.html">Op</a>&lt;T1, <a class="el" href="a00337.html">op_sum</a>&gt; sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>dim</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Delayed sum of elements of a matrix along a specified dimension (either rows or columns). The result is stored in a dense matrix that has either one column or one row. For dim = 0, find the sum of each column. For dim = 1, find the sum of each row. The default is dim = 0. NOTE: this function works differently than in Matlab/Octave. </p>
+
+<p>Definition at line <a class="el" href="a00601_source.html#l00032">32</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
+
+<p>References <a class="el" href="a00520_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00634_source.html#l00027">op_cor::direct_cor()</a>, <a class="el" href="a00613_source.html#l00026">glue_cor::direct_cor()</a>, <a class="el" href="a00636_source.html#l00027">op_cov::direct_cov()</a>, <a class="el" href="a00615_source.html#l00026">glue_cov::direct_cov()</a>, <a class="el" href="a00665_source.html#l00034">op_princomp::direct_princomp()</a>, <a class="el" href="a00663_source.html#l00033">op_princomp_cov::direct_princomp_cov()</a>, and <a class="el" href="a00535_source.html#l00356">diskio::gen_tmp_name()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00033"></a>00033   {
+<a name="l00034"></a>00034   arma_extra_debug_sigprint();
+<a name="l00035"></a>00035   
+<a name="l00036"></a>00036   <span class="keywordflow">return</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_sum&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), dim, 0);
+<a name="l00037"></a>00037   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gad7d2a35d3dc077fd7c92b55bbe0f3c1e"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="gad7d2a35d3dc077fd7c92b55bbe0f3c1e" args="(const Row&lt; eT &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cor::direct_cor </td>
+          <td class="memname">arma_inline arma_warn_unused eT sum </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>norm_type</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00472.html">Row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00606_source.html#l00026">26</a> of file <a class="el" href="a00606_source.html">glue_cor_meat.hpp</a>.</p>
+<p>Immediate 'sum all values' operation for a row vector. </p>
 
-<p>References <a class="el" href="a00623_source.html#l02006">Mat&lt; eT &gt;::is_vec()</a>, <a class="el" href="a00623_source.html#l02069">Mat&lt; eT &gt;::memptr()</a>, <a class="el" href="a00624_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>, <a class="el" href="a00624_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>, <a class="el" href="a00623_source.html#l02267">Mat&lt; eT &gt;::set_size()</a>, <a class="el" href="a00593_source.html#l00025">stddev()</a>, <a class="el" href="a00594_source.html#l00032">sum()</a>, and <a class="el" href="a00597_source.html#l00024">trans()</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00046">46</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="a00606_source.html#l00146">apply()</a>.</p>
+<p>References <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00027"></a>00027   {
-<a name="l00028"></a>00028   arma_extra_debug_sigprint();
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030   <span class="keywordflow">if</span>(A.<a class="code" href="a00815.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>() &amp;&amp; B.<a class="code" href="a00815.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>())
-<a name="l00031"></a>00031     {
-<a name="l00032"></a>00032     arma_debug_check( (A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> != B.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>), <span class="stringliteral">&quot;cor(): the number of elements in A and B must match&quot;</span> );
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034     <span class="keyword">const</span> eT* A_ptr = A.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
-<a name="l00035"></a>00035     <span class="keyword">const</span> eT* B_ptr = B.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037     eT A_acc   = eT(0);
-<a name="l00038"></a>00038     eT B_acc   = eT(0);
-<a name="l00039"></a>00039     eT out_acc = eT(0);
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043     <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N; ++i)
-<a name="l00044"></a>00044       {
-<a name="l00045"></a>00045       <span class="keyword">const</span> eT A_tmp = A_ptr[i];
-<a name="l00046"></a>00046       <span class="keyword">const</span> eT B_tmp = B_ptr[i];
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048       A_acc += A_tmp;
-<a name="l00049"></a>00049       B_acc += B_tmp;
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051       out_acc += A_tmp * B_tmp;
-<a name="l00052"></a>00052       }
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054     out_acc -= (A_acc * B_acc)/eT(N);
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (N &gt; 1) ? eT(N-1) : eT(1) ) : eT(N);    
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058     out.<a class="code" href="a00815.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1,1);
-<a name="l00059"></a>00059     out[0] = out_acc/norm_val;
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061     <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> stddev_A = (A.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> == 1) ? <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(<a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(A)) : <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(A);
-<a name="l00062"></a>00062     <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> stddev_B = (B.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> == 1) ? <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(<a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(B)) : <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(B);
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064     out /= stddev_A * stddev_B;
-<a name="l00065"></a>00065     }
-<a name="l00066"></a>00066   <span class="keywordflow">else</span>
-<a name="l00067"></a>00067     {
-<a name="l00068"></a>00068     arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;cor()&quot;</span>);
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
-<a name="l00071"></a>00071     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (N &gt; 1) ? eT(N-1) : eT(1) ) : eT(N);
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073     out = <a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(A) * B;
-<a name="l00074"></a>00074     out -= (<a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00795.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(A)) * <a class="code" href="a00795.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(B))/eT(N);
-<a name="l00075"></a>00075     out /= norm_val;
-<a name="l00076"></a>00076     out /= <a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(A)) * <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(B);
-<a name="l00077"></a>00077     }
-<a name="l00078"></a>00078   }
+<p><div class="fragment"><pre class="fragment"><a name="l00047"></a>00047   {
+<a name="l00048"></a>00048   arma_extra_debug_sigprint();
+<a name="l00049"></a>00049   
+<a name="l00050"></a>00050   <span class="keywordflow">return</span> <a class="code" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
+<a name="l00051"></a>00051   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga4a3910ad0e5392737c4d4fab9852acb0"></a><!-- doxytag: member="glue_cor::direct_cor" ref="ga4a3910ad0e5392737c4d4fab9852acb0" args="(Mat&lt; std::complex&lt; T &gt; &gt; &amp;out, const Mat&lt; std::complex&lt; T &gt; &gt; &amp;A, const Mat&lt; std::complex&lt; T &gt; &gt; &amp;B, const u32 norm_type)" -->
+<a class="anchor" id="gaef4ab16deb384660432834e3d46b1941"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="gaef4ab16deb384660432834e3d46b1941" args="(const Col&lt; eT &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cor::direct_cor </td>
+          <td class="memname">arma_inline arma_warn_unused eT sum </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00305.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>norm_type</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00606_source.html#l00085">85</a> of file <a class="el" href="a00606_source.html">glue_cor_meat.hpp</a>.</p>
+<p>Immediate 'sum all values' operation for a column vector. </p>
 
-<p>References <a class="el" href="a00576_source.html#l00606">conj()</a>, <a class="el" href="a00593_source.html#l00025">stddev()</a>, <a class="el" href="a00594_source.html#l00032">sum()</a>, and <a class="el" href="a00597_source.html#l00024">trans()</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00061">61</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00086"></a>00086   {
-<a name="l00087"></a>00087   arma_extra_debug_sigprint();
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089   <span class="keyword">typedef</span> <span class="keyword">typename</span> std::complex&lt;T&gt; eT;
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091   <span class="keywordflow">if</span>(A.<a class="code" href="a00815.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>() &amp;&amp; B.<a class="code" href="a00815.html#ga588483a35cd5e45a01390aab33c7b16b" title="returns true if the object can be interpreted as a column or row vector">is_vec</a>())
-<a name="l00092"></a>00092     { 
-<a name="l00093"></a>00093     arma_debug_check( (A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> != B.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>), <span class="stringliteral">&quot;cor(): the number of elements in A and B must match&quot;</span> );
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095     <span class="keyword">const</span> eT* A_ptr = A.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
-<a name="l00096"></a>00096     <span class="keyword">const</span> eT* B_ptr = B.<a class="code" href="a00815.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();        
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098     eT A_acc   = eT(0);
-<a name="l00099"></a>00099     eT B_acc   = eT(0);
-<a name="l00100"></a>00100     eT out_acc = eT(0);
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.<a class="code" href="a00305.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104     <span class="keywordflow">for</span>(<a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;N; ++i)
-<a name="l00105"></a>00105       {
-<a name="l00106"></a>00106       <span class="keyword">const</span> eT A_tmp = A_ptr[i];
-<a name="l00107"></a>00107       <span class="keyword">const</span> eT B_tmp = B_ptr[i];
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109       A_acc += A_tmp;
-<a name="l00110"></a>00110       B_acc += B_tmp;
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112       out_acc += <a class="code" href="a00777.html#gaa391c64e4ebc063dd39dc13a1330055c">std::conj</a>(A_tmp) * B_tmp;
-<a name="l00113"></a>00113       }
-<a name="l00114"></a>00114 
-<a name="l00115"></a>00115     out_acc -= (<a class="code" href="a00777.html#gaa391c64e4ebc063dd39dc13a1330055c">std::conj</a>(A_acc) * B_acc)/eT(N);
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (N &gt; 1) ? eT(N-1) : eT(1) ) : eT(N);
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119     out.<a class="code" href="a00815.html#gac55ef8df37e04e1af416594dfbe25ac6" title="change the matrix to have user specified dimensions (data is not preserved)">set_size</a>(1,1);
-<a name="l00120"></a>00120     out[0] = out_acc/norm_val;
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122     <span class="keyword">const</span> <a class="code" href="a00305.html">Mat&lt;T&gt;</a> stddev_A = (A.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> == 1) ? <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(<a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(A)) : <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(A);
-<a name="l00123"></a>00123     <span class="keyword">const</span> <a class="code" href="a00305.html">Mat&lt;T&gt;</a> stddev_B = (B.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> == 1) ? <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(<a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(B)) : <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(B);
-<a name="l00124"></a>00124 
-<a name="l00125"></a>00125     out /= <a class="code" href="a00059.html">conv_to&lt; Mat&lt;eT&gt;</a> &gt;::from( stddev_A * stddev_B );
-<a name="l00126"></a>00126     }
-<a name="l00127"></a>00127   <span class="keywordflow">else</span>
-<a name="l00128"></a>00128     {
-<a name="l00129"></a>00129     arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;cor()&quot;</span>);
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131     <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N = A.<a class="code" href="a00305.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
-<a name="l00132"></a>00132     <span class="keyword">const</span> eT norm_val = (norm_type == 0) ? ( (N &gt; 1) ? eT(N-1) : eT(1) ) : eT(N);
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134     out = <a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00777.html#gaa391c64e4ebc063dd39dc13a1330055c">conj</a>(A)) * B;
-<a name="l00135"></a>00135     out -= (<a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00777.html#gaa391c64e4ebc063dd39dc13a1330055c">conj</a>(<a class="code" href="a00795.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(A))) * <a class="code" href="a00795.html#ga294778a7cda1288c1d01572b5eb0f081" title="Delayed sum of elements of a matrix along a specified dimension (either rows or columns)...">sum</a>(B))/eT(N);
-<a name="l00136"></a>00136     out /= norm_val;
-<a name="l00137"></a>00137     out /= <a class="code" href="a00059.html">conv_to&lt; Mat&lt;eT&gt;</a> &gt;::from( <a class="code" href="a00798.html#gae19b0e38f45cd28d229ad5a2e0d6bb64">trans</a>(<a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(A)) * <a class="code" href="a00794.html#ga37251c2b7e91c24d17bc448b8274f48d">stddev</a>(B) );
-<a name="l00138"></a>00138     }
-<a name="l00139"></a>00139   }
+<p>References <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00062"></a>00062   {
+<a name="l00063"></a>00063   arma_extra_debug_sigprint();
+<a name="l00064"></a>00064   
+<a name="l00065"></a>00065   <span class="keywordflow">return</span> <a class="code" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
+<a name="l00066"></a>00066   }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga91829b1a3b782893cccac1990ca8dd25"></a><!-- doxytag: member="glue_cor::apply" ref="ga91829b1a3b782893cccac1990ca8dd25" args="(Mat&lt; typename T1::elem_type &gt; &amp;out, const Glue&lt; T1, T2, glue_cor &gt; &amp;X)" -->
+<a class="anchor" id="ga842f677d1e0ecf8b407ed37624222cd9"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="ga842f677d1e0ecf8b407ed37624222cd9" args="(const Op&lt; T1, op_sum &gt; &amp;in)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void glue_cor::apply </td>
+          <td class="memname">arma_inline arma_warn_unused T1::elem_type sum </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="a00305.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00189.html">Glue</a>&lt; T1, T2, <a class="el" href="a00190.html">glue_cor</a> &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+          <td class="paramtype">const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00337.html">op_sum</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00606_source.html#l00146">146</a> of file <a class="el" href="a00606_source.html">glue_cor_meat.hpp</a>.</p>
+<p>Immediate 'sum all values' operation, invoked, for example, by: sum(sum(A)). </p>
 
-<p>References <a class="el" href="a00615_source.html#l00047">Glue&lt; T1, T2, glue_type &gt;::A</a>, <a class="el" href="a00615_source.html#l00049">Glue&lt; T1, T2, glue_type &gt;::aux_u32</a>, <a class="el" href="a00615_source.html#l00048">Glue&lt; T1, T2, glue_type &gt;::B</a>, <a class="el" href="a00606_source.html#l00026">direct_cor()</a>, and <a class="el" href="a00715_source.html#l00113">unwrap_check&lt; T1 &gt;::M</a>.</p>
+<p>Definition at line <a class="el" href="a00601_source.html#l00078">78</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00147"></a>00147   {
-<a name="l00148"></a>00148   arma_extra_debug_sigprint();
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
-<a name="l00151"></a>00151 
-<a name="l00152"></a>00152   <span class="keyword">const</span> <a class="code" href="a00487.html">unwrap_check&lt;T1&gt;</a> A_tmp(X.<a class="code" href="a00189.html#a22423031a9f05101ad23dfd897c6f1ab" title="first operand">A</a>, out);
-<a name="l00153"></a>00153   <span class="keyword">const</span> <a class="code" href="a00487.html">unwrap_check&lt;T2&gt;</a> B_tmp(X.<a class="code" href="a00189.html#a1b3a6b5891d84915448f3084e66476c6" title="second operand">B</a>, out);
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = A_tmp.M;
-<a name="l00156"></a>00156   <span class="keyword">const</span> <a class="code" href="a00305.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B = B_tmp.M;
-<a name="l00157"></a>00157   
-<a name="l00158"></a>00158   <span class="keyword">const</span> <a class="code" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type = X.<a class="code" href="a00189.html#a1782dc0b650d7a8269ca2d6c75fb2901" title="storage of auxiliary data, u32 format">aux_u32</a>;
-<a name="l00159"></a>00159   
-<a name="l00160"></a>00160   <span class="keywordflow">if</span>(&amp;A != &amp;B)
-<a name="l00161"></a>00161     {
-<a name="l00162"></a>00162     <a class="code" href="a00806.html#gac3b31a28afb9e10dc107e62841c85152">glue_cor::direct_cor</a>(out, A, B, norm_type);
-<a name="l00163"></a>00163     }
-<a name="l00164"></a>00164   <span class="keywordflow">else</span>
-<a name="l00165"></a>00165     {
-<a name="l00166"></a>00166     <a class="code" href="a00806.html#gac3b31a28afb9e10dc107e62841c85152">op_cor::direct_cor</a>(out, A, norm_type);
-<a name="l00167"></a>00167     }
-<a name="l00168"></a>00168   
-<a name="l00169"></a>00169   }
+<p>References <a class="el" href="a00558_source.html#l00090">accu()</a>, and <a class="el" href="a00669_source.html#l00047">Op&lt; T1, op_type &gt;::m</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00079"></a>00079   {
+<a name="l00080"></a>00080   arma_extra_debug_sigprint();
+<a name="l00081"></a>00081   arma_extra_debug_print(<span class="stringliteral">&quot;sum(): two consecutive sum() calls detected&quot;</span>);
+<a name="l00082"></a>00082   
+<a name="l00083"></a>00083   <span class="keywordflow">return</span> <a class="code" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(in.<a class="code" href="a00312.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>);
+<a name="l00084"></a>00084   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaaf522d79a5a629af25d5bb84513a476a"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="gaaf522d79a5a629af25d5bb84513a476a" args="(const Op&lt; T1, op_sum &gt; &amp;in, const u32 dim)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline const <a class="el" href="a00312.html">Op</a>&lt;<a class="el" href="a00312.html">Op</a>&lt;T1, <a class="el" href="a00337.html">op_sum</a>&gt;, <a class="el" href="a00337.html">op_sum</a>&gt; sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00337.html">op_sum</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>dim</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00601_source.html#l00091">91</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00092"></a>00092   {
+<a name="l00093"></a>00093   arma_extra_debug_sigprint();
+<a name="l00094"></a>00094   
+<a name="l00095"></a>00095   <span class="keywordflow">return</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;Op&lt;T1, op_sum&gt;</a>, <a class="code" href="a00337.html" title="Class for finding sums of values in a matrix (e.g. along rows or columns).">op_sum</a>&gt;(in, dim, 0);
+<a name="l00096"></a>00096   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gab0be454343c14742827a1a555c254638"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="gab0be454343c14742827a1a555c254638" args="(const subview_row&lt; eT &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline arma_warn_unused eT sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00486.html">subview_row</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>sum all values of a <a class="el" href="a00486.html">subview_row</a> </p>
+
+<p>Definition at line <a class="el" href="a00601_source.html#l00105">105</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
+
+<p>References <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00106"></a>00106   {
+<a name="l00107"></a>00107   arma_extra_debug_sigprint();
+<a name="l00108"></a>00108   
+<a name="l00109"></a>00109   <span class="keywordflow">return</span> <a class="code" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
+<a name="l00110"></a>00110   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="gaf8168a9b85da2b44e01903bc4b13d399"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="gaf8168a9b85da2b44e01903bc4b13d399" args="(const subview_col&lt; eT &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline arma_warn_unused eT sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00483.html">subview_col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>sum all values of a <a class="el" href="a00483.html">subview_col</a> </p>
+
+<p>Definition at line <a class="el" href="a00601_source.html#l00119">119</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
+
+<p>References <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00120"></a>00120   {
+<a name="l00121"></a>00121   arma_extra_debug_sigprint();
+<a name="l00122"></a>00122   
+<a name="l00123"></a>00123   <span class="keywordflow">return</span> <a class="code" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
+<a name="l00124"></a>00124   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga130aba2d8dc60e60db304b44b06ff169"></a><!-- doxytag: member="fn_sum.hpp::sum" ref="ga130aba2d8dc60e60db304b44b06ff169" args="(const diagview&lt; eT &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline arma_warn_unused eT sum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>sum all values of a <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> </p>
+
+<p>Definition at line <a class="el" href="a00601_source.html#l00133">133</a> of file <a class="el" href="a00601_source.html">fn_sum.hpp</a>.</p>
+
+<p>References <a class="el" href="a00558_source.html#l00090">accu()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00134"></a>00134   {
+<a name="l00135"></a>00135   arma_extra_debug_sigprint();
+<a name="l00136"></a>00136   
+<a name="l00137"></a>00137   <span class="keywordflow">return</span> <a class="code" href="a00763.html#gae2b3d34531e302cf44eb2fd914277907" title="accumulate the elements of a matrix">accu</a>(X);
+<a name="l00138"></a>00138   }
 </pre></div></p>
 
 </div>

@@ -1,5 +1,5 @@
 Name:           armadillo
-Version:        0.9.4
+Version:        0.9.8
 Release:        1%{?dist}
 Summary:        Fast C++ matrix library with interfaces to LAPACK and ATLAS
 
@@ -98,6 +98,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_docdir}/%{name}-%{version}/docs_tech/
 
 %changelog
+* Fri May 14 2010 Conrad Sanderson  <conradsand ! ieee ! org> - 0.9.8-1
+- spec updated for Armadillo 0.9.8
+
+* Tue Apr 28 2010 Conrad Sanderson  <conradsand ! ieee ! org> - 0.9.6-1
+- spec updated for Armadillo 0.9.6
+
 * Tue Mar 16 2010 Conrad Sanderson  <conradsand ! ieee ! org> - 0.9.4-1
 - spec updated for Armadillo 0.9.4
 

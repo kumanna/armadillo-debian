@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: subview&lt; eT &gt; Class Template Reference</title>
+<title>Armadillo Technical: running_stat_vec_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,356 +29,150 @@
   </div>
 </div>
 <div class="contents">
-<h1>subview&lt; eT &gt; Class Template Reference<br/>
+<h1>running_stat_vec_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00868.html">Subview</a>]</small>
-</h1><!-- doxytag: class="subview" --><!-- doxytag: inherits="Base&lt; eT, subview&lt; eT &gt; &gt;" -->
-<p>Class for storing data required to construct or apply operations to a submatrix (i.e. where the submatrix starts and ends as well as a reference/pointer to the original matrix),.  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a00875.html">Running_stat_vec</a>]</small>
+</h1><!-- doxytag: class="running_stat_vec_aux" -->
+<p><code>#include &lt;<a class="el" href="a00712_source.html">running_stat_vec_proto.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00711_source.html">subview_proto.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for subview&lt; eT &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00477.gif" usemap="#subview&lt; eT &gt;_map" alt=""/>
-  <map id="subview&lt; eT &gt;_map" name="subview&lt; eT &gt;_map">
-<area href="a00054.html" alt="Base&lt; eT, subview&lt; eT &gt; &gt;" shape="rect" coords="90,0,261,24"/>
-<area href="a00478.html" alt="subview_col&lt; eT &gt;" shape="rect" coords="0,112,171,136"/>
-<area href="a00481.html" alt="subview_row&lt; eT &gt;" shape="rect" coords="181,112,352,136"/>
-</map>
- </div>
-</div>
-
-<p><a href="a01341.html">List of all members.</a></p>
+<p><a href="a01353.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#aaae43c99cda4a2fd47be684789c3645a">elem_type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00187.html">get_pod_type</a><br class="typebreak"/>
-&lt; <a class="el" href="a00477.html#aaae43c99cda4a2fd47be684789c3645a">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#aefc60544e9618c54213daf32befb3716">pod_type</a></td></tr>
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gaac1dbecd1f698e8e73b810059b3bec84">~subview</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga99e9c1f5ada2a0363a20a8be67a6cb19">operator+=</a> (const eT val)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga181204abe4a378e54d4acd778f18e8d8">operator-=</a> (const eT val)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gad0baa68db39aef0c0207b4eaacd6d6c1">operator*=</a> (const eT val)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gab4d0178fa24327503e321c48a778b688">operator/=</a> (const eT val)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#ga1bb937143bb4fa9d1b9099f26e5b9edd">operator=</a> (const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#gaa8d0df66cadbd8ea3d6a4da285fd1eb4">operator+=</a> (const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#gad061758165ea91d23df9210fb2107414">operator-=</a> (const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#gaa70eb94b5649447b7669d3da8ebb2437">operator%=</a> (const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;x)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#gabbb64e0f4962aae3ff7d58da7b56a36a">operator/=</a> (const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga75fe59c1884a22b8e5a7d41881c46ec6">operator=</a> (const <a class="el" href="a00477.html">subview</a> &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">x.submat(...) = y.submat(...)  <a href="a00868.html#ga75fe59c1884a22b8e5a7d41881c46ec6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga90e68fbb0584f2c3929be856b4cda085">operator+=</a> (const <a class="el" href="a00477.html">subview</a> &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga62f013021a2273e89e3e257a9571a2c3">operator-=</a> (const <a class="el" href="a00477.html">subview</a> &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga2ab3e295f700b3844997d11e41552712">operator%=</a> (const <a class="el" href="a00477.html">subview</a> &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga031b1ba459cffc60ae2acefb3234944f">operator/=</a> (const <a class="el" href="a00477.html">subview</a> &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga9833a0259e2b6a4bb572de07fae0c903">fill</a> (const eT val)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga57b6cf5e33178baf24418652cbaf04c5">zeros</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gac739ab79987e52535731e7c6b32769e2">operator[]</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga47185248d4e2df4c2ec914e9fd1c4d11">operator[]</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga85423951a948c61e8756e68563f21a60">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga563edeecbc79440021cfefaae9c55b0d">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gad15b590b1de42af54318f10e4d5b563d">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga6f32cf9cc11c5ddffe5f1827ff0dded3">operator()</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gaf626fe18bdd12e767a9b5770e6aff95b">at</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gab495697882d79f00e9752d431636e6a3">at</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga0af6fd067f903b3d8cc5f24df1eaff8f">colptr</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gae722feb825db78766e4ed133d0168eeb">colptr</a> (const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga128b56e11777114dff2a06d642b6f043">check_overlap</a> (const <a class="el" href="a00477.html">subview</a> &amp;x) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gaa278d4bfe479272fbed5eef31bc86683">is_vec</a> () const </td></tr>
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga1e21c1a33f002709f8d7b4cbc1d7674d">extract</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00477.html">subview</a> &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X = Y.submat(...).  <a href="a00868.html#ga1e21c1a33f002709f8d7b4cbc1d7674d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga3e296f641148c2d50bc666864781081e">plus_inplace</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00477.html">subview</a> &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X += Y.submat(...).  <a href="a00868.html#ga3e296f641148c2d50bc666864781081e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga3774b453dfc957024f25346822ca110e">minus_inplace</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00477.html">subview</a> &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X -= Y.submat(...).  <a href="a00868.html#ga3774b453dfc957024f25346822ca110e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga49e548c256655554228b89ad17a3ba4d">schur_inplace</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00477.html">subview</a> &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X = Y.submat(...).  <a href="a00868.html#ga49e548c256655554228b89ad17a3ba4d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga818f2843c49f3c106c410429f007c89b">div_inplace</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00477.html">subview</a> &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">X /= Y.submat(...).  <a href="a00868.html#ga818f2843c49f3c106c410429f007c89b"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a9aadaa57c96bff1553010266f8628968">m</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a1f92d1905c9cb70ae1b48b0ec6b90c62">aux_row1</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#aa5e0f9acd2a3979934d199c127ebaa20">aux_col1</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a8d458275980df259f18ee5762c3a9383">aux_row2</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#ad455e1ca55a60aef81efa4781b06fa64">aux_col2</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a22fb374d8955c266bff842713cc14dab">n_rows</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a7dd5700e185b2ac3e1d2caae4dc169e4">n_cols</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a></td></tr>
-<tr><td colspan="2"><h2>Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gafc862cc59ab64cded86ec6b6ea984330">subview</a> (const <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;in_m, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row2, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga9dc68b2d2f9dfe90d8a528320077ab0f">subview</a> (<a class="el" href="a00305.html">Mat</a>&lt; eT &gt; &amp;in_m, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col1, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row2, const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_col2)</td></tr>
-<tr><td colspan="2"><h2>Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00305.html">Mat</a>&lt; eT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a06cc63fc166871ba4f80efe0a48fefae">m_ptr</a></td></tr>
-<tr><td colspan="2"><h2>Private Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#ac8d241e3ccfd00e9f42516f498ece8fb">subview</a> ()</td></tr>
-<tr><td colspan="2"><h2>Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00477.html#a0088fae79b0c6e9cb2bc5794cafdb9d5">Mat&lt; eT &gt;</a></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00875.html#ga2ef5e79f0863917485585cddfd4b8e6a">update_stats</a> (<a class="el" href="a00476.html">running_stat_vec</a>&lt; eT &gt; &amp;x, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a00875.html#ga2ef5e79f0863917485585cddfd4b8e6a"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00875.html#ga3847c0f28c347bb03f96d90a1ce85458">update_stats</a> (<a class="el" href="a00476.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a00308.html">Mat</a>&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a00875.html#ga3847c0f28c347bb03f96d90a1ce85458"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00875.html#ga000825df493af22a5492662344d01661">update_stats</a> (<a class="el" href="a00476.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">alter statistics to reflect new sample (version for complex numbers)  <a href="a00875.html#ga000825df493af22a5492662344d01661"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00477.html#acc14798b6da75f98666907a4564e6557">var</a> (const <a class="el" href="a00476.html">running_stat_vec</a>&lt; eT &gt; &amp;x, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00308.html">Mat</a>&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00477.html#aad51f86c651743852dd911a00d10f742">var</a> (const <a class="el" href="a00476.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00477.html#abfb982ec27f9700e3a926103d967f814">cov</a> (const <a class="el" href="a00476.html">running_stat_vec</a>&lt; eT &gt; &amp;x, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00477.html#acd38894549d16f6185519dbfedacd040">cov</a> (const <a class="el" href="a00476.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename eT&gt;<br/>
- class subview&lt; eT &gt;</h3>
 
-<p>Class for storing data required to construct or apply operations to a submatrix (i.e. where the submatrix starts and ends as well as a reference/pointer to the original matrix),. </p>
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00024">24</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aaae43c99cda4a2fd47be684789c3645a"></a><!-- doxytag: member="subview::elem_type" ref="aaae43c99cda4a2fd47be684789c3645a" args="" -->
+<p>Definition at line <a class="el" href="a00712_source.html#l00074">74</a> of file <a class="el" href="a00712_source.html">running_stat_vec_proto.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="acc14798b6da75f98666907a4564e6557"></a><!-- doxytag: member="running_stat_vec_aux::var" ref="acc14798b6da75f98666907a4564e6557" args="(const running_stat_vec&lt; eT &gt; &amp;x, const u32 norm_type=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef eT <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#aaae43c99cda4a2fd47be684789c3645a">elem_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Reimplemented in <a class="el" href="a00478.html#ad7d81a6a76e2f6b543bc3afc36a4f1c1">subview_col&lt; eT &gt;</a>, and <a class="el" href="a00481.html#ac14ba342c3049a884b16b76c5397b71d">subview_row&lt; eT &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00031">31</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aefc60544e9618c54213daf32befb3716"></a><!-- doxytag: member="subview::pod_type" ref="aefc60544e9618c54213daf32befb3716" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00187.html">get_pod_type</a>&lt;<a class="el" href="a00477.html#aaae43c99cda4a2fd47be684789c3645a">elem_type</a>&gt;::result <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#aefc60544e9618c54213daf32befb3716">pod_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Reimplemented in <a class="el" href="a00478.html#acb867f107a09ee819feb72a4b4d7e4cc">subview_col&lt; eT &gt;</a>, and <a class="el" href="a00481.html#a58c0d31c7b3453c1c865b1af00fa64a8">subview_row&lt; eT &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00032">32</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac8d241e3ccfd00e9f42516f498ece8fb"></a><!-- doxytag: member="subview::subview" ref="ac8d241e3ccfd00e9f42516f498ece8fb" args="()" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html">subview</a> </td>
+          <td class="memname">static <a class="el" href="a00308.html">Mat</a>&lt;eT&gt; running_stat_vec_aux::var </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [private]</code></td>
+          <td class="paramtype">const <a class="el" href="a00476.html">running_stat_vec</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Referenced by <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00364">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00399">subview&lt; eT &gt;::operator-=()</a>, and <a class="el" href="a00710_source.html#l00477">subview&lt; eT &gt;::operator/=()</a>.</p>
-
 </div>
 </div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="a0088fae79b0c6e9cb2bc5794cafdb9d5"></a><!-- doxytag: member="subview::Mat&lt; eT &gt;" ref="a0088fae79b0c6e9cb2bc5794cafdb9d5" args="" -->
+<a class="anchor" id="aad51f86c651743852dd911a00d10f742"></a><!-- doxytag: member="running_stat_vec_aux::var" ref="aad51f86c651743852dd911a00d10f742" args="(const running_stat_vec&lt; std::complex&lt; T &gt; &gt; &amp;x, const u32 norm_type=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">friend class <a class="el" href="a00305.html">Mat</a>&lt; eT &gt;<code> [friend]</code></td>
+          <td class="memname">static <a class="el" href="a00308.html">Mat</a>&lt; T&gt; running_stat_vec_aux::var </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00476.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="a00478.html#a0088fae79b0c6e9cb2bc5794cafdb9d5">subview_col&lt; eT &gt;</a>, and <a class="el" href="a00481.html#a0088fae79b0c6e9cb2bc5794cafdb9d5">subview_row&lt; eT &gt;</a>.</p>
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00105">105</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a9aadaa57c96bff1553010266f8628968"></a><!-- doxytag: member="subview::m" ref="a9aadaa57c96bff1553010266f8628968" args="" -->
+<a class="anchor" id="abfb982ec27f9700e3a926103d967f814"></a><!-- doxytag: member="running_stat_vec_aux::cov" ref="abfb982ec27f9700e3a926103d967f814" args="(const running_stat_vec&lt; eT &gt; &amp;x, const u32 norm_type=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_aligned const <a class="el" href="a00305.html">Mat</a>&lt;eT&gt;&amp; <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a9aadaa57c96bff1553010266f8628968">m</a></td>
+          <td class="memname">static <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; running_stat_vec_aux::cov </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00476.html">running_stat_vec</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00711_source.html#l00026">26</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00553_source.html#l00184">accu()</a>, <a class="el" href="a00710_source.html#l00630">subview&lt; eT &gt;::at()</a>, <a class="el" href="a00710_source.html#l00676">subview&lt; eT &gt;::check_overlap()</a>, <a class="el" href="a00710_source.html#l00654">subview&lt; eT &gt;::colptr()</a>, <a class="el" href="a00710_source.html#l00721">subview&lt; eT &gt;::extract()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00570">subview&lt; eT &gt;::operator()()</a>, <a class="el" href="a00710_source.html#l00364">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00399">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00477">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00710_source.html#l00540">subview&lt; eT &gt;::operator[]()</a>, and <a class="el" href="a00582_source.html#l00143">prod()</a>.</p>
-
 </div>
 </div>
-<a class="anchor" id="a06cc63fc166871ba4f80efe0a48fefae"></a><!-- doxytag: member="subview::m_ptr" ref="a06cc63fc166871ba4f80efe0a48fefae" args="" -->
+<a class="anchor" id="acd38894549d16f6185519dbfedacd040"></a><!-- doxytag: member="running_stat_vec_aux::cov" ref="acd38894549d16f6185519dbfedacd040" args="(const running_stat_vec&lt; std::complex&lt; T &gt; &gt; &amp;x, const u32 norm_type=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00305.html">Mat</a>&lt;eT&gt;* <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a06cc63fc166871ba4f80efe0a48fefae">m_ptr</a><code> [protected]</code></td>
+          <td class="memname">static <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt;T&gt; &gt; running_stat_vec_aux::cov </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00476.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00027">27</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00710_source.html#l00630">subview&lt; eT &gt;::at()</a>, <a class="el" href="a00710_source.html#l00654">subview&lt; eT &gt;::colptr()</a>, <a class="el" href="a00710_source.html#l00570">subview&lt; eT &gt;::operator()()</a>, and <a class="el" href="a00710_source.html#l00540">subview&lt; eT &gt;::operator[]()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1f92d1905c9cb70ae1b48b0ec6b90c62"></a><!-- doxytag: member="subview::aux_row1" ref="a1f92d1905c9cb70ae1b48b0ec6b90c62" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a1f92d1905c9cb70ae1b48b0ec6b90c62">aux_row1</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00034">34</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00553_source.html#l00184">accu()</a>, <a class="el" href="a00710_source.html#l00630">subview&lt; eT &gt;::at()</a>, <a class="el" href="a00710_source.html#l00676">subview&lt; eT &gt;::check_overlap()</a>, <a class="el" href="a00710_source.html#l00654">subview&lt; eT &gt;::colptr()</a>, <a class="el" href="a00710_source.html#l00721">subview&lt; eT &gt;::extract()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00570">subview&lt; eT &gt;::operator()()</a>, <a class="el" href="a00710_source.html#l00364">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00399">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00477">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00710_source.html#l00540">subview&lt; eT &gt;::operator[]()</a>, and <a class="el" href="a00582_source.html#l00143">prod()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa5e0f9acd2a3979934d199c127ebaa20"></a><!-- doxytag: member="subview::aux_col1" ref="aa5e0f9acd2a3979934d199c127ebaa20" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#aa5e0f9acd2a3979934d199c127ebaa20">aux_col1</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00035">35</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00553_source.html#l00184">accu()</a>, <a class="el" href="a00710_source.html#l00630">subview&lt; eT &gt;::at()</a>, <a class="el" href="a00710_source.html#l00676">subview&lt; eT &gt;::check_overlap()</a>, <a class="el" href="a00710_source.html#l00654">subview&lt; eT &gt;::colptr()</a>, <a class="el" href="a00710_source.html#l00721">subview&lt; eT &gt;::extract()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00570">subview&lt; eT &gt;::operator()()</a>, <a class="el" href="a00710_source.html#l00364">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00399">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00477">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00710_source.html#l00540">subview&lt; eT &gt;::operator[]()</a>, and <a class="el" href="a00582_source.html#l00143">prod()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8d458275980df259f18ee5762c3a9383"></a><!-- doxytag: member="subview::aux_row2" ref="a8d458275980df259f18ee5762c3a9383" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a8d458275980df259f18ee5762c3a9383">aux_row2</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00037">37</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00710_source.html#l00676">subview&lt; eT &gt;::check_overlap()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00364">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00399">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00477">subview&lt; eT &gt;::operator/=()</a>, and <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad455e1ca55a60aef81efa4781b06fa64"></a><!-- doxytag: member="subview::aux_col2" ref="ad455e1ca55a60aef81efa4781b06fa64" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#ad455e1ca55a60aef81efa4781b06fa64">aux_col2</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00038">38</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00553_source.html#l00184">accu()</a>, <a class="el" href="a00710_source.html#l00676">subview&lt; eT &gt;::check_overlap()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00364">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00399">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00477">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>, and <a class="el" href="a00582_source.html#l00143">prod()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a22fb374d8955c266bff842713cc14dab"></a><!-- doxytag: member="subview::n_rows" ref="a22fb374d8955c266bff842713cc14dab" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a22fb374d8955c266bff842713cc14dab">n_rows</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00040">40</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00553_source.html#l00156">accu()</a>, <a class="el" href="a00526_source.html#l00668">arma_assert_mul_size()</a>, <a class="el" href="a00526_source.html#l00352">arma_assert_same_size()</a>, <a class="el" href="a00710_source.html#l00883">subview&lt; eT &gt;::div_inplace()</a>, <a class="el" href="a00710_source.html#l00721">subview&lt; eT &gt;::extract()</a>, <a class="el" href="a00710_source.html#l00068">subview&lt; eT &gt;::fill()</a>, <a class="el" href="a00710_source.html#l00710">subview&lt; eT &gt;::is_vec()</a>, <a class="el" href="a00710_source.html#l00829">subview&lt; eT &gt;::minus_inplace()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00570">subview&lt; eT &gt;::operator()()</a>, <a class="el" href="a00710_source.html#l00134">subview&lt; eT &gt;::operator*=()</a>, <a class="el" href="a00710_source.html#l00090">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00112">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00156">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00710_source.html#l00540">subview&lt; eT &gt;::operator[]()</a>, <a class="el" href="a00710_source.html#l00802">subview&lt; eT &gt;::plus_inplace()</a>, <a class="el" href="a00582_source.html#l00171">prod()</a>, <a class="el" href="a00710_source.html#l00856">subview&lt; eT &gt;::schur_inplace()</a>, and <a class="el" href="a00710_source.html#l00516">subview&lt; eT &gt;::zeros()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7dd5700e185b2ac3e1d2caae4dc169e4"></a><!-- doxytag: member="subview::n_cols" ref="a7dd5700e185b2ac3e1d2caae4dc169e4" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a7dd5700e185b2ac3e1d2caae4dc169e4">n_cols</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00041">41</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00553_source.html#l00156">accu()</a>, <a class="el" href="a00526_source.html#l00668">arma_assert_mul_size()</a>, <a class="el" href="a00526_source.html#l00352">arma_assert_same_size()</a>, <a class="el" href="a00710_source.html#l00883">subview&lt; eT &gt;::div_inplace()</a>, <a class="el" href="a00710_source.html#l00721">subview&lt; eT &gt;::extract()</a>, <a class="el" href="a00710_source.html#l00068">subview&lt; eT &gt;::fill()</a>, <a class="el" href="a00710_source.html#l00710">subview&lt; eT &gt;::is_vec()</a>, <a class="el" href="a00710_source.html#l00829">subview&lt; eT &gt;::minus_inplace()</a>, <a class="el" href="a00710_source.html#l00438">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00710_source.html#l00603">subview&lt; eT &gt;::operator()()</a>, <a class="el" href="a00710_source.html#l00134">subview&lt; eT &gt;::operator*=()</a>, <a class="el" href="a00710_source.html#l00090">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00710_source.html#l00112">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00710_source.html#l00156">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00710_source.html#l00324">subview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00710_source.html#l00802">subview&lt; eT &gt;::plus_inplace()</a>, <a class="el" href="a00710_source.html#l00856">subview&lt; eT &gt;::schur_inplace()</a>, and <a class="el" href="a00710_source.html#l00516">subview&lt; eT &gt;::zeros()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a333927eb1a9efd2a2fdc78ec63bdcdee"></a><!-- doxytag: member="subview::n_elem" ref="a333927eb1a9efd2a2fdc78ec63bdcdee" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00871.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00477.html">subview</a>&lt; eT &gt;::<a class="el" href="a00477.html#a333927eb1a9efd2a2fdc78ec63bdcdee">n_elem</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00711_source.html#l00042">42</a> of file <a class="el" href="a00711_source.html">subview_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00643_source.html#l00050">op_max::direct_max()</a>, <a class="el" href="a00645_source.html#l00045">op_mean::direct_mean()</a>, <a class="el" href="a00648_source.html#l00063">op_median::direct_median()</a>, <a class="el" href="a00650_source.html#l00050">op_min::direct_min()</a>, <a class="el" href="a00675_source.html#l00102">op_var::direct_var()</a>, <a class="el" href="a00572_source.html#l00112">max()</a>, <a class="el" href="a00573_source.html#l00106">mean()</a>, <a class="el" href="a00574_source.html#l00109">median()</a>, <a class="el" href="a00575_source.html#l00111">min()</a>, <a class="el" href="a00710_source.html#l00570">subview&lt; eT &gt;::operator()()</a>, <a class="el" href="a00582_source.html#l00143">prod()</a>, <a class="el" href="a00593_source.html#l00081">stddev()</a>, and <a class="el" href="a00599_source.html#l00080">var()</a>.</p>
 
 </div>
 </div>

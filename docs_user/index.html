@@ -16,7 +16,7 @@
   <tbody>
     <tr>
       <td>
-        <h2><b>Reference for Armadillo 0.9.4</b></h2>
+        <h2><b>Reference for Armadillo 0.9.8</b></h2>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -76,6 +76,8 @@ use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 <a href="#element">element&nbsp;access</a>&nbsp;&middot;
 <a href="#fill">fill</a>&nbsp;&middot;
 <a href="#is_finite">is_finite</a>&nbsp;&middot;
+<a href="#iterators_mat">iterators (matrices)</a>&nbsp;&middot;
+<a href="#iterators_cube">iterators (cubes)</a>&nbsp;&middot;
 <a href="#n_rows">n_rows/n_cols/...</a>&nbsp;&middot;
 <a href="#ones_member">ones</a>&nbsp;&middot;
 <a href="#operators">operators</a>&nbsp;&middot;
@@ -154,9 +156,11 @@ use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 <a href="#cov">cov</a>&nbsp;&middot;
 <a href="#cross">cross</a>&nbsp;&middot;
 <a href="#diagmat">diagmat</a>&nbsp;&middot;
+<a href="#find">find</a>&nbsp;&middot;
 <a href="#flip">fliplr/flipud</a>&nbsp;&middot;
 <a href="#htrans">htrans</a>&nbsp;&middot;
 <a href="#imag_real">imag/real</a>&nbsp;&middot;
+<a href="#join">join_rows/join_cols</a>&nbsp;&middot;
 <a href="#kron">kron</a>&nbsp;&middot;
 <a href="#reshape">reshape</a>&nbsp;&middot;
 <a href="#shuffle">shuffle</a>&nbsp;&middot;
@@ -1247,6 +1251,487 @@ cout &lt;&lt; B.is_finite() &lt;&lt; endl;
 <br>
 <hr class="greyline"><br>
 
+<a name="iterators_mat"></a>
+<b>iterators (matrices &amp; vectors)</b>
+<ul>
+<li>
+STL-style iterators and associated member functions of the <i>Mat</i>, <i>Col</i> and <i>Row</i> classes.
+</li>
+<br>
+<li>
+iterator types:
+<br>
+<br>
+<ul>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>mat::iterator</b>
+      <br>
+      <b>colvec::iterator</b>
+      <br>
+      <b>rowvec::iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read/write access to elements;
+        the elements are ordered column by column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>mat::const_iterator</b>
+      <br>
+      <b>colvec::const_iterator</b>
+      <br>
+      <b>rowvec::const_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read-only access to elements;
+        the elements are ordered column by column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>mat::col_iterator</b>
+      <br>
+      <b>colvec::col_iterator</b>
+      <br>
+      <b>rowvec::col_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read/write access to the elements of a specific column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>mat::const_col_iterator</b>
+      <br>
+      <b>colvec::const_col_iterator</b>
+      <br>
+      <b>rowvec::const_col_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read-only access to the elements of a specific column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>mat::row_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        rudimentary forward iterator, for read/write access to the elements of a specific row
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>mat::const_row_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        rudimentary forward iterator, for read-only access to the elements of a specific row
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>colvec::row_iterator</b>
+      <br>
+      <b>rowvec::row_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read/write access to the elements of a specific row
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>colvec::const_row_iterator</b>
+      <br>
+      <b>rowvec::const_row_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read-only access to the elements of a specific row
+      </td>
+    </tr>
+  </tbody>
+</table>
+</ul>
+</li>
+<br>
+<br>
+<li>
+Member functions:
+<br>
+<br>
+<ul>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.begin()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the first element
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.end()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the <i>past-the-end</i> element
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.begin_row(</b><i>row_number</i><b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the first element of the specified row
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.end_row(</b><i>row_number</i><b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the <i>past-the-end</i> element of the specified row
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.begin_col(</b><i>column_number</i><b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the first element of the specified column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.end_col(</b><i>column_number</i><b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the <i>past-the-end</i> element of the specified column
+      </td>
+    </tr>
+  </tbody>
+</table>
+</ul>
+</li>
+<br>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat X = rand&lt;mat&gt;(5,5);
+
+
+mat::iterator a = X.begin();
+mat::iterator b = X.end();
+
+for(mat::iterator i=a; i!=b; ++i)
+  {
+  cout &lt;&lt; *i &lt;&lt; endl;
+  }
+
+
+mat::col_iterator c = X.begin_col(1);  // start of column 1
+mat::col_iterator d = X.end_col(3);    // end of column 3
+
+for(mat::col_iterator i=c; i!=d; ++i)
+  {
+  cout &lt;&lt; *i &lt;&lt; endl;
+  (*i) = 123.0;
+  }
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="http://cplusplus.com/reference/std/iterator/">iterator at cplusplus.com</a>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
+
+<a name="iterators_cube"></a>
+<b>iterators (cubes)</b>
+<ul>
+<li>
+STL-style iterators and associated member functions of the <i>Cube</i> class.
+</li>
+<br>
+<li>
+iterator types:
+<br>
+<br>
+<ul>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>cube::iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterator, for read/write access to elements;
+        the elements are ordered slice by slice;
+        the elements within each slice are ordered column by column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>cube::const_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read-only access to elements
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>cube::slice_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterator, for read/write access to the elements of a particular slice;
+        the elements are ordered column by column
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>cube::const_slice_iterator</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        random access iterators, for read-only access to the elements of a particular slice
+      </td>
+    </tr>
+  </tbody>
+</table>
+</ul>
+</li>
+<br>
+<br>
+<li>
+Member functions:
+<br>
+<br>
+<ul>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.begin()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the first element
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.end()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the <i>past-the-end</i> element
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.begin_slice(</b><i>slice_number</i><b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the first element of the specified slice
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.end_slice(</b><i>slice_number</i><b>)</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        provide an iterator referring to the <i>past-the-end</i> element of the specified slice
+      </td>
+    </tr>
+  </tbody>
+</table>
+</ul>
+</li>
+<br>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+cube X = rand&lt;cube&gt;(2,3,4);
+
+
+cube::iterator a = X.begin();
+cube::iterator b = X.end();
+
+for(cube::iterator i=a; i!=b; ++i)
+  {
+  cout &lt;&lt; *i &lt;&lt; endl;
+  }
+
+
+cube::slice_iterator c = X.begin_slice(1);  // start of slice 1
+cube::slice_iterator d = X.end_slice(2);    // end of slice 2
+
+for(cube::slice_iterator i=c; i!=d; ++i)
+  {
+  cout &lt;&lt; *i &lt;&lt; endl;
+  (*i) = 123.0;
+  }
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="http://cplusplus.com/reference/std/iterator/">iterator at cplusplus.com</a>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
+
 <a name="n_rows"></a>
 
 <table style="text-align: left;" border="0" cellpadding="0" cellspacing="0">
@@ -1955,8 +2440,12 @@ A.row(1) = rand&lt;mat&gt;(1,10);
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also: <a href="#join">join_rows() &amp; join_cols()</a>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="subcube"></a>
@@ -3143,7 +3632,15 @@ norm(X, p)
 </b>
 <ul>
 <li>
-Compute the p-norm of X, under the assumption that X is a vector.
+Compute the <i>p</i>-norm of X, under the assumption that X is a vector.
+</li>
+<br>
+<li>
+<i>p</i> is an integer &gt;= 1, or one of: "inf", "-inf".
+</li>
+<br>
+<li>
+For <i>p</i> = "inf" the maximum norm is computed, while for <i>p</i> = "-inf", the minimum norm is calculated.
 </li>
 <br>
 <li>
@@ -3151,12 +3648,21 @@ Examples:
 <ul>
 <pre>
 colvec q = rand&lt;colvec&gt;(5);
-double x = norm(q,2);
+double x = norm(q, 2);
+double y = norm(q, "inf");
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Norm_(mathematics)">Norm in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/VectorNorm.html">Vector Norm in MathWorld</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="rank"></a>
@@ -3254,14 +3760,16 @@ colvec d = diagvec(A);
 </ul>
 </li>
 <br>
-See also:
+<li>See also:
 <ul>
 <li><a href="#diag">.diag()</a></li>
 <li><a href="#diagmat">diagmat()</a></li>
 </ul>
+</li>
 <br>
 </ul>
-<hr class="greyline"><br>
+<hr class="greyline">
+<br>
 
 <a name="min_and_max"></a>
 <b>min(mat, dim=0)</b>
@@ -3768,9 +4276,51 @@ mat X = diagmat(q)*diagmat(r);
 <li>
 See also: <a href="#diagvec">diagvec()</a>
 </li>
-</ul>
 <br>
-<hr class="greyline"><br>
+</ul>
+<hr class="greyline">
+<br>
+
+<a name="find"></a>
+<b>find(X, k=0, s="first")</b>
+<ul>
+<li>
+Return a column vector (with elements of type u32) of the indices of nonzero elements of <i>X</i>.
+</li>
+<br>
+<li>
+If <i>X</i> is a matrix, it is intepreted as a vector, with column-by-column ordering of the elements of <i>X</i>.
+</li>
+<br>
+<li>If <i>k=0</i> (default), return the indices of all nonzero elements, otherwise return at most <i>k</i> of their indices.</li>
+<br>
+<li>If <i>s="first"</i> (default), return at most the first <i>k</i> indices of the nonzero elements. 
+</li>
+<br>
+<li>If <i>s="last"</i>, return at most the last <i>k</i> indices of the nonzero elements. 
+</li>
+<br>
+<li>Relational operators can be used instead of <i>X</i>, though the current implementation is not yet optimal in terms of speed.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat     A  = rand&lt;mat&gt;(10,10);
+ucolvec q1 = find(A &gt; 0.5);
+ucolvec q2 = find(A &gt; 0.5, 10, "last");
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="#sort_index">sort_index()</a>
+</li>
+<br>
+</ul>
+<hr class="greyline">
+<br>
 
 <a name="flip"></a>
 <b>fliplr(mat)</b>
@@ -3859,6 +4409,40 @@ mat C = real(A);
 </li>
 </ul>
 <br>
+<hr class="greyline"><br>
+
+<a name="join"></a>
+<b>join_rows(A,B)</b>
+<br><b>join_cols(A,B)</b>
+<ul>
+<li>
+join_rows:
+for two input matrices A and B, append each row of B to its respective row of A, provided that A and B have the same number of rows.
+</li>
+<br>
+<li>
+join_cols: for two input matrices A and B, append each column of B to its respective column of A, provided that A and B have the same number of columns.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = rand&lt;mat&gt;(4,5);
+mat B = rand&lt;mat&gt;(4,6);
+mat C = rand&lt;mat&gt;(6,5);
+
+mat X = join_rows(A,B);
+mat Y = join_cols(A,C);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also: <a href="#submat">submatrix views</a>
+</li>
+</br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="kron"></a>
@@ -3996,8 +4580,12 @@ ucolvec indices = sort_index(q);
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also: <a href="#find">find()</a>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="trans"></a>
@@ -4026,6 +4614,7 @@ mat B = trans(A);
 </ul>
 <br>
 <hr class="greyline">
+
 
 <hr class="greyline">
 <br>
@@ -5747,6 +6336,40 @@ cx_double is a typedef for std::complex&lt;double&gt;
     </td>
     <td style="vertical-align: top;">
       A = "1 2; 3 4;"
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      X = [&nbsp;A&nbsp;&nbsp;B&nbsp;]
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      X = <a href="#join">join_rows</a>(A,B)
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      X = [&nbsp;A;&nbsp;B&nbsp;]
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      X = <a href="#join">join_cols</a>(A,B)
     </td>
     <td style="vertical-align: top;">
       &nbsp;

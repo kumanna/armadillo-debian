@@ -83,459 +83,464 @@
   <tr><td class="indexkey"><a class="el" href="a00051.html">as_scalar_redirect&lt; 2 &gt;</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="a00052.html">as_scalar_redirect&lt; 3 &gt;</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="a00053.html">auxlib</a></td><td class="indexvalue">Wrapper for accessing external functions defined in ATLAS, LAPACK or BLAS libraries </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00054.html">Base&lt; elem_type, derived &gt;</a></td><td class="indexvalue">Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00305.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00189.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00078.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00477.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00305.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00483.html">unwrap</a> class </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00054.html">Base&lt; elem_type, derived &gt;</a></td><td class="indexvalue">Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00191.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00488.html">unwrap</a> class </td></tr>
   <tr><td class="indexkey"><a class="el" href="a00055.html">BaseCube&lt; elem_type, derived &gt;</a></td><td class="indexvalue">Analog of the <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> class, intended for cubes </td></tr>
   <tr><td class="indexkey"><a class="el" href="a00056.html">BaseVec&lt; elem_type, derived &gt;</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="a00057.html">arma_boost::basic_format&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="a00058.html">Col&lt; eT &gt;</a></td><td class="indexvalue">Class for column vectors (matrices with only column) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00059.html">conv_to&lt; out_eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00060.html">conv_to&lt; Col&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00061.html">conv_to&lt; Cube&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00062.html">conv_to&lt; itpp::Mat&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00063.html">conv_to&lt; itpp::Vec&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00064.html">conv_to&lt; Mat&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00065.html">conv_to&lt; Row&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00066.html">Cube&lt; eT &gt;</a></td><td class="indexvalue">Dense cube class </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00067.html">Cube_aux</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00068.html">depth_lhs&lt; glue_type, T1 &gt;</a></td><td class="indexvalue">Template metaprogram <a class="el" href="a00068.html" title="Template metaprogram depth_lhs calculates the number of Glue&lt;Tx,Ty, glue_type&gt;...">depth_lhs</a> calculates the number of Glue&lt;Tx,Ty, glue_type&gt; instances on the left hand side argument of Glue&lt;Tx,Ty, glue_type&gt; i.e. it recursively expands each Tx, until the type of Tx is not "Glue&lt;..,.., glue_type&gt;" (i.e the "glue_type" changes) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00069.html">depth_lhs&lt; glue_type, Glue&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00070.html">diagmat_proxy&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00071.html">diagmat_proxy&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00072.html">diagmat_proxy&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00073.html">diagmat_proxy&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00074.html">diagmat_proxy_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00075.html">diagmat_proxy_check&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00076.html">diagmat_proxy_check&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00077.html">diagmat_proxy_check&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00078.html">diagview&lt; eT &gt;</a></td><td class="indexvalue">Class for storing data required to extract and set the diagonals of a matrix </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00079.html">diskio</a></td><td class="indexvalue">Class for saving and loading matrices and fields </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00080.html">eGlue&lt; T1, T2, eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00081.html">eglue_core&lt; eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00082.html">eglue_cube_core&lt; eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00083.html">eglue_cube_div</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00084.html">eglue_cube_minus</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00085.html">eglue_cube_plus</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00086.html">eglue_cube_schur</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00087.html">eglue_div</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00088.html">eglue_minus</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00089.html">eglue_plus</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00090.html">eglue_schur</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00091.html">eGlueCube&lt; T1, T2, eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00092.html">eOp&lt; T1, eop_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00093.html">eop_abs</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00094.html">eop_acos</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00095.html">eop_acosh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00096.html">eop_asin</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00097.html">eop_asinh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00098.html">eop_atan</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00099.html">eop_atanh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00100.html">eop_aux</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00101.html">eop_aux_rand&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00102.html">eop_aux_rand&lt; std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00103.html">eop_aux_randn&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00104.html">eop_aux_randn&lt; std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00105.html">eop_conj</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00106.html">eop_core&lt; eop_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00107.html">eop_cos</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00108.html">eop_cosh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00109.html">eop_cube_abs</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00110.html">eop_cube_acos</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00111.html">eop_cube_acosh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00112.html">eop_cube_asin</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00113.html">eop_cube_asinh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00114.html">eop_cube_atan</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00115.html">eop_cube_atanh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00116.html">eop_cube_conj</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00117.html">eop_cube_core&lt; eop_cube_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00118.html">eop_cube_cos</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00119.html">eop_cube_cosh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00120.html">eop_cube_eps</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00121.html">eop_cube_exp</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00122.html">eop_cube_log</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00123.html">eop_cube_log10</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00124.html">eop_cube_neg</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00125.html">eop_cube_ones_full</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00126.html">eop_cube_pow</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00127.html">eop_cube_pow_int</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00128.html">eop_cube_rand</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00129.html">eop_cube_randn</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00130.html">eop_cube_scalar_div_post</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00131.html">eop_cube_scalar_div_pre</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00132.html">eop_cube_scalar_minus_post</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00133.html">eop_cube_scalar_minus_pre</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00134.html">eop_cube_scalar_plus</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00135.html">eop_cube_scalar_times</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00136.html">eop_cube_sin</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00137.html">eop_cube_sinh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00138.html">eop_cube_sqrt</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00139.html">eop_cube_square</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00140.html">eop_cube_tan</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00141.html">eop_cube_tanh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00142.html">eop_cube_trunc_exp</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00143.html">eop_cube_trunc_log</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00144.html">eop_cube_zeros</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00145.html">eop_eps</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00146.html">eop_exp</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00147.html">eop_log</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00148.html">eop_log10</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00149.html">eop_neg</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00150.html">eop_ones_diag</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00151.html">eop_ones_full</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00152.html">eop_pow</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00153.html">eop_pow_int</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00154.html">eop_rand</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00155.html">eop_randn</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00156.html">eop_scalar_div_post</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00157.html">eop_scalar_div_pre</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00158.html">eop_scalar_minus_post</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00159.html">eop_scalar_minus_pre</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00160.html">eop_scalar_plus</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00161.html">eop_scalar_times</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00162.html">eop_sin</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00163.html">eop_sinh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00164.html">eop_sqrt</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00165.html">eop_square</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00166.html">eop_tan</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00167.html">eop_tanh</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00168.html">eop_trunc_exp</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00169.html">eop_trunc_log</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00170.html">eop_zeros</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00171.html">eOpCube&lt; T1, eop_type &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00172.html">field&lt; oT &gt;</a></td><td class="indexvalue">A lightweight 2D container for abitrary objects (the objects must have a copy constructor) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00173.html">field_aux</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00174.html">force_different_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00175.html">force_different_type&lt; T1, T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00176.html">arma_boost::format</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00177.html">arma_boost::format_metaprog&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00178.html">arma_boost::format_metaprog&lt; basic_format&lt; T1, T2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00179.html">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Wrapper for ATLAS/BLAS dgemm function, using template arguments to control the arguments passed to dgemm. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00180.html">gemm_emul_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Partial emulation of ATLAS/BLAS gemm(), using caching for speedup. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00181.html">gemm_emul_simple&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Partial emulation of ATLAS/BLAS gemm(), non-cached version. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00182.html">gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Matrix multplication where the matrices have different element types </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00183.html">gemm_mixed_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Matrix multplication where the matrices have different element types. Uses caching for speedup. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00184.html">gemm_mixed_simple&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Matrix multplication where the matrices have different element types. Simple version (no caching). Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00185.html">gemv&lt; do_trans_A, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Wrapper for ATLAS/BLAS <a class="el" href="a00185.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a> function, using template arguments to control the arguments passed to <a class="el" href="a00185.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a>. 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00186.html">gemv_arma&lt; do_trans_A, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Partial emulation of ATLAS/BLAS gemv(). 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00187.html">get_pod_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00188.html">get_pod_type&lt; std::complex&lt; T2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00189.html">Glue&lt; T1, T2, glue_type &gt;</a></td><td class="indexvalue">Class for storing data required for delayed binary operations, such as the operands (e.g. two matrices) and the binary operator (e.g. addition). The operands are stored as references (which can be optimised away), while the operator is "stored" through the template definition (glue_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than two matrices can be stored </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00190.html">glue_cor</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00191.html">glue_cov</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00192.html">glue_cross</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00193.html">glue_kron</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00194.html">glue_times</a></td><td class="indexvalue">Class which implements the immediate multiplication of two or more matrices </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00195.html">glue_times_diag</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00196.html">glue_times_redirect&lt; N &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00197.html">glue_times_redirect&lt; 3 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00198.html">glue_times_redirect&lt; 4 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00199.html">GlueCube&lt; T1, T2, glue_type &gt;</a></td><td class="indexvalue">Analog of the <a class="el" href="a00189.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a> class, intended for <a class="el" href="a00066.html" title="Dense cube class.">Cube</a> objects </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00200.html">is_arma_cube_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00201.html">is_arma_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00202.html">is_Col&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00203.html">is_Col&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00204.html">is_complex&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00205.html">is_complex&lt; std::complex&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00206.html">is_complex&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00207.html">is_complex_double&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00208.html">is_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00209.html">is_complex_float&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00210.html">is_Cube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00211.html">is_Cube&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00212.html">is_cube_generator&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00213.html">is_cube_generator&lt; eop_cube_ones_full &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00214.html">is_cube_generator&lt; eop_cube_rand &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00215.html">is_cube_generator&lt; eop_cube_randn &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00216.html">is_cube_generator&lt; eop_cube_zeros &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00217.html">is_diagview&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00218.html">is_diagview&lt; diagview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00219.html">is_double&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00220.html">is_double&lt; double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00221.html">is_eGlue&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00222.html">is_eGlue&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00223.html">is_eOp&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00224.html">is_eOp&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00225.html">is_float&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00226.html">is_float&lt; float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00227.html">is_generator&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00228.html">is_generator&lt; eop_ones_full &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00229.html">is_generator&lt; eop_rand &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00230.html">is_generator&lt; eop_randn &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00231.html">is_generator&lt; eop_zeros &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00232.html">is_Glue&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00233.html">is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00234.html">is_glue_times&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00235.html">is_glue_times&lt; Glue&lt; T1, T2, glue_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00236.html">is_glue_times_diag&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00237.html">is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00238.html">is_GlueCube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00239.html">is_GlueCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00240.html">is_Mat&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00241.html">is_Mat&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00242.html">is_Mat&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00243.html">is_Mat&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00244.html">is_Mat_only&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00245.html">is_Mat_only&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00246.html">is_non_integral&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00247.html">is_Op&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00248.html">is_Op&lt; Op&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00249.html">is_op_diagmat&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00250.html">is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00251.html">is_OpCube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00252.html">is_OpCube&lt; OpCube&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00253.html">is_Row&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00254.html">is_Row&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00255.html">is_s16&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00256.html">is_s16&lt; s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00257.html">is_s32&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00258.html">is_s32&lt; s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00259.html">is_s8&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00260.html">is_s8&lt; s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00261.html">is_same_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00262.html">is_same_type&lt; T1, T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00263.html">is_signed&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00264.html">is_subview&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00265.html">is_subview&lt; subview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00266.html">is_subview_cube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00267.html">is_subview_cube&lt; subview_cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00268.html">is_supported_blas_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00269.html">is_supported_complex&lt; T1 &gt;</a></td><td class="indexvalue">Check for a weird implementation of the std::complex class </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00270.html">is_supported_complex&lt; std::complex&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00271.html">is_supported_complex_double&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00272.html">is_supported_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00273.html">is_supported_complex_float&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00274.html">is_supported_complex_float&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00275.html">is_supported_elem_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00276.html">diskio::is_supported_type&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00277.html">is_u16&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00278.html">is_u16&lt; u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00279.html">is_u32&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00280.html">is_u32&lt; u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00281.html">is_u8&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00282.html">is_u8&lt; u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00283.html">isnt_fltpt&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00284.html">isnt_fltpt&lt; double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00285.html">isnt_fltpt&lt; float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00286.html">isnt_fltpt&lt; long double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00287.html">isnt_fltpt&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00288.html">isnt_fltpt&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00289.html">isnt_fltpt_false</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00290.html">isnt_same_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00291.html">isnt_same_type&lt; T1, T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00292.html">isnt_supported_elem_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00293.html">isnt_supported_elem_type&lt; double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00294.html">isnt_supported_elem_type&lt; float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00295.html">isnt_supported_elem_type&lt; s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00296.html">isnt_supported_elem_type&lt; s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00297.html">isnt_supported_elem_type&lt; s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00298.html">isnt_supported_elem_type&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00299.html">isnt_supported_elem_type&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00300.html">isnt_supported_elem_type&lt; u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00301.html">isnt_supported_elem_type&lt; u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00302.html">isnt_supported_elem_type&lt; u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00303.html">isnt_supported_elem_type_false</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00304.html">itpp::Mat&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00305.html">Mat&lt; eT &gt;</a></td><td class="indexvalue">Dense matrix class </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00306.html">Mat_aux</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00307.html">Math&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00308.html">Op&lt; T1, op_type &gt;</a></td><td class="indexvalue">Class for storing data required for delayed unary operations, such as the operand (e.g. the matrix to which the operation is to be applied) and the unary operator (e.g. inverse). The operand is stored as a reference (which can be optimised away), while the operator is "stored" through the template definition (op_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than one matrix can be stored </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00309.html">op_cor</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00310.html">op_cov</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00311.html">op_diagmat</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00312.html">op_diagvec</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00313.html">op_dot</a></td><td class="indexvalue">Dot product operation </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00314.html">op_dotext</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00315.html">op_fliplr</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00316.html">op_flipud</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00317.html">op_htrans</a></td><td class="indexvalue">'hermitian transpose' operation (only valid for complex number matrices) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00318.html">op_inv</a></td><td class="indexvalue">'invert matrix' operation </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00319.html">op_max</a></td><td class="indexvalue">Class for finding maximum values in a matrix </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00320.html">op_mean</a></td><td class="indexvalue">Class for finding mean values of a matrix </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00321.html">op_median</a></td><td class="indexvalue">Class for finding median values of a matrix </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00322.html">op_min</a></td><td class="indexvalue">Class for finding minimum values in a matrix </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00323.html">op_norm_dot</a></td><td class="indexvalue">Normalised dot product operation </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00324.html">op_pinv</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00325.html">op_princomp</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00326.html">op_princomp_cov</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00327.html">op_prod</a></td><td class="indexvalue">Class for finding products of values in a matrix (e.g. along rows or columns) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00328.html">op_repmat</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00329.html">op_reshape</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00330.html">op_shuffle</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00331.html">op_sort</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00332.html">op_stddev</a></td><td class="indexvalue">Class for finding the standard deviation </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00333.html">op_sum</a></td><td class="indexvalue">Class for finding sums of values in a matrix (e.g. along rows or columns) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00334.html">op_trans</a></td><td class="indexvalue">'matrix transpose' operation </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00335.html">op_trans2</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00336.html">op_var</a></td><td class="indexvalue">Class for finding variance values of a matrix </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00337.html">OpCube&lt; T1, op_type &gt;</a></td><td class="indexvalue">Analog of the <a class="el" href="a00308.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a> class, intended for cubes </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00338.html">partial_unwrap&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00339.html">partial_unwrap&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00340.html">partial_unwrap&lt; eOp&lt; Col&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00341.html">partial_unwrap&lt; eOp&lt; Mat&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00342.html">partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00343.html">partial_unwrap&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00344.html">partial_unwrap&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00345.html">partial_unwrap&lt; Op&lt; Col&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00346.html">partial_unwrap&lt; Op&lt; Col&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00347.html">partial_unwrap&lt; Op&lt; Mat&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00348.html">partial_unwrap&lt; Op&lt; Mat&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00349.html">partial_unwrap&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00350.html">partial_unwrap&lt; Op&lt; Row&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00351.html">partial_unwrap&lt; Op&lt; T1, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00352.html">partial_unwrap&lt; Op&lt; T1, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00353.html">partial_unwrap&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00354.html">partial_unwrap_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00355.html">partial_unwrap_check&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00356.html">partial_unwrap_check&lt; eOp&lt; Col&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00357.html">partial_unwrap_check&lt; eOp&lt; Mat&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00358.html">partial_unwrap_check&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00359.html">partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00360.html">partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00361.html">partial_unwrap_check&lt; Op&lt; Col&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00362.html">partial_unwrap_check&lt; Op&lt; Col&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00363.html">partial_unwrap_check&lt; Op&lt; Mat&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00364.html">partial_unwrap_check&lt; Op&lt; Mat&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00365.html">partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00366.html">partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00367.html">partial_unwrap_check&lt; Op&lt; T1, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00368.html">partial_unwrap_check&lt; Op&lt; T1, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00369.html">partial_unwrap_check&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00370.html">Phy&lt; eT &gt;</a></td><td class="indexvalue">Physical constants taken from NIST and WolframAlpha on 2009-06-23 <a href="http://physics.nist.gov/cuu/Constants">http://physics.nist.gov/cuu/Constants</a> <a href="http://www.wolframalpha.com">http://www.wolframalpha.com</a> See also <a href="http://en.wikipedia.org/wiki/Physical_constant">http://en.wikipedia.org/wiki/Physical_constant</a> </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00371.html">podarray&lt; eT &gt;</a></td><td class="indexvalue">A lightweight array for POD types. If the amount of memory requested is small, the stack is used </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00372.html">promote_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00373.html">promote_type&lt; double, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00374.html">promote_type&lt; double, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00375.html">promote_type&lt; double, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00376.html">promote_type&lt; double, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00377.html">promote_type&lt; double, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00378.html">promote_type&lt; double, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00379.html">promote_type&lt; double, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00380.html">promote_type&lt; double, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00381.html">promote_type&lt; float, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00382.html">promote_type&lt; float, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00383.html">promote_type&lt; float, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00384.html">promote_type&lt; float, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00385.html">promote_type&lt; float, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00386.html">promote_type&lt; float, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00387.html">promote_type&lt; float, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00388.html">promote_type&lt; float, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00389.html">promote_type&lt; s16, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00390.html">promote_type&lt; s16, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00391.html">promote_type&lt; s16, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00392.html">promote_type&lt; s16, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00393.html">promote_type&lt; s16, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00394.html">promote_type&lt; s16, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00395.html">promote_type&lt; s16, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00396.html">promote_type&lt; s16, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00397.html">promote_type&lt; s32, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00398.html">promote_type&lt; s32, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00399.html">promote_type&lt; s32, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00400.html">promote_type&lt; s32, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00401.html">promote_type&lt; s32, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00402.html">promote_type&lt; s32, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00403.html">promote_type&lt; s32, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00404.html">promote_type&lt; s32, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00405.html">promote_type&lt; s8, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00406.html">promote_type&lt; s8, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00407.html">promote_type&lt; s8, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00408.html">promote_type&lt; s8, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00409.html">promote_type&lt; s8, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00410.html">promote_type&lt; s8, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00411.html">promote_type&lt; s8, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00412.html">promote_type&lt; s8, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00413.html">promote_type&lt; std::complex&lt; double &gt;, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00414.html">promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00415.html">promote_type&lt; std::complex&lt; float &gt;, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00416.html">promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00417.html">promote_type&lt; std::complex&lt; T &gt;, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00418.html">promote_type&lt; std::complex&lt; T &gt;, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00419.html">promote_type&lt; std::complex&lt; T &gt;, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00420.html">promote_type&lt; std::complex&lt; T &gt;, T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00421.html">promote_type&lt; std::complex&lt; T &gt;, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00422.html">promote_type&lt; std::complex&lt; T &gt;, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00423.html">promote_type&lt; std::complex&lt; T &gt;, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00424.html">promote_type&lt; T, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00425.html">promote_type&lt; T, T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00426.html">promote_type&lt; u16, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00427.html">promote_type&lt; u16, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00428.html">promote_type&lt; u16, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00429.html">promote_type&lt; u16, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00430.html">promote_type&lt; u16, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00431.html">promote_type&lt; u16, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00432.html">promote_type&lt; u16, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00433.html">promote_type&lt; u16, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00434.html">promote_type&lt; u32, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00435.html">promote_type&lt; u32, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00436.html">promote_type&lt; u32, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00437.html">promote_type&lt; u32, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00438.html">promote_type&lt; u32, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00439.html">promote_type&lt; u32, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00440.html">promote_type&lt; u32, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00441.html">promote_type&lt; u32, u8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00442.html">promote_type&lt; u8, double &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00443.html">promote_type&lt; u8, float &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00444.html">promote_type&lt; u8, s16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00445.html">promote_type&lt; u8, s32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00446.html">promote_type&lt; u8, s8 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00447.html">promote_type&lt; u8, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00448.html">promote_type&lt; u8, u16 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00449.html">promote_type&lt; u8, u32 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00450.html">promote_type_ok</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00451.html">Proxy&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00452.html">Proxy&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00453.html">Proxy&lt; diagview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00454.html">Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00455.html">Proxy&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00456.html">Proxy&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00457.html">Proxy&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00458.html">Proxy&lt; Op&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00459.html">Proxy&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00460.html">Proxy&lt; subview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00461.html">ProxyCube&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00462.html">ProxyCube&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00463.html">ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00464.html">ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00465.html">ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00466.html">ProxyCube&lt; OpCube&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00467.html">ProxyCube&lt; subview_cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00468.html">Row&lt; eT &gt;</a></td><td class="indexvalue">Class for row vectors (matrices with only one row) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00469.html">running_stat&lt; eT &gt;</a></td><td class="indexvalue">Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00470.html">running_stat_aux</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00471.html">running_stat_vec&lt; eT &gt;</a></td><td class="indexvalue">Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00472.html">running_stat_vec_aux</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00473.html">strip_diagmat&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00474.html">strip_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00475.html">strip_inv&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00476.html">strip_inv&lt; Op&lt; T1, op_inv &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00477.html">subview&lt; eT &gt;</a></td><td class="indexvalue">Class for storing data required to construct or apply operations to a submatrix (i.e. where the submatrix starts and ends as well as a reference/pointer to the original matrix), </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00478.html">subview_col&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00479.html">subview_cube&lt; eT &gt;</a></td><td class="indexvalue">Class for storing data required to construct or apply operations to a subcube (i.e. where the subcube starts and ends as well as a reference/pointer to the original cube), </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00480.html">subview_field&lt; oT &gt;</a></td><td class="indexvalue">Class for storing data required to construct or apply operations to a subfield (i.e. where the subfield starts and ends as well as a reference/pointer to the original <a class="el" href="a00172.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field</a>), </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00481.html">subview_row&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00482.html">syslib</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00483.html">unwrap&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00484.html">unwrap&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00485.html">unwrap&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00486.html">unwrap&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00487.html">unwrap_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00488.html">unwrap_check&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00489.html">unwrap_check&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00490.html">unwrap_check&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00491.html">unwrap_cube&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00492.html">unwrap_cube&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00493.html">unwrap_cube_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00494.html">unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00495.html">upgrade_val&lt; T1, T2 &gt;</a></td><td class="indexvalue">Upgrade_val is used to ensure an operation such as multiplication is possible between two types. values are upgraded only where necessary </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00496.html">upgrade_val&lt; double, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00497.html">upgrade_val&lt; float, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00498.html">upgrade_val&lt; std::complex&lt; double &gt;, float &gt;</a></td><td class="indexvalue">Work around limitations in the complex class (at least as present in gcc 4.1 &amp; 4.3) </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00499.html">upgrade_val&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00500.html">upgrade_val&lt; std::complex&lt; float &gt;, double &gt;</a></td><td class="indexvalue">Ensure we don't lose precision when multiplying a complex number with a higher precision real number </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00501.html">upgrade_val&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue">Ensure we don't lose precision when multiplying complex numbers with different underlying types </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00502.html">upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;</a></td><td class="indexvalue">Upgrade a type to allow multiplication with a complex type e.g. the int in "int * complex&lt;double&gt;" is upgraded to a double </td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00503.html">upgrade_val&lt; T, T &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00504.html">upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00505.html">itpp::Vec&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="a00506.html">wall_clock</a></td><td class="indexvalue">Class for measuring time intervals </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00059.html">field&lt; oT &gt;::const_iterator</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00060.html">Mat&lt; eT &gt;::const_row_iterator</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00061.html">conv_to&lt; out_eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00062.html">conv_to&lt; Col&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00063.html">conv_to&lt; Cube&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00064.html">conv_to&lt; itpp::Mat&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00065.html">conv_to&lt; itpp::Vec&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00066.html">conv_to&lt; Mat&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00067.html">conv_to&lt; Row&lt; out_eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00068.html">Cube&lt; eT &gt;</a></td><td class="indexvalue">Dense cube class </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00069.html">Cube_aux</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00070.html">depth_lhs&lt; glue_type, T1 &gt;</a></td><td class="indexvalue">Template metaprogram <a class="el" href="a00070.html" title="Template metaprogram depth_lhs calculates the number of Glue&lt;Tx,Ty, glue_type&gt;...">depth_lhs</a> calculates the number of Glue&lt;Tx,Ty, glue_type&gt; instances on the left hand side argument of Glue&lt;Tx,Ty, glue_type&gt; i.e. it recursively expands each Tx, until the type of Tx is not "Glue&lt;..,.., glue_type&gt;" (i.e the "glue_type" changes) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00071.html">depth_lhs&lt; glue_type, Glue&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00072.html">diagmat_proxy&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00073.html">diagmat_proxy&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00074.html">diagmat_proxy&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00075.html">diagmat_proxy&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00076.html">diagmat_proxy_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00077.html">diagmat_proxy_check&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00078.html">diagmat_proxy_check&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00079.html">diagmat_proxy_check&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00080.html">diagview&lt; eT &gt;</a></td><td class="indexvalue">Class for storing data required to extract and set the diagonals of a matrix </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00081.html">diskio</a></td><td class="indexvalue">Class for saving and loading matrices and fields </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00082.html">eGlue&lt; T1, T2, eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00083.html">eglue_core&lt; eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00084.html">eglue_cube_core&lt; eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00085.html">eglue_cube_div</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00086.html">eglue_cube_minus</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00087.html">eglue_cube_plus</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00088.html">eglue_cube_schur</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00089.html">eglue_div</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00090.html">eglue_minus</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00091.html">eglue_plus</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00092.html">eglue_schur</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00093.html">eGlueCube&lt; T1, T2, eglue_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00094.html">eOp&lt; T1, eop_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00095.html">eop_abs</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00096.html">eop_acos</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00097.html">eop_acosh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00098.html">eop_asin</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00099.html">eop_asinh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00100.html">eop_atan</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00101.html">eop_atanh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00102.html">eop_aux</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00103.html">eop_aux_rand&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00104.html">eop_aux_rand&lt; std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00105.html">eop_aux_randn&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00106.html">eop_aux_randn&lt; std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00107.html">eop_conj</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00108.html">eop_core&lt; eop_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00109.html">eop_cos</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00110.html">eop_cosh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00111.html">eop_cube_abs</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00112.html">eop_cube_acos</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00113.html">eop_cube_acosh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00114.html">eop_cube_asin</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00115.html">eop_cube_asinh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00116.html">eop_cube_atan</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00117.html">eop_cube_atanh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00118.html">eop_cube_conj</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00119.html">eop_cube_core&lt; eop_cube_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00120.html">eop_cube_cos</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00121.html">eop_cube_cosh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00122.html">eop_cube_eps</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00123.html">eop_cube_exp</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00124.html">eop_cube_log</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00125.html">eop_cube_log10</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00126.html">eop_cube_neg</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00127.html">eop_cube_ones_full</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00128.html">eop_cube_pow</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00129.html">eop_cube_pow_int</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00130.html">eop_cube_rand</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00131.html">eop_cube_randn</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00132.html">eop_cube_scalar_div_post</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00133.html">eop_cube_scalar_div_pre</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00134.html">eop_cube_scalar_minus_post</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00135.html">eop_cube_scalar_minus_pre</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00136.html">eop_cube_scalar_plus</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00137.html">eop_cube_scalar_times</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00138.html">eop_cube_sin</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00139.html">eop_cube_sinh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00140.html">eop_cube_sqrt</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00141.html">eop_cube_square</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00142.html">eop_cube_tan</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00143.html">eop_cube_tanh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00144.html">eop_cube_trunc_exp</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00145.html">eop_cube_trunc_log</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00146.html">eop_cube_zeros</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00147.html">eop_eps</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00148.html">eop_exp</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00149.html">eop_log</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00150.html">eop_log10</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00151.html">eop_neg</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00152.html">eop_ones_diag</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00153.html">eop_ones_full</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00154.html">eop_pow</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00155.html">eop_pow_int</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00156.html">eop_rand</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00157.html">eop_randn</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00158.html">eop_scalar_div_post</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00159.html">eop_scalar_div_pre</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00160.html">eop_scalar_minus_post</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00161.html">eop_scalar_minus_pre</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00162.html">eop_scalar_plus</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00163.html">eop_scalar_times</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00164.html">eop_sin</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00165.html">eop_sinh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00166.html">eop_sqrt</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00167.html">eop_square</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00168.html">eop_tan</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00169.html">eop_tanh</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00170.html">eop_trunc_exp</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00171.html">eop_trunc_log</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00172.html">eop_zeros</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00173.html">eOpCube&lt; T1, eop_type &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00174.html">field&lt; oT &gt;</a></td><td class="indexvalue">A lightweight 2D container for abitrary objects (the objects must have a copy constructor) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00175.html">field_aux</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00176.html">force_different_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00177.html">force_different_type&lt; T1, T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00178.html">arma_boost::format</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00179.html">arma_boost::format_metaprog&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00180.html">arma_boost::format_metaprog&lt; basic_format&lt; T1, T2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00181.html">gemm&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Wrapper for ATLAS/BLAS dgemm function, using template arguments to control the arguments passed to dgemm. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00182.html">gemm_emul_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Partial emulation of ATLAS/BLAS gemm(), using caching for speedup. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00183.html">gemm_emul_simple&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Partial emulation of ATLAS/BLAS gemm(), non-cached version. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00184.html">gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Matrix multplication where the matrices have different element types </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00185.html">gemm_mixed_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Matrix multplication where the matrices have different element types. Uses caching for speedup. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00186.html">gemm_mixed_simple&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Matrix multplication where the matrices have different element types. Simple version (no caching). Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00187.html">gemv&lt; do_trans_A, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Wrapper for ATLAS/BLAS <a class="el" href="a00187.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a> function, using template arguments to control the arguments passed to <a class="el" href="a00187.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a>. 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00188.html">gemv_arma&lt; do_trans_A, use_alpha, use_beta &gt;</a></td><td class="indexvalue">Partial emulation of ATLAS/BLAS gemv(). 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00189.html">get_pod_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00190.html">get_pod_type&lt; std::complex&lt; T2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00191.html">Glue&lt; T1, T2, glue_type &gt;</a></td><td class="indexvalue">Class for storing data required for delayed binary operations, such as the operands (e.g. two matrices) and the binary operator (e.g. addition). The operands are stored as references (which can be optimised away), while the operator is "stored" through the template definition (glue_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than two matrices can be stored </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00192.html">glue_cor</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00193.html">glue_cov</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00194.html">glue_cross</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00195.html">glue_join</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00196.html">glue_kron</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00197.html">glue_times</a></td><td class="indexvalue">Class which implements the immediate multiplication of two or more matrices </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00198.html">glue_times_diag</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00199.html">glue_times_redirect&lt; N &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00200.html">glue_times_redirect&lt; 3 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00201.html">glue_times_redirect&lt; 4 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00202.html">GlueCube&lt; T1, T2, glue_type &gt;</a></td><td class="indexvalue">Analog of the <a class="el" href="a00191.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a> class, intended for <a class="el" href="a00068.html" title="Dense cube class.">Cube</a> objects </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00203.html">is_arma_cube_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00204.html">is_arma_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00205.html">is_Col&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00206.html">is_Col&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00207.html">is_complex&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00208.html">is_complex&lt; std::complex&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00209.html">is_complex&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00210.html">is_complex_double&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00211.html">is_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00212.html">is_complex_float&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00213.html">is_Cube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00214.html">is_Cube&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00215.html">is_cube_generator&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00216.html">is_cube_generator&lt; eop_cube_ones_full &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00217.html">is_cube_generator&lt; eop_cube_rand &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00218.html">is_cube_generator&lt; eop_cube_randn &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00219.html">is_cube_generator&lt; eop_cube_zeros &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00220.html">is_diagview&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00221.html">is_diagview&lt; diagview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00222.html">is_double&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00223.html">is_double&lt; double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00224.html">is_eGlue&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00225.html">is_eGlue&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00226.html">is_eOp&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00227.html">is_eOp&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00228.html">is_float&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00229.html">is_float&lt; float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00230.html">is_generator&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00231.html">is_generator&lt; eop_ones_full &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00232.html">is_generator&lt; eop_rand &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00233.html">is_generator&lt; eop_randn &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00234.html">is_generator&lt; eop_zeros &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00235.html">is_Glue&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00236.html">is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00237.html">is_glue_times&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00238.html">is_glue_times&lt; Glue&lt; T1, T2, glue_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00239.html">is_glue_times_diag&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00240.html">is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00241.html">is_GlueCube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00242.html">is_GlueCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00243.html">is_Mat&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00244.html">is_Mat&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00245.html">is_Mat&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00246.html">is_Mat&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00247.html">is_Mat_only&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00248.html">is_Mat_only&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00249.html">is_non_integral&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00250.html">is_Op&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00251.html">is_Op&lt; Op&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00252.html">is_op_diagmat&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00253.html">is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00254.html">is_OpCube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00255.html">is_OpCube&lt; OpCube&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00256.html">is_Row&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00257.html">is_Row&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00258.html">is_s16&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00259.html">is_s16&lt; s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00260.html">is_s32&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00261.html">is_s32&lt; s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00262.html">is_s8&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00263.html">is_s8&lt; s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00264.html">is_same_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00265.html">is_same_type&lt; T1, T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00266.html">is_signed&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00267.html">is_subview&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00268.html">is_subview&lt; subview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00269.html">is_subview_cube&lt; T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00270.html">is_subview_cube&lt; subview_cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00271.html">is_supported_blas_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00272.html">is_supported_complex&lt; T1 &gt;</a></td><td class="indexvalue">Check for a weird implementation of the std::complex class </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00273.html">is_supported_complex&lt; std::complex&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00274.html">is_supported_complex_double&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00275.html">is_supported_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00276.html">is_supported_complex_float&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00277.html">is_supported_complex_float&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00278.html">is_supported_elem_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00279.html">diskio::is_supported_type&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00280.html">is_u16&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00281.html">is_u16&lt; u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00282.html">is_u32&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00283.html">is_u32&lt; u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00284.html">is_u8&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00285.html">is_u8&lt; u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00286.html">isnt_fltpt&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00287.html">isnt_fltpt&lt; double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00288.html">isnt_fltpt&lt; float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00289.html">isnt_fltpt&lt; long double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00290.html">isnt_fltpt&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00291.html">isnt_fltpt&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00292.html">isnt_fltpt_false</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00293.html">isnt_same_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00294.html">isnt_same_type&lt; T1, T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00295.html">isnt_supported_elem_type&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00296.html">isnt_supported_elem_type&lt; double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00297.html">isnt_supported_elem_type&lt; float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00298.html">isnt_supported_elem_type&lt; s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00299.html">isnt_supported_elem_type&lt; s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00300.html">isnt_supported_elem_type&lt; s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00301.html">isnt_supported_elem_type&lt; std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00302.html">isnt_supported_elem_type&lt; std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00303.html">isnt_supported_elem_type&lt; u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00304.html">isnt_supported_elem_type&lt; u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00305.html">isnt_supported_elem_type&lt; u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00306.html">isnt_supported_elem_type_false</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00307.html">field&lt; oT &gt;::iterator</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00308.html">Mat&lt; eT &gt;</a></td><td class="indexvalue">Dense matrix class </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00309.html">itpp::Mat&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00310.html">Mat_aux</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00311.html">Math&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00312.html">Op&lt; T1, op_type &gt;</a></td><td class="indexvalue">Class for storing data required for delayed unary operations, such as the operand (e.g. the matrix to which the operation is to be applied) and the unary operator (e.g. inverse). The operand is stored as a reference (which can be optimised away), while the operator is "stored" through the template definition (op_type). The operands can be 'Mat', 'Row', 'Col', 'Op', and 'Glue'. Note that as 'Glue' can be one of the operands, more than one matrix can be stored </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00313.html">op_cor</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00314.html">op_cov</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00315.html">op_diagmat</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00316.html">op_diagvec</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00317.html">op_dot</a></td><td class="indexvalue">Dot product operation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00318.html">op_dotext</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00319.html">op_fliplr</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00320.html">op_flipud</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00321.html">op_htrans</a></td><td class="indexvalue">'hermitian transpose' operation (only valid for complex number matrices) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00322.html">op_inv</a></td><td class="indexvalue">'invert matrix' operation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00323.html">op_max</a></td><td class="indexvalue">Class for finding maximum values in a matrix </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00324.html">op_mean</a></td><td class="indexvalue">Class for finding mean values of a matrix </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00325.html">op_median</a></td><td class="indexvalue">Class for finding median values of a matrix </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00326.html">op_min</a></td><td class="indexvalue">Class for finding minimum values in a matrix </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00327.html">op_norm_dot</a></td><td class="indexvalue">Normalised dot product operation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00328.html">op_pinv</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00329.html">op_princomp</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00330.html">op_princomp_cov</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00331.html">op_prod</a></td><td class="indexvalue">Class for finding products of values in a matrix (e.g. along rows or columns) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00332.html">op_repmat</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00333.html">op_reshape</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00334.html">op_shuffle</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00335.html">op_sort</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00336.html">op_stddev</a></td><td class="indexvalue">Class for finding the standard deviation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00337.html">op_sum</a></td><td class="indexvalue">Class for finding sums of values in a matrix (e.g. along rows or columns) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00338.html">op_trans</a></td><td class="indexvalue">'matrix transpose' operation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00339.html">op_trans2</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00340.html">op_var</a></td><td class="indexvalue">Class for finding variance values of a matrix </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00341.html">OpCube&lt; T1, op_type &gt;</a></td><td class="indexvalue">Analog of the <a class="el" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a> class, intended for cubes </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00342.html">partial_unwrap&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00343.html">partial_unwrap&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00344.html">partial_unwrap&lt; eOp&lt; Col&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00345.html">partial_unwrap&lt; eOp&lt; Mat&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00346.html">partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00347.html">partial_unwrap&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00348.html">partial_unwrap&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00349.html">partial_unwrap&lt; Op&lt; Col&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00350.html">partial_unwrap&lt; Op&lt; Col&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00351.html">partial_unwrap&lt; Op&lt; Mat&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00352.html">partial_unwrap&lt; Op&lt; Mat&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00353.html">partial_unwrap&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00354.html">partial_unwrap&lt; Op&lt; Row&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00355.html">partial_unwrap&lt; Op&lt; T1, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00356.html">partial_unwrap&lt; Op&lt; T1, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00357.html">partial_unwrap&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00358.html">partial_unwrap_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00359.html">partial_unwrap_check&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00360.html">partial_unwrap_check&lt; eOp&lt; Col&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00361.html">partial_unwrap_check&lt; eOp&lt; Mat&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00362.html">partial_unwrap_check&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00363.html">partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00364.html">partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00365.html">partial_unwrap_check&lt; Op&lt; Col&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00366.html">partial_unwrap_check&lt; Op&lt; Col&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00367.html">partial_unwrap_check&lt; Op&lt; Mat&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00368.html">partial_unwrap_check&lt; Op&lt; Mat&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00369.html">partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00370.html">partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00371.html">partial_unwrap_check&lt; Op&lt; T1, op_trans &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00372.html">partial_unwrap_check&lt; Op&lt; T1, op_trans2 &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00373.html">partial_unwrap_check&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00374.html">Phy&lt; eT &gt;</a></td><td class="indexvalue">Physical constants taken from NIST and WolframAlpha on 2009-06-23 <a href="http://physics.nist.gov/cuu/Constants">http://physics.nist.gov/cuu/Constants</a> <a href="http://www.wolframalpha.com">http://www.wolframalpha.com</a> See also <a href="http://en.wikipedia.org/wiki/Physical_constant">http://en.wikipedia.org/wiki/Physical_constant</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00375.html">podarray&lt; eT &gt;</a></td><td class="indexvalue">A lightweight array for POD types. If the amount of memory requested is small, the stack is used </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00376.html">promote_type&lt; T1, T2 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00377.html">promote_type&lt; double, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00378.html">promote_type&lt; double, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00379.html">promote_type&lt; double, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00380.html">promote_type&lt; double, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00381.html">promote_type&lt; double, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00382.html">promote_type&lt; double, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00383.html">promote_type&lt; double, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00384.html">promote_type&lt; double, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00385.html">promote_type&lt; float, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00386.html">promote_type&lt; float, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00387.html">promote_type&lt; float, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00388.html">promote_type&lt; float, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00389.html">promote_type&lt; float, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00390.html">promote_type&lt; float, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00391.html">promote_type&lt; float, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00392.html">promote_type&lt; float, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00393.html">promote_type&lt; s16, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00394.html">promote_type&lt; s16, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00395.html">promote_type&lt; s16, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00396.html">promote_type&lt; s16, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00397.html">promote_type&lt; s16, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00398.html">promote_type&lt; s16, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00399.html">promote_type&lt; s16, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00400.html">promote_type&lt; s16, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00401.html">promote_type&lt; s32, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00402.html">promote_type&lt; s32, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00403.html">promote_type&lt; s32, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00404.html">promote_type&lt; s32, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00405.html">promote_type&lt; s32, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00406.html">promote_type&lt; s32, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00407.html">promote_type&lt; s32, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00408.html">promote_type&lt; s32, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00409.html">promote_type&lt; s8, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00410.html">promote_type&lt; s8, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00411.html">promote_type&lt; s8, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00412.html">promote_type&lt; s8, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00413.html">promote_type&lt; s8, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00414.html">promote_type&lt; s8, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00415.html">promote_type&lt; s8, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00416.html">promote_type&lt; s8, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00417.html">promote_type&lt; std::complex&lt; double &gt;, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00418.html">promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00419.html">promote_type&lt; std::complex&lt; float &gt;, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00420.html">promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00421.html">promote_type&lt; std::complex&lt; T &gt;, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00422.html">promote_type&lt; std::complex&lt; T &gt;, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00423.html">promote_type&lt; std::complex&lt; T &gt;, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00424.html">promote_type&lt; std::complex&lt; T &gt;, T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00425.html">promote_type&lt; std::complex&lt; T &gt;, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00426.html">promote_type&lt; std::complex&lt; T &gt;, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00427.html">promote_type&lt; std::complex&lt; T &gt;, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00428.html">promote_type&lt; T, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00429.html">promote_type&lt; T, T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00430.html">promote_type&lt; u16, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00431.html">promote_type&lt; u16, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00432.html">promote_type&lt; u16, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00433.html">promote_type&lt; u16, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00434.html">promote_type&lt; u16, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00435.html">promote_type&lt; u16, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00436.html">promote_type&lt; u16, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00437.html">promote_type&lt; u16, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00438.html">promote_type&lt; u32, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00439.html">promote_type&lt; u32, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00440.html">promote_type&lt; u32, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00441.html">promote_type&lt; u32, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00442.html">promote_type&lt; u32, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00443.html">promote_type&lt; u32, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00444.html">promote_type&lt; u32, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00445.html">promote_type&lt; u32, u8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00446.html">promote_type&lt; u8, double &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00447.html">promote_type&lt; u8, float &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00448.html">promote_type&lt; u8, s16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00449.html">promote_type&lt; u8, s32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00450.html">promote_type&lt; u8, s8 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00451.html">promote_type&lt; u8, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00452.html">promote_type&lt; u8, u16 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00453.html">promote_type&lt; u8, u32 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00454.html">promote_type_ok</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00455.html">Proxy&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00456.html">Proxy&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00457.html">Proxy&lt; diagview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00458.html">Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00459.html">Proxy&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00460.html">Proxy&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00461.html">Proxy&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00462.html">Proxy&lt; Op&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00463.html">Proxy&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00464.html">Proxy&lt; subview&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00465.html">ProxyCube&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00466.html">ProxyCube&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00467.html">ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00468.html">ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00469.html">ProxyCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00470.html">ProxyCube&lt; OpCube&lt; T1, op_type &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00471.html">ProxyCube&lt; subview_cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00472.html">Row&lt; eT &gt;</a></td><td class="indexvalue">Class for row vectors (matrices with only one row) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00473.html">Mat&lt; eT &gt;::row_iterator</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00474.html">running_stat&lt; eT &gt;</a></td><td class="indexvalue">Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00475.html">running_stat_aux</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00476.html">running_stat_vec&lt; eT &gt;</a></td><td class="indexvalue">Class for keeping statistics of a continuously sampled process / signal. Useful if the storage of individual samples is not necessary or desired. Also useful if the number of samples is not known beforehand or exceeds available memory </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00477.html">running_stat_vec_aux</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00478.html">strip_diagmat&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00479.html">strip_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00480.html">strip_inv&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00481.html">strip_inv&lt; Op&lt; T1, op_inv &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00482.html">subview&lt; eT &gt;</a></td><td class="indexvalue">Class for storing data required to construct or apply operations to a submatrix (i.e. where the submatrix starts and ends as well as a reference/pointer to the original matrix), </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00483.html">subview_col&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00484.html">subview_cube&lt; eT &gt;</a></td><td class="indexvalue">Class for storing data required to construct or apply operations to a subcube (i.e. where the subcube starts and ends as well as a reference/pointer to the original cube), </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00485.html">subview_field&lt; oT &gt;</a></td><td class="indexvalue">Class for storing data required to construct or apply operations to a subfield (i.e. where the subfield starts and ends as well as a reference/pointer to the original <a class="el" href="a00174.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field</a>), </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00486.html">subview_row&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00487.html">syslib</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00488.html">unwrap&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00489.html">unwrap&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00490.html">unwrap&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00491.html">unwrap&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00492.html">unwrap_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00493.html">unwrap_check&lt; Col&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00494.html">unwrap_check&lt; Mat&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00495.html">unwrap_check&lt; Row&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00496.html">unwrap_cube&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00497.html">unwrap_cube&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00498.html">unwrap_cube_check&lt; T1 &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00499.html">unwrap_cube_check&lt; Cube&lt; eT &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00500.html">upgrade_val&lt; T1, T2 &gt;</a></td><td class="indexvalue">Upgrade_val is used to ensure an operation such as multiplication is possible between two types. values are upgraded only where necessary </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00501.html">upgrade_val&lt; double, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00502.html">upgrade_val&lt; float, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00503.html">upgrade_val&lt; std::complex&lt; double &gt;, float &gt;</a></td><td class="indexvalue">Work around limitations in the complex class (at least as present in gcc 4.1 &amp; 4.3) </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00504.html">upgrade_val&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00505.html">upgrade_val&lt; std::complex&lt; float &gt;, double &gt;</a></td><td class="indexvalue">Ensure we don't lose precision when multiplying a complex number with a higher precision real number </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00506.html">upgrade_val&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</a></td><td class="indexvalue">Ensure we don't lose precision when multiplying complex numbers with different underlying types </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00507.html">upgrade_val&lt; std::complex&lt; T &gt;, T2 &gt;</a></td><td class="indexvalue">Upgrade a type to allow multiplication with a complex type e.g. the int in "int * complex&lt;double&gt;" is upgraded to a double </td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00508.html">upgrade_val&lt; T, T &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00509.html">upgrade_val&lt; T1, std::complex&lt; T &gt; &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00510.html">itpp::Vec&lt; eT &gt;</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="a00511.html">wall_clock</a></td><td class="indexvalue">Class for measuring time intervals </td></tr>
 </table>
 </div>
 </BODY>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Traits</title>
+<title>Armadillo Technical: Proxy</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,106 +21,18 @@
   </div>
 </div>
 <div class="contents">
-<h1>Traits</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>Proxy</h1><table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00187.html">get_pod_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00188.html">get_pod_type&lt; std::complex&lt; T2 &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00244.html">is_Mat_only&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00245.html">is_Mat_only&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00240.html">is_Mat&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00242.html">is_Mat&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html">is_Mat&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00241.html">is_Mat&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00253.html">is_Row&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00254.html">is_Row&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00202.html">is_Col&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00203.html">is_Col&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00264.html">is_subview&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00265.html">is_subview&lt; subview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00217.html">is_diagview&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00218.html">is_diagview&lt; diagview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00210.html">is_Cube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00211.html">is_Cube&lt; Cube&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00266.html">is_subview_cube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00267.html">is_subview_cube&lt; subview_cube&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00247.html">is_Op&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00248.html">is_Op&lt; Op&lt; T1, op_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00251.html">is_OpCube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00252.html">is_OpCube&lt; OpCube&lt; T1, op_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00232.html">is_Glue&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00233.html">is_Glue&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00238.html">is_GlueCube&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00239.html">is_GlueCube&lt; GlueCube&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00234.html">is_glue_times&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00235.html">is_glue_times&lt; Glue&lt; T1, T2, glue_times &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00236.html">is_glue_times_diag&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00237.html">is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00223.html">is_eOp&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00224.html">is_eOp&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00221.html">is_eGlue&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00222.html">is_eGlue&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00249.html">is_op_diagmat&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00250.html">is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00201.html">is_arma_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00200.html">is_arma_cube_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00261.html">is_same_type&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00262.html">is_same_type&lt; T1, T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00290.html">isnt_same_type&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00291.html">isnt_same_type&lt; T1, T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00283.html">isnt_fltpt&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00289.html">isnt_fltpt_false</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00285.html">isnt_fltpt&lt; float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00284.html">isnt_fltpt&lt; double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00286.html">isnt_fltpt&lt; long double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00288.html">isnt_fltpt&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00287.html">isnt_fltpt&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00281.html">is_u8&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00282.html">is_u8&lt; u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00259.html">is_s8&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00260.html">is_s8&lt; s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00277.html">is_u16&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00278.html">is_u16&lt; u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00255.html">is_s16&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00256.html">is_s16&lt; s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00279.html">is_u32&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00280.html">is_u32&lt; u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00257.html">is_s32&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00258.html">is_s32&lt; s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00225.html">is_float&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00226.html">is_float&lt; float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00219.html">is_double&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00220.html">is_double&lt; double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00204.html">is_complex&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00205.html">is_complex&lt; std::complex&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00209.html">is_complex_float&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00206.html">is_complex&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00207.html">is_complex_double&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00208.html">is_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00269.html">is_supported_complex&lt; T1 &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">check for a weird implementation of the std::complex class  <a href="a00269.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00270.html">is_supported_complex&lt; std::complex&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00273.html">is_supported_complex_float&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00274.html">is_supported_complex_float&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00271.html">is_supported_complex_double&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00272.html">is_supported_complex_double&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00275.html">is_supported_elem_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00292.html">isnt_supported_elem_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00303.html">isnt_supported_elem_type_false</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00302.html">isnt_supported_elem_type&lt; u8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00297.html">isnt_supported_elem_type&lt; s8 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00300.html">isnt_supported_elem_type&lt; u16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00295.html">isnt_supported_elem_type&lt; s16 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00301.html">isnt_supported_elem_type&lt; u32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00296.html">isnt_supported_elem_type&lt; s32 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00294.html">isnt_supported_elem_type&lt; float &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00293.html">isnt_supported_elem_type&lt; double &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00299.html">isnt_supported_elem_type&lt; std::complex&lt; float &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00298.html">isnt_supported_elem_type&lt; std::complex&lt; double &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00268.html">is_supported_blas_type&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00263.html">is_signed&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00246.html">is_non_integral&lt; T &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00174.html">force_different_type&lt; T1, T2 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00175.html">force_different_type&lt; T1, T1 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html">Proxy&lt; T1 &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00461.html">Proxy&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00456.html">Proxy&lt; Col&lt; eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html">Proxy&lt; Row&lt; eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00462.html">Proxy&lt; Op&lt; T1, op_type &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00460.html">Proxy&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00464.html">Proxy&lt; subview&lt; eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00457.html">Proxy&lt; diagview&lt; eT &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00459.html">Proxy&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00458.html">Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td></tr>
 </table>
 </div>
 </BODY>

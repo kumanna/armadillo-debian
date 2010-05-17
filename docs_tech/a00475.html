@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: strip_inv&lt; T1 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: running_stat_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,115 +29,28 @@
   </div>
 </div>
 <div class="contents">
-<h1>strip_inv&lt; T1 &gt; Struct Template Reference<br/>
+<h1>running_stat_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00865.html">Strip</a>]</small>
-</h1><!-- doxytag: class="strip_inv" -->
-<p><code>#include &lt;<a class="el" href="a00705_source.html">strip.hpp</a>&gt;</code></p>
+[<a class="el" href="a00874.html">Running_stat</a>]</small>
+</h1><!-- doxytag: class="running_stat_aux" -->
+<p><code>#include &lt;<a class="el" href="a00710_source.html">running_stat_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01339.html">List of all members.</a></p>
+<p><a href="a01351.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T1&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00475.html#aa9a218e59f2e4d11daaedaaadb138f63">stored_type</a></td></tr>
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00475.html#a8d85a091e2be3233af606c6e5d79eba8">strip_inv</a> (const T1 &amp;X)</td></tr>
-<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00874.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1">update_stats</a> (<a class="el" href="a00474.html">running_stat</a>&lt; eT &gt; &amp;x, const eT sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a00874.html#ga43a0d1d4c3a9aab10dbafaf0e7a764c1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00874.html#gad7918da5f93ef4342749886796fc3b71">update_stats</a> (<a class="el" href="a00474.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const T sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a00874.html#gad7918da5f93ef4342749886796fc3b71"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00874.html#gadab0edabc3cb036e2685ba255070b4ab">update_stats</a> (<a class="el" href="a00474.html">running_stat</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const std::complex&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">alter statistics to reflect new sample (version for complex numbers)  <a href="a00874.html#gadab0edabc3cb036e2685ba255070b4ab"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1&gt;<br/>
- struct strip_inv&lt; T1 &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00059">59</a> of file <a class="el" href="a00705_source.html">strip.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aa9a218e59f2e4d11daaedaaadb138f63"></a><!-- doxytag: member="strip_inv::stored_type" ref="aa9a218e59f2e4d11daaedaaadb138f63" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef T1 <a class="el" href="a00475.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00475.html#aa9a218e59f2e4d11daaedaaadb138f63">stored_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00061">61</a> of file <a class="el" href="a00705_source.html">strip.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8d85a091e2be3233af606c6e5d79eba8"></a><!-- doxytag: member="strip_inv::strip_inv" ref="a8d85a091e2be3233af606c6e5d79eba8" args="(const T1 &amp;X)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00475.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00475.html">strip_inv</a> </td>
-          <td>(</td>
-          <td class="paramtype">const T1 &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00063">63</a> of file <a class="el" href="a00705_source.html">strip.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00064"></a>00064     : <a class="code" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a>(<span class="keyword">false</span>)
-<a name="l00065"></a>00065     , <a class="code" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a>     (X)
-<a name="l00066"></a>00066     {
-<a name="l00067"></a>00067     arma_extra_debug_sigprint();
-<a name="l00068"></a>00068     }
-</pre></div></p>
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="abdd3ff8d20d8824eee29e97c7b927f54"></a><!-- doxytag: member="strip_inv::do_inv" ref="abdd3ff8d20d8824eee29e97c7b927f54" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool <a class="el" href="a00475.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00475.html#abdd3ff8d20d8824eee29e97c7b927f54">do_inv</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00070">70</a> of file <a class="el" href="a00705_source.html">strip.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00554_source.html#l00104">as_scalar_redirect&lt; 3 &gt;::apply()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac6fc8d9c73ad5b08e34fe60abfee1d95"></a><!-- doxytag: member="strip_inv::M" ref="ac6fc8d9c73ad5b08e34fe60abfee1d95" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const T1&amp; <a class="el" href="a00475.html">strip_inv</a>&lt; T1 &gt;::<a class="el" href="a00475.html#ac6fc8d9c73ad5b08e34fe60abfee1d95">M</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00071">71</a> of file <a class="el" href="a00705_source.html">strip.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00554_source.html#l00104">as_scalar_redirect&lt; 3 &gt;::apply()</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00710_source.html#l00097">97</a> of file <a class="el" href="a00710_source.html">running_stat_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

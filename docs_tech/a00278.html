@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_u16&lt; u16 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: is_supported_elem_type&lt; T1 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,36 +29,49 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_u16&lt; u16 &gt; Struct Template Reference<br/>
+<h1>is_supported_elem_type&lt; T1 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00870.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_u16&lt; u16 &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00713_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00882.html">Traits</a>]</small>
+</h1><!-- doxytag: class="is_supported_elem_type" -->
+<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><a href="a01143.html">List of all members.</a></p>
+<p><a href="a01156.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00278.html#a4a9bdefb733fb47532212ea21afd138d">value</a> = true</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00278.html#a0415a3458692e5cc6138a97d6b0df101">value</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct is_u16&lt; u16 &gt;</h3>
+<h3>template&lt;typename T1&gt;<br/>
+ struct is_supported_elem_type&lt; T1 &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00350">350</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00471">471</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a4a9bdefb733fb47532212ea21afd138d"></a><!-- doxytag: member="is_u16&lt; u16 &gt;::value" ref="a4a9bdefb733fb47532212ea21afd138d" args="" -->
+<a class="anchor" id="a0415a3458692e5cc6138a97d6b0df101"></a><!-- doxytag: member="is_supported_elem_type::value" ref="a0415a3458692e5cc6138a97d6b0df101" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00277.html">is_u16</a>&lt; <a class="el" href="a00871.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a> &gt;::<a class="el" href="a00278.html#a4a9bdefb733fb47532212ea21afd138d">value</a> = true<code> [static]</code></td>
+          <td class="memname">const bool <a class="el" href="a00278.html">is_supported_elem_type</a>&lt; T1 &gt;::<a class="el" href="a00278.html#a0415a3458692e5cc6138a97d6b0df101">value</a><code> [static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00713_source.html#l00351">351</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<b>Initial value:</b><div class="fragment"><pre class="fragment"> \
+    <a class="code" href="a00284.html">is_u8&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00262.html">is_s8&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00280.html">is_u16&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00258.html">is_s16&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00282.html">is_u32&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00260.html">is_s32&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00228.html">is_float&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00222.html">is_double&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00276.html">is_supported_complex_float&lt;T1&gt;::value</a> ||
+    <a class="code" href="a00274.html">is_supported_complex_double&lt;T1&gt;::value</a>
+</pre></div>
+<p>Definition at line <a class="el" href="a00722_source.html#l00473">473</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
 
 </div>
 </div>

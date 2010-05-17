@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: restrictors.hpp Source File</title>
+<title>Armadillo Technical: operator_plus.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_0e67fb4faca7da588bbf0a08ade21712.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4c133fdb82178d8d7116158a2925249e.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>restrictors.hpp</h1><a href="a00697.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>operator_plus.hpp</h1><a href="a00697.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,69 +45,174 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup restrictors</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup operator_plus</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021 
-<a name="l00022"></a><a class="code" href="a00023.html">00022</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a> { };
-<a name="l00023"></a>00023 
-<a name="l00024"></a><a class="code" href="a00024.html#ae615d4b09987a5195d23c4247054aac3">00024</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;char&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">char</span>   result; };
-<a name="l00025"></a><a class="code" href="a00029.html#ae9749cf1ca90c79478c4d22b52815cda">00025</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;short&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">short</span>  result; };
-<a name="l00026"></a><a class="code" href="a00027.html#ae25719db70bca18775a60d80ec177f70">00026</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;int&gt;    { <span class="keyword">typedef</span> <span class="keywordtype">int</span>    result; };
-<a name="l00027"></a><a class="code" href="a00028.html#ae944fee06f1d88c8249f98f6f23a5f29">00027</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;long&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">long</span>   result; };
-<a name="l00028"></a><a class="code" href="a00026.html#a6575899bc3a80f2e4d234346f5d12586">00028</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;float&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">float</span>  result; };
-<a name="l00029"></a><a class="code" href="a00025.html#ae99d78070c7f28be6d572fbfa87024d9">00029</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;double&gt; { <span class="keyword">typedef</span> <span class="keywordtype">double</span> result; };
-<a name="l00030"></a>00030 
-<a name="l00031"></a><a class="code" href="a00031.html#a14c67865a1cdc82b38012e0e0eaa20ff">00031</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;unsigned char&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  result; };
-<a name="l00032"></a><a class="code" href="a00034.html#a686e3f8492b316227df43ad9e5ff226f">00032</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;unsigned short&gt; { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> result; };
-<a name="l00033"></a><a class="code" href="a00032.html#a74dc34db35cf795105fb78f7a41ccd44">00033</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;unsigned int&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   <a class="code" href="a00032.html#a74dc34db35cf795105fb78f7a41ccd44">result</a>; };
-<a name="l00034"></a><a class="code" href="a00033.html#ad4b8a55db1450ec60c963af31f645763">00034</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt;unsigned long&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>  result; };
-<a name="l00035"></a>00035 
-<a name="l00036"></a><a class="code" href="a00030.html#afd4f717e319f06253ea4d7bd94ff75e1">00036</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="a00023.html">arma_scalar_only</a>&lt; std::complex&lt;T&gt; &gt; { <span class="keyword">typedef</span> std::complex&lt;T&gt; <a class="code" href="a00030.html#afd4f717e319f06253ea4d7bd94ff75e1">result</a>; };
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 
-<a name="l00040"></a><a class="code" href="a00010.html">00040</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a> { };
-<a name="l00041"></a>00041 
-<a name="l00042"></a><a class="code" href="a00011.html#a91beb84b0be15b24779b2240c6c1887e">00042</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;char&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">char</span>   result; };
-<a name="l00043"></a><a class="code" href="a00014.html#a06eb37bd13367b747042c4bf4d175634">00043</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;short&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">short</span>  result; };
-<a name="l00044"></a><a class="code" href="a00012.html#acabb497177d085135b5112ecc84889ec">00044</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;int&gt;    { <span class="keyword">typedef</span> <span class="keywordtype">int</span>    result; };
-<a name="l00045"></a><a class="code" href="a00013.html#a83caf32e69a3d3d1a663cd712be7147e">00045</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;long&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">long</span>   result; };
-<a name="l00046"></a>00046 
-<a name="l00047"></a><a class="code" href="a00015.html#a0db037569aa21a3327eb24b99be4a328">00047</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;unsigned char&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  result; };
-<a name="l00048"></a><a class="code" href="a00018.html#a0a11246ad693df6fac5387bbea219861">00048</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;unsigned short&gt; { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> result; };
-<a name="l00049"></a><a class="code" href="a00016.html#a797136939e9f57a5fb1f4bde2b8ed70b">00049</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;unsigned int&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   <a class="code" href="a00016.html#a797136939e9f57a5fb1f4bde2b8ed70b">result</a>; };
-<a name="l00050"></a><a class="code" href="a00017.html#afb02c1bd790f1abf2c1ff980244ebe5f">00050</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00010.html">arma_integral_only</a>&lt;unsigned long&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>  result; };
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 
-<a name="l00054"></a><a class="code" href="a00044.html">00054</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="a00044.html">arma_unsigned_integral_only</a> { };
-<a name="l00055"></a>00055 
-<a name="l00056"></a><a class="code" href="a00045.html#a5912a07e1c7c021b23d811d7ac323b13">00056</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00044.html">arma_unsigned_integral_only</a>&lt;unsigned char&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  result; };
-<a name="l00057"></a><a class="code" href="a00048.html#a359cb893fdaab270d3106f01f29e80bf">00057</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00044.html">arma_unsigned_integral_only</a>&lt;unsigned short&gt; { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> result; };
-<a name="l00058"></a><a class="code" href="a00046.html#a1b07c37bce704b4d3783fdc615a46dd0">00058</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00044.html">arma_unsigned_integral_only</a>&lt;unsigned int&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>   <a class="code" href="a00046.html#a1b07c37bce704b4d3783fdc615a46dd0">result</a>; };
-<a name="l00059"></a><a class="code" href="a00047.html#a6616939d9b9384ecea872c29ee47e4fd">00059</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00044.html">arma_unsigned_integral_only</a>&lt;unsigned long&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>  result; };
-<a name="l00060"></a>00060 
+<a name="l00021"></a>00021 <span class="comment"></span>
+<a name="l00022"></a>00022 <span class="comment">//! unary plus operation (does nothing, but is required for completeness)</span>
+<a name="l00023"></a>00023 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00024"></a>00024 arma_inline
+<a name="l00025"></a>00025 <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp;
+<a name="l00026"></a>00026 <span class="keyword">operator</span>+
+<a name="l00027"></a><a class="code" href="a00864.html#gad2ae76ac9efeeddfc67d44057473fc21">00027</a> (<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X)
+<a name="l00028"></a>00028   {
+<a name="l00029"></a>00029   arma_extra_debug_sigprint();
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   <span class="keywordflow">return</span> X;
+<a name="l00032"></a>00032   }
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment"></span>
+<a name="l00036"></a>00036 <span class="comment">//! Base + scalar</span>
+<a name="l00037"></a>00037 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00038"></a>00038 arma_inline
+<a name="l00039"></a>00039 <span class="keyword">const</span> <a class="code" href="a00094.html">eOp&lt;T1, eop_scalar_plus&gt;</a>
+<a name="l00040"></a>00040 <span class="keyword">operator</span>+
+<a name="l00041"></a><a class="code" href="a00864.html#ga69bc352db783bfb4741b5060d35296e7">00041</a> (<span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X, <span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type k)
+<a name="l00042"></a>00042   {
+<a name="l00043"></a>00043   arma_extra_debug_sigprint();
+<a name="l00044"></a>00044   
+<a name="l00045"></a>00045   <span class="keywordflow">return</span> <a class="code" href="a00094.html">eOp&lt;T1, eop_scalar_plus&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), k);
+<a name="l00046"></a>00046   }
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="comment"></span>
+<a name="l00050"></a>00050 <span class="comment">//! scalar + Base</span>
+<a name="l00051"></a>00051 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00052"></a>00052 arma_inline
+<a name="l00053"></a>00053 <span class="keyword">const</span> <a class="code" href="a00094.html">eOp&lt;T1, eop_scalar_plus&gt;</a>
+<a name="l00054"></a>00054 <span class="keyword">operator</span>+
+<a name="l00055"></a><a class="code" href="a00864.html#ga040cd03861ecefc4167722690f8651bd">00055</a> (<span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type k, <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X)
+<a name="l00056"></a>00056   {
+<a name="l00057"></a>00057   arma_extra_debug_sigprint();
+<a name="l00058"></a>00058   
+<a name="l00059"></a>00059   <span class="keywordflow">return</span> <a class="code" href="a00094.html">eOp&lt;T1, eop_scalar_plus&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), k);  <span class="comment">// NOTE: order is swapped</span>
+<a name="l00060"></a>00060   }
 <a name="l00061"></a>00061 
 <a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="a00035.html">00063</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="a00035.html">arma_signed_integral_only</a> { };
-<a name="l00064"></a>00064 
-<a name="l00065"></a><a class="code" href="a00036.html#a6a41ec9eb95341f6691f2e6915692037">00065</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00035.html">arma_signed_integral_only</a>&lt;char&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">char</span>   result; };
-<a name="l00066"></a><a class="code" href="a00039.html#a453316c29f62d48f7c3179faf6150264">00066</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00035.html">arma_signed_integral_only</a>&lt;short&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">short</span>  result; };
-<a name="l00067"></a><a class="code" href="a00037.html#a05c6bc5dc9d69884c2b7eaa7a16a35a5">00067</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00035.html">arma_signed_integral_only</a>&lt;int&gt;    { <span class="keyword">typedef</span> <span class="keywordtype">int</span>    result; };
-<a name="l00068"></a><a class="code" href="a00038.html#a293291a9881c5ed2a613efe99268d289">00068</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00035.html">arma_signed_integral_only</a>&lt;long&gt;   { <span class="keyword">typedef</span> <span class="keywordtype">long</span>   result; };
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="a00007.html">00072</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">struct </span><a class="code" href="a00007.html">arma_float_only</a> { };
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="a00009.html#a1338568915261b0aee0dbef31b9058b3">00074</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00007.html">arma_float_only</a>&lt;float&gt;  { <span class="keyword">typedef</span> <span class="keywordtype">float</span>  result; };
-<a name="l00075"></a><a class="code" href="a00008.html#a52713758c7ade267bac94649b91517f6">00075</a> <span class="keyword">template</span>&lt;&gt; <span class="keyword">struct </span><a class="code" href="a00007.html">arma_float_only</a>&lt;double&gt; { <span class="keyword">typedef</span> <span class="keywordtype">double</span> result; };
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">//! @}</span>
+<a name="l00063"></a>00063 <span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">//! non-complex Base + complex scalar (experimental)</span>
+<a name="l00065"></a>00065 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00066"></a>00066 arma_inline
+<a name="l00067"></a>00067 <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;typename std::complex&lt;typename T1::pod_type&gt;</a> &gt;
+<a name="l00068"></a>00068 <span class="keyword">operator</span>+
+<a name="l00069"></a><a class="code" href="a00864.html#ga0aa37ec072154e62e459e47a9b3f42fc">00069</a>   (
+<a name="l00070"></a>00070   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::pod_type, T1&gt;</a>&amp;     X,
+<a name="l00071"></a>00071   <span class="keyword">const</span> std::complex&lt;typename T1::pod_type&gt;&amp; k
+<a name="l00072"></a>00072   )
+<a name="l00073"></a>00073   {
+<a name="l00074"></a>00074   arma_extra_debug_sigprint();
+<a name="l00075"></a>00075   
+<a name="l00076"></a>00076   <span class="keyword">typedef</span> <span class="keyword">typename</span> std::complex&lt;typename T1::pod_type&gt; eT;
+<a name="l00077"></a>00077   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::pod_type                         T;
+<a name="l00078"></a>00078   
+<a name="l00079"></a>00079   <span class="keyword">const</span> <a class="code" href="a00455.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00080"></a>00080   
+<a name="l00081"></a>00081   <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> out(A.n_rows, A.n_cols);
+<a name="l00082"></a>00082   
+<a name="l00083"></a>00083   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem  = A.n_elem;
+<a name="l00084"></a>00084         eT* out_mem = out.memptr();
+<a name="l00085"></a>00085   
+<a name="l00086"></a>00086   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00087"></a>00087     {
+<a name="l00088"></a>00088     out_mem[i] = A[i] + k;
+<a name="l00089"></a>00089     }
+<a name="l00090"></a>00090   
+<a name="l00091"></a>00091   <span class="keywordflow">return</span> out;
+<a name="l00092"></a>00092   }
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">//! complex scalar + non-complex Base (experimental)</span>
+<a name="l00097"></a>00097 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00098"></a>00098 arma_inline
+<a name="l00099"></a>00099 <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;typename std::complex&lt;typename T1::pod_type&gt;</a> &gt;
+<a name="l00100"></a>00100 <span class="keyword">operator</span>+
+<a name="l00101"></a><a class="code" href="a00864.html#ga3ff92e8268ff8613eb41b1268d06903d">00101</a>   (
+<a name="l00102"></a>00102   <span class="keyword">const</span> std::complex&lt;typename T1::pod_type&gt;&amp; k,
+<a name="l00103"></a>00103   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::pod_type, T1&gt;</a>&amp;     X
+<a name="l00104"></a>00104   )
+<a name="l00105"></a>00105   {
+<a name="l00106"></a>00106   arma_extra_debug_sigprint();
+<a name="l00107"></a>00107   
+<a name="l00108"></a>00108   <span class="keyword">typedef</span> <span class="keyword">typename</span> std::complex&lt;typename T1::pod_type&gt; eT;
+<a name="l00109"></a>00109   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::pod_type                         T;
+<a name="l00110"></a>00110   
+<a name="l00111"></a>00111   <span class="keyword">const</span> <a class="code" href="a00455.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00112"></a>00112   
+<a name="l00113"></a>00113   <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a> out(A.n_rows, A.n_cols);
+<a name="l00114"></a>00114   
+<a name="l00115"></a>00115   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem  = A.n_elem;
+<a name="l00116"></a>00116         eT* out_mem = out.memptr();
+<a name="l00117"></a>00117   
+<a name="l00118"></a>00118   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00119"></a>00119     {
+<a name="l00120"></a>00120     out_mem[i] = k + A[i];
+<a name="l00121"></a>00121     }
+<a name="l00122"></a>00122   
+<a name="l00123"></a>00123   <span class="keywordflow">return</span> out;
+<a name="l00124"></a>00124   }
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 <span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment">//! addition of Base objects with same element type</span>
+<a name="l00129"></a>00129 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00130"></a>00130 arma_inline
+<a name="l00131"></a>00131 <span class="keyword">const</span> <a class="code" href="a00082.html">eGlue&lt;T1, T2, eglue_plus&gt;</a>
+<a name="l00132"></a>00132 <span class="keyword">operator</span>+
+<a name="l00133"></a><a class="code" href="a00864.html#gac1c3ac1bfa3179170ae93fe743e4534f">00133</a>   (
+<a name="l00134"></a>00134   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; X,
+<a name="l00135"></a>00135   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T2&gt;</a>&amp; Y
+<a name="l00136"></a>00136   )
+<a name="l00137"></a>00137   {
+<a name="l00138"></a>00138   arma_extra_debug_sigprint();
+<a name="l00139"></a>00139   
+<a name="l00140"></a>00140   <span class="keywordflow">return</span> <a class="code" href="a00082.html">eGlue&lt;T1, T2, eglue_plus&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), Y.get_ref());
+<a name="l00141"></a>00141   }
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 <span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">//! addition of Base objects with different element types</span>
+<a name="l00146"></a>00146 <span class="comment"></span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;
+<a name="l00147"></a>00147 arma_inline
+<a name="l00148"></a>00148 <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;typename promote_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::result</a>&gt;
+<a name="l00149"></a>00149 <span class="keyword">operator</span>+
+<a name="l00150"></a><a class="code" href="a00864.html#ga7badc9d7b7c82bbb95752ee62e48cf73">00150</a>   (
+<a name="l00151"></a>00151   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt; typename force_different_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::T1_result</a>, T1&gt;&amp; X,
+<a name="l00152"></a>00152   <span class="keyword">const</span> <a class="code" href="a00054.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt; typename force_different_type&lt;typename T1::elem_type, typename T2::elem_type&gt;::T2_result</a>, T2&gt;&amp; Y
+<a name="l00153"></a>00153   )
+<a name="l00154"></a>00154   {
+<a name="l00155"></a>00155   arma_extra_debug_sigprint();
+<a name="l00156"></a>00156   
+<a name="l00157"></a>00157   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT1;
+<a name="l00158"></a>00158   <span class="keyword">typedef</span> <span class="keyword">typename</span> T2::elem_type eT2;
+<a name="l00159"></a>00159   
+<a name="l00160"></a>00160   <span class="keyword">typedef</span> <span class="keyword">typename</span> <a class="code" href="a00376.html">promote_type&lt;eT1,eT2&gt;::result</a> out_eT;
+<a name="l00161"></a>00161   
+<a name="l00162"></a>00162   <a class="code" href="a00376.html#af84f38f42cfb0d891487c3273c521f2d">promote_type&lt;eT1,eT2&gt;::check</a>();
+<a name="l00163"></a>00163   
+<a name="l00164"></a>00164   <span class="keyword">const</span> <a class="code" href="a00455.html">Proxy&lt;T1&gt;</a> A(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00165"></a>00165   <span class="keyword">const</span> <a class="code" href="a00455.html">Proxy&lt;T2&gt;</a> B(Y.get_ref());
+<a name="l00166"></a>00166   
+<a name="l00167"></a>00167   arma_debug_assert_same_size(A, B, <span class="stringliteral">&quot;matrix addition&quot;</span>);
+<a name="l00168"></a>00168   
+<a name="l00169"></a>00169   <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;out_eT&gt;</a> out(A.n_rows, A.n_cols);
+<a name="l00170"></a>00170 
+<a name="l00171"></a>00171         out_eT* out_mem = out.<a class="code" href="a00827.html#ga78bb1eef0619bccb2a13f3dfafee19bf" title="returns a pointer to array of eTs used by the matrix">memptr</a>();
+<a name="l00172"></a>00172   <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>     n_elem  = out.<a class="code" href="a00308.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a>;
+<a name="l00173"></a>00173   
+<a name="l00174"></a>00174   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;n_elem; ++i)
+<a name="l00175"></a>00175     {
+<a name="l00176"></a>00176     out_mem[i] = <a class="code" href="a00500.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(A[i]) + <a class="code" href="a00500.html#a690e536c7b488b4db54bb0e751309ac7">upgrade_val&lt;eT1,eT2&gt;::apply</a>(B[i]);
+<a name="l00177"></a>00177     }
+<a name="l00178"></a>00178   
+<a name="l00179"></a>00179   <span class="keywordflow">return</span> out;
+<a name="l00180"></a>00180   }
+<a name="l00181"></a>00181 
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183 <span class="comment"></span>
+<a name="l00184"></a>00184 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

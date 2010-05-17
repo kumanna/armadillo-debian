@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: upgrade_val&lt; float, std::complex&lt; double &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: unwrap_cube&lt; Cube&lt; eT &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,103 +29,69 @@
   </div>
 </div>
 <div class="contents">
-<h1>upgrade_val&lt; float, std::complex&lt; double &gt; &gt; Struct Template Reference<br/>
+<h1>unwrap_cube&lt; Cube&lt; eT &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00874.html">Upgrade_val</a>]</small>
-</h1><!-- doxytag: class="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00717_source.html">upgrade_val.hpp</a>&gt;</code></p>
+[<a class="el" href="a00885.html">Unwrap_cube</a>]</small>
+</h1><!-- doxytag: class="unwrap_cube&lt; Cube&lt; eT &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00725_source.html">unwrap_cube.hpp</a>&gt;</code></p>
 
-<p><a href="a01361.html">List of all members.</a></p>
+<p><a href="a01373.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00497.html#a6bf19df19e789a05dc6bc2169d61450a">T1_result</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00497.html#a1e2002644010a8b922a43386a81fbbfc">T2_result</a></td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00497.html#aa8c92cd05b555afa06631ecef0d96074">apply</a> (const float x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
-std::complex&lt; double &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00497.html#af888a7698232234d80a1407e695b313f">apply</a> (const std::complex&lt; double &gt; &amp;x)</td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00497.html#a57d0a3a4491116438fad3ae8f79873cb">unwrap_cube</a> (const <a class="el" href="a00068.html">Cube</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00068.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00497.html#a6270cd77d160cea5223f286880cdc0c4">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct upgrade_val&lt; float, std::complex&lt; double &gt; &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ class unwrap_cube&lt; Cube&lt; eT &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00717_source.html#l00148">148</a> of file <a class="el" href="a00717_source.html">upgrade_val.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a6bf19df19e789a05dc6bc2169d61450a"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::T1_result" ref="a6bf19df19e789a05dc6bc2169d61450a" args="" -->
+<p>Definition at line <a class="el" href="a00725_source.html#l00042">42</a> of file <a class="el" href="a00725_source.html">unwrap_cube.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a57d0a3a4491116438fad3ae8f79873cb"></a><!-- doxytag: member="unwrap_cube&lt; Cube&lt; eT &gt; &gt;::unwrap_cube" ref="a57d0a3a4491116438fad3ae8f79873cb" args="(const Cube&lt; eT &gt; &amp;A)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef double <a class="el" href="a00495.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::<a class="el" href="a00497.html#a6bf19df19e789a05dc6bc2169d61450a">T1_result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00717_source.html#l00150">150</a> of file <a class="el" href="a00717_source.html">upgrade_val.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1e2002644010a8b922a43386a81fbbfc"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::T2_result" ref="a1e2002644010a8b922a43386a81fbbfc" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00495.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::<a class="el" href="a00497.html#a1e2002644010a8b922a43386a81fbbfc">T2_result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00717_source.html#l00151">151</a> of file <a class="el" href="a00717_source.html">upgrade_val.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aa8c92cd05b555afa06631ecef0d96074"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::apply" ref="aa8c92cd05b555afa06631ecef0d96074" args="(const float x)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static arma_inline const double <a class="el" href="a00495.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::apply </td>
+          <td class="memname"><a class="el" href="a00496.html">unwrap_cube</a>&lt; <a class="el" href="a00068.html">Cube</a>&lt; eT &gt; &gt;::<a class="el" href="a00496.html">unwrap_cube</a> </td>
           <td>(</td>
-          <td class="paramtype">const float&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
+          <td class="paramtype">const <a class="el" href="a00068.html">Cube</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00717_source.html#l00153">153</a> of file <a class="el" href="a00717_source.html">upgrade_val.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00725_source.html#l00047">47</a> of file <a class="el" href="a00725_source.html">unwrap_cube.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00153"></a>00153 { <span class="keywordflow">return</span> double(x); }
+<p><div class="fragment"><pre class="fragment"><a name="l00048"></a>00048     : <a class="code" href="a00497.html#a6270cd77d160cea5223f286880cdc0c4">M</a>(A)
+<a name="l00049"></a>00049     {
+<a name="l00050"></a>00050     arma_extra_debug_sigprint();
+<a name="l00051"></a>00051     }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="af888a7698232234d80a1407e695b313f"></a><!-- doxytag: member="upgrade_val&lt; float, std::complex&lt; double &gt; &gt;::apply" ref="af888a7698232234d80a1407e695b313f" args="(const std::complex&lt; double &gt; &amp;x)" -->
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a6270cd77d160cea5223f286880cdc0c4"></a><!-- doxytag: member="unwrap_cube&lt; Cube&lt; eT &gt; &gt;::M" ref="a6270cd77d160cea5223f286880cdc0c4" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_inline const std::complex&lt;double&gt;&amp; <a class="el" href="a00495.html">upgrade_val</a>&lt; float, std::complex&lt; double &gt; &gt;::apply </td>
-          <td>(</td>
-          <td class="paramtype">const std::complex&lt; double &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
+          <td class="memname">const <a class="el" href="a00068.html">Cube</a>&lt;eT&gt;&amp; <a class="el" href="a00496.html">unwrap_cube</a>&lt; <a class="el" href="a00068.html">Cube</a>&lt; eT &gt; &gt;::<a class="el" href="a00497.html#a6270cd77d160cea5223f286880cdc0c4">M</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00717_source.html#l00154">154</a> of file <a class="el" href="a00717_source.html">upgrade_val.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00154"></a>00154 { <span class="keywordflow">return</span> x; }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00725_source.html#l00053">53</a> of file <a class="el" href="a00725_source.html">unwrap_cube.hpp</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: isnt_supported_elem_type&lt; double &gt; Struct Template Reference</title>
+<title>Armadillo Technical: isnt_same_type&lt; T1, T2 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,31 +29,71 @@
   </div>
 </div>
 <div class="contents">
-<h1>isnt_supported_elem_type&lt; double &gt; Struct Template Reference<br/>
+<h1>isnt_same_type&lt; T1, T2 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00870.html">Traits</a>]</small>
-</h1><!-- doxytag: class="isnt_supported_elem_type&lt; double &gt;" --><!-- doxytag: inherits="isnt_supported_elem_type_false" -->
-<p><code>#include &lt;<a class="el" href="a00713_source.html">traits.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for isnt_supported_elem_type&lt; double &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00293.gif" usemap="#isnt_supported_elem_type&lt; double &gt;_map" alt=""/>
-  <map id="isnt_supported_elem_type&lt; double &gt;_map" name="isnt_supported_elem_type&lt; double &gt;_map">
-<area href="a00303.html" alt="isnt_supported_elem_type_false" shape="rect" coords="0,0,220,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00882.html">Traits</a>]</small>
+</h1><!-- doxytag: class="isnt_same_type" -->
+<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><a href="a01158.html">List of all members.</a></p>
+<p><a href="a01170.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00293.html#ac7297a58d701f34a3aab4688fae1c88f">check</a> ()</td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00293.html#abc8c6df2e96581a4224797de057dbcc4">value</a> = true</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct isnt_supported_elem_type&lt; double &gt;</h3>
+<h3>template&lt;typename T1, typename T2&gt;<br/>
+ struct isnt_same_type&lt; T1, T2 &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00713_source.html#l00518">518</a> of file <a class="el" href="a00713_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00722_source.html#l00268">268</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac7297a58d701f34a3aab4688fae1c88f"></a><!-- doxytag: member="isnt_same_type::check" ref="ac7297a58d701f34a3aab4688fae1c88f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="a00293.html">isnt_same_type</a>&lt; T1, T2 &gt;::check </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00722_source.html#l00272">272</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00273"></a>00273     {
+<a name="l00274"></a>00274     arma_static_assert&lt;false&gt; ERROR___TYPE_MISMATCH;
+<a name="l00275"></a>00275     ERROR___TYPE_MISMATCH = ERROR___TYPE_MISMATCH;
+<a name="l00276"></a>00276     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="abc8c6df2e96581a4224797de057dbcc4"></a><!-- doxytag: member="isnt_same_type::value" ref="abc8c6df2e96581a4224797de057dbcc4" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00293.html">isnt_same_type</a>&lt; T1, T2 &gt;::<a class="el" href="a00293.html#abc8c6df2e96581a4224797de057dbcc4">value</a> = true<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00722_source.html#l00270">270</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>
