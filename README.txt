@@ -254,6 +254,8 @@ Main developers:
 
 Contributors:
 - Eric R. Anderson
+- Benoît Bayol
+- Salim Bcoin
 - Justin Bedo
 - Darius Braziunas
 - Ted Campbell
