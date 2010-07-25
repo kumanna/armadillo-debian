@@ -481,7 +481,7 @@ Col<eT>::operator=(const Op<T1, op_type>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator=(X);
-  arma_debug_check( (Mat<eT>::n_cols > 1), "Col::operator=(): given matrix can't be interpreted as a column vector" );
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   return *this;
   }
 
@@ -497,7 +497,7 @@ Col<eT>::operator*=(const Op<T1, op_type>& X)
   
   Mat<eT>::operator*=(X);
   
-  arma_debug_check( (Mat<eT>::n_cols > 1), "Col::operator=(): incompatible dimensions" );
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   
   return *this;
   }
@@ -526,7 +526,7 @@ Col<eT>::operator=(const eOp<T1, eop_type>& X)
   arma_extra_debug_sigprint();
   
   Mat<eT>::operator=(X);
-  arma_debug_check( (Mat<eT>::n_cols > 1), "Col::operator=(): given matrix can't be interpreted as a column vector" );
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   return *this;
   }
 
@@ -542,7 +542,52 @@ Col<eT>::operator*=(const eOp<T1, eop_type>& X)
   
   Mat<eT>::operator*=(X);
   
-  arma_debug_check( (Mat<eT>::n_cols > 1), "Col::operator=(): incompatible dimensions" );
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename op_type>
+inline
+Col<eT>::Col(const mtOp<eT, T1, op_type>& X)
+  : Mat<eT>(X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename op_type>
+inline
+const Col<eT>&
+Col<eT>::operator=(const mtOp<eT, T1, op_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator=(X);
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename op_type>
+inline
+const Col<eT>&
+Col<eT>::operator*=(const mtOp<eT, T1, op_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator*=(X);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   
   return *this;
   }
@@ -633,6 +678,53 @@ template<typename T1, typename T2, typename eglue_type>
 inline
 const Col<eT>&
 Col<eT>::operator*=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator*=(X);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename glue_type>
+inline
+Col<eT>::Col(const mtGlue<eT, T1, T2, glue_type>& X)
+  : Mat<eT>(X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename glue_type>
+inline
+const Col<eT>&
+Col<eT>::operator=(const mtGlue<eT, T1, T2, glue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::operator=(X);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename T1, typename T2, typename glue_type>
+inline
+const Col<eT>&
+Col<eT>::operator*=(const mtGlue<eT, T1, T2, glue_type>& X)
   {
   arma_extra_debug_sigprint();
   
@@ -772,11 +864,11 @@ Col<eT>::ones(const u32 in_n_rows, const u32 in_n_cols)
 template<typename eT>
 inline
 void
-Col<eT>::load(const std::string name, const file_type type)
+Col<eT>::load(const std::string name, const file_type type, const bool print_status)
   {
   arma_extra_debug_sigprint();
   
-  Mat<eT>::load(name,type);
+  Mat<eT>::load(name, type, print_status);
   
   arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   }
@@ -786,11 +878,39 @@ Col<eT>::load(const std::string name, const file_type type)
 template<typename eT>
 inline
 void
-Col<eT>::load(std::istream& is, const file_type type)
+Col<eT>::load(std::istream& is, const file_type type, const bool print_status)
   {
   arma_extra_debug_sigprint();
   
-  Mat<eT>::load(is, type);
+  Mat<eT>::load(is, type, print_status);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+inline
+void
+Col<eT>::quiet_load(const std::string name, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::quiet_load(name, type);
+  
+  arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
+  }
+
+
+
+template<typename eT>
+inline
+void
+Col<eT>::quiet_load(std::istream& is, const file_type type)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::quiet_load(is, type);
   
   arma_debug_check( (Mat<eT>::n_cols > 1), "Col(): incompatible dimensions" );
   }

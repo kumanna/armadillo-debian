@@ -7,10 +7,10 @@
 #  CLAPACK_LIBRARY, where to find the library.
 
 FIND_PATH(CLAPACK_INCLUDE_DIR clapack.h
-/usr/include/atlas
-/usr/local/include/atlas
-/usr/include
-/usr/local/include
+/usr/include/atlas/
+/usr/local/include/atlas/
+/usr/include/
+/usr/local/include/
 )
 
 SET(CLAPACK_NAMES ${CLAPACK_NAMES} lapack_atlas)

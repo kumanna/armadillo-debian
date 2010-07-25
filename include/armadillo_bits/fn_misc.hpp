@@ -30,8 +30,7 @@ linspace
   (
   const typename vec_type::pod_type start,
   const typename vec_type::pod_type end,
-  const u32 num,
-  const u32 dim = 0
+  const u32 num
   )
   {
   arma_extra_debug_sigprint();
@@ -40,29 +39,38 @@ linspace
   
   arma_debug_check( (num < 2), "linspace(): num must be >= 2");
   
-  arma_warn( (dim != 0), "linspace(): the 'dim' argument is deprecated -- please use template based specification instead" );
-  
   typedef typename vec_type::elem_type eT;
   typedef typename vec_type::pod_type   T;
   
-  // // this will be the default in the future:
-  // const u32 n_rows = (is_Row<vec_type>::value == true) ? 1   : num;
-  // const u32 n_cols = (is_Row<vec_type>::value == true) ? num : 1;
-  
-  // for temporary compatibility with old user code:
-  const u32 n_rows = (is_Row<vec_type>::value == true) ? 1   : ( (dim == 0) ? num : 1   );
-  const u32 n_cols = (is_Row<vec_type>::value == true) ? num : ( (dim == 0) ? 1   : num );
-  
-  const eT delta = (end-start)/T(num-1);
+  const u32 n_rows = (is_Row<vec_type>::value == true) ? 1   : num;
+  const u32 n_cols = (is_Row<vec_type>::value == true) ? num : 1;
   
   Mat<eT> x(n_rows, n_cols);
   eT* x_mem = x.memptr();
   
-  x_mem[0] = start;
+  const u32 num_m1 = num - 1;
   
-  for(u32 i=1; i<num; ++i)
+  if(is_non_integral<T>::value == true)
     {
-    x_mem[i] = x_mem[i-1] + delta;
+    const T delta = (end-start)/T(num_m1);
+    
+    for(u32 i=0; i<num_m1; ++i)
+      {
+      x_mem[i] = eT(start + i*delta);
+      }
+    
+    x_mem[num_m1] = eT(end);
+    }
+  else
+    {
+    const double delta = (end >= start) ? double(end-start)/double(num_m1) : -double(start-end)/double(num_m1);
+    
+    for(u32 i=0; i<num_m1; ++i)
+      {
+      x_mem[i] = eT(double(start) + i*delta);
+      }
+    
+    x_mem[num_m1] = eT(end);
     }
   
   return x;
@@ -72,10 +80,28 @@ linspace
 
 inline
 mat
-linspace(const double start, const double end, const u32 num, const u32 dim = 0)
+linspace(const double start, const double end, const u32 num)
   {
   arma_extra_debug_sigprint();
-  return linspace<mat>(start, end, num, dim);
+  return linspace<mat>(start, end, num);
+  }
+
+
+
+template<typename eT, typename T1>
+inline
+const mtOp<u32, T1, op_find>
+find(const Base<eT,T1>& X, const u32 k = 0, const char* direction = "first")
+  {
+  arma_extra_debug_sigprint();
+  
+  const char sig = direction[0];
+  
+  arma_debug_check( (sig != 'f' && sig != 'F' && sig != 'l' && sig != 'L'), "find(): 3rd input argument must be \"first\" or \"last\"" );
+  
+  const u32 type = (sig == 'f' || sig == 'F') ? 0 : 1;
+  
+  return mtOp<u32, T1, op_find>(X.get_ref(), k, type);
   }
 
 
@@ -109,25 +135,12 @@ real(const BaseCube<typename T1::pod_type, T1>& X)
 
 template<typename T1>
 inline
-Mat<typename T1::pod_type>
+const mtOp<typename T1::pod_type, T1, op_real>
 real(const Base<std::complex<typename T1::pod_type>, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::pod_type T;
-  
-  const Proxy<T1> A(X.get_ref());
-  
-  Mat<T> out(A.n_rows, A.n_cols);
-  
-  T* out_mem = out.memptr();
-  
-  for(u32 i=0; i<out.n_elem; ++i)
-    {
-    out_mem[i] = std::real(A[i]);
-    }
-  
-  return out;
+  return mtOp<typename T1::pod_type, T1, op_real>( X.get_ref() );
   }
 
 
@@ -190,25 +203,12 @@ imag(const BaseCube<typename T1::pod_type,T1>& X)
 
 template<typename T1>
 inline
-Mat<typename T1::pod_type>
-imag(const Base<std::complex<typename T1::pod_type>,T1>& X)
+const mtOp<typename T1::pod_type, T1, op_imag>
+imag(const Base<std::complex<typename T1::pod_type>, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::pod_type T;
-  
-  const Proxy<T1> A(X.get_ref());
-  
-  Mat<T> out(A.n_rows, A.n_cols);
-  
-  T* out_mem = out.memptr();
-  
-  for(u32 i=0; i<out.n_elem; ++i)
-    {
-    out_mem[i] = std::imag(A[i]);
-    }
-  
-  return out;
+  return mtOp<typename T1::pod_type, T1, op_imag>( X.get_ref() );
   }
 
 
@@ -243,7 +243,7 @@ imag(const BaseCube<std::complex<typename T1::pod_type>,T1>& X)
 
 template<typename eT>
 inline
-eT
+typename arma_float_only<eT>::result
 log_add(eT log_a, eT log_b)
   {
   if(log_a < log_b)
@@ -292,33 +292,6 @@ log(const BaseCube<typename T1::elem_type,T1>& A)
   arma_extra_debug_sigprint();
   
   return eOpCube<T1, eop_cube_log>(A.get_ref());
-  }
-
-
-
-//
-// trunc_log
-
-template<typename T1>
-arma_inline
-const eOp<T1, eop_trunc_log>
-trunc_log(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return eOp<T1, eop_trunc_log>(A.get_ref());
-  }
-
-
-
-template<typename T1>
-arma_inline
-const eOpCube<T1, eop_cube_trunc_log>
-trunc_log(const BaseCube<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return eOpCube<T1, eop_cube_trunc_log>(A.get_ref());
   }
 
 
@@ -378,33 +351,6 @@ exp(const BaseCube<typename T1::elem_type,T1>& A)
 
 
 //
-// trunc_exp
-
-template<typename T1>
-arma_inline
-const eOp<T1, eop_trunc_exp>
-trunc_exp(const Base<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return eOp<T1, eop_trunc_exp>(A.get_ref());
-  }
-
-
-
-template<typename T1>
-arma_inline
-const eOpCube<T1, eop_cube_trunc_exp>
-trunc_exp(const BaseCube<typename T1::elem_type,T1>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return eOpCube<T1, eop_cube_trunc_exp>(A.get_ref());
-  }
-
-
-
-//
 // abs
 
 
@@ -434,30 +380,12 @@ abs(const BaseCube<typename T1::elem_type,T1>& X)
 
 template<typename T1>
 inline
-Mat<typename T1::pod_type>
-abs(const Base< std::complex<typename T1::pod_type>,T1>& X)
+const mtOp<typename T1::pod_type, T1, op_abs>
+abs(const Base<std::complex<typename T1::pod_type>, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  const Proxy<T1> A(X.get_ref());
-
-  // if T1 is a complex matrix,
-  // pod_type is the underlying type used by std::complex;
-  // otherwise pod_type is the same as elem_type
-  
-  typedef typename T1::elem_type  in_eT;
-  typedef typename T1::pod_type  out_eT;
-
-  Mat<out_eT> out(A.n_rows, A.n_cols);
-  
-  out_eT* out_mem = out.memptr();
-  
-  for(u32 i=0; i<out.n_elem; ++i)
-    {
-    out_mem[i] = std::abs(A[i]);
-    }
-  
-  return out;
+  return mtOp<typename T1::pod_type, T1, op_abs>( X.get_ref() );
   }
 
 
@@ -520,13 +448,13 @@ fabs(const BaseCube<typename T1::pod_type,T1>& X)
 
 
 template<typename T1>
-arma_inline
-Mat<typename T1::pod_type>
-fabs(const Base< std::complex<typename T1::pod_type>,T1>& X)
+inline
+const mtOp<typename T1::pod_type, T1, op_abs>
+fabs(const Base<std::complex<typename T1::pod_type>, T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  return abs(X);
+  return mtOp<typename T1::pod_type, T1, op_abs>( X.get_ref() );
   }
 
 

@@ -8,6 +8,8 @@ using namespace std;
 
 int main(int argc, char** argv)
   {
+  cout << arma_version::as_string() << endl;
+  
   // matrix construction from a string representation
   mat A = \
    "\
@@ -29,22 +31,24 @@ int main(int argc, char** argv)
   cout << "inv(A) = " << endl << inv(A) << endl;
   
   
+  //
+  
+  double k = 1.23;
+  
+  mat    B = randu<mat>(5,5);
+  mat    C = randu<mat>(5,5);
+  
+  rowvec r = randu<rowvec>(5);
+  colvec q = randu<colvec>(5);
+  
+  
   // examples of some expressions
   // for which optimised implementations exist
-  
-  mat    B = rand<mat>(5,5);
-  rowvec r = rand<rowvec>(5);
-  colvec q = rand<colvec>(5);
   
   // optimised implementation of a trinary expression
   // that results in a scalar
   cout << "as_scalar( r*inv(diagmat(B))*q ) = ";
   cout << as_scalar( r*inv(diagmat(B))*q ) << endl;
-  
-  //
-  
-  double k = 1.23;
-  mat    C = rand<mat>(5,5);
   
   // example of an expression which is optimised 
   // as a call to the dgemm() function in BLAS:
