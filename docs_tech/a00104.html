@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eop_aux_rand&lt; std::complex&lt; T &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: BaseCube&lt; elem_type, derived &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,46 +29,52 @@
   </div>
 </div>
 <div class="contents">
-<h1>eop_aux_rand&lt; std::complex&lt; T &gt; &gt; Struct Template Reference<br/>
+<h1>BaseCube&lt; elem_type, derived &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00757.html">Eop_aux</a>]</small>
-</h1><!-- doxytag: class="eop_aux_rand&lt; std::complex&lt; T &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00547_source.html">eop_aux.hpp</a>&gt;</code></p>
+[<a class="el" href="a00882.html">BaseCube</a>]</small>
+</h1><!-- doxytag: class="BaseCube" -->
+<p>Analog of the <a class="el" href="a00103.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> class, intended for cubes.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a00983.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00634_source.html">BaseCube.hpp</a>&gt;</code></p>
+
+<p><a href="a01120.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104.html#a816787a0b6d5e478f46a62950926f9ff">operator std::complex&lt; T &gt;</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const derived &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a> () const </td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T&gt;<br/>
- struct eop_aux_rand&lt; std::complex&lt; T &gt; &gt;</h3>
+<h3>template&lt;typename elem_type, typename derived&gt;<br/>
+ struct BaseCube&lt; elem_type, derived &gt;</h3>
 
+<p>Analog of the <a class="el" href="a00103.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> class, intended for cubes. </p>
 
-<p>Definition at line <a class="el" href="a00547_source.html#l00035">35</a> of file <a class="el" href="a00547_source.html">eop_aux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00634_source.html#l00024">24</a> of file <a class="el" href="a00634_source.html">BaseCube.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a816787a0b6d5e478f46a62950926f9ff"></a><!-- doxytag: member="eop_aux_rand&lt; std::complex&lt; T &gt; &gt;::operator std::complex&lt; T &gt;" ref="a816787a0b6d5e478f46a62950926f9ff" args="()" -->
+<a class="anchor" id="a65f6e7fb3341e814ca4e7d683ec3595c"></a><!-- doxytag: member="BaseCube::get_ref" ref="a65f6e7fb3341e814ca4e7d683ec3595c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;typename elem_type, typename derived&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline <a class="el" href="a00103.html">eop_aux_rand</a>&lt; std::complex&lt; T &gt; &gt;::operator std::complex&lt; T &gt; </td>
+          <td class="memname">arma_inline const derived&amp; <a class="el" href="a00104.html">BaseCube</a>&lt; elem_type, derived &gt;::get_ref </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
+          <td> const<code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00547_source.html#l00038">38</a> of file <a class="el" href="a00547_source.html">eop_aux.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00634_source.html#l00029">29</a> of file <a class="el" href="a00634_source.html">BaseCube.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00039"></a>00039     {
-<a name="l00040"></a>00040     <span class="keywordflow">return</span> std::complex&lt;T&gt;( T(<a class="code" href="a00103.html">eop_aux_rand&lt;T&gt;</a>()), T(<a class="code" href="a00103.html">eop_aux_rand&lt;T&gt;</a>()) );
-<a name="l00041"></a>00041     }
+<p>Referenced by <a class="el" href="a00696_source.html#l00372">abs()</a>, <a class="el" href="a00671_source.html#l00135">accu()</a>, <a class="el" href="a00719_source.html#l00072">acos()</a>, <a class="el" href="a00719_source.html#l00126">acosh()</a>, <a class="el" href="a00672_source.html#l00379">as_scalar()</a>, <a class="el" href="a00719_source.html#l00180">asin()</a>, <a class="el" href="a00719_source.html#l00234">asinh()</a>, <a class="el" href="a00719_source.html#l00288">atan()</a>, <a class="el" href="a00719_source.html#l00342">atanh()</a>, <a class="el" href="a00696_source.html#l00546">conj()</a>, <a class="el" href="a00719_source.html#l00045">cos()</a>, <a class="el" href="a00719_source.html#l00099">cosh()</a>, <a class="el" href="a00696_source.html#l00344">exp()</a>, <a class="el" href="a00696_source.html#l00441">fabs()</a>, <a class="el" href="a00675_source.html#l00092">conv_to&lt; out_eT &gt;::from()</a>, <a class="el" href="a00696_source.html#l00193">imag()</a>, <a class="el" href="a00696_source.html#l00290">log()</a>, <a class="el" href="a00696_source.html#l00317">log10()</a>, <a class="el" href="a00831_source.html#l00062">operator!=()</a>, <a class="el" href="a00832_source.html#l00029">operator%()</a>, <a class="el" href="a00854_source.html#l00293">subview_cube&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00833_source.html#l00029">operator*()</a>, <a class="el" href="a00830_source.html#l00043">operator+()</a>, <a class="el" href="a00854_source.html#l00227">subview_cube&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00829_source.html#l00059">operator-()</a>, <a class="el" href="a00854_source.html#l00260">subview_cube&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00828_source.html#l00027">operator/()</a>, <a class="el" href="a00854_source.html#l00326">subview_cube&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00831_source.html#l00206">operator&lt;()</a>, <a class="el" href="a00831_source.html#l00134">operator&lt;=()</a>, <a class="el" href="a00854_source.html#l00193">subview_cube&lt; eT &gt;::operator=()</a>, <a class="el" href="a00831_source.html#l00026">operator==()</a>, <a class="el" href="a00831_source.html#l00170">operator&gt;()</a>, <a class="el" href="a00831_source.html#l00098">operator&gt;=()</a>, <a class="el" href="a00696_source.html#l00636">pow()</a>, <a class="el" href="a00696_source.html#l00127">real()</a>, <a class="el" href="a00708_source.html#l00041">reshape()</a>, <a class="el" href="a00719_source.html#l00153">sin()</a>, <a class="el" href="a00719_source.html#l00207">sinh()</a>, <a class="el" href="a00696_source.html#l00519">sqrt()</a>, <a class="el" href="a00696_source.html#l00492">square()</a>, <a class="el" href="a00719_source.html#l00261">tan()</a>, <a class="el" href="a00719_source.html#l00315">tanh()</a>, <a class="el" href="a00720_source.html#l00078">trunc_exp()</a>, and <a class="el" href="a00721_source.html#l00084">trunc_log()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00030"></a>00030     {
+<a name="l00031"></a>00031     <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>derived&amp;<span class="keyword">&gt;</span>(*this);
+<a name="l00032"></a>00032     }
 </pre></div></p>
 
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; s16, float &gt; Struct Template Reference</title>
+<title>Armadillo Technical: mtOp&lt; out_eT, T1, op_type &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,46 +29,207 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; s16, float &gt; Struct Template Reference<br/>
+<h1>mtOp&lt; out_eT, T1, op_type &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00869.html">Promote_type</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; s16, float &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00703_source.html">promote_type.hpp</a>&gt;</code></p>
+[<a class="el" href="a00977.html">MtOp</a>]</small>
+</h1><!-- doxytag: class="mtOp" --><!-- doxytag: inherits="Base&lt; out_eT, mtOp&lt; out_eT, T1, op_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00763_source.html">mtOp_proto.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for promote_type&lt; s16, float &gt;:</div>
+Inheritance diagram for mtOp&lt; out_eT, T1, op_type &gt;:</div>
 <div class="dynsection">
  <div class="center">
-  <img src="a00394.gif" usemap="#promote_type&lt; s16, float &gt;_map" alt=""/>
-  <map id="promote_type&lt; s16, float &gt;_map" name="promote_type&lt; s16, float &gt;_map">
-<area href="a00454.html" alt="promote_type_ok" shape="rect" coords="0,0,165,24"/>
+  <img src="a00394.gif" usemap="#mtOp&lt; out_eT, T1, op_type &gt;_map" alt=""/>
+  <map id="mtOp&lt; out_eT, T1, op_type &gt;_map" name="mtOp&lt; out_eT, T1, op_type &gt;_map">
+<area href="a00103.html" alt="Base&lt; out_eT, mtOp&lt; out_eT, T1, op_type &gt; &gt;" shape="rect" coords="0,0,279,24"/>
 </map>
  </div>
 </div>
 
-<p><a href="a01271.html">List of all members.</a></p>
+<p><a href="a01401.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#a94037c3f7eee4c109d6de887a1d55f30">result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef out_eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#ac4248eeaa441a09ceb8611e7e5a8453e">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00245.html">get_pod_type</a>&lt; out_eT &gt;<br class="typebreak"/>
+::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#aabd97ac74275228ba845dd1e5208dd5a">pod_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#ae290626e8ddc2c4fe4dfb63b000b3c10">in_eT</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00977.html#gad48ef1235b9875d91cefb04d9108f681">mtOp</a> (const T1 &amp;in_m)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00977.html#gaf0e6a5ab1eecdc6ff3deafcc3fafdc19">mtOp</a> (const T1 &amp;in_m, const <a class="el" href="a00394.html#ae290626e8ddc2c4fe4dfb63b000b3c10">in_eT</a> in_aux)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00977.html#ga6a8af8f5cc198a66e59eb9bfd69229b8">mtOp</a> (const T1 &amp;in_m, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00977.html#ga1be04539fb70c7555a7b25ee9ccfb88a">mtOp</a> (const T1 &amp;in_m, const <a class="el" href="a00394.html#ae290626e8ddc2c4fe4dfb63b000b3c10">in_eT</a> in_aux, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_a, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_aux_u32_b)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00977.html#gab0dfe59e863769a16ba7a8113e6c8902">mtOp</a> (const char junk, const T1 &amp;in_m, const out_eT in_aux)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00977.html#gab6c6f15c97d20d541f89a64fa724f492">~mtOp</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const T1 &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#ae372fe9f1af7bae734031108182f067e">m</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of reference to the operand (e.g. a matrix)  <a href="#ae372fe9f1af7bae734031108182f067e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00394.html#ae290626e8ddc2c4fe4dfb63b000b3c10">in_eT</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#a9da4d13fc441919fb2edb29ae6c82fc5">aux</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, using the element type as used by T1  <a href="#a9da4d13fc441919fb2edb29ae6c82fc5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const out_eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#ad4e56265005aba13729908e39e0017b9">aux_out_eT</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, using the element type as specified by the out_eT template parameter  <a href="#ad4e56265005aba13729908e39e0017b9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#ab5a758c3b0b213698869328329d56c5a">aux_u32_a</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, u32 format  <a href="#ab5a758c3b0b213698869328329d56c5a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00394.html#a5ff1062b2065658d334c0610fc0ad0fb">aux_u32_b</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">storage of auxiliary data, u32 format  <a href="#a5ff1062b2065658d334c0610fc0ad0fb"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; s16, float &gt;</h3>
+<h3>template&lt;typename out_eT, typename T1, typename op_type&gt;<br/>
+ class mtOp&lt; out_eT, T1, op_type &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00703_source.html#l00122">122</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00763_source.html#l00023">23</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a94037c3f7eee4c109d6de887a1d55f30"></a><!-- doxytag: member="promote_type&lt; s16, float &gt;::result" ref="a94037c3f7eee4c109d6de887a1d55f30" args="" -->
+<a class="anchor" id="ac4248eeaa441a09ceb8611e7e5a8453e"></a><!-- doxytag: member="mtOp::elem_type" ref="ac4248eeaa441a09ceb8611e7e5a8453e" args="" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef float <a class="el" href="a00376.html">promote_type</a>&lt; <a class="el" href="a00883.html#ga2e9bf6983da73775aa86158c825bf777">s16</a>, float &gt;::<a class="el" href="a00394.html#a94037c3f7eee4c109d6de887a1d55f30">result</a></td>
+          <td class="memname">typedef out_eT <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#ac4248eeaa441a09ceb8611e7e5a8453e">elem_type</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00703_source.html#l00122">122</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00763_source.html#l00027">27</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aabd97ac74275228ba845dd1e5208dd5a"></a><!-- doxytag: member="mtOp::pod_type" ref="aabd97ac74275228ba845dd1e5208dd5a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00245.html">get_pod_type</a>&lt;out_eT&gt;::result <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#aabd97ac74275228ba845dd1e5208dd5a">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00028">28</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae290626e8ddc2c4fe4dfb63b000b3c10"></a><!-- doxytag: member="mtOp::in_eT" ref="ae290626e8ddc2c4fe4dfb63b000b3c10" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#ae290626e8ddc2c4fe4dfb63b000b3c10">in_eT</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00030">30</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ae372fe9f1af7bae734031108182f067e"></a><!-- doxytag: member="mtOp::m" ref="ae372fe9f1af7bae734031108182f067e" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const T1&amp; <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#ae372fe9f1af7bae734031108182f067e">m</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of reference to the operand (e.g. a matrix) </p>
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00042">42</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00671_source.html#l00104">accu()</a>, <a class="el" href="a00808_source.html#l00250">op_rel_noteq::apply()</a>, <a class="el" href="a00808_source.html#l00225">op_rel_eq::apply()</a>, <a class="el" href="a00808_source.html#l00200">op_rel_gteq_post::apply()</a>, <a class="el" href="a00808_source.html#l00175">op_rel_gteq_pre::apply()</a>, <a class="el" href="a00808_source.html#l00150">op_rel_lteq_post::apply()</a>, <a class="el" href="a00808_source.html#l00125">op_rel_lteq_pre::apply()</a>, <a class="el" href="a00808_source.html#l00100">op_rel_gt_post::apply()</a>, <a class="el" href="a00808_source.html#l00075">op_rel_gt_pre::apply()</a>, <a class="el" href="a00808_source.html#l00050">op_rel_lt_post::apply()</a>, <a class="el" href="a00808_source.html#l00025">op_rel_lt_pre::apply()</a>, <a class="el" href="a00797_source.html#l00070">op_abs::apply()</a>, <a class="el" href="a00797_source.html#l00047">op_imag::apply()</a>, <a class="el" href="a00797_source.html#l00024">op_real::apply()</a>, <a class="el" href="a00780_source.html#l00269">op_find::apply()</a>, and <a class="el" href="a00780_source.html#l00064">op_find::helper()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9da4d13fc441919fb2edb29ae6c82fc5"></a><!-- doxytag: member="mtOp::aux" ref="a9da4d13fc441919fb2edb29ae6c82fc5" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00394.html#ae290626e8ddc2c4fe4dfb63b000b3c10">in_eT</a> <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#a9da4d13fc441919fb2edb29ae6c82fc5">aux</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, using the element type as used by T1 </p>
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00043">43</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00671_source.html#l00104">accu()</a>, <a class="el" href="a00808_source.html#l00250">op_rel_noteq::apply()</a>, <a class="el" href="a00808_source.html#l00225">op_rel_eq::apply()</a>, <a class="el" href="a00808_source.html#l00200">op_rel_gteq_post::apply()</a>, <a class="el" href="a00808_source.html#l00175">op_rel_gteq_pre::apply()</a>, <a class="el" href="a00808_source.html#l00150">op_rel_lteq_post::apply()</a>, <a class="el" href="a00808_source.html#l00125">op_rel_lteq_pre::apply()</a>, <a class="el" href="a00808_source.html#l00100">op_rel_gt_post::apply()</a>, <a class="el" href="a00808_source.html#l00075">op_rel_gt_pre::apply()</a>, <a class="el" href="a00808_source.html#l00050">op_rel_lt_post::apply()</a>, <a class="el" href="a00808_source.html#l00025">op_rel_lt_pre::apply()</a>, and <a class="el" href="a00780_source.html#l00064">op_find::helper()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad4e56265005aba13729908e39e0017b9"></a><!-- doxytag: member="mtOp::aux_out_eT" ref="ad4e56265005aba13729908e39e0017b9" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const out_eT <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#ad4e56265005aba13729908e39e0017b9">aux_out_eT</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, using the element type as specified by the out_eT template parameter </p>
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00044">44</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab5a758c3b0b213698869328329d56c5a"></a><!-- doxytag: member="mtOp::aux_u32_a" ref="ab5a758c3b0b213698869328329d56c5a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#ab5a758c3b0b213698869328329d56c5a">aux_u32_a</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, u32 format </p>
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00045">45</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00780_source.html#l00269">op_find::apply()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ff1062b2065658d334c0610fc0ad0fb"></a><!-- doxytag: member="mtOp::aux_u32_b" ref="a5ff1062b2065658d334c0610fc0ad0fb" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT, typename T1, typename op_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, op_type &gt;::<a class="el" href="a00394.html#a5ff1062b2065658d334c0610fc0ad0fb">aux_u32_b</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>storage of auxiliary data, u32 format </p>
+
+<p>Definition at line <a class="el" href="a00763_source.html#l00046">46</a> of file <a class="el" href="a00763_source.html">mtOp_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00780_source.html#l00269">op_find::apply()</a>.</p>
 
 </div>
 </div>

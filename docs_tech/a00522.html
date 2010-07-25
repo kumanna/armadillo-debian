@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: blas_proto.hpp File Reference</title>
+<title>Armadillo Technical: promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,44 +14,64 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>blas_proto.hpp File Reference</h1>
-<p><a href="a00522_source.html">Go to the source code of this file.</a></p>
-<table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html">blas</a></td></tr>
+<h1>promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt; Struct Template Reference<br/>
+<small>
+[<a class="el" href="a01024.html">Promote_type</a>]</small>
+</h1><!-- doxytag: class="promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
+<p><code>#include &lt;<a class="el" href="a00843_source.html">promote_type.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00522.gif" usemap="#promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;_map" alt=""/>
+  <map id="promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;_map" name="promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;_map">
+<area href="a00558.html" alt="promote_type_ok" shape="rect" coords="0,0,367,24"/>
+</map>
+ </div>
+</div>
 
-<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>namespace for BLAS functions </p>
-<br/></td></tr>
-</p>
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#ad1e76e1b9895bb1097814c4167e7fade">blas::sgemv_</a> (const char *transA, const int *m, const int *n, const float *alpha, const float *A, const int *ldA, const float *x, const int *incx, const float *beta, float *y, const int *incy)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#a3b3cf3496a3f26cf388ecffcf0da657f">blas::dgemv_</a> (const char *transA, const int *m, const int *n, const double *alpha, const double *A, const int *ldA, const double *x, const int *incx, const double *beta, double *y, const int *incy)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#af34824c36dd9699de95a199f2c3d07b2">blas::cgemv_</a> (const char *transA, const int *m, const int *n, const void *alpha, const void *A, const int *ldA, const void *x, const int *incx, const void *beta, void *y, const int *incy)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#af6c84887c2fb11cdd6d586f4beac9cdf">blas::zgemv_</a> (const char *transA, const int *m, const int *n, const void *alpha, const void *A, const int *ldA, const void *x, const int *incx, const void *beta, void *y, const int *incy)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#ae631d1d3fd43bb8ef832b0b4f0d0a7de">blas::sgemm_</a> (const char *transA, const char *transB, const int *m, const int *n, const int *k, const float *alpha, const float *A, const int *ldA, const float *B, const int *ldB, const float *beta, float *C, const int *ldC)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#ad3ffb455d17f49f683137993b656abd4">blas::dgemm_</a> (const char *transA, const char *transB, const int *m, const int *n, const int *k, const double *alpha, const double *A, const int *ldA, const double *B, const int *ldB, const double *beta, double *C, const int *ldC)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#acc95b141c63528377721dcde31c374a7">blas::cgemm_</a> (const char *transA, const char *transB, const int *m, const int *n, const int *k, const void *alpha, const void *A, const int *ldA, const void *B, const int *ldB, const void *beta, void *C, const int *ldC)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00733.html#ad5dacbc1369307d4c4fca7b9304f6deb">blas::zgemm_</a> (const char *transA, const char *transB, const int *m, const int *n, const int *k, const void *alpha, const void *A, const int *ldA, const void *B, const int *ldB, const void *beta, void *C, const int *ldC)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00733.html#ad784a6c237744a8d2bc61096bca4159e">blas::gemv_</a> (const char *transA, const int *m, const int *n, const eT *alpha, const eT *A, const int *ldA, const eT *x, const int *incx, const eT *beta, eT *y, const int *incy)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00733.html#ad926491fa7d4a29abb0edc71d3082591">blas::gemm_</a> (const char *transA, const char *transB, const int *m, const int *n, const int *k, const eT *alpha, const eT *A, const int *ldA, const eT *B, const int *ldB, const eT *beta, eT *C, const int *ldC)</td></tr>
+<p><a href="a01529.html">List of all members.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00522.html#a41bd3441e8820669b6644a25368c0cab">result</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;&gt;<br/>
+ struct promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00843_source.html#l00045">45</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a41bd3441e8820669b6644a25368c0cab"></a><!-- doxytag: member="promote_type&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;::result" ref="a41bd3441e8820669b6644a25368c0cab" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00480.html">promote_type</a>&lt; std::complex&lt; double &gt;, std::complex&lt; float &gt; &gt;::<a class="el" href="a00522.html#a41bd3441e8820669b6644a25368c0cab">result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00843_source.html#l00045">45</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

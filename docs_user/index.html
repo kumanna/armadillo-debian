@@ -4,6 +4,7 @@
   <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
   <title>Armadillo: C++ linear algebra library</title>
   <link type="text/css" rel="stylesheet" href="style.css">
+  <link rel="icon" href="armadillo_icon.png" type="image/png">
 </head>
 <body>
 <center>
@@ -16,7 +17,7 @@
   <tbody>
     <tr>
       <td>
-        <h2><b>Reference for Armadillo 0.9.8</b></h2>
+        <h2><b>Reference for Armadillo 0.9.52 (Monkey Wrench)</b></h2>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -54,31 +55,37 @@ First time users may want to have a look at a short <a href="#example_prog">exam
 There is a small but important API change from earlier versions of Armadillo (&lt;&nbsp;0.9.x).
 Previously, some multiplication operations directly converted result matrices with a size of 1x1 into scalars.
 This is no longer the case.
-If you know the result of an expression will be a 1x1 matrix and wish to treat it as a scalar,
+If you know the result of an expression will be a 1x1 matrix and wish to treat it as a pure scalar,
 use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 </li>
 </ul>
 <br>
+
+<a style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#index"><font size=-1>[index]</font></a> 
+<a name="index"></a>
 <b>Matrix, Vector, Cube and Field Classes</b>
 <ul>
 <a href="#Mat">Mat&lt;<i>type</i>&gt;, mat and cx_mat</a>&nbsp;&middot;
 <a href="#Col">Col&lt;<i>type</i>&gt;, colvec and vec</a>&nbsp;&middot;
 <a href="#Row">Row&lt;<i>type</i>&gt;, rowvec</a>&nbsp;&middot;
 <a href="#Cube">Cube&lt;<i>type</i>&gt;, cube</a>&nbsp;&middot;
-<a href="#field">field&lt;<i>object type</i>&gt;</a>
+<a href="#field">field&lt;<i>object&nbsp;type</i>&gt;</a>
 </ul>
 <br>
 
-<b>Member Functions</b>
+<b>Member Functions &amp; Variables</b>
 <ul>
+<a href="#attributes">attributes</a>&nbsp;&middot;
 <a href="#copy_size">copy_size</a>&nbsp;&middot;
 <a href="#diag">diag</a>&nbsp;&middot;
 <a href="#element">element&nbsp;access</a>&nbsp;&middot;
 <a href="#fill">fill</a>&nbsp;&middot;
 <a href="#is_finite">is_finite</a>&nbsp;&middot;
+<a href="#is_square">is_square</a>&nbsp;&middot;
+<a href="#is_vec">is_vec</a>&nbsp;&middot;
 <a href="#iterators_mat">iterators (matrices)</a>&nbsp;&middot;
 <a href="#iterators_cube">iterators (cubes)</a>&nbsp;&middot;
-<a href="#n_rows">n_rows/n_cols/...</a>&nbsp;&middot;
+<a href="#memptr">memptr</a>&nbsp;&middot;
 <a href="#ones_member">ones</a>&nbsp;&middot;
 <a href="#operators">operators</a>&nbsp;&middot;
 <a href="#print">print</a>&nbsp;&middot;
@@ -110,8 +117,9 @@ use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 <a href="#eye">eye</a>&nbsp;&middot;
 <a href="#linspace">linspace</a>&nbsp;&middot;
 <a href="#ones_standalone">ones</a>&nbsp;&middot;
-<a href="#rand_randn">rand/randn</a>&nbsp;&middot;
+<a href="#randu_randn">randu/randn</a>&nbsp;&middot;
 <a href="#repmat">repmat</a>&nbsp;&middot;
+<a href="#toeplitz">toeplitz</a>&nbsp;&middot;
 <a href="#zeros_standalone">zeros</a>
 </ul>
 <br>
@@ -150,6 +158,7 @@ use the <a href="#as_scalar">as_scalar()</a> wrapping function.
 
 <b>Vector/Matrix/Cube Valued Functions of Vectors/Matrices/Cubes</b>
 <ul>
+<a href="#conv">conv</a>&nbsp;&middot;
 <a href="#conv_to">conv_to</a>&nbsp;&middot;
 <a href="#conj">conj</a>&nbsp;&middot;
 <a href="#cor">cor</a>&nbsp;&middot;
@@ -296,7 +305,8 @@ For convenience the following typedefs have been defined:
 </li>
 <br>
 <li>
-Data is stored with column-major ordering (i.e. column by column).
+In this documentation the <i>mat</i> type is used for convenience.
+It is possible to use other types instead, e.g. <i>fmat</i>.
 </li>
 <br>
 <li>
@@ -305,10 +315,7 @@ Functions which are wrappers for LAPACK or ATLAS functions (generally matrix dec
 </li>
 <br>
 <li>
-<b>
-In this documentation the <i>mat</i> type is used for convenience.
-It is possible to use other types instead, e.g. <i>fmat</i>.
-</b>
+Elements are stored with column-major ordering (i.e. column by column).
 </li>
 <br>
 <li>
@@ -324,6 +331,7 @@ Constructors:
 </li>
 <br>
 
+<a name="adv_constructors_mat"></a>
 <li>
 Advanced constructors:
 <ul>
@@ -350,7 +358,7 @@ Create a matrix by copying data from read-only auxiliary memory.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 double x = A(1,2);
 mat B = A + A;
 mat C = A * B;
@@ -388,8 +396,21 @@ Or:
 mat A = 123.0 * ones&lt;mat&gt;(5,5);
 </pre>
 </ul>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#attributes">matrix attributes</a></li>
+<li><a href="#element">accessing elements</a></li>
+<li><a href="#operators">math &amp; relational operators</a></li>
+<li><a href="#submat">submatrix views</a></li>
+<li><a href="#save_load_mat">saving &amp; loading matrices</a></li>
+<li><a href="#print">printing matrices</a></li>
+<li><a href="#iterators_mat">STL-style element iterators</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline">
 <br>
 
@@ -482,11 +503,9 @@ For convenience the following typedefs have been defined:
 </li>
 <br>
 <li>
-<b>
 In this documentation the <i>colvec</i> type is used for convenience and to accentuate that it is a column vector.
 It is possible to use the <u>shorter version</u>, i.e. <u><i>vec</i></u>,
 as well as other types, e.g. <i>fvec</i>, <i>fcolvec</i>.
-</b>
 </li>
 <br>
 <li>
@@ -514,7 +533,7 @@ Examples:
 colvec x(10);
 colvec y = zeros&lt;colvec&gt;(10,1);
 
-mat    A = rand&lt;mat&gt;(10,10);
+mat    A = randu&lt;mat&gt;(10,10);
 colvec z = A.col(5); // extract a column vector
 </pre>
 </ul>
@@ -638,10 +657,8 @@ For convenience the following typedefs have been defined:
 </li>
 <br>
 <li>
-<b>
 In this documentation the <i>rowvec</i> type is used for convenience.
 It is possible to use other types instead, e.g. <i>frowvec</i>.
-</b>
 </li>
 <br>
 <li>
@@ -669,7 +686,7 @@ Examples:
 rowvec x(10);
 rowvec y = zeros&lt;mat&gt;(1,10);
 
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 rowvec z = A.row(5); // extract a row vector
 </pre>
 </ul>
@@ -711,7 +728,7 @@ rowvec r = 123.0 * ones&lt;rowvec&gt;(1,5);
 <br><b>cx_cube</b>
 <ul>
 <li>
-Classes for cubes (aka "3D matrices" or sets of matrices with contiguous memory)
+Classes for cubes, also known as "3D matrices".
 </li>
 <br>
 <li>
@@ -796,14 +813,17 @@ For convenience the following typedefs have been defined:
 </li>
 <br>
 <li>
-<b>
 In this documentation the <i>cube</i> type is used for convenience.
 It is possible to use other types instead, e.g. <i>fcube</i>.
-</b>
 </li>
 <br>
 <li>
-Functions which take <i>Mat</i> as input can generally also take cube slices as input.
+Cube data is stored as a set of slices (matrices) stored contiguously within memory.
+Within each slice, elements are stored with column-major ordering (i.e. column by column). 
+</li>
+<br>
+<li>
+Each slice can be interpreted as a matrix, hence functions which take <i>Mat</i> as input can generally also take cube slices as input.
 </li>
 <br>
 <li>
@@ -817,6 +837,7 @@ cube()
 </li>
 <br>
 
+<a name="adv_constructors_cube"></a>
 <li>
 Advanced constructors:
 <ul>
@@ -844,12 +865,12 @@ Examples:
 <ul>
 <pre>
 cube x(1,2,3);
-cube y = rand&lt;cube&gt;(4,5,6);
+cube y = randu&lt;cube&gt;(4,5,6);
 
 mat A = y.slice(1);  // extract a slice from the cube
                      // (each slice is a matrix)
 
-mat B = rand&lt;mat&gt;(4,5);
+mat B = randu&lt;mat&gt;(4,5);
 y.slice(2) = B;     // set a slice in the cube
 
 cube q = y + y;     // cube addition
@@ -869,7 +890,7 @@ For example, the following <b>will not</b> work:
 <ul>
 <pre>
 cube c(5,6,7);
-c.slice(0) = rand&lt;mat&gt;(10,20); // wrong size
+c.slice(0) = randu&lt;mat&gt;(10,20); // wrong size
 </pre>
 </ul>
 </li>
@@ -899,8 +920,20 @@ cube c = 123.0 * ones&lt;cube&gt;(5,6,7);
 </ul>
 </li>
 </ul>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#attributes">cube attributes</a></li>
+<li><a href="#element">accessing elements</a></li>
+<li><a href="#operators">math &amp; relational operators</a></li>
+<li><a href="#subcube">subcube views and slices</a></li>
+<li><a href="#save_load_mat">saving &amp; loading cubes</a></li>
+<li><a href="#iterators_cube">STL-style element iterators</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline">
 <br>
 
@@ -938,7 +971,7 @@ field&lt;colvec&gt; F(3,2);
 
 // access components of the field
 F(0,0) = colvec(5);
-F(1,1) = rand&lt;colvec&gt;(6);
+F(1,1) = randu&lt;colvec&gt;(6);
 F(2,0).set_size(7);
 
 // access element 1 of the colvec stored at 2,0
@@ -961,7 +994,8 @@ G.save("colvec_field");
 <br>
 <li>See also:
 <ul>
-<li><a href="#subfield">subfields</a></li>
+<li><a href="#attributes">field attributes</a></li>
+<li><a href="#subfield">subfield views</a></li>
 <li><a href="#save_load_field">saving/loading fields</a></li>
 <li><a href="http://cplusplus.com/reference/string/string/">string class in the standard C++ library</a> (cplusplus.com)</li>
 </ul>
@@ -972,11 +1006,111 @@ G.save("colvec_field");
 <hr class="greyline">
 <br>
 <br>
-<font size=+1><b>Member Functions</b></font>
+<font size=+1><b>Member Functions &amp; Variables</b></font>
 <br>
 <br>
 <hr class="greyline">
 <br>
+
+<a name="attributes"></a>
+
+<b>attributes</b>
+<ul>
+<table style="text-align: left;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<b>.n_rows</b>
+</td>
+<td>&nbsp;</td>
+<td>
+(number of rows)
+</td>
+</tr>
+<tr>
+<td>
+<b>.n_cols</b>
+</td>
+<td>&nbsp;</td>
+<td>
+(number of columns)
+</td>
+</tr>
+<tr>
+<td>
+<b>.n_elem</b>
+</td>
+<td>&nbsp;</td>
+<td>
+(total number of elements)
+</td>
+</tr>
+<tr>
+<td>
+<b>.n_slices</b>
+</td>
+<td>&nbsp;</td>
+<td>
+(number of slices)
+</td>
+</tr>
+<tr>
+<td>
+<b>.n_elem_slice</b>
+</td>
+<td>&nbsp;</td>
+<td>
+(number of elements per slice)
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+<br>
+<ul>
+<li>
+Member variables which are read-only.
+To change the size, use
+<a href="#set_size">.set_size()</a>,
+<a href="#copy_size">.copy_size()</a>,
+<a href="#zeros_member">.zeros()</a>,
+<a href="#ones_member">.ones()</a>,
+or
+<a href="#reset">.reset()</a>.
+</li>
+<br>
+<li><i>n_rows</i>, <i>n_cols</i> and <i>n_elem</i> are applicable to <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>field</i> classes.</li>
+<br>
+<li><i>n_slices</i> and <i>n_elem_slice</i> are applicable only to the <i>Cube</i> class.</li>
+<br>
+<li>
+For the <i>Col</i> and <i>Row</i> classes, <i>n_elem</i> also indicates vector length.</li>
+<br>
+<li>The variables are of type <a href="#s32_u32">u32</a> (unsigned integer).</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat X(4,5);
+cout &lt;&lt; "X has " &lt;&lt; X.n_cols &lt;&lt; " columns" &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#set_size">.set_size()</a></li>
+<li><a href="#copy_size">.copy_size()</a></li>
+<li><a href="#zeros_member">.zeros()</a></li>
+<li><a href="#ones_member">.ones()</a></li>
+<li><a href="#reset">.reset()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
 
 <a name="copy_size"></a>
 <b>.copy_size(A)</b>
@@ -998,7 +1132,7 @@ Object A must be of the same root type as the object being modified
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,6);
+mat A = randu&lt;mat&gt;(5,6);
 mat B;
 B.copy_size(A);
 
@@ -1037,13 +1171,13 @@ An extracted a diagonal is interpreted as a column vector.
 Examples:
 <ul>
 <pre>
-mat    X = rand&lt;mat&gt;(5,5);
+mat    X = randu&lt;mat&gt;(5,5);
 
 colvec a = X.diag();
 colvec b = X.diag(1);
 colvec c = X.diag(-2);
 
-X.diag() = rand&lt;colvec&gt;(5);
+X.diag() = randu&lt;colvec&gt;(5);
 </pre>
 </ul>
 </li>
@@ -1172,12 +1306,12 @@ Not recommended for use unless your code has been thoroughly debugged.</td>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 A(9,9) = 123.0;
 double x = A.at(9,9);
 double y = A[99];
 
-colvec p = rand&lt;colvec&gt;(10,1);
+colvec p = randu&lt;colvec&gt;(10,1);
 p(9) = 123.0;
 double z = p[9];
 </pre>
@@ -1230,20 +1364,80 @@ Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i> classes.
 <li>Returns true if all elements of the object are finite.
 </li>
 <br>
-<li>Returns false if one or more elements of the object is non-finite.
+<li>Returns false if at least one of the elements of the object is non-finite.
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
-mat B = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
+mat B = randu&lt;mat&gt;(5,5);
 
 B(1,1) = 0.0 / 0.0;  // create a NaN
 
 cout &lt;&lt; A.is_finite() &lt;&lt; endl;
 cout &lt;&lt; B.is_finite() &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
+
+<a name="is_square"></a>
+<b>.is_square()</b>
+<ul>
+<li>
+Member function of the <i>Mat</i> class.
+</li>
+<br>
+<li>Returns true if the matrix is square, i.e., number of rows is equal to the number of columns.
+</li>
+<br>
+<li>Returns false if the matrix is not square, or the matrix has no elements.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = randu&lt;mat&gt;(6,7);
+
+cout &lt;&lt; A.is_square() &lt;&lt; endl;
+cout &lt;&lt; B.is_square() &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
+
+<a name="is_vec"></a>
+<b>.is_vec()</b>
+<ul>
+<li>
+Member function of the <i>Mat</i> class.
+</li>
+<br>
+<li>Returns true if the matrix can be interpreted as a vector (either column or row vector).
+</li>
+<br>
+<li>Returns false if the matrix can't be interpreted as a vector, or the matrix has no elements.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(1,5);
+mat B = randu&lt;mat&gt;(5,1);
+mat C = randu&lt;mat&gt;(5,5);
+
+cout &lt;&lt; A.is_vec() &lt;&lt; endl;
+cout &lt;&lt; B.is_vec() &lt;&lt; endl;
+cout &lt;&lt; C.is_vec() &lt;&lt; endl;
 </pre>
 </ul>
 </li>
@@ -1520,7 +1714,7 @@ Member functions:
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 
 
 mat::iterator a = X.begin();
@@ -1701,7 +1895,7 @@ Member functions:
 Examples:
 <ul>
 <pre>
-cube X = rand&lt;cube&gt;(2,3,4);
+cube X = randu&lt;cube&gt;(2,3,4);
 
 
 cube::iterator a = X.begin();
@@ -1732,76 +1926,53 @@ See also: <a href="http://cplusplus.com/reference/std/iterator/">iterator at cpl
 </ul>
 <hr class="greyline"><br>
 
-<a name="n_rows"></a>
-
-<table style="text-align: left;" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td>
-<b>.n_rows</b>
-</td>
-<td>&nbsp;</td>
-<td>
-(number of rows)
-</td>
-</tr>
-<tr>
-<td>
-<b>.n_cols</b>
-</td>
-<td>&nbsp;</td>
-<td>
-(number of columns)
-</td>
-</tr>
-<tr>
-<td>
-<b>.n_elem</b>
-</td>
-<td>&nbsp;</td>
-<td>
-(number of elements)
-</td>
-</tr>
-<tr>
-<td>
-<b>.n_slices</b>
-</td>
-<td>&nbsp;</td>
-<td>
-(number of slices)
-</td>
-</tr>
-<tr>
-<td>
-<b>.n_elem_slice</b>
-</td>
-<td>&nbsp;</td>
-<td>
-(number of elements per slice)
-</td>
-</tr>
-</tbody>
-</table>
-<br>
+<a name="memptr"></a>
+<b>.memptr()</b>
 <ul>
-<li><i>n_rows</i>, <i>n_cols</i> and <i>n_elem</i> are read-only member variables of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>field</i> classes.</li>
+<li>
+Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i> classes.
+</li>
 <br>
-<li><i>n_slices</i> and <i>n_elem_slice</i> are read-only member variables of the <i>Cube</i> class.</li>
+<li>
+Obtain a raw pointer to the memory used for storing elements. Not recommended for use unless you know what you're doing!
+</li>
 <br>
-<li>The variables are of type <a href="#s32_u32">u32</a> (unsigned integer).</li>
+<li>
+As soon as the size of the matrix/vector/cube is changed, the pointer is no longer valid.
+</li>
+<br>
+<li>
+Data for matrices is stored in a column-by-column order.
+</li>
+<br>
+<li>
+Data for cubes is stored in a slice-by-slice (matrix-by-matrix) order.
+</li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-colvec q(5);
-cout &lt;&lt; "q has " &lt;&lt; q.n_cols &lt;&lt; " columns" &lt;&lt; endl;
+      mat A = randu&lt;mat&gt;(5,5);
+const mat B = randu&lt;mat&gt;(5,5);
+
+      double* A_mem = A.memptr();
+const double* B_mem = B.memptr();
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#iterators_mat">iterators (matrices)</a>
+<li><a href="#iterators_cube">iterators (cubes)</a>
+<li><a href="#adv_constructors_mat">advanced constructors (matrices)</a>
+<li><a href="#adv_constructors_cube">advanced constructors (cubes)</a>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="ones_member"></a>
@@ -1815,24 +1986,24 @@ Set the elements of an object to one, optionally first resizing to specified dim
 </li>
 <br>
 <li>
-<i>.ones()</i> and <i>.ones(n_elem)</i> are member function of <i>Col</i> and <i>Row</i>
+<i>.ones()</i> and <i>.ones(n_elem)</i> are member functions of <i>Col</i> and <i>Row</i>.
 </li>
 <br>
 <li>
-<i>.ones()</i> and <i>.ones(n_rows, n_cols)</i> are member functions of <i>Mat</i>
+<i>.ones()</i> and <i>.ones(n_rows, n_cols)</i> are member functions of <i>Mat</i>.
 </li>
 <br>
 <li>
-<i>.ones()</i> and <i>.ones(n_rows, n_cols, n_slices)</i> are member functions of <i>Cube</i>
+<i>.ones()</i> and <i>.ones(n_rows, n_cols, n_slices)</i> are member functions of <i>Cube</i>.
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,10);
+mat A = randu&lt;mat&gt;(5,10);
 A.ones();      // sets all elements to one
-A.ones(10,20); // sets the size to 10 cols and 20 rows
+A.ones(10,20); // sets the size to 10 rows and 20 columns
                // followed by setting all elements to one
 </pre>
 </ul>
@@ -1851,7 +2022,7 @@ See also:
 <hr class="greyline"><br>
 
 <a name="operators"></a>
-<b>operators + - * / % == != &lt;= &gt;= &lt; &gt;</b>
+<b>operators: &nbsp; + &nbsp; - &nbsp; * &nbsp; / &nbsp; % &nbsp; == &nbsp; != &nbsp; &lt;= &nbsp; &gt;= &nbsp; &lt; &nbsp; &gt;</b>
 <ul>
 <li>
 Overloaded operators for <i>mat</i>, <i>colvec</i>, <i>rowvec</i> and <i>cube</i> classes.
@@ -1954,7 +2125,7 @@ efficient ordering of the matrix multiplications.
 <b>Caveat:</b> operators involving an equality comparison (i.e., ==, !=, &gt;=, &lt;=)
 may not work as expected for floating point element types (i.e., <i>float</i>, <i>double</i>)
 due to the necessarily limited precision of these types.
-In other words, these operators are not recommended for matrices of type <i>mat</i> or <i>fmat</i>.
+In other words, these operators are (in general) not recommended for matrices of type <i>mat</i> or <i>fmat</i>.
 </li>
 <br>
 <br>
@@ -1962,9 +2133,9 @@ In other words, these operators are not recommended for matrices of type <i>mat<
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,10);
-mat B = rand&lt;mat&gt;(5,10);
-mat C = rand&lt;mat&gt;(10,5);
+mat A = randu&lt;mat&gt;(5,10);
+mat B = randu&lt;mat&gt;(5,10);
+mat C = randu&lt;mat&gt;(10,5);
 
 mat P = A + B;
 mat Q = A - B;
@@ -1984,8 +2155,16 @@ umat ZZ = (AA >= BB);
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#accu">accu()</a></li>
+<li><a href="#find">find()</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="print"></a>
@@ -2006,15 +2185,15 @@ It's also possible print objects using the &lt;&lt; stream operator.
 </li>
 <br>
 <li>
-Elements of a field can only be printed if there is an associated operator&lt;&lt; function defined.
+Elements of a field can only be printed if there is an associated <i>operator&lt;&lt;</i> function defined.
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
-mat B = rand&lt;mat&gt;(6,6);
+mat A = randu&lt;mat&gt;(5,5);
+mat B = randu&lt;mat&gt;(6,6);
 
 A.print();
 
@@ -2026,8 +2205,12 @@ cout &lt;&lt; "B =" &lt;&lt; endl &lt;&lt; B &lt;&lt; endl;
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also: <a href="#save_load_mat">saving &amp; loading matrices</a>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="print_trans"></a>
@@ -2067,7 +2250,7 @@ If the cell width is set to zero, a space is printed between the elements.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 
 cout.precision(11);
 cout.setf(ios::fixed);
@@ -2112,7 +2295,7 @@ Causes an object to have no elements.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5, 5);
+mat A = randu&lt;mat&gt;(5, 5);
 A.reset();
 </pre>
 </ul>
@@ -2133,15 +2316,34 @@ A.reset();
 .load(name, file_type = auto_detect)
 <br>
 .load(stream, file_type = auto_detect)
+<br>
+<br>
+.quiet_save(name, file_type = arma_binary)
+<br>
+.quiet_save(stream, file_type = arma_binary)
+<br>
+<br>
+.quiet_load(name, file_type = auto_detect)
+<br>
+.quiet_load(stream, file_type = auto_detect)
 </b>
 <ul>
-<li>
-Store/retrieve data in files or streams.
-</li>
-<br>
 <li>Member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i> classes.</li>
 <br>
-<li>load() will reset the object to have no elements if the loading process failed (e.g. wrong filename, unsupported file type, etc).</li>
+<li>Store/retrieve data in files or streams.</li>
+<br>
+<li>On success, save(), load(), quiet_save(), and quite_load() will return a <i>bool</i> set to <i>true</i>.</li>
+<br>
+<li>save() and quiet_save() will return a <i>bool</i> set to <i>false</i> if the saving process fails.</li>
+<br>
+<li>
+load() and quiet_load() will return a <i>bool</i> set to <i>false</i> if the loading process fails.
+Additionaly, the object will be reset so it has no elements.
+</li>
+<br>
+<li>load() and save() will print error messages to the standard output if any problems are encountered.</li>
+<br>
+<li>quiet_load() and quiet_save() do not print any error messages.</li>
 <br>
 <li>
 The following file formats are supported:
@@ -2155,7 +2357,7 @@ The following file formats are supported:
                         <td style="vertical-align: top;"><br>
                         </td>
                         <td style="vertical-align: top;">
-load(): try to automatically detect the file type as one of the formats described below.
+for load() and quiet_load(): try to automatically detect the file type as one of the formats described below.
 This is the default operation.
 <br>
 <br>
@@ -2169,7 +2371,7 @@ This is the default operation.
 Numerical data stored in raw ASCII format (no header),
 with the numbers separated by whitespace.
 The number of columns must be the same in each row.
-load() can read data which was saved in Matlab/Octave using the <i>-ascii</i> option, except for complex numbers.
+Data which was saved in Matlab/Octave using the <i>-ascii</i> option can be read in Armadillo, except for complex numbers.
 Complex numbers are stored in standard C++ notation (a tuple surrounded by brackets: e.g. (1.23,4.56) indicates 1.24&nbsp;+&nbsp;4.56i).
 Cubes are loaded as one slice.
 <br>
@@ -2234,7 +2436,7 @@ As such the cube/field should have values in the [0,255] interval, otherwise the
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 
 A.save("A1.mat");  // default save format is arma_binary
 A.save("A2.mat", arma_ascii);
@@ -2249,12 +2451,25 @@ C.load("A2.mat", arma_ascii);
 
 
 // example of saving/loading using a stream
-
 std::stringstream s;
 A.save(s);
 
 mat D;
 D.load(s);
+
+
+// example of testing for success
+mat E;
+bool status = E.load("A2.mat");
+
+if(status == true)
+  {
+  cout &lt;&lt; "loaded okay" &lt;&lt; endl;
+  }
+else
+  {
+  cout &lt;&lt; "problem with loading" &lt;&lt; endl;
+  }
 </pre>
 </ul>
 </li>
@@ -2265,28 +2480,49 @@ D.load(s);
 <hr class="greyline"><br>
 
 <a name="save_load_field"></a>
-<b>.save(name, file_type = arma_binary)</b>
+<b>
+.save(name, file_type = arma_binary)
 <br>
-<b>.save(stream, file_type = arma_binary)</b>
+.save(stream, file_type = arma_binary)
 <br>
 <br>
-<b>.load(name, file_type = auto_detect)</b>
+.load(name, file_type = auto_detect)
 <br>
-<b>.load(stream, file_type = auto_detect)</b>
+.load(stream, file_type = auto_detect)
+<br>
+<br>
+.quiet_save(name, file_type = arma_binary)
+<br>
+.quiet_save(stream, file_type = arma_binary)
+<br>
+<br>
+.quiet_load(name, file_type = auto_detect)
+<br>
+.quiet_load(stream, file_type = auto_detect)
+</b>
 <ul>
-<li>
-Store/retrieve fields in files or stream.
-</li>
-<br>
 <li>Member functions of the <i>field</i> class.</li>
 <br>
-<li>load() will reset the object to have no elements if the loading process failed (e.g. wrong filename, unsupported file type, etc).</li>
+<li>Store/retrieve fields in files or stream.</li>
+<br>
+<li>On success, save(), load(), quiet_save(), and quite_load() will return a <i>bool</i> set to <i>true</i>.</li>
+<br>
+<li>save() and quiet_save() will return a <i>bool</i> set to <i>false</i> if the saving process fails.</li>
+<br>
+<li>
+load() and quiet_load() will return a <i>bool</i> set to <i>false</i> if the loading process fails.
+Additionaly, the field will be reset so it has no elements.
+</li>
+<br>
+<li>load() and save() will print error messages to the standard output if any problems are encountered.</li>
+<br>
+<li>quiet_load() and quiet_save() do not print any error messages.</li>
 <br>
 <li>
 Fields with objects of type <i>std::string</i> are saved and loaded as raw text files.
 The text files do not have a header.
 Each string is separated by a whitespace.
-The .load() function will only accept text files that have the same number of strings on each line.
+load() and quiet_load() will only accept text files that have the same number of strings on each line.
 The strings can have variable lengths.
 </li>
 <br>
@@ -2435,8 +2671,8 @@ Examples:
 <pre>
 mat A = zeros&lt;mat&gt;(5,10);
 mat B = A.submat(0,1,2,3);
-A.submat(0,1,2,3) = rand&lt;mat&gt;(3,3);
-A.row(1) = rand&lt;mat&gt;(1,10);
+A.submat(0,1,2,3) = randu&lt;mat&gt;(3,3);
+A.row(1) = randu&lt;mat&gt;(1,10);
 </pre>
 </ul>
 </li>
@@ -2472,10 +2708,10 @@ The size of individual slices can't be changed.
 Examples:
 <ul>
 <pre>
-cube A = rand&lt;cube&gt;(2,3,4);
+cube A = randu&lt;cube&gt;(2,3,4);
 mat B = A.slice(1);
-A.slice(0) = rand&lt;mat&gt;(2,3);
-A.subcube(0,0,1,  1,1,2) = rand&lt;cube&gt;(2,2,2);
+A.slice(0) = randu&lt;mat&gt;(2,3);
+A.subcube(0,0,1,  1,1,2) = randu&lt;cube&gt;(2,2,2);
 A.slice(0)(1,2) = 99.0;
 </pre>
 </ul>
@@ -2520,7 +2756,7 @@ Swap the contents of specified rows or columns.
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 X.swap_rows(0,4);
 </pre>
 </ul>
@@ -2531,10 +2767,10 @@ See also: <a href="#flip">fliplr() &amp; flipud()</a>
 </li>
 <br>
 </ul>
-<hr class="greyline">
+<hr class="greyline"><br>
 
 <a name="zeros_member"></a>
-<br><b>.zeros()</b>
+<b>.zeros()</b>
 <br><b>.zeros(n_elem)</b>
 <br><b>.zeros(n_rows, n_cols)</b>
 <br><b>.zeros(n_rows, n_cols, n_slices)</b>
@@ -2559,9 +2795,9 @@ Set the elements of an object to zero, optionally first resizing to specified di
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,10);
+mat A = randu&lt;mat&gt;(5,10);
 A.zeros();      // sets all elements to zero
-A.zeros(10,20); // sets the size to 10 columns and 20 rows
+A.zeros(10,20); // sets the size to 10 rows and 20 columns
                 // followed by setting all elements to zero
 </pre>
 </ul>
@@ -2854,7 +3090,7 @@ rowvec sample;
 
 for(u32 i=0; i&lt;10000; ++i)
   {
-  sample = rand&lt;rowvec&gt;(5);
+  sample = randu&lt;rowvec&gt;(5);
   stats(sample);
   }
 
@@ -2870,7 +3106,7 @@ running_stat_vec&lt;rowvec::elem_type&gt; more_stats(true);
 
 for(u32 i=0; i&lt;20; ++i)
   {
-  sample = rand&lt;rowvec&gt;(3);
+  sample = randu&lt;rowvec&gt;(3);
   
   sample(1) -= sample(0);
   sample(2) += sample(1);
@@ -2892,6 +3128,7 @@ cout &lt;&lt; more_stats.cov() / (trans(sd) * sd);
 <li>See also:
 <ul>
 <li><a href="#cov">cov()</a></li>
+<li><a href="#cor">cor()</a></li>
 <li><a href="#running_stat">running_stat</a></li>
 <li><a href="#stats_fns">statistics functions</a></li>
 </ul>
@@ -2913,8 +3150,8 @@ Examples:
 <pre>
 wall_clock timer;
 
-mat A = rand&lt;mat&gt;(4,4);
-mat B = rand&lt;mat&gt;(4,4);
+mat A = randu&lt;mat&gt;(4,4);
+mat B = randu&lt;mat&gt;(4,4);
 mat C;
 
 timer.tic();
@@ -3057,10 +3294,10 @@ See also:
 <br>
 <hr class="greyline"><br>
 
-<a name="rand_randn"></a>
-<b>rand(n_elem)</b> 
-<br><b>rand(n_rows, n_cols)</b>
-<br><b>rand(n_rows, n_cols, n_slices)</b>
+<a name="randu_randn"></a>
+<b>randu(n_elem)</b> 
+<br><b>randu(n_rows, n_cols)</b>
+<br><b>randu(n_rows, n_cols, n_slices)</b>
 <br>
 <br><b>randn(n_elem)</b>
 <br><b>randn(n_rows, n_cols)</b>
@@ -3070,7 +3307,7 @@ See also:
 Generate a vector, matrix or cube with the elements set to random values.
 </li>
 <br>
-<li><i>rand()</i> uses a uniform distribution in the [0,1] interval.
+<li><i>randu()</i> uses a uniform distribution in the [0,1] interval.
 </li>
 <br>
 <li><i>randn()</i> uses a normal/Gaussian distribution with zero mean and unit variance.
@@ -3079,9 +3316,9 @@ Generate a vector, matrix or cube with the elements set to random values.
 <li>
 Usage:
 <ul>
-<li><i>vector_type</i> v = rand&lt;<i>vector_type</i>&gt;(n_elem)</li>
-<li><i>matrix_type</i> X = rand&lt;<i>matrix_type</i>&gt;(n_rows, n_cols)</li>
-<li><i>cube_type</i> C = rand&lt;<i>cube_type</i>&gt;(n_rows, n_cols, n_slices)</li>
+<li><i>vector_type</i> v = randu&lt;<i>vector_type</i>&gt;(n_elem)</li>
+<li><i>matrix_type</i> X = randu&lt;<i>matrix_type</i>&gt;(n_rows, n_cols)</li>
+<li><i>cube_type</i> C = randu&lt;<i>cube_type</i>&gt;(n_rows, n_cols, n_slices)</li>
 </ul>
 </li>
 <br>
@@ -3089,10 +3326,10 @@ Usage:
 Examples:
 <ul>
 <pre>
-colvec q = rand&lt;colvec&gt;(5);
-rowvec r = rand&lt;rowvec&gt;(5);
-mat A = rand&lt;mat&gt;(5,6);
-cube C = rand&lt;cube&gt;(5,6,7);
+colvec q = randu&lt;colvec&gt;(5);
+rowvec r = randu&lt;rowvec&gt;(5);
+mat    A = randu&lt;mat&gt;(5,6);
+cube   C = randu&lt;cube&gt;(5,6,7);
 </pre>
 </ul>
 </li>
@@ -3101,22 +3338,61 @@ cube C = rand&lt;cube&gt;(5,6,7);
 <hr class="greyline"><br>
 
 <a name="repmat"></a>
-<b>repmat(mat A, n_copies_per_row, n_copies_per_col)</b>
+<b>repmat(mat A, num_copies_per_row, num_copies_per_col)</b>
 <ul>
 <li>Generate a matrix by replicating matrix A in a block-like fashion.</li>
-<li>The generated matrix has a size of (n_copies_per_row * A.n_rows, n_copies_per_col * A.n_cols)</li>
+<br>
+<li>The generated matrix has the following size:
+<ul>
+rows = num_copies_per_row * A.n_rows
+<br>
+cols = num_copies_per_col * A.n_cols
+</ul>
+</li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(2, 3);
+mat A = randu&lt;mat&gt;(2, 3);
 mat B = repmat(A, 4, 5);
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+</ul>
+<hr class="greyline">
+<br>
+
+<a name="toeplitz"></a>
+<b>toeplitz(A)
+<br>
+toeplitz(A,B)</b>
+<ul>
+<li>Generate a Toeplitz matrix, with the first column specified by A, and (optionally) the first row specified by B.</li>
+<br>
+<li>
+A and B must be vectors.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+vec A = randu&lt;vec&gt;(5);
+mat X = toeplitz(A);
+</pre>
+</ul>
+</li>
+<br>
+<li>See also:
+<ul>
+<li><a href="http://mathworld.wolfram.com/ToeplitzMatrix.html">Toeplitz matrix in MathWorld</a>
+<li><a href="http://en.wikipedia.org/wiki/Toeplitz_matrix">Toeplitz matrix in Wikipedia</a>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline">
 <br>
 
@@ -3221,10 +3497,10 @@ e.g., if X has the type <i>cx_cube</i>, then the type of Y must be <i>cube</i>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 mat B = abs(A); 
 
-cx_mat X = rand&lt;cx_mat&gt;(5,5);
+cx_mat X = randu&lt;cx_mat&gt;(5,5);
 mat    Y = abs(X);
 </pre>
 </ul>
@@ -3250,7 +3526,7 @@ Obtain the positive distance of the absolute value of each element to the next l
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(4,5);
+mat A = randu&lt;mat&gt;(4,5);
 
 mat X = eps(A);
 </pre>
@@ -3271,7 +3547,7 @@ See also:
 <hr class="greyline"><br>
 
 <a name="misc_fns"></a>
-<b>misc functions (exp, log, log10, pow, sqrt, square)</b>
+<b>misc functions (exp, log, log10, pow, sqrt, square, trunc_exp, trunc_log)</b>
 <br>
 <ul>
 <li>
@@ -3362,6 +3638,32 @@ misc_fn(X) is one of:
       square of each element
     </td>
   </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      trunc_exp(X)
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      base-e exponential of each element,
+      truncated to avoid infinity
+      (only for elements with type <i>float</i> or <i>double</i>)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      trunc_log(X)
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      natural log of each element,
+      truncated to avoid &plusmn;infinity
+      (only for elements with type <i>float</i> or <i>double</i>)
+    </td>
+  </tr>
 </tbody>
 </table>
 
@@ -3376,7 +3678,7 @@ misc_fn(X) is one of:
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 mat Y = exp(X);
 </pre>
 </ul>
@@ -3426,7 +3728,7 @@ tan family: <i>tan</i>, <i>atan</i>, <i>tanh</i>, <i>atanh</i>
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 mat Y = cos(X);
 </pre>
 </ul>
@@ -3456,10 +3758,10 @@ Accumulate (sum) all elements
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 double x = accu(A);
 
-mat B = rand&lt;mat&gt;(5,5);
+mat B = randu&lt;mat&gt;(5,5);
 double y = accu(A % B);
 
 // operator % performs element-wise multiplication,
@@ -3481,7 +3783,7 @@ See also: <a href="#sum">sum()</a>
 <ul>
 <li>
 Evaluate an expression that results in a 1x1 matrix,
-followed by converting the 1x1 matrix to a scalar.
+followed by converting the 1x1 matrix to a pure scalar.
 </li>
 <br>
 <li>
@@ -3494,9 +3796,9 @@ by using optimised expression evaluations.
 Examples:
 <ul>
 <pre>
-rowvec r = rand&lt;rowvec&gt;(5);
-colvec q = rand&lt;colvec&gt;(5);
-mat    X = rand&lt;mat&gt;(5,5);
+rowvec r = randu&lt;rowvec&gt;(5);
+colvec q = randu&lt;colvec&gt;(5);
+mat    X = randu&lt;mat&gt;(5,5);
 
 // examples of some expressions
 // for which optimised implementations exist
@@ -3512,8 +3814,11 @@ double d = as_scalar(r*inv(diagmat(X))*q);
 <li>
 See also:
 <ul>
+<li><a href="#accu">accu()</a></li>
 <li><a href="#conv_to">conv_to()</a></li>
 <li><a href="#dot">dot()</a></li>
+<li><a href="#norm">norm()</a></li>
+<li><a href="#reshape">reshape()</a></li>
 </ul>
 </li>
 <br>
@@ -3539,7 +3844,7 @@ An exception is thrown if the given matrix is not square.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 double x = det(A);
 </pre>
 </ul>
@@ -3572,8 +3877,8 @@ See also:
 Examples:
 <ul>
 <pre>
-colvec a = rand&lt;colvec&gt;(10);
-colvec b = rand&lt;colvec&gt;(10);
+colvec a = randu&lt;colvec&gt;(10);
+colvec b = randu&lt;colvec&gt;(10);
 
 double x = dot(a,b);
 </pre>
@@ -3584,6 +3889,7 @@ double x = dot(a,b);
 <ul>
 <li><a href="#as_scalar">as_scalar()</a></li>
 <li><a href="#cross">cross()</a></li>
+<li><a href="#norm">norm()</a></li>
 </ul>
 </li>
 <br>
@@ -3605,7 +3911,7 @@ An exception is thrown if the given matrix is not square.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 
 double val;
 double sign;
@@ -3640,14 +3946,19 @@ Compute the <i>p</i>-norm of X, under the assumption that X is a vector.
 </li>
 <br>
 <li>
-For <i>p</i> = "inf" the maximum norm is computed, while for <i>p</i> = "-inf", the minimum norm is calculated.
+For <i>p</i> = "inf", the maximum norm is computed, while for <i>p</i> = "-inf", the minimum norm is calculated.
+</li>
+<br>
+<li>
+To obtain the zero norm or Hamming norm (i.e. the number of non-zero elements),
+you may want to use this expression: <a href="#accu">accu</a>(X != 0).
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-colvec q = rand&lt;colvec&gt;(5);
+colvec q = randu&lt;colvec&gt;(5);
 double x = norm(q, 2);
 double y = norm(q, "inf");
 </pre>
@@ -3657,6 +3968,7 @@ double y = norm(q, "inf");
 <li>
 See also:
 <ul>
+<li><a href="#dot">dot()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Norm_(mathematics)">Norm in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/VectorNorm.html">Vector Norm in MathWorld</a></li>
 </ul>
@@ -3678,7 +3990,7 @@ See also:
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(4,5);
+mat A = randu&lt;mat&gt;(4,5);
 
 u32 r = rank(A);
 </pre>
@@ -3711,13 +4023,22 @@ An exception is thrown if the given matrix is not square.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 double x = trace(A);
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#diag">.diag()</a></li>
+<li><a href="#diagvec">diagvec()</a></li>
+<li><a href="#sum">sum()</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline">
 
 <hr class="greyline">
@@ -3753,7 +4074,7 @@ An extracted a diagonal is interpreted as a column vector.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 
 colvec d = diagvec(A);
 </pre>
@@ -3792,10 +4113,10 @@ For a vector argument, return the minimum/maximum value.
 Examples:
 <ul>
 <pre>
-colvec q = rand&lt;colvec&gt;(10,1);
+colvec q = randu&lt;colvec&gt;(10,1);
 double x = max(q);
 
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 rowvec b = max(A);
 
 // same result as max(A)
@@ -3833,10 +4154,10 @@ For a vector argument, return the product of all elements.
 Examples:
 <ul>
 <pre>
-colvec q = rand&lt;colvec&gt;(10,1);
+colvec q = randu&lt;colvec&gt;(10,1);
 double x = prod(q);
 
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 rowvec b = prod(A);
 
 // same result as prod(A)
@@ -3876,13 +4197,18 @@ For a vector argument, return the sum of all elements.
 </li>
 <br>
 <li>
+To get a sum of all the elements regardless of the argument type (i.e. matrix or vector),
+you may wish to use <a href="#accu">accu()</a> instead.
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
-colvec q = rand&lt;colvec&gt;(10,1);
+colvec q = randu&lt;colvec&gt;(10,1);
 double x = sum(q);
 
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 rowvec b = sum(A);
 
 // same result as sum(A)
@@ -3901,10 +4227,14 @@ double y = sum(sum(A));
 </li>
 <br>
 <li>
-See also: <a href="#accu">accu()</a>
-</li>
+See also:
+<ul>
+<li><a href="#accu">accu()</a></li>
+<li><a href="#trace">trace()</a></li>
 </ul>
+</li>
 <br>
+</ul>
 <hr class="greyline"><br>
 
 
@@ -3995,12 +4325,12 @@ Using <i>norm_type=1</i> causes normalisation to be done using N, which provides
 Examples:
 <ul>
 <pre>
-mat A    = rand&lt;mat&gt;(5,5);
+mat A    = randu&lt;mat&gt;(5,5);
 mat B    = mean(A);
 mat C    = var(A);
 double m = mean(mean(A));
 
-colvec q = rand&lt;colvec&gt;(5);
+colvec q = randu&lt;colvec&gt;(5);
 double v = var(q);
 </pre>
 </ul>
@@ -4010,6 +4340,7 @@ double v = var(q);
 See also:
 <ul>
 <li><a href="#cov">cov()</a></li>
+<li><a href="#cor">cor()</a></li>
 <li><a href="#running_stat">running_stat</a></li>
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
 </ul>
@@ -4027,6 +4358,52 @@ See also:
 <hr class="greyline">
 <br>
 
+<a name="conv"></a>
+<b>
+C = conv(A, B)
+</b>
+<ul>
+<li>
+Convolution of vectors A and B.
+</li>
+<br>
+<li>
+If A and B are polynomial coefficient vectors, convolving them is equivalent to multiplying the two polynomials.
+</li>
+<br>
+<li>
+The convolution operation is also equivalent to FIR filtering.
+</li>
+<br>
+<li>
+The orientation of the result vector is the same as the orientation of A (i.e. column or row vector).
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+vec A = randu&lt;vec&gt;(128) - 0.5;
+vec B = randu&lt;vec&gt;(128) - 0.5;
+
+vec C = conv(A,B);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="http://mathworld.wolfram.com/Convolution.html">Convolution in MathWorld</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Convolution">Convolution in Wikipedia</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Finite_impulse_response">FIR filter in Wikipedia</a></li>
+<li><a href="#cor">cor()</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
+
 <a name="conv_to"></a>
 <b>
 conv_to&lt;<i>type</i>&gt;::from(X)
@@ -4037,30 +4414,46 @@ A form of casting
 </li>
 <br>
 <li>
-Convert between matrix types (e.g. <i>mat</i> to <i>fmat</i>) as well as cube types (e.g. <i>cube</i> to <i>fcube</i>).
+Convert between matrix/vector types (e.g. <i>mat</i> to <i>fmat</i>), as well as cube types (e.g. <i>cube</i> to <i>fcube</i>).
 </li>
 <br>
 <li>
-Conversion of <i>mat</i> into <i>colvec</i> or <i>rowvec</i> is only possible
-if the object has one column or one row, respectively.
+Conversion between <i>std::vector</i> and Armadillo matrices/vectors is also possible.
+</li>
+<br>
+<li>
+Conversion of a <i>mat</i> object into <i>colvec</i>, <i>rowvec</i> or <i>std::vector</i> is possible if the object can be interpreted as a vector.
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat  A = rand&lt;mat&gt;(5,5);
-
+mat  A = randu&lt;mat&gt;(5,5);
 fmat B = conv_to&lt;fmat&gt;::from(A);
+
+typedef std::vector&lt;double&gt; stdvec;
+
+stdvec x(3);
+x[0] = 0.0; x[1] = 1.0;  x[2] = 2.0;
+
+colvec y = conv_to&lt; colvec &gt;::from(x);
+stdvec z = conv_to&lt; stdvec &gt;::from(y); 
 </pre>
 </ul>
 </li>
 <br>
 <li>
-See also: <a href="#as_scalar">as_scalar()</a>
-</li>
+See also:
+<ul>
+<li><a href="#as_scalar">as_scalar()</a></li>
+<li><a href="#reshape">reshape()</a></li>
+<li><a href="#adv_constructors_mat">advanced constructors (matrices)</a></li>
+<li><a href="#adv_constructors_cube">advanced constructors (cubes)</a></li>
 </ul>
+</li>
 <br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="conj"></a>
@@ -4075,7 +4468,7 @@ Obtain the complex conjugate of each element in a complex matrix/cube.
 Examples:
 <ul>
 <pre>
-cx_mat X = rand&lt;cx_mat&gt;(5,5);
+cx_mat X = randu&lt;cx_mat&gt;(5,5);
 cx_mat Y = conj(X);
 </pre>
 </ul>
@@ -4108,11 +4501,11 @@ For vector arguments, the type of vector is ignored and each element in the vect
 </li>
 <br>
 <li>
-For matrices, X and Y must have the same dimensions.
+For matrices, <i>X</i> and <i>Y</i> must have the same dimensions.
 </li>
 <br>
 <li>
-For vectors, X and Y must have the same number of elements.
+For vectors, <i>X</i> and <i>Y</i> must have the same number of elements.
 </li>
 <br>
 <li>
@@ -4128,8 +4521,8 @@ Using <i>norm_type=1</i> causes normalisation to be done using N.
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(4,5);
-mat Y = rand&lt;mat&gt;(4,5);
+mat X = randu&lt;mat&gt;(4,5);
+mat Y = randu&lt;mat&gt;(4,5);
 
 mat R = cor(X,Y);
 </pre>
@@ -4141,6 +4534,8 @@ See also:
 <ul>
 <li><a href="http://mathworld.wolfram.com/Correlation.html">Correlation in MathWorld</a></li>
 <li><a href="http://mathworld.wolfram.com/Autocorrelation.html">Autocorrelation in MathWorld</a></li>
+<li><a href="#cov">cov()</a></li>
+<li><a href="#conv">conv()</a></li>
 </ul>
 </li>
 </ul>
@@ -4169,11 +4564,11 @@ For vector arguments, the type of vector is ignored and each element in the vect
 </li>
 <br>
 <li>
-For matrices, X and Y must have the same dimensions.
+For matrices, <i>X</i> and <i>Y</i> must have the same dimensions.
 </li>
 <br>
 <li>
-For vectors, X and Y must have the same number of elements.
+For vectors, <i>X</i> and <i>Y</i> must have the same number of elements.
 </li>
 <br>
 <li>
@@ -4190,8 +4585,8 @@ Using <i>norm_type=1</i> causes normalisation to be done using N, which provides
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(4,5);
-mat Y = rand&lt;mat&gt;(4,5);
+mat X = randu&lt;mat&gt;(4,5);
+mat Y = randu&lt;mat&gt;(4,5);
 
 mat C = cov(X,Y);
 </pre>
@@ -4204,6 +4599,7 @@ See also:
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
 <li><a href="#stats_fns">statistics functions</a></li>
 <li><a href="http://mathworld.wolfram.com/Covariance.html">Covariance in MathWorld</a></li>
+<li><a href="#cor">cor()</a></li>
 </ul>
 </li>
 </ul>
@@ -4221,10 +4617,10 @@ Calculate the cross product between A and B, under the assumption that A and B a
 Examples:
 <ul>
 <pre>
-colvec a = rand&lt;colvec&gt;(3);
-colvec b = rand&lt;colvec&gt;(3);
+vec a = randu&lt;vec&gt;(3);
+vec b = randu&lt;vec&gt;(3);
 
-colvec c = cross(a,b);
+vec c = cross(a,b);
 </pre>
 </ul>
 </li>
@@ -4262,12 +4658,12 @@ For <i>colvec</i> and <i>rowvec</i>, elements of the vector are placed on the ma
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 mat B = diagmat(A);
 mat C = A*diagmat(A);
 
-rowvec q = rand&lt;rowvec&gt;(5);
-colvec r = rand&lt;colvec&gt;(5);
+rowvec q = randu&lt;rowvec&gt;(5);
+colvec r = randu&lt;colvec&gt;(5);
 mat X = diagmat(q)*diagmat(r);
 </pre>
 </ul>
@@ -4285,31 +4681,33 @@ See also: <a href="#diagvec">diagvec()</a>
 <b>find(X, k=0, s="first")</b>
 <ul>
 <li>
-Return a column vector (with elements of type u32) of the indices of nonzero elements of <i>X</i>.
+Return a column vector (with elements of type u32) of the indices of non-zero elements of <i>X</i>.
 </li>
 <br>
 <li>
-If <i>X</i> is a matrix, it is intepreted as a vector, with column-by-column ordering of the elements of <i>X</i>.
+<i>X</i> is intepreted as a vector, with column-by-column ordering of the elements of <i>X</i>.
 </li>
 <br>
-<li>If <i>k=0</i> (default), return the indices of all nonzero elements, otherwise return at most <i>k</i> of their indices.</li>
-<br>
-<li>If <i>s="first"</i> (default), return at most the first <i>k</i> indices of the nonzero elements. 
+<li>Relational operators can be used instead of <i>X</i>, e.g.&nbsp;<i>A&nbsp;&gt;&nbsp;0.5</i>
 </li>
 <br>
-<li>If <i>s="last"</i>, return at most the last <i>k</i> indices of the nonzero elements. 
+<li>If <i>k=0</i> (default), return the indices of all non-zero elements, otherwise return at most <i>k</i> of their indices.</li>
+<br>
+<li>If <i>s="first"</i> (default), return at most the first <i>k</i> indices of the non-zero elements. 
 </li>
 <br>
-<li>Relational operators can be used instead of <i>X</i>, though the current implementation is not yet optimal in terms of speed.
+<li>If <i>s="last"</i>, return at most the last <i>k</i> indices of the non-zero elements. 
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat     A  = rand&lt;mat&gt;(10,10);
-ucolvec q1 = find(A &gt; 0.5);
-ucolvec q2 = find(A &gt; 0.5, 10, "last");
+mat  A  = randu&lt;mat&gt;(5,5);
+mat  B  = randu&lt;mat&gt;(5,5);
+uvec q1 = find(A &gt; B);
+uvec q2 = find(A &gt; 0.5);
+uvec q3 = find(A &gt; 0.5, 3, "last");
 </pre>
 </ul>
 </li>
@@ -4338,7 +4736,7 @@ flipud: generate a copy of the input matrix, with the order of the rows reversed
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 
 mat B = fliplr(A);
 mat C = flipud(A);
@@ -4370,7 +4768,7 @@ This operation is equivalent to taking the transpose and then taking the complex
 Examples:
 <ul>
 <pre>
-cx_mat A = rand&lt;cx_mat&gt;(5,10);
+cx_mat A = randu&lt;cx_mat&gt;(5,10);
 cx_mat B = htrans(A);
 </pre>
 </ul>
@@ -4401,7 +4799,8 @@ Extract the imaginary/real part of a complex matrix/cube.
 Examples:
 <ul>
 <pre>
-cx_mat A = rand&lt;cx_mat&gt;(5,5);
+cx_mat A = randu&lt;cx_mat&gt;(5,5);
+
 mat B = imag(A);
 mat C = real(A);
 </pre>
@@ -4428,9 +4827,9 @@ join_cols: for two input matrices A and B, append each column of B to its respec
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(4,5);
-mat B = rand&lt;mat&gt;(4,6);
-mat C = rand&lt;mat&gt;(6,5);
+mat A = randu&lt;mat&gt;(4,5);
+mat B = randu&lt;mat&gt;(4,6);
+mat C = randu&lt;mat&gt;(6,5);
 
 mat X = join_rows(A,B);
 mat Y = join_cols(A,C);
@@ -4462,8 +4861,8 @@ kron(A,B) returns a matrix (with nm rows and pq columns) which denotes the tenso
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(4,5);
-mat B = rand&lt;mat&gt;(5,4);
+mat A = randu&lt;mat&gt;(4,5);
+mat B = randu&lt;mat&gt;(5,4);
 
 mat K = kron(A,B);
 </pre>
@@ -4501,13 +4900,21 @@ For cubes, the number of elements in the given cube must be equal to <i>n_rows *
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(10, 5);
+mat A = randu&lt;mat&gt;(10, 5);
 mat B = reshape(A, 5, 10);
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#as_scalar">as_scalar()</a></li>
+<li><a href="#conv_to">conv_to()</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="shuffle"></a>
@@ -4524,7 +4931,7 @@ Shuffle the rows (dim=0) or columns (dim=1) of a matrix or vector.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(4,5);
+mat A = randu&lt;mat&gt;(4,5);
 mat B = shuffle(A);
 </pre>
 </ul>
@@ -4550,7 +4957,7 @@ mat B = shuffle(A);
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 mat B = sort(A);
 </pre>
 </ul>
@@ -4575,7 +4982,7 @@ mat B = sort(A);
 Examples:
 <ul>
 <pre>
-colvec  q       = rand&lt;colvec&gt;(10);
+colvec  q       = randu&lt;colvec&gt;(10);
 ucolvec indices = sort_index(q);
 </pre>
 </ul>
@@ -4604,7 +5011,7 @@ Matrix transpose.
 <li>
 Examples:
 <ul>
-<pre>mat A = rand&lt;mat&gt;(5,10);
+<pre>mat A = randu&lt;mat&gt;(5,10);
 mat B = trans(A);
 </pre>
 </ul>
@@ -4626,11 +5033,11 @@ mat B = trans(A);
 <br>
 
 <a name="chol"></a>
-<b>chol(R, X)</b>
-<br><b>R = chol(X)</b>
+<b>R = chol(X)</b>
+<br><b>chol(R, X)</b>
 <ul>
 <li>
-Cholesky decomposition of <i>X</i>, such that trans(R)*R = X.
+Cholesky decomposition of <i>X</i>, such that <i>trans(R)*R = X</i>.
 </li>
 <br>
 <li>
@@ -4638,10 +5045,18 @@ X must be a symmetric, positive-definite matrix.
 </li>
 <br>
 <li>
+If the decomposition fails:
+<ul>
+<li>the single argument version will output a matrix with no elements</li>
+<li>the two argument version sets <i>R</i> to have no elements and outputs a bool set to <i>false</i></li>
+</ul>
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 mat Y = trans(X)*X;
 
 mat R = chol(Y);
@@ -4680,18 +5095,18 @@ An exception is thrown if <i>X</i> is not square.
 </li>
 <br>
 <li>
-There is currently no check for symmetry of X.
+There is currently no check whether <i>X</i> is symmetric.
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 mat B = trans(A)*A;  // generate a symmetric matrix
 
-colvec eigval;
-mat    eigvec;
+vec eigval;
+mat eigvec;
 
 eig_sym(eigval, eigvec, B);
 </pre>
@@ -4740,10 +5155,10 @@ An exception is thrown if <i>X</i> is not square.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 
-cx_colvec eigval;
-cx_mat    eigvec;
+cx_vec eigval;
+cx_mat eigvec;
 
 eig_gen(eigval, eigvec, A);
 </pre>
@@ -4776,7 +5191,7 @@ If the matrix appears to be singular, a warning message is printed and the outpu
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
 mat B = inv(A);
 
 // Diagonal elements in C are set to the
@@ -4826,7 +5241,7 @@ The second form is currently considerably slower than the first form.
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(10,10);
+mat A = randu&lt;mat&gt;(10,10);
 
 mat L;
 mat U;
@@ -4851,7 +5266,7 @@ See also: <a href="http://en.wikipedia.org/wiki/LU_decomposition">LU decompositi
 <br><b>pinv(cx_mat A, tol = 0)</b>
 
 <ul>
-<li>Moore-Penrose pseudo-inverse of matrix A.</li><br>
+<li>Moore-Penrose pseudo-inverse of matrix <i>A</i>.</li><br>
 <li>The computation is based on singular value decomposition (SVD).
 If the SVD fails, an error message is printed and the output matrix has no elements.</li><br>
 <li>Any singular values less than tol are treated as zero.</li><br>
@@ -4862,8 +5277,7 @@ where math::eps() denotes the difference between 1 and the least value greater t
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(4,5);
-
+mat A = randu&lt;mat&gt;(4,5);
 mat B = pinv(A);
 </pre>
 </ul>
@@ -4896,24 +5310,24 @@ See also:
 <br><b>princomp(cx_mat coeff, cx_mat score, colvec latent, cx_colvec tsquared, cx_mat X)</b><br>
 <br>
 <ul>
-<li>Principal component analysis of matrix X.</li><br>
-<li>Each row of X is an observation and each column is a variable.</li><br>
-<li>coeff: principal component coefficients.</li><br>
-<li>score: projected data.</li><br>
-<li>latent: eigenvalues of the covariance matrix of X.</li><br>
-<li>tsquared: Hotteling's statistic for each sample.</li><br>
+<li>Principal component analysis of matrix <i>X</i>.</li><br>
+<li>Each row of <i>X</i> is an observation and each column is a variable.</li><br>
+<li><i>coeff</i>: principal component coefficients.</li><br>
+<li><i>score</i>: projected data.</li><br>
+<li><i>latent</i>: eigenvalues of the covariance matrix of <i>X</i>.</li><br>
+<li><i>tsquared</i>: Hotteling's statistic for each sample.</li><br>
 <li>The computation is based on singular value decomposition (SVD).
 If the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,4);
+mat A = randu&lt;mat&gt;(5,4);
 
 mat coeff;
 mat score;
-colvec latent;
-colvec tsquared;
+vec latent;
+vec tsquared;
 
 princomp(coeff, score, latent, tsquared, A);
 </pre>
@@ -4943,21 +5357,21 @@ See also:
 <br><b>princomp_cov(cx_mat coeff, colvec latent, colvec explained, cx_mat X)</b><br>
 
 <ul>
-<li>Principal component analysis of the covariance matrix of the input matrix X.</li><br>
-<li>coeff: principal component coefficients.</li><br>
-<li>latent: principal component variances.</li><br>
-<li>explained: percentage of the total variance explained by each principal component.</li><br>
+<li>Principal component analysis of the covariance matrix of the input matrix <i>X</i>.</li><br>
+<li><i>coeff</i>: principal component coefficients.</li><br>
+<li><i>latent</i>: principal component variances.</li><br>
+<li><i>explained</i>: percentage of the total variance explained by each principal component.</li><br>
 <li>The computation is based on singular value decomposition (SVD).
 If the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
 <li>
 Examples:
 <ul>
 <pre>
-mat A = rand&lt;mat&gt;(5,4);
+mat A = randu&lt;mat&gt;(5,4);
 
 mat coeff;
-colvec latent;
-colvec explained; 
+vec latent;
+vec explained; 
 princomp_cov(coeff, latent, explained, A);
 </pre>
 </ul>
@@ -4980,14 +5394,18 @@ See also:
 <b>qr(Q,R,X)</b>
 <ul>
 <li>
-Decomposition of matrix X into an orthogonal (Q) and a right triangular matrix (R), such that Q*R = X.
+Decomposition of matrix <i>X</i> into an orthogonal (<i>Q</i>) and a right triangular matrix (<i>R</i>), such that <i>Q*R = X</i>.
+</li>
+<br>
+<li>
+If the decomposition fails, <i>Q</i> and <i>R</i> are set to have no elements and an error message is printed.
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 mat Q, R;
 
 qr(Q,R,X);
@@ -5009,21 +5427,22 @@ See also: <a href="http://mathworld.wolfram.com/QRDecomposition.html">QR decompo
 <br><b>colvec x = solve(mat A, colvec b)</b>
 <br><b>mat X = solve(mat A, mat B)</b>
 <ul>
-<li>Solve a system of linear equations, i.e., A*X = B, where X is unknown.</li>
+<li>Solve a system of linear equations, i.e., <i>A*X = B</i>, where <i>X</i> is unknown.</li>
 <br>
-<li>For a square matrix A, this function is conceptually the same as X = inv(A)*B, but is done more efficiently.</li>
+<li>For a square matrix <i>A</i>, this function is conceptually the same as <i>X = inv(A)*B</i>, but is more efficient.</li>
 <br>
-<li>Similar functionality to the "\" (left division operator) operator in Matlab/Octave, i.e., X&nbsp;=&nbsp;A&nbsp;\&nbsp;B.</li>
+<li>Similar functionality to the "\" (left division operator) operator in Matlab/Octave, i.e., <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>.</li>
 <br>
-<li>The number of rows in A and B must be the same.</li>
+<li>The number of rows in <i>A</i> and <i>B</i> must be the same.</li>
 <br>
-<li>This function will also try to provide approximate solutions to under-determined as well as over-determined systems (where matrix A is non-square).</li>
+<li>This function will also try to provide approximate solutions to under-determined
+as well as over-determined systems (where matrix <i>A</i> is non-square).</li>
 <br>
 <li>
 If no solution is found:
 <ul>
 <li>the two argument version will output a zero length vector/matrix</li>
-<li>the three argument versions output a bool set to <i>false</i></li>
+<li>the three argument versions will set <i>X</i> to have no elements and output a bool set to <i>false</i></li>
 </ul>
 </li>
 <br>
@@ -5037,14 +5456,14 @@ Using the standard LAPACK library works without problems.
 Examples:
 <ul>
 <pre>
-mat A    = rand&lt;mat&gt;(5,5);
-colvec b = rand&lt;colvec&gt;(5);
-mat B    = rand&lt;mat&gt;(5,5);
+mat A = randu&lt;mat&gt;(5,5);
+vec b = randu&lt;vec&gt;(5);
+mat B = randu&lt;mat&gt;(5,5);
 
-colvec x = solve(A,b);
-mat X    = solve(A,B);
+vec x = solve(A,b);
+mat X = solve(A,B);
 
-colvec x2;
+vec x2;
 bool status = solve(x2, A, b);
 </pre>
 </ul>
@@ -5073,14 +5492,14 @@ See also:
 <br><b>svd(cx_mat U, colvec s, cx_mat V, cx_mat X)</b>
 <ul>
 <li>
-The single and two argument versions compute the singular values of X
+The single and two argument versions compute the singular values of <i>X</i>
 </li>
 <br>
 <li>
-The four argument version computes the singular value decomposition of X, such that:
+The four argument version computes the singular value decomposition of <i>X</i>, such that:
 <ul>
-<li>X = U*diagmat(s)*trans(V), if X has real numbers</li>
-<li>X = U*diagmat(s)*htrans(V), if X has complex numbers</li>
+<li><i>X = U*diagmat(s)*trans(V)</i>, if <i>X</i> has real numbers</li>
+<li><i>X = U*diagmat(s)*htrans(V)</i>, if <i>X</i> has complex numbers</li>
 </ul>
 </li>
 <br>
@@ -5102,10 +5521,10 @@ Using the standard LAPACK library works without problems.
 Examples:
 <ul>
 <pre>
-mat X = rand&lt;mat&gt;(5,5);
+mat X = randu&lt;mat&gt;(5,5);
 
 mat U;
-colvec s;
+vec s;
 mat V;
 bool status = svd(U,s,V,X);
 </pre>
@@ -5796,7 +6215,7 @@ cx_double is a typedef for std::complex&lt;double&gt;
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      A<a href="#n_rows">.n_rows</a>
+      A<a href="#attributes">.n_rows</a>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
@@ -5813,7 +6232,7 @@ cx_double is a typedef for std::complex&lt;double&gt;
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      A<a href="#n_rows">.n_cols</a>
+      A<a href="#attributes">.n_cols</a>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
@@ -5830,7 +6249,7 @@ cx_double is a typedef for std::complex&lt;double&gt;
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      Q<a href="#n_rows">.n_slices</a>
+      Q<a href="#attributes">.n_slices</a>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
@@ -5847,7 +6266,7 @@ cx_double is a typedef for std::complex&lt;double&gt;
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      A<a href="#n_rows">.n_elem</a>
+      A<a href="#attributes">.n_elem</a>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
@@ -6533,8 +6952,8 @@ using namespace arma;
 
 int main(int argc, char** argv)
   {
-  mat A = rand&lt;mat&gt;(4,5);
-  mat B = rand&lt;mat&gt;(4,5);
+  mat A = randu&lt;mat&gt;(4,5);
+  mat B = randu&lt;mat&gt;(4,5);
   
   cout &lt;&lt; "A*trans(B) =" &lt;&lt; endl;
   cout &lt;&lt; A*trans(B) &lt;&lt; endl;

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: op_norm_dot Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,49 +29,30 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt; Struct Template Reference<br/>
+<h1>op_norm_dot Class Reference<br/>
 <small>
-[<a class="el" href="a00869.html">Promote_type</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00703_source.html">promote_type.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00420.gif" usemap="#promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;_map" alt=""/>
-  <map id="promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;_map" name="promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;_map">
-<area href="a00454.html" alt="promote_type_ok" shape="rect" coords="0,0,367,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00984.html">Op_dot</a>]</small>
+</h1><!-- doxytag: class="op_norm_dot" -->
+<p>normalised dot product operation  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01297.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00777_source.html">op_dot_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a01427.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00420.html#a70ffec50b00ecc71a8da6ae3fd777a75">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_hot static arma_inline <br class="typebreak"/>
+T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00984.html#gaee9e73773f5c9fd839c788edb18673cb">apply</a> (const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00984.html#ga9b76380ec9ac6e56e80166dc461eae45">apply_unwrap</a> (const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00984.html#gaa2ba83902c86d2c0b5a016187223d9b3">apply_proxy</a> (const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;</h3>
+<p>normalised dot product operation </p>
 
-
-<p>Definition at line <a class="el" href="a00703_source.html#l00100">100</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a70ffec50b00ecc71a8da6ae3fd777a75"></a><!-- doxytag: member="promote_type&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;::result" ref="a70ffec50b00ecc71a8da6ae3fd777a75" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00376.html">promote_type</a>&lt; std::complex&lt; float &gt;, std::complex&lt; double &gt; &gt;::<a class="el" href="a00420.html#a70ffec50b00ecc71a8da6ae3fd777a75">result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00703_source.html#l00100">100</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00777_source.html#l00061">61</a> of file <a class="el" href="a00777_source.html">op_dot_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

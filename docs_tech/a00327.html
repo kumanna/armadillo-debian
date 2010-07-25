@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_norm_dot Class Reference</title>
+<title>Armadillo Technical: is_op_rel&lt; mtOp&lt; out_eT, T1, op_rel_gt_pre &gt; &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,30 +29,41 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_norm_dot Class Reference<br/>
+<h1>is_op_rel&lt; mtOp&lt; out_eT, T1, op_rel_gt_pre &gt; &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00832.html">Op_dot</a>]</small>
-</h1><!-- doxytag: class="op_norm_dot" -->
-<p>normalised dot product operation  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a01036.html">Traits</a>]</small>
+</h1><!-- doxytag: class="is_op_rel&lt; mtOp&lt; out_eT, T1, op_rel_gt_pre &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00861_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00643_source.html">op_dot_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a01204.html">List of all members.</a></p>
+<p><a href="a01335.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline static arma_hot <br class="typebreak"/>
-T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00832.html#ga8a7b499f986157d99c2abcc92043f1e9">apply</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00832.html#ga9b76380ec9ac6e56e80166dc461eae45">apply_unwrap</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot T1::elem_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00832.html#gaa2ba83902c86d2c0b5a016187223d9b3">apply_proxy</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;Y)</td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00327.html#a07fdb5165e033d2aea46fccb55d434b2">value</a> = true</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>normalised dot product operation </p>
+<h3>template&lt;typename out_eT, typename T1&gt;<br/>
+ struct is_op_rel&lt; mtOp&lt; out_eT, T1, op_rel_gt_pre &gt; &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00643_source.html#l00048">48</a> of file <a class="el" href="a00643_source.html">op_dot_proto.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00861_source.html#l00235">235</a> of file <a class="el" href="a00861_source.html">traits.hpp</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a07fdb5165e033d2aea46fccb55d434b2"></a><!-- doxytag: member="is_op_rel&lt; mtOp&lt; out_eT, T1, op_rel_gt_pre &gt; &gt;::value" ref="a07fdb5165e033d2aea46fccb55d434b2" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename out_eT , typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00324.html">is_op_rel</a>&lt; <a class="el" href="a00394.html">mtOp</a>&lt; out_eT, T1, <a class="el" href="a00428.html">op_rel_gt_pre</a> &gt; &gt;::<a class="el" href="a00327.html#a07fdb5165e033d2aea46fccb55d434b2">value</a> = true<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00861_source.html#l00236">236</a> of file <a class="el" href="a00861_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Base.hpp File Reference</title>
+<title>Armadillo Technical: promote_type&lt; s8, u8 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,29 +14,64 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>Base.hpp File Reference</h1>
-<p><a href="a00520_source.html">Go to the source code of this file.</a></p>
+<h1>promote_type&lt; s8, u8 &gt; Struct Template Reference<br/>
+<small>
+[<a class="el" href="a01024.html">Promote_type</a>]</small>
+</h1><!-- doxytag: class="promote_type&lt; s8, u8 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
+<p><code>#include &lt;<a class="el" href="a00843_source.html">promote_type.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for promote_type&lt; s8, u8 &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00520.gif" usemap="#promote_type&lt; s8, u8 &gt;_map" alt=""/>
+  <map id="promote_type&lt; s8, u8 &gt;_map" name="promote_type&lt; s8, u8 &gt;_map">
+<area href="a00558.html" alt="promote_type_ok" shape="rect" coords="0,0,148,24"/>
+</map>
+ </div>
+</div>
+
+<p><a href="a01527.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054.html">Base&lt; elem_type, derived &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00191.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00488.html">unwrap</a> class.  <a href="a00054.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056.html">BaseVec&lt; elem_type, derived &gt;</a></td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a01037.html#ga2ff401e087cf786c38a6812723e94473">s8</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00520.html#a2b648a758496ca4ff3baa0c819780320">result</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;&gt;<br/>
+ struct promote_type&lt; s8, u8 &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00843_source.html#l00090">90</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a2b648a758496ca4ff3baa0c819780320"></a><!-- doxytag: member="promote_type&lt; s8, u8 &gt;::result" ref="a2b648a758496ca4ff3baa0c819780320" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a01037.html#ga2ff401e087cf786c38a6812723e94473">s8</a> <a class="el" href="a00480.html">promote_type</a>&lt; <a class="el" href="a01037.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, <a class="el" href="a01037.html#gaed742c436da53c1080638ce6ef7d13de">u8</a> &gt;::<a class="el" href="a00520.html#a2b648a758496ca4ff3baa0c819780320">result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00843_source.html#l00090">90</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

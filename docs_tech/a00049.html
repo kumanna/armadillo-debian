@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: arma_version Struct Reference</title>
+<title>Armadillo Technical: arma_not_op_rel&lt; op_rel_gt_pre &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,106 +29,19 @@
   </div>
 </div>
 <div class="contents">
-<h1>arma_version Struct Reference<br/>
+<h1>arma_not_op_rel&lt; op_rel_gt_pre &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00887.html">Version</a>]</small>
-</h1><!-- doxytag: class="arma_version" -->
-<p><code>#include &lt;<a class="el" href="a00727_source.html">version.hpp</a>&gt;</code></p>
-
-<p><a href="a00930.html">List of all members.</a></p>
+[<a class="el" href="a01027.html">Restrictors</a>]</small>
+</h1><!-- doxytag: class="arma_not_op_rel&lt; op_rel_gt_pre &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00846_source.html">restrictors.hpp</a>&gt;</code></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00049.html#a9e190e18f90abeb8c334c3153c58c2eb">as_string</a> ()</td></tr>
-<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00049.html#a8e56dd59409ebcdbe3c59ac1f211203f">major</a> = 0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00049.html#a059188f5d273c7212197678c6dd04e78">minor</a> = 9</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00049.html#a4a32e19f39dbd6719d16710bef1e80f5">patch</a> = 8</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;&gt;<br/>
+ struct arma_not_op_rel&lt; op_rel_gt_pre &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00727_source.html#l00022">22</a> of file <a class="el" href="a00727_source.html">version.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a9e190e18f90abeb8c334c3153c58c2eb"></a><!-- doxytag: member="arma_version::as_string" ref="a9e190e18f90abeb8c334c3153c58c2eb" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static std::string arma_version::as_string </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00727_source.html#l00031">31</a> of file <a class="el" href="a00727_source.html">version.hpp</a>.</p>
-
-<p>References <a class="el" href="a00727_source.html#l00024">major</a>, <a class="el" href="a00727_source.html#l00025">minor</a>, and <a class="el" href="a00727_source.html#l00026">patch</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00032"></a>00032     {
-<a name="l00033"></a>00033     std::stringstream ss;
-<a name="l00034"></a>00034     ss &lt;&lt; <a class="code" href="a00049.html#a8e56dd59409ebcdbe3c59ac1f211203f">arma_version::major</a> &lt;&lt; <span class="charliteral">&apos;.&apos;</span> &lt;&lt; <a class="code" href="a00049.html#a059188f5d273c7212197678c6dd04e78">arma_version::minor</a> &lt;&lt; <span class="charliteral">&apos;.&apos;</span> &lt;&lt; <a class="code" href="a00049.html#a4a32e19f39dbd6719d16710bef1e80f5">arma_version::patch</a>;
-<a name="l00035"></a>00035     
-<a name="l00036"></a>00036     <span class="keywordflow">return</span> ss.str();
-<a name="l00037"></a>00037     }
-</pre></div></p>
-
-</div>
-</div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a8e56dd59409ebcdbe3c59ac1f211203f"></a><!-- doxytag: member="arma_version::major" ref="a8e56dd59409ebcdbe3c59ac1f211203f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned int <a class="el" href="a00049.html#a8e56dd59409ebcdbe3c59ac1f211203f">arma_version::major</a> = 0<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00727_source.html#l00024">24</a> of file <a class="el" href="a00727_source.html">version.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00531_source.html#l00778">junk::arma_first_extra_debug_message::arma_first_extra_debug_message()</a>, and <a class="el" href="a00727_source.html#l00031">as_string()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a059188f5d273c7212197678c6dd04e78"></a><!-- doxytag: member="arma_version::minor" ref="a059188f5d273c7212197678c6dd04e78" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned int <a class="el" href="a00049.html#a059188f5d273c7212197678c6dd04e78">arma_version::minor</a> = 9<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00727_source.html#l00025">25</a> of file <a class="el" href="a00727_source.html">version.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00531_source.html#l00778">junk::arma_first_extra_debug_message::arma_first_extra_debug_message()</a>, and <a class="el" href="a00727_source.html#l00031">as_string()</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4a32e19f39dbd6719d16710bef1e80f5"></a><!-- doxytag: member="arma_version::patch" ref="a4a32e19f39dbd6719d16710bef1e80f5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned int <a class="el" href="a00049.html#a4a32e19f39dbd6719d16710bef1e80f5">arma_version::patch</a> = 8<code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00727_source.html#l00026">26</a> of file <a class="el" href="a00727_source.html">version.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00531_source.html#l00778">junk::arma_first_extra_debug_message::arma_first_extra_debug_message()</a>, and <a class="el" href="a00727_source.html#l00031">as_string()</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00846_source.html#l00131">131</a> of file <a class="el" href="a00846_source.html">restrictors.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

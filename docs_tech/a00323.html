@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_max Class Reference</title>
+<title>Armadillo Technical: is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,47 +29,41 @@
   </div>
 </div>
 <div class="contents">
-<h1>op_max Class Reference<br/>
+<h1>is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00837.html">Op_max</a>]</small>
-</h1><!-- doxytag: class="op_max" -->
-<p>Class for finding maximum values in a matrix.  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a01036.html">Traits</a>]</small>
+</h1><!-- doxytag: class="is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00861_source.html">traits.hpp</a>&gt;</code></p>
 
-<p><code>#include &lt;<a class="el" href="a00653_source.html">op_max_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a01200.html">List of all members.</a></p>
+<p><a href="a01331.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263">direct_max</a> (const eT *const X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the maximum value in an array  <a href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#ga90e0d4f6d218e3bd1ada0e119b63f648">direct_max</a> (const <a class="el" href="a00482.html">subview</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the maximum value in a <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>  <a href="a00837.html#ga90e0d4f6d218e3bd1ada0e119b63f648"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#gab4f01958a55267d6b141e576975f15ec">direct_max</a> (const <a class="el" href="a00080.html">diagview</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">find the maximum value in a <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>  <a href="a00837.html#gab4f01958a55267d6b141e576975f15ec"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#gaa4bc696fbeab6c132cb63787fed671f6">apply</a> (<a class="el" href="a00308.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00323.html">op_max</a> &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">For each row or for each column, find the maximum value. The result is stored in a dense matrix that has either one column or one row. The dimension, for which the maxima are found, is set via the <a class="el" href="a00784.html#ga789487ba61e48fd9c76bd382ca68d195" title="Delayed &#39;maximum values&#39; operation. The dimension, along which the maxima...">max()</a> function.  <a href="a00837.html#gaa4bc696fbeab6c132cb63787fed671f6"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#ga32306c9c7eb6e835ccc893309a5da117">direct_max</a> (const std::complex&lt; T &gt; *const X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the maximum value in an array (version for complex numbers).  <a href="a00837.html#ga32306c9c7eb6e835ccc893309a5da117"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#ga73272390b5010ccdac8a66fc6ad70c9e">direct_max</a> (const <a class="el" href="a00482.html">subview</a>&lt; std::complex&lt; T &gt; &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the maximum value in a <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a> (version for complex numbers).  <a href="a00837.html#ga73272390b5010ccdac8a66fc6ad70c9e"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#gae17a96cf314eaacd6a10a60ec5cf24b1">direct_max</a> (const <a class="el" href="a00080.html">diagview</a>&lt; std::complex&lt; T &gt; &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find the maximum value in a <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a> (version for complex numbers).  <a href="a00837.html#gae17a96cf314eaacd6a10a60ec5cf24b1"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T , typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00837.html#ga631acd4fb821eae533430d4c38e83a43">apply</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;out, const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00323.html">op_max</a> &gt; &amp;in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Implementation for complex numbers.  <a href="a00837.html#ga631acd4fb821eae533430d4c38e83a43"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00323.html#a3d8e35533ace4aea6425b17f5fdd3220">value</a> = true</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Class for finding maximum values in a matrix. </p>
+<h3>template&lt;typename T1&gt;<br/>
+ struct is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00653_source.html#l00023">23</a> of file <a class="el" href="a00653_source.html">op_max_proto.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00861_source.html#l00214">214</a> of file <a class="el" href="a00861_source.html">traits.hpp</a>.</p>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a3d8e35533ace4aea6425b17f5fdd3220"></a><!-- doxytag: member="is_op_diagmat&lt; Op&lt; T1, op_diagmat &gt; &gt;::value" ref="a3d8e35533ace4aea6425b17f5fdd3220" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00322.html">is_op_diagmat</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; T1, <a class="el" href="a00406.html">op_diagmat</a> &gt; &gt;::<a class="el" href="a00323.html#a3d8e35533ace4aea6425b17f5fdd3220">value</a> = true<code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00861_source.html#l00215">215</a> of file <a class="el" href="a00861_source.html">traits.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

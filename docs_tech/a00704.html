@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Proxy.hpp File Reference</title>
+<title>Armadillo Technical: fn_randn.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,24 +25,32 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_1306bbe5badeb79fef15bf4ecd31b127.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_486bcba66b7cf2c931271eaf9d5d3f7c.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>Proxy.hpp File Reference</h1>
+<h1>fn_randn.hpp File Reference</h1>
 <p><a href="a00704_source.html">Go to the source code of this file.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00455.html">Proxy&lt; T1 &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00461.html">Proxy&lt; Mat&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00456.html">Proxy&lt; Col&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00463.html">Proxy&lt; Row&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00462.html">Proxy&lt; Op&lt; T1, op_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00460.html">Proxy&lt; Glue&lt; T1, T2, glue_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00464.html">Proxy&lt; subview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00457.html">Proxy&lt; diagview&lt; eT &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00459.html">Proxy&lt; eOp&lt; T1, eop_type &gt; &gt;</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00458.html">Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</a></td></tr>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00936.html#ga1c529e58442c37601fdb5ef7f5824d2f">randn</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00112.html">colvec</a>, <br class="typebreak"/>
+<a class="el" href="a00211.html">eop_randn</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00936.html#ga88b5c16321c55d19c85f613d1202479b">randn</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem, const <a class="el" href="a00040.html">arma_Mat_Col_Row_only</a>&lt; <a class="el" href="a00112.html">colvec</a> &gt;::result *junk=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a vector with all elements set to random values with a gaussian distribution (zero mean, unit variance).  <a href="a00936.html#ga88b5c16321c55d19c85f613d1202479b"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename vec_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00149.html">eOp</a><br class="typebreak"/>
+&lt; vec_type, <a class="el" href="a00211.html">eop_randn</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00936.html#gad8a50ff260e6d1930f8401b1c5299d33">randn</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem, const typename <a class="el" href="a00040.html">arma_Mat_Col_Row_only</a>&lt; vec_type &gt;::result *junk=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00389.html">mat</a>, <br class="typebreak"/>
+<a class="el" href="a00211.html">eop_randn</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00936.html#ga7e1a384f7feb3ad5f5bd8922730c89b4">randn</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a00040.html">arma_Mat_Col_Row_only</a>&lt; <a class="el" href="a00389.html">mat</a> &gt;::result *junk=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a dense matrix with all elements set to random values with a gaussian distribution (zero mean, unit variance).  <a href="a00936.html#ga7e1a384f7feb3ad5f5bd8922730c89b4"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename mat_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00149.html">eOp</a><br class="typebreak"/>
+&lt; mat_type, <a class="el" href="a00211.html">eop_randn</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00936.html#ga85db340574f716106485f4bf337c47ee">randn</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const typename <a class="el" href="a00040.html">arma_Mat_Col_Row_only</a>&lt; mat_type &gt;::result *junk=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00228.html">eOpCube</a><br class="typebreak"/>
+&lt; <a class="el" href="a00123.html">cube</a>, <a class="el" href="a00185.html">eop_cube_randn</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00936.html#gab3e70bbc081db4e56279b00016506eb0">randn</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices, const <a class="el" href="a00009.html">arma_Cube_only</a>&lt; <a class="el" href="a00123.html">cube</a> &gt;::result *junk=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename cube_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00228.html">eOpCube</a><br class="typebreak"/>
+&lt; cube_type, <a class="el" href="a00185.html">eop_cube_randn</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00936.html#gad71ee68c659cc9fc27e6fb1cdee56659">randn</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_rows, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_cols, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_slices, const typename <a class="el" href="a00009.html">arma_Cube_only</a>&lt; cube_type &gt;::result *junk=0)</td></tr>
 </table>
 </div>
 </BODY>

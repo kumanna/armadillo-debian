@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Base&lt; elem_type, derived &gt; Struct Template Reference</title>
+<title>Armadillo Technical: arma_not_op_rel&lt; op_rel_lteq_post &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,56 +29,19 @@
   </div>
 </div>
 <div class="contents">
-<h1>Base&lt; elem_type, derived &gt; Struct Template Reference<br/>
+<h1>arma_not_op_rel&lt; op_rel_lteq_post &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00741.html">Base</a>]</small>
-</h1><!-- doxytag: class="Base" -->
-<p>Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00191.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00488.html">unwrap</a> class.  
-<a href="#_details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="a00520_source.html">Base.hpp</a>&gt;</code></p>
-
-<p><a href="a00935.html">List of all members.</a></p>
+[<a class="el" href="a01027.html">Restrictors</a>]</small>
+</h1><!-- doxytag: class="arma_not_op_rel&lt; op_rel_lteq_post &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00846_source.html">restrictors.hpp</a>&gt;</code></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const derived &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a> () const </td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename elem_type, typename derived&gt;<br/>
- struct Base&lt; elem_type, derived &gt;</h3>
+<h3>template&lt;&gt;<br/>
+ struct arma_not_op_rel&lt; op_rel_lteq_post &gt;</h3>
 
-<p>Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP). Used for type-safe downcasting in functions that restrict their input(s) to be classes that are derived from <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> (e.g. <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a>, <a class="el" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op</a>, <a class="el" href="a00191.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue</a>, <a class="el" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>, <a class="el" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>). A <a class="el" href="a00054.html" title="Class for static polymorphism, modelled after the &quot;Curiously Recurring Template...">Base</a> object can be converted to a <a class="el" href="a00308.html" title="Dense matrix class.">Mat</a> object by the <a class="el" href="a00488.html">unwrap</a> class. </p>
 
-<p>Definition at line <a class="el" href="a00520_source.html#l00028">28</a> of file <a class="el" href="a00520_source.html">Base.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a24f552a2ce63f4a9c72fd77ee449f9cc"></a><!-- doxytag: member="Base::get_ref" ref="a24f552a2ce63f4a9c72fd77ee449f9cc" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename elem_type, typename derived&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline const derived&amp; <a class="el" href="a00054.html">Base</a>&lt; elem_type, derived &gt;::get_ref </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00520_source.html#l00033">33</a> of file <a class="el" href="a00520_source.html">Base.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00583_source.html#l00414">abs()</a>, <a class="el" href="a00558_source.html#l00063">accu_proxy()</a>, <a class="el" href="a00558_source.html#l00026">accu_unwrap()</a>, <a class="el" href="a00605_source.html#l00060">acos()</a>, <a class="el" href="a00605_source.html#l00114">acosh()</a>, <a class="el" href="a00650_source.html#l00076">op_inv::apply_diag()</a>, <a class="el" href="a00642_source.html#l00215">op_norm_dot::apply_proxy()</a>, <a class="el" href="a00642_source.html#l00121">op_dot::apply_proxy()</a>, <a class="el" href="a00642_source.html#l00173">op_norm_dot::apply_unwrap()</a>, <a class="el" href="a00642_source.html#l00098">op_dot::apply_unwrap()</a>, <a class="el" href="a00559_source.html#l00346">as_scalar()</a>, <a class="el" href="a00559_source.html#l00241">as_scalar_diag()</a>, <a class="el" href="a00605_source.html#l00168">asin()</a>, <a class="el" href="a00605_source.html#l00222">asinh()</a>, <a class="el" href="a00605_source.html#l00276">atan()</a>, <a class="el" href="a00605_source.html#l00330">atanh()</a>, <a class="el" href="a00560_source.html#l00025">chol()</a>, <a class="el" href="a00583_source.html#l00606">conj()</a>, <a class="el" href="a00562_source.html#l00026">cor()</a>, <a class="el" href="a00605_source.html#l00033">cos()</a>, <a class="el" href="a00605_source.html#l00087">cosh()</a>, <a class="el" href="a00563_source.html#l00026">cov()</a>, <a class="el" href="a00564_source.html#l00026">cross()</a>, <a class="el" href="a00565_source.html#l00027">det()</a>, <a class="el" href="a00566_source.html#l00026">diagmat()</a>, <a class="el" href="a00567_source.html#l00025">diagvec()</a>, <a class="el" href="a00569_source.html#l00097">eig_gen()</a>, <a class="el" href="a00569_source.html#l00031">eig_sym()</a>, <a class="el" href="a00570_source.html#l00029">eps()</a>, <a class="el" href="a00583_source.html#l00359">exp()</a>, <a class="el" href="a00583_source.html#l00501">fabs()</a>, <a class="el" href="a00571_source.html#l00052">find()</a>, <a class="el" href="a00572_source.html#l00037">fliplr()</a>, <a class="el" href="a00572_source.html#l00025">flipud()</a>, <a class="el" href="a00561_source.html#l00130">conv_to&lt; out_eT &gt;::from()</a>, <a class="el" href="a00573_source.html#l00037">htrans()</a>, <a class="el" href="a00583_source.html#l00166">imag()</a>, <a class="el" href="a00574_source.html#l00026">inv()</a>, <a class="el" href="a00575_source.html#l00025">join_cols()</a>, <a class="el" href="a00575_source.html#l00037">join_rows()</a>, <a class="el" href="a00576_source.html#l00029">kron()</a>, <a class="el" href="a00583_source.html#l00278">log()</a>, <a class="el" href="a00583_source.html#l00332">log10()</a>, <a class="el" href="a00577_source.html#l00026">log_det()</a>, <a class="el" href="a00578_source.html#l00026">lu()</a>, <a class="el" href="a00579_source.html#l00032">max()</a>, <a class="el" href="a00580_source.html#l00025">mean()</a>, <a class="el" href="a00581_source.html#l00024">median()</a>, <a class="el" href="a00582_source.html#l00031">min()</a>, <a class="el" href="a00584_source.html#l00168">norm_proxy()</a>, <a class="el" href="a00584_source.html#l00026">norm_unwrap()</a>, <a class="el" href="a00698_source.html#l00062">operator!=()</a>, <a class="el" href="a00699_source.html#l00029">operator%()</a>, <a class="el" href="a00719_source.html#l00266">subview&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00715_source.html#l00660">subview_cube&lt; eT &gt;::operator%=()</a>, <a class="el" href="a00700_source.html#l00028">operator*()</a>, <a class="el" href="a00697_source.html#l00041">operator+()</a>, <a class="el" href="a00719_source.html#l00208">subview&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00715_source.html#l00602">subview_cube&lt; eT &gt;::operator+=()</a>, <a class="el" href="a00695_source.html#l00055">operator-()</a>, <a class="el" href="a00719_source.html#l00237">subview&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00715_source.html#l00631">subview_cube&lt; eT &gt;::operator-=()</a>, <a class="el" href="a00694_source.html#l00027">operator/()</a>, <a class="el" href="a00719_source.html#l00295">subview&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00715_source.html#l00689">subview_cube&lt; eT &gt;::operator/=()</a>, <a class="el" href="a00698_source.html#l00206">operator&lt;()</a>, <a class="el" href="a00698_source.html#l00134">operator&lt;=()</a>, <a class="el" href="a00719_source.html#l00179">subview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00715_source.html#l00571">subview_cube&lt; eT &gt;::operator=()</a>, <a class="el" href="a00533_source.html#l00066">diagview&lt; eT &gt;::operator=()</a>, <a class="el" href="a00698_source.html#l00026">operator==()</a>, <a class="el" href="a00698_source.html#l00170">operator&gt;()</a>, <a class="el" href="a00698_source.html#l00098">operator&gt;=()</a>, <a class="el" href="a00586_source.html#l00026">pinv()</a>, <a class="el" href="a00583_source.html#l00696">pow()</a>, <a class="el" href="a00587_source.html#l00033">princomp()</a>, <a class="el" href="a00588_source.html#l00032">princomp_cov()</a>, <a class="el" href="a00589_source.html#l00032">prod()</a>, <a class="el" href="a00590_source.html#l00025">qr()</a>, <a class="el" href="a00593_source.html#l00027">rank()</a>, <a class="el" href="a00583_source.html#l00089">real()</a>, <a class="el" href="a00594_source.html#l00028">repmat()</a>, <a class="el" href="a00595_source.html#l00025">reshape()</a>, <a class="el" href="a00596_source.html#l00030">shuffle()</a>, <a class="el" href="a00605_source.html#l00141">sin()</a>, <a class="el" href="a00605_source.html#l00195">sinh()</a>, <a class="el" href="a00597_source.html#l00033">solve()</a>, <a class="el" href="a00598_source.html#l00024">sort()</a>, <a class="el" href="a00599_source.html#l00089">sort_index()</a>, <a class="el" href="a00583_source.html#l00579">sqrt()</a>, <a class="el" href="a00583_source.html#l00552">square()</a>, <a class="el" href="a00600_source.html#l00025">stddev()</a>, <a class="el" href="a00601_source.html#l00032">sum()</a>, <a class="el" href="a00602_source.html#l00025">svd()</a>, <a class="el" href="a00605_source.html#l00249">tan()</a>, <a class="el" href="a00605_source.html#l00303">tanh()</a>, <a class="el" href="a00603_source.html#l00026">trace()</a>, <a class="el" href="a00604_source.html#l00024">trans()</a>, <a class="el" href="a00583_source.html#l00386">trunc_exp()</a>, <a class="el" href="a00583_source.html#l00305">trunc_log()</a>, and <a class="el" href="a00606_source.html#l00025">var()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00034"></a>00034     {
-<a name="l00035"></a>00035     <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>derived&amp;<span class="keyword">&gt;</span>(*this);
-<a name="l00036"></a>00036     }
-</pre></div></p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00846_source.html#l00134">134</a> of file <a class="el" href="a00846_source.html">restrictors.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

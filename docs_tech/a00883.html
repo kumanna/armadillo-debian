@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Typedef</title>
+<title>Armadillo Technical: Cmath_wrap</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -21,703 +21,562 @@
   </div>
 </div>
 <div class="contents">
-<h1>Typedef</h1><table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00735.html">junk</a></td></tr>
-<tr><td colspan="2"><h2>Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef unsigned char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gaed742c436da53c1080638ce6ef7d13de">u8</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">unsigned 8 bit type  <a href="#gaed742c436da53c1080638ce6ef7d13de"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef unsigned short&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">unsigned 16 bit type  <a href="#ga9e6c91d77e24643b888dbd1a1a590054"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef short&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga2e9bf6983da73775aa86158c825bf777">s16</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; unsigned char &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gaeda1a206ac092a684453ae8d1a959352">uchar_mat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; unsigned char &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga51a351c2502a0bc58670e621e2857ab3">uchar_vec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; unsigned char &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gaf9598e7f301151f74a474c113ced2ec7">uchar_colvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; unsigned char &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga8a35a499397ca172d2960eae4a655b40">uchar_rowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; unsigned char &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gae60a89d2662a5144b26a0cc3ab52b78b">uchar_cube</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gafe0a80c1ca289d7afa7ec0e1b47dc927">umat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gaa79de6abc951c414280ec360480cb11a">uvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gaaeb1c7812316966db9cfe18255c92329">ucolvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gac85a20aecfae613473dc2e512848717e">urowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gad291372c769f1be04f1576d2c95f70a7">ucube</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; <a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gad2827c8e4844e523fb4672960b5ab57d">imat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga442f7524c7a3e17bec28a87fa8fe95b6">ivec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gad44f0c65edba98c82f8a9e6eefdab0e2">icolvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; <a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga19a22c6cfbd3bb95e3e46524ecc2c5e4">irowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; <a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga1b6998a1d0c54bd45a299cf60d9e931d">icube</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gab15e03af342f4b350da71b569520c441">fmat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga552bd5aba0574992ecab9a124ccf0bdc">fvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga01aad30aa4ab118159db7041b8734bd6">fcolvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gade8caa85510b27fe20b264231fb6d61f">frowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga17fd1071f423668ac24d4a3dc5a942f2">fcube</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga6bba394f181c76fda12759568986c613">mat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gad9a3c42ec046df78cc86b529edbd0726">vec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gacfcf193997604b8102eef6e569827e11">colvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga27c98ec0163bdac8a3f6bffc51b6641c">rowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga1ef05c2cbf12aee2f382450c9166c2f6">cube</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; <a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gade965f893c55555bfd946a0e07730409">cx_fmat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga93a3f51ab79edc255f6b167f03b0e62c">cx_fvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gabd569f6f5d306cda7f1fd691ed3d7e71">cx_fcolvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; <a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gad4c5c5997f711d88ec0d951525e21403">cx_frowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; <a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga465aa2414d4d20b8d0aec59651245758">cx_fcube</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00308.html">Mat</a>&lt; <a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gaa921a4ccb7c7855b55ad768a14c711c5">cx_mat</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga504a995b54485d10b992c46c8d1b32a1">cx_vec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00058.html">Col</a>&lt; <a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga05fd5785ecb333796eb4da4f2d745fc0">cx_colvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00472.html">Row</a>&lt; <a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#ga2217ecc5ac6c3dcdaeff18b1c9cca4a9">cx_rowvec</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00068.html">Cube</a>&lt; <a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00883.html#gacbae5d7cd7ed5f5b725412f850a20b3a">cx_cube</a></td></tr>
+<h1>Cmath_wrap</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a> (eT val)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#gae1691ae0fa8dab5503a41dfd0122a0d5">arma_isfinite</a> (float x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#gaae65ba5c907ab13ba719aca48ef695bc">arma_isfinite</a> (double x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga8bcfcb0e5611dd0694759db9add1f982">arma_isfinite</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga660b508ca32a3ff83c20250dfe9e8f4c">arma_acos</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga482dfee258666e1b442d3106028cfc21">arma_asin</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga1f5bd36cc2719ec124344bcc80a97bd6">arma_atan</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga85b999344788bdfecb282bb948ea25c6">arma_acosh</a> (const eT x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#gadd36c266714aa16806ec5a0500730a11">arma_asinh</a> (const eT x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#gaf494a42ed1bcd8be197875b66327a00f">arma_atanh</a> (const eT x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#gae9980c5acd2701f588f690573b49d2c6">arma_acosh</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga484a1c131449cf649fa2990ee6fcfeb9">arma_asinh</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline std::complex&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00883.html#ga58434421c996ee00e4524fa060f56e00">arma_atanh</a> (const std::complex&lt; T &gt; &amp;x)</td></tr>
 </table>
-<hr/><h2>Typedef Documentation</h2>
-<a class="anchor" id="gaed742c436da53c1080638ce6ef7d13de"></a><!-- doxytag: member="typedef.hpp::u8" ref="gaed742c436da53c1080638ce6ef7d13de" args="" -->
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ga45b15200b888678d0a473de2dfd602fc"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="ga45b15200b888678d0a473de2dfd602fc" args="(eT val)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef unsigned char <a class="el" href="a00883.html#gaed742c436da53c1080638ce6ef7d13de">u8</a></td>
+          <td class="memname">arma_inline bool arma_isfinite </td>
+          <td>(</td>
+          <td class="paramtype">eT&nbsp;</td>
+          <td class="paramname"> <em>val</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>unsigned 8 bit type </p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00032">32</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00023">23</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Referenced by <a class="el" href="a00636_source.html#l00084">arma_isfinite()</a>, <a class="el" href="a00758_source.html#l02260">Mat&lt; eT &gt;::is_finite()</a>, <a class="el" href="a00642_source.html#l01443">Cube&lt; eT &gt;::is_finite()</a>, <a class="el" href="a00696_source.html#l00247">log_add()</a>, and <a class="el" href="a00849_source.html#l00164">running_stat&lt; eT &gt;::operator()()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00033"></a>00033   {
+<a name="l00034"></a>00034   <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00035"></a>00035   }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga2ff401e087cf786c38a6812723e94473"></a><!-- doxytag: member="typedef.hpp::s8" ref="ga2ff401e087cf786c38a6812723e94473" args="" -->
+<a class="anchor" id="gae1691ae0fa8dab5503a41dfd0122a0d5"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="gae1691ae0fa8dab5503a41dfd0122a0d5" args="(float x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef char <a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a></td>
+          <td class="memname">arma_inline bool arma_isfinite </td>
+          <td>(</td>
+          <td class="paramtype">float&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00024">24</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00042">42</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00043"></a>00043   {
+<a name="l00044"></a>00044 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_ISFINITE)</span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span>    {
+<a name="l00046"></a>00046     <span class="keywordflow">return</span> (std::isfinite(x) != 0);
+<a name="l00047"></a>00047     }
+<a name="l00048"></a>00048 <span class="preprocessor">  #else</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span>    {
+<a name="l00050"></a>00050     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_inf = ( (x == x) &amp;&amp; ((x - x) != float(0)) );
+<a name="l00051"></a>00051     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_nan = (x != x);
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053     <span class="keywordflow">return</span> ( (x_is_inf == <span class="keyword">false</span>) &amp;&amp; (x_is_nan == <span class="keyword">false</span>) );
+<a name="l00054"></a>00054     }
+<a name="l00055"></a>00055 <span class="preprocessor">  #endif</span>
+<a name="l00056"></a>00056 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga9e6c91d77e24643b888dbd1a1a590054"></a><!-- doxytag: member="typedef.hpp::u16" ref="ga9e6c91d77e24643b888dbd1a1a590054" args="" -->
+<a class="anchor" id="gaae65ba5c907ab13ba719aca48ef695bc"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="gaae65ba5c907ab13ba719aca48ef695bc" args="(double x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef unsigned short <a class="el" href="a00883.html#ga9e6c91d77e24643b888dbd1a1a590054">u16</a></td>
+          <td class="memname">arma_inline bool arma_isfinite </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>unsigned 16 bit type </p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00063">63</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00035">35</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p><div class="fragment"><pre class="fragment"><a name="l00064"></a>00064   {
+<a name="l00065"></a>00065 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_ISFINITE)</span>
+<a name="l00066"></a>00066 <span class="preprocessor"></span>    {
+<a name="l00067"></a>00067     <span class="keywordflow">return</span> (std::isfinite(x) != 0);
+<a name="l00068"></a>00068     }
+<a name="l00069"></a>00069 <span class="preprocessor">  #else</span>
+<a name="l00070"></a>00070 <span class="preprocessor"></span>    {
+<a name="l00071"></a>00071     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_inf = ( (x == x) &amp;&amp; ((x - x) != double(0)) );
+<a name="l00072"></a>00072     <span class="keyword">const</span> <span class="keywordtype">bool</span> x_is_nan = (x != x);
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074     <span class="keywordflow">return</span> ( (x_is_inf == <span class="keyword">false</span>) &amp;&amp; (x_is_nan == <span class="keyword">false</span>) );
+<a name="l00075"></a>00075     }
+<a name="l00076"></a>00076 <span class="preprocessor">  #endif</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga2e9bf6983da73775aa86158c825bf777"></a><!-- doxytag: member="typedef.hpp::s16" ref="ga2e9bf6983da73775aa86158c825bf777" args="" -->
+<a class="anchor" id="ga8bcfcb0e5611dd0694759db9add1f982"></a><!-- doxytag: member="cmath_wrap.hpp::arma_isfinite" ref="ga8bcfcb0e5611dd0694759db9add1f982" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef short <a class="el" href="a00883.html#ga2e9bf6983da73775aa86158c825bf777">s16</a></td>
+          <td class="memname">arma_inline bool arma_isfinite </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00036">36</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00084">84</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00636_source.html#l00032">arma_isfinite()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00085"></a>00085   {
+<a name="l00086"></a>00086   <span class="keywordflow">if</span>( (<a class="code" href="a00883.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a>(x.real()) == <span class="keyword">false</span>) || (<a class="code" href="a00883.html#ga45b15200b888678d0a473de2dfd602fc">arma_isfinite</a>(x.imag()) == <span class="keyword">false</span>) )
+<a name="l00087"></a>00087     {
+<a name="l00088"></a>00088     <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00089"></a>00089     }
+<a name="l00090"></a>00090   <span class="keywordflow">else</span>
+<a name="l00091"></a>00091     {
+<a name="l00092"></a>00092     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00093"></a>00093     }
+<a name="l00094"></a>00094   }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga2caf5cd7bcdbe1eefa727f44ffb10bac"></a><!-- doxytag: member="typedef.hpp::u32" ref="ga2caf5cd7bcdbe1eefa727f44ffb10bac" args="" -->
+<a class="anchor" id="ga660b508ca32a3ff83c20250dfe9e8f4c"></a><!-- doxytag: member="cmath_wrap.hpp::arma_acos" ref="ga660b508ca32a3ff83c20250dfe9e8f4c" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef unsigned long <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a></td>
+          <td class="memname">arma_inline std::complex&lt;T&gt; arma_acos </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00043">43</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00139">139</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00060">acos()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00660_source.html#l00134">eop_aux::acos()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00140"></a>00140   {
+<a name="l00141"></a>00141 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span>    {
+<a name="l00143"></a>00143     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gaeb55f2002239d329ca3dce147be04d50">std::tr1::acos</a>(x);
+<a name="l00144"></a>00144     }
+<a name="l00145"></a>00145 <span class="preprocessor">  #else</span>
+<a name="l00146"></a>00146 <span class="preprocessor"></span>    {
+<a name="l00147"></a>00147     <span class="keywordflow">return</span> arma_boost_wrap(<a class="code" href="a00951.html#gaeb55f2002239d329ca3dce147be04d50">acos</a>, x);
+<a name="l00148"></a>00148     }
+<a name="l00149"></a>00149 <span class="preprocessor">  #endif</span>
+<a name="l00150"></a>00150 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga584ab8b1fe53a7874ffa10b1f0c54ef4"></a><!-- doxytag: member="typedef.hpp::s32" ref="ga584ab8b1fe53a7874ffa10b1f0c54ef4" args="" -->
+<a class="anchor" id="ga482dfee258666e1b442d3106028cfc21"></a><!-- doxytag: member="cmath_wrap.hpp::arma_asin" ref="ga482dfee258666e1b442d3106028cfc21" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef long <a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a></td>
+          <td class="memname">arma_inline std::complex&lt;T&gt; arma_asin </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00044">44</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00157">157</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00168">asin()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00660_source.html#l00135">eop_aux::asin()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00158"></a>00158   {
+<a name="l00159"></a>00159 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00160"></a>00160 <span class="preprocessor"></span>    {
+<a name="l00161"></a>00161     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gad662f4c2d1c1edc5fb7de8de87d79dd7">std::tr1::asin</a>(x);
+<a name="l00162"></a>00162     }
+<a name="l00163"></a>00163 <span class="preprocessor">  #else</span>
+<a name="l00164"></a>00164 <span class="preprocessor"></span>    {
+<a name="l00165"></a>00165     <span class="keywordflow">return</span> arma_boost_wrap(<a class="code" href="a00951.html#gad662f4c2d1c1edc5fb7de8de87d79dd7">asin</a>, x);
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167 <span class="preprocessor">  #endif</span>
+<a name="l00168"></a>00168 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga92f3ab9e49d704910eada3d676ab2954"></a><!-- doxytag: member="typedef.hpp::cx_float" ref="ga92f3ab9e49d704910eada3d676ab2954" args="" -->
+<a class="anchor" id="ga1f5bd36cc2719ec124344bcc80a97bd6"></a><!-- doxytag: member="cmath_wrap.hpp::arma_atan" ref="ga1f5bd36cc2719ec124344bcc80a97bd6" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::complex&lt;float&gt; <a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a></td>
+          <td class="memname">arma_inline std::complex&lt;T&gt; arma_atan </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00068">68</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00175">175</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00276">atan()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00660_source.html#l00136">eop_aux::atan()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00176"></a>00176   {
+<a name="l00177"></a>00177 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00178"></a>00178 <span class="preprocessor"></span>    {
+<a name="l00179"></a>00179     <span class="keywordflow">return</span> <a class="code" href="a00951.html#ga5c9d66711c1a97cb248e29f18769c291">std::tr1::atan</a>(x);
+<a name="l00180"></a>00180     }
+<a name="l00181"></a>00181 <span class="preprocessor">  #else</span>
+<a name="l00182"></a>00182 <span class="preprocessor"></span>    {
+<a name="l00183"></a>00183     <span class="keywordflow">return</span> arma_boost_wrap(<a class="code" href="a00951.html#ga5c9d66711c1a97cb248e29f18769c291">atan</a>, x);
+<a name="l00184"></a>00184     }
+<a name="l00185"></a>00185 <span class="preprocessor">  #endif</span>
+<a name="l00186"></a>00186 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga44370c925de7fd6f0f4c4738179d5387"></a><!-- doxytag: member="typedef.hpp::cx_double" ref="ga44370c925de7fd6f0f4c4738179d5387" args="" -->
+<a class="anchor" id="ga85b999344788bdfecb282bb948ea25c6"></a><!-- doxytag: member="cmath_wrap.hpp::arma_acosh" ref="ga85b999344788bdfecb282bb948ea25c6" args="(const eT x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a></td>
+          <td class="memname">arma_inline eT arma_acosh </td>
+          <td>(</td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00069">69</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00193">193</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00114">acosh()</a>, <a class="el" href="a00696_source.html#l00278">log()</a>, and <a class="el" href="a00696_source.html#l00507">sqrt()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00660_source.html#l00138">eop_aux::acosh()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00194"></a>00194   {
+<a name="l00195"></a>00195 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00196"></a>00196 <span class="preprocessor"></span>    {
+<a name="l00197"></a>00197     <span class="keywordflow">return</span> <a class="code" href="a00951.html#ga8ddb99d7f3707d38219b2e6839b340f3">std::tr1::acosh</a>(x);
+<a name="l00198"></a>00198     }
+<a name="l00199"></a>00199 <span class="preprocessor">  #elif defined(ARMA_USE_BOOST)</span>
+<a name="l00200"></a>00200 <span class="preprocessor"></span>    {
+<a name="l00201"></a>00201     <span class="keywordflow">return</span> <a class="code" href="a00951.html#ga8ddb99d7f3707d38219b2e6839b340f3">boost::math::acosh</a>(x);
+<a name="l00202"></a>00202     }
+<a name="l00203"></a>00203 <span class="preprocessor">  #else</span>
+<a name="l00204"></a>00204 <span class="preprocessor"></span>    {
+<a name="l00205"></a>00205     <span class="keywordflow">if</span>(x &gt;= eT(1))
+<a name="l00206"></a>00206       {
+<a name="l00207"></a>00207       <span class="comment">// http://functions.wolfram.com/ElementaryFunctions/ArcCosh/02/</span>
+<a name="l00208"></a>00208       <span class="keywordflow">return</span> <a class="code" href="a00928.html#ga5f86df83743526b96070a3f91769a98f">std::log</a>( x + <a class="code" href="a00928.html#gae69d28fe1d387bd0823bfe24a5bee315">std::sqrt</a>(x*x - eT(1)) );
+<a name="l00209"></a>00209       }
+<a name="l00210"></a>00210     <span class="keywordflow">else</span>
+<a name="l00211"></a>00211       {
+<a name="l00212"></a>00212       <span class="keywordflow">if</span>(std::numeric_limits&lt;eT&gt;::has_quiet_NaN == <span class="keyword">true</span>)
+<a name="l00213"></a>00213         {
+<a name="l00214"></a>00214         <span class="keywordflow">return</span> -(std::numeric_limits&lt;eT&gt;::quiet_NaN());
+<a name="l00215"></a>00215         }
+<a name="l00216"></a>00216       <span class="keywordflow">else</span>
+<a name="l00217"></a>00217         {
+<a name="l00218"></a>00218         <span class="keywordflow">return</span> eT(0);
+<a name="l00219"></a>00219         }
+<a name="l00220"></a>00220       }
+<a name="l00221"></a>00221     }
+<a name="l00222"></a>00222 <span class="preprocessor">  #endif</span>
+<a name="l00223"></a>00223 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gaeda1a206ac092a684453ae8d1a959352"></a><!-- doxytag: member="typedef.hpp::uchar_mat" ref="gaeda1a206ac092a684453ae8d1a959352" args="" -->
+<a class="anchor" id="gadd36c266714aa16806ec5a0500730a11"></a><!-- doxytag: member="cmath_wrap.hpp::arma_asinh" ref="gadd36c266714aa16806ec5a0500730a11" args="(const eT x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;unsigned char&gt; <a class="el" href="a00308.html">uchar_mat</a></td>
+          <td class="memname">arma_inline eT arma_asinh </td>
+          <td>(</td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00071">71</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00230">230</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00222">asinh()</a>, <a class="el" href="a00696_source.html#l00278">log()</a>, and <a class="el" href="a00696_source.html#l00507">sqrt()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00660_source.html#l00139">eop_aux::asinh()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00231"></a>00231   {
+<a name="l00232"></a>00232 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00233"></a>00233 <span class="preprocessor"></span>    {
+<a name="l00234"></a>00234     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gab99901819b8088add2b6230c4bae60e5">std::tr1::asinh</a>(x);
+<a name="l00235"></a>00235     }
+<a name="l00236"></a>00236 <span class="preprocessor">  #elif defined(ARMA_USE_BOOST)</span>
+<a name="l00237"></a>00237 <span class="preprocessor"></span>    {
+<a name="l00238"></a>00238     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gab99901819b8088add2b6230c4bae60e5">boost::math::asinh</a>(x);
+<a name="l00239"></a>00239     }
+<a name="l00240"></a>00240 <span class="preprocessor">  #else</span>
+<a name="l00241"></a>00241 <span class="preprocessor"></span>    {
+<a name="l00242"></a>00242     <span class="comment">// http://functions.wolfram.com/ElementaryFunctions/ArcSinh/02/</span>
+<a name="l00243"></a>00243     <span class="keywordflow">return</span> <a class="code" href="a00928.html#ga5f86df83743526b96070a3f91769a98f">std::log</a>( x + <a class="code" href="a00928.html#gae69d28fe1d387bd0823bfe24a5bee315">std::sqrt</a>(x*x + eT(1)) );
+<a name="l00244"></a>00244     }
+<a name="l00245"></a>00245 <span class="preprocessor">  #endif</span>
+<a name="l00246"></a>00246 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga51a351c2502a0bc58670e621e2857ab3"></a><!-- doxytag: member="typedef.hpp::uchar_vec" ref="ga51a351c2502a0bc58670e621e2857ab3" args="" -->
+<a class="anchor" id="gaf494a42ed1bcd8be197875b66327a00f"></a><!-- doxytag: member="cmath_wrap.hpp::arma_atanh" ref="gaf494a42ed1bcd8be197875b66327a00f" args="(const eT x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;unsigned char&gt; <a class="el" href="a00058.html">uchar_vec</a></td>
+          <td class="memname">arma_inline eT arma_atanh </td>
+          <td>(</td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00072">72</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00253">253</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00330">atanh()</a>, and <a class="el" href="a00696_source.html#l00278">log()</a>.</p>
+
+<p>Referenced by <a class="el" href="a00660_source.html#l00140">eop_aux::atanh()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00254"></a>00254   {
+<a name="l00255"></a>00255 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00256"></a>00256 <span class="preprocessor"></span>    {
+<a name="l00257"></a>00257     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gaa17ceb2541708639edd524214fdbab5c">std::tr1::atanh</a>(x);
+<a name="l00258"></a>00258     }
+<a name="l00259"></a>00259 <span class="preprocessor">  #elif defined(ARMA_USE_BOOST)</span>
+<a name="l00260"></a>00260 <span class="preprocessor"></span>    {
+<a name="l00261"></a>00261     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gaa17ceb2541708639edd524214fdbab5c">boost::math::atanh</a>(x);
+<a name="l00262"></a>00262     }
+<a name="l00263"></a>00263 <span class="preprocessor">  #else</span>
+<a name="l00264"></a>00264 <span class="preprocessor"></span>    {
+<a name="l00265"></a>00265     <span class="keywordflow">if</span>( (x &gt;= eT(-1)) &amp;&amp; (x &lt;= eT(+1)) )
+<a name="l00266"></a>00266       {
+<a name="l00267"></a>00267       <span class="comment">// http://functions.wolfram.com/ElementaryFunctions/ArcTanh/02/</span>
+<a name="l00268"></a>00268       <span class="keywordflow">return</span> <a class="code" href="a00928.html#ga5f86df83743526b96070a3f91769a98f">std::log</a>( ( eT(1)+x ) / ( eT(1)-x ) ) / eT(2);
+<a name="l00269"></a>00269       }
+<a name="l00270"></a>00270     <span class="keywordflow">else</span>
+<a name="l00271"></a>00271       {
+<a name="l00272"></a>00272       <span class="keywordflow">if</span>(std::numeric_limits&lt;eT&gt;::has_quiet_NaN == <span class="keyword">true</span>)
+<a name="l00273"></a>00273         {
+<a name="l00274"></a>00274         <span class="keywordflow">return</span> -(std::numeric_limits&lt;eT&gt;::quiet_NaN());
+<a name="l00275"></a>00275         }
+<a name="l00276"></a>00276       <span class="keywordflow">else</span>
+<a name="l00277"></a>00277         {
+<a name="l00278"></a>00278         <span class="keywordflow">return</span> eT(0);
+<a name="l00279"></a>00279         }
+<a name="l00280"></a>00280       }
+<a name="l00281"></a>00281     }
+<a name="l00282"></a>00282 <span class="preprocessor">  #endif</span>
+<a name="l00283"></a>00283 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gaf9598e7f301151f74a474c113ced2ec7"></a><!-- doxytag: member="typedef.hpp::uchar_colvec" ref="gaf9598e7f301151f74a474c113ced2ec7" args="" -->
+<a class="anchor" id="gae9980c5acd2701f588f690573b49d2c6"></a><!-- doxytag: member="cmath_wrap.hpp::arma_acosh" ref="gae9980c5acd2701f588f690573b49d2c6" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;unsigned char&gt; <a class="el" href="a00058.html">uchar_colvec</a></td>
+          <td class="memname">arma_inline std::complex&lt;T&gt; arma_acosh </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00073">73</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00290">290</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00114">acosh()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00291"></a>00291   {
+<a name="l00292"></a>00292 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00293"></a>00293 <span class="preprocessor"></span>    {
+<a name="l00294"></a>00294     <span class="keywordflow">return</span> <a class="code" href="a00951.html#ga8ddb99d7f3707d38219b2e6839b340f3">std::tr1::acosh</a>(x);
+<a name="l00295"></a>00295     }
+<a name="l00296"></a>00296 <span class="preprocessor">  #else</span>
+<a name="l00297"></a>00297 <span class="preprocessor"></span>    {
+<a name="l00298"></a>00298     <span class="keywordflow">return</span> arma_boost_wrap(<a class="code" href="a00951.html#ga8ddb99d7f3707d38219b2e6839b340f3">acosh</a>, x);
+<a name="l00299"></a>00299     }
+<a name="l00300"></a>00300 <span class="preprocessor">  #endif</span>
+<a name="l00301"></a>00301 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga8a35a499397ca172d2960eae4a655b40"></a><!-- doxytag: member="typedef.hpp::uchar_rowvec" ref="ga8a35a499397ca172d2960eae4a655b40" args="" -->
+<a class="anchor" id="ga484a1c131449cf649fa2990ee6fcfeb9"></a><!-- doxytag: member="cmath_wrap.hpp::arma_asinh" ref="ga484a1c131449cf649fa2990ee6fcfeb9" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;unsigned char&gt; <a class="el" href="a00472.html">uchar_rowvec</a></td>
+          <td class="memname">arma_inline std::complex&lt;T&gt; arma_asinh </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00074">74</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00308">308</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00719_source.html#l00222">asinh()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00309"></a>00309   {
+<a name="l00310"></a>00310 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00311"></a>00311 <span class="preprocessor"></span>    {
+<a name="l00312"></a>00312     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gab99901819b8088add2b6230c4bae60e5">std::tr1::asinh</a>(x);
+<a name="l00313"></a>00313     }
+<a name="l00314"></a>00314 <span class="preprocessor">  #else</span>
+<a name="l00315"></a>00315 <span class="preprocessor"></span>    {
+<a name="l00316"></a>00316     <span class="keywordflow">return</span> arma_boost_wrap(<a class="code" href="a00951.html#gab99901819b8088add2b6230c4bae60e5">asinh</a>, x);
+<a name="l00317"></a>00317     }
+<a name="l00318"></a>00318 <span class="preprocessor">  #endif</span>
+<a name="l00319"></a>00319 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gae60a89d2662a5144b26a0cc3ab52b78b"></a><!-- doxytag: member="typedef.hpp::uchar_cube" ref="gae60a89d2662a5144b26a0cc3ab52b78b" args="" -->
+<a class="anchor" id="ga58434421c996ee00e4524fa060f56e00"></a><!-- doxytag: member="cmath_wrap.hpp::arma_atanh" ref="ga58434421c996ee00e4524fa060f56e00" args="(const std::complex&lt; T &gt; &amp;x)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;unsigned char&gt; <a class="el" href="a00068.html">uchar_cube</a></td>
+          <td class="memname">arma_inline std::complex&lt;T&gt; arma_atanh </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; T &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00075">75</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00636_source.html#l00326">326</a> of file <a class="el" href="a00636_source.html">cmath_wrap.hpp</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="gafe0a80c1ca289d7afa7ec0e1b47dc927"></a><!-- doxytag: member="typedef.hpp::umat" ref="gafe0a80c1ca289d7afa7ec0e1b47dc927" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;<a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&gt; <a class="el" href="a00308.html">umat</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
+<p>References <a class="el" href="a00719_source.html#l00330">atanh()</a>.</p>
 
-<p>Definition at line <a class="el" href="a00723_source.html#l00077">77</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gaa79de6abc951c414280ec360480cb11a"></a><!-- doxytag: member="typedef.hpp::uvec" ref="gaa79de6abc951c414280ec360480cb11a" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&gt; <a class="el" href="a00058.html">uvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00078">78</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gaaeb1c7812316966db9cfe18255c92329"></a><!-- doxytag: member="typedef.hpp::ucolvec" ref="gaaeb1c7812316966db9cfe18255c92329" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&gt; <a class="el" href="a00058.html">ucolvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00079">79</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gac85a20aecfae613473dc2e512848717e"></a><!-- doxytag: member="typedef.hpp::urowvec" ref="gac85a20aecfae613473dc2e512848717e" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;<a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&gt; <a class="el" href="a00472.html">urowvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00080">80</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gad291372c769f1be04f1576d2c95f70a7"></a><!-- doxytag: member="typedef.hpp::ucube" ref="gad291372c769f1be04f1576d2c95f70a7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;<a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&gt; <a class="el" href="a00068.html">ucube</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00081">81</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gad2827c8e4844e523fb4672960b5ab57d"></a><!-- doxytag: member="typedef.hpp::imat" ref="gad2827c8e4844e523fb4672960b5ab57d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;<a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&gt; <a class="el" href="a00308.html">imat</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00083">83</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga442f7524c7a3e17bec28a87fa8fe95b6"></a><!-- doxytag: member="typedef.hpp::ivec" ref="ga442f7524c7a3e17bec28a87fa8fe95b6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&gt; <a class="el" href="a00058.html">ivec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00084">84</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gad44f0c65edba98c82f8a9e6eefdab0e2"></a><!-- doxytag: member="typedef.hpp::icolvec" ref="gad44f0c65edba98c82f8a9e6eefdab0e2" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&gt; <a class="el" href="a00058.html">icolvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00085">85</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga19a22c6cfbd3bb95e3e46524ecc2c5e4"></a><!-- doxytag: member="typedef.hpp::irowvec" ref="ga19a22c6cfbd3bb95e3e46524ecc2c5e4" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;<a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&gt; <a class="el" href="a00472.html">irowvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00086">86</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga1b6998a1d0c54bd45a299cf60d9e931d"></a><!-- doxytag: member="typedef.hpp::icube" ref="ga1b6998a1d0c54bd45a299cf60d9e931d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;<a class="el" href="a00883.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>&gt; <a class="el" href="a00068.html">icube</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00087">87</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gab15e03af342f4b350da71b569520c441"></a><!-- doxytag: member="typedef.hpp::fmat" ref="gab15e03af342f4b350da71b569520c441" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;float&gt; <a class="el" href="a00308.html">fmat</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00089">89</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga552bd5aba0574992ecab9a124ccf0bdc"></a><!-- doxytag: member="typedef.hpp::fvec" ref="ga552bd5aba0574992ecab9a124ccf0bdc" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;float&gt; <a class="el" href="a00058.html">fvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00090">90</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga01aad30aa4ab118159db7041b8734bd6"></a><!-- doxytag: member="typedef.hpp::fcolvec" ref="ga01aad30aa4ab118159db7041b8734bd6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;float&gt; <a class="el" href="a00058.html">fcolvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00091">91</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gade8caa85510b27fe20b264231fb6d61f"></a><!-- doxytag: member="typedef.hpp::frowvec" ref="gade8caa85510b27fe20b264231fb6d61f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;float&gt; <a class="el" href="a00472.html">frowvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00092">92</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga17fd1071f423668ac24d4a3dc5a942f2"></a><!-- doxytag: member="typedef.hpp::fcube" ref="ga17fd1071f423668ac24d4a3dc5a942f2" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;float&gt; <a class="el" href="a00068.html">fcube</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00093">93</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga6bba394f181c76fda12759568986c613"></a><!-- doxytag: member="typedef.hpp::mat" ref="ga6bba394f181c76fda12759568986c613" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;double&gt; <a class="el" href="a00308.html">mat</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00095">95</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gad9a3c42ec046df78cc86b529edbd0726"></a><!-- doxytag: member="typedef.hpp::vec" ref="gad9a3c42ec046df78cc86b529edbd0726" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;double&gt; <a class="el" href="a00058.html">vec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00096">96</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gacfcf193997604b8102eef6e569827e11"></a><!-- doxytag: member="typedef.hpp::colvec" ref="gacfcf193997604b8102eef6e569827e11" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;double&gt; <a class="el" href="a00058.html">colvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00097">97</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga27c98ec0163bdac8a3f6bffc51b6641c"></a><!-- doxytag: member="typedef.hpp::rowvec" ref="ga27c98ec0163bdac8a3f6bffc51b6641c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;double&gt; <a class="el" href="a00472.html">rowvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00098">98</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga1ef05c2cbf12aee2f382450c9166c2f6"></a><!-- doxytag: member="typedef.hpp::cube" ref="ga1ef05c2cbf12aee2f382450c9166c2f6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;double&gt; <a class="el" href="a00068.html">cube</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00099">99</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gade965f893c55555bfd946a0e07730409"></a><!-- doxytag: member="typedef.hpp::cx_fmat" ref="gade965f893c55555bfd946a0e07730409" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;<a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a>&gt; <a class="el" href="a00308.html">cx_fmat</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00101">101</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga93a3f51ab79edc255f6b167f03b0e62c"></a><!-- doxytag: member="typedef.hpp::cx_fvec" ref="ga93a3f51ab79edc255f6b167f03b0e62c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a>&gt; <a class="el" href="a00058.html">cx_fvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00102">102</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gabd569f6f5d306cda7f1fd691ed3d7e71"></a><!-- doxytag: member="typedef.hpp::cx_fcolvec" ref="gabd569f6f5d306cda7f1fd691ed3d7e71" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a>&gt; <a class="el" href="a00058.html">cx_fcolvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00103">103</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gad4c5c5997f711d88ec0d951525e21403"></a><!-- doxytag: member="typedef.hpp::cx_frowvec" ref="gad4c5c5997f711d88ec0d951525e21403" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;<a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a>&gt; <a class="el" href="a00472.html">cx_frowvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00104">104</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga465aa2414d4d20b8d0aec59651245758"></a><!-- doxytag: member="typedef.hpp::cx_fcube" ref="ga465aa2414d4d20b8d0aec59651245758" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;<a class="el" href="a00883.html#ga92f3ab9e49d704910eada3d676ab2954">cx_float</a>&gt; <a class="el" href="a00068.html">cx_fcube</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00105">105</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gaa921a4ccb7c7855b55ad768a14c711c5"></a><!-- doxytag: member="typedef.hpp::cx_mat" ref="gaa921a4ccb7c7855b55ad768a14c711c5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00308.html">Mat</a>&lt;<a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a>&gt; <a class="el" href="a00308.html">cx_mat</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00107">107</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga504a995b54485d10b992c46c8d1b32a1"></a><!-- doxytag: member="typedef.hpp::cx_vec" ref="ga504a995b54485d10b992c46c8d1b32a1" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a>&gt; <a class="el" href="a00058.html">cx_vec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00108">108</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga05fd5785ecb333796eb4da4f2d745fc0"></a><!-- doxytag: member="typedef.hpp::cx_colvec" ref="ga05fd5785ecb333796eb4da4f2d745fc0" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00058.html">Col</a>&lt;<a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a>&gt; <a class="el" href="a00058.html">cx_colvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00109">109</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ga2217ecc5ac6c3dcdaeff18b1c9cca4a9"></a><!-- doxytag: member="typedef.hpp::cx_rowvec" ref="ga2217ecc5ac6c3dcdaeff18b1c9cca4a9" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00472.html">Row</a>&lt;<a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a>&gt; <a class="el" href="a00472.html">cx_rowvec</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00110">110</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="gacbae5d7cd7ed5f5b725412f850a20b3a"></a><!-- doxytag: member="typedef.hpp::cx_cube" ref="gacbae5d7cd7ed5f5b725412f850a20b3a" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00068.html">Cube</a>&lt;<a class="el" href="a00883.html#ga44370c925de7fd6f0f4c4738179d5387">cx_double</a>&gt; <a class="el" href="a00068.html">cx_cube</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00723_source.html#l00111">111</a> of file <a class="el" href="a00723_source.html">typedef.hpp</a>.</p>
+<p><div class="fragment"><pre class="fragment"><a name="l00327"></a>00327   {
+<a name="l00328"></a>00328 <span class="preprocessor">  #if defined(ARMA_HAVE_STD_TR1)</span>
+<a name="l00329"></a>00329 <span class="preprocessor"></span>    {
+<a name="l00330"></a>00330     <span class="keywordflow">return</span> <a class="code" href="a00951.html#gaa17ceb2541708639edd524214fdbab5c">std::tr1::atanh</a>(x);
+<a name="l00331"></a>00331     }
+<a name="l00332"></a>00332 <span class="preprocessor">  #else</span>
+<a name="l00333"></a>00333 <span class="preprocessor"></span>    {
+<a name="l00334"></a>00334     <span class="keywordflow">return</span> arma_boost_wrap(<a class="code" href="a00951.html#gaa17ceb2541708639edd524214fdbab5c">atanh</a>, x);
+<a name="l00335"></a>00335     }
+<a name="l00336"></a>00336 <span class="preprocessor">  #endif</span>
+<a name="l00337"></a>00337 <span class="preprocessor"></span>  }
+</pre></div></p>
 
 </div>
 </div>

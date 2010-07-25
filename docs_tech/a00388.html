@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; float, s8 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: field&lt; oT &gt;::iterator Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -27,48 +27,111 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
+  <div class="navpath"><a class="el" href="a00230.html">field</a>::<a class="el" href="a00388.html">iterator</a>
+  </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; float, s8 &gt; Struct Template Reference<br/>
-<small>
-[<a class="el" href="a00869.html">Promote_type</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; float, s8 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00703_source.html">promote_type.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; float, s8 &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00388.gif" usemap="#promote_type&lt; float, s8 &gt;_map" alt=""/>
-  <map id="promote_type&lt; float, s8 &gt;_map" name="promote_type&lt; float, s8 &gt;_map">
-<area href="a00454.html" alt="promote_type_ok" shape="rect" coords="0,0,158,24"/>
-</map>
- </div>
-</div>
+<h1>field&lt; oT &gt;::iterator Class Reference</h1><!-- doxytag: class="field::iterator" -->
+<p><code>#include &lt;<a class="el" href="a00670_source.html">field_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01265.html">List of all members.</a></p>
+<p><a href="a01241.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00388.html#aef9fe287009ae125fc2fc6540e194ce4">result</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00902.html#ga6dabbc0ae002e24f2d94907e2897b385">iterator</a> (<a class="el" href="a00230.html">field</a>&lt; oT &gt; &amp;in_M, const bool at_end=false)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">oT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00902.html#gaf77618d50e0172a496e37c96038e2c82">operator*</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00388.html">iterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00902.html#ga1ebff56b4cb05a7c817e9edb3c81c197">operator++</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00902.html#ga1943d41423f7caae600fe4ae233281cb">operator++</a> (int)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00388.html">iterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00902.html#gaad0ffd5a94b18a83fb5a64674e638b71">operator--</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00902.html#ga0bfc448504459365595c0736d0f3f407">operator--</a> (int)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00388.html#a96fc03cc7a50e8b74069aa77d0c2f2b1">operator!=</a> (const <a class="el" href="a00388.html">iterator</a> &amp;X) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00388.html#a244d52b2268b129948c22e049e3806a4">operator==</a> (const <a class="el" href="a00388.html">iterator</a> &amp;X) const </td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00230.html">field</a>&lt; oT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00388.html#a1d177f536313bd5f5cf47588542d1045">M</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00388.html#ae96d22d06dcb8d3901ea311d35e4fc2d">i</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; float, s8 &gt;</h3>
+<h3>template&lt;typename oT&gt;<br/>
+ class field&lt; oT &gt;::iterator</h3>
 
 
-<p>Definition at line <a class="el" href="a00703_source.html#l00069">69</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="aef9fe287009ae125fc2fc6540e194ce4"></a><!-- doxytag: member="promote_type&lt; float, s8 &gt;::result" ref="aef9fe287009ae125fc2fc6540e194ce4" args="" -->
+<p>Definition at line <a class="el" href="a00670_source.html#l00116">116</a> of file <a class="el" href="a00670_source.html">field_proto.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a96fc03cc7a50e8b74069aa77d0c2f2b1"></a><!-- doxytag: member="field::iterator::operator!=" ref="a96fc03cc7a50e8b74069aa77d0c2f2b1" args="(const iterator &amp;X) const " -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename oT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef float <a class="el" href="a00376.html">promote_type</a>&lt; float, <a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a> &gt;::<a class="el" href="a00388.html#aef9fe287009ae125fc2fc6540e194ce4">result</a></td>
+          <td class="memname">bool <a class="el" href="a00230.html">field</a>&lt; oT &gt;::iterator::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00388.html">iterator</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00703_source.html#l00069">69</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a244d52b2268b129948c22e049e3806a4"></a><!-- doxytag: member="field::iterator::operator==" ref="a244d52b2268b129948c22e049e3806a4" args="(const iterator &amp;X) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename oT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="a00230.html">field</a>&lt; oT &gt;::iterator::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00388.html">iterator</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a1d177f536313bd5f5cf47588542d1045"></a><!-- doxytag: member="field::iterator::M" ref="a1d177f536313bd5f5cf47588542d1045" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename oT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned <a class="el" href="a00230.html">field</a>&lt;oT&gt;&amp; <a class="el" href="a00230.html">field</a>&lt; oT &gt;::<a class="el" href="a00388.html#a1d177f536313bd5f5cf47588542d1045">iterator::M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00670_source.html#l00133">133</a> of file <a class="el" href="a00670_source.html">field_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00669_source.html#l00855">field&lt; oT &gt;::iterator::operator*()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae96d22d06dcb8d3901ea311d35e4fc2d"></a><!-- doxytag: member="field::iterator::i" ref="ae96d22d06dcb8d3901ea311d35e4fc2d" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename oT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_aligned <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00230.html">field</a>&lt; oT &gt;::<a class="el" href="a00388.html#ae96d22d06dcb8d3901ea311d35e4fc2d">iterator::i</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00670_source.html#l00134">134</a> of file <a class="el" href="a00670_source.html">field_proto.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00669_source.html#l00855">field&lt; oT &gt;::iterator::operator*()</a>, <a class="el" href="a00669_source.html#l00865">field&lt; oT &gt;::iterator::operator++()</a>, and <a class="el" href="a00669_source.html#l00887">field&lt; oT &gt;::iterator::operator--()</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eop_cube_log Class Reference</title>
+<title>Armadillo Technical: Cube_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,28 +29,43 @@
   </div>
 </div>
 <div class="contents">
-<h1>eop_cube_log Class Reference<br/>
+<h1>Cube_aux Class Reference<br/>
 <small>
-[<a class="el" href="a00759.html">Eop_cube_core</a>]</small>
-</h1><!-- doxytag: class="eop_cube_log" --><!-- doxytag: inherits="eop_cube_core&lt; eop_cube_log &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00551_source.html">eop_cube_core_proto.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for eop_cube_log:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00124.gif" usemap="#eop_cube_log_map" alt=""/>
-  <map id="eop_cube_log_map" name="eop_cube_log_map">
-<area href="a00119.html" alt="eop_cube_core&lt; eop_cube_log &gt;" shape="rect" coords="0,0,205,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00886.html">Cube</a>]</small>
+</h1><!-- doxytag: class="Cube_aux" -->
+<p><code>#include &lt;<a class="el" href="a00643_source.html">Cube_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01003.html">List of all members.</a></p>
+<p><a href="a01132.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#gaa0ebb575427635df9dad21d2bd0457f3">prefix_pp</a> (<a class="el" href="a00123.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++  <a href="a00886.html#gaa0ebb575427635df9dad21d2bd0457f3"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#ga94cb50acaf1e4360e6325f325ba096bd">prefix_pp</a> (<a class="el" href="a00123.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00886.html#ga94cb50acaf1e4360e6325f325ba096bd"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#ga4e73d6e46a8d79e6c6b40607154e7b1b">postfix_pp</a> (<a class="el" href="a00123.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++  <a href="a00886.html#ga4e73d6e46a8d79e6c6b40607154e7b1b"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#ga2ff885c12d4c334ae827157ddbed71b0">postfix_pp</a> (<a class="el" href="a00123.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00886.html#ga2ff885c12d4c334ae827157ddbed71b0"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#ga4d72f270fd218a69d79adecac7e9fc5c">prefix_mm</a> (<a class="el" href="a00123.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix --  <a href="a00886.html#ga4d72f270fd218a69d79adecac7e9fc5c"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#gab4485a579abb88757b7f8e83805ec2f4">prefix_mm</a> (<a class="el" href="a00123.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">prefix -- for complex numbers (work around for limitations of the std::complex class)  <a href="a00886.html#gab4485a579abb88757b7f8e83805ec2f4"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#gae95e218a4268fbcee637e80b56e1e6f6">postfix_mm</a> (<a class="el" href="a00123.html">Cube</a>&lt; eT &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix --  <a href="a00886.html#gae95e218a4268fbcee637e80b56e1e6f6"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00886.html#gae2e53de87e71bb5b874bfbe95f4e380c">postfix_mm</a> (<a class="el" href="a00123.html">Cube</a>&lt; std::complex&lt; T &gt; &gt; &amp;x)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">postfix ++ for complex numbers (work around for limitations of the std::complex class)  <a href="a00886.html#gae2e53de87e71bb5b874bfbe95f4e380c"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="a00551_source.html#l00056">56</a> of file <a class="el" href="a00551_source.html">eop_cube_core_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00643_source.html#l00209">209</a> of file <a class="el" href="a00643_source.html">Cube_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

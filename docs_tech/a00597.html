@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_solve.hpp File Reference</title>
+<title>Armadillo Technical: unwrap&lt; Col&lt; eT &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,31 +14,87 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_solve.hpp File Reference</h1>
-<p><a href="a00597_source.html">Go to the source code of this file.</a></p>
+<h1>unwrap&lt; Col&lt; eT &gt; &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="a01038.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="unwrap&lt; Col&lt; eT &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00863_source.html">unwrap.hpp</a>&gt;</code></p>
+
+<p><a href="a01601.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT , typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00802.html#ga8b74426a4704d5c142967e622a0efc79">solve</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X, const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;A_in, const <a class="el" href="a00054.html">Base</a>&lt; eT, T2 &gt; &amp;B_in)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solve a system of linear equations, i.e., A*X = B, where X is unknown. For a square matrix A, this function is conceptually the same as X = inv(A)*B, but is done more efficiently. The number of rows in A and B must be the same. B can be either a column vector or a matrix. This function will also try to provide approximate solutions to under-determined as well as over-determined systems (non-square A matrices).  <a href="a00802.html#ga8b74426a4704d5c142967e622a0efc79"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT , typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00308.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00802.html#ga0fddba8474ef39adcee6e5103f752c62">solve</a> (const <a class="el" href="a00054.html">Base</a>&lt; eT, T1 &gt; &amp;A_in, const <a class="el" href="a00054.html">Base</a>&lt; eT, T2 &gt; &amp;B_in)</td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00597.html#a362f754488bf1150c9138bfe7fc37580">unwrap</a> (const <a class="el" href="a00112.html">Col</a>&lt; eT &gt; &amp;A)</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00112.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00597.html#a3b23c9419fb6200eab7711f0490c87b2">M</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename eT&gt;<br/>
+ class unwrap&lt; Col&lt; eT &gt; &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00073">73</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a362f754488bf1150c9138bfe7fc37580"></a><!-- doxytag: member="unwrap&lt; Col&lt; eT &gt; &gt;::unwrap" ref="a362f754488bf1150c9138bfe7fc37580" args="(const Col&lt; eT &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00596.html">unwrap</a>&lt; <a class="el" href="a00112.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00596.html">unwrap</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00112.html">Col</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00077">77</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00078"></a>00078     : <a class="code" href="a00597.html#a3b23c9419fb6200eab7711f0490c87b2">M</a>(A)
+<a name="l00079"></a>00079     {
+<a name="l00080"></a>00080     arma_extra_debug_sigprint();
+<a name="l00081"></a>00081     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a3b23c9419fb6200eab7711f0490c87b2"></a><!-- doxytag: member="unwrap&lt; Col&lt; eT &gt; &gt;::M" ref="a3b23c9419fb6200eab7711f0490c87b2" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00112.html">Col</a>&lt;eT&gt;&amp; <a class="el" href="a00596.html">unwrap</a>&lt; <a class="el" href="a00112.html">Col</a>&lt; eT &gt; &gt;::<a class="el" href="a00597.html#a3b23c9419fb6200eab7711f0490c87b2">M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00083">83</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

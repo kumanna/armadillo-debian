@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Mat&lt; eT &gt;::row_iterator Class Reference</title>
+<title>Armadillo Technical: partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -27,131 +27,188 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="a00308.html">Mat</a>::<a class="el" href="a00473.html">row_iterator</a>
-  </div>
 </div>
 <div class="contents">
-<h1>Mat&lt; eT &gt;::row_iterator Class Reference</h1><!-- doxytag: class="Mat::row_iterator" -->
-<p><code>#include &lt;<a class="el" href="a00633_source.html">Mat_proto.hpp</a>&gt;</code></p>
+<h1>partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="a01038.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00863_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01186.html">List of all members.</a></p>
+<p><a href="a01480.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00827.html#ga7fe0531716ce9f88dfa469bc15f6bee5">row_iterator</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;in_M, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> in_row)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00827.html#gac0dd62b5bd1171dda052ba75ea614d68">operator*</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00473.html">row_iterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00827.html#ga08c7192628e88448a3dc66eb0c90cce3">operator++</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00827.html#ga641f7e558989a34dd61416793ea8917f">operator++</a> (int)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00473.html">row_iterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00827.html#ga70261dbf9bc6e0206d8e5a192dc42fcb">operator--</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00827.html#gab0324322c855ca9957e726d5b65999e5">operator--</a> (int)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a9670e9a3668709fbaf0dad1322ff4858">operator!=</a> (const <a class="el" href="a00473.html">row_iterator</a> &amp;X) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#adc5fec6cd946b7bb6643811743fd09ec">operator==</a> (const <a class="el" href="a00473.html">row_iterator</a> &amp;X) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a13fb4d65962f3e137793ffdd5e945be4">partial_unwrap_check</a> (const <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &amp;A, const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a05c387dc8fb2772d8ddcc86e86202c81">~partial_unwrap_check</a> ()</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a32d4c6d43b3dc0a40d38d89901c7bc3d">M</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#af2dba0d4c3157dae0ebbea42f1448244">row</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_aligned <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a4350362293f41e6517d1ac7616921608">col</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a07bb1ee8b0991908b7a4ebded791d55b">do_trans</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#a7a311d6697c68b66f8f7e27963b884b3">do_times</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#ae359023d98f836bd8fd38527771a2af5">val</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#aad33e3c8ccd9ae6d9a0a77f490c1e31f">M_local</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00473.html#aac748ab29bb47a0ba524d12026fbe75a">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;typename eT&gt;<br/>
- class Mat&lt; eT &gt;::row_iterator</h3>
+ class partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00633_source.html#l00225">225</a> of file <a class="el" href="a00633_source.html">Mat_proto.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a9670e9a3668709fbaf0dad1322ff4858"></a><!-- doxytag: member="Mat::row_iterator::operator!=" ref="a9670e9a3668709fbaf0dad1322ff4858" args="(const row_iterator &amp;X) const " -->
+<p>Definition at line <a class="el" href="a00863_source.html#l01049">1049</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a13fb4d65962f3e137793ffdd5e945be4"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::partial_unwrap_check" ref="a13fb4d65962f3e137793ffdd5e945be4" args="(const Op&lt; Row&lt; eT &gt;, op_trans &gt; &amp;A, const Mat&lt; eT &gt; &amp;B)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;::row_iterator::operator!= </td>
+          <td class="memname"><a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::<a class="el" href="a00462.html">partial_unwrap_check</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00473.html">row_iterator</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
+          <td class="paramtype">const <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>Definition at line <a class="el" href="a00863_source.html#l01054">1054</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l01055"></a>01055     : <a class="code" href="a00473.html#a07bb1ee8b0991908b7a4ebded791d55b">do_trans</a>(<span class="keyword">true</span>)
+<a name="l01056"></a>01056     , <a class="code" href="a00473.html#a7a311d6697c68b66f8f7e27963b884b3">do_times</a>(<span class="keyword">false</span>)
+<a name="l01057"></a>01057     , <a class="code" href="a00473.html#ae359023d98f836bd8fd38527771a2af5">val</a>     (1)
+<a name="l01058"></a>01058     , <a class="code" href="a00473.html#aad33e3c8ccd9ae6d9a0a77f490c1e31f">M_local</a> ( (&amp;A.<a class="code" href="a00395.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a> == &amp;B) ? <span class="keyword">new</span> <a class="code" href="a00389.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>(A.<a class="code" href="a00395.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a>) : 0   )
+<a name="l01059"></a>01059     , <a class="code" href="a00473.html#aac748ab29bb47a0ba524d12026fbe75a">M</a>       ( (&amp;A.<a class="code" href="a00395.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a> == &amp;B) ? (*<a class="code" href="a00473.html#aad33e3c8ccd9ae6d9a0a77f490c1e31f">M_local</a>)       : A.<a class="code" href="a00395.html#a442302f98c9476006502346e2b4d07f4" title="storage of reference to the operand (e.g. a matrix)">m</a> )
+<a name="l01060"></a>01060     {
+<a name="l01061"></a>01061     arma_extra_debug_sigprint();
+<a name="l01062"></a>01062     }
+</pre></div></p>
+
 </div>
 </div>
-<a class="anchor" id="adc5fec6cd946b7bb6643811743fd09ec"></a><!-- doxytag: member="Mat::row_iterator::operator==" ref="adc5fec6cd946b7bb6643811743fd09ec" args="(const row_iterator &amp;X) const " -->
+<a class="anchor" id="a05c387dc8fb2772d8ddcc86e86202c81"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::~partial_unwrap_check" ref="a05c387dc8fb2772d8ddcc86e86202c81" args="()" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;::row_iterator::operator== </td>
+          <td class="memname"><a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::~<a class="el" href="a00462.html">partial_unwrap_check</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00473.html">row_iterator</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td>
+          <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l01065">1065</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l01066"></a>01066     {
+<a name="l01067"></a>01067     arma_extra_debug_sigprint();
+<a name="l01068"></a>01068     
+<a name="l01069"></a>01069     <span class="keywordflow">if</span>(<a class="code" href="a00473.html#aad33e3c8ccd9ae6d9a0a77f490c1e31f">M_local</a>)
+<a name="l01070"></a>01070       {
+<a name="l01071"></a>01071       <span class="keyword">delete</span> <a class="code" href="a00473.html#aad33e3c8ccd9ae6d9a0a77f490c1e31f">M_local</a>;
+<a name="l01072"></a>01072       }
+<a name="l01073"></a>01073     }
+</pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a32d4c6d43b3dc0a40d38d89901c7bc3d"></a><!-- doxytag: member="Mat::row_iterator::M" ref="a32d4c6d43b3dc0a40d38d89901c7bc3d" args="" -->
+<a class="anchor" id="a07bb1ee8b0991908b7a4ebded791d55b"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::do_trans" ref="a07bb1ee8b0991908b7a4ebded791d55b" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00308.html">Mat</a>&lt;eT&gt;&amp; <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;::<a class="el" href="a00473.html#a32d4c6d43b3dc0a40d38d89901c7bc3d">row_iterator::M</a></td>
+          <td class="memname">const bool <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::<a class="el" href="a00473.html#a07bb1ee8b0991908b7a4ebded791d55b">do_trans</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00633_source.html#l00242">242</a> of file <a class="el" href="a00633_source.html">Mat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00632_source.html#l02539">Mat&lt; eT &gt;::row_iterator::operator*()</a>, <a class="el" href="a00632_source.html#l02549">Mat&lt; eT &gt;::row_iterator::operator++()</a>, and <a class="el" href="a00632_source.html#l02577">Mat&lt; eT &gt;::row_iterator::operator--()</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l01077">1077</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af2dba0d4c3157dae0ebbea42f1448244"></a><!-- doxytag: member="Mat::row_iterator::row" ref="af2dba0d4c3157dae0ebbea42f1448244" args="" -->
+<a class="anchor" id="a7a311d6697c68b66f8f7e27963b884b3"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::do_times" ref="a7a311d6697c68b66f8f7e27963b884b3" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;::<a class="el" href="a00473.html#af2dba0d4c3157dae0ebbea42f1448244">row_iterator::row</a></td>
+          <td class="memname">const bool <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::<a class="el" href="a00473.html#a7a311d6697c68b66f8f7e27963b884b3">do_times</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00633_source.html#l00243">243</a> of file <a class="el" href="a00633_source.html">Mat_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00632_source.html#l02539">Mat&lt; eT &gt;::row_iterator::operator*()</a>, <a class="el" href="a00632_source.html#l02549">Mat&lt; eT &gt;::row_iterator::operator++()</a>, and <a class="el" href="a00632_source.html#l02577">Mat&lt; eT &gt;::row_iterator::operator--()</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l01078">1078</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4350362293f41e6517d1ac7616921608"></a><!-- doxytag: member="Mat::row_iterator::col" ref="a4350362293f41e6517d1ac7616921608" args="" -->
+<a class="anchor" id="ae359023d98f836bd8fd38527771a2af5"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::val" ref="ae359023d98f836bd8fd38527771a2af5" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT&gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_aligned <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00308.html">Mat</a>&lt; eT &gt;::<a class="el" href="a00473.html#a4350362293f41e6517d1ac7616921608">row_iterator::col</a></td>
+          <td class="memname">const eT <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::<a class="el" href="a00473.html#ae359023d98f836bd8fd38527771a2af5">val</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00633_source.html#l00244">244</a> of file <a class="el" href="a00633_source.html">Mat_proto.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l01079">1079</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
-<p>Referenced by <a class="el" href="a00632_source.html#l02539">Mat&lt; eT &gt;::row_iterator::operator*()</a>, <a class="el" href="a00632_source.html#l02549">Mat&lt; eT &gt;::row_iterator::operator++()</a>, and <a class="el" href="a00632_source.html#l02577">Mat&lt; eT &gt;::row_iterator::operator--()</a>.</p>
+</div>
+</div>
+<a class="anchor" id="aad33e3c8ccd9ae6d9a0a77f490c1e31f"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::M_local" ref="aad33e3c8ccd9ae6d9a0a77f490c1e31f" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00389.html">Mat</a>&lt;eT&gt;* <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::<a class="el" href="a00473.html#aad33e3c8ccd9ae6d9a0a77f490c1e31f">M_local</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l01080">1080</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aac748ab29bb47a0ba524d12026fbe75a"></a><!-- doxytag: member="partial_unwrap_check&lt; Op&lt; Row&lt; eT &gt;, op_trans &gt; &gt;::M" ref="aac748ab29bb47a0ba524d12026fbe75a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00389.html">Mat</a>&lt;eT&gt;&amp; <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00395.html">Op</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00442.html">op_trans</a> &gt; &gt;::<a class="el" href="a00473.html#aac748ab29bb47a0ba524d12026fbe75a">M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l01081">1081</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

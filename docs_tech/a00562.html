@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_cor.hpp File Reference</title>
+<title>Armadillo Technical: Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,30 +14,263 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_cor.hpp File Reference</h1>
-<p><a href="a00562_source.html">Go to the source code of this file.</a></p>
+<h1>Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt; Class Template Reference<br/>
+<small>
+[<a class="el" href="a01025.html">Proxy</a>]</small>
+</h1><!-- doxytag: class="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00844_source.html">Proxy.hpp</a>&gt;</code></p>
+
+<p><a href="a01569.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00312.html">Op</a>&lt; T1, <a class="el" href="a00313.html">op_cor</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00767.html#gafca0ccd0e9429926b1abae5f0c51f857">cor</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00191.html">Glue</a>&lt; T1, T2, <a class="el" href="a00192.html">glue_cor</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00767.html#gad1475c49eba0ba7e8850993fcafe8a75">cor</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;B, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00245.html">get_pod_type</a><br class="typebreak"/>
+&lt; <a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#afd36c10fa439705f800d4dee80a218c1">pod_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#a0a77567f49ef1f768da51b5f558af375">stored_type</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#aa6f327dc5786b36255235d512a6f0087">Proxy</a> (const <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#abaf1d97d3c99d5c5c4e8b23f573ae0de">operator[]</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#a034d3c4b95048168ba6f192990ec4c24">at</a> (const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col) const </td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#af9503f941c86ef2a688c70ad7c1a344e">Q</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#a5177a0b2a4f3b98dfc119c94022d3d72">n_rows</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#a0550bb5f637fc67c19efb349d1ac00a8">n_cols</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00562.html#ab23f0b42f2e20a227ddc9d74a536427b">n_elem</a></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T1, typename T2, typename eglue_type&gt;<br/>
+ class Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00304">304</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="a2ba0070c8db9027afadb6a2acbdea8e2"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::elem_type" ref="a2ba0070c8db9027afadb6a2acbdea8e2" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00308">308</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd36c10fa439705f800d4dee80a218c1"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::pod_type" ref="afd36c10fa439705f800d4dee80a218c1" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00245.html">get_pod_type</a>&lt;<a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a>&gt;::result <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00562.html#afd36c10fa439705f800d4dee80a218c1">pod_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00309">309</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0a77567f49ef1f768da51b5f558af375"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::stored_type" ref="a0a77567f49ef1f768da51b5f558af375" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="a00137.html">eGlue</a>&lt;T1, T2, eglue_type&gt; <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00137.html">stored_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00310">310</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa6f327dc5786b36255235d512a6f0087"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::Proxy" ref="aa6f327dc5786b36255235d512a6f0087" args="(const eGlue&lt; T1, T2, eglue_type &gt; &amp;A)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00559.html">Proxy</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00318">318</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00319"></a>00319     : <a class="code" href="a00562.html#af9503f941c86ef2a688c70ad7c1a344e">Q</a>(A)
+<a name="l00320"></a>00320     , <a class="code" href="a00562.html#a5177a0b2a4f3b98dfc119c94022d3d72">n_rows</a>(A.<a class="code" href="a00137.html#a0eaa3647cc6c7b96b5f7001c5d974866">P1</a>.n_rows)
+<a name="l00321"></a>00321     , <a class="code" href="a00562.html#a0550bb5f637fc67c19efb349d1ac00a8">n_cols</a>(A.<a class="code" href="a00137.html#a0eaa3647cc6c7b96b5f7001c5d974866">P1</a>.n_cols)
+<a name="l00322"></a>00322     , <a class="code" href="a00562.html#ab23f0b42f2e20a227ddc9d74a536427b">n_elem</a>(A.<a class="code" href="a00137.html#a0eaa3647cc6c7b96b5f7001c5d974866">P1</a>.n_elem)
+<a name="l00323"></a>00323     {
+<a name="l00324"></a>00324     arma_extra_debug_sigprint();
+<a name="l00325"></a>00325     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="abaf1d97d3c99d5c5c4e8b23f573ae0de"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::operator[]" ref="abaf1d97d3c99d5c5c4e8b23f573ae0de" args="(const u32 i) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a> <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>i</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00327">327</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00327"></a>00327 { <span class="keywordflow">return</span> eglue_type::get_elem(<a class="code" href="a00562.html#af9503f941c86ef2a688c70ad7c1a344e">Q</a>, i);        }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a034d3c4b95048168ba6f192990ec4c24"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::at" ref="a034d3c4b95048168ba6f192990ec4c24" args="(const u32 row, const u32 col) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">arma_inline <a class="el" href="a00562.html#a2ba0070c8db9027afadb6a2acbdea8e2">elem_type</a> <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>col</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const<code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00328">328</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00328"></a>00328 { <span class="keywordflow">return</span> eglue_type::get_elem(<a class="code" href="a00562.html#af9503f941c86ef2a688c70ad7c1a344e">Q</a>, row, col); }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="af9503f941c86ef2a688c70ad7c1a344e"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::Q" ref="af9503f941c86ef2a688c70ad7c1a344e" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00137.html">eGlue</a>&lt;T1, T2, eglue_type&gt;&amp; <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00562.html#af9503f941c86ef2a688c70ad7c1a344e">Q</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00312">312</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5177a0b2a4f3b98dfc119c94022d3d72"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::n_rows" ref="a5177a0b2a4f3b98dfc119c94022d3d72" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00562.html#a5177a0b2a4f3b98dfc119c94022d3d72">n_rows</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00314">314</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0550bb5f637fc67c19efb349d1ac00a8"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::n_cols" ref="a0550bb5f637fc67c19efb349d1ac00a8" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00562.html#a0550bb5f637fc67c19efb349d1ac00a8">n_cols</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00315">315</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab23f0b42f2e20a227ddc9d74a536427b"></a><!-- doxytag: member="Proxy&lt; eGlue&lt; T1, T2, eglue_type &gt; &gt;::n_elem" ref="ab23f0b42f2e20a227ddc9d74a536427b" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00559.html">Proxy</a>&lt; <a class="el" href="a00137.html">eGlue</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00562.html#ab23f0b42f2e20a227ddc9d74a536427b">n_elem</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00844_source.html#l00316">316</a> of file <a class="el" href="a00844_source.html">Proxy.hpp</a>.</p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

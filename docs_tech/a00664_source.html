@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_princomp_cov_proto.hpp Source File</title>
+<title>Armadillo Technical: eop_cube_core_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,99 +25,99 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_1306bbe5badeb79fef15bf4ecd31b127.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_486bcba66b7cf2c931271eaf9d5d3f7c.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>op_princomp_cov_proto.hpp</h1><a href="a00664.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>eop_cube_core_proto.hpp</h1><a href="a00664.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
-<a name="l00005"></a>00005 <span class="comment">// - Dimitrios Bouzas (dimitris dot mpouzas at gmail dot com)</span>
-<a name="l00006"></a>00006 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
-<a name="l00007"></a>00007 <span class="comment">// </span>
-<a name="l00008"></a>00008 <span class="comment">// This file is part of the Armadillo C++ library.</span>
-<a name="l00009"></a>00009 <span class="comment">// It is provided without any warranty of fitness</span>
-<a name="l00010"></a>00010 <span class="comment">// for any purpose. You can redistribute this file</span>
-<a name="l00011"></a>00011 <span class="comment">// and/or modify it under the terms of the GNU</span>
-<a name="l00012"></a>00012 <span class="comment">// Lesser General Public License (LGPL) as published</span>
-<a name="l00013"></a>00013 <span class="comment">// by the Free Software Foundation, either version 3</span>
-<a name="l00014"></a>00014 <span class="comment">// of the License or (at your option) any later version.</span>
-<a name="l00015"></a>00015 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="comment"></span>
-<a name="l00018"></a>00018 <span class="comment">//! \addtogroup op_princomp_cov</span>
-<a name="l00019"></a>00019 <span class="comment">//! @{</span>
-<a name="l00020"></a>00020 <span class="comment"></span>
+<a name="l00005"></a>00005 <span class="comment">// - Conrad Sanderson (conradsand at ieee dot org)</span>
+<a name="l00006"></a>00006 <span class="comment">// </span>
+<a name="l00007"></a>00007 <span class="comment">// This file is part of the Armadillo C++ library.</span>
+<a name="l00008"></a>00008 <span class="comment">// It is provided without any warranty of fitness</span>
+<a name="l00009"></a>00009 <span class="comment">// for any purpose. You can redistribute this file</span>
+<a name="l00010"></a>00010 <span class="comment">// and/or modify it under the terms of the GNU</span>
+<a name="l00011"></a>00011 <span class="comment">// Lesser General Public License (LGPL) as published</span>
+<a name="l00012"></a>00012 <span class="comment">// by the Free Software Foundation, either version 3</span>
+<a name="l00013"></a>00013 <span class="comment">// of the License or (at your option) any later version.</span>
+<a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 <span class="comment"></span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup eop_cube_core</span>
+<a name="l00018"></a>00018 <span class="comment">//! @{</span>
+<a name="l00019"></a>00019 <span class="comment"></span>
+<a name="l00020"></a>00020 
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="a00330.html">00023</a> <span class="keyword">class </span><a class="code" href="a00330.html">op_princomp_cov</a>
+<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eop_cube_type&gt;
+<a name="l00023"></a><a class="code" href="a00174.html">00023</a> <span class="keyword">class </span><a class="code" href="a00174.html">eop_cube_core</a>
 <a name="l00024"></a>00024   {
 <a name="l00025"></a>00025   <span class="keyword">public</span>:
 <a name="l00026"></a>00026   
-<a name="l00027"></a>00027   <span class="comment">// real element versions</span>
-<a name="l00028"></a>00028   
-<a name="l00029"></a>00029   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00030"></a>00030   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00031"></a>00031   <a class="code" href="a00843.html#ga2edbf5032c92db09b7feba70a699b3c3" title="principal component analysis of a covariance matrix -- 1 argument version computation...">direct_princomp_cov</a>
-<a name="l00032"></a>00032     (      
-<a name="l00033"></a>00033           <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; coeff_out,                                                     
-<a name="l00034"></a>00034     <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; in
-<a name="l00035"></a>00035     );
-<a name="l00036"></a>00036                                                            
-<a name="l00037"></a>00037   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00038"></a>00038   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00039"></a>00039   <a class="code" href="a00843.html#ga2edbf5032c92db09b7feba70a699b3c3" title="principal component analysis of a covariance matrix -- 1 argument version computation...">direct_princomp_cov</a>
-<a name="l00040"></a>00040     (      
-<a name="l00041"></a>00041           <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; coeff_out, 
-<a name="l00042"></a>00042           <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; latent_out,
-<a name="l00043"></a>00043     <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; in
-<a name="l00044"></a>00044     );
-<a name="l00045"></a>00045                                                            
-<a name="l00046"></a>00046   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00047"></a>00047   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00048"></a>00048   <a class="code" href="a00843.html#ga2edbf5032c92db09b7feba70a699b3c3" title="principal component analysis of a covariance matrix -- 1 argument version computation...">direct_princomp_cov</a>
-<a name="l00049"></a>00049     (
-<a name="l00050"></a>00050           <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; coeff_out, 
-<a name="l00051"></a>00051           <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; latent_out,
-<a name="l00052"></a>00052           <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;eT&gt;</a>&amp; explained_out,                    
-<a name="l00053"></a>00053     <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; in
-<a name="l00054"></a>00054     );
-<a name="l00055"></a>00055   
-<a name="l00056"></a>00056   <span class="comment">// complex element versions</span>
-<a name="l00057"></a>00057   
-<a name="l00058"></a>00058   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00059"></a>00059   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00060"></a>00060   <a class="code" href="a00843.html#ga2edbf5032c92db09b7feba70a699b3c3" title="principal component analysis of a covariance matrix -- 1 argument version computation...">direct_princomp_cov</a>
-<a name="l00061"></a>00061     (
-<a name="l00062"></a>00062           <a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; coeff_out,
-<a name="l00063"></a>00063     <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; in
-<a name="l00064"></a>00064     );
-<a name="l00065"></a>00065     
-<a name="l00066"></a>00066   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00067"></a>00067   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00068"></a>00068   <a class="code" href="a00843.html#ga2edbf5032c92db09b7feba70a699b3c3" title="principal component analysis of a covariance matrix -- 1 argument version computation...">direct_princomp_cov</a>
-<a name="l00069"></a>00069     (
-<a name="l00070"></a>00070           <a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; coeff_out, 
-<a name="l00071"></a>00071                           <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; latent_out,                                                
-<a name="l00072"></a>00072     <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; in
-<a name="l00073"></a>00073     );
-<a name="l00074"></a>00074     
-<a name="l00075"></a>00075   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00076"></a>00076   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00077"></a>00077   <a class="code" href="a00843.html#ga2edbf5032c92db09b7feba70a699b3c3" title="principal component analysis of a covariance matrix -- 1 argument version computation...">direct_princomp_cov</a>
-<a name="l00078"></a>00078     (
-<a name="l00079"></a>00079           <a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; coeff_out, 
-<a name="l00080"></a>00080                           <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; latent_out,
-<a name="l00081"></a>00081                           <a class="code" href="a00058.html" title="Class for column vectors (matrices with only column).">Col&lt;T&gt;</a>&amp; explained_out,                                   
-<a name="l00082"></a>00082     <span class="keyword">const</span> <a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; in
-<a name="l00083"></a>00083     );
-<a name="l00084"></a>00084   
-<a name="l00085"></a>00085   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00086"></a>00086   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span>
-<a name="l00087"></a>00087   <a class="code" href="a00843.html#gab75ceebf8843ec2fe4ebcef6e1f2343a">apply</a>(<a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_princomp_cov&gt;</a>&amp; in);
-<a name="l00088"></a>00088   
-<a name="l00089"></a>00089   };
+<a name="l00027"></a>00027   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot arma_inline <span class="keyword">static</span> <span class="keyword">typename</span> T1::elem_type <a class="code" href="a00899.html#gacd31ad55ca9bbd1d2357bb8926335e19">get_elem</a>(<span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i);
+<a name="l00028"></a>00028   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot arma_inline <span class="keyword">static</span> <span class="keyword">typename</span> T1::elem_type <a class="code" href="a00899.html#gacd31ad55ca9bbd1d2357bb8926335e19">get_elem</a>(<span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> slice);
+<a name="l00029"></a>00029   
+<a name="l00030"></a>00030   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot arma_inline <span class="keyword">static</span> <span class="keyword">typename</span> T1::elem_type <a class="code" href="a00899.html#ga1e1773f94bd5faf9dcb7c43b6cf1a292">process</a>(<span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x, <span class="keyword">const</span> <span class="keyword">typename</span> T1::elem_type val);
+<a name="l00031"></a>00031   
+<a name="l00032"></a>00032   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot arma_inline <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#gac6993cdd01f37ad54eabf65dde81b26e">apply</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#ga35cabfe40deb526d8f72ed72d37dea57">apply_proxy</a> (<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00035"></a>00035   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#ga4d4baa62cb16e2953f53943582e654be">apply_unwrap</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00036"></a>00036   
+<a name="l00037"></a>00037   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#gaacb38c65f4264e109daa547c0b213291">apply_inplace_plus</a> (<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00038"></a>00038   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#ga92774493365fd170fbdef9fd956b9657">apply_inplace_minus</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00039"></a>00039   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#gad865ee93b0d253c4c318099a84fc2d6a">apply_inplace_schur</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00040"></a>00040   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00899.html#gaf2dd3e1d17d7d29a9395e25ec45f9ffc">apply_inplace_div</a>  (<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_type&gt;</a>&amp; x);
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042   };
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="a00181.html">00046</a> <span class="keyword">class </span><a class="code" href="a00181.html">eop_cube_neg</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_neg&gt;               {};
+<a name="l00047"></a><a class="code" href="a00191.html">00047</a> <span class="keyword">class </span><a class="code" href="a00191.html">eop_cube_scalar_plus</a>       : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_scalar_plus&gt;       {};
+<a name="l00048"></a><a class="code" href="a00190.html">00048</a> <span class="keyword">class </span><a class="code" href="a00190.html">eop_cube_scalar_minus_pre</a>  : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_scalar_minus_pre&gt;  {};
+<a name="l00049"></a><a class="code" href="a00189.html">00049</a> <span class="keyword">class </span><a class="code" href="a00189.html">eop_cube_scalar_minus_post</a> : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_scalar_minus_post&gt; {};
+<a name="l00050"></a><a class="code" href="a00192.html">00050</a> <span class="keyword">class </span><a class="code" href="a00192.html">eop_cube_scalar_times</a>      : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_scalar_times&gt;      {};
+<a name="l00051"></a><a class="code" href="a00188.html">00051</a> <span class="keyword">class </span><a class="code" href="a00188.html">eop_cube_scalar_div_pre</a>    : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_scalar_div_pre&gt;    {};
+<a name="l00052"></a><a class="code" href="a00187.html">00052</a> <span class="keyword">class </span><a class="code" href="a00187.html">eop_cube_scalar_div_post</a>   : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_scalar_div_post&gt;   {};
+<a name="l00053"></a><a class="code" href="a00196.html">00053</a> <span class="keyword">class </span><a class="code" href="a00196.html">eop_cube_square</a>            : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_square&gt;            {};
+<a name="l00054"></a><a class="code" href="a00195.html">00054</a> <span class="keyword">class </span><a class="code" href="a00195.html">eop_cube_sqrt</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_sqrt&gt;              {};
+<a name="l00055"></a><a class="code" href="a00180.html">00055</a> <span class="keyword">class </span><a class="code" href="a00180.html">eop_cube_log10</a>             : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_log10&gt;             {};
+<a name="l00056"></a><a class="code" href="a00179.html">00056</a> <span class="keyword">class </span><a class="code" href="a00179.html">eop_cube_log</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_log&gt;               {};
+<a name="l00057"></a><a class="code" href="a00200.html">00057</a> <span class="keyword">class </span><a class="code" href="a00200.html">eop_cube_trunc_log</a>         : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_trunc_log&gt;         {};
+<a name="l00058"></a><a class="code" href="a00178.html">00058</a> <span class="keyword">class </span><a class="code" href="a00178.html">eop_cube_exp</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_exp&gt;               {};
+<a name="l00059"></a><a class="code" href="a00199.html">00059</a> <span class="keyword">class </span><a class="code" href="a00199.html">eop_cube_trunc_exp</a>         : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_trunc_exp&gt;         {};
+<a name="l00060"></a><a class="code" href="a00175.html">00060</a> <span class="keyword">class </span><a class="code" href="a00175.html">eop_cube_cos</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_cos&gt;               {};
+<a name="l00061"></a><a class="code" href="a00176.html">00061</a> <span class="keyword">class </span><a class="code" href="a00176.html">eop_cube_cosh</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_cosh&gt;              {};
+<a name="l00062"></a><a class="code" href="a00167.html">00062</a> <span class="keyword">class </span><a class="code" href="a00167.html">eop_cube_acos</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_acos&gt;              {};
+<a name="l00063"></a><a class="code" href="a00168.html">00063</a> <span class="keyword">class </span><a class="code" href="a00168.html">eop_cube_acosh</a>             : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_acosh&gt;             {};
+<a name="l00064"></a><a class="code" href="a00193.html">00064</a> <span class="keyword">class </span><a class="code" href="a00193.html">eop_cube_sin</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_sin&gt;               {};
+<a name="l00065"></a><a class="code" href="a00194.html">00065</a> <span class="keyword">class </span><a class="code" href="a00194.html">eop_cube_sinh</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_sinh&gt;              {};
+<a name="l00066"></a><a class="code" href="a00169.html">00066</a> <span class="keyword">class </span><a class="code" href="a00169.html">eop_cube_asin</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_asin&gt;              {};
+<a name="l00067"></a><a class="code" href="a00170.html">00067</a> <span class="keyword">class </span><a class="code" href="a00170.html">eop_cube_asinh</a>             : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_asinh&gt;             {};
+<a name="l00068"></a><a class="code" href="a00197.html">00068</a> <span class="keyword">class </span><a class="code" href="a00197.html">eop_cube_tan</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_tan&gt;               {};
+<a name="l00069"></a><a class="code" href="a00198.html">00069</a> <span class="keyword">class </span><a class="code" href="a00198.html">eop_cube_tanh</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_tanh&gt;              {};
+<a name="l00070"></a><a class="code" href="a00171.html">00070</a> <span class="keyword">class </span><a class="code" href="a00171.html">eop_cube_atan</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_atan&gt;              {};
+<a name="l00071"></a><a class="code" href="a00172.html">00071</a> <span class="keyword">class </span><a class="code" href="a00172.html">eop_cube_atanh</a>             : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_atanh&gt;             {};
+<a name="l00072"></a><a class="code" href="a00177.html">00072</a> <span class="keyword">class </span><a class="code" href="a00177.html">eop_cube_eps</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_eps&gt;               {};
+<a name="l00073"></a><a class="code" href="a00166.html">00073</a> <span class="keyword">class </span><a class="code" href="a00166.html">eop_cube_abs</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_abs&gt;               {};
+<a name="l00074"></a><a class="code" href="a00173.html">00074</a> <span class="keyword">class </span><a class="code" href="a00173.html">eop_cube_conj</a>              : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_conj&gt;              {};
+<a name="l00075"></a><a class="code" href="a00183.html">00075</a> <span class="keyword">class </span><a class="code" href="a00183.html">eop_cube_pow</a>               : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_pow&gt;               {};
+<a name="l00076"></a><a class="code" href="a00184.html">00076</a> <span class="keyword">class </span><a class="code" href="a00184.html">eop_cube_pow_int</a>           : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_pow_int&gt;           {};
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 
+<a name="l00080"></a><a class="code" href="a00182.html">00080</a> <span class="keyword">class </span><a class="code" href="a00182.html">eop_cube_ones_full</a> : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_ones_full&gt; {};
+<a name="l00081"></a><a class="code" href="a00186.html">00081</a> <span class="keyword">class </span><a class="code" href="a00186.html">eop_cube_randu</a>     : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_randu&gt;     {};
+<a name="l00082"></a><a class="code" href="a00185.html">00082</a> <span class="keyword">class </span><a class="code" href="a00185.html">eop_cube_randn</a>     : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_randn&gt;     {};
+<a name="l00083"></a><a class="code" href="a00201.html">00083</a> <span class="keyword">class </span><a class="code" href="a00201.html">eop_cube_zeros</a>     : <span class="keyword">public</span> <a class="code" href="a00174.html">eop_cube_core</a>&lt;eop_cube_zeros&gt;     {};
+<a name="l00084"></a>00084 
+<a name="l00085"></a><a class="code" href="a00285.html#a7f7a665194e47518d8b0f4b01ddb9ab0">00085</a> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt; <span class="keyword">struct </span><a class="code" href="a00285.html">is_cube_generator</a>                     { <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00285.html#a7f7a665194e47518d8b0f4b01ddb9ab0">value</a> = <span class="keyword">false</span>; };
+<a name="l00086"></a><a class="code" href="a00286.html#a760500b1f64297579ce67761431d05e5">00086</a> <span class="keyword">template</span>&lt;&gt;            <span class="keyword">struct </span><a class="code" href="a00285.html">is_cube_generator</a>&lt;<a class="code" href="a00182.html">eop_cube_ones_full</a>&gt; { <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00285.html#a7f7a665194e47518d8b0f4b01ddb9ab0">value</a> = <span class="keyword">true</span>;  };
+<a name="l00087"></a><a class="code" href="a00288.html#abf61a7cc6a728cb28918b3d33c4e87b3">00087</a> <span class="keyword">template</span>&lt;&gt;            <span class="keyword">struct </span><a class="code" href="a00285.html">is_cube_generator</a>&lt;<a class="code" href="a00186.html">eop_cube_randu</a>&gt;     { <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00285.html#a7f7a665194e47518d8b0f4b01ddb9ab0">value</a> = <span class="keyword">true</span>;  };
+<a name="l00088"></a><a class="code" href="a00287.html#a1fb3eb97bc987d8bc71f31709107fc9c">00088</a> <span class="keyword">template</span>&lt;&gt;            <span class="keyword">struct </span><a class="code" href="a00285.html">is_cube_generator</a>&lt;<a class="code" href="a00185.html">eop_cube_randn</a>&gt;     { <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00285.html#a7f7a665194e47518d8b0f4b01ddb9ab0">value</a> = <span class="keyword">true</span>;  };
+<a name="l00089"></a><a class="code" href="a00289.html#adb9cb31992390154db3b89b0f3098725">00089</a> <span class="keyword">template</span>&lt;&gt;            <span class="keyword">struct </span><a class="code" href="a00285.html">is_cube_generator</a>&lt;<a class="code" href="a00201.html">eop_cube_zeros</a>&gt;     { <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code" href="a00285.html#a7f7a665194e47518d8b0f4b01ddb9ab0">value</a> = <span class="keyword">true</span>;  };
 <a name="l00090"></a>00090 
 <a name="l00091"></a>00091 
 <a name="l00092"></a>00092 <span class="comment"></span>

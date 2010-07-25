@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: syslib_proto.hpp Source File</title>
+<title>Armadillo Technical: fn_trunc_log.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_1306bbe5badeb79fef15bf4ecd31b127.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_486bcba66b7cf2c931271eaf9d5d3f7c.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>syslib_proto.hpp</h1><a href="a00721.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>fn_trunc_log.hpp</h1><a href="a00721.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,48 +45,83 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup syslib</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup fn_trunc_log</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a><a class="code" href="a00487.html">00021</a> <span class="keyword">class </span><a class="code" href="a00487.html">syslib</a>
-<a name="l00022"></a>00022   {
-<a name="l00023"></a>00023   <span class="keyword">public</span>:
-<a name="l00024"></a>00024   
-<a name="l00025"></a>00025   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00026"></a>00026   arma_hot
-<a name="l00027"></a>00027   <span class="keyword">inline</span>
-<a name="l00028"></a>00028   <span class="keyword">static</span>
-<a name="l00029"></a>00029   <span class="keywordtype">void</span>
-<a name="l00030"></a><a class="code" href="a00487.html#a6aa69b1e7be125744025f957a7ae4a84">00030</a>   <a class="code" href="a00487.html#a6aa69b1e7be125744025f957a7ae4a84">copy_elem</a>(eT* dest, <span class="keyword">const</span> eT* src, <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)
-<a name="l00031"></a>00031     {
-<a name="l00032"></a>00032     <span class="keywordflow">if</span>( n_elem &lt;= (128/<span class="keyword">sizeof</span>(eT)) )
-<a name="l00033"></a>00033       {
-<a name="l00034"></a>00034       <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i,j;
-<a name="l00035"></a>00035       
-<a name="l00036"></a>00036       <span class="keywordflow">for</span>(i=0, j=1; j&lt;n_elem; i+=2, j+=2)
-<a name="l00037"></a>00037         {
-<a name="l00038"></a>00038         dest[i] = src[i];
-<a name="l00039"></a>00039         dest[j] = src[j];
-<a name="l00040"></a>00040         }
-<a name="l00041"></a>00041       
-<a name="l00042"></a>00042       <span class="keywordflow">if</span>(i &lt; n_elem)
-<a name="l00043"></a>00043         {
-<a name="l00044"></a>00044         dest[i] = src[i];
-<a name="l00045"></a>00045         }
-<a name="l00046"></a>00046       }
-<a name="l00047"></a>00047     <span class="keywordflow">else</span>
-<a name="l00048"></a>00048       {
-<a name="l00049"></a>00049       std::memcpy(dest, src, n_elem*<span class="keyword">sizeof</span>(eT));
-<a name="l00050"></a>00050       }
-<a name="l00051"></a>00051     
-<a name="l00052"></a>00052     }
-<a name="l00053"></a>00053   
-<a name="l00054"></a>00054   };
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00023"></a>00023 <span class="keyword">inline</span> 
+<a name="l00024"></a>00024 <span class="keyword">static</span>
+<a name="l00025"></a>00025 <span class="keyword">typename</span> <a class="code" href="a00016.html">arma_float_only&lt;eT&gt;::result</a>
+<a name="l00026"></a>00026 <a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">trunc_log</a>(<span class="keyword">const</span> eT x)
+<a name="l00027"></a>00027   {
+<a name="l00028"></a>00028   <span class="keywordflow">if</span>(std::numeric_limits&lt;eT&gt;::is_iec559)
+<a name="l00029"></a>00029     {
+<a name="l00030"></a>00030     <span class="keywordflow">if</span>(x == std::numeric_limits&lt;eT&gt;::infinity())
+<a name="l00031"></a>00031       {
+<a name="l00032"></a>00032       <span class="keywordflow">return</span> <a class="code" href="a00392.html#a613bcfc553ad528e5cbbca73e377eeaf" title="log of the maximum representable value">Math&lt;eT&gt;::log_max</a>();
+<a name="l00033"></a>00033       }
+<a name="l00034"></a>00034     <span class="keywordflow">else</span>
+<a name="l00035"></a>00035       {
+<a name="l00036"></a>00036       <span class="keywordflow">return</span> (x &lt;= eT(0)) ? <a class="code" href="a00392.html#a5a0dea3f2dce9c8fdfea38f3ad0a3f01" title="log of the minimum representable value">Math&lt;eT&gt;::log_min</a>() : std::<a class="code" href="a00928.html#ga5f86df83743526b96070a3f91769a98f">log</a>(x);
+<a name="l00037"></a>00037       }
+<a name="l00038"></a>00038     }
+<a name="l00039"></a>00039   <span class="keywordflow">else</span>
+<a name="l00040"></a>00040     {
+<a name="l00041"></a>00041     <span class="keywordflow">return</span> <a class="code" href="a00928.html#ga5f86df83743526b96070a3f91769a98f">std::log</a>(x);
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043   }
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
+<a name="l00048"></a>00048 <span class="keyword">inline</span> 
+<a name="l00049"></a>00049 <span class="keyword">static</span>
+<a name="l00050"></a>00050 <span class="keyword">typename</span> <a class="code" href="a00031.html">arma_integral_only&lt;eT&gt;::result</a>
+<a name="l00051"></a><a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">00051</a> <a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">trunc_log</a>(<span class="keyword">const</span> eT x)
+<a name="l00052"></a>00052   {
+<a name="l00053"></a>00053   <span class="keywordflow">return</span> eT( <a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">trunc_log</a>( <span class="keywordtype">double</span>(x) ) );
+<a name="l00054"></a>00054   }
 <a name="l00055"></a>00055 
 <a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="comment"></span>
-<a name="l00058"></a>00058 <span class="comment">//! @}</span>
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
+<a name="l00059"></a>00059 <span class="keyword">inline</span> 
+<a name="l00060"></a>00060 <span class="keyword">static</span>
+<a name="l00061"></a>00061 std::complex&lt;T&gt;
+<a name="l00062"></a><a class="code" href="a00953.html#ga409cc289d0f89b5aabecfac4e74011be">00062</a> <a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">trunc_log</a>(<span class="keyword">const</span> std::complex&lt;T&gt;&amp; x)
+<a name="l00063"></a>00063   {
+<a name="l00064"></a>00064   <span class="keywordflow">return</span> <a class="code" href="a00928.html#ga5f86df83743526b96070a3f91769a98f">std::log</a>(x);
+<a name="l00065"></a>00065   }
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00070"></a>00070 arma_inline
+<a name="l00071"></a>00071 <span class="keyword">const</span> <a class="code" href="a00149.html">eOp&lt;T1, eop_trunc_log&gt;</a>
+<a name="l00072"></a><a class="code" href="a00953.html#ga202966dd951776378b85bd9f2945a9ae">00072</a> <a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">trunc_log</a>(<span class="keyword">const</span> <a class="code" href="a00103.html" title="Class for static polymorphism, modelled after the &amp;quot;Curiously Recurring Template...">Base&lt;typename T1::elem_type,T1&gt;</a>&amp; A)
+<a name="l00073"></a>00073   {
+<a name="l00074"></a>00074   arma_extra_debug_sigprint();
+<a name="l00075"></a>00075   
+<a name="l00076"></a>00076   <span class="keywordflow">return</span> <a class="code" href="a00149.html">eOp&lt;T1, eop_trunc_log&gt;</a>(A.<a class="code" href="a00103.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
+<a name="l00077"></a>00077   }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
+<a name="l00082"></a>00082 arma_inline
+<a name="l00083"></a>00083 <span class="keyword">const</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_trunc_log&gt;</a>
+<a name="l00084"></a><a class="code" href="a00953.html#gaae1052178e78316d326529cbdd643e20">00084</a> <a class="code" href="a00953.html#gacb04f7197e923b64a708dfffd22f2601">trunc_log</a>(<span class="keyword">const</span> <a class="code" href="a00104.html" title="Analog of the Base class, intended for cubes.">BaseCube&lt;typename T1::elem_type,T1&gt;</a>&amp; A)
+<a name="l00085"></a>00085   {
+<a name="l00086"></a>00086   arma_extra_debug_sigprint();
+<a name="l00087"></a>00087   
+<a name="l00088"></a>00088   <span class="keywordflow">return</span> <a class="code" href="a00228.html">eOpCube&lt;T1, eop_cube_trunc_log&gt;</a>(A.<a class="code" href="a00104.html#a65f6e7fb3341e814ca4e7d683ec3595c">get_ref</a>());
+<a name="l00089"></a>00089   }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092 <span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_Mat&lt; T &gt; Struct Template Reference</title>
+<title>Armadillo Technical: gemv&lt; do_trans_A, use_alpha, use_beta &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,38 +29,437 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_Mat&lt; T &gt; Struct Template Reference<br/>
+<h1>gemv&lt; do_trans_A, use_alpha, use_beta &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00882.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_Mat" -->
-<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00959.html">Gemv</a>]</small>
+</h1><!-- doxytag: class="gemv" -->
+<p>Wrapper for ATLAS/BLAS <a class="el" href="a00243.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a> function, using template arguments to control the arguments passed to <a class="el" href="a00243.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a>. 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose).  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01121.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00728_source.html">gemv.hpp</a>&gt;</code></p>
+
+<p><a href="a01251.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html#a60e4a9dd8f4f858f5f06c4daceb89bba">value</a> = false</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00243.html#a1a46417aeebbce6ff2ccdfa966c85d3a">apply_blas_type</a> (eT *y, const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;A, const eT *x, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00243.html#ae0f3f4933905bf9fce542fa89ca1c175">apply</a> (eT *y, const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;A, const eT *x, const eT alpha=eT(1), const eT beta=eT(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html#a0e1e9ac4509b27640fab2c411c466321">apply</a> (float *y, const <a class="el" href="a00389.html">Mat</a>&lt; float &gt; &amp;A, const float *x, const float alpha=float(1), const float beta=float(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html#a4da92c70e80210a7d54834f8b32c7e74">apply</a> (double *y, const <a class="el" href="a00389.html">Mat</a>&lt; double &gt; &amp;A, const double *x, const double alpha=double(1), const double beta=double(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html#af676cf5715bd067011c7c5dd131df0f2">apply</a> (std::complex&lt; float &gt; *y, const <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;A, const std::complex&lt; float &gt; *x, const std::complex&lt; float &gt; alpha=std::complex&lt; float &gt;(1), const std::complex&lt; float &gt; beta=std::complex&lt; float &gt;(0))</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00243.html#a12a6a3fed1f016f6b06c76dbb6897937">apply</a> (std::complex&lt; double &gt; *y, const <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;A, const std::complex&lt; double &gt; *x, const std::complex&lt; double &gt; alpha=std::complex&lt; double &gt;(1), const std::complex&lt; double &gt; beta=std::complex&lt; double &gt;(0))</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T&gt;<br/>
- struct is_Mat&lt; T &gt;</h3>
+<h3>template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt;<br/>
+ class gemv&lt; do_trans_A, use_alpha, use_beta &gt;</h3>
 
+<p>Wrapper for ATLAS/BLAS <a class="el" href="a00243.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a> function, using template arguments to control the arguments passed to <a class="el" href="a00243.html" title="Wrapper for ATLAS/BLAS gemv function, using template arguments to control the arguments...">gemv</a>. 'y' is assumed to have been set to the correct size (i.e. taking into account the transpose). </p>
 
-<p>Definition at line <a class="el" href="a00722_source.html#l00042">42</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a60e4a9dd8f4f858f5f06c4daceb89bba"></a><!-- doxytag: member="is_Mat::value" ref="a60e4a9dd8f4f858f5f06c4daceb89bba" args="" -->
+<p>Definition at line <a class="el" href="a00728_source.html#l00123">123</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a1a46417aeebbce6ff2ccdfa966c85d3a"></a><!-- doxytag: member="gemv::apply_blas_type" ref="a1a46417aeebbce6ff2ccdfa966c85d3a" args="(eT *y, const Mat&lt; eT &gt; &amp;A, const eT *x, const eT alpha=eT(1), const eT beta=eT(0))" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T &gt; </div>
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00243.html">is_Mat</a>&lt; T &gt;::<a class="el" href="a00243.html#a60e4a9dd8f4f858f5f06c4daceb89bba">value</a> = false<code> [static]</code></td>
+          <td class="memname">static void <a class="el" href="a00243.html">gemv</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply_blas_type </td>
+          <td>(</td>
+          <td class="paramtype">eT *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>eT(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>eT(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00722_source.html#l00043">43</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00728_source.html#l00131">131</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+
+<p>References <a class="el" href="a00728_source.html#l00205">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00759_source.html#l00035">Mat&lt; eT &gt;::mem</a>, <a class="el" href="a00759_source.html#l00031">Mat&lt; eT &gt;::n_cols</a>, <a class="el" href="a00759_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00759_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>.</p>
+
+<p>Referenced by <a class="el" href="a00728_source.html#l00216">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00132"></a>00132     {
+<a name="l00133"></a>00133     arma_extra_debug_sigprint();
+<a name="l00134"></a>00134     
+<a name="l00135"></a>00135     <span class="keywordflow">if</span>(A.<a class="code" href="a00389.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 256u)
+<a name="l00136"></a>00136      {
+<a name="l00137"></a>00137      <a class="code" href="a00243.html#ae0f3f4933905bf9fce542fa89ca1c175">gemv_arma&lt;do_trans_A, use_alpha, use_beta&gt;::apply</a>(y,A,x,alpha,beta);
+<a name="l00138"></a>00138      }
+<a name="l00139"></a>00139     <span class="keywordflow">else</span>
+<a name="l00140"></a>00140       {
+<a name="l00141"></a>00141 <span class="preprocessor">      #if defined(ARMA_USE_ATLAS)</span>
+<a name="l00142"></a>00142 <span class="preprocessor"></span>        {
+<a name="l00143"></a>00143         arma_extra_debug_print(<span class="stringliteral">&quot;atlas::cblas_gemv()&quot;</span>);
+<a name="l00144"></a>00144         
+<a name="l00145"></a>00145         atlas::cblas_gemv&lt;eT&gt;
+<a name="l00146"></a>00146           (
+<a name="l00147"></a>00147           atlas::CblasColMajor,
+<a name="l00148"></a>00148           (do_trans_A) ? atlas::CblasTrans : atlas::CblasNoTrans,
+<a name="l00149"></a>00149           A.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>,
+<a name="l00150"></a>00150           A.<a class="code" href="a00389.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>,
+<a name="l00151"></a>00151           (use_alpha) ? alpha : eT(1),
+<a name="l00152"></a>00152           A.<a class="code" href="a00389.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
+<a name="l00153"></a>00153           A.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>,
+<a name="l00154"></a>00154           x,
+<a name="l00155"></a>00155           1,
+<a name="l00156"></a>00156           (use_beta) ? beta : eT(0),
+<a name="l00157"></a>00157           y,
+<a name="l00158"></a>00158           1
+<a name="l00159"></a>00159           );
+<a name="l00160"></a>00160         }
+<a name="l00161"></a>00161 <span class="preprocessor">      #elif defined(ARMA_USE_BLAS)</span>
+<a name="l00162"></a>00162 <span class="preprocessor"></span>        {
+<a name="l00163"></a>00163         arma_extra_debug_print(<span class="stringliteral">&quot;blas::gemv_()&quot;</span>);
+<a name="l00164"></a>00164         
+<a name="l00165"></a>00165         <span class="keyword">const</span> <span class="keywordtype">char</span> trans_A     = (do_trans_A) ? <span class="charliteral">&apos;T&apos;</span> : <span class="charliteral">&apos;N&apos;</span>;
+<a name="l00166"></a>00166         <span class="keyword">const</span> <span class="keywordtype">int</span>  m           = A.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>;
+<a name="l00167"></a>00167         <span class="keyword">const</span> <span class="keywordtype">int</span>  n           = A.<a class="code" href="a00389.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>;
+<a name="l00168"></a>00168         <span class="keyword">const</span> eT   local_alpha = (use_alpha) ? alpha : eT(1);
+<a name="l00169"></a>00169         <span class="comment">//const int  lda         = A.n_rows;</span>
+<a name="l00170"></a>00170         <span class="keyword">const</span> <span class="keywordtype">int</span>  inc         = 1;
+<a name="l00171"></a>00171         <span class="keyword">const</span> eT   local_beta  = (use_beta) ? beta : eT(0);
+<a name="l00172"></a>00172         
+<a name="l00173"></a>00173         arma_extra_debug_print( <a class="code" href="a00234.html">arma_boost::format</a>(<span class="stringliteral">&quot;blas::gemv_(): trans_A = %c&quot;</span>) % trans_A );
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175         blas::gemv_&lt;eT&gt;
+<a name="l00176"></a>00176           (
+<a name="l00177"></a>00177           &amp;trans_A,
+<a name="l00178"></a>00178           &amp;m,
+<a name="l00179"></a>00179           &amp;n,
+<a name="l00180"></a>00180           &amp;local_alpha,
+<a name="l00181"></a>00181           A.<a class="code" href="a00389.html#a14a6badc8098d810e5decb22272a07b0" title="pointer to the memory used by the matrix (memory is read-only)">mem</a>,
+<a name="l00182"></a>00182           &amp;m,  <span class="comment">// lda</span>
+<a name="l00183"></a>00183           x,
+<a name="l00184"></a>00184           &amp;inc,
+<a name="l00185"></a>00185           &amp;local_beta,
+<a name="l00186"></a>00186           y,
+<a name="l00187"></a>00187           &amp;inc
+<a name="l00188"></a>00188           );
+<a name="l00189"></a>00189         }
+<a name="l00190"></a>00190 <span class="preprocessor">      #else</span>
+<a name="l00191"></a>00191 <span class="preprocessor"></span>        {
+<a name="l00192"></a>00192         <a class="code" href="a00243.html#ae0f3f4933905bf9fce542fa89ca1c175">gemv_arma&lt;do_trans_A, use_alpha, use_beta&gt;::apply</a>(y,A,x,alpha,beta);
+<a name="l00193"></a>00193         }
+<a name="l00194"></a>00194 <span class="preprocessor">      #endif</span>
+<a name="l00195"></a>00195 <span class="preprocessor"></span>      }
+<a name="l00196"></a>00196     
+<a name="l00197"></a>00197     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ae0f3f4933905bf9fce542fa89ca1c175"></a><!-- doxytag: member="gemv::apply" ref="ae0f3f4933905bf9fce542fa89ca1c175" args="(eT *y, const Mat&lt; eT &gt; &amp;A, const eT *x, const eT alpha=eT(1), const eT beta=eT(0))" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline void <a class="el" href="a00243.html">gemv</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">eT *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>eT(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const eT&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>eT(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00728_source.html#l00205">205</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+
+<p>Referenced by <a class="el" href="a00749_source.html#l00372">glue_times::apply()</a>, and <a class="el" href="a00728_source.html#l00131">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00206"></a>00206     {
+<a name="l00207"></a>00207     <a class="code" href="a00243.html#ae0f3f4933905bf9fce542fa89ca1c175">gemv_arma&lt;do_trans_A, use_alpha, use_beta&gt;::apply</a>(y,A,x,alpha,beta);
+<a name="l00208"></a>00208     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a0e1e9ac4509b27640fab2c411c466321"></a><!-- doxytag: member="gemv::apply" ref="a0e1e9ac4509b27640fab2c411c466321" args="(float *y, const Mat&lt; float &gt; &amp;A, const float *x, const float alpha=float(1), const float beta=float(0))" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline void <a class="el" href="a00243.html">gemv</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">float *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; float &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>float(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>float(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00728_source.html#l00216">216</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+
+<p>References <a class="el" href="a00728_source.html#l00131">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00223"></a>00223     {
+<a name="l00224"></a>00224     <a class="code" href="a00243.html#a1a46417aeebbce6ff2ccdfa966c85d3a">gemv&lt;do_trans_A, use_alpha, use_beta&gt;::apply_blas_type</a>(y,A,x,alpha,beta);
+<a name="l00225"></a>00225     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a4da92c70e80210a7d54834f8b32c7e74"></a><!-- doxytag: member="gemv::apply" ref="a4da92c70e80210a7d54834f8b32c7e74" args="(double *y, const Mat&lt; double &gt; &amp;A, const double *x, const double alpha=double(1), const double beta=double(0))" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline void <a class="el" href="a00243.html">gemv</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">double *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; double &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>double(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>double(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00728_source.html#l00233">233</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+
+<p>References <a class="el" href="a00728_source.html#l00131">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00240"></a>00240     {
+<a name="l00241"></a>00241     <a class="code" href="a00243.html#a1a46417aeebbce6ff2ccdfa966c85d3a">gemv&lt;do_trans_A, use_alpha, use_beta&gt;::apply_blas_type</a>(y,A,x,alpha,beta);
+<a name="l00242"></a>00242     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="af676cf5715bd067011c7c5dd131df0f2"></a><!-- doxytag: member="gemv::apply" ref="af676cf5715bd067011c7c5dd131df0f2" args="(std::complex&lt; float &gt; *y, const Mat&lt; std::complex&lt; float &gt; &gt; &amp;A, const std::complex&lt; float &gt; *x, const std::complex&lt; float &gt; alpha=std::complex&lt; float &gt;(1), const std::complex&lt; float &gt; beta=std::complex&lt; float &gt;(0))" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline void <a class="el" href="a00243.html">gemv</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">std::complex&lt; float &gt; *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt; float &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; float &gt; *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; float &gt;&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>std::complex&lt;float&gt;(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; float &gt;&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>std::complex&lt;float&gt;(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00728_source.html#l00250">250</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+
+<p>References <a class="el" href="a00728_source.html#l00131">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00257"></a>00257     {
+<a name="l00258"></a>00258     <a class="code" href="a00243.html#a1a46417aeebbce6ff2ccdfa966c85d3a">gemv&lt;do_trans_A, use_alpha, use_beta&gt;::apply_blas_type</a>(y,A,x,alpha,beta);
+<a name="l00259"></a>00259     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a12a6a3fed1f016f6b06c76dbb6897937"></a><!-- doxytag: member="gemv::apply" ref="a12a6a3fed1f016f6b06c76dbb6897937" args="(std::complex&lt; double &gt; *y, const Mat&lt; std::complex&lt; double &gt; &gt; &amp;A, const std::complex&lt; double &gt; *x, const std::complex&lt; double &gt; alpha=std::complex&lt; double &gt;(1), const std::complex&lt; double &gt; beta=std::complex&lt; double &gt;(0))" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;const bool do_trans_A = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline void <a class="el" href="a00243.html">gemv</a>&lt; do_trans_A, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">std::complex&lt; double &gt; *&nbsp;</td>
+          <td class="paramname"> <em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt; double &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; double &gt; *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; double &gt;&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>std::complex&lt;double&gt;(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::complex&lt; double &gt;&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>std::complex&lt;double&gt;(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00728_source.html#l00267">267</a> of file <a class="el" href="a00728_source.html">gemv.hpp</a>.</p>
+
+<p>References <a class="el" href="a00728_source.html#l00131">gemv&lt; do_trans_A, use_alpha, use_beta &gt;::apply_blas_type()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00274"></a>00274     {
+<a name="l00275"></a>00275     <a class="code" href="a00243.html#a1a46417aeebbce6ff2ccdfa966c85d3a">gemv&lt;do_trans_A, use_alpha, use_beta&gt;::apply_blas_type</a>(y,A,x,alpha,beta);
+<a name="l00276"></a>00276     }
+</pre></div></p>
 
 </div>
 </div>

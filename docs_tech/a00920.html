@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Member List</title>
+<title>Armadillo Technical: Fn_join</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,23 +14,101 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
-      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
-    </ul>
-  </div>
 </div>
 <div class="contents">
-<h1>arma_signed_integral_only&lt; int &gt; Member List</h1>This is the complete list of members for <a class="el" href="a00037.html">arma_signed_integral_only&lt; int &gt;</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="a00037.html#a05c6bc5dc9d69884c2b7eaa7a16a35a5">result</a> typedef</td><td><a class="el" href="a00037.html">arma_signed_integral_only&lt; int &gt;</a></td><td></td></tr>
-</table></div>
+<h1>Fn_join</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00247.html">Glue</a>&lt; T1, T2, <a class="el" href="a00252.html">glue_join</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00920.html#ga315f955d16985204bc0af5118004f31d">join_cols</a> (const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;B)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00247.html">Glue</a>&lt; T1, T2, <a class="el" href="a00252.html">glue_join</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00920.html#ga2cc60d9582cb787179cd411af04a1651">join_rows</a> (const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;B)</td></tr>
+</table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ga315f955d16985204bc0af5118004f31d"></a><!-- doxytag: member="fn_join.hpp::join_cols" ref="ga315f955d16985204bc0af5118004f31d" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;A, const Base&lt; typename T1::elem_type, T2 &gt; &amp;B)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00247.html">Glue</a>&lt;T1, T2, <a class="el" href="a00252.html">glue_join</a>&gt; join_cols </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00688_source.html#l00025">25</a> of file <a class="el" href="a00688_source.html">fn_join.hpp</a>.</p>
+
+<p>References <a class="el" href="a00633_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00026"></a>00026   {
+<a name="l00027"></a>00027   arma_extra_debug_sigprint();
+<a name="l00028"></a>00028   
+<a name="l00029"></a>00029   <span class="keywordflow">return</span> <a class="code" href="a00247.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_join&gt;</a>(A.<a class="code" href="a00103.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), B.<a class="code" href="a00103.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), 0);
+<a name="l00030"></a>00030   }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ga2cc60d9582cb787179cd411af04a1651"></a><!-- doxytag: member="fn_join.hpp::join_rows" ref="ga2cc60d9582cb787179cd411af04a1651" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;A, const Base&lt; typename T1::elem_type, T2 &gt; &amp;B)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00247.html">Glue</a>&lt;T1, T2, <a class="el" href="a00252.html">glue_join</a>&gt; join_rows </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00688_source.html#l00037">37</a> of file <a class="el" href="a00688_source.html">fn_join.hpp</a>.</p>
+
+<p>References <a class="el" href="a00633_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00038"></a>00038   {
+<a name="l00039"></a>00039   arma_extra_debug_sigprint();
+<a name="l00040"></a>00040   
+<a name="l00041"></a>00041   <span class="keywordflow">return</span> <a class="code" href="a00247.html" title="Class for storing data required for delayed binary operations, such as the operands...">Glue&lt;T1, T2, glue_join&gt;</a>(A.<a class="code" href="a00103.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), B.<a class="code" href="a00103.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>(), 1);
+<a name="l00042"></a>00042   }
+</pre></div></p>
+
+</div>
+</div>
+</div>
 </BODY>
 </HTML>

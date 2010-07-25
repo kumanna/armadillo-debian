@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt; Struct Template Reference</title>
+<title>Armadillo Technical: gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,38 +29,96 @@
   </div>
 </div>
 <div class="contents">
-<h1>is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt; Struct Template Reference<br/>
+<h1>gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00882.html">Traits</a>]</small>
-</h1><!-- doxytag: class="is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00722_source.html">traits.hpp</a>&gt;</code></p>
+[<a class="el" href="a00958.html">Gemm_mixed</a>]</small>
+</h1><!-- doxytag: class="gemm_mixed" -->
+<p>Matrix multplication where the matrices have different element types.  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01118.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00727_source.html">gemm_mixed.hpp</a>&gt;</code></p>
+
+<p><a href="a01248.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00240.html#ab32ed24c3e31b2fe2e61b1e335be9530">value</a> = true</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename out_eT , typename in_eT1 , typename in_eT2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00240.html#a6a8dc5a871f383e7afa7e3b45a285e25">apply</a> (<a class="el" href="a00389.html">Mat</a>&lt; out_eT &gt; &amp;C, const <a class="el" href="a00389.html">Mat</a>&lt; in_eT1 &gt; &amp;A, const <a class="el" href="a00389.html">Mat</a>&lt; in_eT2 &gt; &amp;B, const out_eT alpha=out_eT(1), const out_eT beta=out_eT(0))</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate multiplication of matrices A and B, storing the result in C  <a href="#a6a8dc5a871f383e7afa7e3b45a285e25"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1, typename T2&gt;<br/>
- struct is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt;</h3>
+<h3>template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const bool use_alpha = false, const bool use_beta = false&gt;<br/>
+ class gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</h3>
 
+<p>Matrix multplication where the matrices have different element types. </p>
 
-<p>Definition at line <a class="el" href="a00722_source.html#l00179">179</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="ab32ed24c3e31b2fe2e61b1e335be9530"></a><!-- doxytag: member="is_glue_times_diag&lt; Glue&lt; T1, T2, glue_times_diag &gt; &gt;::value" ref="ab32ed24c3e31b2fe2e61b1e335be9530" args="" -->
+<p>Definition at line <a class="el" href="a00727_source.html#l00407">407</a> of file <a class="el" href="a00727_source.html">gemm_mixed.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a6a8dc5a871f383e7afa7e3b45a285e25"></a><!-- doxytag: member="gemm_mixed::apply" ref="a6a8dc5a871f383e7afa7e3b45a285e25" args="(Mat&lt; out_eT &gt; &amp;C, const Mat&lt; in_eT1 &gt; &amp;A, const Mat&lt; in_eT2 &gt; &amp;B, const out_eT alpha=out_eT(1), const out_eT beta=out_eT(0))" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 &gt; </div>
+template&lt;const bool do_trans_A = false, const bool do_trans_B = false, const bool use_alpha = false, const bool use_beta = false&gt; </div>
+<div class="memtemplate">
+template&lt;typename out_eT , typename in_eT1 , typename in_eT2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const bool <a class="el" href="a00239.html">is_glue_times_diag</a>&lt; <a class="el" href="a00191.html">Glue</a>&lt; T1, T2, <a class="el" href="a00198.html">glue_times_diag</a> &gt; &gt;::<a class="el" href="a00240.html#ab32ed24c3e31b2fe2e61b1e335be9530">value</a> = true<code> [static]</code></td>
+          <td class="memname">static void <a class="el" href="a00240.html">gemm_mixed</a>&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00389.html">Mat</a>&lt; out_eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; in_eT1 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; in_eT2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const out_eT&nbsp;</td>
+          <td class="paramname"> <em>alpha</em> = <code>out_eT(1)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const out_eT&nbsp;</td>
+          <td class="paramname"> <em>beta</em> = <code>out_eT(0)</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00722_source.html#l00180">180</a> of file <a class="el" href="a00722_source.html">traits.hpp</a>.</p>
+<p>immediate multiplication of matrices A and B, storing the result in C </p>
+
+<p>Definition at line <a class="el" href="a00727_source.html#l00417">417</a> of file <a class="el" href="a00727_source.html">gemm_mixed.hpp</a>.</p>
+
+<p>References <a class="el" href="a00759_source.html#l00032">Mat&lt; eT &gt;::n_elem</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00424"></a>00424     {
+<a name="l00425"></a>00425     arma_extra_debug_sigprint();
+<a name="l00426"></a>00426     
+<a name="l00427"></a>00427     <span class="keywordflow">if</span>( (A.<a class="code" href="a00389.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) &amp;&amp; (B.<a class="code" href="a00389.html#ab12257afbbe6338a7af830d9b65f3305" title="number of elements in the matrix (read-only)">n_elem</a> &lt;= 64u) )
+<a name="l00428"></a>00428       {
+<a name="l00429"></a>00429       <a class="code" href="a00240.html#a6a8dc5a871f383e7afa7e3b45a285e25" title="immediate multiplication of matrices A and B, storing the result in C">gemm_mixed_simple&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply</a>(C,A,B,alpha,beta);
+<a name="l00430"></a>00430       }
+<a name="l00431"></a>00431     <span class="keywordflow">else</span>
+<a name="l00432"></a>00432       {
+<a name="l00433"></a>00433       <a class="code" href="a00240.html#a6a8dc5a871f383e7afa7e3b45a285e25" title="immediate multiplication of matrices A and B, storing the result in C">gemm_mixed_cache&lt;do_trans_A, do_trans_B, use_alpha, use_beta&gt;::apply</a>(C,A,B,alpha,beta);
+<a name="l00434"></a>00434       }
+<a name="l00435"></a>00435     }
+</pre></div></p>
 
 </div>
 </div>

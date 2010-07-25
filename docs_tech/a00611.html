@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: gemm_mixed.hpp File Reference</title>
+<title>Armadillo Technical: upgrade_val&lt; double, std::complex&lt; float &gt; &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,32 +14,121 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>gemm_mixed.hpp File Reference</h1>
-<p><a href="a00611_source.html">Go to the source code of this file.</a></p>
+<h1>upgrade_val&lt; double, std::complex&lt; float &gt; &gt; Struct Template Reference<br/>
+<small>
+[<a class="el" href="a01040.html">Upgrade_val</a>]</small>
+</h1><!-- doxytag: class="upgrade_val&lt; double, std::complex&lt; float &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00865_source.html">upgrade_val.hpp</a>&gt;</code></p>
+
+<p><a href="a01615.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00185.html">gemm_mixed_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Matrix multplication where the matrices have different element types. Uses caching for speedup. Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes).  <a href="a00185.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00186.html">gemm_mixed_simple&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Matrix multplication where the matrices have different element types. Simple version (no caching). Matrix 'C' is assumed to have been set to the correct size (i.e. taking into account transposes).  <a href="a00186.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00184.html">gemm_mixed&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Matrix multplication where the matrices have different element types.  <a href="a00184.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00611.html#adfcae93586faf7229bae258f0f0b1cd2">T1_result</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; float &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00611.html#af64f1d78a8b4e01f096afb1837c79850">T2_result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00611.html#a94405a5b2e6609f682b44987ba9c5167">apply</a> (const double x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
+std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00611.html#acec2fdb9d96e65040082d240a1ac0f6b">apply</a> (const std::complex&lt; float &gt; &amp;x)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;&gt;<br/>
+ struct upgrade_val&lt; double, std::complex&lt; float &gt; &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="a00865_source.html#l00102">102</a> of file <a class="el" href="a00865_source.html">upgrade_val.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="adfcae93586faf7229bae258f0f0b1cd2"></a><!-- doxytag: member="upgrade_val&lt; double, std::complex&lt; float &gt; &gt;::T1_result" ref="adfcae93586faf7229bae258f0f0b1cd2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef double <a class="el" href="a00610.html">upgrade_val</a>&lt; double, std::complex&lt; float &gt; &gt;::<a class="el" href="a00611.html#adfcae93586faf7229bae258f0f0b1cd2">T1_result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00865_source.html#l00104">104</a> of file <a class="el" href="a00865_source.html">upgrade_val.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af64f1d78a8b4e01f096afb1837c79850"></a><!-- doxytag: member="upgrade_val&lt; double, std::complex&lt; float &gt; &gt;::T2_result" ref="af64f1d78a8b4e01f096afb1837c79850" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::complex&lt;float&gt; <a class="el" href="a00610.html">upgrade_val</a>&lt; double, std::complex&lt; float &gt; &gt;::<a class="el" href="a00611.html#af64f1d78a8b4e01f096afb1837c79850">T2_result</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00865_source.html#l00105">105</a> of file <a class="el" href="a00865_source.html">upgrade_val.hpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a94405a5b2e6609f682b44987ba9c5167"></a><!-- doxytag: member="upgrade_val&lt; double, std::complex&lt; float &gt; &gt;::apply" ref="a94405a5b2e6609f682b44987ba9c5167" args="(const double x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline double <a class="el" href="a00610.html">upgrade_val</a>&lt; double, std::complex&lt; float &gt; &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">const double&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00865_source.html#l00107">107</a> of file <a class="el" href="a00865_source.html">upgrade_val.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00107"></a>00107 { <span class="keywordflow">return</span> x; }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="acec2fdb9d96e65040082d240a1ac0f6b"></a><!-- doxytag: member="upgrade_val&lt; double, std::complex&lt; float &gt; &gt;::apply" ref="acec2fdb9d96e65040082d240a1ac0f6b" args="(const std::complex&lt; float &gt; &amp;x)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static arma_inline const std::complex&lt;double&gt; <a class="el" href="a00610.html">upgrade_val</a>&lt; double, std::complex&lt; float &gt; &gt;::apply </td>
+          <td>(</td>
+          <td class="paramtype">const std::complex&lt; float &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00865_source.html#l00108">108</a> of file <a class="el" href="a00865_source.html">upgrade_val.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00108"></a>00108 { <span class="keywordflow">return</span> std::complex&lt;double&gt;(x); }
+</pre></div></p>
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

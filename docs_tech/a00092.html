@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: eglue_schur Class Reference</title>
+<title>Armadillo Technical: arma_type_check&lt; val &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,37 +29,32 @@
   </div>
 </div>
 <div class="contents">
-<h1>eglue_schur Class Reference<br/>
+<h1>arma_type_check&lt; val &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00755.html">Eglue_misc</a>]</small>
-</h1><!-- doxytag: class="eglue_schur" --><!-- doxytag: inherits="eglue_core&lt; eglue_schur &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00543_source.html">eglue_misc.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for eglue_schur:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00092.gif" usemap="#eglue_schur_map" alt=""/>
-  <map id="eglue_schur_map" name="eglue_schur_map">
-<area href="a00083.html" alt="eglue_core&lt; eglue_schur &gt;" shape="rect" coords="0,0,170,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00878.html">Arma_static_assert</a>]</small>
+</h1><!-- doxytag: class="arma_type_check" -->
+<p><code>#include &lt;<a class="el" href="a00626_source.html">arma_static_assert.hpp</a>&gt;</code></p>
 
-<p><a href="a00971.html">List of all members.</a></p>
+<p><a href="a01109.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#a744c23162ea3b418fad47bfd07d5b0c0">id</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092.html#adaecd4116c7dc70972761b3d47b38dce">apply</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;bool val&gt;<br/>
+ struct arma_type_check&lt; val &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00543_source.html#l00049">49</a> of file <a class="el" href="a00543_source.html">eglue_misc.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00626_source.html#l00028">28</a> of file <a class="el" href="a00626_source.html">arma_static_assert.hpp</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a744c23162ea3b418fad47bfd07d5b0c0"></a><!-- doxytag: member="eglue_schur::id" ref="a744c23162ea3b418fad47bfd07d5b0c0" args="()" -->
+<a class="anchor" id="adaecd4116c7dc70972761b3d47b38dce"></a><!-- doxytag: member="arma_type_check::apply" ref="adaecd4116c7dc70972761b3d47b38dce" args="()" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;bool val&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static const char* eglue_schur::id </td>
+          <td class="memname">static arma_inline void <a class="el" href="a00092.html">arma_type_check</a>&lt; val &gt;::apply </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -69,9 +64,12 @@ Inheritance diagram for eglue_schur:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00543_source.html#l00053">53</a> of file <a class="el" href="a00543_source.html">eglue_misc.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00626_source.html#l00030">30</a> of file <a class="el" href="a00626_source.html">arma_static_assert.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00053"></a>00053 { <span class="keywordflow">return</span> <span class="stringliteral">&quot;element-wise matrix multiplication&quot;</span>; }
+<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031     {
+<a name="l00032"></a>00032     arma_static_assert&lt;!val&gt; ERROR___INCORRECT_TYPE;
+<a name="l00033"></a>00033     ERROR___INCORRECT_TYPE = ERROR___INCORRECT_TYPE;
+<a name="l00034"></a>00034     }
 </pre></div></p>
 
 </div>

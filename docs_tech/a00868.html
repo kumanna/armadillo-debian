@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Podarray</title>
+<title>Armadillo Technical: arma_boost Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -13,610 +13,808 @@
     <ul>
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="namespaces.html"><span>Namespace&nbsp;List</span></a></li>
+      <li><a href="namespacemembers.html"><span>Namespace&nbsp;Members</span></a></li>
+    </ul>
+  </div>
 </div>
 <div class="contents">
-<h1>Podarray</h1><table border="0" cellpadding="0" cellspacing="0">
+<h1>arma_boost Namespace Reference<br/>
+<small>
+[<a class="el" href="a00956.html">Format_wrap</a>]</small>
+</h1>
+<p>namespace for functions and classes which partially emulate Boost functionality  
+<a href="#_details">More...</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html">podarray&lt; eT &gt;</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A lightweight array for POD types. If the amount of memory requested is small, the stack is used.  <a href="a00375.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00234.html">format</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106.html">basic_format</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00235.html">format_metaprog</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00236.html">format_metaprog&lt; basic_format&lt; T1, T2 &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00584.html">string_only</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00585.html">string_only&lt; std::string &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00110.html">char_only</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00111.html">char_only&lt; char &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00107.html">basic_format_only</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108.html">basic_format_only&lt; basic_format&lt; T &gt; &gt;</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00109.html">basic_format_only&lt; basic_format&lt; T1, T2 &gt; &gt;</a></td></tr>
 <tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gaca51437715229b361e269ce8d6d3d5bc">podarray::~podarray</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gab527752ae95be3de9870fba12a0c005f">podarray::podarray</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga4a373bedc52fc07380f89c997ca30e92">podarray::podarray</a> (const <a class="el" href="a00375.html">podarray</a> &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00375.html">podarray</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga7f65dcf6b993170ed3826dc5560a05b0">podarray::operator=</a> (const <a class="el" href="a00375.html">podarray</a> &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga6d76f50e270992e6bdcee3ee220e8ae5">podarray::podarray</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_N)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gac8e5a25072024a13d9928dac3f5cf039">podarray::podarray</a> (const eT *X, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_N)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gaafcd6a05da4a5112d0b8ad59f1b210e2">podarray::operator[]</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gaeffb9fc790bec5b0b7c8b9144af2d0ef">podarray::operator[]</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gac1298818d0975914e567cb3703473199">podarray::operator()</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gad8fbd344d1ee4332a5aab16e10dd1b19">podarray::operator()</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga85a27914377a1d0758f4c84781dbe98d">podarray::set_size</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga3c0a841ec73e2a60b059b10b9edbafb3">podarray::fill</a> (const eT val)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gababca99d76dee6773c2819f52c9ac1ab">podarray::zeros</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gabac57230a7845dc5050fdb59694d358b">podarray::zeros</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga7368b988be82a13ef49879fd26c3654a">podarray::memptr</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline const eT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#gae46109c19a664566467119f7005b74da">podarray::memptr</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#ga980a50acc2216b1c175edc6c2cb9e451">podarray::init</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> new_n_elem)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a> (char *out, size_t size, const char *fmt,...)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a6a9d6376d195eb21845025571f008110">operator%</a> (const <a class="el" href="a00234.html">format</a> &amp;X, const T2 &amp;arg)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; T1, <br class="typebreak"/>
+T2 &gt;, T3 &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#ac09d68bdba55b8195b79ba542eba0c0c">operator%</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; T1, T2 &gt; &amp;X, const T3 &amp;arg)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a232ae1b1886103a99c85f5f2ce23a21c">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#ab564d198b27b14b51fca93dfa2bf8158">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt;, T3 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a2a01ecf85016b3005fea4332c8ecaa7a">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt;, T3 &gt;, T4 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 , typename T5 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a1e62dc25a0140bb11175c5b5ca257e42">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 , typename T5 , typename T6 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#ae5faf9a9d0eb2d72b597ec3cdd0b5a6b">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a3c3377c5dcbec395bc29f1fde9403459">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt;, T7 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#ab4335e5be0651676c274c93c41b737de">str</a> (const <a class="el" href="a00106.html">basic_format</a>&lt; T1, T2 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a9ffc51bb0df3e96a67a747f1c63f249d">operator&lt;&lt;</a> (std::ostream &amp;o, const <a class="el" href="a00106.html">basic_format</a>&lt; T1, T2 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#af07d8c2731815b835a6391eca7d9b98b">str_wrapper</a> (const T1 &amp;x, const typename <a class="el" href="a00584.html">string_only</a>&lt; T1 &gt;::result *junk=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static const T1 *&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a77706a4be15691ab54bd0ef9bf572932">str_wrapper</a> (const T1 *x, const typename <a class="el" href="a00110.html">char_only</a>&lt; T1 &gt;::result *junk=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static std::string&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00868.html#a7400ba5e7786e6071e41578849d52058">str_wrapper</a> (const T1 &amp;x, const typename <a class="el" href="a00107.html">basic_format_only</a>&lt; T1 &gt;::result *junk=0)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>namespace for functions and classes which partially emulate Boost functionality </p>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="gaca51437715229b361e269ce8d6d3d5bc"></a><!-- doxytag: member="podarray::~podarray" ref="gaca51437715229b361e269ce8d6d3d5bc" args="()" -->
+<a class="anchor" id="a7f0220bc07f064e151f68879d89a966f"></a><!-- doxytag: member="arma_boost::arma_snprintf" ref="a7f0220bc07f064e151f68879d89a966f" args="(char *out, size_t size, const char *fmt,...)" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::~<a class="el" href="a00375.html">podarray</a> </td>
+          <td class="memname">int arma_boost::arma_snprintf </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td class="paramtype">char *&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&nbsp;</td>
+          <td class="paramname"> <em>...</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00023">23</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00045">45</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00727_source.html#l00080">arma_config::debug</a>, <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00702_source.html#l00035">podarray&lt; eT &gt;::mem_local</a>, <a class="el" href="a00702_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00512_source.html#l00026">access::rw()</a>.</p>
+<p>Referenced by <a class="el" href="a00724_source.html#l00130">str()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00024"></a>00024   {
-<a name="l00025"></a>00025   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
-<a name="l00026"></a>00026   
-<a name="l00027"></a>00027   <span class="keywordflow">if</span>(<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> &gt; <span class="keyword">sizeof</span>(<a class="code" href="a00375.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>)/<span class="keyword">sizeof</span>(eT) )
-<a name="l00028"></a>00028     {
-<a name="l00029"></a>00029     <span class="keyword">delete</span> [] <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>;
-<a name="l00030"></a>00030     }
-<a name="l00031"></a>00031   
-<a name="l00032"></a>00032   <span class="keywordflow">if</span>(<a class="code" href="a00002.html#a7c60d1458dbc25f2433ef212ba618f2e">arma_config::debug</a> == <span class="keyword">true</span>)
-<a name="l00033"></a>00033     {
-<a name="l00034"></a>00034     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>) = 0;
-<a name="l00035"></a>00035     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>)    = 0;
-<a name="l00036"></a>00036     }
-<a name="l00037"></a>00037   }
+<p><div class="fragment"><pre class="fragment"><a name="l00046"></a>00046         {
+<a name="l00047"></a>00047         <span class="keywordtype">size_t</span> i;
+<a name="l00048"></a>00048         
+<a name="l00049"></a>00049         <span class="keywordflow">for</span>(i=0; i&lt;size; ++i)
+<a name="l00050"></a>00050           {
+<a name="l00051"></a>00051           out[i] = fmt[i];
+<a name="l00052"></a>00052           <span class="keywordflow">if</span>(fmt[i] == <span class="keywordtype">char</span>(0))
+<a name="l00053"></a>00053             <span class="keywordflow">break</span>;
+<a name="l00054"></a>00054           }
+<a name="l00055"></a>00055         
+<a name="l00056"></a>00056         <span class="keywordflow">if</span>(size &gt; 0)
+<a name="l00057"></a>00057           out[size-1] = char(0);
+<a name="l00058"></a>00058         
+<a name="l00059"></a>00059         <span class="keywordflow">return</span> int(i);
+<a name="l00060"></a>00060         }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gab527752ae95be3de9870fba12a0c005f"></a><!-- doxytag: member="podarray::podarray" ref="gab527752ae95be3de9870fba12a0c005f" args="()" -->
+<a class="anchor" id="a6a9d6376d195eb21845025571f008110"></a><!-- doxytag: member="arma_boost::operator%" ref="a6a9d6376d195eb21845025571f008110" args="(const format &amp;X, const T2 &amp;arg)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00375.html">podarray</a> </td>
+          <td class="memname"><a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00234.html">format</a>, T2 &gt; arma_boost::operator% </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00701_source.html#l00043">43</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00044"></a>00044   : <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
-<a name="l00045"></a>00045   , <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
-<a name="l00046"></a>00046   {
-<a name="l00047"></a>00047   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
-<a name="l00048"></a>00048   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ga4a373bedc52fc07380f89c997ca30e92"></a><!-- doxytag: member="podarray::podarray" ref="ga4a373bedc52fc07380f89c997ca30e92" args="(const podarray &amp;x)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00375.html">podarray</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00375.html">podarray</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00701_source.html#l00054">54</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00701_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00055"></a>00055   : <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
-<a name="l00056"></a>00056   , <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
-<a name="l00057"></a>00057   {
-<a name="l00058"></a>00058   arma_extra_debug_sigprint();
-<a name="l00059"></a>00059   
-<a name="l00060"></a>00060   this-&gt;<a class="code" href="a00868.html#ga7f65dcf6b993170ed3826dc5560a05b0">operator=</a>(x);
-<a name="l00061"></a>00061   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ga7f65dcf6b993170ed3826dc5560a05b0"></a><!-- doxytag: member="podarray::operator=" ref="ga7f65dcf6b993170ed3826dc5560a05b0" args="(const podarray &amp;x)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00375.html">podarray</a>&lt; eT &gt; &amp; <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00375.html">podarray</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00701_source.html#l00068">68</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00721_source.html#l00030">syslib::copy_elem()</a>, <a class="el" href="a00701_source.html#l00229">podarray&lt; eT &gt;::init()</a>, <a class="el" href="a00701_source.html#l00209">podarray&lt; eT &gt;::memptr()</a>, and <a class="el" href="a00702_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>.</p>
-
-<p>Referenced by <a class="el" href="a00701_source.html#l00054">podarray&lt; eT &gt;::podarray()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00069"></a>00069   {
-<a name="l00070"></a>00070   arma_extra_debug_sigprint();
-<a name="l00071"></a>00071   
-<a name="l00072"></a>00072   <span class="keywordflow">if</span>(<span class="keyword">this</span> != &amp;x)
-<a name="l00073"></a>00073     {
-<a name="l00074"></a>00074     <a class="code" href="a00868.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(x.<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>);
-<a name="l00075"></a>00075     
-<a name="l00076"></a>00076     <a class="code" href="a00487.html#a6aa69b1e7be125744025f957a7ae4a84">syslib::copy_elem</a>( <a class="code" href="a00868.html#ga7368b988be82a13ef49879fd26c3654a">memptr</a>(), x.<a class="code" href="a00868.html#ga7368b988be82a13ef49879fd26c3654a">memptr</a>(), <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> );
-<a name="l00077"></a>00077     }
-<a name="l00078"></a>00078   
-<a name="l00079"></a>00079   <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00080"></a>00080   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ga6d76f50e270992e6bdcee3ee220e8ae5"></a><!-- doxytag: member="podarray::podarray" ref="ga6d76f50e270992e6bdcee3ee220e8ae5" args="(const u32 new_N)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00375.html">podarray</a> </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>new_N</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, explicit, inherited]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00701_source.html#l00086">86</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00701_source.html#l00229">podarray&lt; eT &gt;::init()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00087"></a>00087   : <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
-<a name="l00088"></a>00088   , <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
-<a name="l00089"></a>00089   {
-<a name="l00090"></a>00090   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
-<a name="l00091"></a>00091   
-<a name="l00092"></a>00092   <a class="code" href="a00868.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
-<a name="l00093"></a>00093   }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="gac8e5a25072024a13d9928dac3f5cf039"></a><!-- doxytag: member="podarray::podarray" ref="gac8e5a25072024a13d9928dac3f5cf039" args="(const eT *X, const u32 new_N)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::<a class="el" href="a00375.html">podarray</a> </td>
-          <td>(</td>
-          <td class="paramtype">const eT *&nbsp;</td>
+          <td class="paramtype">const format &amp;&nbsp;</td>
           <td class="paramname"> <em>X</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>new_N</em></td><td>&nbsp;</td>
+          <td class="paramtype">const T2 &amp;&nbsp;</td>
+          <td class="paramname"> <em>arg</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [inline, explicit, inherited]</code></td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00099">99</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00110">110</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00721_source.html#l00030">syslib::copy_elem()</a>, <a class="el" href="a00701_source.html#l00229">podarray&lt; eT &gt;::init()</a>, and <a class="el" href="a00701_source.html#l00209">podarray&lt; eT &gt;::memptr()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00100"></a>00100   : <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>(0)
-<a name="l00101"></a>00101   , <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>   (0)
-<a name="l00102"></a>00102   {
-<a name="l00103"></a>00103   arma_extra_debug_sigprint_this(<span class="keyword">this</span>);
-<a name="l00104"></a>00104   
-<a name="l00105"></a>00105   <a class="code" href="a00868.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
-<a name="l00106"></a>00106   
-<a name="l00107"></a>00107   <a class="code" href="a00487.html#a6aa69b1e7be125744025f957a7ae4a84">syslib::copy_elem</a>( <a class="code" href="a00868.html#ga7368b988be82a13ef49879fd26c3654a">memptr</a>(), X, new_n_elem );
-<a name="l00108"></a>00108   }
+<p><div class="fragment"><pre class="fragment"><a name="l00111"></a>00111       {
+<a name="l00112"></a>00112       <span class="keywordflow">return</span> basic_format&lt; format, T2 &gt;(X, arg);
+<a name="l00113"></a>00113       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gaafcd6a05da4a5112d0b8ad59f1b210e2"></a><!-- doxytag: member="podarray::operator[]" ref="gaafcd6a05da4a5112d0b8ad59f1b210e2" args="(const u32 i) const " -->
+<a class="anchor" id="ac09d68bdba55b8195b79ba542eba0c0c"></a><!-- doxytag: member="arma_boost::operator%" ref="ac09d68bdba55b8195b79ba542eba0c0c" args="(const basic_format&lt; T1, T2 &gt; &amp;X, const T3 &amp;arg)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline eT <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::operator[] </td>
+          <td class="memname"><a class="el" href="a00106.html">basic_format</a>&lt; <a class="el" href="a00106.html">basic_format</a>&lt;T1,T2&gt;, T3 &gt; arma_boost::operator% </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline, inherited]</code></td>
+          <td class="paramtype">const basic_format&lt; T1, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T3 &amp;&nbsp;</td>
+          <td class="paramname"> <em>arg</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00115">115</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00120">120</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00116"></a>00116   {
-<a name="l00117"></a>00117   <span class="keywordflow">return</span> <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i];
-<a name="l00118"></a>00118   }
+<p><div class="fragment"><pre class="fragment"><a name="l00121"></a>00121       {
+<a name="l00122"></a>00122       <span class="keywordflow">return</span> basic_format&lt; basic_format&lt;T1,T2&gt;, T3 &gt;(X, arg);
+<a name="l00123"></a>00123       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gaeffb9fc790bec5b0b7c8b9144af2d0ef"></a><!-- doxytag: member="podarray::operator[]" ref="gaeffb9fc790bec5b0b7c8b9144af2d0ef" args="(const u32 i)" -->
+<a class="anchor" id="a232ae1b1886103a99c85f5f2ce23a21c"></a><!-- doxytag: member="arma_boost::str" ref="a232ae1b1886103a99c85f5f2ce23a21c" args="(const basic_format&lt; format, T2 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline eT &amp; <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::operator[] </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
+          <td class="paramtype">const basic_format&lt; format, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00125">125</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00130">130</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>, and <a class="el" href="a00512_source.html#l00026">access::rw()</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00079">arma_boost::format::A</a>, <a class="el" href="a00724_source.html#l00098">arma_boost::basic_format&lt; T1, T2 &gt;::A</a>, <a class="el" href="a00724_source.html#l00045">arma_snprintf()</a>, and <a class="el" href="a00724_source.html#l00099">arma_boost::basic_format&lt; T1, T2 &gt;::B</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00126"></a>00126   {
-<a name="l00127"></a>00127   <span class="keywordflow">return</span> <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]);
-<a name="l00128"></a>00128   }
+<p>Referenced by <a class="el" href="a00724_source.html#l00486">operator&lt;&lt;()</a>, and <a class="el" href="a00724_source.html#l00541">str_wrapper()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00131"></a>00131       {
+<a name="l00132"></a>00132       <span class="keywordtype">char</span>  local_buffer[1024];
+<a name="l00133"></a>00133       <span class="keywordtype">char</span>* buffer = local_buffer;
+<a name="l00134"></a>00134       
+<a name="l00135"></a>00135       <span class="keywordtype">int</span> buffer_size   = 1024;
+<a name="l00136"></a>00136       <span class="keywordtype">int</span> required_size = buffer_size;
+<a name="l00137"></a>00137    
+<a name="l00138"></a>00138       <span class="keywordtype">bool</span> using_local_buffer = <span class="keyword">true</span>;
+<a name="l00139"></a>00139       
+<a name="l00140"></a>00140       std::string out;
+<a name="l00141"></a>00141       
+<a name="l00142"></a>00142       <span class="keywordflow">do</span>
+<a name="l00143"></a>00143         {
+<a name="l00144"></a>00144         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">false</span>)
+<a name="l00145"></a>00145           {
+<a name="l00146"></a>00146           buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[buffer_size];
+<a name="l00147"></a>00147           }
+<a name="l00148"></a>00148         
+<a name="l00149"></a>00149         required_size = <a class="code" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a>(buffer, buffer_size, X.A.A.c_str(), X.B);
+<a name="l00150"></a>00150         
+<a name="l00151"></a>00151         <span class="keywordflow">if</span>(required_size &lt; buffer_size)
+<a name="l00152"></a>00152           {
+<a name="l00153"></a>00153           <span class="keywordflow">if</span>(required_size &gt; 0)
+<a name="l00154"></a>00154             {
+<a name="l00155"></a>00155             out = buffer;
+<a name="l00156"></a>00156             }
+<a name="l00157"></a>00157           }
+<a name="l00158"></a>00158         <span class="keywordflow">else</span>
+<a name="l00159"></a>00159           {
+<a name="l00160"></a>00160           buffer_size *= 2;
+<a name="l00161"></a>00161           }
+<a name="l00162"></a>00162         
+<a name="l00163"></a>00163         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">true</span>)
+<a name="l00164"></a>00164           {
+<a name="l00165"></a>00165           using_local_buffer = <span class="keyword">false</span>;
+<a name="l00166"></a>00166           }
+<a name="l00167"></a>00167         <span class="keywordflow">else</span>
+<a name="l00168"></a>00168           {
+<a name="l00169"></a>00169           <span class="keyword">delete</span>[] buffer;
+<a name="l00170"></a>00170           }
+<a name="l00171"></a>00171         
+<a name="l00172"></a>00172         } <span class="keywordflow">while</span>( (required_size &gt;= buffer_size) );
+<a name="l00173"></a>00173 
+<a name="l00174"></a>00174       <span class="keywordflow">return</span> out;
+<a name="l00175"></a>00175       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gac1298818d0975914e567cb3703473199"></a><!-- doxytag: member="podarray::operator()" ref="gac1298818d0975914e567cb3703473199" args="(const u32 i) const " -->
+<a class="anchor" id="ab564d198b27b14b51fca93dfa2bf8158"></a><!-- doxytag: member="arma_boost::str" ref="ab564d198b27b14b51fca93dfa2bf8158" args="(const basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 , typename T3 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline eT <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::operator() </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
+          <td class="paramtype">const basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00135">135</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00182">182</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>, and <a class="el" href="a00702_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00045">arma_snprintf()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00136"></a>00136   {
-<a name="l00137"></a>00137   arma_debug_check( (i &gt;= <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>), <span class="stringliteral">&quot;podarray::operator(): index out of bounds&quot;</span>);
-<a name="l00138"></a>00138   <span class="keywordflow">return</span> <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i];
-<a name="l00139"></a>00139   }
+<p><div class="fragment"><pre class="fragment"><a name="l00183"></a>00183       {
+<a name="l00184"></a>00184       <span class="keywordtype">char</span>  local_buffer[1024];
+<a name="l00185"></a>00185       <span class="keywordtype">char</span>* buffer = local_buffer;
+<a name="l00186"></a>00186       
+<a name="l00187"></a>00187       <span class="keywordtype">int</span> buffer_size   = 1024;
+<a name="l00188"></a>00188       <span class="keywordtype">int</span> required_size = buffer_size;
+<a name="l00189"></a>00189    
+<a name="l00190"></a>00190       <span class="keywordtype">bool</span> using_local_buffer = <span class="keyword">true</span>;
+<a name="l00191"></a>00191       
+<a name="l00192"></a>00192       std::string out;
+<a name="l00193"></a>00193       
+<a name="l00194"></a>00194       <span class="keywordflow">do</span>
+<a name="l00195"></a>00195         {
+<a name="l00196"></a>00196         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">false</span>)
+<a name="l00197"></a>00197           {
+<a name="l00198"></a>00198           buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[buffer_size];
+<a name="l00199"></a>00199           }
+<a name="l00200"></a>00200         
+<a name="l00201"></a>00201         required_size = <a class="code" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a>(buffer, buffer_size, X.A.A.A.c_str(), X.A.B, X.B);
+<a name="l00202"></a>00202         
+<a name="l00203"></a>00203         <span class="keywordflow">if</span>(required_size &lt; buffer_size)
+<a name="l00204"></a>00204           {
+<a name="l00205"></a>00205           <span class="keywordflow">if</span>(required_size &gt; 0)
+<a name="l00206"></a>00206             {
+<a name="l00207"></a>00207             out = buffer;
+<a name="l00208"></a>00208             }
+<a name="l00209"></a>00209           }
+<a name="l00210"></a>00210         <span class="keywordflow">else</span>
+<a name="l00211"></a>00211           {
+<a name="l00212"></a>00212           buffer_size *= 2;
+<a name="l00213"></a>00213           }
+<a name="l00214"></a>00214         
+<a name="l00215"></a>00215         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">true</span>)
+<a name="l00216"></a>00216           {
+<a name="l00217"></a>00217           using_local_buffer = <span class="keyword">false</span>;
+<a name="l00218"></a>00218           }
+<a name="l00219"></a>00219         <span class="keywordflow">else</span>
+<a name="l00220"></a>00220           {
+<a name="l00221"></a>00221           <span class="keyword">delete</span>[] buffer;
+<a name="l00222"></a>00222           }
+<a name="l00223"></a>00223         
+<a name="l00224"></a>00224         } <span class="keywordflow">while</span>( (required_size &gt;= buffer_size) );
+<a name="l00225"></a>00225 
+<a name="l00226"></a>00226       <span class="keywordflow">return</span> out;
+<a name="l00227"></a>00227       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gad8fbd344d1ee4332a5aab16e10dd1b19"></a><!-- doxytag: member="podarray::operator()" ref="gad8fbd344d1ee4332a5aab16e10dd1b19" args="(const u32 i)" -->
+<a class="anchor" id="a2a01ecf85016b3005fea4332c8ecaa7a"></a><!-- doxytag: member="arma_boost::str" ref="a2a01ecf85016b3005fea4332c8ecaa7a" args="(const basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 , typename T3 , typename T4 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline eT &amp; <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::operator() </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
+          <td class="paramtype">const basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00146">146</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00234">234</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00702_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00512_source.html#l00026">access::rw()</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00045">arma_snprintf()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00147"></a>00147   {
-<a name="l00148"></a>00148   arma_debug_check( (i &gt;= <a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>), <span class="stringliteral">&quot;podarray::operator(): index out of bounds&quot;</span>);
-<a name="l00149"></a>00149   <span class="keywordflow">return</span> <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]);
-<a name="l00150"></a>00150   }
+<p><div class="fragment"><pre class="fragment"><a name="l00235"></a>00235       {
+<a name="l00236"></a>00236       <span class="keywordtype">char</span>  local_buffer[1024];
+<a name="l00237"></a>00237       <span class="keywordtype">char</span>* buffer = local_buffer;
+<a name="l00238"></a>00238       
+<a name="l00239"></a>00239       <span class="keywordtype">int</span> buffer_size   = 1024;
+<a name="l00240"></a>00240       <span class="keywordtype">int</span> required_size = buffer_size;
+<a name="l00241"></a>00241    
+<a name="l00242"></a>00242       <span class="keywordtype">bool</span> using_local_buffer = <span class="keyword">true</span>;
+<a name="l00243"></a>00243       
+<a name="l00244"></a>00244       std::string out;
+<a name="l00245"></a>00245       
+<a name="l00246"></a>00246       <span class="keywordflow">do</span>
+<a name="l00247"></a>00247         {
+<a name="l00248"></a>00248         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">false</span>)
+<a name="l00249"></a>00249           {
+<a name="l00250"></a>00250           buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[buffer_size];
+<a name="l00251"></a>00251           }
+<a name="l00252"></a>00252         
+<a name="l00253"></a>00253         required_size = <a class="code" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a>(buffer, buffer_size, X.A.A.A.A.c_str(), X.A.A.B, X.A.B, X.B);
+<a name="l00254"></a>00254         
+<a name="l00255"></a>00255         <span class="keywordflow">if</span>(required_size &lt; buffer_size)
+<a name="l00256"></a>00256           {
+<a name="l00257"></a>00257           <span class="keywordflow">if</span>(required_size &gt; 0)
+<a name="l00258"></a>00258             {
+<a name="l00259"></a>00259             out = buffer;
+<a name="l00260"></a>00260             }
+<a name="l00261"></a>00261           }
+<a name="l00262"></a>00262         <span class="keywordflow">else</span>
+<a name="l00263"></a>00263           {
+<a name="l00264"></a>00264           buffer_size *= 2;
+<a name="l00265"></a>00265           }
+<a name="l00266"></a>00266         
+<a name="l00267"></a>00267         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">true</span>)
+<a name="l00268"></a>00268           {
+<a name="l00269"></a>00269           using_local_buffer = <span class="keyword">false</span>;
+<a name="l00270"></a>00270           }
+<a name="l00271"></a>00271         <span class="keywordflow">else</span>
+<a name="l00272"></a>00272           {
+<a name="l00273"></a>00273           <span class="keyword">delete</span>[] buffer;
+<a name="l00274"></a>00274           }
+<a name="l00275"></a>00275         
+<a name="l00276"></a>00276         } <span class="keywordflow">while</span>( (required_size &gt;= buffer_size) );
+<a name="l00277"></a>00277 
+<a name="l00278"></a>00278       <span class="keywordflow">return</span> out;
+<a name="l00279"></a>00279       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga85a27914377a1d0758f4c84781dbe98d"></a><!-- doxytag: member="podarray::set_size" ref="ga85a27914377a1d0758f4c84781dbe98d" args="(const u32 new_n_elem)" -->
+<a class="anchor" id="a1e62dc25a0140bb11175c5b5ca257e42"></a><!-- doxytag: member="arma_boost::str" ref="a1e62dc25a0140bb11175c5b5ca257e42" args="(const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 , typename T3 , typename T4 , typename T5 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::set_size </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>new_n_elem</em></td>
+          <td class="paramtype">const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00157">157</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00286">286</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00701_source.html#l00229">podarray&lt; eT &gt;::init()</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00045">arma_snprintf()</a>.</p>
 
-<p>Referenced by <a class="el" href="a00518_source.html#l00202">auxlib::inv_inplace()</a>, <a class="el" href="a00518_source.html#l00026">auxlib::inv_noalias()</a>, <a class="el" href="a00518_source.html#l00611">auxlib::lu()</a>, <a class="el" href="a00518_source.html#l01122">auxlib::qr()</a>, and <a class="el" href="a00518_source.html#l01220">auxlib::svd()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00158"></a>00158   {
-<a name="l00159"></a>00159   arma_extra_debug_sigprint();
-<a name="l00160"></a>00160   
-<a name="l00161"></a>00161   <a class="code" href="a00868.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
-<a name="l00162"></a>00162   }
+<p><div class="fragment"><pre class="fragment"><a name="l00287"></a>00287       {
+<a name="l00288"></a>00288       <span class="keywordtype">char</span>  local_buffer[1024];
+<a name="l00289"></a>00289       <span class="keywordtype">char</span>* buffer = local_buffer;
+<a name="l00290"></a>00290       
+<a name="l00291"></a>00291       <span class="keywordtype">int</span> buffer_size   = 1024;
+<a name="l00292"></a>00292       <span class="keywordtype">int</span> required_size = buffer_size;
+<a name="l00293"></a>00293    
+<a name="l00294"></a>00294       <span class="keywordtype">bool</span> using_local_buffer = <span class="keyword">true</span>;
+<a name="l00295"></a>00295       
+<a name="l00296"></a>00296       std::string out;
+<a name="l00297"></a>00297       
+<a name="l00298"></a>00298       <span class="keywordflow">do</span>
+<a name="l00299"></a>00299         {
+<a name="l00300"></a>00300         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">false</span>)
+<a name="l00301"></a>00301           {
+<a name="l00302"></a>00302           buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[buffer_size];
+<a name="l00303"></a>00303           }
+<a name="l00304"></a>00304         
+<a name="l00305"></a>00305         required_size = <a class="code" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a>(buffer, buffer_size, X.A.A.A.A.A.c_str(), X.A.A.A.B, X.A.A.B, X.A.B, X.B);
+<a name="l00306"></a>00306         
+<a name="l00307"></a>00307         <span class="keywordflow">if</span>(required_size &lt; buffer_size)
+<a name="l00308"></a>00308           {
+<a name="l00309"></a>00309           <span class="keywordflow">if</span>(required_size &gt; 0)
+<a name="l00310"></a>00310             {
+<a name="l00311"></a>00311             out = buffer;
+<a name="l00312"></a>00312             }
+<a name="l00313"></a>00313           }
+<a name="l00314"></a>00314         <span class="keywordflow">else</span>
+<a name="l00315"></a>00315           {
+<a name="l00316"></a>00316           buffer_size *= 2;
+<a name="l00317"></a>00317           }
+<a name="l00318"></a>00318         
+<a name="l00319"></a>00319         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">true</span>)
+<a name="l00320"></a>00320           {
+<a name="l00321"></a>00321           using_local_buffer = <span class="keyword">false</span>;
+<a name="l00322"></a>00322           }
+<a name="l00323"></a>00323         <span class="keywordflow">else</span>
+<a name="l00324"></a>00324           {
+<a name="l00325"></a>00325           <span class="keyword">delete</span>[] buffer;
+<a name="l00326"></a>00326           }
+<a name="l00327"></a>00327         
+<a name="l00328"></a>00328         } <span class="keywordflow">while</span>( (required_size &gt;= buffer_size) );
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330       <span class="keywordflow">return</span> out;
+<a name="l00331"></a>00331       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga3c0a841ec73e2a60b059b10b9edbafb3"></a><!-- doxytag: member="podarray::fill" ref="ga3c0a841ec73e2a60b059b10b9edbafb3" args="(const eT val)" -->
+<a class="anchor" id="ae5faf9a9d0eb2d72b597ec3cdd0b5a6b"></a><!-- doxytag: member="arma_boost::str" ref="ae5faf9a9d0eb2d72b597ec3cdd0b5a6b" args="(const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 , typename T3 , typename T4 , typename T5 , typename T6 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::fill </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramtype">const eT&nbsp;</td>
-          <td class="paramname"> <em>val</em></td>
+          <td class="paramtype">const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00169">169</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00338">338</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00702_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00512_source.html#l00026">access::rw()</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00045">arma_snprintf()</a>.</p>
 
-<p>Referenced by <a class="el" href="a00701_source.html#l00184">podarray&lt; eT &gt;::zeros()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00170"></a>00170   {
-<a name="l00171"></a>00171   arma_extra_debug_sigprint();
-<a name="l00172"></a>00172   
-<a name="l00173"></a>00173   <span class="keywordflow">for</span>(<a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i=0; i&lt;<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>; ++i)
-<a name="l00174"></a>00174     {
-<a name="l00175"></a>00175     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>[i]) = val;
-<a name="l00176"></a>00176     }
-<a name="l00177"></a>00177   }
+<p><div class="fragment"><pre class="fragment"><a name="l00339"></a>00339       {
+<a name="l00340"></a>00340       <span class="keywordtype">char</span>  local_buffer[1024];
+<a name="l00341"></a>00341       <span class="keywordtype">char</span>* buffer = local_buffer;
+<a name="l00342"></a>00342       
+<a name="l00343"></a>00343       <span class="keywordtype">int</span> buffer_size   = 1024;
+<a name="l00344"></a>00344       <span class="keywordtype">int</span> required_size = buffer_size;
+<a name="l00345"></a>00345    
+<a name="l00346"></a>00346       <span class="keywordtype">bool</span> using_local_buffer = <span class="keyword">true</span>;
+<a name="l00347"></a>00347       
+<a name="l00348"></a>00348       std::string out;
+<a name="l00349"></a>00349       
+<a name="l00350"></a>00350       <span class="keywordflow">do</span>
+<a name="l00351"></a>00351         {
+<a name="l00352"></a>00352         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">false</span>)
+<a name="l00353"></a>00353           {
+<a name="l00354"></a>00354           buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[buffer_size];
+<a name="l00355"></a>00355           }
+<a name="l00356"></a>00356         
+<a name="l00357"></a>00357         required_size = <a class="code" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a>(buffer, buffer_size, X.A.A.A.A.A.A.c_str(), X.A.A.A.A.B, X.A.A.A.B, X.A.A.B, X.A.B, X.B);
+<a name="l00358"></a>00358         
+<a name="l00359"></a>00359         <span class="keywordflow">if</span>(required_size &lt; buffer_size)
+<a name="l00360"></a>00360           {
+<a name="l00361"></a>00361           <span class="keywordflow">if</span>(required_size &gt; 0)
+<a name="l00362"></a>00362             {
+<a name="l00363"></a>00363             out = buffer;
+<a name="l00364"></a>00364             }
+<a name="l00365"></a>00365           }
+<a name="l00366"></a>00366         <span class="keywordflow">else</span>
+<a name="l00367"></a>00367           {
+<a name="l00368"></a>00368           buffer_size *= 2;
+<a name="l00369"></a>00369           }
+<a name="l00370"></a>00370         
+<a name="l00371"></a>00371         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">true</span>)
+<a name="l00372"></a>00372           {
+<a name="l00373"></a>00373           using_local_buffer = <span class="keyword">false</span>;
+<a name="l00374"></a>00374           }
+<a name="l00375"></a>00375         <span class="keywordflow">else</span>
+<a name="l00376"></a>00376           {
+<a name="l00377"></a>00377           <span class="keyword">delete</span>[] buffer;
+<a name="l00378"></a>00378           }
+<a name="l00379"></a>00379         
+<a name="l00380"></a>00380         } <span class="keywordflow">while</span>( (required_size &gt;= buffer_size) );
+<a name="l00381"></a>00381 
+<a name="l00382"></a>00382       <span class="keywordflow">return</span> out;
+<a name="l00383"></a>00383       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gababca99d76dee6773c2819f52c9ac1ab"></a><!-- doxytag: member="podarray::zeros" ref="gababca99d76dee6773c2819f52c9ac1ab" args="()" -->
+<a class="anchor" id="a3c3377c5dcbec395bc29f1fde9403459"></a><!-- doxytag: member="arma_boost::str" ref="a3c3377c5dcbec395bc29f1fde9403459" args="(const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt;, T7 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T2 , typename T3 , typename T4 , typename T5 , typename T6 , typename T7 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::zeros </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype">const basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; basic_format&lt; format, T2 &gt;, T3 &gt;, T4 &gt;, T5 &gt;, T6 &gt;, T7 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00184">184</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00390">390</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00701_source.html#l00169">podarray&lt; eT &gt;::fill()</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00045">arma_snprintf()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00185"></a>00185   {
-<a name="l00186"></a>00186   arma_extra_debug_sigprint();
-<a name="l00187"></a>00187   
-<a name="l00188"></a>00188   <a class="code" href="a00868.html#ga3c0a841ec73e2a60b059b10b9edbafb3">fill</a>(eT(0));
-<a name="l00189"></a>00189   }
+<p><div class="fragment"><pre class="fragment"><a name="l00391"></a>00391       {
+<a name="l00392"></a>00392       <span class="keywordtype">char</span>  local_buffer[1024];
+<a name="l00393"></a>00393       <span class="keywordtype">char</span>* buffer = local_buffer;
+<a name="l00394"></a>00394       
+<a name="l00395"></a>00395       <span class="keywordtype">int</span> buffer_size   = 1024;
+<a name="l00396"></a>00396       <span class="keywordtype">int</span> required_size = buffer_size;
+<a name="l00397"></a>00397    
+<a name="l00398"></a>00398       <span class="keywordtype">bool</span> using_local_buffer = <span class="keyword">true</span>;
+<a name="l00399"></a>00399       
+<a name="l00400"></a>00400       std::string out;
+<a name="l00401"></a>00401       
+<a name="l00402"></a>00402       <span class="keywordflow">do</span>
+<a name="l00403"></a>00403         {
+<a name="l00404"></a>00404         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">false</span>)
+<a name="l00405"></a>00405           {
+<a name="l00406"></a>00406           buffer = <span class="keyword">new</span> <span class="keywordtype">char</span>[buffer_size];
+<a name="l00407"></a>00407           }
+<a name="l00408"></a>00408         
+<a name="l00409"></a>00409         required_size = <a class="code" href="a00868.html#a7f0220bc07f064e151f68879d89a966f">arma_snprintf</a>(buffer, buffer_size, X.A.A.A.A.A.A.A.c_str(), X.A.A.A.A.A.B, X.A.A.A.A.B, X.A.A.A.B, X.A.A.B, X.A.B, X.B);
+<a name="l00410"></a>00410         
+<a name="l00411"></a>00411         <span class="keywordflow">if</span>(required_size &lt; buffer_size)
+<a name="l00412"></a>00412           {
+<a name="l00413"></a>00413           <span class="keywordflow">if</span>(required_size &gt; 0)
+<a name="l00414"></a>00414             {
+<a name="l00415"></a>00415             out = buffer;
+<a name="l00416"></a>00416             }
+<a name="l00417"></a>00417           }
+<a name="l00418"></a>00418         <span class="keywordflow">else</span>
+<a name="l00419"></a>00419           {
+<a name="l00420"></a>00420           buffer_size *= 2;
+<a name="l00421"></a>00421           }
+<a name="l00422"></a>00422         
+<a name="l00423"></a>00423         <span class="keywordflow">if</span>(using_local_buffer == <span class="keyword">true</span>)
+<a name="l00424"></a>00424           {
+<a name="l00425"></a>00425           using_local_buffer = <span class="keyword">false</span>;
+<a name="l00426"></a>00426           }
+<a name="l00427"></a>00427         <span class="keywordflow">else</span>
+<a name="l00428"></a>00428           {
+<a name="l00429"></a>00429           <span class="keyword">delete</span>[] buffer;
+<a name="l00430"></a>00430           }
+<a name="l00431"></a>00431         
+<a name="l00432"></a>00432         } <span class="keywordflow">while</span>( (required_size &gt;= buffer_size) );
+<a name="l00433"></a>00433 
+<a name="l00434"></a>00434       <span class="keywordflow">return</span> out;
+<a name="l00435"></a>00435       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gabac57230a7845dc5050fdb59694d358b"></a><!-- doxytag: member="podarray::zeros" ref="gabac57230a7845dc5050fdb59694d358b" args="(const u32 new_n_elem)" -->
+<a class="anchor" id="ab4335e5be0651676c274c93c41b737de"></a><!-- doxytag: member="arma_boost::str" ref="ab4335e5be0651676c274c93c41b737de" args="(const basic_format&lt; T1, T2 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::zeros </td>
+          <td class="memname">std::string arma_boost::str </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>new_n_elem</em></td>
+          <td class="paramtype">const basic_format&lt; T1, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00196">196</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00476">476</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00701_source.html#l00169">podarray&lt; eT &gt;::fill()</a>, and <a class="el" href="a00701_source.html#l00229">podarray&lt; eT &gt;::init()</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00098">arma_boost::basic_format&lt; T1, T2 &gt;::A</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00197"></a>00197   {
-<a name="l00198"></a>00198   arma_extra_debug_sigprint();
-<a name="l00199"></a>00199   
-<a name="l00200"></a>00200   <a class="code" href="a00868.html#ga980a50acc2216b1c175edc6c2cb9e451">init</a>(new_n_elem);
-<a name="l00201"></a>00201   <a class="code" href="a00868.html#ga3c0a841ec73e2a60b059b10b9edbafb3">fill</a>(0);
-<a name="l00202"></a>00202   }
+<p><div class="fragment"><pre class="fragment"><a name="l00477"></a>00477       {
+<a name="l00478"></a>00478       <span class="keywordflow">return</span> format_metaprog&lt; basic_format&lt;T1,T2&gt; &gt;::get_fmt(X.A);
+<a name="l00479"></a>00479       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga7368b988be82a13ef49879fd26c3654a"></a><!-- doxytag: member="podarray::memptr" ref="ga7368b988be82a13ef49879fd26c3654a" args="()" -->
+<a class="anchor" id="a9ffc51bb0df3e96a67a747f1c63f249d"></a><!-- doxytag: member="arma_boost::operator&lt;&lt;" ref="a9ffc51bb0df3e96a67a747f1c63f249d" args="(std::ostream &amp;o, const basic_format&lt; T1, T2 &gt; &amp;X)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline eT * <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::memptr </td>
+          <td class="memname">std::ostream&amp; arma_boost::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, inherited]</code></td>
+          <td class="paramtype">std::ostream &amp;&nbsp;</td>
+          <td class="paramname"> <em>o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const basic_format&lt; T1, T2 &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00209">209</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00486">486</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>.</p>
+<p>References <a class="el" href="a00724_source.html#l00130">str()</a>.</p>
 
-<p>Referenced by <a class="el" href="a00684_source.html#l00166">op_var::apply()</a>, <a class="el" href="a00678_source.html#l00028">op_stddev::apply()</a>, <a class="el" href="a00676_source.html#l00169">op_sort::apply()</a>, <a class="el" href="a00638_source.html#l00025">op_diagmat::apply()</a>, <a class="el" href="a00611_source.html#l00038">gemm_mixed_cache&lt; do_trans_A, do_trans_B, use_alpha, use_beta &gt;::apply()</a>, <a class="el" href="a00625_source.html#l00137">glue_times::apply_inplace()</a>, <a class="el" href="a00518_source.html#l00376">auxlib::det()</a>, <a class="el" href="a00684_source.html#l00102">op_var::direct_var()</a>, <a class="el" href="a00518_source.html#l00913">auxlib::eig_gen()</a>, <a class="el" href="a00518_source.html#l00733">auxlib::eig_sym()</a>, <a class="el" href="a00518_source.html#l00202">auxlib::inv_inplace()</a>, <a class="el" href="a00518_source.html#l00026">auxlib::inv_noalias()</a>, <a class="el" href="a00535_source.html#l01070">diskio::load_pgm_binary()</a>, <a class="el" href="a00535_source.html#l02144">diskio::load_ppm_binary()</a>, <a class="el" href="a00518_source.html#l00523">auxlib::log_det()</a>, <a class="el" href="a00518_source.html#l00611">auxlib::lu()</a>, <a class="el" href="a00701_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>, <a class="el" href="a00701_source.html#l00099">podarray&lt; eT &gt;::podarray()</a>, <a class="el" href="a00518_source.html#l01122">auxlib::qr()</a>, <a class="el" href="a00518_source.html#l01550">auxlib::solve()</a>, <a class="el" href="a00518_source.html#l01587">auxlib::solve_od()</a>, <a class="el" href="a00518_source.html#l01651">auxlib::solve_ud()</a>, and <a class="el" href="a00518_source.html#l01220">auxlib::svd()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00210"></a>00210   {
-<a name="l00211"></a>00211   <span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span>eT*<span class="keyword">&gt;</span>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>);
-<a name="l00212"></a>00212   }
+<p><div class="fragment"><pre class="fragment"><a name="l00487"></a>00487       {
+<a name="l00488"></a>00488       o &lt;&lt; <a class="code" href="a00868.html#a232ae1b1886103a99c85f5f2ce23a21c">str</a>(X);
+<a name="l00489"></a>00489       <span class="keywordflow">return</span> o;
+<a name="l00490"></a>00490       }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="gae46109c19a664566467119f7005b74da"></a><!-- doxytag: member="podarray::memptr" ref="gae46109c19a664566467119f7005b74da" args="() const " -->
+<a class="anchor" id="af07d8c2731815b835a6391eca7d9b98b"></a><!-- doxytag: member="arma_boost::str_wrapper" ref="af07d8c2731815b835a6391eca7d9b98b" args="(const T1 &amp;x, const typename string_only&lt; T1 &gt;::result *junk=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">arma_inline const eT * <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::memptr </td>
+          <td class="memname">static const T1&amp; arma_boost::str_wrapper </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline, inherited]</code></td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename string_only&lt; T1 &gt;::result *&nbsp;</td>
+          <td class="paramname"> <em>junk</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00219">219</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00519">519</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>.</p>
+<p>Referenced by <a class="el" href="a00644_source.html#l00197">arma_check()</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00220"></a>00220   {
-<a name="l00221"></a>00221   <span class="keywordflow">return</span> <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>;
-<a name="l00222"></a>00222   }
+<p><div class="fragment"><pre class="fragment"><a name="l00520"></a>00520     {
+<a name="l00521"></a>00521     <span class="keywordflow">return</span> x;
+<a name="l00522"></a>00522     }
 </pre></div></p>
 
 </div>
 </div>
-<a class="anchor" id="ga980a50acc2216b1c175edc6c2cb9e451"></a><!-- doxytag: member="podarray::init" ref="ga980a50acc2216b1c175edc6c2cb9e451" args="(const u32 new_n_elem)" -->
+<a class="anchor" id="a77706a4be15691ab54bd0ef9bf572932"></a><!-- doxytag: member="arma_boost::str_wrapper" ref="a77706a4be15691ab54bd0ef9bf572932" args="(const T1 *x, const typename char_only&lt; T1 &gt;::result *junk=0)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename eT &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="a00375.html">podarray</a>&lt; eT &gt;::init </td>
+          <td class="memname">static const T1* arma_boost::str_wrapper </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>new_n_elem</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, protected, inherited]</code></td>
+          <td class="paramtype">const T1 *&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename char_only&lt; T1 &gt;::result *&nbsp;</td>
+          <td class="paramname"> <em>junk</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00701_source.html#l00229">229</a> of file <a class="el" href="a00701_source.html">podarray_meat.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00724_source.html#l00530">530</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
 
-<p>References <a class="el" href="a00702_source.html#l00030">podarray&lt; eT &gt;::mem</a>, <a class="el" href="a00702_source.html#l00035">podarray&lt; eT &gt;::mem_local</a>, <a class="el" href="a00702_source.html#l00029">podarray&lt; eT &gt;::n_elem</a>, and <a class="el" href="a00512_source.html#l00026">access::rw()</a>.</p>
+<p><div class="fragment"><pre class="fragment"><a name="l00531"></a>00531     {
+<a name="l00532"></a>00532     <span class="keywordflow">return</span> x;
+<a name="l00533"></a>00533     }
+</pre></div></p>
 
-<p>Referenced by <a class="el" href="a00701_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>, <a class="el" href="a00701_source.html#l00086">podarray&lt; eT &gt;::podarray()</a>, <a class="el" href="a00701_source.html#l00157">podarray&lt; eT &gt;::set_size()</a>, and <a class="el" href="a00701_source.html#l00196">podarray&lt; eT &gt;::zeros()</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a7400ba5e7786e6071e41578849d52058"></a><!-- doxytag: member="arma_boost::str_wrapper" ref="a7400ba5e7786e6071e41578849d52058" args="(const T1 &amp;x, const typename basic_format_only&lt; T1 &gt;::result *junk=0)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string arma_boost::str_wrapper </td>
+          <td>(</td>
+          <td class="paramtype">const T1 &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const typename basic_format_only&lt; T1 &gt;::result *&nbsp;</td>
+          <td class="paramname"> <em>junk</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
 
-<p><div class="fragment"><pre class="fragment"><a name="l00230"></a>00230   {
-<a name="l00231"></a>00231   arma_extra_debug_sigprint();
-<a name="l00232"></a>00232   
-<a name="l00233"></a>00233   <span class="keywordflow">if</span>(<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> == new_n_elem)
-<a name="l00234"></a>00234     {
-<a name="l00235"></a>00235     <span class="keywordflow">return</span>;
-<a name="l00236"></a>00236     }
-<a name="l00237"></a>00237     
-<a name="l00238"></a>00238   <span class="keywordflow">if</span>(<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a> &gt; <span class="keyword">sizeof</span>(<a class="code" href="a00375.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>)/<span class="keyword">sizeof</span>(eT) )
-<a name="l00239"></a>00239     {
-<a name="l00240"></a>00240     <span class="keyword">delete</span> [] <a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>;
-<a name="l00241"></a>00241     }
-<a name="l00242"></a>00242   
-<a name="l00243"></a>00243   <span class="keywordflow">if</span>(new_n_elem &lt;= <span class="keyword">sizeof</span>(<a class="code" href="a00375.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>)/<span class="keyword">sizeof</span>(eT) )
-<a name="l00244"></a>00244     {
-<a name="l00245"></a>00245     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>) = <a class="code" href="a00375.html#a286ccac4730168b52293a23863a51d53" title="Internal memory, to avoid calling the &amp;#39;new&amp;#39; operator for small amounts of...">mem_local</a>;
-<a name="l00246"></a>00246     }
-<a name="l00247"></a>00247   <span class="keywordflow">else</span>
-<a name="l00248"></a>00248     {
-<a name="l00249"></a>00249     <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a60e4518d567993072301e86c2c4d0564" title="pointer to memory used by the object">mem</a>) = <span class="keyword">new</span> eT[new_n_elem];
-<a name="l00250"></a>00250     }
-<a name="l00251"></a>00251   
-<a name="l00252"></a>00252   <a class="code" href="a00001.html#a477851009a1a1ca4e851fdae0ca84ac0" title="internal function to allow modification of data declared as read-only">access::rw</a>(<a class="code" href="a00375.html#a36148e9cc723dedaea09b0b2ac89b665" title="number of elements held">n_elem</a>) = new_n_elem;
-<a name="l00253"></a>00253   }
+<p>Definition at line <a class="el" href="a00724_source.html#l00541">541</a> of file <a class="el" href="a00724_source.html">format_wrap.hpp</a>.</p>
+
+<p>References <a class="el" href="a00724_source.html#l00130">str()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00542"></a>00542     {
+<a name="l00543"></a>00543     <span class="keywordflow">return</span> <a class="code" href="a00868.html#a232ae1b1886103a99c85f5f2ce23a21c">str</a>(x);
+<a name="l00544"></a>00544     }
 </pre></div></p>
 
 </div>

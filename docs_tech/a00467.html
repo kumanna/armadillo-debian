@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt; Class Template Reference</title>
+<title>Armadillo Technical: partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,291 +29,182 @@
   </div>
 </div>
 <div class="contents">
-<h1>ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt; Class Template Reference<br/>
+<h1>partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00871.html">ProxyCube</a>]</small>
-</h1><!-- doxytag: class="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00705_source.html">ProxyCube.hpp</a>&gt;</code></p>
+[<a class="el" href="a01038.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00863_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01344.html">List of all members.</a></p>
+<p><a href="a01474.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00189.html">get_pod_type</a><br class="typebreak"/>
-&lt; <a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#aba15a6ec3047f654e0f0db87e183cbc0">pod_type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, <br class="typebreak"/>
-eglue_type &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a8b651aa1568f65aa24a216dc1f000360">stored_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a3a8f9678c0e1f217a0a9e4e8e4a70411">ProxyCube</a> (const <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &amp;A)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#ac2a14f44178795cb3790f896c1f285b9">operator[]</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a82739f5a8afd63d2b50a7d5b6130f796">at</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> slice) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a17fba2cec61153717151261ce98895ef">partial_unwrap_check</a> (const <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &amp;A, const <a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a> &gt; &amp;B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a0fb6fe2d85644500d336a30504aabaa9">~partial_unwrap_check</a> ()</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, <br class="typebreak"/>
-eglue_type &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a7d75a4cf84bdfaa2d87784cf5c1ca434">Q</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a7168e0267fcbdb2f6b02c759dc048327">n_rows</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#ae3f5f7561d9430ee0e7ff6bdc2c0fc8f">n_cols</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a261312807abb0b2ed7ff5137fe3a228f">n_elem_slice</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a5df158864b2122043867f30a60616099">n_slices</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#aabb5894068a1174a0ee51096e54671f6">n_elem</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a2503e907e9a6addfea5bbefbb49df0f6">do_trans</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#ab95318759e50ef630a20f95d43634370">do_times</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a377e0b673d3ee7a28a13db3c1ced15e3">val</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00467.html#a10423ab1a94da0e34a79d681b638dfa6">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1, typename T2, typename eglue_type&gt;<br/>
- class ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;</h3>
+<h3>template&lt;typename T1&gt;<br/>
+ class partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00218">218</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00835">835</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a898e87ca4c9da8548df8dac02b7db18a"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::elem_type" ref="a898e87ca4c9da8548df8dac02b7db18a" args="" -->
+<a class="anchor" id="afe25de042290c6690c9acdee9cb912c0"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::eT" ref="afe25de042290c6690c9acdee9cb912c0" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T1::elem_type <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a></td>
+          <td class="memname">typedef T1::elem_type <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00222">222</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aba15a6ec3047f654e0f0db87e183cbc0"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::pod_type" ref="aba15a6ec3047f654e0f0db87e183cbc0" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00189.html">get_pod_type</a>&lt;<a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a>&gt;::result <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#aba15a6ec3047f654e0f0db87e183cbc0">pod_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00223">223</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8b651aa1568f65aa24a216dc1f000360"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::stored_type" ref="a8b651aa1568f65aa24a216dc1f000360" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00093.html">eGlueCube</a>&lt;T1, T2, eglue_type&gt; <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00093.html">stored_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00224">224</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00839">839</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3a8f9678c0e1f217a0a9e4e8e4a70411"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::ProxyCube" ref="a3a8f9678c0e1f217a0a9e4e8e4a70411" args="(const eGlueCube&lt; T1, T2, eglue_type &gt; &amp;A)" -->
+<a class="anchor" id="a17fba2cec61153717151261ce98895ef"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::partial_unwrap_check" ref="a17fba2cec61153717151261ce98895ef" args="(const eOp&lt; T1, eop_scalar_times &gt; &amp;A, const Mat&lt; eT &gt; &amp;B)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00465.html">ProxyCube</a> </td>
+          <td class="memname"><a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00462.html">partial_unwrap_check</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, explicit]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00234">234</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00235"></a>00235     : <a class="code" href="a00467.html#a7d75a4cf84bdfaa2d87784cf5c1ca434">Q</a>           (A)
-<a name="l00236"></a>00236     , <a class="code" href="a00467.html#a7168e0267fcbdb2f6b02c759dc048327">n_rows</a>      (A.<a class="code" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a>.n_rows)
-<a name="l00237"></a>00237     , <a class="code" href="a00467.html#ae3f5f7561d9430ee0e7ff6bdc2c0fc8f">n_cols</a>      (A.<a class="code" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a>.n_cols)
-<a name="l00238"></a>00238     , <a class="code" href="a00467.html#a261312807abb0b2ed7ff5137fe3a228f">n_elem_slice</a>(A.<a class="code" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a>.n_elem_slice)
-<a name="l00239"></a>00239     , <a class="code" href="a00467.html#a5df158864b2122043867f30a60616099">n_slices</a>    (A.<a class="code" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a>.n_slices)
-<a name="l00240"></a>00240     , <a class="code" href="a00467.html#aabb5894068a1174a0ee51096e54671f6">n_elem</a>      (A.<a class="code" href="a00093.html#a27ae83fc7a6442e9890fdb2736358d7a">P1</a>.n_elem)
-<a name="l00241"></a>00241     {
-<a name="l00242"></a>00242     arma_extra_debug_sigprint();
-<a name="l00243"></a>00243     }
-</pre></div></p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac2a14f44178795cb3790f896c1f285b9"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::operator[]" ref="ac2a14f44178795cb3790f896c1f285b9" args="(const u32 i) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline <a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::operator[] </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00245">245</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00245"></a>00245 { <span class="keywordflow">return</span> eglue_type::get_elem(<a class="code" href="a00467.html#a7d75a4cf84bdfaa2d87784cf5c1ca434">Q</a>, i);               }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="a82739f5a8afd63d2b50a7d5b6130f796"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::at" ref="a82739f5a8afd63d2b50a7d5b6130f796" args="(const u32 row, const u32 col, const u32 slice) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline <a class="el" href="a00467.html#a898e87ca4c9da8548df8dac02b7db18a">elem_type</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>row</em>, </td>
+          <td class="paramtype">const <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>col</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>slice</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td> const<code> [inline]</code></td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00246">246</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00842">842</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00246"></a>00246 { <span class="keywordflow">return</span> eglue_type::get_elem(<a class="code" href="a00467.html#a7d75a4cf84bdfaa2d87784cf5c1ca434">Q</a>, row, col, slice); }
+<p><div class="fragment"><pre class="fragment"><a name="l00843"></a>00843     : <a class="code" href="a00467.html#a2503e907e9a6addfea5bbefbb49df0f6">do_trans</a>(<span class="keyword">false</span>)
+<a name="l00844"></a>00844     , <a class="code" href="a00467.html#ab95318759e50ef630a20f95d43634370">do_times</a>(<span class="keyword">true</span>)
+<a name="l00845"></a>00845     , <a class="code" href="a00467.html#a377e0b673d3ee7a28a13db3c1ced15e3">val</a>     (A.<a class="code" href="a00149.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>)
+<a name="l00846"></a>00846     , <a class="code" href="a00467.html#a10423ab1a94da0e34a79d681b638dfa6">M</a>       (A.<a class="code" href="a00149.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.Q)
+<a name="l00847"></a>00847     {
+<a name="l00848"></a>00848     arma_extra_debug_sigprint();
+<a name="l00849"></a>00849     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="a0fb6fe2d85644500d336a30504aabaa9"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::~partial_unwrap_check" ref="a0fb6fe2d85644500d336a30504aabaa9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::~<a class="el" href="a00462.html">partial_unwrap_check</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00852">852</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00853"></a>00853     {
+<a name="l00854"></a>00854     arma_extra_debug_sigprint();
+<a name="l00855"></a>00855     }
 </pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a7d75a4cf84bdfaa2d87784cf5c1ca434"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::Q" ref="a7d75a4cf84bdfaa2d87784cf5c1ca434" args="" -->
+<a class="anchor" id="a2503e907e9a6addfea5bbefbb49df0f6"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::do_trans" ref="a2503e907e9a6addfea5bbefbb49df0f6" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00093.html">eGlueCube</a>&lt;T1, T2, eglue_type&gt;&amp; <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#a7d75a4cf84bdfaa2d87784cf5c1ca434">Q</a></td>
+          <td class="memname">const bool <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00467.html#a2503e907e9a6addfea5bbefbb49df0f6">do_trans</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00226">226</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00857">857</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7168e0267fcbdb2f6b02c759dc048327"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::n_rows" ref="a7168e0267fcbdb2f6b02c759dc048327" args="" -->
+<a class="anchor" id="ab95318759e50ef630a20f95d43634370"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::do_times" ref="ab95318759e50ef630a20f95d43634370" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#a7168e0267fcbdb2f6b02c759dc048327">n_rows</a></td>
+          <td class="memname">const bool <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00467.html#ab95318759e50ef630a20f95d43634370">do_times</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00228">228</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00858">858</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae3f5f7561d9430ee0e7ff6bdc2c0fc8f"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::n_cols" ref="ae3f5f7561d9430ee0e7ff6bdc2c0fc8f" args="" -->
+<a class="anchor" id="a377e0b673d3ee7a28a13db3c1ced15e3"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::val" ref="a377e0b673d3ee7a28a13db3c1ced15e3" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#ae3f5f7561d9430ee0e7ff6bdc2c0fc8f">n_cols</a></td>
+          <td class="memname">const <a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a> <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00467.html#a377e0b673d3ee7a28a13db3c1ced15e3">val</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00229">229</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00859">859</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a261312807abb0b2ed7ff5137fe3a228f"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::n_elem_slice" ref="a261312807abb0b2ed7ff5137fe3a228f" args="" -->
+<a class="anchor" id="a10423ab1a94da0e34a79d681b638dfa6"></a><!-- doxytag: member="partial_unwrap_check&lt; eOp&lt; T1, eop_scalar_times &gt; &gt;::M" ref="a10423ab1a94da0e34a79d681b638dfa6" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
+template&lt;typename T1 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#a261312807abb0b2ed7ff5137fe3a228f">n_elem_slice</a></td>
+          <td class="memname">const <a class="el" href="a00389.html">Mat</a>&lt;<a class="el" href="a00467.html#afe25de042290c6690c9acdee9cb912c0">eT</a>&gt; <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; T1, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00467.html#a10423ab1a94da0e34a79d681b638dfa6">M</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00230">230</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5df158864b2122043867f30a60616099"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::n_slices" ref="a5df158864b2122043867f30a60616099" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#a5df158864b2122043867f30a60616099">n_slices</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00231">231</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aabb5894068a1174a0ee51096e54671f6"></a><!-- doxytag: member="ProxyCube&lt; eGlueCube&lt; T1, T2, eglue_type &gt; &gt;::n_elem" ref="aabb5894068a1174a0ee51096e54671f6" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename T2 , typename eglue_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00093.html">eGlueCube</a>&lt; T1, T2, eglue_type &gt; &gt;::<a class="el" href="a00467.html#aabb5894068a1174a0ee51096e54671f6">n_elem</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00232">232</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00860">860</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: upgrade_val&lt; std::complex&lt; float &gt;, double &gt; Struct Template Reference</title>
+<title>Armadillo Technical: promote_type&lt; s32, double &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,107 +29,46 @@
   </div>
 </div>
 <div class="contents">
-<h1>upgrade_val&lt; std::complex&lt; float &gt;, double &gt; Struct Template Reference<br/>
+<h1>promote_type&lt; s32, double &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00886.html">Upgrade_val</a>]</small>
-</h1><!-- doxytag: class="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;" -->
-<p>ensure we don't lose precision when multiplying a complex number with a higher precision real number  
-<a href="#_details">More...</a></p>
+[<a class="el" href="a01024.html">Promote_type</a>]</small>
+</h1><!-- doxytag: class="promote_type&lt; s32, double &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
+<p><code>#include &lt;<a class="el" href="a00843_source.html">promote_type.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for promote_type&lt; s32, double &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00505.gif" usemap="#promote_type&lt; s32, double &gt;_map" alt=""/>
+  <map id="promote_type&lt; s32, double &gt;_map" name="promote_type&lt; s32, double &gt;_map">
+<area href="a00558.html" alt="promote_type_ok" shape="rect" coords="0,0,179,24"/>
+</map>
+ </div>
+</div>
 
-<p><code>#include &lt;<a class="el" href="a00726_source.html">upgrade_val.hpp</a>&gt;</code></p>
-
-<p><a href="a01381.html">List of all members.</a></p>
+<p><a href="a01512.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00505.html#afa0c4c0cf6295f17c1d88ce7cff1b88a">T1_result</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00505.html#ac65f0118d66184812fb788918906f026">T2_result</a></td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const <br class="typebreak"/>
-std::complex&lt; double &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00505.html#a2f553e135e010c11c9f247592099ffb2">apply</a> (const std::complex&lt; float &gt; &amp;x)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static arma_inline const double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00505.html#ae2a30ffbaa2f34a2a788ae84aac3824e">apply</a> (const double x)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00505.html#a82c81982fad9cf64f6071c6c49a3f13f">result</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <h3>template&lt;&gt;<br/>
- struct upgrade_val&lt; std::complex&lt; float &gt;, double &gt;</h3>
+ struct promote_type&lt; s32, double &gt;</h3>
 
-<p>ensure we don't lose precision when multiplying a complex number with a higher precision real number </p>
 
-<p>Definition at line <a class="el" href="a00726_source.html#l00091">91</a> of file <a class="el" href="a00726_source.html">upgrade_val.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00843_source.html#l00113">113</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="afa0c4c0cf6295f17c1d88ce7cff1b88a"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::T1_result" ref="afa0c4c0cf6295f17c1d88ce7cff1b88a" args="" -->
+<a class="anchor" id="a82c81982fad9cf64f6071c6c49a3f13f"></a><!-- doxytag: member="promote_type&lt; s32, double &gt;::result" ref="a82c81982fad9cf64f6071c6c49a3f13f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::complex&lt;double&gt; <a class="el" href="a00500.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::<a class="el" href="a00505.html#afa0c4c0cf6295f17c1d88ce7cff1b88a">T1_result</a></td>
+          <td class="memname">typedef double <a class="el" href="a00480.html">promote_type</a>&lt; <a class="el" href="a01037.html#ga584ab8b1fe53a7874ffa10b1f0c54ef4">s32</a>, double &gt;::<a class="el" href="a00505.html#a82c81982fad9cf64f6071c6c49a3f13f">result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00726_source.html#l00093">93</a> of file <a class="el" href="a00726_source.html">upgrade_val.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac65f0118d66184812fb788918906f026"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::T2_result" ref="ac65f0118d66184812fb788918906f026" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef double <a class="el" href="a00500.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::<a class="el" href="a00505.html#ac65f0118d66184812fb788918906f026">T2_result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00726_source.html#l00094">94</a> of file <a class="el" href="a00726_source.html">upgrade_val.hpp</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a2f553e135e010c11c9f247592099ffb2"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::apply" ref="a2f553e135e010c11c9f247592099ffb2" args="(const std::complex&lt; float &gt; &amp;x)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static arma_inline const std::complex&lt;double&gt; <a class="el" href="a00500.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::apply </td>
-          <td>(</td>
-          <td class="paramtype">const std::complex&lt; float &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00726_source.html#l00096">96</a> of file <a class="el" href="a00726_source.html">upgrade_val.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00096"></a>00096 { <span class="keywordflow">return</span> std::complex&lt;double&gt;(x); }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="ae2a30ffbaa2f34a2a788ae84aac3824e"></a><!-- doxytag: member="upgrade_val&lt; std::complex&lt; float &gt;, double &gt;::apply" ref="ae2a30ffbaa2f34a2a788ae84aac3824e" args="(const double x)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static arma_inline const double <a class="el" href="a00500.html">upgrade_val</a>&lt; std::complex&lt; float &gt;, double &gt;::apply </td>
-          <td>(</td>
-          <td class="paramtype">const double&nbsp;</td>
-          <td class="paramname"> <em>x</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00726_source.html#l00097">97</a> of file <a class="el" href="a00726_source.html">upgrade_val.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00097"></a>00097 { <span class="keywordflow">return</span> x; }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00843_source.html#l00113">113</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
 
 </div>
 </div>

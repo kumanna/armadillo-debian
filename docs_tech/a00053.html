@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: auxlib Class Reference</title>
+<title>Armadillo Technical: arma_not_op_rel&lt; op_rel_lt_pre &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,134 +29,19 @@
   </div>
 </div>
 <div class="contents">
-<h1>auxlib Class Reference<br/>
+<h1>arma_not_op_rel&lt; op_rel_lt_pre &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00740.html">Auxlib</a>]</small>
-</h1><!-- doxytag: class="auxlib" -->
-<p>wrapper for accessing external functions defined in ATLAS, LAPACK or BLAS libraries  
-<a href="#_details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="a00519_source.html">auxlib_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a00934.html">List of all members.</a></p>
+[<a class="el" href="a01027.html">Restrictors</a>]</small>
+</h1><!-- doxytag: class="arma_not_op_rel&lt; op_rel_lt_pre &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00846_source.html">restrictors.hpp</a>&gt;</code></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gae57d8b4104fe151eb2a661016b6329d1">eig_gen</a> (<a class="el" href="a00058.html">Col</a>&lt; std::complex&lt; T &gt; &gt; &amp;eigval, <a class="el" href="a00308.html">Mat</a>&lt; T &gt; &amp;l_eigvec, <a class="el" href="a00308.html">Mat</a>&lt; T &gt; &amp;r_eigvec, const <a class="el" href="a00308.html">Mat</a>&lt; T &gt; &amp;A, const char side)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Eigenvalues and eigenvectors of a general square real matrix using LAPACK. The argument 'side' specifies which eigenvectors should be calculated (see code for mode details).  <a href="a00740.html#gae57d8b4104fe151eb2a661016b6329d1"></a><br/></td></tr>
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gac32b3e0cce5a4f3a08018dcdad1c31fa">inv_noalias</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate matrix inverse  <a href="a00740.html#gac32b3e0cce5a4f3a08018dcdad1c31fa"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga7d4c2aa0734bf34289f1ffa92bd78a91">inv_inplace</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate inplace matrix inverse  <a href="a00740.html#ga7d4c2aa0734bf34289f1ffa92bd78a91"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga2577f6a49ab7d0896493ed90dd7c06d3">det</a> (const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate determinant of a matrix using ATLAS or LAPACK  <a href="a00740.html#ga2577f6a49ab7d0896493ed90dd7c06d3"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gac7dd9e20ecb6f412b6d189eb98e74034">log_det</a> (eT &amp;out_val, typename <a class="el" href="a00189.html">get_pod_type</a>&lt; eT &gt;::result &amp;out_sign, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate log determinant of a matrix using ATLAS or LAPACK  <a href="a00740.html#gac7dd9e20ecb6f412b6d189eb98e74034"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gaf3cf664bbbe8966c69df2d6205f1da52">lu</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;L, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;U, <a class="el" href="a00375.html">podarray</a>&lt; int &gt; &amp;ipiv, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X_orig)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate LU decomposition of a matrix using ATLAS or LAPACK  <a href="a00740.html#gaf3cf664bbbe8966c69df2d6205f1da52"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga9a2958ecfba6724bf469704efc008589">lu</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;L, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;U, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;P, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga4d993034e8ce1a825c6b9a01aca4bbc9">lu</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;L, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;U, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga18b5cbd325b5ce9882435f14914a3fa6">eig_sym</a> (<a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;eigval, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate eigenvalues of a symmetric real matrix using LAPACK  <a href="a00740.html#ga18b5cbd325b5ce9882435f14914a3fa6"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gac5be5ae73660387c29e6035b2b0fb664">eig_sym</a> (<a class="el" href="a00058.html">Col</a>&lt; T &gt; &amp;eigval, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;A)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate eigenvalues of a hermitian complex matrix using LAPACK  <a href="a00740.html#gac5be5ae73660387c29e6035b2b0fb664"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga27e962f4d79e0260a6d0565ddaa79fe5">eig_sym</a> (<a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;eigval, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;eigvec, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate eigenvalues and eigenvectors of a symmetric real matrix using LAPACK  <a href="a00740.html#ga27e962f4d79e0260a6d0565ddaa79fe5"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga9dee1c6121b588efd0585a220f06b3d9">eig_sym</a> (<a class="el" href="a00058.html">Col</a>&lt; T &gt; &amp;eigval, <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;eigvec, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;A)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">immediate eigenvalues and eigenvectors of a hermitian complex matrix using LAPACK  <a href="a00740.html#ga9dee1c6121b588efd0585a220f06b3d9"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00053.html#aa750947c06ec347311418666741bdbbe">eig_gen</a> (<a class="el" href="a00058.html">Col</a>&lt; std::complex&lt; eT &gt; &gt; &amp;eigval, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;l_eigvec, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;r_eigvec, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A, const char side)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga3c100584ec0a70469d918f44c7010d52">eig_gen</a> (<a class="el" href="a00058.html">Col</a>&lt; std::complex&lt; T &gt; &gt; &amp;eigval, <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;l_eigvec, <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;r_eigvec, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;A, const char side)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Eigenvalues and eigenvectors of a general square complex matrix using LAPACK The argument 'side' specifies which eigenvectors should be calculated (see code for mode details).  <a href="a00740.html#ga3c100584ec0a70469d918f44c7010d52"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga210cac0db9a4ab5dd738ef1ff34b2a5a">chol</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga87dcec76b360b81315b3451087a034e2">qr</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;Q, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;R, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gaf634c5679d890587a320dbf8a975b5f7">svd</a> (<a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;S, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga9bbceccae07a6be82b44387666355ef3">svd</a> (<a class="el" href="a00058.html">Col</a>&lt; T &gt; &amp;S, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga64952c776c8ea50dc7193a211d23187e">svd</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;U, <a class="el" href="a00058.html">Col</a>&lt; eT &gt; &amp;S, <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;V, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gad1064051f2a408d7d1103ef5b75068ad">svd</a> (<a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;U, <a class="el" href="a00058.html">Col</a>&lt; T &gt; &amp;S, <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;V, const <a class="el" href="a00308.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gaeb882f9ebd40ecd3f138ff5f2d4eb50a">solve</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;B)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solve a system of linear equations Assumes that A.n_rows = A.n_cols and B.n_rows = A.n_rows.  <a href="a00740.html#gaeb882f9ebd40ecd3f138ff5f2d4eb50a"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#gade3d6439a4cce0ecd344de86e3ff0cd3">solve_od</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;B)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solve an over-determined system. Assumes that A.n_rows &gt; A.n_cols and B.n_rows = A.n_rows.  <a href="a00740.html#gade3d6439a4cce0ecd344de86e3ff0cd3"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00740.html#ga7f0cc5b573a8da91df9ea3c55b716db3">solve_ud</a> (<a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;out, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;B)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Solve an under-determined system. Assumes that A.n_rows &lt; A.n_cols and B.n_rows = A.n_rows.  <a href="a00740.html#ga7f0cc5b573a8da91df9ea3c55b716db3"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>wrapper for accessing external functions defined in ATLAS, LAPACK or BLAS libraries </p>
+<h3>template&lt;&gt;<br/>
+ struct arma_not_op_rel&lt; op_rel_lt_pre &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00519_source.html#l00023">23</a> of file <a class="el" href="a00519_source.html">auxlib_proto.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aa750947c06ec347311418666741bdbbe"></a><!-- doxytag: member="auxlib::eig_gen" ref="aa750947c06ec347311418666741bdbbe" args="(Col&lt; std::complex&lt; eT &gt; &gt; &amp;eigval, Mat&lt; eT &gt; &amp;l_eigvec, Mat&lt; eT &gt; &amp;r_eigvec, const Mat&lt; eT &gt; &amp;A, const char side)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">static void auxlib::eig_gen </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="a00058.html">Col</a>&lt; std::complex&lt; eT &gt; &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>eigval</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>l_eigvec</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>r_eigvec</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char&nbsp;</td>
-          <td class="paramname"> <em>side</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
-<p>Referenced by <a class="el" href="a00569_source.html#l00097">eig_gen()</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00846_source.html#l00129">129</a> of file <a class="el" href="a00846_source.html">restrictors.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

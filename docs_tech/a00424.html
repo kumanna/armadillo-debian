@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; std::complex&lt; T &gt;, T &gt; Struct Template Reference</title>
+<title>Armadillo Technical: op_prod Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,51 +29,26 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; std::complex&lt; T &gt;, T &gt; Struct Template Reference<br/>
+<h1>op_prod Class Reference<br/>
 <small>
-[<a class="el" href="a00869.html">Promote_type</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; std::complex&lt; T &gt;, T &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00703_source.html">promote_type.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; std::complex&lt; T &gt;, T &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00424.gif" usemap="#promote_type&lt; std::complex&lt; T &gt;, T &gt;_map" alt=""/>
-  <map id="promote_type&lt; std::complex&lt; T &gt;, T &gt;_map" name="promote_type&lt; std::complex&lt; T &gt;, T &gt;_map">
-<area href="a00454.html" alt="promote_type_ok" shape="rect" coords="0,0,227,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00999.html">Op_prod</a>]</small>
+</h1><!-- doxytag: class="op_prod" -->
+<p>Class for finding products of values in a matrix (e.g. along rows or columns).  
+<a href="#_details">More...</a></p>
 
-<p><a href="a01301.html">List of all members.</a></p>
+<p><code>#include &lt;<a class="el" href="a00806_source.html">op_prod_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a01431.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef std::complex&lt; T &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00424.html#ab3d04a3c173ee573cb0cfe9cfd682194">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00999.html#gae4e82a9aef58da2bb4ac1f698777ebef">apply</a> (<a class="el" href="a00389.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00395.html">Op</a>&lt; T1, <a class="el" href="a00424.html">op_prod</a> &gt; &amp;in)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Immediate product of elements of a matrix along a specified dimension (either rows or columns). The result is stored in a dense matrix that has either one column or one row. See the <a class="el" href="a00934.html#ga7c7e519c8d232edeaa6c504e7e9c1f26" title="Delayed product of elements of a matrix along a specified dimension (either rows...">prod()</a> function for more details.  <a href="a00999.html#gae4e82a9aef58da2bb4ac1f698777ebef"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T&gt;<br/>
- struct promote_type&lt; std::complex&lt; T &gt;, T &gt;</h3>
+<p>Class for finding products of values in a matrix (e.g. along rows or columns). </p>
 
-
-<p>Definition at line <a class="el" href="a00703_source.html#l00043">43</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="ab3d04a3c173ee573cb0cfe9cfd682194"></a><!-- doxytag: member="promote_type&lt; std::complex&lt; T &gt;, T &gt;::result" ref="ab3d04a3c173ee573cb0cfe9cfd682194" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef std::complex&lt;T&gt; <a class="el" href="a00376.html">promote_type</a>&lt; std::complex&lt; T &gt;, T &gt;::<a class="el" href="a00424.html#ab3d04a3c173ee573cb0cfe9cfd682194">result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00703_source.html#l00043">43</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00806_source.html#l00021">21</a> of file <a class="el" href="a00806_source.html">op_prod_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

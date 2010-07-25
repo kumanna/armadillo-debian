@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Fn_diagmat</title>
+<title>Armadillo Technical: op_cx_scalar_proto.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -15,55 +15,31 @@
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="dir_1306bbe5badeb79fef15bf4ecd31b127.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_486bcba66b7cf2c931271eaf9d5d3f7c.html">armadillo_bits</a>
+  </div>
 </div>
 <div class="contents">
-<h1>Fn_diagmat</h1><table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00312.html">Op</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00315.html">op_diagmat</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00771.html#ga06091c908b1295aa6bbc1e537ce2dfd8">diagmat</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">interpret a matrix or a vector as a diagonal matrix (i.e. off-diagonal entries are zero)  <a href="#ga06091c908b1295aa6bbc1e537ce2dfd8"></a><br/></td></tr>
+<h1>op_cx_scalar_proto.hpp File Reference</h1>
+<p><a href="a00771_source.html">Go to the source code of this file.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00405.html">op_cx_scalar_times</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00404.html">op_cx_scalar_plus</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00403.html">op_cx_scalar_minus_pre</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00402.html">op_cx_scalar_minus_post</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00401.html">op_cx_scalar_div_pre</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00400.html">op_cx_scalar_div_post</a></td></tr>
 </table>
-<hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga06091c908b1295aa6bbc1e537ce2dfd8"></a><!-- doxytag: member="fn_diagmat.hpp::diagmat" ref="ga06091c908b1295aa6bbc1e537ce2dfd8" args="(const Base&lt; typename T1::elem_type, T1 &gt; &amp;X)" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline const <a class="el" href="a00312.html">Op</a>&lt;T1, <a class="el" href="a00315.html">op_diagmat</a>&gt; diagmat </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>X</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>interpret a matrix or a vector as a diagonal matrix (i.e. off-diagonal entries are zero) </p>
-
-<p>Definition at line <a class="el" href="a00566_source.html#l00026">26</a> of file <a class="el" href="a00566_source.html">fn_diagmat.hpp</a>.</p>
-
-<p>References <a class="el" href="a00520_source.html#l00033">Base&lt; elem_type, derived &gt;::get_ref()</a>.</p>
-
-<p>Referenced by <a class="el" href="a00661_source.html#l00027">op_pinv::direct_pinv()</a>, and <a class="el" href="a00665_source.html#l00034">op_princomp::direct_princomp()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00027"></a>00027   {
-<a name="l00028"></a>00028   arma_extra_debug_sigprint();
-<a name="l00029"></a>00029   
-<a name="l00030"></a>00030   <span class="keywordflow">return</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1, op_diagmat&gt;</a>(X.<a class="code" href="a00054.html#a24f552a2ce63f4a9c72fd77ee449f9cc">get_ref</a>());
-<a name="l00031"></a>00031   }
-</pre></div></p>
-
-</div>
-</div>
 </div>
 </BODY>
 </HTML>

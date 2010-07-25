@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; s8, float &gt; Struct Template Reference</title>
+<title>Armadillo Technical: op_find Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,49 +29,31 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; s8, float &gt; Struct Template Reference<br/>
+<h1>op_find Class Reference<br/>
 <small>
-[<a class="el" href="a00869.html">Promote_type</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; s8, float &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00703_source.html">promote_type.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; s8, float &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00410.gif" usemap="#promote_type&lt; s8, float &gt;_map" alt=""/>
-  <map id="promote_type&lt; s8, float &gt;_map" name="promote_type&lt; s8, float &gt;_map">
-<area href="a00454.html" alt="promote_type_ok" shape="rect" coords="0,0,158,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a00986.html">Op_find</a>]</small>
+</h1><!-- doxytag: class="op_find" -->
+<p><code>#include &lt;<a class="el" href="a00781_source.html">op_find_proto.hpp</a>&gt;</code></p>
 
-<p><a href="a01287.html">List of all members.</a></p>
+<p><a href="a01417.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00410.html#a40cd9b7a88ecb45e75888cea9a295f88">result</a></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00986.html#ga72253a277c0d3a18ceb050c904535b28">helper</a> (<a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt; &amp;indices, const <a class="el" href="a00103.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename op_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00986.html#gab418587c47e505c8f8f7869e10d9c6da">helper</a> (<a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt; &amp;indices, const <a class="el" href="a00394.html">mtOp</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1, op_type &gt; &amp;X, const typename <a class="el" href="a00057.html">arma_op_rel_only</a>&lt; op_type &gt;::result junk1=0, const typename <a class="el" href="a00044.html">arma_not_cx</a>&lt; typename T1::elem_type &gt;::result junk2=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename op_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00986.html#ga16405f907c05d5fc7e210a66210427ea">helper</a> (<a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt; &amp;indices, const <a class="el" href="a00394.html">mtOp</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1, op_type &gt; &amp;X, const typename <a class="el" href="a00057.html">arma_op_rel_only</a>&lt; op_type &gt;::result junk1=0, const typename <a class="el" href="a00012.html">arma_cx_only</a>&lt; typename T1::elem_type &gt;::result junk2=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename glue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00986.html#gaa13ace9d749028b14fbd22dd5d4e6480">helper</a> (<a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt; &amp;indices, const <a class="el" href="a00393.html">mtGlue</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1, T2, glue_type &gt; &amp;X, const typename <a class="el" href="a00024.html">arma_glue_rel_only</a>&lt; glue_type &gt;::result junk1=0, const typename <a class="el" href="a00044.html">arma_not_cx</a>&lt; typename T1::elem_type &gt;::result junk2=0, const typename <a class="el" href="a00044.html">arma_not_cx</a>&lt; typename T2::elem_type &gt;::result junk3=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename glue_type &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00986.html#gadbe896d11e4ed87d8c0044c2c1a6bf0f">helper</a> (<a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt; &amp;indices, const <a class="el" href="a00393.html">mtGlue</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1, T2, glue_type &gt; &amp;X, const typename <a class="el" href="a00024.html">arma_glue_rel_only</a>&lt; glue_type &gt;::result junk1=0, const typename <a class="el" href="a00012.html">arma_cx_only</a>&lt; typename T1::elem_type &gt;::result junk2=0, const typename <a class="el" href="a00012.html">arma_cx_only</a>&lt; typename T2::elem_type &gt;::result junk3=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00986.html#ga0446d7d3fd46624c3d77e8c8c7bdcb37">apply</a> (<a class="el" href="a00389.html">Mat</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt; &amp;out, const <a class="el" href="a00394.html">mtOp</a>&lt; <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, T1, <a class="el" href="a00410.html">op_find</a> &gt; &amp;X)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; s8, float &gt;</h3>
 
-
-<p>Definition at line <a class="el" href="a00703_source.html#l00124">124</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a40cd9b7a88ecb45e75888cea9a295f88"></a><!-- doxytag: member="promote_type&lt; s8, float &gt;::result" ref="a40cd9b7a88ecb45e75888cea9a295f88" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef float <a class="el" href="a00376.html">promote_type</a>&lt; <a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a>, float &gt;::<a class="el" href="a00410.html#a40cd9b7a88ecb45e75888cea9a295f88">result</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00703_source.html#l00124">124</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00781_source.html#l00024">24</a> of file <a class="el" href="a00781_source.html">op_find_proto.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: syslib Class Reference</title>
+<title>Armadillo Technical: promote_type&lt; double, u32 &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,82 +29,46 @@
   </div>
 </div>
 <div class="contents">
-<h1>syslib Class Reference<br/>
+<h1>promote_type&lt; double, u32 &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00881.html">Syslib</a>]</small>
-</h1><!-- doxytag: class="syslib" -->
-<p><code>#include &lt;<a class="el" href="a00721_source.html">syslib_proto.hpp</a>&gt;</code></p>
+[<a class="el" href="a01024.html">Promote_type</a>]</small>
+</h1><!-- doxytag: class="promote_type&lt; double, u32 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
+<p><code>#include &lt;<a class="el" href="a00843_source.html">promote_type.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for promote_type&lt; double, u32 &gt;:</div>
+<div class="dynsection">
+ <div class="center">
+  <img src="a00487.gif" usemap="#promote_type&lt; double, u32 &gt;_map" alt=""/>
+  <map id="promote_type&lt; double, u32 &gt;_map" name="promote_type&lt; double, u32 &gt;_map">
+<area href="a00558.html" alt="promote_type_ok" shape="rect" coords="0,0,180,24"/>
+</map>
+ </div>
+</div>
 
-<p><a href="a01363.html">List of all members.</a></p>
+<p><a href="a01494.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_hot void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00487.html#a6aa69b1e7be125744025f957a7ae4a84">copy_elem</a> (eT *dest, const eT *src, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
+<tr><td colspan="2"><h2>Public Types</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00487.html#afc1fd9d46445709fc786e4a39f05ff31">result</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;&gt;<br/>
+ struct promote_type&lt; double, u32 &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00721_source.html#l00021">21</a> of file <a class="el" href="a00721_source.html">syslib_proto.hpp</a>.</p>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a6aa69b1e7be125744025f957a7ae4a84"></a><!-- doxytag: member="syslib::copy_elem" ref="a6aa69b1e7be125744025f957a7ae4a84" args="(eT *dest, const eT *src, const u32 n_elem)" -->
+
+<p>Definition at line <a class="el" href="a00843_source.html#l00059">59</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
+<hr/><h2>Member Typedef Documentation</h2>
+<a class="anchor" id="afc1fd9d46445709fc786e4a39f05ff31"></a><!-- doxytag: member="promote_type&lt; double, u32 &gt;::result" ref="afc1fd9d46445709fc786e4a39f05ff31" args="" -->
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">static arma_hot void syslib::copy_elem </td>
-          <td>(</td>
-          <td class="paramtype">eT *&nbsp;</td>
-          <td class="paramname"> <em>dest</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const eT *&nbsp;</td>
-          <td class="paramname"> <em>src</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>n_elem</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [inline, static]</code></td>
+          <td class="memname">typedef double <a class="el" href="a00480.html">promote_type</a>&lt; double, <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> &gt;::<a class="el" href="a00487.html#afc1fd9d46445709fc786e4a39f05ff31">result</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00721_source.html#l00030">30</a> of file <a class="el" href="a00721_source.html">syslib_proto.hpp</a>.</p>
-
-<p>Referenced by <a class="el" href="a00672_source.html#l00026">op_reshape::apply()</a>, <a class="el" href="a00682_source.html#l00026">op_trans::apply_noalias()</a>, <a class="el" href="a00529_source.html#l00399">Cube&lt; eT &gt;::Cube()</a>, <a class="el" href="a00561_source.html#l01124">conv_to&lt; itpp::Vec&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00561_source.html#l00928">conv_to&lt; itpp::Mat&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00561_source.html#l00607">conv_to&lt; Col&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00561_source.html#l00380">conv_to&lt; Row&lt; out_eT &gt; &gt;::from()</a>, <a class="el" href="a00632_source.html#l00466">Mat&lt; eT &gt;::init()</a>, <a class="el" href="a00529_source.html#l00378">Cube&lt; eT &gt;::init()</a>, <a class="el" href="a00632_source.html#l00486">Mat&lt; eT &gt;::Mat()</a>, <a class="el" href="a00701_source.html#l00068">podarray&lt; eT &gt;::operator=()</a>, <a class="el" href="a00701_source.html#l00099">podarray&lt; eT &gt;::podarray()</a>, <a class="el" href="a00518_source.html#l01587">auxlib::solve_od()</a>, and <a class="el" href="a00518_source.html#l01651">auxlib::solve_ud()</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00031"></a>00031     {
-<a name="l00032"></a>00032     <span class="keywordflow">if</span>( n_elem &lt;= (128/<span class="keyword">sizeof</span>(eT)) )
-<a name="l00033"></a>00033       {
-<a name="l00034"></a>00034       <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i,j;
-<a name="l00035"></a>00035       
-<a name="l00036"></a>00036       <span class="keywordflow">for</span>(i=0, j=1; j&lt;n_elem; i+=2, j+=2)
-<a name="l00037"></a>00037         {
-<a name="l00038"></a>00038         dest[i] = src[i];
-<a name="l00039"></a>00039         dest[j] = src[j];
-<a name="l00040"></a>00040         }
-<a name="l00041"></a>00041       
-<a name="l00042"></a>00042       <span class="keywordflow">if</span>(i &lt; n_elem)
-<a name="l00043"></a>00043         {
-<a name="l00044"></a>00044         dest[i] = src[i];
-<a name="l00045"></a>00045         }
-<a name="l00046"></a>00046       }
-<a name="l00047"></a>00047     <span class="keywordflow">else</span>
-<a name="l00048"></a>00048       {
-<a name="l00049"></a>00049       std::memcpy(dest, src, n_elem*<span class="keyword">sizeof</span>(eT));
-<a name="l00050"></a>00050       }
-<a name="l00051"></a>00051     
-<a name="l00052"></a>00052     }
-</pre></div></p>
+<p>Definition at line <a class="el" href="a00843_source.html#l00059">59</a> of file <a class="el" href="a00843_source.html">promote_type.hpp</a>.</p>
 
 </div>
 </div>

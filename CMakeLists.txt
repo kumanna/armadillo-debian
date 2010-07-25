@@ -5,7 +5,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 SET(ARMA_MAJOR 0)
 SET(ARMA_MINOR 9)
-SET(ARMA_PATCH 8)
+SET(ARMA_PATCH 52)
 
 MESSAGE(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 
@@ -36,13 +36,18 @@ SET(ARMA_USE_BOOST  false)
 IF(WIN32)
   MESSAGE(STATUS "")
   MESSAGE(STATUS "WARNING:")
-  MESSAGE(STATUS "Automatic installation was not tested on this platform.")
-  MESSAGE(STATUS "If it doesn't work, please try the manual installation")
-  MESSAGE(STATUS "(described in the README.txt file), or simply use the")
-  MESSAGE(STATUS "include folder directly.")
+  MESSAGE(STATUS "Automatic installation is currently not available for this platform.")
+  MESSAGE(STATUS "Please use the manual installation, as described in the README.txt file.")
+  MESSAGE(STATUS "You can also use the 'include' folder directly, but you may want to edit")
+  MESSAGE(STATUS "'include/armadillo_bits/config.hpp' if you have LAPACK installed.")
   MESSAGE(STATUS "")
 ENDIF(WIN32)
 
+
+
+#
+# Find LAPACK and BLAS libraries, or their optimised versions
+#
 
 IF(APPLE)
   SET(ARMA_OS macos)
@@ -57,22 +62,39 @@ IF(APPLE)
 ELSE(APPLE)
   SET(ARMA_OS unix)
   
-  #INCLUDE(ARMA_FindMKL)
+  INCLUDE(ARMA_FindMKL)
+  INCLUDE(ARMA_FindACMLMP)
+  INCLUDE(ARMA_FindACML)
   
-  ## Uncomment the line above if you want to use the Intel Math Kernel Library (MKL).
-  ## You may also need to further configure your operating system in order to get 
-  ## MKL working properly.  See "README.txt" for more information.
+  MESSAGE(STATUS "MKL_FOUND     = ${MKL_FOUND}")
+  MESSAGE(STATUS "ACMLMP_FOUND  = ${ACMLMP_FOUND}")
+  MESSAGE(STATUS "ACML_FOUND    = ${ACML_FOUND}")
   
-  
-  IF(MKL_FOUND)
-    
+  IF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+
     SET(ARMA_USE_BLAS true)
     SET(ARMA_USE_LAPACK true)
-    
-  ELSE(MKL_FOUND)
-    
+
+    MESSAGE(STATUS "*** If the MKL or ACML libraries are installed in a non-standard location,")
+    MESSAGE(STATUS "*** make sure the run-time linker can find them.")
+    MESSAGE(STATUS "*** On Linux systems this can be done by editing /etc/ld.so.conf")
+    MESSAGE(STATUS "*** or modifying the LD_LIBRARY_PATH environment variable.")
+    MESSAGE(STATUS "*** On systems with SELinux enabled (e.g. Fedora, RHEL),")
+    MESSAGE(STATUS "*** you may need to change the SELinux type of all MKL/ACML libraries")
+    MESSAGE(STATUS "*** to fix permission problems that may occur during run-time.")
+    MESSAGE(STATUS "*** See README.txt for more information")
+
+  ELSE(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+  
     INCLUDE(ARMA_FindLAPACK)
     INCLUDE(ARMA_FindBLAS)
+    INCLUDE(ARMA_FindCLAPACK)
+    INCLUDE(ARMA_FindCBLAS)
+
+    MESSAGE(STATUS "LAPACK_FOUND  = ${LAPACK_FOUND}")
+    MESSAGE(STATUS "BLAS_FOUND    = ${BLAS_FOUND}")
+    MESSAGE(STATUS "CLAPACK_FOUND = ${CLAPACK_FOUND}")
+    MESSAGE(STATUS "CBLAS_FOUND   = ${CBLAS_FOUND}")
     
     IF(LAPACK_FOUND)
       SET(ARMA_USE_LAPACK true)
@@ -82,9 +104,6 @@ ELSE(APPLE)
       SET(ARMA_USE_BLAS true)
     ENDIF(BLAS_FOUND)
     
-    INCLUDE(ARMA_FindCLAPACK)
-    INCLUDE(ARMA_FindCBLAS)
-    
     IF(CLAPACK_FOUND AND CBLAS_FOUND)
       MESSAGE(STATUS "CLAPACK_INCLUDE_DIR = ${CLAPACK_INCLUDE_DIR}")
       MESSAGE(STATUS "CBLAS_INCLUDE_DIR   = ${CBLAS_INCLUDE_DIR}")
@@ -93,11 +112,68 @@ ELSE(APPLE)
         SET(ARMA_ATLAS_INCLUDE_DIR ${CLAPACK_INCLUDE_DIR})
       ENDIF(${CLAPACK_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
     ENDIF(CLAPACK_FOUND AND CBLAS_FOUND)
-  
-  ENDIF(MKL_FOUND)
+
+  ENDIF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
   
 ENDIF(APPLE)
 
+
+IF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+
+  IF(MKL_FOUND)
+    SET(ARMA_LIBS ${ARMA_LIBS} ${MKL_LIBRARIES})
+ 
+    IF(ACMLMP_FOUND OR ACML_FOUND)
+      MESSAGE(STATUS "*** Intel MKL as well as AMD ACML libraries were found.")
+      MESSAGE(STATUS "*** Using only the MKL library to avoid linking conflicts.")
+      MESSAGE(STATUS "*** If you wish to use ACML instead, please link manually with")
+      MESSAGE(STATUS "*** acml or acml_mp instead of the armadillo run-time component.")
+      MESSAGE(STATUS "*** Alternatively, remove MKL from your system and rerun")
+      MESSAGE(STATUS "*** Armadillo's configuration using ./configure") 
+    ENDIF(ACMLMP_FOUND OR ACML_FOUND)
+    
+  ELSE(MKL_FOUND)
+    
+    IF(ACMLMP_FOUND)
+      SET(ARMA_LIBS ${ARMA_LIBS} ${ACMLMP_LIBRARIES})
+      
+      MESSAGE(STATUS "*** Both single-core and multi-core ACML libraries were found.")
+      MESSAGE(STATUS "*** Using only the multi-core library to avoid linking conflicts.")
+    ELSE(ACMLMP_FOUND)
+      IF(ACML_FOUND)
+        SET(ARMA_LIBS ${ARMA_LIBS} ${ACML_LIBRARIES})
+      ENDIF(ACML_FOUND)
+    ENDIF(ACMLMP_FOUND)
+
+  ENDIF(MKL_FOUND)
+
+ELSE(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+
+  IF(ARMA_USE_BLAS STREQUAL true)
+    SET(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
+  ENDIF(ARMA_USE_BLAS STREQUAL true)
+  
+  IF(ARMA_USE_LAPACK STREQUAL true)
+    SET(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
+  ENDIF(ARMA_USE_LAPACK STREQUAL true)
+  
+  IF(ARMA_USE_ATLAS STREQUAL true)
+    SET(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
+    SET(ARMA_LIBS ${ARMA_LIBS} ${CLAPACK_LIBRARIES})
+  ENDIF(ARMA_USE_ATLAS STREQUAL true)
+
+ENDIF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+
+
+IF(APPLE)
+  SET(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
+  MESSAGE(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
+ENDIF(APPLE)
+
+MESSAGE(STATUS "*** ")
+MESSAGE(STATUS "*** The Armadillo run-time library component will be an alias for the following libraries:")
+MESSAGE(STATUS "*** ARMA_LIBS = ${ARMA_LIBS}")
+MESSAGE(STATUS "*** ")
 
 FIND_PACKAGE(Boost)
 
@@ -130,36 +206,6 @@ IF(ARMA_USE_BOOST STREQUAL true)
   SET(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${Boost_INCLUDE_DIR})
   CHECK_INCLUDE_FILE_CXX("boost/date_time/posix_time/posix_time.hpp" ARMA_USE_BOOST_DATE)
 ENDIF(ARMA_USE_BOOST STREQUAL true)
-
-IF(MKL_FOUND)
-  
-  SET(ARMA_LIBS ${ARMA_LIBS} ${MKL_LIBRARIES})
-  
-ELSE(MKL_FOUND)
-  
-  IF(ARMA_USE_BLAS STREQUAL true)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
-  ENDIF(ARMA_USE_BLAS STREQUAL true)
-  
-  IF(ARMA_USE_LAPACK STREQUAL true)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
-  ENDIF(ARMA_USE_LAPACK STREQUAL true)
-  
-  IF(ARMA_USE_ATLAS STREQUAL true)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
-    SET(ARMA_LIBS ${ARMA_LIBS} ${CLAPACK_LIBRARIES})
-  ENDIF(ARMA_USE_ATLAS STREQUAL true)
-  
-ENDIF(MKL_FOUND)
-
-
-IF(APPLE)
-  SET(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
-  MESSAGE(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
-ENDIF(APPLE)
-
-MESSAGE(STATUS "ARMA_LIBS = ${ARMA_LIBS}")
-
 
 ARMA_CHECK_MATH_PROTO("isfinite" "std" "cmath"  ARMA_HAVE_STD_ISFINITE)
 ARMA_CHECK_MATH_PROTO("isinf"    "std" "cmath"  ARMA_HAVE_STD_ISINF)

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: fn_misc.hpp File Reference</title>
+<title>Armadillo Technical: running_stat_vec_aux Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,146 +14,168 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
   <div class="tabs">
     <ul>
-      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
-      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
+      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
+      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
-  </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>fn_misc.hpp File Reference</h1>
-<p><a href="a00583_source.html">Go to the source code of this file.</a></p>
+<h1>running_stat_vec_aux Class Reference<br/>
+<small>
+[<a class="el" href="a01030.html">Running_stat_vec</a>]</small>
+</h1><!-- doxytag: class="running_stat_vec_aux" -->
+<p><code>#include &lt;<a class="el" href="a00852_source.html">running_stat_vec_proto.hpp</a>&gt;</code></p>
+
+<p><a href="a01589.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename vec_type &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">vec_type&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaead072a2ffb3ea0fae61276d626d2f8c">linspace</a> (const typename vec_type::pod_type start, const typename vec_type::pod_type end, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> num, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generate a vector with 'num' elements. The values of the elements linearly increase from 'start' upto (and including) 'end'.  <a href="a00788.html#gaead072a2ffb3ea0fae61276d626d2f8c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00308.html">mat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00788.html#gadc06d78c81e0372f5e82c604dbb0f5a5">linspace</a> (const double start, const double end, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> num, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> dim=0)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gace416710a865ca9064eee4a45ee235a5">real</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::pod_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga3bb1e0e25cf4f2fa73f8cd100fe67ba5">real</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::pod_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00308.html">Mat</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaf265c3ad2c5e4189ca1e61c0484840ca">real</a> (const <a class="el" href="a00054.html">Base</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00068.html">Cube</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaa62cf8a53a620fee4f90d41b20a63a42">real</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00094.html">eOp</a>&lt; <a class="el" href="a00308.html">Mat</a>&lt; typename <br class="typebreak"/>
-T1::pod_type &gt;, <a class="el" href="a00172.html">eop_zeros</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaa98a0ff600cceddcff08ea8325060f30">imag</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::pod_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">const <a class="el" href="a00173.html">eOpCube</a>&lt; <a class="el" href="a00068.html">Cube</a>&lt; typename <br class="typebreak"/>
-T1::pod_type &gt;, <a class="el" href="a00146.html">eop_cube_zeros</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga8c938337fe400314dced4d6ddd9d2f06">imag</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::pod_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00308.html">Mat</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga7fc883a1d1c91b0964a3f460beef06e3">imag</a> (const <a class="el" href="a00054.html">Base</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00068.html">Cube</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga9a0143781e1b49a3752e2a082c0970db">imag</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">eT&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga55bf0d38c22b8c30fc8a821e29855450">log_add</a> (eT log_a, eT log_b)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00149.html">eop_log</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga5f86df83743526b96070a3f91769a98f">log</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00124.html">eop_cube_log</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga00f87221e2f90879180e1a7ee1100251">log</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00171.html">eop_trunc_log</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga202966dd951776378b85bd9f2945a9ae">trunc_log</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00145.html">eop_cube_trunc_log</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaae1052178e78316d326529cbdd643e20">trunc_log</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00150.html">eop_log10</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gad8a40fd5da8040ddc06a9f9d906384d3">log10</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00125.html">eop_cube_log10</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga1bb339adf6bda737ec96b571c9b6366d">log10</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00148.html">eop_exp</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga08f69ae4263db369df092379a5dbaa49">exp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00123.html">eop_cube_exp</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga0625720462adb4e9e8cb1652a47048df">exp</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00170.html">eop_trunc_exp</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga308338848e35a947e6cfdbdcc4bfd042">trunc_exp</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00144.html">eop_cube_trunc_exp</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga15a739d8dce01daf272feb905faf350c">trunc_exp</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00095.html">eop_abs</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gab16789c3ea9589cffd46e27764d9c8b4">abs</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00111.html">eop_cube_abs</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gabf869c1ca07aea353776dbdeda6fea22">abs</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00308.html">Mat</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga8a2b44b9ecccfa21ab2656a403bf7ccd">abs</a> (const <a class="el" href="a00054.html">Base</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="a00308.html">Mat</a>&lt; typename T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gae1c4180b707834bda12c3eaed5e00fe4">abs</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00095.html">eop_abs</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga02b783406ea4cae9e40902367ed3bb16">fabs</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::pod_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00111.html">eop_cube_abs</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gab4d8d07dbf37be1068ef8c41d175736e">fabs</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::pod_type, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00308.html">Mat</a>&lt; typename <br class="typebreak"/>
-T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gae94d09cb45f42899457f6645d62b94d4">fabs</a> (const <a class="el" href="a00054.html">Base</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00308.html">Mat</a>&lt; typename <br class="typebreak"/>
-T1::pod_type &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga47b3aea5606d7a23cde37a579ee0a00d">fabs</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;X)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00167.html">eop_square</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaddaf2c5f2d887081567ddbcbabc9b217">square</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00141.html">eop_cube_square</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga6860ef4a17905314024d45441e60a55b">square</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00166.html">eop_sqrt</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gae69d28fe1d387bd0823bfe24a5bee315">sqrt</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00140.html">eop_cube_sqrt</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga1d93659c5d6e992fb6b63354fe152818">sqrt</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gaa391c64e4ebc063dd39dc13a1330055c">conj</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::pod_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga7c131b060ab2b53d68d37d74015dbd39">conj</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::pod_type, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00107.html">eop_conj</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gabbd733311e954085c544eff46093cf8a">conj</a> (const <a class="el" href="a00054.html">Base</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00118.html">eop_cube_conj</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gab376d324ebca5cd1750ab8ab581a4f09">conj</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; std::complex&lt; typename T1::pod_type &gt;, T1 &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga68a19d24ede6fed0abc866e94079819c">conj</a> (const <a class="el" href="a00094.html">eOp</a>&lt; T1, <a class="el" href="a00107.html">eop_conj</a> &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const T1 &amp;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga946e2027cf3a9cd528c0b965f1e2eeaa">conj</a> (const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <a class="el" href="a00118.html">eop_cube_conj</a> &gt; &amp;A)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00154.html">eop_pow</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gad3c210b6ccb22d9f4e0438de463f9a1a">pow</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const typename T1::elem_type exponent)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00128.html">eop_cube_pow</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#gafb83a2a565b351fec294de66c33e5397">pow</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const typename T1::elem_type exponent)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00154.html">eop_pow</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga8a02ea2387b6a42cbfbc5bb4326d33d6">pow</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const typename T1::elem_type::value_type exponent)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00128.html">eop_cube_pow</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga86a1ff6e97f70edc597b49fcbd34737b">pow</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const typename T1::elem_type::value_type exponent)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00094.html">eOp</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00155.html">eop_pow_int</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga6dd2149d8dfade8e7bbddd8ba0fb3ece">pow</a> (const <a class="el" href="a00054.html">Base</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const int exponent)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">arma_inline const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, <br class="typebreak"/>
-<a class="el" href="a00129.html">eop_cube_pow_int</a> &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00788.html#ga74ef75a4f9d4bf6d963e911d5239527e">pow</a> (const <a class="el" href="a00055.html">BaseCube</a>&lt; typename T1::elem_type, T1 &gt; &amp;A, const int exponent)</td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a01030.html#ga2ef5e79f0863917485585cddfd4b8e6a">update_stats</a> (<a class="el" href="a00582.html">running_stat_vec</a>&lt; eT &gt; &amp;x, const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample  <a href="a01030.html#ga2ef5e79f0863917485585cddfd4b8e6a"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a01030.html#ga3847c0f28c347bb03f96d90a1ce85458">update_stats</a> (<a class="el" href="a00582.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a00389.html">Mat</a>&lt; T &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">update statistics to reflect new sample (version for complex numbers)  <a href="a01030.html#ga3847c0f28c347bb03f96d90a1ce85458"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a01030.html#ga000825df493af22a5492662344d01661">update_stats</a> (<a class="el" href="a00582.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt; T &gt; &gt; &amp;sample)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">alter statistics to reflect new sample (version for complex numbers)  <a href="a01030.html#ga000825df493af22a5492662344d01661"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00389.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00583.html#acc14798b6da75f98666907a4564e6557">var</a> (const <a class="el" href="a00582.html">running_stat_vec</a>&lt; eT &gt; &amp;x, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00389.html">Mat</a>&lt; T &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00583.html#aad51f86c651743852dd911a00d10f742">var</a> (const <a class="el" href="a00582.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00389.html">Mat</a>&lt; eT &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00583.html#abfb982ec27f9700e3a926103d967f814">cov</a> (const <a class="el" href="a00582.html">running_stat_vec</a>&lt; eT &gt; &amp;x, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt; T &gt; &gt;&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00583.html#acd38894549d16f6185519dbfedacd040">cov</a> (const <a class="el" href="a00582.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;x, const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> norm_type=0)</td></tr>
 </table>
+<hr/><a name="_details"></a><h2>Detailed Description</h2>
+
+<p>Definition at line <a class="el" href="a00852_source.html#l00084">84</a> of file <a class="el" href="a00852_source.html">running_stat_vec_proto.hpp</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="acc14798b6da75f98666907a4564e6557"></a><!-- doxytag: member="running_stat_vec_aux::var" ref="acc14798b6da75f98666907a4564e6557" args="(const running_stat_vec&lt; eT &gt; &amp;x, const u32 norm_type=0)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="a00389.html">Mat</a>&lt;eT&gt; running_stat_vec_aux::var </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00582.html">running_stat_vec</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aad51f86c651743852dd911a00d10f742"></a><!-- doxytag: member="running_stat_vec_aux::var" ref="aad51f86c651743852dd911a00d10f742" args="(const running_stat_vec&lt; std::complex&lt; T &gt; &gt; &amp;x, const u32 norm_type=0)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="a00389.html">Mat</a>&lt; T&gt; running_stat_vec_aux::var </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00582.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abfb982ec27f9700e3a926103d967f814"></a><!-- doxytag: member="running_stat_vec_aux::cov" ref="abfb982ec27f9700e3a926103d967f814" args="(const running_stat_vec&lt; eT &gt; &amp;x, const u32 norm_type=0)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; running_stat_vec_aux::cov </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00582.html">running_stat_vec</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acd38894549d16f6185519dbfedacd040"></a><!-- doxytag: member="running_stat_vec_aux::cov" ref="acd38894549d16f6185519dbfedacd040" args="(const running_stat_vec&lt; std::complex&lt; T &gt; &gt; &amp;x, const u32 norm_type=0)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="a00389.html">Mat</a>&lt; std::complex&lt;T&gt; &gt; running_stat_vec_aux::cov </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00582.html">running_stat_vec</a>&lt; std::complex&lt; T &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
+          <td class="paramname"> <em>norm_type</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 </div>
 </BODY>
 </HTML>

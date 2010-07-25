@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: arma_ostream Class Reference</title>
+<title>Armadillo Technical: arma_float_or_cx_only&lt; T &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,42 +29,19 @@
   </div>
 </div>
 <div class="contents">
-<h1>arma_ostream Class Reference<br/>
+<h1>arma_float_or_cx_only&lt; T &gt; Struct Template Reference<br/>
 <small>
-[<a class="el" href="a00739.html">Arma_ostream</a>]</small>
-</h1><!-- doxytag: class="arma_ostream" -->
-<p><code>#include &lt;<a class="el" href="a00514_source.html">arma_ostream_proto.hpp</a>&gt;</code></p>
-
-<p><a href="a00904.html">List of all members.</a></p>
+[<a class="el" href="a01027.html">Restrictors</a>]</small>
+</h1><!-- doxytag: class="arma_float_or_cx_only" -->
+<p><code>#include &lt;<a class="el" href="a00846_source.html">restrictors.hpp</a>&gt;</code></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#gaf8367fae8c5fc5bebf278da89ad11029">modify_stream</a> (std::ostream &amp;o, const eT *data, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#gafc1a25430de3d2366308d6c9ed68bf9b">modify_stream</a> (std::ostream &amp;o, const std::complex&lt; T &gt; *data, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"better than nothing" settings for complex numbers  <a href="a00739.html#gafc1a25430de3d2366308d6c9ed68bf9b"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#ga6ac6fbfdf26609fdd7b747d0e21c4c51">print_elem</a> (std::ostream &amp;o, const eT &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print an element to the specified stream.  <a href="a00739.html#ga6ac6fbfdf26609fdd7b747d0e21c4c51"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static arma_inline void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#ga237c7e75e8e549a50234c78d12f2d562">print_elem</a> (std::ostream &amp;o, const std::complex&lt; T &gt; &amp;x)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print a complex element to the specified stream EXPERIMENTAL !  <a href="a00739.html#ga237c7e75e8e549a50234c78d12f2d562"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#ga0326f7d71112c2ae199dab64c9616859">print</a> (std::ostream &amp;o, const <a class="el" href="a00308.html">Mat</a>&lt; eT &gt; &amp;m, const bool modify)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print a matrix to the specified stream.  <a href="a00739.html#ga0326f7d71112c2ae199dab64c9616859"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename eT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#ga8521504d1c9aacbc92e99e4ecf3c9cb3">print</a> (std::ostream &amp;o, const <a class="el" href="a00068.html">Cube</a>&lt; eT &gt; &amp;m, const bool modify)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print a cube to the specified stream.  <a href="a00739.html#ga8521504d1c9aacbc92e99e4ecf3c9cb3"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#ga1aa3224bf21aef16bcca6a6aca7a1547">print</a> (std::ostream &amp;o, const <a class="el" href="a00174.html">field</a>&lt; oT &gt; &amp;m)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print a <a class="el" href="a00174.html" title="A lightweight 2D container for abitrary objects (the objects must have a copy constructor)...">field</a> to the specified stream Assumes type oT can be printed, i.e. oT has std::ostream&amp; operator&lt;&lt; (std::ostream&amp;, const oT&amp;).  <a href="a00739.html#ga1aa3224bf21aef16bcca6a6aca7a1547"></a><br/></td></tr>
-<tr><td class="memTemplParams" colspan="2">template&lt;typename oT &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00739.html#ga8f0bd891ced3cd11f6b81f78d03b19b3">print</a> (std::ostream &amp;o, const <a class="el" href="a00485.html">subview_field</a>&lt; oT &gt; &amp;m)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Print a subfield to the specified stream Assumes type oT can be printed, i.e. oT has std::ostream&amp; operator&lt;&lt; (std::ostream&amp;, const oT&amp;).  <a href="a00739.html#ga8f0bd891ced3cd11f6b81f78d03b19b3"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<h3>template&lt;typename T&gt;<br/>
+ struct arma_float_or_cx_only&lt; T &gt;</h3>
 
-<p>Definition at line <a class="el" href="a00514_source.html#l00041">41</a> of file <a class="el" href="a00514_source.html">arma_ostream_proto.hpp</a>.</p>
+
+<p>Definition at line <a class="el" href="a00846_source.html#l00084">84</a> of file <a class="el" href="a00846_source.html">restrictors.hpp</a>.</p>
 </div>
 </BODY>
 </HTML>

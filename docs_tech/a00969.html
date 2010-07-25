@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: Member List</title>
+<title>Armadillo Technical: Glue_solve</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -14,32 +14,93 @@
       <li><a href="main.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
   </div>
-  <div class="tabs">
-    <ul>
-      <li><a href="annotated.html"><span>Class&nbsp;List</span></a></li>
-      <li><a href="classes.html"><span>Class&nbsp;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&nbsp;Hierarchy</span></a></li>
-      <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
-    </ul>
-  </div>
 </div>
 <div class="contents">
-<h1>eglue_minus Member List</h1>This is the complete list of members for <a class="el" href="a00090.html">eglue_minus</a>, including all inherited members.<table>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga18b142e149fa4166d829085c71802036">apply</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga306dddece4d1b8c52162d31dc348aacd">apply_inplace_div</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga8aa2ba7e18c62743d1022cd927c08518">apply_inplace_minus</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga9b1fc6ec950fa1abb5b421db58268331">apply_inplace_plus</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga660d6668fc54385862a97d67f0fcb2b2">apply_inplace_schur</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga626e21d56951189b5bc2e4ba86731739">apply_proxy</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga4c47e4be32955c7a37b60c014acd493c">apply_unwrap</a>(Mat&lt; typename T1::elem_type &gt; &amp;out, const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga8685da4ee629ce030328bfb00f80233e">get_elem</a>(const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x, const u32 i)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00751.html#ga9442ef52867a93cd3919be712f63197a">get_elem</a>(const eGlue&lt; T1, T2, eglue_minus &gt; &amp;x, const u32 row, const u32 col)</td><td><a class="el" href="a00083.html">eglue_core&lt; eglue_minus &gt;</a></td><td><code> [inline, static]</code></td></tr>
-  <tr class="memlist"><td><a class="el" href="a00090.html#aef2cd176e929f42b414b8b9700894504">id</a>()</td><td><a class="el" href="a00090.html">eglue_minus</a></td><td><code> [inline, static]</code></td></tr>
-</table></div>
+<h1>Glue_solve</h1><table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00265.html">glue_solve</a></td></tr>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">static void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00969.html#ga0c416d8a0f325a409a9e95ef57753819">glue_solve::apply</a> (<a class="el" href="a00389.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;out, const <a class="el" href="a00247.html">Glue</a>&lt; T1, T2, <a class="el" href="a00265.html">glue_solve</a> &gt; &amp;X)</td></tr>
+</table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ga0c416d8a0f325a409a9e95ef57753819"></a><!-- doxytag: member="glue_solve::apply" ref="ga0c416d8a0f325a409a9e95ef57753819" args="(Mat&lt; typename T1::elem_type &gt; &amp;out, const Glue&lt; T1, T2, glue_solve &gt; &amp;X)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void glue_solve::apply </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00389.html">Mat</a>&lt; typename T1::elem_type &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="a00247.html">Glue</a>&lt; T1, T2, <a class="el" href="a00265.html">glue_solve</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>X</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline, static, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00747_source.html#l00025">25</a> of file <a class="el" href="a00747_source.html">glue_solve_meat.hpp</a>.</p>
+
+<p>References <a class="el" href="a00744_source.html#l00047">Glue&lt; T1, T2, glue_type &gt;::A</a>, <a class="el" href="a00644_source.html#l00051">arma_print()</a>, <a class="el" href="a00744_source.html#l00048">Glue&lt; T1, T2, glue_type &gt;::B</a>, <a class="el" href="a00863_source.html#l00144">unwrap_check&lt; T1 &gt;::M</a>, <a class="el" href="a00759_source.html#l00031">Mat&lt; eT &gt;::n_cols</a>, <a class="el" href="a00759_source.html#l00030">Mat&lt; eT &gt;::n_rows</a>, <a class="el" href="a00758_source.html#l02603">Mat&lt; eT &gt;::reset()</a>, <a class="el" href="a00710_source.html#l00034">solve()</a>, <a class="el" href="a00631_source.html#l01587">auxlib::solve_od()</a>, and <a class="el" href="a00631_source.html#l01651">auxlib::solve_ud()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00026"></a>00026   {
+<a name="l00027"></a>00027   arma_extra_debug_sigprint();
+<a name="l00028"></a>00028   
+<a name="l00029"></a>00029   <span class="keyword">typedef</span> <span class="keyword">typename</span> T1::elem_type eT;
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   <span class="keyword">const</span> <a class="code" href="a00602.html">unwrap_check&lt;T1&gt;</a> A_tmp(X.<a class="code" href="a00247.html#a22423031a9f05101ad23dfd897c6f1ab" title="first operand">A</a>, out);
+<a name="l00032"></a>00032   <span class="keyword">const</span> <a class="code" href="a00602.html">unwrap_check&lt;T2&gt;</a> B_tmp(X.<a class="code" href="a00247.html#a1b3a6b5891d84915448f3084e66476c6" title="second operand">B</a>, out);
+<a name="l00033"></a>00033   
+<a name="l00034"></a>00034   <span class="keyword">const</span> <a class="code" href="a00389.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; A = A_tmp.M;
+<a name="l00035"></a>00035   <span class="keyword">const</span> <a class="code" href="a00389.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>&amp; B = B_tmp.M;
+<a name="l00036"></a>00036   
+<a name="l00037"></a>00037   arma_debug_check( (A.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> != B.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a>), <span class="stringliteral">&quot;solve(): number of rows in A and B must be the same&quot;</span> );
+<a name="l00038"></a>00038   
+<a name="l00039"></a>00039   <span class="keywordtype">bool</span> status;
+<a name="l00040"></a>00040   
+<a name="l00041"></a>00041   <span class="keywordflow">if</span>(A.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> == A.<a class="code" href="a00389.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>)
+<a name="l00042"></a>00042     {
+<a name="l00043"></a>00043     status = <a class="code" href="a00942.html#gac04d42bcf348dd8424dce57e89649a7a" title="Solve a system of linear equations, i.e., A*X = B, where X is unknown. For a square...">auxlib::solve</a>(out, A, B);
+<a name="l00044"></a>00044     }
+<a name="l00045"></a>00045   <span class="keywordflow">else</span>
+<a name="l00046"></a>00046   <span class="keywordflow">if</span>(A.<a class="code" href="a00389.html#aaa8c7e5e59361913b15ae55f714ca6c6" title="number of rows in the matrix (read-only)">n_rows</a> &gt; A.<a class="code" href="a00389.html#a163bed70780a1d181594d126295d5a09" title="number of columns in the matrix (read-only)">n_cols</a>)
+<a name="l00047"></a>00047     {
+<a name="l00048"></a>00048     arma_extra_debug_print(<span class="stringliteral">&quot;solve(): detected over-determined system&quot;</span>);
+<a name="l00049"></a>00049     status = <a class="code" href="a00880.html#gade3d6439a4cce0ecd344de86e3ff0cd3" title="Solve an over-determined system. Assumes that A.n_rows &amp;gt; A.n_cols and B.n_rows...">auxlib::solve_od</a>(out, A, B);
+<a name="l00050"></a>00050     }
+<a name="l00051"></a>00051   <span class="keywordflow">else</span>
+<a name="l00052"></a>00052     {
+<a name="l00053"></a>00053     arma_extra_debug_print(<span class="stringliteral">&quot;solve(): detected under-determined system&quot;</span>);
+<a name="l00054"></a>00054     status = <a class="code" href="a00880.html#ga7f0cc5b573a8da91df9ea3c55b716db3" title="Solve an under-determined system. Assumes that A.n_rows &amp;lt; A.n_cols and B.n_rows...">auxlib::solve_ud</a>(out, A, B);
+<a name="l00055"></a>00055     }
+<a name="l00056"></a>00056   
+<a name="l00057"></a>00057   <span class="keywordflow">if</span>(status == <span class="keyword">false</span>)
+<a name="l00058"></a>00058     {
+<a name="l00059"></a>00059     out.<a class="code" href="a00975.html#gacc9a04c65d457da77df3dff99dd9494a">reset</a>();
+<a name="l00060"></a>00060     <a class="code" href="a00887.html#ga69722c0e0d2f42fa96ecf9be109dddaa">arma_print</a>(<span class="stringliteral">&quot;solve(): solution not found&quot;</span>);
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062   }
+</pre></div></p>
+
+</div>
+</div>
+</div>
 </BODY>
 </HTML>

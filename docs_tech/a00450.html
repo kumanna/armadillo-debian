@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: promote_type&lt; u8, s8 &gt; Struct Template Reference</title>
+<title>Armadillo Technical: partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,46 +29,153 @@
   </div>
 </div>
 <div class="contents">
-<h1>promote_type&lt; u8, s8 &gt; Struct Template Reference<br/>
+<h1>partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00869.html">Promote_type</a>]</small>
-</h1><!-- doxytag: class="promote_type&lt; u8, s8 &gt;" --><!-- doxytag: inherits="promote_type_ok" -->
-<p><code>#include &lt;<a class="el" href="a00703_source.html">promote_type.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for promote_type&lt; u8, s8 &gt;:</div>
-<div class="dynsection">
- <div class="center">
-  <img src="a00450.gif" usemap="#promote_type&lt; u8, s8 &gt;_map" alt=""/>
-  <map id="promote_type&lt; u8, s8 &gt;_map" name="promote_type&lt; u8, s8 &gt;_map">
-<area href="a00454.html" alt="promote_type_ok" shape="rect" coords="0,0,148,24"/>
-</map>
- </div>
-</div>
+[<a class="el" href="a01038.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00863_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01327.html">List of all members.</a></p>
+<p><a href="a01457.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#a5a3ead22c7c264f2ea78a5da9807d8e2">result</a></td></tr>
+<tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#a873c933d05d7245d69486e460c075aab">partial_unwrap</a> (const <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &amp;A)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#ac2806b405b414b963f7b20b545e0aafd">~partial_unwrap</a> ()</td></tr>
+<tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#a73c77202610c9d21235fec259f0361cb">do_trans</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#abfba41706b0bb3f87796c333628c4e66">do_times</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#a97f3358b872678fb65c9245f7f4940f5">val</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00450.html#abf63aea0d8d94e95609e48b6d56239db">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;&gt;<br/>
- struct promote_type&lt; u8, s8 &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ class partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00703_source.html#l00145">145</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a5a3ead22c7c264f2ea78a5da9807d8e2"></a><!-- doxytag: member="promote_type&lt; u8, s8 &gt;::result" ref="a5a3ead22c7c264f2ea78a5da9807d8e2" args="" -->
+<p>Definition at line <a class="el" href="a00863_source.html#l00589">589</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a873c933d05d7245d69486e460c075aab"></a><!-- doxytag: member="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;::partial_unwrap" ref="a873c933d05d7245d69486e460c075aab" args="(const eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &amp;A)" -->
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a> <a class="el" href="a00376.html">promote_type</a>&lt; <a class="el" href="a00883.html#gaed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="a00883.html#ga2ff401e087cf786c38a6812723e94473">s8</a> &gt;::<a class="el" href="a00450.html#a5a3ead22c7c264f2ea78a5da9807d8e2">result</a></td>
+          <td class="memname"><a class="el" href="a00446.html">partial_unwrap</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00446.html">partial_unwrap</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00703_source.html#l00145">145</a> of file <a class="el" href="a00703_source.html">promote_type.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00594">594</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00595"></a>00595     : <a class="code" href="a00450.html#a73c77202610c9d21235fec259f0361cb">do_trans</a>(<span class="keyword">false</span>)
+<a name="l00596"></a>00596     , <a class="code" href="a00450.html#abfba41706b0bb3f87796c333628c4e66">do_times</a>(<span class="keyword">true</span>)
+<a name="l00597"></a>00597     , <a class="code" href="a00450.html#a97f3358b872678fb65c9245f7f4940f5">val</a>     (A.<a class="code" href="a00149.html#a1d4ab044f419cfecb67e2b16923af961" title="storage of auxiliary data, user defined format">aux</a>)
+<a name="l00598"></a>00598     , <a class="code" href="a00450.html#abf63aea0d8d94e95609e48b6d56239db">M</a>       (A.<a class="code" href="a00149.html#aa1ee824ef6a6cabc9ee27762f1c7473f">P</a>.<a class="code" href="a00569.html#addb59714c3dc7c2a31d0744101a48593">Q</a>)
+<a name="l00599"></a>00599     {
+<a name="l00600"></a>00600     arma_extra_debug_sigprint();
+<a name="l00601"></a>00601     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="ac2806b405b414b963f7b20b545e0aafd"></a><!-- doxytag: member="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;::~partial_unwrap" ref="ac2806b405b414b963f7b20b545e0aafd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00446.html">partial_unwrap</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::~<a class="el" href="a00446.html">partial_unwrap</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00604">604</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00605"></a>00605     {
+<a name="l00606"></a>00606     arma_extra_debug_sigprint();
+<a name="l00607"></a>00607     }
+</pre></div></p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a73c77202610c9d21235fec259f0361cb"></a><!-- doxytag: member="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;::do_trans" ref="a73c77202610c9d21235fec259f0361cb" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00446.html">partial_unwrap</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00450.html#a73c77202610c9d21235fec259f0361cb">do_trans</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00609">609</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abfba41706b0bb3f87796c333628c4e66"></a><!-- doxytag: member="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;::do_times" ref="abfba41706b0bb3f87796c333628c4e66" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool <a class="el" href="a00446.html">partial_unwrap</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00450.html#abfba41706b0bb3f87796c333628c4e66">do_times</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00610">610</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a97f3358b872678fb65c9245f7f4940f5"></a><!-- doxytag: member="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;::val" ref="a97f3358b872678fb65c9245f7f4940f5" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const eT <a class="el" href="a00446.html">partial_unwrap</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00450.html#a97f3358b872678fb65c9245f7f4940f5">val</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00611">611</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abf63aea0d8d94e95609e48b6d56239db"></a><!-- doxytag: member="partial_unwrap&lt; eOp&lt; Row&lt; eT &gt;, eop_scalar_times &gt; &gt;::M" ref="abf63aea0d8d94e95609e48b6d56239db" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="a00389.html">Mat</a>&lt;eT&gt;&amp; <a class="el" href="a00446.html">partial_unwrap</a>&lt; <a class="el" href="a00149.html">eOp</a>&lt; <a class="el" href="a00578.html">Row</a>&lt; eT &gt;, <a class="el" href="a00218.html">eop_scalar_times</a> &gt; &gt;::<a class="el" href="a00450.html#abf63aea0d8d94e95609e48b6d56239db">M</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00612">612</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>

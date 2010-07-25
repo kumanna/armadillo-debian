@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: op_max_proto.hpp Source File</title>
+<title>Armadillo Technical: eglue_cube_core_proto.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -25,11 +25,11 @@
       <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><a class="el" href="dir_fbf5248e2c983ecd86332951a4e31116.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_4e73cb3a3ca7448de4f043b925787de1.html">armadillo_bits</a>
+  <div class="navpath"><a class="el" href="dir_1306bbe5badeb79fef15bf4ecd31b127.html">include</a>&nbsp;&raquo&nbsp;<a class="el" href="dir_486bcba66b7cf2c931271eaf9d5d3f7c.html">armadillo_bits</a>
   </div>
 </div>
 <div class="contents">
-<h1>op_max_proto.hpp</h1><a href="a00653.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
+<h1>eglue_cube_core_proto.hpp</h1><a href="a00653.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright (C) 2010 NICTA and the authors listed below</span>
 <a name="l00002"></a>00002 <span class="comment">// http://nicta.com.au</span>
 <a name="l00003"></a>00003 <span class="comment">// </span>
 <a name="l00004"></a>00004 <span class="comment">// Authors:</span>
@@ -45,49 +45,37 @@
 <a name="l00014"></a>00014 <span class="comment">// (see http://www.opensource.org/licenses for more info)</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">//! \addtogroup op_max</span>
+<a name="l00017"></a>00017 <span class="comment">//! \addtogroup eglue_cube_core</span>
 <a name="l00018"></a>00018 <span class="comment">//! @{</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 
-<a name="l00021"></a>00021 <span class="comment"></span>
-<a name="l00022"></a>00022 <span class="comment">//! Class for finding maximum values in a matrix</span>
-<a name="l00023"></a><a class="code" href="a00323.html">00023</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="a00323.html" title="Class for finding maximum values in a matrix.">op_max</a>
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eglue_type&gt;
+<a name="l00023"></a><a class="code" href="a00139.html">00023</a> <span class="keyword">struct </span><a class="code" href="a00139.html">eglue_cube_core</a>
 <a name="l00024"></a>00024   {
-<a name="l00025"></a>00025   <span class="keyword">public</span>:
-<a name="l00026"></a>00026   
-<a name="l00027"></a>00027   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00028"></a>00028   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263" title="find the maximum value in an array">direct_max</a>(<span class="keyword">const</span> eT* <span class="keyword">const</span> X, <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> N);
-<a name="l00029"></a>00029   
-<a name="l00030"></a>00030   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00031"></a>00031   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263" title="find the maximum value in an array">direct_max</a>(<span class="keyword">const</span> <a class="code" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview&lt;eT&gt;</a>&amp; X);
-<a name="l00032"></a>00032   
-<a name="l00033"></a>00033   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> eT&gt;
-<a name="l00034"></a>00034   <span class="keyword">inline</span> <span class="keyword">static</span> eT <a class="code" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263" title="find the maximum value in an array">direct_max</a>(<span class="keyword">const</span> <a class="code" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview&lt;eT&gt;</a>&amp; X);
+<a name="l00025"></a>00025   
+<a name="l00026"></a>00026   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_inline <span class="keyword">static</span> <span class="keyword">typename</span> T1::elem_type <a class="code" href="a00892.html#ga2507c34683a5de295da3ea4a8a75585a">get_elem</a>(<span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i);
+<a name="l00027"></a>00027   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_inline <span class="keyword">static</span> <span class="keyword">typename</span> T1::elem_type <a class="code" href="a00892.html#ga2507c34683a5de295da3ea4a8a75585a">get_elem</a>(<span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col, <span class="keyword">const</span> <a class="code" href="a01037.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> slice);
+<a name="l00028"></a>00028   
+<a name="l00029"></a>00029   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00892.html#gacac18879f75c031bf1ad2a8e84b80665">apply</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x);
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00892.html#gaf47c162115bbf42a601573c934ae6d21">apply_inplace_plus</a> (<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x);
+<a name="l00032"></a>00032   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00892.html#gae475fc75d253e19bdc3891e714f5f599">apply_inplace_minus</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x);
+<a name="l00033"></a>00033   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00892.html#ga9b27ab01884ae8298bccd79dbaeddfa9">apply_inplace_schur</a>(<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x);
+<a name="l00034"></a>00034   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt; arma_hot <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00892.html#gaa16d225635c226dfeb4e59be38b3c80e">apply_inplace_div</a>  (<a class="code" href="a00123.html" title="Dense cube class.">Cube&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00148.html">eGlueCube&lt;T1, T2, eglue_type&gt;</a>&amp; x);
 <a name="l00035"></a>00035   
-<a name="l00036"></a>00036   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1&gt;
-<a name="l00037"></a>00037   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00837.html#gaa4bc696fbeab6c132cb63787fed671f6" title="For each row or for each column, find the maximum value. The result is stored in...">apply</a>(<a class="code" href="a00308.html" title="Dense matrix class.">Mat&lt;typename T1::elem_type&gt;</a>&amp; out, <span class="keyword">const</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_max&gt;</a>&amp; in);
-<a name="l00038"></a>00038   
-<a name="l00039"></a>00039   
-<a name="l00040"></a>00040   <span class="comment">//</span>
-<a name="l00041"></a>00041   <span class="comment">// for complex numbers</span>
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00044"></a>00044   <span class="keyword">inline</span> <span class="keyword">static</span> std::complex&lt;T&gt; <a class="code" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263" title="find the maximum value in an array">direct_max</a>(<span class="keyword">const</span> std::complex&lt;T&gt;* <span class="keyword">const</span> X, <span class="keyword">const</span> <a class="code" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> n_elem);
-<a name="l00045"></a>00045   
-<a name="l00046"></a>00046   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00047"></a>00047   <span class="keyword">inline</span> <span class="keyword">static</span> std::complex&lt;T&gt; <a class="code" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263" title="find the maximum value in an array">direct_max</a>(<span class="keyword">const</span> <a class="code" href="a00482.html" title="Class for storing data required to construct or apply operations to a submatrix (i...">subview</a>&lt; std::complex&lt;T&gt; &gt;&amp;X);
-<a name="l00048"></a>00048   
-<a name="l00049"></a>00049   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;
-<a name="l00050"></a>00050   <span class="keyword">inline</span> <span class="keyword">static</span> std::complex&lt;T&gt; <a class="code" href="a00837.html#gab5e14d5c4e379f65b8f2a2cfdca03263" title="find the maximum value in an array">direct_max</a>(<span class="keyword">const</span> <a class="code" href="a00080.html" title="Class for storing data required to extract and set the diagonals of a matrix.">diagview</a>&lt; std::complex&lt;T&gt; &gt;&amp;X);
-<a name="l00051"></a>00051   
-<a name="l00052"></a>00052   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> T1&gt;
-<a name="l00053"></a>00053   <span class="keyword">inline</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="a00837.html#gaa4bc696fbeab6c132cb63787fed671f6" title="For each row or for each column, find the maximum value. The result is stored in...">apply</a>(<a class="code" href="a00308.html" title="Dense matrix class.">Mat</a>&lt; std::complex&lt;T&gt; &gt;&amp; out, <span class="keyword">const</span> <a class="code" href="a00312.html" title="Class for storing data required for delayed unary operations, such as the operand...">Op&lt;T1,op_max&gt;</a>&amp; in);
-<a name="l00054"></a>00054   
-<a name="l00055"></a>00055   };
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">//! @}</span>
+<a name="l00036"></a>00036   };
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="keyword">class </span><a class="code" href="a00142.html">eglue_cube_plus</a>;
+<a name="l00041"></a>00041 <span class="keyword">class </span><a class="code" href="a00141.html">eglue_cube_minus</a>;
+<a name="l00042"></a>00042 <span class="keyword">class </span><a class="code" href="a00140.html">eglue_cube_div</a>;
+<a name="l00043"></a>00043 <span class="keyword">class </span><a class="code" href="a00143.html">eglue_cube_schur</a>;
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="comment"></span>
+<a name="l00047"></a>00047 <span class="comment">//! @}</span>
 </span></pre></div></div>
 </BODY>
 </HTML>

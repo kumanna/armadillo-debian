@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Armadillo Technical: ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt; Class Template Reference</title>
+<title>Armadillo Technical: partial_unwrap_check&lt; Mat&lt; eT &gt; &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -29,289 +29,186 @@
   </div>
 </div>
 <div class="contents">
-<h1>ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt; Class Template Reference<br/>
+<h1>partial_unwrap_check&lt; Mat&lt; eT &gt; &gt; Class Template Reference<br/>
 <small>
-[<a class="el" href="a00871.html">ProxyCube</a>]</small>
-</h1><!-- doxytag: class="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;" -->
-<p><code>#include &lt;<a class="el" href="a00705_source.html">ProxyCube.hpp</a>&gt;</code></p>
+[<a class="el" href="a01038.html">Unwrap</a>]</small>
+</h1><!-- doxytag: class="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;" -->
+<p><code>#include &lt;<a class="el" href="a00863_source.html">unwrap.hpp</a>&gt;</code></p>
 
-<p><a href="a01345.html">List of all members.</a></p>
+<p><a href="a01475.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td colspan="2"><h2>Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef T1::elem_type&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00189.html">get_pod_type</a><br class="typebreak"/>
-&lt; <a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a> &gt;::result&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a948c337c1893af1ecb07ecb6d88bdc01">pod_type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a42598d45ef1a7631aad8e09aa9528eba">stored_type</a></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a5a88f8326f2e6e2e1ca240bb115a8571">ProxyCube</a> (const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &amp;A)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a990b5d98cd2e4b8be465e762123f4c2d">operator[]</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> i) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">arma_inline <a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#aa89d64e97e5b18a04c3a4d4c9bf9b785">at</a> (const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> row, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> col, const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> slice) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a3aabd68f54a3055920b85dbbf6605a50">partial_unwrap_check</a> (const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;A, const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;B)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#aebd2dbfead13e95b0316b3edc0e45af8">~partial_unwrap_check</a> ()</td></tr>
 <tr><td colspan="2"><h2>Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a01b21097bd96dd441344ef5b37816a54">Q</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a99825c92e735d50e9874d3d5e36e8df3">n_rows</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a320a1b7bb39b2b589060a138adbe2209">n_cols</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#accdfbcfbb1dfd82b63a43e35912e5dc3">n_elem_slice</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a5f3a09cae444edab43478eacdedd7089">n_slices</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a19efbb3ed5d81de3edc7032eb1571ff9">n_elem</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a4d41c7ffc7c5a760166a1e2af9212fb7">do_trans</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a4c1af569d83db319b8e140f5a30c548e">do_times</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const eT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a58f634b55bad6f76211b434d09908638">val</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#ae78729e65cc87c29ba94e875197399fc">M_local</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00468.html#a94b2d48d85c0747f30995ded01d21840">M</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<h3>template&lt;typename T1, typename eop_type&gt;<br/>
- class ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;</h3>
+<h3>template&lt;typename eT&gt;<br/>
+ class partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;</h3>
 
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00184">184</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-<hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="ae81f824c56ad4f78a76c2f880fbf27d6"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::elem_type" ref="ae81f824c56ad4f78a76c2f880fbf27d6" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef T1::elem_type <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00188">188</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a948c337c1893af1ecb07ecb6d88bdc01"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::pod_type" ref="a948c337c1893af1ecb07ecb6d88bdc01" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00189.html">get_pod_type</a>&lt;<a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a>&gt;::result <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#a948c337c1893af1ecb07ecb6d88bdc01">pod_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00189">189</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a42598d45ef1a7631aad8e09aa9528eba"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::stored_type" ref="a42598d45ef1a7631aad8e09aa9528eba" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="a00173.html">eOpCube</a>&lt;T1, eop_type&gt; <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00173.html">stored_type</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00190">190</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
+<p>Definition at line <a class="el" href="a00863_source.html#l00866">866</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a5a88f8326f2e6e2e1ca240bb115a8571"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::ProxyCube" ref="a5a88f8326f2e6e2e1ca240bb115a8571" args="(const eOpCube&lt; T1, eop_type &gt; &amp;A)" -->
+<a class="anchor" id="a3aabd68f54a3055920b85dbbf6605a50"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::partial_unwrap_check" ref="a3aabd68f54a3055920b85dbbf6605a50" args="(const Mat&lt; eT &gt; &amp;A, const Mat&lt; eT &gt; &amp;B)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00465.html">ProxyCube</a> </td>
+          <td class="memname"><a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00462.html">partial_unwrap_check</a> </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &amp;&nbsp;</td>
-          <td class="paramname"> <em>A</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td><code> [inline, explicit]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00200">200</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00201"></a>00201     : <a class="code" href="a00468.html#a01b21097bd96dd441344ef5b37816a54">Q</a>           (A)
-<a name="l00202"></a>00202     , <a class="code" href="a00468.html#a99825c92e735d50e9874d3d5e36e8df3">n_rows</a>      (A.<a class="code" href="a00173.html#a3ffee9628dfe84fd67d99f6905f823cd">P</a>.n_rows)
-<a name="l00203"></a>00203     , <a class="code" href="a00468.html#a320a1b7bb39b2b589060a138adbe2209">n_cols</a>      (A.<a class="code" href="a00173.html#a3ffee9628dfe84fd67d99f6905f823cd">P</a>.n_cols)
-<a name="l00204"></a>00204     , <a class="code" href="a00468.html#accdfbcfbb1dfd82b63a43e35912e5dc3">n_elem_slice</a>(A.<a class="code" href="a00173.html#a3ffee9628dfe84fd67d99f6905f823cd">P</a>.n_elem_slice)
-<a name="l00205"></a>00205     , <a class="code" href="a00468.html#a5f3a09cae444edab43478eacdedd7089">n_slices</a>    (A.<a class="code" href="a00173.html#a3ffee9628dfe84fd67d99f6905f823cd">P</a>.n_slices)
-<a name="l00206"></a>00206     , <a class="code" href="a00468.html#a19efbb3ed5d81de3edc7032eb1571ff9">n_elem</a>      (A.<a class="code" href="a00173.html#a3ffee9628dfe84fd67d99f6905f823cd">P</a>.n_elem)
-<a name="l00207"></a>00207     {
-<a name="l00208"></a>00208     arma_extra_debug_sigprint();
-<a name="l00209"></a>00209     }
-</pre></div></p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a990b5d98cd2e4b8be465e762123f4c2d"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::operator[]" ref="a990b5d98cd2e4b8be465e762123f4c2d" args="(const u32 i) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline <a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::operator[] </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>i</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [inline]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00211">211</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-<p><div class="fragment"><pre class="fragment"><a name="l00211"></a>00211 { <span class="keywordflow">return</span> eop_type::get_elem(<a class="code" href="a00468.html#a01b21097bd96dd441344ef5b37816a54">Q</a>, i);               }
-</pre></div></p>
-
-</div>
-</div>
-<a class="anchor" id="aa89d64e97e5b18a04c3a4d4c9bf9b785"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::at" ref="aa89d64e97e5b18a04c3a4d4c9bf9b785" args="(const u32 row, const u32 col, const u32 slice) const " -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">arma_inline <a class="el" href="a00468.html#ae81f824c56ad4f78a76c2f880fbf27d6">elem_type</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::at </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>row</em>, </td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>A</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>col</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&nbsp;</td>
-          <td class="paramname"> <em>slice</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>B</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td> const<code> [inline]</code></td>
+          <td></td><td></td><td><code> [inline]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00212">212</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00871">871</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
-<p><div class="fragment"><pre class="fragment"><a name="l00212"></a>00212 { <span class="keywordflow">return</span> eop_type::get_elem(<a class="code" href="a00468.html#a01b21097bd96dd441344ef5b37816a54">Q</a>, row, col, slice); }
+<p><div class="fragment"><pre class="fragment"><a name="l00872"></a>00872     : <a class="code" href="a00468.html#a4d41c7ffc7c5a760166a1e2af9212fb7">do_trans</a>(<span class="keyword">false</span>)
+<a name="l00873"></a>00873     , <a class="code" href="a00468.html#a4c1af569d83db319b8e140f5a30c548e">do_times</a>(<span class="keyword">false</span>)
+<a name="l00874"></a>00874     , <a class="code" href="a00468.html#a58f634b55bad6f76211b434d09908638">val</a>     (1)
+<a name="l00875"></a>00875     , <a class="code" href="a00468.html#ae78729e65cc87c29ba94e875197399fc">M_local</a> ( (&amp;A == &amp;B) ? <span class="keyword">new</span> <a class="code" href="a00389.html" title="Dense matrix class.">Mat&lt;eT&gt;</a>(A) : 0 )
+<a name="l00876"></a>00876     , <a class="code" href="a00468.html#a94b2d48d85c0747f30995ded01d21840">M</a>       ( (&amp;A == &amp;B) ? (*<a class="code" href="a00468.html#ae78729e65cc87c29ba94e875197399fc">M_local</a>)     : A )
+<a name="l00877"></a>00877     {
+<a name="l00878"></a>00878     arma_extra_debug_sigprint();
+<a name="l00879"></a>00879     }
+</pre></div></p>
+
+</div>
+</div>
+<a class="anchor" id="aebd2dbfead13e95b0316b3edc0e45af8"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::~partial_unwrap_check" ref="aebd2dbfead13e95b0316b3edc0e45af8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename eT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::~<a class="el" href="a00462.html">partial_unwrap_check</a> </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="a00863_source.html#l00883">883</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment"><a name="l00884"></a>00884     {
+<a name="l00885"></a>00885     arma_extra_debug_sigprint();
+<a name="l00886"></a>00886     
+<a name="l00887"></a>00887     <span class="keywordflow">if</span>(<a class="code" href="a00468.html#ae78729e65cc87c29ba94e875197399fc">M_local</a>)
+<a name="l00888"></a>00888       {
+<a name="l00889"></a>00889       <span class="keyword">delete</span> <a class="code" href="a00468.html#ae78729e65cc87c29ba94e875197399fc">M_local</a>;
+<a name="l00890"></a>00890       }
+<a name="l00891"></a>00891     }
 </pre></div></p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a01b21097bd96dd441344ef5b37816a54"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::Q" ref="a01b21097bd96dd441344ef5b37816a54" args="" -->
+<a class="anchor" id="a4d41c7ffc7c5a760166a1e2af9212fb7"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::do_trans" ref="a4d41c7ffc7c5a760166a1e2af9212fb7" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00173.html">eOpCube</a>&lt;T1, eop_type&gt;&amp; <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#a01b21097bd96dd441344ef5b37816a54">Q</a></td>
+          <td class="memname">const bool <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00468.html#a4d41c7ffc7c5a760166a1e2af9212fb7">do_trans</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00192">192</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00895">895</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a99825c92e735d50e9874d3d5e36e8df3"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::n_rows" ref="a99825c92e735d50e9874d3d5e36e8df3" args="" -->
+<a class="anchor" id="a4c1af569d83db319b8e140f5a30c548e"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::do_times" ref="a4c1af569d83db319b8e140f5a30c548e" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#a99825c92e735d50e9874d3d5e36e8df3">n_rows</a></td>
+          <td class="memname">const bool <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00468.html#a4c1af569d83db319b8e140f5a30c548e">do_times</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00194">194</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00896">896</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a320a1b7bb39b2b589060a138adbe2209"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::n_cols" ref="a320a1b7bb39b2b589060a138adbe2209" args="" -->
+<a class="anchor" id="a58f634b55bad6f76211b434d09908638"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::val" ref="a58f634b55bad6f76211b434d09908638" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#a320a1b7bb39b2b589060a138adbe2209">n_cols</a></td>
+          <td class="memname">const eT <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00468.html#a58f634b55bad6f76211b434d09908638">val</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00195">195</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00897">897</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="accdfbcfbb1dfd82b63a43e35912e5dc3"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::n_elem_slice" ref="accdfbcfbb1dfd82b63a43e35912e5dc3" args="" -->
+<a class="anchor" id="ae78729e65cc87c29ba94e875197399fc"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::M_local" ref="ae78729e65cc87c29ba94e875197399fc" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#accdfbcfbb1dfd82b63a43e35912e5dc3">n_elem_slice</a></td>
+          <td class="memname">const <a class="el" href="a00389.html">Mat</a>&lt;eT&gt;* <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00468.html#ae78729e65cc87c29ba94e875197399fc">M_local</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00196">196</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00898">898</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5f3a09cae444edab43478eacdedd7089"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::n_slices" ref="a5f3a09cae444edab43478eacdedd7089" args="" -->
+<a class="anchor" id="a94b2d48d85c0747f30995ded01d21840"></a><!-- doxytag: member="partial_unwrap_check&lt; Mat&lt; eT &gt; &gt;::M" ref="a94b2d48d85c0747f30995ded01d21840" args="" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
+template&lt;typename eT &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#a5f3a09cae444edab43478eacdedd7089">n_slices</a></td>
+          <td class="memname">const <a class="el" href="a00389.html">Mat</a>&lt;eT&gt;&amp; <a class="el" href="a00462.html">partial_unwrap_check</a>&lt; <a class="el" href="a00389.html">Mat</a>&lt; eT &gt; &gt;::<a class="el" href="a00468.html#a94b2d48d85c0747f30995ded01d21840">M</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="a00705_source.html#l00197">197</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a19efbb3ed5d81de3edc7032eb1571ff9"></a><!-- doxytag: member="ProxyCube&lt; eOpCube&lt; T1, eop_type &gt; &gt;::n_elem" ref="a19efbb3ed5d81de3edc7032eb1571ff9" args="" -->
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T1 , typename eop_type &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="a00883.html#ga2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="a00465.html">ProxyCube</a>&lt; <a class="el" href="a00173.html">eOpCube</a>&lt; T1, eop_type &gt; &gt;::<a class="el" href="a00468.html#a19efbb3ed5d81de3edc7032eb1571ff9">n_elem</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="a00705_source.html#l00198">198</a> of file <a class="el" href="a00705_source.html">ProxyCube.hpp</a>.</p>
+<p>Definition at line <a class="el" href="a00863_source.html#l00899">899</a> of file <a class="el" href="a00863_source.html">unwrap.hpp</a>.</p>
 
 </div>
 </div>
