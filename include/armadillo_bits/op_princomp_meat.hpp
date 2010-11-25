@@ -1,9 +1,6 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Dimitrios Bouzas (dimitris dot mpouzas at gmail dot com)
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2010 Conrad Sanderson
+// Copyright (C) 2010 Dimitrios Bouzas
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -71,7 +68,7 @@ op_princomp::direct_princomp
     //U.reset();  // TODO: do we need this ?  U will get automatically deleted anyway
     
     // normalize the eigenvalues
-    s /= std::sqrt(n_rows - 1);
+    s /= std::sqrt( double(n_rows - 1) );
     
     // project the samples to the principals
     score_out *= coeff_out;
@@ -179,7 +176,7 @@ op_princomp::direct_princomp
     // U.reset();
     
     // normalize the eigenvalues
-    s /= std::sqrt(n_rows - 1);
+    s /= std::sqrt( double(n_rows - 1) );
     
     // project the samples to the principals
     score_out *= coeff_out;
@@ -265,7 +262,7 @@ op_princomp::direct_princomp
     // U.reset();
     
     // normalize the eigenvalues
-    s /= std::sqrt(n_rows - 1);
+    s /= std::sqrt( double(n_rows - 1) );
     
     // project the samples to the principals
     score_out *= coeff_out;
@@ -390,7 +387,7 @@ op_princomp::direct_princomp
     //U.reset();
     
     // normalize the eigenvalues
-    s /= std::sqrt(n_rows - 1);
+    s /= std::sqrt( double(n_rows - 1) );
     
     // project the samples to the principals
     score_out *= coeff_out;
@@ -496,7 +493,7 @@ op_princomp::direct_princomp
     // U.reset();
     
     // normalize the eigenvalues
-    s /= std::sqrt(n_rows - 1);
+    s /= std::sqrt( double(n_rows - 1) );
     
     // project the samples to the principals
     score_out *= coeff_out;
@@ -581,7 +578,7 @@ op_princomp::direct_princomp
     // U.reset();
     
     // normalize the eigenvalues
-    s /= std::sqrt(n_rows - 1);
+    s /= std::sqrt( double(n_rows - 1) );
 
     // project the samples to the principals
     score_out *= coeff_out;

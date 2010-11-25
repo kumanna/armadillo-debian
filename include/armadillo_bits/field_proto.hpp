@@ -1,9 +1,6 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
-// - Ian Cullinan (ian dot cullinan at nicta dot com dot au)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2009-2010 Ian Cullinan
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -17,6 +14,13 @@
 
 //! \addtogroup field
 //! @{
+
+
+
+struct field_prealloc_n_elem
+  {
+  static const u32 val = 16;
+  };
 
 
 
@@ -38,7 +42,8 @@ class field
   private:
   
   arma_aligned oT** mem;             //!< pointer to memory used by the object
-  arma_aligned oT*  mem_local[ 16 ]; //!< Internal memory, to avoid calling the 'new' operator for small amounts of memory
+  arma_aligned oT*  mem_local[ field_prealloc_n_elem::val ];
+  //!< Internal memory, to avoid calling the 'new' operator for small amounts of memory
   
   
   public:
@@ -73,6 +78,9 @@ class field
   arma_inline       oT& operator()(const u32 row, const u32 col);
   arma_inline const oT& operator()(const u32 row, const u32 col) const;
   
+  inline field_injector<field> operator<<(const oT& val);
+  inline field_injector<field> operator<<(const injector_helper x);
+  
   inline       subview_field<oT> row(const u32 row_num);
   inline const subview_field<oT> row(const u32 row_num) const;
   
@@ -95,6 +103,11 @@ class field
   
   inline void reset();
   inline void reset_objects();
+  
+  arma_inline bool is_empty() const;
+  
+  arma_inline bool in_range(const u32 i) const;
+  arma_inline bool in_range(const u32 in_row, const u32 in_col) const;
   
   
   inline bool save(const std::string   name, const file_type type = arma_binary, const bool print_status = true) const;
@@ -174,6 +187,13 @@ class field
   
   friend class field_aux;
   friend class subview_field<oT>;
+  
+  
+  public:
+  
+  #ifdef ARMA_EXTRA_FIELD_PROTO
+    #include ARMA_INCFILE_WRAP(ARMA_EXTRA_FIELD_PROTO)
+  #endif
   };
 
 

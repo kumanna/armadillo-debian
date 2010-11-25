@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -65,14 +62,16 @@ class gemm_emul_cache
         
         for(u32 col_B=0; col_B < B_n_cols; ++col_B)
           {
-          const eT* B_coldata = B.colptr(col_B);
+          // const eT* B_coldata = B.colptr(col_B);
+          // 
+          // eT acc = eT(0);
+          // for(u32 i=0; i < B_n_rows; ++i)
+          //   {
+          //   acc += A_rowdata[i] * B_coldata[i];
+          //   }
           
-          eT acc = eT(0);
-          for(u32 i=0; i < B_n_rows; ++i)
-            {
-            acc += A_rowdata[i] * B_coldata[i];
-            }
-        
+          const eT acc = op_dot::direct_dot_arma(B_n_rows, A_rowdata, B.colptr(col_B));
+          
           if( (use_alpha == false) && (use_beta == false) )
             {
             C.at(row_A,col_B) = acc;
@@ -107,14 +106,16 @@ class gemm_emul_cache
         
         for(u32 col_B=0; col_B < B_n_cols; ++col_B)
           {
-          const eT* B_coldata = B.colptr(col_B);
+          // const eT* B_coldata = B.colptr(col_B);
+          // 
+          // eT acc = eT(0);
+          // for(u32 i=0; i < B_n_rows; ++i)
+          //   {
+          //   acc += A_coldata[i] * B_coldata[i];
+          //   }
           
-          eT acc = eT(0);
-          for(u32 i=0; i < B_n_rows; ++i)
-            {
-            acc += A_coldata[i] * B_coldata[i];
-            }
-        
+          const eT acc = op_dot::direct_dot_arma(B_n_rows, A_coldata, B.colptr(col_B));
+          
           if( (use_alpha == false) && (use_beta == false) )
             {
             C.at(col_A,col_B) = acc;
@@ -167,14 +168,16 @@ class gemm_emul_cache
         
         for(u32 col_A=0; col_A < A_n_cols; ++col_A)
           {
-          const eT* A_coldata = A.colptr(col_A);
+          // const eT* A_coldata = A.colptr(col_A);
+          // 
+          // eT acc = eT(0);
+          // for(u32 i=0; i < A_n_rows; ++i)
+          //   {
+          //   acc += B_rowdata[i] * A_coldata[i];
+          //   }
           
-          eT acc = eT(0);
-          for(u32 i=0; i < A_n_rows; ++i)
-            {
-            acc += B_rowdata[i] * A_coldata[i];
-            }
-        
+          const eT acc = op_dot::direct_dot_arma(A_n_rows, B_rowdata, A.colptr(col_A));
+          
           if( (use_alpha == false) && (use_beta == false) )
             {
             C.at(col_A,row_B) = acc;
@@ -410,7 +413,7 @@ class gemm
     {
     arma_extra_debug_sigprint();
     
-    if( ((A.n_elem <= 64u) && (B.n_elem <= 64u)) )
+    if( ((A.n_elem < 64u) && (B.n_elem < 64u)) )
       {
       gemm_emul_simple<do_trans_A, do_trans_B, use_alpha, use_beta>::apply(C,A,B,alpha,beta);
       }
@@ -440,26 +443,26 @@ class gemm
         }
       #elif defined(ARMA_USE_BLAS)
         {
-        arma_extra_debug_print("blas::gemm_()");
+        arma_extra_debug_print("blas::gemm()");
         
         const char trans_A = (do_trans_A) ? 'T' : 'N';
         const char trans_B = (do_trans_B) ? 'T' : 'N';
         
-        const int m   = C.n_rows;
-        const int n   = C.n_cols;
-        const int k   = (do_trans_A) ? A.n_rows : A.n_cols;
+        const blas_int m   = C.n_rows;
+        const blas_int n   = C.n_cols;
+        const blas_int k   = (do_trans_A) ? A.n_rows : A.n_cols;
         
         const eT local_alpha = (use_alpha) ? alpha : eT(1);
         
-        const int lda = (do_trans_A) ? k : m;
-        const int ldb = (do_trans_B) ? n : k;
+        const blas_int lda = (do_trans_A) ? k : m;
+        const blas_int ldb = (do_trans_B) ? n : k;
         
         const eT local_beta  = (use_beta) ? beta : eT(0);
         
-        arma_extra_debug_print( arma_boost::format("blas::gemm_(): trans_A = %c") % trans_A );
-        arma_extra_debug_print( arma_boost::format("blas::gemm_(): trans_B = %c") % trans_B );
+        arma_extra_debug_print( arma_boost::format("blas::gemm(): trans_A = %c") % trans_A );
+        arma_extra_debug_print( arma_boost::format("blas::gemm(): trans_B = %c") % trans_B );
         
-        blas::gemm_<eT>
+        blas::gemm<eT>
           (
           &trans_A,
           &trans_B,

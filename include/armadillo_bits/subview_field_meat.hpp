@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -287,8 +284,9 @@ subview_field<oT>::check_overlap(const subview_field<oT>& x) const
       ( (x.aux_col2 >= t.aux_col1) && (x.aux_col2 <= t.aux_col2) )
       );
     
+    const bool overlap = ( (row_overlap == true) && (col_overlap == true) );
     
-    return (row_overlap & col_overlap);
+    return overlap;
     }
   }
 

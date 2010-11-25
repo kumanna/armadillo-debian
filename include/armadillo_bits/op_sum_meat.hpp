@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -38,34 +35,27 @@ op_sum::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sum>& in)
   
   arma_debug_check( (X.n_elem < 1), "sum(): given object has no elements");
   
+  const u32 X_n_rows = X.n_rows;
+  const u32 X_n_cols = X.n_cols;
   
   if(dim == 0)  // traverse across rows (i.e. find the sum in each column)
     {
-    out.set_size(1, X.n_cols);
+    out.set_size(1, X_n_cols);
     
-    for(u32 col=0; col < X.n_cols; ++col)
+    for(u32 col=0; col<X_n_cols; ++col)
       {
-      const eT* X_colptr = X.colptr(col);
-      
-      eT val = eT(0);
-      
-      for(u32 row=0; row < X.n_rows; ++row)
-        {
-        val += X_colptr[row];
-        }
-    
-      out.at(0,col) = val;
+      out.at(0,col) = arrayops::accumulate( X.colptr(col), X_n_rows );
       }
     }
   else  // traverse across columns (i.e. find the sum in each row)
     {
-    out.set_size(X.n_rows, 1);
+    out.set_size(X_n_rows, 1);
     
-    for(u32 row=0; row < X.n_rows; ++row)
+    for(u32 row=0; row<X_n_rows; ++row)
       {
       eT val = eT(0);
       
-      for(u32 col=0; col<X.n_cols; ++col)
+      for(u32 col=0; col<X_n_cols; ++col)
         {
         val += X.at(row,col);
         }

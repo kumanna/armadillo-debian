@@ -1,11 +1,20 @@
-#
-# (C) 2010 NICTA
+# Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+# Copyright (C) 2008-2010 Conrad Sanderson
+# 
+# This file is part of the Armadillo C++ library.
+# It is provided without any warranty of fitness
+# for any purpose. You can redistribute this file
+# and/or modify it under the terms of the GNU
+# Lesser General Public License (LGPL) as published
+# by the Free Software Foundation, either version 3
+# of the License or (at your option) any later version.
+# (see http://www.opensource.org/licenses for more info)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-SET(ARMA_MAJOR 0)
-SET(ARMA_MINOR 9)
-SET(ARMA_PATCH 52)
+SET(ARMA_MAJOR 1)
+SET(ARMA_MINOR 0)
+SET(ARMA_PATCH 0)
 
 MESSAGE(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 

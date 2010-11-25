@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -37,11 +34,11 @@ class OpCube : public BaseCube<typename T1::elem_type, OpCube<T1, op_type> >
   inline          OpCube(const u32 in_aux_u32_a, const u32 in_aux_u32_b, const u32 in_aux_u32_c);
   inline         ~OpCube();
   
-  const T1&       m;          //!< storage of reference to the operand (e.g. a cube)
-  const elem_type aux;        //!< storage of auxiliary data, user defined format
-  const u32       aux_u32_a;  //!< storage of auxiliary data, u32 format
-  const u32       aux_u32_b;  //!< storage of auxiliary data, u32 format
-  const u32       aux_u32_c;  //!< storage of auxiliary data, u32 format
+  arma_aligned const T1&       m;          //!< storage of reference to the operand (e.g. a cube)
+  arma_aligned const elem_type aux;        //!< storage of auxiliary data, user defined format
+  arma_aligned const u32       aux_u32_a;  //!< storage of auxiliary data, u32 format
+  arma_aligned const u32       aux_u32_b;  //!< storage of auxiliary data, u32 format
+  arma_aligned const u32       aux_u32_c;  //!< storage of auxiliary data, u32 format
   
   };
 

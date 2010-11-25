@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -24,7 +21,7 @@
 //! BaseCube * scalar
 template<typename T1>
 arma_inline
-const eOpCube<T1, eop_cube_scalar_times>
+const eOpCube<T1, eop_scalar_times>
 operator*
   (
   const BaseCube<typename T1::elem_type,T1>& X,
@@ -33,7 +30,7 @@ operator*
   {
   arma_extra_debug_sigprint();
   
-  return eOpCube<T1, eop_cube_scalar_times>(X.get_ref(), k);
+  return eOpCube<T1, eop_scalar_times>(X.get_ref(), k);
   }
 
 
@@ -41,7 +38,7 @@ operator*
 //! scalar * BaseCube
 template<typename T1>
 arma_inline
-const eOpCube<T1, eop_cube_scalar_times>
+const eOpCube<T1, eop_scalar_times>
 operator*
   (
   const typename T1::elem_type               k,
@@ -50,7 +47,41 @@ operator*
   {
   arma_extra_debug_sigprint();
   
-  return eOpCube<T1, eop_cube_scalar_times>(X.get_ref(), k);
+  return eOpCube<T1, eop_scalar_times>(X.get_ref(), k);
+  }
+
+
+
+//! non-complex BaseCube * complex scalar (experimental)
+template<typename T1>
+arma_inline
+const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_times>
+operator*
+  (
+  const BaseCube<typename T1::pod_type, T1>& X,
+  const std::complex<typename T1::pod_type>& k
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  return mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_times>('j', X.get_ref(), k);
+  }
+
+
+
+//! complex scalar * non-complex BaseCube (experimental)
+template<typename T1>
+arma_inline
+const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_times>
+operator*
+  (
+  const std::complex<typename T1::pod_type>& k,
+  const BaseCube<typename T1::pod_type, T1>& X
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  return mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_times>('j', X.get_ref(), k);
   }
 
 

@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -23,8 +20,12 @@
 class glue_join
   {
   public:
-
-  template<typename T1, typename T2> inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_join>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_join>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply(Cube<typename T1::elem_type>& out, const GlueCube<T1,T2,glue_join>& X);
   };
 
 

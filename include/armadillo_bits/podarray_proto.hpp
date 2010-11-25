@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -19,6 +16,13 @@
 
 
 
+struct podarray_prealloc_n_elem
+  {
+  static const u32 val = 16;
+  };
+
+
+
 //! A lightweight array for POD types. If the amount of memory requested is small, the stack is used.
 
 template<typename eT>
@@ -32,7 +36,7 @@ class podarray
   
   protected:
   //! Internal memory, to avoid calling the 'new' operator for small amounts of memory.
-  arma_aligned eT mem_local[ 16 ];
+  arma_aligned eT mem_local[ podarray_prealloc_n_elem::val ];
   
   
   public:
@@ -54,6 +58,7 @@ class podarray
   arma_inline eT  operator() (const u32 i) const;
   
   inline void set_size(const u32 new_n_elem);
+  inline void reset();
   
   inline void fill(const eT val);
   

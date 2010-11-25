@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -39,11 +36,11 @@ class mtOp : public Base<out_eT, mtOp<out_eT, T1, op_type> >
   inline         ~mtOp();
     
   
-  const T1&    m;           //!< storage of reference to the operand (e.g. a matrix)
-  const in_eT  aux;         //!< storage of auxiliary data, using the element type as used by T1
-  const out_eT aux_out_eT;  //!< storage of auxiliary data, using the element type as specified by the out_eT template parameter
-  const u32    aux_u32_a;   //!< storage of auxiliary data, u32 format
-  const u32    aux_u32_b;   //!< storage of auxiliary data, u32 format
+  arma_aligned const T1&    m;           //!< storage of reference to the operand (e.g. a matrix)
+  arma_aligned const in_eT  aux;         //!< storage of auxiliary data, using the element type as used by T1
+  arma_aligned const out_eT aux_out_eT;  //!< storage of auxiliary data, using the element type as specified by the out_eT template parameter
+  arma_aligned const u32    aux_u32_a;   //!< storage of auxiliary data, u32 format
+  arma_aligned const u32    aux_u32_b;   //!< storage of auxiliary data, u32 format
   
   };
 

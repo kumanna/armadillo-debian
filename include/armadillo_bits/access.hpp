@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -28,8 +25,6 @@ class access
   //! internal function to obtain the real part of either a plain number or a complex number
   template<typename eT> arma_inline static const eT& tmp_real(const eT&              X) { return X;        }
   template<typename  T> arma_inline static const   T tmp_real(const std::complex<T>& X) { return X.real(); }
-
-
   };
 
 
