@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -30,6 +27,14 @@ class op_cx_scalar_times
           Mat< typename std::complex<typename T1::pod_type> >& out,
     const mtOp<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_times>& X
     );
+  
+  template<typename T1>
+  inline static void
+  apply
+    (
+             Cube< typename std::complex<typename T1::pod_type> >& out,
+    const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_times>& X
+    );
 
   };
 
@@ -45,6 +50,14 @@ class op_cx_scalar_plus
     (
           Mat< typename std::complex<typename T1::pod_type> >& out,
     const mtOp<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_plus>& X
+    );
+  
+  template<typename T1>
+  inline static void
+  apply
+    (
+             Cube< typename std::complex<typename T1::pod_type> >& out,
+    const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_plus>& X
     );
 
   };
@@ -62,6 +75,14 @@ class op_cx_scalar_minus_pre
           Mat< typename std::complex<typename T1::pod_type> >& out,
     const mtOp<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_minus_pre>& X
     );
+  
+  template<typename T1>
+  inline static void
+  apply
+    (
+             Cube< typename std::complex<typename T1::pod_type> >& out,
+    const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_minus_pre>& X
+    );
 
   };
 
@@ -77,6 +98,14 @@ class op_cx_scalar_minus_post
     (
           Mat< typename std::complex<typename T1::pod_type> >& out,
     const mtOp<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_minus_post>& X
+    );
+  
+  template<typename T1>
+  inline static void
+  apply
+    (
+             Cube< typename std::complex<typename T1::pod_type> >& out,
+    const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_minus_post>& X
     );
 
   };
@@ -94,6 +123,14 @@ class op_cx_scalar_div_pre
           Mat< typename std::complex<typename T1::pod_type> >& out,
     const mtOp<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_div_pre>& X
     );
+  
+  template<typename T1>
+  inline static void
+  apply
+    (
+             Cube< typename std::complex<typename T1::pod_type> >& out,
+    const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_div_pre>& X
+    );
 
   };
 
@@ -109,6 +146,14 @@ class op_cx_scalar_div_post
     (
           Mat< typename std::complex<typename T1::pod_type> >& out,
     const mtOp<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_div_post>& X
+    );
+  
+  template<typename T1>
+  inline static void
+  apply
+    (
+             Cube< typename std::complex<typename T1::pod_type> >& out,
+    const mtOpCube<typename std::complex<typename T1::pod_type>, T1, op_cx_scalar_div_post>& X
     );
 
   };

@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -22,14 +19,14 @@
 template<typename eT>
 class diagview : public Base<eT, diagview<eT> >
   {
-  public:   const Mat<eT>& m;
-  protected:      Mat<eT>* m_ptr;
+  public:    arma_aligned const Mat<eT>& m;
+  protected: arma_aligned       Mat<eT>* m_ptr;
   
   public:
   
   typedef eT                                elem_type;
   typedef typename get_pod_type<eT>::result pod_type;
-
+  
   const u32 row_offset;
   const u32 col_offset;
   
@@ -49,22 +46,28 @@ class diagview : public Base<eT, diagview<eT> >
   
   inline ~diagview();
   
-  template<typename T1>
-  inline void operator=(const Base<eT,T1>& x);
-  
   inline void operator=(const diagview& x);
+  
+  
+  template<typename T1> inline void operator= (const Base<eT,T1>& x);
+  template<typename T1> inline void operator+=(const Base<eT,T1>& x);
+  template<typename T1> inline void operator-=(const Base<eT,T1>& x);
+  template<typename T1> inline void operator%=(const Base<eT,T1>& x);
+  template<typename T1> inline void operator/=(const Base<eT,T1>& x);
+  
   
   arma_inline eT& operator[](const u32 i);
   arma_inline eT  operator[](const u32 i) const;
   
   arma_inline eT& operator()(const u32 i);
   arma_inline eT  operator()(const u32 i) const;
-
+  
   arma_inline eT& at(const u32 in_n_row, const u32 in_n_col);
   arma_inline eT  at(const u32 in_n_row, const u32 in_n_col) const;
    
   arma_inline eT& operator()(const u32 in_n_row, const u32 in_n_col);
   arma_inline eT  operator()(const u32 in_n_row, const u32 in_n_col) const;
+  
   
   inline void fill(const eT val);
   inline void zeros();

@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -21,7 +18,7 @@
 //! Generate a vector with all elements set to zero
 arma_inline
 const eOp<colvec, eop_zeros>
-zeros(const u32 n_elem, const arma_Mat_Col_Row_only<colvec>::result* junk = 0)
+zeros(const u32 n_elem)
   {
   arma_extra_debug_sigprint();
   
@@ -36,6 +33,8 @@ const eOp<vec_type, eop_zeros>
 zeros(const u32 n_elem, const typename arma_Mat_Col_Row_only<vec_type>::result* junk = 0)
   {
   arma_extra_debug_sigprint();
+  
+  arma_ignore(junk);
   
   if(is_Row<vec_type>::value == true)
     {
@@ -52,7 +51,7 @@ zeros(const u32 n_elem, const typename arma_Mat_Col_Row_only<vec_type>::result* 
 //! Generate a dense matrix with all elements set to zero
 arma_inline
 const eOp<mat, eop_zeros>
-zeros(const u32 n_rows, const u32 n_cols, const arma_Mat_Col_Row_only<mat>::result* junk = 0)
+zeros(const u32 n_rows, const u32 n_cols)
   {
   arma_extra_debug_sigprint();
   
@@ -68,7 +67,7 @@ zeros(const u32 n_rows, const u32 n_cols, const typename arma_Mat_Col_Row_only<m
   {
   arma_extra_debug_sigprint();
   
-  arma_type_check<is_Mat<mat_type>::value == false>::apply();
+  arma_ignore(junk);
   
   return eOp<mat_type, eop_zeros>(n_rows, n_cols);
   }
@@ -76,26 +75,26 @@ zeros(const u32 n_rows, const u32 n_cols, const typename arma_Mat_Col_Row_only<m
 
 
 arma_inline
-const eOpCube<cube, eop_cube_zeros>
-zeros(const u32 n_rows, const u32 n_cols, const u32 n_slices, const arma_Cube_only<cube>::result* junk = 0)
+const eOpCube<cube, eop_zeros>
+zeros(const u32 n_rows, const u32 n_cols, const u32 n_slices)
   {
   arma_extra_debug_sigprint();
   
-  return eOpCube<cube, eop_cube_zeros>(n_rows, n_cols, n_slices);
+  return eOpCube<cube, eop_zeros>(n_rows, n_cols, n_slices);
   }
 
 
 
 template<typename cube_type>
 arma_inline
-const eOpCube<cube_type, eop_cube_zeros>
+const eOpCube<cube_type, eop_zeros>
 zeros(const u32 n_rows, const u32 n_cols, const u32 n_slices, const typename arma_Cube_only<cube_type>::result* junk = 0)
   {
   arma_extra_debug_sigprint();
   
-  arma_type_check<is_Cube<cube_type>::value == false>::apply();
+  arma_ignore(junk);
   
-  return eOpCube<cube_type, eop_cube_zeros>(n_rows, n_cols, n_slices);
+  return eOpCube<cube_type, eop_zeros>(n_rows, n_cols, n_slices);
   }
 
 

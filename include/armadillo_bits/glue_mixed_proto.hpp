@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -35,6 +32,9 @@ class glue_mixed_plus
   
   template<typename T1, typename T2>
   inline static void apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_plus>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlueCube<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_plus>& X);
   };
 
 
@@ -45,6 +45,9 @@ class glue_mixed_minus
   
   template<typename T1, typename T2>
   inline static void apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_minus>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlueCube<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_minus>& X);
   };
 
 
@@ -55,6 +58,9 @@ class glue_mixed_div
   
   template<typename T1, typename T2>
   inline static void apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_div>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlueCube<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_div>& X);
   };
 
 
@@ -65,6 +71,9 @@ class glue_mixed_schur
   
   template<typename T1, typename T2>
   inline static void apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_schur>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlueCube<typename eT_promoter<T1,T2>::eT, T1, T2, glue_mixed_schur>& X);
   };
 
 

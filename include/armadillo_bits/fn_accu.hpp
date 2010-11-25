@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -19,79 +16,40 @@
 
 
 
+//! accumulate the elements of a matrix
 template<typename T1>
 arma_hot
 inline
 typename T1::elem_type
-accu_unwrap(const Base<typename T1::elem_type,T1>& X)
+accu(const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename T1::elem_type      eT;
+  typedef typename Proxy<T1>::ea_type ea_type;
   
-  const unwrap<T1>   tmp(X.get_ref());
-  const Mat<eT>& A = tmp.M;
+  const Proxy<T1> A(X.get_ref());
   
-  const eT* A_mem = A.memptr();
-  const u32 N     = A.n_elem;
+        ea_type P      = A.get_ea();
+  const u32     n_elem = A.get_n_elem();
   
   eT val1 = eT(0);
   eT val2 = eT(0);
   
   u32 i,j;
   
-  for(i=0, j=1; j<N; i+=2, j+=2)
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
     {
-    val1 += A_mem[i];
-    val2 += A_mem[j];
+    val1 += P[i];
+    val2 += P[j];
     }
   
-  if(i < N)
+  if(i < n_elem)
     {
-    val1 += A_mem[i];
+    val1 += P[i];
     }
   
   return val1 + val2;
-  }
-
-
-
-template<typename T1>
-arma_hot
-inline
-typename T1::elem_type
-accu_proxy(const Base<typename T1::elem_type,T1>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const Proxy<T1> A(X.get_ref());
-  
-  const u32 N = A.n_elem;
-  
-  eT val = eT(0);
-  
-  for(u32 i=0; i<N; ++i)
-    {
-    val += A[i];
-    }
-  
-  return val;
-  }
-
-
-
-//! accumulate the elements of a matrix
-template<typename T1>
-arma_inline
-arma_warn_unused
-typename T1::elem_type
-accu(const Base<typename T1::elem_type,T1>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  return (is_Mat<T1>::value == true) ? accu_unwrap(X) : accu_proxy(X);
   }
 
 
@@ -109,7 +67,7 @@ accu(const mtOp<u32,T1,op_rel_noteq>& X)
   
   const Proxy<T1> A(X.m);
   
-  const u32 n_elem = A.n_elem;
+  const u32 n_elem = A.get_n_elem();
   const eT  val    = X.aux;
   
   u32 n_nonzero = 0;
@@ -136,20 +94,31 @@ accu(const BaseCube<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename T1::elem_type          eT;
+  typedef typename ProxyCube<T1>::ea_type ea_type;
   
   const ProxyCube<T1> A(X.get_ref());
   
-  const u32 n_elem = A.n_elem;
+        ea_type P      = A.get_ea();
+  const u32     n_elem = A.get_n_elem();
   
-  eT val = eT(0);
+  eT val1 = eT(0);
+  eT val2 = eT(0);
   
-  for(u32 i=0; i<n_elem; ++i)
+  u32 i,j;
+  
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
     {
-    val += A[i];
+    val1 += P[i];
+    val2 += P[j];
     }
   
-  return val;
+  if(i < n_elem)
+    {
+    val1 += P[i];
+    }
+  
+  return val1 + val2;
   }
 
 
@@ -187,17 +156,14 @@ accu(const subview<eT>& S)
   {
   arma_extra_debug_sigprint();  
   
+  const u32 S_n_rows = S.n_rows;
+  const u32 S_n_cols = S.n_cols;
+  
   eT val = eT(0);
   
-  for(u32 col=0; col<S.n_cols; ++col)
+  for(u32 col=0; col<S_n_cols; ++col)
     {
-    const eT* coldata = S.colptr(col);
-    
-    for(u32 row=0; row<S.n_rows; ++row)
-      {
-      val += coldata[row];
-      }
-    
+    val += arrayops::accumulate( S.colptr(col), S_n_rows );
     }
   
   return val;
@@ -243,17 +209,7 @@ accu(const subview_col<eT>& S)
   {
   arma_extra_debug_sigprint();
   
-  const eT* S_colptr = S.colptr(0);
-  const u32 n_rows   = S.n_rows;
-  
-  eT val = eT(0);
-  
-  for(u32 row=0; row<n_rows; ++row)
-    {
-    val += S_colptr[row];
-    }
-  
-  return val;
+  return arrayops::accumulate( S.colptr(0), S.n_rows );
   }
 
 

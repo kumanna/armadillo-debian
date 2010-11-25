@@ -1,9 +1,6 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
-// - Ian Cullinan (ian dot cullinan at nicta dot com dot au)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2009-2010 Ian Cullinan
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -282,6 +279,26 @@ field<oT>::at(const u32 in_row, const u32 in_col) const
 
 
 
+template<typename oT>
+inline
+field_injector< field<oT> >
+field<oT>::operator<<(const oT& val)
+  {
+  return field_injector< field<oT> >(*this, val);
+  }
+
+
+
+template<typename oT>
+inline
+field_injector< field<oT> >
+field<oT>::operator<<(const injector_helper x)
+  {
+  return field_injector< field<oT> >(*this, x);
+  }
+
+
+
 //! creation of subview_field (row of a field)
 template<typename oT>
 inline
@@ -530,6 +547,7 @@ field<oT>::fill(const oT& x)
 
 
 
+//! reset the field to an empty state (i.e. the field will have no objects)
 template<typename oT>
 inline
 void
@@ -542,6 +560,7 @@ field<oT>::reset()
 
 
 
+//! reset each object
 template<typename oT>
 inline
 void
@@ -550,6 +569,39 @@ field<oT>::reset_objects()
   arma_extra_debug_sigprint();
   
   field_aux::reset_objects(*this);
+  }
+
+
+
+//! returns true if the field has no objects
+template<typename oT>
+arma_inline
+bool
+field<oT>::is_empty() const
+  {
+  return (n_elem == 0);
+  }
+
+
+
+//! returns true if the given index is currently in range
+template<typename oT>
+arma_inline
+bool
+field<oT>::in_range(const u32 i) const
+  {
+  return (i < n_elem);
+  }
+
+
+
+//! returns true if the given location is currently in range
+template<typename oT>
+arma_inline
+bool
+field<oT>::in_range(const u32 in_row, const u32 in_col) const
+  {
+  return ( (in_row < n_rows) && (in_col < n_cols) );
   }
 
 
@@ -1666,6 +1718,8 @@ field_aux::save(const field< std::string >& x, const std::string& name, const fi
   {
   arma_extra_debug_sigprint();
   
+  arma_ignore(type);
+  
   err_msg.clear();
   
   return diskio::save_std_string(x, name);
@@ -1678,6 +1732,8 @@ bool
 field_aux::save(const field< std::string >& x, std::ostream& os, const file_type type, std::string& err_msg)
   {
   arma_extra_debug_sigprint();
+  
+  arma_ignore(type);
   
   err_msg.clear();
   
@@ -1692,6 +1748,8 @@ field_aux::load(field< std::string >& x, const std::string& name, const file_typ
   {
   arma_extra_debug_sigprint();
   
+  arma_ignore(type);
+  
   return diskio::load_std_string(x, name, err_msg);
   }
 
@@ -1703,8 +1761,16 @@ field_aux::load(field< std::string >& x, std::istream& is, const file_type type,
   {
   arma_extra_debug_sigprint();
   
+  arma_ignore(type);
+  
   return diskio::load_std_string(x, is, err_msg);
   }
+
+
+
+#ifdef ARMA_EXTRA_FIELD_MEAT
+  #include ARMA_INCFILE_WRAP(ARMA_EXTRA_FIELD_MEAT)
+#endif
 
 
 

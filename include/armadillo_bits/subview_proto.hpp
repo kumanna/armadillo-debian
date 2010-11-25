@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -56,9 +53,6 @@ class subview : public Base<eT, subview<eT> >
   inline void operator-= (const eT val);
   inline void operator*= (const eT val);
   inline void operator/= (const eT val);
-  
-  template<typename T1> inline void operator_equ_mat  (const Base<eT,T1>& x);
-  template<typename T1> inline void operator_equ_proxy(const Base<eT,T1>& x);
   
   // deliberately returning void
   template<typename T1> inline void operator=  (const Base<eT,T1>& x);

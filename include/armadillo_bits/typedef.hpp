@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -18,7 +15,7 @@
 //! @{
 
 
-#if UCHAR_MAX == 0xff
+#if UCHAR_MAX >= 0xff
   //! unsigned 8 bit type
   typedef unsigned char u8;
   typedef          char s8;
@@ -28,9 +25,11 @@
 
 // NOTE:
 // "signed char" is not the same as "char". 
-// see http://www.embedded.com/columns/programmingpointers/206107018
+// http://www.embedded.com/columns/programmingpointers/206107018
+// http://en.wikipedia.org/wiki/C_variable_types_and_declarations
 
-#if USHRT_MAX == 0xffff
+
+#if USHRT_MAX >= 0xffff
   //! unsigned 16 bit type  
   typedef unsigned short u16;
   typedef          short s16;
@@ -39,15 +38,17 @@
 #endif
 
 
-#if   UINT_MAX  == 0xffffffff
+#if   UINT_MAX  >= 0xffffffff
   typedef unsigned int  u32;
   typedef          int  s32;
-#elif ULONG_MAX == 0xffffffff
+#elif ULONG_MAX >= 0xffffffff
   typedef unsigned long u32;
   typedef          long s32;
 #else
   #error "don't know how to typedef 'u32' on this system"
 #endif
+
+
 
 // //
 // // only supported by C++0x, via #include <cstdint>, or by C99, via #include <stdint.h>
@@ -63,6 +64,17 @@
 //
 // //! signed 32 bit type
 // typedef int32_t s32;
+
+
+
+#if   defined(ARMA_BLAS_LONG_LONG)
+  typedef long long blas_int;
+#elif defined(ARMA_BLAS_LONG)
+  typedef long      blas_int;
+#else
+  typedef int       blas_int;
+#endif
+
 
 
 typedef std::complex<float>  cx_float;
@@ -134,5 +146,6 @@ namespace junk
   
     };
   }
+
 
 //! @}

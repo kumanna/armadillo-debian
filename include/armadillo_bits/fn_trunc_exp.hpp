@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -74,12 +71,12 @@ trunc_exp(const Base<typename T1::elem_type,T1>& A)
 
 template<typename T1>
 arma_inline
-const eOpCube<T1, eop_cube_trunc_exp>
+const eOpCube<T1, eop_trunc_exp>
 trunc_exp(const BaseCube<typename T1::elem_type,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return eOpCube<T1, eop_cube_trunc_exp>(A.get_ref());
+  return eOpCube<T1, eop_trunc_exp>(A.get_ref());
   }
 
 

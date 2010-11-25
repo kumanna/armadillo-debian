@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -29,12 +26,12 @@ class diagmat_proxy
   
   inline diagmat_proxy(const Base<typename T1::elem_type,T1>& X)
     : P       (X.get_ref())
-    , P_is_vec( (P.n_rows == 1) || (P.n_cols == 1) )
-    , n_elem  ( P_is_vec ? P.n_elem : P.n_rows )
+    , P_is_vec( (P.get_n_rows() == 1) || (P.get_n_cols() == 1) )
+    , n_elem  ( P_is_vec ? P.get_n_elem() : P.get_n_rows() )
     {
     arma_extra_debug_sigprint();
     
-    arma_debug_check( (P_is_vec == false) && (P.n_rows != P.n_cols), "diagmat(): only vectors and square matrices are accepted" );
+    arma_debug_check( (P_is_vec == false) && (P.get_n_rows() != P.get_n_cols()), "diagmat(): only vectors and square matrices are accepted" );
     }
   
   
@@ -150,6 +147,7 @@ class diagmat_proxy_check
     , n_elem( P_is_vec ? P.n_elem : P.n_rows )
     {
     arma_extra_debug_sigprint();
+    arma_ignore(out);
     arma_debug_check( (P_is_vec == false) && (P.n_rows != P.n_cols), "diagmat(): only vectors and square matrices are accepted" );
     }
   

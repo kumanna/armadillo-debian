@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -58,6 +55,36 @@ diagview<eT>::diagview(Mat<eT>& in_m, const u32 in_row_offset, const u32 in_col_
 
 
 
+//! set a diagonal of our matrix using a diagonal from a foreign matrix
+template<typename eT>
+inline
+void
+diagview<eT>::operator= (const diagview<eT>& x)
+  {
+  arma_extra_debug_sigprint();
+  
+  diagview<eT>& t = *this;
+  
+  arma_debug_check( (t.n_elem != x.n_elem), "diagview: diagonals have incompatible lengths");
+  
+        Mat<eT>& t_m = *(t.m_ptr);
+  const Mat<eT>& x_m = x.m;
+  
+  const u32 t_n_elem     = t.n_elem;
+  const u32 t_row_offset = t.row_offset;
+  const u32 t_col_offset = t.col_offset;
+  
+  const u32 x_row_offset = x.row_offset;
+  const u32 x_col_offset = x.col_offset;
+  
+  for(u32 i=0; i<t_n_elem; ++i)
+    {
+    t_m.at(i + t_row_offset, i + t_col_offset) = x_m.at(i + x_row_offset, i + x_col_offset);
+    }
+  }
+
+
+
 //! set a diagonal of our matrix using data from a foreign object
 template<typename eT>
 template<typename T1>
@@ -66,53 +93,174 @@ void
 diagview<eT>::operator= (const Base<eT,T1>& o)
   {
   arma_extra_debug_sigprint();
-  arma_check( (m_ptr == 0), "diagview::operator=(): matrix is read only");
   
   const unwrap<T1> tmp(o.get_ref());
   const Mat<eT>& x = tmp.M;
   
-  diagview& t = *this;
+  diagview<eT>& t = *this;
   
-  arma_debug_check( !x.is_vec(), "diagview::operator=(): need a vector");
-  arma_debug_check( (t.n_elem != x.n_elem), "diagview::operator=(): diagonal and given vector have incompatible lengths");
+  arma_debug_check
+    (
+    ( (t.n_elem != x.n_elem) || (x.is_vec() == false) ),
+    "diagview: given object has incompatible size"
+    );
   
   Mat<eT>& t_m = *(t.m_ptr);
   
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    t_m.at(i+row_offset, i+col_offset) = x.mem[i];
-    }
+  const u32 t_n_elem     = t.n_elem;
+  const u32 t_row_offset = t.row_offset;
+  const u32 t_col_offset = t.col_offset;
   
+  const eT* x_mem = x.memptr();
+  
+  for(u32 i=0; i<t_n_elem; ++i)
+    {
+    t_m.at( i + t_row_offset,  i + t_col_offset) = x_mem[i];
+    }
   }
 
 
 
-//! set a diagonal of our matrix using a diagonal from a foreign matrix
 template<typename eT>
+template<typename T1>
 inline
 void
-diagview<eT>::operator= (const diagview<eT>& x)
+diagview<eT>::operator+=(const Base<eT,T1>& o)
   {
   arma_extra_debug_sigprint();
-  arma_check( (m_ptr == 0), "diagview::operator=(): matrix is read only");
+  
+  const unwrap<T1> tmp(o.get_ref());
+  const Mat<eT>& x = tmp.M;
   
   diagview<eT>& t = *this;
   
-  arma_debug_check( (t.n_elem != x.n_elem), "diagview::operator=(): diagonals have incompatible lengths");
+  arma_debug_check
+    (
+    ( (t.n_elem != x.n_elem) || (x.is_vec() == false) ),
+    "diagview: given object has incompatible size"
+    );
   
-        Mat<eT>& t_m = *(t.m_ptr);
-  const Mat<eT>& x_m = x.m;
+  Mat<eT>& t_m = *(t.m_ptr);
   
-  for(u32 i=0; i<n_elem; ++i)
+  const u32 t_n_elem     = t.n_elem;
+  const u32 t_row_offset = t.row_offset;
+  const u32 t_col_offset = t.col_offset;
+  
+  const eT* x_mem = x.memptr();
+  
+  for(u32 i=0; i<t_n_elem; ++i)
     {
-    t_m.at(i+t.row_offset, i+t.col_offset) = x_m.at(i+x.row_offset, i+x.col_offset);
+    t_m.at( i + t_row_offset,  i + t_col_offset) += x_mem[i];
     }
-    
   }
 
 
 
-//! \brief
+template<typename eT>
+template<typename T1>
+inline
+void
+diagview<eT>::operator-=(const Base<eT,T1>& o)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap<T1> tmp(o.get_ref());
+  const Mat<eT>& x = tmp.M;
+  
+  diagview<eT>& t = *this;
+  
+  arma_debug_check
+    (
+    ( (t.n_elem != x.n_elem) || (x.is_vec() == false) ),
+    "diagview: given object has incompatible size"
+    );
+  
+  Mat<eT>& t_m = *(t.m_ptr);
+  
+  const u32 t_n_elem     = t.n_elem;
+  const u32 t_row_offset = t.row_offset;
+  const u32 t_col_offset = t.col_offset;
+  
+  const eT* x_mem = x.memptr();
+  
+  for(u32 i=0; i<t_n_elem; ++i)
+    {
+    t_m.at( i + t_row_offset,  i + t_col_offset) -= x_mem[i];
+    }
+  }
+
+
+
+template<typename eT>
+template<typename T1>
+inline
+void
+diagview<eT>::operator%=(const Base<eT,T1>& o)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap<T1> tmp(o.get_ref());
+  const Mat<eT>& x = tmp.M;
+  
+  diagview<eT>& t = *this;
+  
+  arma_debug_check
+    (
+    ( (t.n_elem != x.n_elem) || (x.is_vec() == false) ),
+    "diagview: given object has incompatible size"
+    );
+  
+  Mat<eT>& t_m = *(t.m_ptr);
+  
+  const u32 t_n_elem     = t.n_elem;
+  const u32 t_row_offset = t.row_offset;
+  const u32 t_col_offset = t.col_offset;
+  
+  const eT* x_mem = x.memptr();
+  
+  for(u32 i=0; i<t_n_elem; ++i)
+    {
+    t_m.at( i + t_row_offset,  i + t_col_offset) *= x_mem[i];
+    }
+  }
+
+
+
+template<typename eT>
+template<typename T1>
+inline
+void
+diagview<eT>::operator/=(const Base<eT,T1>& o)
+  {
+  arma_extra_debug_sigprint();
+  
+  const unwrap<T1> tmp(o.get_ref());
+  const Mat<eT>& x = tmp.M;
+  
+  diagview<eT>& t = *this;
+  
+  arma_debug_check
+    (
+    ( (t.n_elem != x.n_elem) || (x.is_vec() == false) ),
+    "diagview: given object has incompatible size"
+    );
+  
+  Mat<eT>& t_m = *(t.m_ptr);
+  
+  const u32 t_n_elem     = t.n_elem;
+  const u32 t_row_offset = t.row_offset;
+  const u32 t_col_offset = t.col_offset;
+  
+  const eT* x_mem = x.memptr();
+  
+  for(u32 i=0; i<t_n_elem; ++i)
+    {
+    t_m.at( i + t_row_offset,  i + t_col_offset) /= x_mem[i];
+    }
+  }
+
+
+
 //! extract a diagonal and store it as a column vector
 template<typename eT>
 inline
@@ -158,7 +306,7 @@ diagview<eT>::plus_inplace(Mat<eT>& out, const diagview<eT>& in)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "matrix addition");
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "addition");
   
   const Mat<eT>& in_m = in.m;
   
@@ -184,7 +332,7 @@ diagview<eT>::minus_inplace(Mat<eT>& out, const diagview<eT>& in)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "matrix subtraction");
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "subtraction");
   
   const Mat<eT>& in_m = in.m;
   
@@ -210,7 +358,7 @@ diagview<eT>::schur_inplace(Mat<eT>& out, const diagview<eT>& in)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "element-wise matrix multiplication");
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "element-wise multiplication");
   
   const Mat<eT>& in_m = in.m;
   
@@ -236,7 +384,7 @@ diagview<eT>::div_inplace(Mat<eT>& out, const diagview<eT>& in)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "element-wise matrix division");
+  arma_debug_assert_same_size(out.n_rows, out.n_cols, in.n_rows, 1, "element-wise division");
   
   const Mat<eT>& in_m = in.m;
   
@@ -299,7 +447,6 @@ arma_inline
 eT&
 diagview<eT>::operator()(const u32 i)
   {
-  arma_check( (m_ptr == 0), "diagview::operator(): matrix is read only");
   arma_debug_check( (i >= n_elem), "diagview::operator(): out of bounds" );
   
   return (*m_ptr).at(i+row_offset, i+col_offset);
@@ -324,7 +471,6 @@ arma_inline
 eT&
 diagview<eT>::operator()(const u32 row, const u32 col)
   {
-  arma_check( (m_ptr == 0), "diagview::operator(): matrix is read only");
   arma_debug_check( ((row >= n_elem) || (col > 0)), "diagview::operator(): out of bounds" );
   
   return (*m_ptr).at(row+row_offset, row+col_offset);
@@ -350,7 +496,6 @@ void
 diagview<eT>::fill(const eT val)
   {
   arma_extra_debug_sigprint();
-  arma_check( (m_ptr == 0), "diagview::fill(): matrix is read only");
   
   Mat<eT>& x = (*m_ptr);
   
@@ -368,14 +513,8 @@ void
 diagview<eT>::zeros()
   {
   arma_extra_debug_sigprint();
-  arma_check( (m_ptr == 0), "diagview::zeros(): matrix is read only");
   
-  Mat<eT>& x = (*m_ptr);
-  
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    x.at(i+row_offset, i+col_offset) = eT(0);
-    }
+  (*this).fill(eT(0));
   }
 
 
@@ -386,14 +525,8 @@ void
 diagview<eT>::ones()
   {
   arma_extra_debug_sigprint();
-  arma_check( (m_ptr == 0), "diagview::ones(): matrix is read only");
   
-  Mat<eT>& x = (*m_ptr);
-  
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    x.at(i+row_offset, i+col_offset) = eT(1);
-    }
+  (*this).fill(eT(1));
   }
 
 

@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -31,9 +28,9 @@ trace(const Base<typename T1::elem_type,T1>& X)
   
   const Proxy<T1> A(X.get_ref());
 
-  arma_debug_check( (A.n_rows != A.n_cols), "trace(): matrix must be square sized" );
+  arma_debug_check( (A.get_n_rows() != A.get_n_cols()), "trace(): matrix must be square sized" );
   
-  const u32 N   = A.n_rows;
+  const u32 N   = A.get_n_rows();
         eT  val = eT(0);
   
   for(u32 i=0; i<N; ++i)

@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -39,7 +36,7 @@ randn()
 //! Generate a vector with all elements set to random values with a gaussian distribution (zero mean, unit variance)
 arma_inline
 const eOp<colvec, eop_randn>
-randn(const u32 n_elem, const arma_Mat_Col_Row_only<colvec>::result* junk = 0)
+randn(const u32 n_elem)
   {
   arma_extra_debug_sigprint();
   
@@ -54,6 +51,8 @@ const eOp<vec_type, eop_randn>
 randn(const u32 n_elem, const typename arma_Mat_Col_Row_only<vec_type>::result* junk = 0)
   {
   arma_extra_debug_sigprint();
+  
+  arma_ignore(junk);
   
   if(is_Row<vec_type>::value == true)
     {
@@ -70,7 +69,7 @@ randn(const u32 n_elem, const typename arma_Mat_Col_Row_only<vec_type>::result* 
 //! Generate a dense matrix with all elements set to random values with a gaussian distribution (zero mean, unit variance)
 arma_inline
 const eOp<mat, eop_randn>
-randn(const u32 n_rows, const u32 n_cols, const arma_Mat_Col_Row_only<mat>::result* junk = 0)
+randn(const u32 n_rows, const u32 n_cols)
   {
   arma_extra_debug_sigprint();
   
@@ -86,30 +85,34 @@ randn(const u32 n_rows, const u32 n_cols, const typename arma_Mat_Col_Row_only<m
   {
   arma_extra_debug_sigprint();
   
+  arma_ignore(junk);
+  
   return eOp<mat_type, eop_randn>(n_rows, n_cols);
   }
 
 
 
 arma_inline
-const eOpCube<cube, eop_cube_randn>
-randn(const u32 n_rows, const u32 n_cols, const u32 n_slices, const arma_Cube_only<cube>::result* junk = 0)
+const eOpCube<cube, eop_randn>
+randn(const u32 n_rows, const u32 n_cols, const u32 n_slices)
   {
   arma_extra_debug_sigprint();
   
-  return eOpCube<cube, eop_cube_randn>(n_rows, n_cols, n_slices);
+  return eOpCube<cube, eop_randn>(n_rows, n_cols, n_slices);
   }
 
 
 
 template<typename cube_type>
 arma_inline
-const eOpCube<cube_type, eop_cube_randn>
+const eOpCube<cube_type, eop_randn>
 randn(const u32 n_rows, const u32 n_cols, const u32 n_slices, const typename arma_Cube_only<cube_type>::result* junk = 0)
   {
   arma_extra_debug_sigprint();
   
-  return eOpCube<cube_type, eop_cube_randn>(n_rows, n_cols, n_slices);
+  arma_ignore(junk);
+  
+  return eOpCube<cube_type, eop_randn>(n_rows, n_cols, n_slices);
   }
 
 

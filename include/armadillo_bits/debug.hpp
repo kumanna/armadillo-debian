@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -259,9 +256,15 @@ void
 arma_hot
 arma_assert_same_size(const Mat<eT1>& A, const Mat<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.n_rows;
+  const u32 A_n_cols = A.n_cols;
+  
+  const u32 B_n_rows = B.n_rows;
+  const u32 B_n_cols = B.n_cols;
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -274,9 +277,15 @@ void
 arma_hot
 arma_assert_same_size(const Proxy<eT1>& A, const Proxy<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.get_n_rows();
+  const u32 A_n_cols = A.get_n_cols();
+  
+  const u32 B_n_rows = B.get_n_rows();
+  const u32 B_n_cols = B.get_n_cols();
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -288,9 +297,15 @@ void
 arma_hot
 arma_assert_same_size(const subview<eT1>& A, const subview<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.n_rows;
+  const u32 A_n_cols = A.n_cols;
+  
+  const u32 B_n_rows = B.n_rows;
+  const u32 B_n_cols = B.n_cols;
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -302,9 +317,15 @@ void
 arma_hot
 arma_assert_same_size(const Mat<eT1>& A, const subview<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.n_rows;
+  const u32 A_n_cols = A.n_cols;
+  
+  const u32 B_n_rows = B.n_rows;
+  const u32 B_n_cols = B.n_cols;
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -316,9 +337,15 @@ void
 arma_hot
 arma_assert_same_size(const subview<eT1>& A, const Mat<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.n_rows;
+  const u32 A_n_cols = A.n_cols;
+  
+  const u32 B_n_rows = B.n_rows;
+  const u32 B_n_cols = B.n_cols;
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -330,9 +357,15 @@ void
 arma_hot
 arma_assert_same_size(const Mat<eT1>& A, const Proxy<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.n_rows;
+  const u32 A_n_cols = A.n_cols;
+  
+  const u32 B_n_rows = B.get_n_rows();
+  const u32 B_n_cols = B.get_n_cols();
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop ( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -344,9 +377,15 @@ void
 arma_hot
 arma_assert_same_size(const Proxy<eT1>& A, const Mat<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.get_n_rows();
+  const u32 A_n_cols = A.get_n_cols();
+  
+  const u32 B_n_rows = B.n_rows;
+  const u32 B_n_cols = B.n_cols;
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -358,9 +397,15 @@ void
 arma_hot
 arma_assert_same_size(const Proxy<eT1>& A, const subview<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.get_n_rows();
+  const u32 A_n_cols = A.get_n_cols();
+  
+  const u32 B_n_rows = B.n_rows;
+  const u32 B_n_cols = B.n_cols;
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -372,9 +417,15 @@ void
 arma_hot
 arma_assert_same_size(const subview<eT1>& A, const Proxy<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) )
+  const u32 A_n_rows = A.n_rows;
+  const u32 A_n_cols = A.n_cols;
+  
+  const u32 B_n_rows = B.get_n_rows();
+  const u32 B_n_cols = B.get_n_cols();
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -476,9 +527,17 @@ void
 arma_hot
 arma_assert_same_size(const ProxyCube<eT1>& A, const ProxyCube<eT2>& B, const char* x)
   {
-  if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices))
+  const u32 A_n_rows   = A.get_n_rows();
+  const u32 A_n_cols   = A.get_n_cols();
+  const u32 A_n_slices = A.get_n_slices();
+  
+  const u32 B_n_rows   = B.get_n_rows();
+  const u32 B_n_cols   = B.get_n_cols();
+  const u32 B_n_slices = B.get_n_slices();
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) || (A_n_slices != B_n_slices))
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x) );
     }
   }
 
@@ -570,9 +629,12 @@ void
 arma_hot
 arma_assert_mul_size(const Mat<eT1>& A, const Mat<eT2>& B, const char* x)
   {
-  if(A.n_cols != B.n_rows)
+  const u32 A_n_cols = A.n_cols;
+  const u32 B_n_rows = B.n_rows;
+  
+  if(A_n_cols != B_n_rows)
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop( arma_incompat_size_string(A.n_rows, A_n_cols, B_n_rows, B.n_cols, x) );
     }
   }
 
@@ -716,17 +778,24 @@ arma_assert_mul_size(const subview<eT1>& A, const subview<eT2>& B, const char* x
       arma_cold
       arma_first_extra_debug_message()
         {
+        const char* nickname = ARMA_VERSION_NAME;
+        
         std::cout << "@ ---" << '\n';
-        std::cout << "@ Armadillo " << arma_version::major << '.' << arma_version::minor << '.' << arma_version::patch << '\n';
+        std::cout << "@ Armadillo "
+                  << arma_version::major << '.' << arma_version::minor << '.' << arma_version::patch
+                  << " (" << nickname << ")\n";
+        
         std::cout << "@ arma_config::atlas      = " << arma_config::atlas      << '\n';
         std::cout << "@ arma_config::lapack     = " << arma_config::lapack     << '\n';
         std::cout << "@ arma_config::blas       = " << arma_config::blas       << '\n';
         std::cout << "@ arma_config::boost      = " << arma_config::boost      << '\n';
         std::cout << "@ arma_config::boost_date = " << arma_config::boost_date << '\n';
         std::cout << "@ arma_config::good_comp  = " << arma_config::good_comp  << '\n';
-        std::cout << "@ sizeof(int)  = " << sizeof(int)  << '\n';
-        std::cout << "@ sizeof(int*) = " << sizeof(int*) << '\n';
-        std::cout << "@ sizeof(long) = " << sizeof(long) << '\n';
+        std::cout << "@ arma_config::extra_code = " << arma_config::extra_code << '\n';
+        std::cout << "@ sizeof(void*)    = " << sizeof(void*)    << '\n';
+        std::cout << "@ sizeof(int)      = " << sizeof(int)      << '\n';
+        std::cout << "@ sizeof(long)     = " << sizeof(long)     << '\n';
+        std::cout << "@ sizeof(blas_int) = " << sizeof(blas_int) << '\n';
         std::cout << "@ ---" << std::endl;
         }
       

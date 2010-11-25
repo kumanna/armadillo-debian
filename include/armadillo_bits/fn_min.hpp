@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -20,10 +17,9 @@
 //! \brief
 //! Delayed 'minimum values' operation.
 //! The dimension, along which the minima are found, is set via 'dim'.
-//! For dim = 0, the maximum value of each column is found (i.e. searches by traversing across rows).
-//! For dim = 1, the maximum value of each row is found (i.e. searches by traversing across columns).
+//! For dim = 0, the minimum value of each column is found (i.e. searches by traversing across rows).
+//! For dim = 1, the minimum value of each row is found (i.e. searches by traversing across columns).
 //! The default is dim = 0.
-//! NOTE: This function works differently than in Matlab/Octave.
 
 template<typename T1>
 arma_inline

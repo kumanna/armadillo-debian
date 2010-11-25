@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -96,6 +93,11 @@ sort_index(const Base<typename T1::elem_type,T1>& X, const u32 sort_type = 0)
   
   const unwrap<T1> tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
+  
+  if(A.is_empty() == true)
+    {
+    return umat();
+    }
   
   arma_debug_check( (A.is_vec() == false), "sort_index(): currently only handles vectors");
   

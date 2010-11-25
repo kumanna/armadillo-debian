@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -31,9 +28,9 @@ class mtGlue : public Base<out_eT, mtGlue<out_eT, T1, T2, glue_type> >
   arma_inline  mtGlue(const T1& in_A, const T2& in_B, const u32 in_aux_u32);
   arma_inline ~mtGlue();
   
-  const T1& A;       //!< first operand
-  const T2& B;       //!< second operand
-  const u32 aux_u32; //!< storage of auxiliary data, u32 format
+  arma_aligned const T1& A;       //!< first operand
+  arma_aligned const T2& B;       //!< second operand
+  arma_aligned const u32 aux_u32; //!< storage of auxiliary data, u32 format
   };
 
 

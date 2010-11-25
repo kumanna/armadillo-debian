@@ -8,20 +8,16 @@ using namespace std;
 
 int main(int argc, char** argv)
   {
-  cout << arma_version::as_string() << endl;
+  cout << "Armadillo version: " << arma_version::as_string() << endl;
   
-  // matrix construction from a string representation
-  mat A = \
-   "\
-   0.165300  0.454037  0.995795  0.124098  0.047084;\
-   0.688782  0.036549  0.552848  0.937664  0.866401;\
-   0.348740  0.479388  0.506228  0.145673  0.491547;\
-   0.148678  0.682258  0.571154  0.874724  0.444632;\
-   0.245726  0.595218  0.409327  0.367827  0.385736;\
-   ";
+  mat A;
   
-  // print to the cout stream
-  // with an optional string before the contents of the matrix
+  A << 0.165300 << 0.454037 << 0.995795 << 0.124098 << 0.047084 << endr
+    << 0.688782 << 0.036549 << 0.552848 << 0.937664 << 0.866401 << endr
+    << 0.348740 << 0.479388 << 0.506228 << 0.145673 << 0.491547 << endr
+    << 0.148678 << 0.682258 << 0.571154 << 0.874724 << 0.444632 << endr
+    << 0.245726 << 0.595218 << 0.409327 << 0.367827 << 0.385736 << endr;
+  
   A.print("A =");
   
   // determinant
@@ -58,13 +54,13 @@ int main(int argc, char** argv)
   // If you want to see a trace of how Armadillo
   // evaluates expressions, compile with the
   // ARMA_EXTRA_DEBUG macro defined.
-  // This was designed to work the the GCC compiler,
+  // This was designed to work with the GCC compiler,
   // but it may also work with other compilers
   // if you have the Boost libraries installed
   // and told Armadillo to use them.
   // 
   // Example for GCC:
-  // g++ -DARMA_EXTRA_DEBUG -o example2 example2.cpp -larmadillo
+  // g++ example2.cpp -o example2 -larmadillo -DARMA_EXTRA_DEBUG
   // 
   // Running example2 will now produce a truckload of messages,
   // so you may want to redirect the output to a log file.

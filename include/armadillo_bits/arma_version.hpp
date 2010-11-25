@@ -1,8 +1,5 @@
-// Copyright (C) 2010 NICTA and the authors listed below
-// http://nicta.com.au
-// 
-// Authors:
-// - Conrad Sanderson (conradsand at ieee dot org)
+// Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2010 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -19,18 +16,32 @@
 
 
 
+#define ARMA_VERSION_MAJOR 1
+#define ARMA_VERSION_MINOR 0
+#define ARMA_VERSION_PATCH 0
+#define ARMA_VERSION_NAME  "Antipodean Antileech"
+
+// http://dictionary.reference.com/browse/leech
+// 
+// 2. a person who clings to another for personal gain,
+// esp. without giving anything in return, and usually
+// with the implication or effect of exhausting the
+// other's resources; parasite. 
+
+
+
 struct arma_version
   {
-  static const unsigned int major = 0;
-  static const unsigned int minor = 9;
-  static const unsigned int patch = 52;
+  static const unsigned int major = ARMA_VERSION_MAJOR;
+  static const unsigned int minor = ARMA_VERSION_MINOR;
+  static const unsigned int patch = ARMA_VERSION_PATCH;
   
   static
   inline
   std::string
   as_string()
     {
-    const char* nickname = "Monkey Wrench";
+    const char* nickname = ARMA_VERSION_NAME;
     
     std::stringstream ss;
     ss << arma_version::major
