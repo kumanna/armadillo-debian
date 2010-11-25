@@ -30,7 +30,7 @@ build-docs-stamp:
 	echo "OUTPUT_DIRECTORY       = debian/tmp/usr/share/doc/libarmadillo-doc" >> debian/doc_gen/doxygen.config
 	echo >> debian/doc_gen/doxygen.config
 	doxygen -u debian/doc_gen/doxygen.config
-	mkdir -p debian/tmp/usr/share/doc/libarmadillo-doc/docs_tech
+	mkdir -p debian/tmp/usr/share/doc/libarmadillo-doc/docs
 	doxygen debian/doc_gen/doxygen.config
 	touch $@
 
@@ -47,7 +47,6 @@ clean: unpatch
 	rm -rf debian/doc_gen
 	[ ! -f Makefile ] || $(MAKE) clean
 	rm -f config.guess config.sub Makefile docs_tech/*
-	(cd build_aux;sh cleanup.sh)
 	rm -f CMakeCache.txt cmake_install.cmake
 	rm -rf CMakeFiles
 	rm -f src/include/armadillo_bits/config.hpp install_manifest.txt
