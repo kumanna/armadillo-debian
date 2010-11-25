@@ -1,3 +1,11 @@
+armadillo (1.0.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * Fix cleanup routine in debian/rules.
+  * Standards version is now 3.9.1 (no changes needed)
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 25 Nov 2010 08:17:45 -0600
+
 armadillo (0.9.52-1) unstable; urgency=low
 
   * New upstream release.
