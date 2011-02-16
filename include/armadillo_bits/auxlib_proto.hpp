@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // Copyright (C) 2009      Edmund Highcock
 // 
 // This file is part of the Armadillo C++ library.
@@ -38,6 +38,13 @@ class auxlib
   
   template<typename eT>
   inline static bool inv_inplace_lapack(Mat<eT>& out);
+  
+  
+  //
+  // inv_tr
+  
+  template<typename eT, typename T1>
+  inline static bool inv_tr(Mat<eT>& out, const Base<eT,T1>& X, const u32 layout);
   
   
   //
@@ -135,14 +142,20 @@ class auxlib
   // solve
   
   template<typename eT>
-  inline static bool solve(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B);
+  inline static bool solve   (Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B);
   
   template<typename eT>
-  inline static bool solve_od(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B);
+  inline static bool solve_od(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B);
   
   template<typename eT>
-  inline static bool solve_ud(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B);
+  inline static bool solve_ud(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B);
   
+  
+  //
+  // solve_tr
+  
+  template<typename eT>
+  inline static bool solve_tr(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const u32 layout);
   };
 
 

@@ -17,9 +17,9 @@
   <tbody>
     <tr>
       <td style="text-align: left; vertical-align: top;">
-        <font size=+2><b>Reference for Armadillo 1.0.0</b></font>
+        <font size=+2><b>Reference for Armadillo 1.1.2</b></font>
         <br>
-        <font size=-1><b>(Antipodean Antileech)</b></font>
+        <font size=-1><b>(Flood Kayak)</b></font>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -62,7 +62,7 @@ First time users may want to have a look at a short <a href="#example_prog">exam
 </li>
 <br>
 <li>
-There is a list of <a href="#api_changes">API changes</a> since previous versions
+There is a list of <a href="#api_changes">API changes &amp; additions</a> since previous versions
 </li>
 </ul>
 </td>
@@ -181,7 +181,7 @@ NICTA Technical Report, 2010.
 <a href="#accu">accu</a>&nbsp;&middot;
 <a href="#as_scalar">as_scalar</a>&nbsp;&middot;
 <a href="#det">det</a>&nbsp;&middot;
-<a href="#dot">dot/norm_dot</a>&nbsp;&middot;
+<a href="#dot">dot/cdot/norm_dot</a>&nbsp;&middot;
 <a href="#log_det">log_det</a>&nbsp;&middot;
 <a href="#norm">norm</a>&nbsp;&middot;
 <a href="#rank">rank</a>&nbsp;&middot;
@@ -207,6 +207,7 @@ NICTA Technical Report, 2010.
 <a href="#cor">cor</a>&nbsp;&middot;
 <a href="#cov">cov</a>&nbsp;&middot;
 <a href="#cross">cross</a>&nbsp;&middot;
+<a href="#cumsum">cumsum</a>&nbsp;&middot;
 <a href="#diagmat">diagmat</a>&nbsp;&middot;
 <a href="#find">find</a>&nbsp;&middot;
 <a href="#flip">fliplr/flipud</a>&nbsp;&middot;
@@ -218,7 +219,8 @@ NICTA Technical Report, 2010.
 <a href="#shuffle">shuffle</a>&nbsp;&middot;
 <a href="#sort">sort</a>&nbsp;&middot;
 <a href="#sort_index">sort_index</a>&nbsp;&middot;
-<a href="#trans">trans</a>
+<a href="#trans">trans</a>&nbsp;&middot;
+<a href="#trimat">trimatu/trimatl</a>
 </ul>
 <br>
 
@@ -240,6 +242,7 @@ NICTA Technical Report, 2010.
 
 <b>Miscellaneous</b>
 <ul>
+<a href="#logging">logging of errors/warnings</a>&nbsp;&middot;
 <a href="#math_constants">math constants (pi, ...)</a>&nbsp;&middot;
 <a href="#phys_constants">physical constants (speed of light, ...)</a>&nbsp;&middot;
 <a href="#log_add">log_add</a>&nbsp;&middot;
@@ -1514,11 +1517,11 @@ Provide access to individual elements or objects stored in a container object
                           <td style="vertical-align: top;">&nbsp;<br>
                           </td>
                           <td style="vertical-align: top;">
-For vec and rowvec, access the n-th element.
-For mat, cube and field, access the n-th element/object under the assumption of a flat layout,
+For vec and rowvec, access the <i>n</i>-th element.
+For mat, cube and field, access the <i>n</i>-th element/object under the assumption of a flat layout,
 with column-major ordering of data (i.e. column by column).
 An exception is thrown if the requested element is out of bounds.
-The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro is defined.
+The bounds check can be optionally disabled at compile-time (see below).
                           </td>
                         </tr>
 <tr>
@@ -1528,12 +1531,12 @@ The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro
 </tr>
                         <tr>
                           <td style="vertical-align: top;">
-                          <pre>[n]</pre>
+                          <pre>.at(n) and [n]</pre>
                           </td>
                           <td style="vertical-align: top;"><br>
                           </td>
                           <td style="vertical-align: top;">
-As for (n), but without a bounds check.
+As for <i>(n)</i>, but without a bounds check.
 Not recommended for use unless your code has been thoroughly debugged.
                           </td>
                         </tr>
@@ -1549,9 +1552,9 @@ Not recommended for use unless your code has been thoroughly debugged.
                           <td style="vertical-align: top;"><br>
                           </td>
                           <td style="vertical-align: top;">
-For mat and field classes, access the element/object stored at the i-th row and j-th column.
+For mat and field classes, access the element/object stored at the <i>i</i>-th row and <i>j</i>-th column.
 An exception is thrown if the requested element is out of bounds.
-The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro is defined.
+The bounds check can be optionally disabled at compile-time (see below).
                           </td>
                         </tr>
 <tr>
@@ -1566,7 +1569,7 @@ The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro
                           <td style="vertical-align: top;"><br>
                           </td>
                           <td style="vertical-align: top;">
-As for (i,j), but without a bounds check.
+As for <i>(i,j)</i>, but without a bounds check.
 Not recommended for use unless your code has been thoroughly debugged.
 </td>
                           <td style="vertical-align: top;"><br>
@@ -1584,9 +1587,9 @@ Not recommended for use unless your code has been thoroughly debugged.
                           <td style="vertical-align: top;"><br>
                           </td>
                           <td style="vertical-align: top;">
-Cube only: access the element stored at the i-th row, j-th column and k-th slice.
+Cube only: access the element stored at the <i>i</i>-th row, <i>j</i>-th column and <i>k</i>-th slice.
 An exception is thrown if the requested element is out of bounds.
-The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro is defined.
+The bounds check can be optionally disabled at compile-time (see below).
                           </td>
                         </tr>
 <tr>
@@ -1601,12 +1604,20 @@ The bounds check can be optionally disabled if the ARMA_NO_DEBUG or NDEBUG macro
                           <td style="vertical-align: top;"><br>
                           </td>
                           <td style="vertical-align: top;">
-As for (i,j,k), but without a bounds check.
+As for <i>(i,j,k)</i>, but without a bounds check.
 Not recommended for use unless your code has been thoroughly debugged.</td>
                         </tr>
                       </tbody>
                     </table>
 </ul>
+</li>
+<br>
+<li>
+The bounds checks used by the <i>(n)</i>, <i>(i,j)</i> and <i>(i,j,k)</i> access forms
+can be disabled by defining <i>ARMA_NO_DEBUG</i> or <i>NDEBUG</i> macros 
+before including the <i>armadillo</i> header file (e.g. <i>#define ARMA_NO_DEBUG</i>).
+Disabling the bounds checks is not recommended until your code has been thoroughly debugged
+-- it's better to write correct code first, and then maximise its speed.
 </li>
 <br>
 <li>
@@ -1627,6 +1638,7 @@ double z = p[9];
 <br>
 <li>See also:
 <ul>
+<li><a href="#in_range">.in_range()</a></li>
 <li><a href="#iterators_mat">iterators (matrices)</a></li>
 <li><a href="#iterators_cube">iterators (cubes)</a></li>
 </ul>
@@ -2772,7 +2784,7 @@ The second form prints to a user specified stream.
 </li>
 <br>
 <li>
-It's also possible print objects using the &lt;&lt; stream operator.
+It's also possible to print objects using the &lt;&lt; stream operator.
 </li>
 <br>
 <li>
@@ -2788,11 +2800,11 @@ mat B = randu&lt;mat&gt;(6,6);
 
 A.print();
 
-// "B =" is the optional header line
-B.print("B =");
+// "B:" is the optional header line
+B.print("B:");
 
 cout &lt;&lt; A &lt;&lt; endl;
-cout &lt;&lt; "B =" &lt;&lt; endl &lt;&lt; B &lt;&lt; endl;
+cout &lt;&lt; "B:" &lt;&lt; endl &lt;&lt; B &lt;&lt; endl;
 </pre>
 </ul>
 </li>
@@ -2805,6 +2817,7 @@ See also:
 <li><a href="#raw_print_trans">.raw_print_trans()</a></li>
 <li><a href="#save_load_mat">saving &amp; loading matrices</a></li>
 <li><a href="#element_injection">injecting elements</a></li>
+<li><a href="#logging">logging of errors and warnings</a></li>
 </ul>
 </li>
 <br>
@@ -3049,18 +3062,18 @@ A.reshape(5,4);
 <br>
 <li>Store/retrieve data in files or streams.</li>
 <br>
-<li>On success, save(), load(), quiet_save(), and quite_load() will return a <i>bool</i> set to <i>true</i>.</li>
+<li>On success, <i>save()</i>, <i>load()</i>, <i>quiet_save()</i>, and <i>quite_load()</i> will return a <i>bool</i> set to <i>true</i>.</li>
 <br>
-<li>save() and quiet_save() will return a <i>bool</i> set to <i>false</i> if the saving process fails.</li>
+<li><i>save()</i> and <i>quiet_save()</i> will return a <i>bool</i> set to <i>false</i> if the saving process fails.</li>
 <br>
 <li>
-load() and quiet_load() will return a <i>bool</i> set to <i>false</i> if the loading process fails.
+<i>load()</i> and <i>quiet_load()</i> will return a <i>bool</i> set to <i>false</i> if the loading process fails.
 Additionally, the object will be reset so it has no elements.
 </li>
 <br>
-<li>load() and save() will print error messages to the standard output if any problems are encountered.</li>
+<li><i>load()</i> and <i>save()</i> will print error messages to the standard output if any problems are encountered.</li>
 <br>
-<li>quiet_load() and quiet_save() do not print any error messages.</li>
+<li><i>quiet_load()</i> and <i>quiet_save()</i> do not print any error messages.</li>
 <br>
 <li>
 The following file formats are supported:
@@ -3074,7 +3087,8 @@ The following file formats are supported:
                         <td style="vertical-align: top;"><br>
                         </td>
                         <td style="vertical-align: top;">
-for load() and quiet_load(): try to automatically detect the file type as one of the formats described below.
+for <i>load()</i> and <i>quiet_load()</i>:
+try to automatically detect the file type as one of the formats described below.
 This is the default operation.
 <br>
 <br>
@@ -3085,12 +3099,25 @@ This is the default operation.
                         <td style="vertical-align: top;"><br>
                         </td>
                         <td style="vertical-align: top;">
-Numerical data stored in raw ASCII format (no header),
-with the numbers separated by whitespace.
+Numerical data stored in raw ASCII format, without a header.
+The numbers are separated by whitespace.
 The number of columns must be the same in each row.
 Data which was saved in Matlab/Octave using the <i>-ascii</i> option can be read in Armadillo, except for complex numbers.
 Complex numbers are stored in standard C++ notation (a tuple surrounded by brackets: e.g. (1.23,4.56) indicates 1.24&nbsp;+&nbsp;4.56i).
 Cubes are loaded as one slice.
+<br>
+<br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align: top;"><b>raw_binary</b></td>
+                        <td style="vertical-align: top;"><br>
+                        </td>
+                        <td style="vertical-align: top;">
+Numerical data stored in machine dependent raw binary format, without a header.
+Matrices are loaded to have one column,
+while cubes are loaded to have one slice with one column.
+The <a href="#reshape_member">.reshape()</a> function can be used to alter the size of the loaded matrix/cube without losing data.
 <br>
 <br>
                         </td>
@@ -3525,17 +3552,44 @@ See also:
 <ul>
 <li>A collection of member functions of <i>Mat</i>, <i>Col</i> and <i>Row</i> classes that provide submatrix views.<br>
 <br>
+<li>For a matrix or vector <i>X</i>, the subviews are accessed as:</li>
+<br>
 <ul>
-.<b>row(&nbsp;</b>row_number<b>&nbsp;)</b><br>
-.<b>col(&nbsp;</b>col_number<b>&nbsp;)</b><br>
-.<b>unsafe_col(&nbsp;</b>col_number<b>&nbsp;)</b><br>
+X.<b>row(&nbsp;</b>row_number<b>&nbsp;)</b><br>
+X.<b>col(&nbsp;</b>col_number<b>&nbsp;)</b><br>
+X.<b>unsafe_col(&nbsp;</b>col_number<b>&nbsp;)</b><br>
 <br>
-.<b>rows(&nbsp;</b>first_row<b>,</b> last_row<b>&nbsp;)</b><br>
-.<b>cols(&nbsp;</b>first_col<b>,</b> last_col<b>&nbsp;)</b><br>
+X.<b>rows(&nbsp;</b>first_row<b>,</b> last_row<b>&nbsp;)</b><br>
+X.<b>cols(&nbsp;</b>first_col<b>,</b> last_col<b>&nbsp;)</b><br>
 <br>
-.<b>submat(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> last_row<b>,</b> last_col<b>&nbsp;)</b><br>
-.<b>submat(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b> last_col<b>)&nbsp;)</b><br>
+X.<b>submat(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> last_row<b>,</b> last_col<b>&nbsp;)</b><br>
+X.<b>submat(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b> last_col<b>)&nbsp;)</b><br>
+<br>
+X<b>(</b>&nbsp;row_number<b>,</b> <b>span(</b>first_col<b>,</b> last_col<b>)&nbsp;)</b><br>
+X<b>(</b>&nbsp;row_number<b>,</b> <b>span::all</b>&nbsp;<b>)</b><br>
+<br>
+X<b>(</b>&nbsp;<b>span(</b>first_row<b>,</b> last_row<b>),</b> col_number&nbsp;<b>)</b><br>
+X<b>(</b>&nbsp;<b>span::all,</b> col_number&nbsp;<b>)</b><br>
+<br>
+X.<b>elem(</b>&nbsp;vector_of_indices&nbsp;<b>)</b>
 </ul>
+</li>
+<br>
+<li>For a vector <i>V</i> (column or row vector), there is an additional method:</li>
+<br>
+<ul>
+V.<b>subvec(&nbsp;</b>first_index<b>,</b> last_index<b>&nbsp;)</b><br>
+</ul>
+<br>
+<li>
+In the function <i>X.elem(vector_of_indices)</i>,
+elements specified in <i>vector_of_indices</i> are accessed.
+<i>X</i> is interpreted as one long vector,
+with column-by-column ordering of the elements of <i>X</i>.
+The <i>vector_of_indices</i> must evaluate to be a vector of type <i><a href="#Col">uvec</a></i>
+(e.g., generated by <i><a href="#find">find()</a></i>).
+The aggregate set of the specified elements is treated as a column vector
+(e.g., the output of <i>X.elem()</i> is always a column vector).
 </li>
 <br>
 <li>
@@ -3553,11 +3607,29 @@ Examples:
 <ul>
 <pre>
 mat A = zeros&lt;mat&gt;(5,10);
+
+A.submat(0,1,2,3) = randu&lt;mat&gt;(3,3);
+
+// the following two statements
+// access the same part of A
 mat B = A.submat(0,1,2,3);
 mat C = A.submat( span(0,2), span(1,3) );
 
-A.submat(0,1,2,3) = randu&lt;mat&gt;(3,3);
-A.col(1) = randu&lt;mat&gt;(5,1);
+// the following two statements
+// access the same part of A
+A.col(1)        = randu&lt;mat&gt;(5,1);
+A(span::all, 1) = randu&lt;mat&gt;(5,1);
+
+mat X = randu&lt;mat&gt;(5,5);
+
+// get all elements of X that are greater than 0.5
+vec q = X.elem( find(X > 0.5) );
+
+// set four specific elements of X to 1
+uvec indices;
+indices &lt;&lt; 2 &lt;&lt; 3 &lt;&lt; 6 &lt;&lt; 8;
+
+X.elem(indices) = ones&lt;vec&gt;(4);
 </pre>
 </ul>
 </li>
@@ -3566,6 +3638,8 @@ A.col(1) = randu&lt;mat&gt;(5,1);
 See also:
 <ul>
 <li><a href="#colptr">.colptr()</a></li>
+<li><a href="#in_range">.in_range()</a></li>
+<li><a href="#find">find()</a></li>
 <li><a href="#join">join rows/columns/slices</a></li>
 <li><a href="#shed">shed rows/columns/slices</a></li>
 <li><a href="#insert">insert rows/columns/slices</a></li>
@@ -4828,10 +4902,15 @@ See also:
 
 <a name="dot"></a>
 <b>dot(A, B)</b>
+<br><b>cdot(A, B)</b>
 <br><b>norm_dot(A, B)</b>
 <ul>
 <li>
-<i>dot(A,B):</i> dot product of A and B, under the assumption that A and B are vectors with the same number of elements
+<i>dot(A,B)</i>: dot product of A and B, under the assumption that A and B are vectors with the same number of elements
+</li>
+<br>
+<li>
+<i>cdot(A,B)</i>: as per <i>dot(A,B)</i>, but the complex conjugate of A is used.
 </li>
 <br>
 <li>
@@ -4854,6 +4933,7 @@ double x = dot(a,b);
 <ul>
 <li><a href="#as_scalar">as_scalar()</a></li>
 <li><a href="#cross">cross()</a></li>
+<li><a href="#conj">conj()</a></li>
 <li><a href="#norm">norm()</a></li>
 </ul>
 </li>
@@ -5023,10 +5103,10 @@ See also:
 <br>
 
 <a name="diagvec"></a>
-<b>diagvec(mat, k=0)</b>
+<b>diagvec(A, k=0)</b>
 <ul>
 <li>
-Extract the <i>k</i>-th diagonal from a matrix.
+Extract the <i>k</i>-th diagonal from matrix <i>A</i>.
 </li>
 <br>
 <li>
@@ -5615,6 +5695,43 @@ See also:
 <br>
 <hr class="greyline"><br>
 
+<a name="cumsum"></a>
+<b>cumsum(mat, dim=0)</b>
+<br><b>cumsum(rowvec)</b>
+<br><b>cumsum(colvec)</b>
+<ul>
+<li>
+For a matrix argument, return a matrix containing the cumulative sum of elements in each column (dim=0, the default), or each row (dim=1).
+</li>
+<br>
+<li>
+For a vector argument, return a vector of the same orientation, containing the cumulative sum of elements.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = cumsum(A);
+
+vec x = randu&lt;vec&gt;(10);
+vec y = cumsum(x);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#accu">accu()</a></li>
+<li><a href="#sum">sum()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
+
 <a name="diagmat"></a>
 <b>diagmat(mat)</b>
 <br><b>diagmat(rowvec)</b>
@@ -5651,6 +5768,7 @@ mat    X = diagmat(q)*diagmat(r);
 See also:
 <ul>
 <li><a href="#diagvec">diagvec()</a></li>
+<li><a href="#trimat">trimatu() / trimatl()</a></li>
 </ul>
 </li>
 <br>
@@ -5661,12 +5779,14 @@ See also:
 <a name="find"></a>
 <b>find(X, k=0, s="first")</b>
 <ul>
-<li>
-Return a column vector (with elements of type u32) of the indices of non-zero elements of <i>X</i>.
+<li>Return a column vector of the indices of non-zero elements of <i>X</i>.</li>
+<br>
+<li>The output vector must have the type <a href="#Col">uvec</a> or <a href="#Mat">umat</a>
+(i.e. the indices are stored as unsigned integers of type <a href="#s32_u32">u32</a>)
 </li>
 <br>
 <li>
-<i>X</i> is interpreted as a vector, with column-by-column ordering of the elements of <i>X</i>.
+The input matrix <i>X</i> is interpreted as a vector, with column-by-column ordering of the elements of <i>X</i>.
 </li>
 <br>
 <li>Relational operators can be used instead of <i>X</i>, e.g.&nbsp;<i>A&nbsp;&gt;&nbsp;0.5</i>
@@ -5696,6 +5816,8 @@ uvec q3 = find(A &gt; 0.5, 3, "last");
 <li>
 See also:
 <ul>
+<li><a href="#conv_to">conv_to()</a> (convert between matrix/vector types)</a></li>
+<li><a href="#submat">submatrix views</a></li>
 <li><a href="#sort_index">sort_index()</a></li>
 </ul>
 </li>
@@ -5986,8 +6108,12 @@ mat B = sort(A);
 <b>sort_index(colvec, sort_type=0)</b>
 <br><b>sort_index(rowvec, sort_type=0)</b>
 <ul>
-<li>Sort the given vector and return a vector (with elements of type u32) which describes the sorted order
+<li>Return a vector which describes the sorted order of the given vector's elements 
 (i.e. it contains the indices of the given vector's elements).
+</li>
+<br>
+<li>The output vector must have the type <a href="#Col">uvec</a> or <a href="#Mat">umat</a>
+(i.e. the indices are stored as unsigned integers of type <a href="#s32_u32">u32</a>)
 </li>
 <br>
 <li><i>sort_type=0</i> (default) indicates an ascending sort</li>
@@ -6039,6 +6165,49 @@ mat B = trans(A);
 <li>See also:
 <ul>
 <li><a href="#htrans">htrans()</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline">
+
+
+<a name="trimat"></a>
+<b>trimatu(A)</b>
+<br><b>trimatl(A)</b>
+<ul>
+<li>
+trimatu(A): interpret square matrix A as upper triangular.
+</li>
+<br>
+<li>
+trimatl(A): interpret square matrix A as lower triangular.
+</li>
+<br>
+<li>
+An exception is thrown if A is non-square.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>mat A = randu&lt;mat&gt;(5,5);
+mat U = trimatu(A);
+mat L = trimatL(A);
+
+// tell the inv() function to look only
+// at the upper triangular part
+mat X = inv( trimatu(U) );
+</pre>
+</ul>
+</li>
+<br>
+<li>See also:
+<ul>
+<li><a href="#diagmat">diagmat()</a></li>
+<li><a href="#inv">inv()</a></li>
+<li><a href="#solve">solve()</a></li>
+<li><a href="http://mathworld.wolfram.com/TriangularMatrix.html">Triangular Matrix in MathWorld</a></li>
 </ul>
 </li>
 </ul>
@@ -6204,18 +6373,25 @@ See also:
 <hr class="greyline"><br>
 
 <a name="inv"></a>
-<b>inv(mat)</b>
+<b>inv(A)</b>
 <ul>
 <li>
-Inverse of a square matrix.
+Inverse of square matrix <i>A</i>; an exception is thrown if the given matrix is not square.
 </li>
 <br>
 <li>
-An exception is thrown if the given matrix is not square.
+If <i>A</i> is known to be a triangular matrix,
+the inverse can be computed faster by explicitly marking the matrix as triangular
+through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>.
 </li>
 <br>
 <li>
-If the matrix appears to be singular, a warning message is printed and the output matrix has no elements.
+If <i>A</i> appears to be singular, a warning message is printed and the output matrix has no elements.
+</li>
+<br>
+<li>
+If you want to solve a system of linear equations, e.g., <i>X = inv(A)*B</i>,
+the <a href="#solve">solve()</a> function is more efficient.
 </li>
 <br>
 <li>
@@ -6228,7 +6404,11 @@ mat B = inv(A);
 // Diagonal elements in C are set to the
 // reciprocal of the corresponding elements in A.
 // Off-diagonal elements in C are set to zero.
-mat C = inv(diagmat(A));
+mat C = inv( diagmat(A) );
+
+// tell inv() to look only at
+// the upper triangular part of A
+mat D = inv( trimatu(A) );
 </pre>
 </ul>
 </li>
@@ -6238,6 +6418,7 @@ See also:
 <ul>
 <li><a href="#pinv">pinv()</a>
 <li><a href="#solve">solve()</a></li>
+<li><a href="#trimat">trimatu() / trimatl()</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixInverse.html">matrix inverse in MathWorld</a></li>
 </ul>
 </li>
@@ -6296,16 +6477,16 @@ See also:
 <hr class="greyline"><br>
 
 <a name="pinv"></a>
-<b>pinv(mat A, tol = 0)</b>
-<br><b>pinv(cx_mat A, tol = 0)</b>
+<b>pinv(A, tol = default)</b>
 
 <ul>
 <li>Moore-Penrose pseudo-inverse of matrix <i>A</i>.</li><br>
-<li>The computation is based on singular value decomposition (SVD).
-If the SVD fails, an error message is printed and the output matrix has no elements.</li><br>
-<li>Any singular values less than tol are treated as zero.</li><br>
-<li>For matrix A with m rows and n columns, the default tolerance is max(m,n)*norm(A)*math::eps(),
-where math::eps() denotes the difference between 1 and the least value greater than 1 that is representable.</li>
+<li>The computation is based on singular value decomposition (SVD);
+if the SVD fails, an error message is printed and the output matrix has no elements.</li><br>
+<li>Any singular values less than <i>tol</i> are treated as zero.</li><br>
+<li>For matrix <i>A</i> with <i>m</i> rows and <i>n</i> columns,
+the default tolerance is <i>max(m,n)*norm(A)*math::eps()</i>,
+where <i>math::eps()</i> denotes the difference between 1 and the least value greater than 1 that is representable.</li>
 <br>
 <li>
 Examples:
@@ -6350,8 +6531,8 @@ See also:
 <li><i>score</i>: projected data.</li><br>
 <li><i>latent</i>: eigenvalues of the covariance matrix of <i>X</i>.</li><br>
 <li><i>tsquared</i>: Hotteling's statistic for each sample.</li><br>
-<li>The computation is based on singular value decomposition (SVD).
-If the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
+<li>The computation is based on singular value decomposition (SVD);
+if the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
 <li>
 Examples:
 <ul>
@@ -6395,8 +6576,8 @@ See also:
 <li><i>coeff</i>: principal component coefficients.</li><br>
 <li><i>latent</i>: principal component variances.</li><br>
 <li><i>explained</i>: percentage of the total variance explained by each principal component.</li><br>
-<li>The computation is based on singular value decomposition (SVD).
-If the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
+<li>The computation is based on singular value decomposition (SVD);
+if the SVD fails, an error message is printed and the output matrices &amp; vectors have no elements.</li><br>
 <li>
 Examples:
 <ul>
@@ -6451,6 +6632,7 @@ qr(Q,R,X);
 See also:
 <ul>
 <li><a href="http://mathworld.wolfram.com/QRDecomposition.html">QR decomposition in MathWorld</a></li>
+<li><a href="http://octave.sourceforge.net/octave/function/qr.html">QR decomposition in Octave</a></li>
 </ul>
 </li>
 </ul>
@@ -6458,11 +6640,9 @@ See also:
 <hr class="greyline"><br>
 
 <a name="solve"></a>
-<b>solve(colvec x, mat A, colvec b)</b> 
-<br><b>solve(mat X, mat A, mat B)</b>
+<b>solve(X, A, B)</b>
 <br>
-<br><b>colvec x = solve(mat A, colvec b)</b>
-<br><b>mat X = solve(mat A, mat B)</b>
+<br><b>X = solve(A, B)</b>
 <ul>
 <li>Solve a system of linear equations, i.e., <i>A*X = B</i>, where <i>X</i> is unknown.</li>
 <br>
@@ -6472,14 +6652,21 @@ See also:
 <br>
 <li>The number of rows in <i>A</i> and <i>B</i> must be the same.</li>
 <br>
-<li>This function will also try to provide approximate solutions to under-determined
-as well as over-determined systems (where matrix <i>A</i> is non-square).</li>
+<li>
+If <i>A</i> is known to be a triangular matrix,
+the solution can be computed faster by explicitly marking the matrix as triangular
+through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>.
+</li>
+<br>
+<li>
+If <i>A</i> is non-square (and hence also non-triangular),
+solve() will also try to provide approximate solutions to under-determined as well as over-determined systems.</li>
 <br>
 <li>
 If no solution is found:
 <ul>
 <li>the two argument version will output a zero length vector/matrix</li>
-<li>the three argument versions will set <i>X</i> to have no elements and output a bool set to <i>false</i></li>
+<li>the three argument version will set <i>X</i> to have no elements and output a bool set to <i>false</i></li>
 </ul>
 </li>
 <br>
@@ -6502,6 +6689,10 @@ mat X = solve(A,B);
 
 vec x2;
 bool status = solve(x2, A, b);
+
+// tell solve() to look only at
+// the upper triangular part of A
+mat Y = solve( trimatu(A), B );
 </pre>
 </ul>
 </li>
@@ -6509,7 +6700,8 @@ bool status = solve(x2, A, b);
 <li>
 See also:
 <ul>
-<li><a href="#inv">inv()</a>
+<li><a href="#inv">inv()</a></li>
+<li><a href="#trimat">trimatu() / trimatl()</a></li>
 <li><a href="http://mathworld.wolfram.com/LinearSystemofEquations.html">linear system of equations in MathWorld</a></li>
 </ul>
 </li>
@@ -6589,6 +6781,54 @@ See also:
 <br>
 <hr class="greyline">
 <br>
+
+<a name="logging"></a>
+<b>logging of errors and warnings</b>
+<br>
+<br>
+<b>set_log_stream(user_stream)</b><br>
+<b>std::ostream&amp; x = get_log_stream()</b>
+<br>
+<ul>
+<li><b>set_log_stream()</b>: change the stream used for printing warnings and run-time errors;
+by default, Armadillo uses the <i>std::cout</i> stream.</li>
+<br>
+<li><b>get_log_stream()</b>: get a reference to the stream currently used for logging.</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+// print "hello" to the current log stream
+get_log_stream() &lt;&lt; "hello" &lt;&lt; endl;
+
+// change the log stream to be a file
+ofstream f("my_log.txt");
+set_log_stream(f);
+
+// trying to invert a singular matrix
+// will print a warning to the log stream
+mat X = zeros&lt;mat&gt;(5,5);
+mat Y = inv(X);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+<b>Caveat</b>: set_log_stream() will not change the stream used by .print()
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#print">.print()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline">
+
+
 
 <a name="math_constants"></a>
 <b>math constants (pi, e, euler, gratio, sqrt2, eps, log_min, log_max)</b>
@@ -7130,16 +7370,19 @@ log_a, log_b and log_c must have the same type
 <b>s32</b>, <b>u32</b>
 <ul>
 <li>
-s32 is a typedef for a <i>signed int</i> with a minimum width of 32 bits
+s32 is a typedef for a signed integer with a minimum width of 32 bits; this is typically <i>signed int</i>, but is machine dependent
 </li>
 <br>
 <li>
-u32 is a typedef for an <i>unsigned int</i> with a minimum width of 32 bits 
+u32 is a typedef for an unsigned integer with a minimum width of 32 bits; this is typically <i>unsigned int</i>, but is machine dependent
 </li>
 <br>
 <li>See also:
 <ul>
 <li><a href="http://cplusplus.com/doc/tutorial/variables/">C++ variable types</a></li>
+<li><a href="http://www.cplusplus.com/doc/tutorial/other_data_types/">explanation of <i>typedef</i></a></li>
+<li><a href="#Mat">imat &amp; umat</a> matrix types
+<li><a href="#Col">ivec &amp; uvec</a> vector types
 </ul>
 </li>
 <br>
@@ -7160,6 +7403,9 @@ cx_double is a typedef for <i>std::complex&lt;double&gt;</i>
 <li>See also:
 <ul>
 <li><a href="http://cplusplus.com/reference/std/complex/">complex numbers in the standard C++ library</a></li>
+<li><a href="http://www.cplusplus.com/doc/tutorial/other_data_types/">explanation of <i>typedef</i></a></li>
+<li><a href="#Mat">cx_mat</a> matrix type
+<li><a href="#Col">cx_vec</a> vector type
 </ul>
 </li>
 <br>
@@ -8082,8 +8328,8 @@ using namespace arma;
 
 int main(int argc, char** argv)
   {
-  mat A = randu&lt;mat&gt;(4,5);
-  mat B = randu&lt;mat&gt;(4,5);
+  mat A = randn&lt;mat&gt;(4,5);
+  mat B = randn&lt;mat&gt;(4,5);
   
   cout &lt;&lt; A*trans(B) &lt;&lt; endl;
   
@@ -8096,7 +8342,7 @@ You may also want to have a look at the example programs that come with the Arma
 </li>
 <br>
 <li>
-As Armadillo is a template library, it's strongly recommended to have optimisation enabled when compiling programs.
+As Armadillo is a template library, we strongly recommended to have optimisation enabled when compiling programs.
 </li>
 </ul>
 <br>
@@ -8105,10 +8351,24 @@ As Armadillo is a template library, it's strongly recommended to have optimisati
 <a name="api_changes"></a>
 <hr class="greyline">
 <br>
+<b>API Additions</b>
+<br>
+<br>
+Added in 1.1.0:
+<ul>
+<li>interpretation of matrices as triangular through <a href="#trimat">trimatu() / trimatl()</a></li>
+<li>explicit handling of triangular matrices by <a href="#solve">solve()</a> and <a href="#inv">inv()</a></li>
+<li>extended syntax for <a href="#submat">submatrices</a>, including access to elements whose indices are specified in a vector</li>
+<li>ability to change the stream used for <a href="#logging">logging</a> of errors and warnings</li>
+<li>ability to <a href="#save_load_mat">save/load matrices</a> in raw binary format</li>
+<li>cumulative sum function: <a href="#cumsum">cumsum()</a></li>
+<br>
+</ul>
+<br>
 <b>API Changes</b>
 <br>
 <br>
-We don't like API changes and strongly prefer not to have them.
+We don't like changes to existing APIs and strongly prefer not to have them.
 However in some rare instances the user API may need to be altered as the library evolves,
 particular use cases come into light, or bugs are discovered.
 Below is a list of small changes since prior versions of Armadillo:

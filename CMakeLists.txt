@@ -13,8 +13,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
 SET(ARMA_MAJOR 1)
-SET(ARMA_MINOR 0)
-SET(ARMA_PATCH 0)
+SET(ARMA_MINOR 1)
+SET(ARMA_PATCH 2)
 
 MESSAGE(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 
@@ -256,7 +256,7 @@ ENDIF(ARMA_USE_BOOST STREQUAL true)
 ADD_LIBRARY( armadillo SHARED src/pull_libs )
 TARGET_LINK_LIBRARIES( armadillo ${ARMA_LIBS} )
 
-SET_TARGET_PROPERTIES(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH} SOVERSION 0)
+SET_TARGET_PROPERTIES(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH} SOVERSION 1)
 
 # As Red Hat Enterprise Linux (and related systems such as Fedora)
 # does not search /usr/local/lib by default, we need to place the

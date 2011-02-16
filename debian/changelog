@@ -1,3 +1,11 @@
+armadillo (1.1.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Bump soname to 1
+  * Don't compress C++ example files
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 15 Feb 2011 23:34:00 -0600
+
 armadillo (1.0.0-1) experimental; urgency=low
 
   * New upstream release.

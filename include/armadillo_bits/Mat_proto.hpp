@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -13,13 +13,6 @@
 
 //! \addtogroup Mat
 //! @{
-
-
-
-struct Mat_prealloc
-  {
-  static const u32 mem_n_elem = 16;
-  };
 
 
 
@@ -47,7 +40,7 @@ class Mat : public Base< eT, Mat<eT> >
   arma_aligned const eT* const mem;  //!< pointer to the memory used by the matrix (memory is read-only)
   
   protected:
-  arma_aligned eT mem_local[ Mat_prealloc::mem_n_elem ];
+  arma_aligned eT mem_local[ arma_config::mat_prealloc ];
   
   
   public:
@@ -99,7 +92,6 @@ class Mat : public Base< eT, Mat<eT> >
   inline const Mat& operator%=(const subview_cube<eT>& X);
   inline const Mat& operator/=(const subview_cube<eT>& X);
 
-  
   //inline explicit          Mat(const diagview<eT>& X);
   inline                   Mat(const diagview<eT>& X);
   inline const Mat&  operator=(const diagview<eT>& X);
@@ -109,6 +101,14 @@ class Mat : public Base< eT, Mat<eT> >
   inline const Mat& operator%=(const diagview<eT>& X);
   inline const Mat& operator/=(const diagview<eT>& X);
   
+  template<typename T1> inline                   Mat(const subview_elem1<eT,T1>& X);
+  template<typename T1> inline const Mat& operator= (const subview_elem1<eT,T1>& X);
+  template<typename T1> inline const Mat& operator+=(const subview_elem1<eT,T1>& X);
+  template<typename T1> inline const Mat& operator-=(const subview_elem1<eT,T1>& X);
+  template<typename T1> inline const Mat& operator*=(const subview_elem1<eT,T1>& X);
+  template<typename T1> inline const Mat& operator%=(const subview_elem1<eT,T1>& X);
+  template<typename T1> inline const Mat& operator/=(const subview_elem1<eT,T1>& X);
+  
   
   inline mat_injector<Mat> operator<<(const eT val);
   inline mat_injector<Mat> operator<<(const injector_helper x);
@@ -117,11 +117,25 @@ class Mat : public Base< eT, Mat<eT> >
   arma_inline       subview_row<eT> row(const u32 row_num);
   arma_inline const subview_row<eT> row(const u32 row_num) const;
   
+  arma_inline       subview_row<eT> operator()(const u32 row_num, const span_helper);
+  arma_inline const subview_row<eT> operator()(const u32 row_num, const span_helper) const;
+  
+  arma_inline       subview_row<eT> operator()(const u32 row_num, const span& col_span);
+  arma_inline const subview_row<eT> operator()(const u32 row_num, const span& col_span) const;
+  
+  
   arma_inline       subview_col<eT> col(const u32 col_num);
   arma_inline const subview_col<eT> col(const u32 col_num) const;
   
+  arma_inline       subview_col<eT> operator()(const span_helper,    const u32 col_num);
+  arma_inline const subview_col<eT> operator()(const span_helper,    const u32 col_num) const;
+  
+  arma_inline       subview_col<eT> operator()(const span& row_span, const u32 col_num);
+  arma_inline const subview_col<eT> operator()(const span& row_span, const u32 col_num) const;
+  
   inline            Col<eT>  unsafe_col(const u32 col_num);
   inline      const Col<eT>  unsafe_col(const u32 col_num) const;
+  
   
   arma_inline       subview<eT> rows(const u32 in_row1, const u32 in_row2);
   arma_inline const subview<eT> rows(const u32 in_row1, const u32 in_row2) const;
@@ -132,8 +146,20 @@ class Mat : public Base< eT, Mat<eT> >
   arma_inline       subview<eT> submat(const u32 in_row1, const u32 in_col1, const u32 in_row2, const u32 in_col2);
   arma_inline const subview<eT> submat(const u32 in_row1, const u32 in_col1, const u32 in_row2, const u32 in_col2) const;
   
-  arma_inline       subview<eT> submat(const span& row_span, const span& col_span);
-  arma_inline const subview<eT> submat(const span& row_span, const span& col_span) const;
+  
+  arma_inline       subview<eT> submat    (const span& row_span, const span& col_span);
+  arma_inline const subview<eT> submat    (const span& row_span, const span& col_span) const;
+  
+  arma_inline       subview<eT> operator()(const span& row_span, const span& col_span);
+  arma_inline const subview<eT> operator()(const span& row_span, const span& col_span) const;
+  
+  
+  template<typename T1> arma_inline       subview_elem1<eT,T1> elem(const Base<u32,T1>& a);
+  template<typename T1> arma_inline const subview_elem1<eT,T1> elem(const Base<u32,T1>& a) const;
+  
+  // template<typename T1, typename T2> arma_inline       subview_elem2<eT,T1,T2> submat(const Base<u32,T1>& a, const Base<u32,T2>& b);
+  // template<typename T1, typename T2> arma_inline const subview_elem2<eT,T1,T2> submat(const Base<u32,T1>& a, const Base<u32,T2>& b) const;
+  
   
   arma_inline       diagview<eT> diag(const s32 in_id = 0);
   arma_inline const diagview<eT> diag(const s32 in_id = 0) const;
@@ -206,8 +232,11 @@ class Mat : public Base< eT, Mat<eT> >
   template<typename T1, typename T2, typename glue_type> inline const Mat& operator%=(const mtGlue<eT, T1, T2, glue_type>& X);
   template<typename T1, typename T2, typename glue_type> inline const Mat& operator/=(const mtGlue<eT, T1, T2, glue_type>& X);
   
+  
   arma_inline arma_warn_unused eT& operator[] (const u32 i);
   arma_inline arma_warn_unused eT  operator[] (const u32 i) const;
+  arma_inline arma_warn_unused eT& at         (const u32 i);
+  arma_inline arma_warn_unused eT  at         (const u32 i) const;
   arma_inline arma_warn_unused eT& operator() (const u32 i);
   arma_inline arma_warn_unused eT  operator() (const u32 i) const;
   
@@ -227,8 +256,16 @@ class Mat : public Base< eT, Mat<eT> >
   arma_inline arma_warn_unused bool is_square() const;
        inline arma_warn_unused bool is_finite() const;
   
-  arma_inline arma_warn_unused bool in_range(const u32 i) const;
-  arma_inline arma_warn_unused bool in_range(const u32 in_row, const u32 in_col) const;
+  // TODO: test and add expanded .in_range() to user documentation
+  arma_inline arma_warn_unused bool in_range(const u32   i) const;
+  arma_inline arma_warn_unused bool in_range(const span& x) const;
+  
+  arma_inline arma_warn_unused bool in_range(const u32         in_row,   const u32         in_col  ) const;
+  arma_inline arma_warn_unused bool in_range(const span&       row_span, const u32         in_col  ) const;
+  arma_inline arma_warn_unused bool in_range(const span&       row_span, const span_helper junk    ) const;
+  arma_inline arma_warn_unused bool in_range(const u32         in_row,   const span&       col_span) const;
+  arma_inline arma_warn_unused bool in_range(const span_helper junk,     const span&       col_span) const;
+  arma_inline arma_warn_unused bool in_range(const span&       row_span, const span&       col_span) const;
   
   arma_inline arma_warn_unused       eT* colptr(const u32 in_col);
   arma_inline arma_warn_unused const eT* colptr(const u32 in_col) const;
@@ -384,7 +421,7 @@ class Mat : public Base< eT, Mat<eT> >
     
     static const u32 fixed_n_elem = fixed_n_rows * fixed_n_cols;
     
-    arma_aligned eT mem_local_extra[ ( fixed_n_elem > Mat_prealloc::mem_n_elem ) ? fixed_n_elem : 1 ];
+    arma_aligned eT mem_local_extra[ (fixed_n_elem > arma_config::mat_prealloc) ? fixed_n_elem : 1 ];
     
     arma_inline void mem_setup();
     

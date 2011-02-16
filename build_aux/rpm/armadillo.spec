@@ -100,9 +100,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_docdir}/%{name}-%{version}/docs/
 
 %changelog
-* Thu Oct 14 2010 Conrad Sanderson - 1.1.0-1
-- spec updated for Armadillo 1.0.0
-
 * Thu Oct 14 2010 Conrad Sanderson - 0.9.90-1
 - spec updated for Armadillo 0.9.90
 
