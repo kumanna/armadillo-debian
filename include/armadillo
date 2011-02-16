@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -126,15 +126,13 @@ namespace arma
   #include "armadillo_bits/Base.hpp"
   #include "armadillo_bits/BaseCube.hpp"
   
-  #include "armadillo_bits/syslib_proto.hpp"
-  #include "armadillo_bits/arrayops_proto.hpp"
-  #include "armadillo_bits/podarray_proto.hpp"
-  
   #include "armadillo_bits/blas_proto.hpp"
   #include "armadillo_bits/lapack_proto.hpp"
   #include "armadillo_bits/atlas_proto.hpp"
-  #include "armadillo_bits/auxlib_proto.hpp"
   
+  #include "armadillo_bits/arrayops_proto.hpp"
+  #include "armadillo_bits/podarray_proto.hpp"
+  #include "armadillo_bits/auxlib_proto.hpp"
   
   #include "armadillo_bits/injector_proto.hpp"
   
@@ -147,6 +145,7 @@ namespace arma
   
   #include "armadillo_bits/field_proto.hpp"
   #include "armadillo_bits/subview_proto.hpp"
+  #include "armadillo_bits/subview_elem1_proto.hpp"
   #include "armadillo_bits/subview_field_proto.hpp"
   #include "armadillo_bits/subview_cube_proto.hpp"
   #include "armadillo_bits/diagview_proto.hpp"
@@ -207,6 +206,8 @@ namespace arma
   #include "armadillo_bits/op_find_proto.hpp"
   #include "armadillo_bits/op_chol_proto.hpp"
   #include "armadillo_bits/op_cx_scalar_proto.hpp"
+  #include "armadillo_bits/op_trimat_proto.hpp"
+  #include "armadillo_bits/op_cumsum_proto.hpp"
   
   #include "armadillo_bits/glue_times_proto.hpp"
   #include "armadillo_bits/glue_mixed_proto.hpp"
@@ -314,6 +315,7 @@ namespace arma
   #include "armadillo_bits/fn_zeros.hpp"
   #include "armadillo_bits/fn_ones.hpp"
   #include "armadillo_bits/fn_misc.hpp"
+  #include "armadillo_bits/fn_elem.hpp"
   #include "armadillo_bits/fn_norm.hpp"
   #include "armadillo_bits/fn_dot.hpp"
   #include "armadillo_bits/fn_randu.hpp"
@@ -350,6 +352,8 @@ namespace arma
   #include "armadillo_bits/fn_trunc_exp.hpp"
   #include "armadillo_bits/fn_trunc_log.hpp"
   #include "armadillo_bits/fn_toeplitz.hpp"
+  #include "armadillo_bits/fn_trimat.hpp"
+  #include "armadillo_bits/fn_cumsum.hpp"
   
   //
   // class meat
@@ -361,6 +365,7 @@ namespace arma
   #include "armadillo_bits/eop_core_meat.hpp"
   #include "armadillo_bits/eglue_core_meat.hpp"
   
+  #include "armadillo_bits/arrayops_meat.hpp"
   #include "armadillo_bits/podarray_meat.hpp"
   #include "armadillo_bits/auxlib_meat.hpp"
   
@@ -372,6 +377,7 @@ namespace arma
   #include "armadillo_bits/Cube_meat.hpp"
   #include "armadillo_bits/field_meat.hpp"
   #include "armadillo_bits/subview_meat.hpp"
+  #include "armadillo_bits/subview_elem1_meat.hpp"
   #include "armadillo_bits/subview_field_meat.hpp"
   #include "armadillo_bits/subview_cube_meat.hpp"
   #include "armadillo_bits/diagview_meat.hpp"
@@ -411,6 +417,8 @@ namespace arma
   #include "armadillo_bits/op_find_meat.hpp"
   #include "armadillo_bits/op_chol_meat.hpp"
   #include "armadillo_bits/op_cx_scalar_meat.hpp"
+  #include "armadillo_bits/op_trimat_meat.hpp"
+  #include "armadillo_bits/op_cumsum_meat.hpp"
   
   #include "armadillo_bits/glue_times_meat.hpp"
   #include "armadillo_bits/glue_mixed_meat.hpp"

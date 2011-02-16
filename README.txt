@@ -1,44 +1,45 @@
 === Contents ===
 
-1. Introduction
-   1.1. Citation Details
+1: Introduction
+   1.1: Citation Details
 
-2. Installation
-   2.0. Preliminaries
-   2.1. Manual Installation
-   2.2. Installation on Unix-like systems
-   2.3. Installation on MS Windows
+2: Installation
+   2.0: Preliminaries
+   2.1: Manual Installation
+   2.2: Installation on Linux / Mac OS X
+   2.3: Installation on MS Windows
 
-3. Compiling Programs and Linking
-   3.0. Examples
-   3.1. Compiling & Linking on Unix-like systems
-   3.2. Compiling & Linking on MS Windows
+3: Compiling Programs and Linking
+   3.0: Examples
+   3.1: Compiling & Linking on Linux / Mac OS X
+   3.2: Compiling & Linking on MS Windows
 
-4. Caveats
-   4.0. Support for ATLAS
-   4.1. Support for ACML and Intel MKL
+4: Caveats
+   4.0: Support for ATLAS
+   4.1: Support for ACML and Intel MKL
 
-5. Documentation / Reference Manual
+5: Documentation / Reference Manual
 
-6. Using Armadillo with IT++
+6: Using Armadillo with IT++
 
-7. FAQs and Bug Reports
+7: FAQs and Bug Reports
 
-8. Credits
+8: Credits
 
-9. License
-
-
+9: License
 
 
-=== 1.0. Introduction ===
+
+
+=== 1.0: Introduction ===
 
 Armadillo is a C++ linear algebra library (matrix maths)
 aiming towards a good balance between speed and ease of use.
 Integer, floating point and complex numbers are supported,
 as well as a subset of trigonometric and statistics functions.
 Various matrix decompositions are provided through optional
-integration with LAPACK or LAPACK-compatible libraries.
+integration with LAPACK or high-performance LAPACK-compatible
+libraries.
 
 A delayed evaluation approach is employed (during compile time)
 to combine several operations into one and reduce (or eliminate)
@@ -58,7 +59,7 @@ More information about NICTA can be obtained from:
 
 
 
-=== 1.1. Citation Details ===
+=== 1.1: Citation Details ===
 
 If you use Armadillo in your research and/or software,
 we would appreciate a citation to the following tech report:
@@ -70,7 +71,7 @@ we would appreciate a citation to the following tech report:
 
 
 
-=== 2.0. Installation: Preliminaries ===
+=== 2.0: Installation: Preliminaries ===
 
 Armadillo makes extensive use of template meta-programming,
 recursive templates and template based function overloading.
@@ -81,25 +82,21 @@ The functionality of Armadillo is partly dependent on other
 libraries -- mainly LAPACK and BLAS. Armadillo can work without
 LAPACK or BLAS, but its functionality will be reduced.
 In particular, basic functionality will be available
-(e.g. matrix addition and multiplication), but things like
+(eg. matrix addition and multiplication), but things like
 eigen decomposition or will not be. Matrix multiplication
 (mainly for big matrices) may not be as fast.
 
 For manual installation on all systems, see section 2.1.
 
-For installation on Unix-like systems, see section 2.2.
-Unix-like systems include:
-  - Linux
-  - Mac OS X
-  - FreeBSD
-  - Solaris
-  - CygWin
+For installation on Linux / Mac OS X systems, see section 2.2.
+The Linux installation is also likely to work on other Unix-like
+systems, such as FreeBSD, NetBSD, OpenBSD, Solaris, CygWin, etc.
 
 For installation on MS Windows, see section 2.3.
 
 
 
-=== 2.1. Manual Installation ===
+=== 2.1: Manual Installation ===
 
 The manual installation is comprised of 3 steps:
 
@@ -123,12 +120,12 @@ The manual installation is comprised of 3 steps:
   compiler to link with these libraries. 
   
   You can also link with the the equivalent of LAPACK and BLAS,
-  e.g. Intel's MKL or AMD's ACML. Under Mac OS X, link using 
+  eg. Intel's MKL or AMD's ACML. Under Mac OS X, link using 
   -framework Accelerate
 
 
 
-=== 2.2. Installation on Unix-like systems ===
+=== 2.2: Installation on Linux / Mac OS X ===
 
 If you have installed Armadillo using an RPM or DEB package,
 you don't need to do anything else. Otherwise read on.
@@ -144,7 +141,7 @@ section 2.1, or the following CMake based automatic installation.
   cmake is available as a pre-built package, though it may need
   to be explicitly installed (using a tool such as PackageKit,
   yum, rpm, apt, aptitude, etc).
-
+  
 * Step 2:
   If you have BLAS and/or LAPACK, install them before installing
   Armadillo. Under Mac OS X this is not necessary.
@@ -153,95 +150,107 @@ section 2.1, or the following CMake based automatic installation.
   are present: LAPACK, BLAS, ATLAS and Boost. LAPACK and BLAS are
   the most important. If you have ATLAS and Boost, it's also necessary
   to have the corresponding header files installed.
-
+  
 * Step 3:
   Open a shell (command line), change into the directory that was
   created by unpacking the armadillo archive, and type the following
   commands:
-
+  
   cmake .
   make 
-
+  
   The full stop separated from "cmake" by a space is important.
   CMake will figure out what other libraries are currently installed
   and will modify Armadillo's configuration correspondingly.
   CMake will also generate a run-time armadillo library, which is a 
   combined alias for all the relevant libraries present on your system
-  (e.g. BLAS, LAPACK and ATLAS).
+  (eg. BLAS, LAPACK and ATLAS).
   
   If you need to re-run cmake, it's a good idea to first delete the
   "CMakeCache.txt" file (not "CMakeLists.txt").
-
+  
 * Step 4:
   If you have access to root/administrator/superuser privileges,
-  first enable the privileges (e.g. through "su" or "sudo")
+  first enable the privileges (eg. through "su" or "sudo")
   and then type the following command:
   
   make install
-
+  
   If you don't have root/administrator/superuser privileges, 
   type the following command:
-
+  
   make install DESTDIR=my_usr_dir
-
+  
   where "my_usr_dir" is for storing C++ headers and library files.
   Make sure your C++ compiler is configured to use the sub-directories
   present within this directory.
 
 
 
-=== 2.3. Installation on MS Windows ===
+=== 2.3: Installation on MS Windows ===
 
 There is currently no automatic installation for Windows.
-Please use the manual installation process described in
-section 2.1.
+Please use the manual installation process described in section 2.1.
 
-Pre-compiled BLAS and LAPACK libraries for Windows are
-provided in the "examples/libs_win32" folder.
-
-Please contact the authors if you'd like to contribute
-a CMake based installation solution for Windows.
+Pre-compiled BLAS and LAPACK libraries for Windows are provided
+in the "examples/libs_win32" folder. If the provided libraries
+don't work for you, see section 3.2.
 
 
 
-=== 3.0. Compiling Programs and Linking: Examples ===
+=== 3.0: Compiling Programs and Linking: Examples ===
 
 The "examples" directory contains several quick example programs
 that use the Armadillo library. If Armadillo was installed manually
-(i.e. according to section 2.1), you will also need to explicitly
+(ie. according to section 2.1), you will also need to explicitly
 link your programs with the libraries that were specified in
 "include/armadillo_bits/config.hpp".
 
-"example1.cpp" doesn't need any external libraries.
+"example1.cpp" may require the BLAS library or its equivalent.
 "example2.cpp" requires the LAPACK library or its equivalent
-(e.g. the Accelerate framework on Mac OS X). You may get errors
-at compile or run time if LAPACK functions are not available.
+(eg. the Accelerate framework on Mac OS X).
+
+You may get errors at compile or run time if BLAS and/or LAPACK
+functions are not available.
 
 NOTE: As Armadillo is a template library, we recommended that
       optimisation is enabled during compilation. For example,
       for the GCC compiler use -O1 or -O2
 
 
-=== 3.1. Compiling & Linking on Unix-like systems ===
+
+=== 3.1: Compiling & Linking on Linux / Mac OS X ===
 
 Please see "examples/Makefile", which may may need to be configured
 for your system. If Armadillo header files were installed in a
 non-standard location, you will need to modify "examples/Makefile"
 to tell the compiler where they are.
 
-If Armadillo was installed manually and you specified that
-LAPACK and BLAS are available, instead of using "-larmadillo",
-use the following:
-  - under Linux, use "-llapack -lblas"
-  - under Mac OS X, use "-framework Accelerate"
-  - under the Sun Studio compiler, try "-library=sunperf"
+In general, programs which use Armadillo are compiled along these lines:
+  g++ example1.cpp -o example1 -O1 -larmadillo
 
-NOTE: on Ubuntu and Debian based systems you may need to add 
-      "-lgfortran" to the compiler flags.
+(you may also need to specify the include directory via the -I switch)
+
+If you get linking errors, or if Armadillo was installed manually
+and you specified that LAPACK and BLAS are available, you will
+need to explicitly link with LAPACK and BLAS (or their equivalents),
+for example:
+  g++ example1.cpp -o example1 -O1 -llapack -lblas
+
+(you may also need to specify the library directory via the -L switch)
+
+Notes:
+  * under most Linux systems, using "-llapack -lblas" should be enough;
+    however, on Ubuntu and Debian you may need to add "-lgfortran"
+    
+  * under Mac OS X, try "-framework Accelerate" or "-llapack -lblas"
+    (the Accelerate option is usually the fastest)
+    
+  * under the Sun Studio compiler, try "-library=sunperf"
 
 
 
-=== 3.2. Compiling & Linking on MS Windows ===
+=== 3.2: Compiling & Linking on MS Windows ===
 
 As a courtesy, we've provided pre-compiled 32 bit versions of
 LAPACK and BLAS for Windows, as well as MSVC project files to
@@ -266,14 +275,17 @@ and ARMA_BLAS_UNDERSCORE macros in "armadillo_bits/config.hpp".
 To preserve our sanity, we (Armadillo developers) don't use Windows
 on a regular basis, and as such can't help you with the adaptations.
 
-The compiled versions of LAPACK and BLAS were downloaded from:
+The pre-compiled versions of LAPACK and BLAS were downloaded from:
   http://www.fi.muni.cz/~xsvobod2/misc/lapack/
 
-You can find other versions of LAPACK and BLAS at these sites:
+If the provided libraries don't work for you, try these versions:
   http://www.stanford.edu/~vkl/code/libs.html
   http://icl.cs.utk.edu/lapack-for-windows/lapack/
   http://software.intel.com/en-us/intel-mkl/
   http://www.amd.com/acml
+
+(the MKL and ACML libraries are generally the fastest)
+
 
 If you want to compile BLAS and LAPACK yourself, you can find
 the original sources at:
@@ -297,14 +309,14 @@ If using GCC, you'll need version 4.0 or better.
 
 
 
-=== 4.0. Caveats: Support for ATLAS ===
+=== 4.0: Caveats: Support for ATLAS ===
 
 Armadillo can use the ATLAS library for faster versions of
 certain LAPACK and BLAS functions. Not all ATLAS functions are
 currently used, and as such LAPACK should still be installed.
 
 The minimum recommended version of ATLAS is 3.8.
-Old versions (e.g. 3.6) can produce incorrect results
+Old versions (eg. 3.6) can produce incorrect results
 as well as corrupting memory, leading to random crashes.
 
 Users of Ubuntu and Debian based systems should explicitly
@@ -313,7 +325,7 @@ remove the old version and use the standard LAPACK library.
 
 
 
-=== 4.1. Caveats: Support for ACML and Intel MKL ===
+=== 4.1: Caveats: Support for ACML and Intel MKL ===
 
 Armadillo can work with AMD Core Math Library and Intel's
 Math Kernel Library (MKL), however there are several caveats.
@@ -322,7 +334,7 @@ On Linux systems, ACML and MKL are typically installed in a
 non-standard location, which can cause problems during linking.
 
 Before installing Armadillo, the system should know where the ACML or MKL
-libraries are located (e.g., "/opt/intel/mkl/10.2.2.025/lib/em64t/").
+libraries are located (eg., "/opt/intel/mkl/10.2.2.025/lib/em64t/").
 This can be achieved by setting the LD_LIBRARY_PATH environment variable,
 or, for a more permanent solution, adding the location of the libraries
 to "/etc/ld.so.conf". It may also be possible to store a text file 
@@ -347,7 +359,7 @@ the lines containing:
 
 
 
-=== 5. Documentation / Reference Manual ===
+=== 5: Documentation / Reference Manual ===
 
 A reference manual (user documentation) is available at
 http://arma.sourceforge.net or in the "docs" directory.
@@ -358,8 +370,7 @@ classes and functions, with snippets of example code.
 
 
 
-
-=== 6. Using Armadillo with IT++ ===
+=== 6: Using Armadillo with IT++ ===
 
 If you wish to use the IT++ library in conjunction with Armadillo,
 use #include "armadillo_itpp" instead of #include "armadillo"
@@ -367,7 +378,7 @@ in your code. See also the "examples/example_itpp.cpp" file.
 
 
 
-=== 7. FAQs and Bug Reports ===
+=== 7: FAQs and Bug Reports ===
 
 Answers to Frequently Asked Questions (FAQs) can be found at:
   http://arma.sourceforge.net/faq.html
@@ -390,7 +401,7 @@ on Armadillo's discussion board:
 
 
 
-=== 8. Credits ===
+=== 8: Credits ===
 
 Main sponsoring organisation:
 - NICTA
@@ -433,7 +444,7 @@ Contributors:
 - Yong Kang Wong
 
 
-=== 9. License ===
+=== 9: License ===
 
 Please see the "LICENSE.txt" file.
 

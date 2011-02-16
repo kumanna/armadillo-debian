@@ -70,7 +70,7 @@ podarray<eT>::operator=(const podarray& x)
     {
     init(x.n_elem);
     
-    syslib::copy_elem( memptr(), x.memptr(), n_elem );
+    arrayops::copy( memptr(), x.memptr(), n_elem );
     }
   
   return *this;
@@ -101,7 +101,7 @@ podarray<eT>::podarray(const eT* X, const u32 new_n_elem)
   
   init(new_n_elem);
   
-  syslib::copy_elem( memptr(), X, new_n_elem );
+  arrayops::copy( memptr(), X, new_n_elem );
   }
 
 
@@ -179,10 +179,7 @@ podarray<eT>::fill(const eT val)
   {
   arma_extra_debug_sigprint();
   
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    access::rw(mem[i]) = val;
-    }
+  arrayops::inplace_set(memptr(), val, n_elem);
   }
 
 
@@ -207,7 +204,7 @@ podarray<eT>::zeros(const u32 new_n_elem)
   arma_extra_debug_sigprint();
   
   init(new_n_elem);
-  fill(0);
+  fill(eT(0));
   }
 
 

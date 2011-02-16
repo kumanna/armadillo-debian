@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -14,10 +14,10 @@
 //! \addtogroup Col
 //! @{
 
-//! Class for column vectors (matrices with only column)
+//! Class for column vectors (matrices with only one column)
 
 template<typename eT>
-class Col : public Mat<eT>, public BaseVec< eT, Col<eT> >
+class Col : public Mat<eT>
   {
   public:
   
@@ -56,6 +56,9 @@ class Col : public Mat<eT>, public BaseVec< eT, Col<eT> >
   arma_inline       subview_col<eT> rows(const u32 in_row1, const u32 in_row2);
   arma_inline const subview_col<eT> rows(const u32 in_row1, const u32 in_row2) const;
   
+  arma_inline       subview_col<eT> subvec(const u32 in_row1, const u32 in_row2);
+  arma_inline const subview_col<eT> subvec(const u32 in_row1, const u32 in_row2) const;
+  
   
   inline void shed_row (const u32 row_num);
   inline void shed_rows(const u32 in_row1, const u32 in_row2);
@@ -79,7 +82,7 @@ class Col : public Mat<eT>, public BaseVec< eT, Col<eT> >
     {
     private:
     
-    arma_aligned eT mem_local_extra[ ( fixed_n_elem > Mat_prealloc::mem_n_elem ) ? fixed_n_elem : 1 ];
+    arma_aligned eT mem_local_extra[ (fixed_n_elem > arma_config::mat_prealloc) ? fixed_n_elem : 1 ];
     
     arma_inline void mem_setup();
     arma_inline void swap_rows_cols() { access::rw(Mat<eT>::n_cols) = fixed_n_elem; access::rw(Mat<eT>::n_rows) = 1; }

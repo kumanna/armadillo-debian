@@ -1,5 +1,5 @@
-// Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2009-2010 Conrad Sanderson
+// Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -17,16 +17,9 @@
 
 
 #define ARMA_VERSION_MAJOR 1
-#define ARMA_VERSION_MINOR 0
-#define ARMA_VERSION_PATCH 0
-#define ARMA_VERSION_NAME  "Antipodean Antileech"
-
-// http://dictionary.reference.com/browse/leech
-// 
-// 2. a person who clings to another for personal gain,
-// esp. without giving anything in return, and usually
-// with the implication or effect of exhausting the
-// other's resources; parasite. 
+#define ARMA_VERSION_MINOR 1
+#define ARMA_VERSION_PATCH 2
+#define ARMA_VERSION_NAME  "Flood Kayak"
 
 
 
