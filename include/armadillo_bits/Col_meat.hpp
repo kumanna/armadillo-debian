@@ -373,31 +373,6 @@ Col<eT>::subvec(const u32 in_row1, const u32 in_row2) const
 
 
 
-template<typename eT>
-arma_inline
-subview_col<eT>
-Col<eT>::subvec(const u32 in_row1, const u32 in_row2)
-  {
-  arma_debug_check( ( (in_row1 > in_row2) || (in_row2 >= Mat<eT>::n_rows) ), "Col::subvec(): indices out of bounds or incorrectly used");
-  
-  return subview_col<eT>(*this, 0, in_row1, in_row2);
-  }
-
-
-
-template<typename eT>
-arma_inline
-const subview_col<eT>
-Col<eT>::subvec(const u32 in_row1, const u32 in_row2)
-  const
-  {
-  arma_debug_check( ( (in_row1 > in_row2) || (in_row2 >= Mat<eT>::n_rows) ), "Col::subvec(): indices out of bounds or incorrectly used");
-  
-  return subview_col<eT>(*this, 0, in_row1, in_row2);
-  }
-
-
-
 //! remove specified row
 template<typename eT>
 inline
