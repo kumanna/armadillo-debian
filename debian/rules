@@ -17,23 +17,6 @@ config.status: configure
 
 build: build-stamp
 
-# The following reuses the Doxygen configuration provided with the
-# package to regenerate the API documentation. The current state of
-# affairs is kludgey, but I will work around this by requesting
-# upstream to make the document generation part of the build process,
-# like in the libitpp package.
-
-build-docs-stamp:
-	mkdir -p debian/doc_gen # temporary documentation configurations places here.
-	cp build_aux/doxygen/doxygen.config build_aux/doxygen/main.doxy debian/doc_gen
-	echo >> debian/doc_gen/doxygen.config
-	echo "OUTPUT_DIRECTORY       = debian/tmp/usr/share/doc/libarmadillo-doc" >> debian/doc_gen/doxygen.config
-	echo >> debian/doc_gen/doxygen.config
-	doxygen -u debian/doc_gen/doxygen.config
-	mkdir -p debian/tmp/usr/share/doc/libarmadillo-doc/docs
-	doxygen debian/doc_gen/doxygen.config
-	touch $@
-
 build-stamp: config.status patch
 	dh_testdir
 	cmake -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
@@ -43,10 +26,10 @@ build-stamp: config.status patch
 clean: unpatch
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp build-docs-stamp
+	rm -f build-stamp
 	rm -rf debian/doc_gen
 	[ ! -f Makefile ] || $(MAKE) clean
-	rm -f config.guess config.sub Makefile docs_tech/*
+	rm -f config.guess config.sub Makefile
 	rm -f CMakeCache.txt cmake_install.cmake
 	rm -rf CMakeFiles
 	rm -f src/include/armadillo_bits/config.hpp install_manifest.txt
@@ -60,7 +43,7 @@ install: build
 	dh_installdirs
 	$(MAKE) prefix=$(CURDIR)/debian/tmp/usr install DESTDIR=debian/tmp
 
-binary-indep: build install build-docs-stamp 
+binary-indep: build install
 	dh_testdir -i
 	dh_testroot -i
 	dh_installchangelogs -i

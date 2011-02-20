@@ -19,7 +19,7 @@ Contributors:
 
 Copyright:
 
-    Copyright © 2008 - 2009 NICTA
+    Copyright © 2008 - 2011 NICTA
 
 This program is licensed under the GNU Lesser General Public License
 (LGPL), and you may use and redistribute the software under the LGPL
@@ -43,5 +43,12 @@ LGPL:
 On Debian systems, the complete text of the GNU Library General
 Public License can be found in `/usr/share/common-licenses/LGPL'.
 
-The Debian packaging is © 2009, Kumar Appaiah <akumar@debian.org> and
+Files in build_aux/cmake/Modules:
+    Copyright (c) 2006, Alexander Neundorf, <neundorf@kde.org>
+    Redistribution and use is allowed according to the terms of the BSD license.
+
+On Debian systems, the complete text of the BSD License can be found
+in `/usr/share/common-licenses/BSD'.
+
+The Debian packaging is © 2009-2011, Kumar Appaiah <akumar@debian.org> and
 is licensed under the GPL, see above.
