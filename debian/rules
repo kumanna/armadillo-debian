@@ -32,7 +32,7 @@ clean: unpatch
 	rm -f config.guess config.sub Makefile
 	rm -f CMakeCache.txt cmake_install.cmake
 	rm -rf CMakeFiles
-	rm -f src/include/armadillo_bits/config.hpp install_manifest.txt
+	rm -f install_manifest.txt
 	rm -f include/armadillo_bits/config.hpp examples/Makefile
 	dh_clean  --exclude ./src/include/armadillo_bits/dgemm_proto.hpp.orig
 
