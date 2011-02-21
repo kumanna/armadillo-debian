@@ -14,6 +14,8 @@ Section: libdevel
 Architecture: any
 Suggests: libitpp-dev
 Depends: libarmadillo1 (= ${binary:Version}), ${misc:Depends}
+Replaces: libarmadillo-doc (<= 1.1.2-1)
+Conflicts: libarmadillo-doc
 Description: streamlined C++ linear algebra library - Headers
  Armadillo is a streamlined C++ linear algebra library (matrix maths)
  aiming towards a good balance between speed and ease of use. Integer,
