@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -1933,15 +1933,7 @@ arma_warn_unused
 bool
 Cube<eT>::is_finite() const
   {
-  for(u32 i=0; i<n_elem; ++i)
-    {
-    if(arma_isfinite(mem[i]) == false)
-      {
-      return false;
-      }
-    }
-
-  return true;
+  return arrayops::is_finite( memptr(), n_elem );
   }
 
 
@@ -1970,6 +1962,30 @@ Cube<eT>::in_range(const u32 i) const
 
 
 
+//! returns true if the given start and end indices are currently in range
+template<typename eT>
+arma_inline
+arma_warn_unused
+bool
+Cube<eT>::in_range(const span& x) const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(x.whole == true)
+    {
+    return true;
+    }
+  else
+    {
+    const u32 a = x.a;
+    const u32 b = x.b;
+    
+    return ( (a <= b) && (b < n_elem) );
+    }
+  }
+
+
+
 //! returns true if the given location is currently in range
 template<typename eT>
 arma_inline
@@ -1978,6 +1994,34 @@ bool
 Cube<eT>::in_range(const u32 in_row, const u32 in_col, const u32 in_slice) const
   {
   return ( (in_row < n_rows) && (in_col < n_cols) && (in_slice < n_slices) );
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Cube<eT>::in_range(const span& row_span, const span& col_span, const span& slice_span) const
+  {
+  arma_extra_debug_sigprint();
+  
+  const u32 in_row1   = row_span.a;
+  const u32 in_row2   = row_span.b;
+  
+  const u32 in_col1   = col_span.a;
+  const u32 in_col2   = col_span.b;
+  
+  const u32 in_slice1 = slice_span.a;
+  const u32 in_slice2 = slice_span.b;
+  
+  
+  const bool rows_ok   = row_span.whole   ? true : ( (in_row1   <= in_row2)   && (in_row2   < n_rows)   );
+  const bool cols_ok   = col_span.whole   ? true : ( (in_col1   <= in_col2)   && (in_col2   < n_cols)   );
+  const bool slices_ok = slice_span.whole ? true : ( (in_slice1 <= in_slice2) && (in_slice2 < n_slices) );
+  
+  
+  return ( (rows_ok == true) && (cols_ok == true) && (slices_ok == true) );
   }
 
 
@@ -2362,6 +2406,114 @@ Cube<eT>::set_imag(const BaseCube<typename Cube<eT>::pod_type,T1>& X)
   arma_extra_debug_sigprint();
   
   Cube_aux::set_imag(*this, X);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Cube<eT>::min() const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  
+  return op_min::direct_min(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Cube<eT>::max() const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  
+  return op_max::direct_max(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Cube<eT>::min(u32& index_of_min_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  
+  return op_min::direct_min(memptr(), n_elem, index_of_min_val);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Cube<eT>::max(u32& index_of_max_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  
+  return op_max::direct_max(memptr(), n_elem, index_of_max_val);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Cube<eT>::min(u32& row_of_min_val, u32& col_of_min_val, u32& slice_of_min_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  
+  u32 i;
+  
+  eT val = op_min::direct_min(memptr(), n_elem, i);
+  
+  const u32 in_slice = i / n_elem_slice;
+  const u32 offset   = in_slice * n_elem_slice;
+  const u32 j        = i - offset;
+  
+    row_of_min_val = j % n_rows;
+    col_of_min_val = j / n_rows;
+  slice_of_min_val = in_slice;
+  
+  return val;
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Cube<eT>::max(u32& row_of_max_val, u32& col_of_max_val, u32& slice_of_max_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  
+  u32 i;
+  
+  eT val = op_max::direct_max(memptr(), n_elem, i);
+  
+  const u32 in_slice = i / n_elem_slice;
+  const u32 offset   = in_slice * n_elem_slice;
+  const u32 j        = i - offset;
+  
+    row_of_max_val = j % n_rows;
+    col_of_max_val = j / n_rows;
+  slice_of_max_val = in_slice;
+  
+  return val;
   }
 
 

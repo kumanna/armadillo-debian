@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -181,10 +181,11 @@ class Cube : public BaseCube< eT, Cube<eT> >
   arma_inline arma_warn_unused bool is_finite() const;
   arma_inline arma_warn_unused bool is_empty()  const;
   
-  // TODO: expand .in_range() to handle ranges specified by span
-  arma_inline arma_warn_unused bool in_range(const u32 i) const;
-  arma_inline arma_warn_unused bool in_range(const u32 in_row, const u32 in_col, const u32 in_slice) const;
+  arma_inline arma_warn_unused bool in_range(const u32   i) const;
+  arma_inline arma_warn_unused bool in_range(const span& x) const;
   
+  arma_inline arma_warn_unused bool in_range(const u32   in_row,   const u32   in_col,   const u32   in_slice)   const;
+       inline arma_warn_unused bool in_range(const span& row_span, const span& col_span, const span& slice_span) const;
   
   arma_inline arma_warn_unused       eT* memptr();
   arma_inline arma_warn_unused const eT* memptr() const;
@@ -225,6 +226,16 @@ class Cube : public BaseCube< eT, Cube<eT> >
   
   template<typename T1> inline void set_real(const BaseCube<pod_type,T1>& X);
   template<typename T1> inline void set_imag(const BaseCube<pod_type,T1>& X);
+  
+  
+  inline eT min() const;
+  inline eT max() const;
+  
+  inline eT min(u32& index_of_min_val) const;
+  inline eT max(u32& index_of_max_val) const;
+  
+  inline eT min(u32& row_of_min_val, u32& col_of_min_val, u32& slice_of_min_val) const;
+  inline eT max(u32& row_of_max_val, u32& col_of_max_val, u32& slice_of_max_val) const;
   
   
   inline bool save(const std::string   name, const file_type type = arma_binary, const bool print_status = true) const;

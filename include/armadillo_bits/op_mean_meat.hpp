@@ -1,5 +1,5 @@
-// Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2009-2010 Conrad Sanderson
+// Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -24,22 +24,36 @@ op_mean::direct_mean(const eT* const X, const u32 n_elem)
   {
   arma_extra_debug_sigprint();
   
+  typedef typename get_pod_type<eT>::result T;
+  
+  const eT result = arrayops::accumulate(X, n_elem) / T(n_elem);
+  
+  return arma_isfinite(result) ? result : op_mean::direct_mean_robust(X, n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+op_mean::direct_mean(const Mat<eT>& X, const u32 row)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename get_pod_type<eT>::result T;
+  
+  const u32 X_n_cols = X.n_cols;
+  
   eT val = eT(0);
   
-  u32 i,j;
-  
-  for(i=0, j=1; j<n_elem; i+=2, j+=2)
+  for(u32 col=0; col<X_n_cols; ++col)
     {
-    val += X[i];
-    val += X[j];
+    val += X.at(row,col);
     }
   
-  if(i < n_elem)
-    {
-    val += X[i];
-    }
+  const eT result = val / T(X_n_cols);
   
-  return val / eT(n_elem);
+  return arma_isfinite(result) ? result : direct_mean_robust(X, row);
   }
 
 
@@ -52,6 +66,8 @@ op_mean::direct_mean(const subview<eT>& X)
   {
   arma_extra_debug_sigprint();
   
+  typedef typename get_pod_type<eT>::result T;
+  
   const u32 X_n_elem = X.n_elem;
         eT  val      = eT(0);
   
@@ -60,7 +76,9 @@ op_mean::direct_mean(const subview<eT>& X)
     val += X[i];
     }
   
-  return val / eT(X_n_elem);
+  const eT result = val / T(X_n_elem);
+  
+  return arma_isfinite(result) ? result : direct_mean_robust(X);
   }
 
 
@@ -73,6 +91,8 @@ op_mean::direct_mean(const diagview<eT>& X)
   {
   arma_extra_debug_sigprint();
   
+  typedef typename get_pod_type<eT>::result T;
+  
   const u32 X_n_elem = X.n_elem;
         eT  val      = eT(0);
   
@@ -81,7 +101,9 @@ op_mean::direct_mean(const diagview<eT>& X)
     val += X[i];
     }
   
-  return val / eT(X_n_elem);
+  const eT result = val / T(X_n_elem);
+  
+  return arma_isfinite(result) ? result : direct_mean_robust(X);
   }
 
 
@@ -97,7 +119,8 @@ op_mean::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_mean>& in)
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
+  typedef typename T1::elem_type            eT;
+  typedef typename get_pod_type<eT>::result  T;
   
   const unwrap_check<T1> tmp(in.m, out);
   const Mat<eT>& X = tmp.M;
@@ -130,20 +153,119 @@ op_mean::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_mean>& in)
     
     for(u32 row=0; row<X_n_rows; ++row)
       {
-      eT val = eT(0);
-      
-      for(u32 col=0; col<X_n_cols; ++col)
-        {
-        val += X.at(row,col);
-        }
-      
-      out[row] = val / eT(X_n_cols);
-      
+      out[row] = op_mean::direct_mean( X, row );
       }
-    
     }
-  
   }
 
 
+
+template<typename eT>
+arma_pure
+inline
+eT
+op_mean::direct_mean_robust(const eT* const X, const u32 n_elem)
+  {
+  arma_extra_debug_sigprint();
+  
+  // use an adapted form of the mean finding algorithm from the running_stat class
+  
+  typedef typename get_pod_type<eT>::result T;
+  
+  u32 i,j;
+  
+  eT r_mean = eT(0);
+  
+  for(i=0, j=1; j<n_elem; i+=2, j+=2)
+    {
+    const eT Xi = X[i];
+    const eT Xj = X[j];
+    
+    r_mean = r_mean + (Xi - r_mean)/T(j);    // we need i+1, and j is equivalent to i+1 here
+    r_mean = r_mean + (Xj - r_mean)/T(j+1);
+    }
+  
+  
+  if(i < n_elem)
+    {
+    const eT Xi = X[i];
+    
+    r_mean = r_mean + (Xi - r_mean)/T(i+1);
+    }
+  
+  return r_mean;
+  }
+
+
+
+template<typename eT>
+inline
+eT
+op_mean::direct_mean_robust(const Mat<eT>& X, const u32 row)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename get_pod_type<eT>::result T;
+  
+  const u32 X_n_cols = X.n_cols;
+  
+  eT r_mean = eT(0);
+  
+  for(u32 col=0; col<X_n_cols; ++col)
+    {
+    r_mean = r_mean + (X.at(row,col) - r_mean)/T(col+1);
+    }
+  
+  return r_mean;
+  }
+
+
+
+template<typename eT>
+inline 
+eT
+op_mean::direct_mean_robust(const subview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename get_pod_type<eT>::result T;
+  
+  const u32 X_n_elem = X.n_elem;
+  
+  eT r_mean = eT(0);
+  
+  for(u32 i=0; i<X_n_elem; ++i)
+    {
+    r_mean = r_mean + (X[i] - r_mean)/T(i+1);
+    }
+  
+  return r_mean;
+  }
+
+
+
+template<typename eT>
+inline 
+eT
+op_mean::direct_mean_robust(const diagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename get_pod_type<eT>::result T;
+  
+  const u32 X_n_elem = X.n_elem;
+  
+  eT r_mean = eT(0);
+  
+  for(u32 i=0; i<X_n_elem; ++i)
+    {
+    r_mean = r_mean + (X[i] - r_mean)/T(i+1);
+    }
+  
+  return r_mean;
+  }
+
+
+
 //! @}
+

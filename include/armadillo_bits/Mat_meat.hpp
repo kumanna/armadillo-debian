@@ -2087,8 +2087,8 @@ Mat<eT>::diag(const s32 in_id)
   {
   arma_extra_debug_sigprint();
   
-  const u32 row_offset = (in_id < 0) ? -in_id : 0;
-  const u32 col_offset = (in_id > 0) ?  in_id : 0;
+  const u32 row_offset = (in_id < 0) ? u32(-in_id) : 0;
+  const u32 col_offset = (in_id > 0) ? u32( in_id) : 0;
   
   arma_debug_check
     (
@@ -3460,31 +3460,7 @@ arma_warn_unused
 bool
 Mat<eT>::is_finite() const
   {
-  const u32 N   = n_elem;
-  const eT* ptr = memptr();
-  
-  u32 i,j;
-  
-  for(i=0, j=1; j<N; i+=2, j+=2)
-    {
-    const eT val_i = ptr[i];
-    const eT val_j = ptr[j];
-    
-    if( (arma_isfinite(val_i) == false) || (arma_isfinite(val_j) == false) )
-      {
-      return false;
-      }
-    }
-  
-  if(i<N)
-    {
-    if(arma_isfinite(ptr[i]) == false)
-      {
-      return false;
-      }
-    }
-  
-  return true;
+  return arrayops::is_finite( memptr(), n_elem );
   }
 
 
@@ -4168,6 +4144,104 @@ Mat<eT>::set_imag(const Base<typename Mat<eT>::pod_type,T1>& X)
 
 
 
+template<typename eT>
+inline
+eT
+Mat<eT>::min() const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  
+  return op_min::direct_min(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Mat<eT>::max() const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  
+  return op_max::direct_max(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Mat<eT>::min(u32& index_of_min_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  
+  return op_min::direct_min(memptr(), n_elem, index_of_min_val);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Mat<eT>::max(u32& index_of_max_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  
+  return op_max::direct_max(memptr(), n_elem, index_of_max_val);
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Mat<eT>::min(u32& row_of_min_val, u32& col_of_min_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  
+  u32 i;
+  
+  eT val = op_min::direct_min(memptr(), n_elem, i);
+  
+  row_of_min_val = i % n_rows;
+  col_of_min_val = i / n_rows;
+  
+  return val;
+  }
+
+
+
+template<typename eT>
+inline
+eT
+Mat<eT>::max(u32& row_of_max_val, u32& col_of_max_val) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  
+  u32 i;
+  
+  eT val = op_max::direct_max(memptr(), n_elem, i);
+  
+  row_of_max_val = i % n_rows;
+  col_of_max_val = i / n_rows;
+  
+  return val;
+  }
+
+
+
 //! save the matrix to a file
 template<typename eT>
 inline
@@ -4841,6 +4915,57 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::mem_setup()
     access::rw(Mat<eT>::mem_state) = 3;
     access::rw(Mat<eT>::mem)       = 0;
     }
+  }
+
+
+
+template<typename eT>
+template<u32 fixed_n_rows, u32 fixed_n_cols>
+inline
+Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(eT* aux_mem, const bool copy_aux_mem)
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  if(fixed_n_elem > 0)
+    {
+    access::rw(Mat<eT>::n_rows)    = fixed_n_rows;
+    access::rw(Mat<eT>::n_cols)    = fixed_n_cols;
+    access::rw(Mat<eT>::n_elem)    = fixed_n_elem;
+    access::rw(Mat<eT>::vec_state) = 0;
+    access::rw(Mat<eT>::mem_state) = 3;
+    
+    if(copy_aux_mem == true)
+      {
+      access::rw(Mat<eT>::mem) = (fixed_n_elem > arma_config::mat_prealloc) ? mem_local_extra : mem_local;
+      
+      arrayops::copy( const_cast<eT*>(Mat<eT>::mem), aux_mem, fixed_n_elem );
+      }
+    else
+      {
+      access::rw(Mat<eT>::mem) = aux_mem;
+      }
+    }
+  else
+    {
+    access::rw(Mat<eT>::n_rows)    = 0;
+    access::rw(Mat<eT>::n_cols)    = 0;
+    access::rw(Mat<eT>::n_elem)    = 0;
+    access::rw(Mat<eT>::vec_state) = 0;
+    access::rw(Mat<eT>::mem_state) = 3;
+    access::rw(Mat<eT>::mem)       = 0;
+    }
+  }
+
+
+
+template<typename eT>
+template<u32 fixed_n_rows, u32 fixed_n_cols>
+inline
+Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const eT* aux_mem)
+  {
+  mem_setup();
+  
+  arrayops::copy( const_cast<eT*>(Mat<eT>::mem), aux_mem, fixed_n_elem );
   }
 
 
