@@ -67,7 +67,7 @@ we would appreciate a citation to the following tech report:
   Conrad Sanderson.
   Armadillo: An Open Source C++ Linear Algebra Library for
   Fast Prototyping and Computationally Intensive Experiments.
-  NICTA Technical Report, 2010.
+  Technical Report, NICTA, 2010.
 
 
 
@@ -419,6 +419,7 @@ Contributors:
 - Justin Bedo
 - Darius Braziunas
 - Ted Campbell
+- Clement Creusot
 - Ryan Curtin
 - Chris Davey
 - Dirk Eddelbuettel
@@ -441,11 +442,14 @@ Contributors:
 - Petter Strandmark
 - Paul Torfs
 - Simon Urbanek
+- Arnold Wiliem
 - Yong Kang Wong
+
 
 
 === 9: License ===
 
 Please see the "LICENSE.txt" file.
+
 
 

@@ -17,9 +17,9 @@
   <tbody>
     <tr>
       <td style="text-align: left; vertical-align: top;">
-        <font size=+2><b>Reference for Armadillo 1.1.4</b></font>
+        <font size=+2><b>Reference for Armadillo 1.1.90</b></font>
         <br>
-        <font size=-1><b>(Manta Lodge)</b></font>
+        <font size=-1><b>(Inside Job)</b></font>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -84,7 +84,7 @@ Conrad Sanderson.
 <br>
 <i><a href="armadillo_nicta_2010.pdf">Armadillo: An Open Source C++ Linear Algebra Library for Fast Prototyping and Computationally Intensive Experiments</a></i>.
 <br>
-NICTA Technical Report, 2010.
+Technical Report, NICTA, 2010.
 </font>
 </li>
 </ul>
@@ -125,6 +125,7 @@ NICTA Technical Report, 2010.
 <a href="#iterators_mat">iterators (matrices)</a>&nbsp;&middot;
 <a href="#iterators_cube">iterators (cubes)</a>&nbsp;&middot;
 <a href="#memptr">memptr</a>&nbsp;&middot;
+<a href="#min_and_max_member">min/max</a>&nbsp;&middot;
 <a href="#ones_member">ones</a>&nbsp;&middot;
 <a href="#operators">operators</a>&nbsp;&middot;
 <a href="#print">print</a>&nbsp;&middot;
@@ -242,6 +243,7 @@ NICTA Technical Report, 2010.
 
 <b>Miscellaneous</b>
 <ul>
+<a href="#is_finite_standalone">is_finite()</a>&nbsp;&middot;
 <a href="#logging">logging of errors/warnings</a>&nbsp;&middot;
 <a href="#math_constants">math constants (pi, ...)</a>&nbsp;&middot;
 <a href="#phys_constants">physical constants (speed of light, ...)</a>&nbsp;&middot;
@@ -353,7 +355,7 @@ For convenience the following typedefs have been defined:
 <br>
 <li>
 In this documentation the <i>mat</i> type is used for convenience;
-it is possible to use other types instead, e.g. <i>fmat</i>.
+it is possible to use other types instead, eg. <i>fmat</i>.
 </li>
 <br>
 <li>
@@ -362,7 +364,7 @@ Functions which are wrappers for LAPACK or ATLAS functions (generally matrix dec
 </li>
 <br>
 <li>
-Elements are stored with column-major ordering (i.e. column by column).
+Elements are stored with column-major ordering (ie. column by column).
 </li>
 <br>
 <a name="constructors_mat"></a>
@@ -385,6 +387,37 @@ Advanced constructors:
 <br>
 <br>
 <ul>
+<li>mat(aux_mem*, n_rows, n_cols, copy_aux_mem = true, strict = true)
+<br>
+<br>
+<ul>
+Create a matrix using data from writeable auxiliary memory.
+By default the matrix allocates its own memory and copies data from the auxiliary memory (for safety).
+However, if <i>copy_aux_mem</i> is set to <i>false</i>,
+the matrix will instead directly use the auxiliary memory (ie. no copying).
+This is faster, but can be dangerous unless you know what you're doing!
+<br>
+<br>
+The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
+(ie. the matrix is directly using auxiliary memory).
+If <i>strict</i> is set to <i>true</i>,
+the matrix will be bound to the auxiliary memory for its lifetime;
+the number of elements in the matrix can't be changed (directly or indirectly).
+If <i>strict</i> is set to <i>false</i>, the matrix will not be bound to the auxiliary memory for its lifetime,
+ie., the size of the matrix can be changed.
+If the requested number of elements is different to the size of the auxiliary memory,
+new memory will be allocated and the auxiliary memory will no longer be used.
+</ul>
+</li>
+<br>
+<li>mat(const aux_mem*, n_rows, n_cols)
+<br>
+<br>
+<ul>
+Create a matrix by copying data from read-only auxiliary memory.
+</ul>
+</li>
+<br>
 <li>mat::fixed&lt;n_rows, n_cols&gt;
 <br>
 <br>
@@ -403,34 +436,25 @@ while <i>cx_mat44</i> is equivalent to <i>cx_mat::fixed&lt;4,4&gt;</i>.
 </ul>
 </li>
 <br>
-<li>mat(aux_mem*, n_rows, n_cols, copy_aux_mem = true, strict = true)
+<li>mat::fixed&lt;n_rows, n_cols&gt;(aux_mem*, copy_aux_mem = true)
 <br>
 <br>
 <ul>
-Create a matrix using data from writeable auxiliary memory.
+Create a fixed size matrix, with the size specified via template arguments,
+and using data from writeable auxiliary memory.
 By default the matrix allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the matrix will instead directly use the auxiliary memory (i.e. no copying).
+the matrix will instead directly use the auxiliary memory (ie. no copying).
 This is faster, but can be dangerous unless you know what you're doing!
-<br>
-<br>
-The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
-(i.e. the matrix is directly using auxiliary memory).
-If <i>strict</i> is set to <i>true</i>,
-the matrix will be bound to the auxiliary memory for its lifetime;
-the number of elements in the matrix can't be changed (directly or indirectly).
-If <i>strict</i> is set to <i>false</i>, the matrix will not be bound to the auxiliary memory for its lifetime,
-i.e., the size of the matrix can be changed.
-If the requested number of elements is different to the size of the auxiliary memory,
-new memory will be allocated and the auxiliary memory will no longer be used.
 </ul>
 </li>
 <br>
-<li>mat(const aux_mem*, n_rows, n_cols)
+<li>mat::fixed&lt;n_rows, n_cols&gt;(const aux_mem*)
 <br>
 <br>
 <ul>
-Create a matrix by copying data from read-only auxiliary memory.
+Create a fixed size matrix, with the size specified via template arguments,
+and copying data from read-only auxiliary memory.
 </ul>
 </li>
 </ul>
@@ -615,7 +639,7 @@ In this documentation, the <b><i>vec</i></b> and <b><i>colvec</i></b> types have
 </li>
 <br>
 <li>
-In this documentation, the types <i>vec</i> or <i>colvec</i> are used for convenience; it is possible to use other types instead, e.g.&nbsp;<i>fvec</i>, <i>fcolvec</i>.
+In this documentation, the types <i>vec</i> or <i>colvec</i> are used for convenience; it is possible to use other types instead, eg.&nbsp;<i>fvec</i>, <i>fcolvec</i>.
 </li>
 <br>
 <li>
@@ -638,6 +662,37 @@ Advanced constructors:
 <br>
 <br>
 <ul>
+<li>vec(aux_mem*, number_of_elements, copy_aux_mem = true, strict = true)
+<br>
+<br>
+<ul>
+Create a column vector using data from writeable auxiliary memory.
+By default the vector allocates its own memory and copies data from the auxiliary memory (for safety).
+However, if <i>copy_aux_mem</i> is set to <i>false</i>,
+the vector will instead directly use the auxiliary memory (ie. no copying).
+This is faster, but can be dangerous unless you know what you're doing!
+<br>
+<br>
+The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
+(ie. the vector is directly using auxiliary memory).
+If <i>strict</i> is set to <i>true</i>,
+the vector will be bound to the auxiliary memory for its lifetime;
+the number of elements in the vector can't be changed (directly or indirectly).
+If <i>strict</i> is set to <i>false</i>, the vector will not be bound to the auxiliary memory for its lifetime,
+ie., the vector's size can be changed.
+If the requested number of elements is different to the size of the auxiliary memory,
+new memory will be allocated and the auxiliary memory will no longer be used.
+</ul>
+</li>
+<br>
+<li>vec(const aux_mem*, number_of_elements)
+<br>
+<br>
+<ul>
+Create a column vector by copying data from read-only auxiliary memory.
+</ul>
+</li>
+<br>
 <li>vec::fixed&lt;number_of_elements&gt;
 <br>
 <br>
@@ -656,34 +711,25 @@ while <i>cx_vec4</i> is equivalent to <i>cx_vec::fixed&lt;4&gt;</i>.
 </ul>
 </li>
 <br>
-<li>vec(aux_mem*, number_of_elements, copy_aux_mem = true, strict = true)
+<li>vec::fixed&lt;number_of_elements&gt;(aux_mem*, copy_aux_mem = true)
 <br>
 <br>
 <ul>
-Create a column vector using data from writeable auxiliary memory.
+Create a fixed size column vector, with the size specified via the template argument,
+and using data from writeable auxiliary memory.
 By default the vector allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the vector will instead directly use the auxiliary memory (i.e. no copying).
+the vector will instead directly use the auxiliary memory (ie. no copying).
 This is faster, but can be dangerous unless you know what you're doing!
-<br>
-<br>
-The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
-(i.e. the vector is directly using auxiliary memory).
-If <i>strict</i> is set to <i>true</i>,
-the vector will be bound to the auxiliary memory for its lifetime;
-the number of elements in the vector can't be changed (directly or indirectly).
-If <i>strict</i> is set to <i>false</i>, the vector will not be bound to the auxiliary memory for its lifetime,
-i.e., the vector's size can be changed.
-If the requested number of elements is different to the size of the auxiliary memory,
-new memory will be allocated and the auxiliary memory will no longer be used.
 </ul>
 </li>
 <br>
-<li>vec(const aux_mem*, number_of_elements)
+<li>vec::fixed&lt;number_of_elements&gt;(const aux_mem*)
 <br>
 <br>
 <ul>
-Create a column vector by copying data from read-only auxiliary memory.
+Create a fixed size column vector, with the size specified via the template argument,
+and copying data from read-only auxiliary memory.
 </ul>
 </li>
 </ul>
@@ -829,7 +875,7 @@ For convenience the following typedefs have been defined:
 <br>
 <li>
 In this documentation, the <i>rowvec</i> type is used for convenience;
-it is possible to use other types instead, e.g. <i>frowvec</i>.
+it is possible to use other types instead, eg. <i>frowvec</i>.
 </li>
 <br>
 <li>
@@ -852,6 +898,37 @@ Advanced constructors:
 <br>
 <br>
 <ul>
+<li>rowvec(aux_mem*, number_of_elements, copy_aux_mem = true, strict = true)
+<br>
+<br>
+<ul>
+Create a row vector using data from writeable auxiliary memory.
+By default the vector allocates its own memory and copies data from the auxiliary memory (for safety).
+However, if <i>copy_aux_mem</i> is set to <i>false</i>,
+the vector will instead directly use the auxiliary memory (ie. no copying).
+This is faster, but can be dangerous unless you know what you're doing!
+<br>
+<br>
+The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
+(ie. the vector is directly using auxiliary memory).
+If <i>strict</i> is set to <i>true</i>,
+the vector will be bound to the auxiliary memory for its lifetime;
+the number of elements in the vector can't be changed (directly or indirectly).
+If <i>strict</i> is set to <i>false</i>, the vector will not be bound to the auxiliary memory for its lifetime,
+ie., the vector's size can be changed.
+If the requested number of elements is different to the size of the auxiliary memory,
+new memory will be allocated and the auxiliary memory will no longer be used.
+</ul>
+</li>
+<br>
+<li>rowvec(const aux_mem*, number_of_elements)
+<br>
+<br>
+<ul>
+Create a row vector by copying data from read-only auxiliary memory.
+</ul>
+</li>
+<br>
 <li>rowvec::fixed&lt;number_of_elements&gt;
 <br>
 <br>
@@ -870,34 +947,25 @@ while <i>cx_rowvec4</i> is equivalent to <i>cx_rowvec::fixed&lt;4&gt;</i>.
 </ul>
 </li>
 <br>
-<li>rowvec(aux_mem*, number_of_elements, copy_aux_mem = true, strict = true)
+<li>rowvec::fixed&lt;number_of_elements&gt;(aux_mem*, copy_aux_mem = true)
 <br>
 <br>
 <ul>
-Create a row vector using data from writeable auxiliary memory.
+Create a fixed size row vector, with the size specified via the template argument,
+and using data from writeable auxiliary memory.
 By default the vector allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the vector will instead directly use the auxiliary memory (i.e. no copying).
+the vector will instead directly use the auxiliary memory (ie. no copying).
 This is faster, but can be dangerous unless you know what you're doing!
-<br>
-<br>
-The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
-(i.e. the vector is directly using auxiliary memory).
-If <i>strict</i> is set to <i>true</i>,
-the vector will be bound to the auxiliary memory for its lifetime;
-the number of elements in the vector can't be changed (directly or indirectly).
-If <i>strict</i> is set to <i>false</i>, the vector will not be bound to the auxiliary memory for its lifetime,
-i.e., the vector's size can be changed.
-If the requested number of elements is different to the size of the auxiliary memory,
-new memory will be allocated and the auxiliary memory will no longer be used.
 </ul>
 </li>
 <br>
-<li>rowvec(const aux_mem*, number_of_elements)
+<li>rowvec::fixed&lt;number_of_elements&gt;(const aux_mem*)
 <br>
 <br>
 <ul>
-Create a row vector by copying data from read-only auxiliary memory.
+Create a fixed size row vector, with the size specified via the template argument,
+and copying data from read-only auxiliary memory.
 </ul>
 </li>
 </ul>
@@ -1046,12 +1114,12 @@ For convenience the following typedefs have been defined:
 <br>
 <li>
 In this documentation the <i>cube</i> type is used for convenience;
-it is possible to use other types instead, e.g. <i>fcube</i>.
+it is possible to use other types instead, eg. <i>fcube</i>.
 </li>
 <br>
 <li>
 Cube data is stored as a set of slices (matrices) stored contiguously within memory.
-Within each slice, elements are stored with column-major ordering (i.e. column by column). 
+Within each slice, elements are stored with column-major ordering (ie. column by column). 
 </li>
 <br>
 <li>
@@ -1094,17 +1162,17 @@ This is generally faster than dynamic memory allocation, but the size of the cub
 Create a cube using data from writeable auxiliary memory.
 By default the cube allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the cube will instead directly use the auxiliary memory (i.e. no copying).
+the cube will instead directly use the auxiliary memory (ie. no copying).
 This is faster, but can be dangerous unless you know what you're doing!
 <br>
 <br>
 The <i>strict</i> variable comes into effect only if <i>copy_aux_mem</i> is set to <i>false</i>
-(i.e. the cube is directly using auxiliary memory).
+(ie. the cube is directly using auxiliary memory).
 If <i>strict</i> is set to <i>true</i>,
 the cube will be bound to the auxiliary memory for its lifetime;
 the number of elements in the cube can't be changed (directly or indirectly).
 If <i>strict</i> is set to <i>false</i>, the cube will not be bound to the auxiliary memory for its lifetime,
-i.e., the size of the cube can be changed.
+ie., the size of the cube can be changed.
 If the requested number of elements is different to the size of the auxiliary memory,
 new memory will be allocated and the auxiliary memory will no longer be used.
 </ul>
@@ -1210,7 +1278,7 @@ Class for one and two dimensional fields of arbitrary objects
 </li>
 <br>
 <li>
-Constructors (where <i>object type</i> is another class, e.g. <i>std::string</i>, <i>mat</i>, <i>vec</i>, <i>rowvec</i>, etc):
+Constructors (where <i>object type</i> is another class, eg. <i>std::string</i>, <i>mat</i>, <i>vec</i>, <i>rowvec</i>, etc):
 <ul>
 field&lt;<i>object type</i>&gt;(n_elem=0)
 <br>field&lt;<i>object type</i>&gt;(n_rows, n_cols)
@@ -1433,7 +1501,7 @@ Set the size to be the same as object A.
 <br>
 <li>
 Object A must be of the same root type as the object being modified
-(e.g. you can't set the size of a matrix by providing a cube).
+(eg. you can't set the size of a matrix by providing a cube).
 </li>
 <br>
 <li>
@@ -1471,7 +1539,7 @@ Read/write access to the <i>k</i>-th diagonal in a matrix.
 <li>For <i>k &lt; 0</i>, the <i>k</i>-th sub-diagonal is accessed (bottom-left corner).</li>
 <br>
 <li>
-An extracted a diagonal is interpreted as a column vector.
+An extracted diagonal is interpreted as a column vector.
 </li>
 <br>
 <li>
@@ -1504,7 +1572,7 @@ See also:
 <ul>
 <li>
 Provide access to individual elements or objects stored in a container object
-(i.e., <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i>, <i>field</i>).<br>
+(ie., <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i>, <i>field</i>).<br>
                     <br>
 <ul>
                     <table style="text-align: left; width: 100%;"
@@ -1519,7 +1587,7 @@ Provide access to individual elements or objects stored in a container object
                           <td style="vertical-align: top;">
 For vec and rowvec, access the <i>n</i>-th element.
 For mat, cube and field, access the <i>n</i>-th element/object under the assumption of a flat layout,
-with column-major ordering of data (i.e. column by column).
+with column-major ordering of data (ie. column by column).
 An exception is thrown if the requested element is out of bounds.
 The bounds check can be optionally disabled at compile-time (see below).
                           </td>
@@ -1615,7 +1683,7 @@ Not recommended for use unless your code has been thoroughly debugged.</td>
 <li>
 The bounds checks used by the <i>(n)</i>, <i>(i,j)</i> and <i>(i,j,k)</i> access forms
 can be disabled by defining <i>ARMA_NO_DEBUG</i> or <i>NDEBUG</i> macros 
-before including the <i>armadillo</i> header file (e.g. <i>#define ARMA_NO_DEBUG</i>).
+before including the <i>armadillo</i> header file (eg. <i>#define ARMA_NO_DEBUG</i>).
 Disabling the bounds checks is not recommended until your code has been thoroughly debugged
 -- it's better to write correct code first, and then maximise its speed.
 </li>
@@ -1716,7 +1784,7 @@ B.eye(5,5);
 <br>
 <li>See also:
 <ul>
-<li><a href="#eye_standalone">eye()</a> (stand alone function)</li>
+<li><a href="#eye_standalone">eye()</a> (standalone function)</li>
 <li><a href="#diagmat">diagmat()</a></li>
 <li><a href="#diagvec">diagvec()</a></li>
 <li><a href="#ones_member">.ones()</a></li>
@@ -1735,7 +1803,7 @@ Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i> classes.
 <br>
 <li>Sets the elements to a specified value.
 The type of value must match the type of elements used by the container object
-(e.g. for <i>mat</i> the type is double).
+(eg. for <i>mat</i> the type is double).
 </li>
 <br>
 <li>
@@ -1764,34 +1832,73 @@ See also:
 <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
-      <td style="vertical-align: top;"><b>.in_range(i)</b></td>
+      <td style="vertical-align: top;"><b>.in_range(</b> i <b>)</b></td>
       <td style="vertical-align: top;"><br>
       </td>
-      <td style="vertical-align: top;">(member function of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>field</i>)
+      <td style="vertical-align: top;">(member of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>field</i>)
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;"><b>.in_range(row, col)</b></td>
+      <td style="vertical-align: top;"><b>.in_range( span(</b>start<b>,</b> end<b>) )</b></td>
       <td style="vertical-align: top;"><br>
       </td>
-      <td style="vertical-align: top;">(member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>field</i>)
+      <td style="vertical-align: top;">(member of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>field</i>)
       </td>
     </tr>
     <tr>
-      <td style="vertical-align: top;"><b>.in_range(row, col, slice)</b></td>
+      <td>
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.in_range(</b> row<b>,</b> col <b>)</b></td>
       <td style="vertical-align: top;"><br>
       </td>
-      <td style="vertical-align: top;">(member function of <i>Cube</i>)
+      <td style="vertical-align: top;">(member of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>field</i>)
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.in_range( <font size=-1>span(</b>start_row<b>,</b> end_row<b>), span(</b>start_col<b>,</b> end_col<b>)</font> )</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>field</i>)
+      </td>
+    </tr>
+    <tr>
+      <td>
+      &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.in_range(</b> row<b>,</b> col<b>,</b> slice <b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member of <i>Cube</i>)
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.in_range( <font size=-1>span(</b>start_row<b>,</b> end_row<b>), span(</b>start_col<b>,</b> end_col<b>), span(</b>start_slice<b>,</b> end_slice<b>)</font> )</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member of <i>Cube</i>)
       </td>
     </tr>
   </tbody>
 </table>
 <br>
 <ul>
-<li>Returns true if the given location is currently valid
+<li>Returns <i>true</i> if the given location or span is currently valid
 </li>
 <br>
-<li>Returns false if the object is empty or the location is out of bounds
+<li>Returns <i>false</i> if the object is empty, the location is out of bounds, or the span is out of bounds
+</li>
+<br>
+<li>
+Instances of <i>span(a,b)</i> can be replaced by:
+<ul>
+<li><i>span()</i> or <i>span::all</i>, to indicate the entire range</li>
+<li><i>span(a)</i>, to indicate a particular row, column or slice</li>
+</ul>
 </li>
 <br>
 <li>
@@ -1811,6 +1918,9 @@ cout &lt;&lt; A.in_range(4,5) &lt;&lt; endl;  // false
 See also:
 <ul>
 <li><a href="#element_access">element access</a></li>
+<li><a href="#submat">submatrix views</a></li>
+<li><a href="#subcube">subcube views</a></li>
+<li><a href="#subfield">subfield views</a></li>
 <li><a href="#set_size">.set_size()</a></li>
 </ul>
 </li>
@@ -1861,10 +1971,10 @@ See also:
 Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i> classes.
 </li>
 <br>
-<li>Returns true if all elements of the object are finite.
+<li>Returns <i>true</i> if all elements of the object are finite.
 </li>
 <br>
-<li>Returns false if at least one of the elements of the object is non-finite.
+<li>Returns <i>false</i> if at least one of the elements of the object is non-finite (&plusmn;infinity or NaN).
 </li>
 <br>
 <li>
@@ -1874,15 +1984,24 @@ Examples:
 mat A = randu&lt;mat&gt;(5,5);
 mat B = randu&lt;mat&gt;(5,5);
 
-B(1,1) = 0.0 / 0.0;  // create a NaN
+B(1,1) = math::nan()
 
 cout &lt;&lt; A.is_finite() &lt;&lt; endl;
 cout &lt;&lt; B.is_finite() &lt;&lt; endl;
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#math_constants">math::nan()</a></li>
+<li><a href="#math_constants">math::inf()</a></li>
+<li><a href="#is_finite_standalone">is_finite()</a> (standalone function)</li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="is_square"></a>
@@ -1892,10 +2011,10 @@ cout &lt;&lt; B.is_finite() &lt;&lt; endl;
 Member function of the <i>Mat</i> class.
 </li>
 <br>
-<li>Returns true if the matrix is square, i.e., number of rows is equal to the number of columns.
+<li>Returns <i>true</i> if the matrix is square, ie., number of rows is equal to the number of columns.
 </li>
 <br>
-<li>Returns false if the matrix is not square, or the matrix has no elements.
+<li>Returns <i>false</i> if the matrix is not square, or the matrix has no elements.
 </li>
 <br>
 <li>
@@ -1921,10 +2040,10 @@ cout &lt;&lt; B.is_square() &lt;&lt; endl;
 Member function of the <i>Mat</i> class.
 </li>
 <br>
-<li>Returns true if the matrix can be interpreted as a vector (either column or row vector).
+<li>Returns <i>true</i> if the matrix can be interpreted as a vector (either column or row vector).
 </li>
 <br>
-<li>Returns false if the matrix can't be interpreted as a vector, or the matrix has no elements.
+<li>Returns <i>false</i> if the matrix can't be interpreted as a vector, or the matrix has no elements.
 </li>
 <br>
 <li>
@@ -1963,9 +2082,9 @@ cout &lt;&lt; C.is_vec() &lt;&lt; endl;
     </tr>
     <tr>
       <td style="vertical-align: top;">
-      <b>.insert_cols(&nbsp;</b>column_number, X<b>&nbsp;)</b>
+      <b>.insert_cols(&nbsp;</b>col_number, X<b>&nbsp;)</b>
       <br>
-      <b>.insert_cols(&nbsp;</b>column_number, number_of_columns, set_to_zero&nbsp;=&nbsp;true<b>&nbsp;)</b>
+      <b>.insert_cols(&nbsp;</b>col_number, number_of_cols, set_to_zero&nbsp;=&nbsp;true<b>&nbsp;)</b>
       </td>
       <td style="vertical-align: top;"><br></td>
       <td style="vertical-align: top;">(member functions of <i>Mat</i> and <i>Row</i>)
@@ -1993,7 +2112,7 @@ Functions with the X argument: insert a copy of X at the specified row/column/sl
 <ul>
 <li>if inserting rows, X must have the same number of columns as the recipient object</li>
 <li>if inserting columns, X must have the same number of rows as the recipient object</li>
-<li>if inserting slices, X must have the same number of rows and columns as the recipient object (i.e. all slices must have the same size)</li>
+<li>if inserting slices, X must have the same number of rows and columns as the recipient object (ie. all slices must have the same size)</li>
 </ul>
 </li>
 <br>
@@ -2059,8 +2178,8 @@ iterator types:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        random access iterators, for read/write access to elements;
-        the elements are ordered column by column
+        random access iterators, for read/write access to elements
+        (which are stored column by column)
       </td>
     </tr>
     <tr>
@@ -2084,8 +2203,8 @@ iterator types:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        random access iterators, for read-only access to elements;
-        the elements are ordered column by column
+        random access iterators, for read-only access to elements
+        (which are stored column by column)
       </td>
     </tr>
     <tr>
@@ -2240,7 +2359,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the first element
+        iterator referring to the first element
       </td>
     </tr>
     <tr>
@@ -2250,7 +2369,12 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the <i>past-the-end</i> element
+        iterator referring to the <i>past-the-end</i> element
+      </td>
+    </tr>
+    <tr>
+      <td>
+      &nbsp;
       </td>
     </tr>
     <tr>
@@ -2260,7 +2384,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the first element of the specified row
+        iterator referring to the first element of the specified row
       </td>
     </tr>
     <tr>
@@ -2270,7 +2394,12 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the <i>past-the-end</i> element of the specified row
+        iterator referring to the <i>past-the-end</i> element of the specified row
+      </td>
+    </tr>
+    <tr>
+      <td>
+      &nbsp;
       </td>
     </tr>
     <tr>
@@ -2280,7 +2409,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the first element of the specified column
+        iterator referring to the first element of the specified column
       </td>
     </tr>
     <tr>
@@ -2290,7 +2419,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the <i>past-the-end</i> element of the specified column
+        iterator referring to the <i>past-the-end</i> element of the specified column
       </td>
     </tr>
   </tbody>
@@ -2445,7 +2574,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the first element
+        iterator referring to the first element
       </td>
     </tr>
     <tr>
@@ -2455,7 +2584,12 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the <i>past-the-end</i> element
+        iterator referring to the <i>past-the-end</i> element
+      </td>
+    </tr>
+    <tr>
+      <td>
+      &nbsp;
       </td>
     </tr>
     <tr>
@@ -2465,7 +2599,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the first element of the specified slice
+        iterator referring to the first element of the specified slice
       </td>
     </tr>
     <tr>
@@ -2475,7 +2609,7 @@ Member functions:
       <td style="vertical-align: top;">&nbsp;<br>
       </td>
       <td style="vertical-align: top;">
-        provide an iterator referring to the <i>past-the-end</i> element of the specified slice
+        iterator referring to the <i>past-the-end</i> element of the specified slice
       </td>
     </tr>
   </tbody>
@@ -2577,6 +2711,140 @@ See also:
 </ul>
 <hr class="greyline"><br>
 
+<a name="min_and_max_member"></a>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><b>.min()</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i>)
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.max()</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.min(</b>&nbsp;index_of_min_val&nbsp;<b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i>)
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.max(</b>&nbsp;index_of_max_val&nbsp;<b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.min(</b>&nbsp;row_of_min_val<b>,</b> col_of_min_val&nbsp;<b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member functions of <i>Mat</i>)
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.max(</b>&nbsp;row_of_max_val<b>,</b> col_of_max_val&nbsp;<b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&nbsp;</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.min(</b>&nbsp;row_of_min_val<b>,</b> col_of_min_val<b>,</b> slice_of_min_val&nbsp;<b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">(member functions of <i>Cube</i>)
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b>.max(</b>&nbsp;row_of_max_val<b>,</b> col_of_max_val<b>,</b> slice_of_max_val&nbsp;<b>)</b></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+<br>
+<li>
+Without arguments: return the min/max value of an object.
+</li>
+<br>
+<li>
+With one or more arguments: return the min/max value of an object and store the location of the min/max value in the provided variable(s).
+</li>
+<br>
+<li>
+The provided variables must be of type <a href="#s32_u32">u32</a>.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+vec v = randu&lt;vec&gt;(10);
+
+cout &lt;&lt; "min value is " &lt;&lt; v.min() &lt;&lt; endl;
+
+
+u32    index;
+double min_val = v.min(index);
+
+cout &lt;&lt; "index of min value is " &lt;&lt; index &lt;&lt; endl;
+
+
+mat A = randu&lt;mat&gt;(5,5);
+
+u32    row;
+u32    col;
+double min_val2 = A.max(row,col);
+
+cout &lt;&lt; "max value is at " &lt;&lt; row &lt;&lt; ',' &lt;&lt; col &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#min_and_max">min() &amp; max()</a> (standalone functions)</li>
+<li><a href="#running_stat">running_stat</a></li>
+<li><a href="#running_stat_vec">running_stat_vec</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
+
 <a name="ones_member"></a>
 <b>.ones()</b>
 <br><b>.ones(n_elem)</b>
@@ -2614,7 +2882,7 @@ A.ones(10,20); // sets the size to 10 rows and 20 columns
 <li>
 See also:
 <ul>
-<li><a href="#ones_standalone">ones()</a> (stand alone function)</li>
+<li><a href="#ones_standalone">ones()</a> (standalone function)</li>
 <li><a href="#zeros_member">.zeros()</a></li>
 <li><a href="#fill">.fill()</a></li>
 </ul>
@@ -2724,8 +2992,8 @@ efficient ordering of the matrix multiplications.
 </li>
 <br>
 <li>
-<b>Caveat:</b> operators involving an equality comparison (i.e., ==, !=, &gt;=, &lt;=)
-may not work as expected for floating point element types (i.e., <i>float</i>, <i>double</i>)
+<b>Caveat:</b> operators involving an equality comparison (ie., ==, !=, &gt;=, &lt;=)
+may not work as expected for floating point element types (ie., <i>float</i>, <i>double</i>)
 due to the necessarily limited precision of these types.
 In other words, these operators are (in general) not recommended for matrices of type <i>mat</i> or <i>fmat</i>.
 </li>
@@ -2849,7 +3117,7 @@ Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i>.
 <br>
 <li>
 Similar to the <a href="#print">.print()</a> member function.
-The difference is that no formatting of the output is done -- i.e. the user can set the stream's parameters
+The difference is that no formatting of the output is done -- ie. the user can set the stream's parameters
 such as precision, cell width, etc.
 </li>
 <br>
@@ -2931,7 +3199,7 @@ B.randu(6,7);
 <li>
 See also:
 <ul>
-<li><a href="#randu_randn_standalone">randu() &amp; randn()</a> (stand alone functions)</li>
+<li><a href="#randu_randn_standalone">randu() &amp; randn()</a> (standalone functions)</li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="#ones_member">.ones()</a></li>
 <li><a href="#zeros_member">.zeros()</a></li>
@@ -3028,7 +3296,7 @@ A.reshape(5,4);
 <br>
 <li>See also:
 <ul>
-<li><a href="#reshape">reshape()</a> (stand alone function)</li>
+<li><a href="#reshape">reshape()</a> (standalone function)</li>
 <li><a href="#set_size">.set_size()</a></li>
 </ul>
 </li>
@@ -3103,7 +3371,7 @@ Numerical data stored in raw ASCII format, without a header.
 The numbers are separated by whitespace.
 The number of columns must be the same in each row.
 Data which was saved in Matlab/Octave using the <i>-ascii</i> option can be read in Armadillo, except for complex numbers.
-Complex numbers are stored in standard C++ notation (a tuple surrounded by brackets: e.g. (1.23,4.56) indicates 1.24&nbsp;+&nbsp;4.56i).
+Complex numbers are stored in standard C++ notation (a tuple surrounded by brackets: eg. (1.23,4.56) indicates 1.24&nbsp;+&nbsp;4.56i).
 Cubes are loaded as one slice.
 <br>
 <br>
@@ -3438,11 +3706,11 @@ cx_mat C = cx_mat(A,B);
 <li>Changes the size of an object.</li>
 <br>
 <li>
-If the requested number of elements is equal to the old number of elements, old memory is reused (i.e. data is preserved).
+If the requested number of elements is equal to the old number of elements, old memory is reused (ie. data is preserved).
 </li>
 <br>
 <li>
-If the requested number of elements is not equal to the old number of elements, new memory is used (i.e. data is not preserved).
+If the requested number of elements is not equal to the old number of elements, new memory is used (ie. data is not preserved).
 </li>
 <br>
 <li>
@@ -3570,6 +3838,7 @@ X.<b>rows(&nbsp;</b>first_row<b>,</b> last_row<b>&nbsp;)</b><br>
 <br>
 X.<b>submat(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> last_row<b>,</b> last_col<b>&nbsp;)</b><br>
 X.<b>submat(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b> last_col<b>)&nbsp;)</b><br>
+<br>
 X<b>(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b> last_col<b>)&nbsp;)</b><br>
 <br>
 X.<b>elem(</b>&nbsp;vector_of_indices&nbsp;<b>)</b>
@@ -3592,14 +3861,14 @@ elements specified in <i>vector_of_indices</i> are accessed.
 <i>X</i> is interpreted as one long vector,
 with column-by-column ordering of the elements of <i>X</i>.
 The <i>vector_of_indices</i> must evaluate to be a vector of type <i><a href="#Col">uvec</a></i>
-(e.g., generated by <i><a href="#find">find()</a></i>).
+(eg., generated by <i><a href="#find">find()</a></i>).
 The aggregate set of the specified elements is treated as a column vector
-(e.g., the output of <i>X.elem()</i> is always a column vector).
+(eg., the output of <i>X.elem()</i> is always a column vector).
 </li>
 <br>
 <li>
 The function <i>.unsafe_col()</i> is provided for speed reasons and should be used only if you know what you're doing.
-The function creates a seemingly independent <i>Col</i> vector object (e.g. <i>vec</i>),
+The function creates a seemingly independent <i>Col</i> vector object (eg. <i>vec</i>),
 but the vector actually uses memory from the existing matrix object.
 As such, the created <i>Col</i> vector is currently not alias safe
 and does not take into account that the parent matrix object could be deleted.
@@ -3707,6 +3976,10 @@ A( span(0,1), span(0,1), span(1,2) ) = randu&lt;cube&gt;(2,2,2);
 <li>
 See also:
 <ul>
+<li><a href="#in_range">.in_range()</a></li>
+<li><a href="#join">join slices</a></li>
+<li><a href="#shed">shed slices</a></li>
+<li><a href="#insert">insert slices</a></li>
 <li><a href="#submat">submatrix views</a></li>
 </ul>
 </li>
@@ -3719,17 +3992,40 @@ See also:
 <ul>
 <li>A collection of member functions of the <i>field</i> class that provide subfield views.<br>
 <br>
+<li>For a field <i>F</i>, the subfields are accessed as:</li>
+<br>
 <ul>
-.<b>row(&nbsp;</b>row_number&nbsp;<b>)</b><br>
-.<b>col(&nbsp;</b>column_number&nbsp;<b>)</b><br>
-.<b>rows(&nbsp;</b>first_row<b>,</b> last_row&nbsp;<b>)</b><br>
-.<b>cols(&nbsp;</b>first_col<b>,</b> last_col&nbsp;<b>)</b><br>
-.<b>subfield(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> last_row<b>,</b> last_col&nbsp;<b>)</b><br>
+F.<b>row(&nbsp;</b>row_number&nbsp;<b>)</b><br>
+F.<b>col(&nbsp;</b>col_number&nbsp;<b>)</b><br>
+<br>
+F.<b>rows(&nbsp;</b>first_row<b>,</b> last_row&nbsp;<b>)</b><br>
+F.<b>cols(&nbsp;</b>first_col<b>,</b> last_col&nbsp;<b>)</b><br>
+<br>
+F.<b>subfield(&nbsp;</b>first_row<b>,</b>&nbsp;first_col<b>,</b> last_row<b>,</b>&nbsp;last_col <b>)</b><br>
+F.<b>subfield(&nbsp;span(</b>first_row<b>,</b>&nbsp;last_row<b>), span(</b>first_col<b>,</b>&nbsp;last_col<b>) )</b><br>
+<br>
+F<b>(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b>&nbsp;last_col<b>) )</b><br>
+</ul>
+</li>
+<br>
+<li>
+Instances of <i>span(a,b)</i> can be replaced by:
+<ul>
+<li><i>span()</i> or <i>span::all</i>, to indicate the entire range</li>
+<li><i>span(a)</i>, to indicate a particular row or column</li>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#in_range">.in_range()</a></li>
+<li><a href="#submat">submatrix views</a></li>
+<li><a href="#subcube">subcube views</a></li>
 </ul>
 </li>
 <br>
 </ul>
-<br>
 <hr class="greyline"><br>
 
 <a name="swap_rows"></a>
@@ -3803,7 +4099,7 @@ A.zeros(10,20); // sets the size to 10 rows and 20 columns
 <li>
 See also:
 <ul>
-<li><a href="#zeros_standalone">zeros()</a> (stand alone function)</li>
+<li><a href="#zeros_standalone">zeros()</a> (standalone function)</li>
 <li><a href="#ones_member">.ones()</a></li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="#reset">.reset()</a></li>
@@ -3970,7 +4266,7 @@ This class is similar to <i>running_stat</i>, with the difference being that vec
 <br>
 <li>
 <i>type</i> must match the element type used by the sample vectors
-(i.e. it must be one of <i>float</i>, <i>double</i>, <i><a href="#cx_float_double">cx_float</a></i>, <i><a href="#cx_float_double">cx_double</a></i>)
+(ie. it must be one of <i>float</i>, <i>double</i>, <i><a href="#cx_float_double">cx_float</a></i>, <i><a href="#cx_float_double">cx_double</a></i>)
 </li>
 <br>
 <li>
@@ -4241,9 +4537,7 @@ If a <i>matrix_type</i> is specified, the resultant matrix will have one column.
 Examples:
 <ul>
 <pre>
-colvec q = linspace&lt;colvec&gt;(10, 20, 5);
-rowvec r = linspace&lt;rowvec&gt;(10, 20, 5);
-
+vec v = linspace&lt;vec&gt;(10, 20, 5);
 mat X = linspace&lt;mat&gt;(10, 20, 5);
 </pre>
 </ul>
@@ -4268,7 +4562,7 @@ Usage:
 <ul>
 <li><i>vector_type</i> v = ones&lt;<i>vector_type</i>&gt;(n_elem)</li>
 <li><i>matrix_type</i> X = ones&lt;<i>matrix_type</i>&gt;(n_rows, n_cols)</li>
-<li><i>cube_type</i> X = ones&lt;<i>cube_type</i>&gt;(n_rows, n_cols, n_slices)</li>
+<li><i>cube_type</i> Q = ones&lt;<i>cube_type</i>&gt;(n_rows, n_cols, n_slices)</li>
 </ul>
 </li>
 <br>
@@ -4276,9 +4570,11 @@ Usage:
 Examples:
 <ul>
 <pre>
-mat A = ones&lt;mat&gt;(5,6);
-mat B = 123.0 * ones&lt;mat&gt;(5,6);
-cube C = 123.0 * ones&lt;cube&gt;(5,6,7);
+vec  v = ones&lt;vec&gt;(10);
+mat  A = ones&lt;mat&gt;(5,6);
+cube Q = ones&lt;cube&gt;(5,6,7);
+
+mat  B = 123.0 * ones&lt;mat&gt;(5,6);
 </pre>
 </ul>
 </li>
@@ -4318,7 +4614,7 @@ Usage:
 <ul>
 <li><i>vector_type</i> v = randu&lt;<i>vector_type</i>&gt;(n_elem)</li>
 <li><i>matrix_type</i> X = randu&lt;<i>matrix_type</i>&gt;(n_rows, n_cols)</li>
-<li><i>cube_type</i> C = randu&lt;<i>cube_type</i>&gt;(n_rows, n_cols, n_slices)</li>
+<li><i>cube_type</i> Q = randu&lt;<i>cube_type</i>&gt;(n_rows, n_cols, n_slices)</li>
 </ul>
 </li>
 <br>
@@ -4326,15 +4622,13 @@ Usage:
 To change the seed, use the <a href="http://cplusplus.com/reference/clibrary/cstdlib/srand/">std::srand()</a> function.
 </li>
 <br>
-<br>
 <li>
 Examples:
 <ul>
 <pre>
-colvec q = randu&lt;colvec&gt;(5);
-rowvec r = randu&lt;rowvec&gt;(5);
-mat    A = randu&lt;mat&gt;(5,6);
-cube   C = randu&lt;cube&gt;(5,6,7);
+vec  v = randu&lt;vec&gt;(5);
+mat  A = randu&lt;mat&gt;(5,6);
+cube Q = randu&lt;cube&gt;(5,6,7);
 </pre>
 </ul>
 </li>
@@ -4369,6 +4663,7 @@ Examples:
 <ul>
 <pre>
 mat A = randu&lt;mat&gt;(2, 3);
+
 mat B = repmat(A, 4, 5);
 </pre>
 </ul>
@@ -4432,10 +4727,9 @@ Usage:
 Examples:
 <ul>
 <pre>
-colvec q = zeros&lt;colvec&gt;(5);
-rowvec r = zeros&lt;rowvec&gt;(5);
-mat A = zeros&lt;mat&gt;(5,6);
-cube C = zeros&lt;cube&gt;(5,6,7);
+vec  v = zeros&lt;vec&gt;(5);
+mat  A = zeros&lt;mat&gt;(5,6);
+cube Q = zeros&lt;cube&gt;(5,6,7);
 </pre>
 </ul>
 </li>
@@ -4491,9 +4785,9 @@ Usage for non-complex cubes:
 Usage for complex matrices:
 <ul>
 <li><i>non_complex_matrix_type</i> Y = abs(X)</li>
-<li>X must be a have complex matrix type, e.g., <i>cx_mat</i> or <i>cx_fmat</i></li>
+<li>X must be a have complex matrix type, eg., <i>cx_mat</i> or <i>cx_fmat</i></li>
 <li>The type of Y must be related to the type of X,
-e.g., if X has the type <i>cx_mat</i>, then the type of Y must be <i>mat</i>
+eg., if X has the type <i>cx_mat</i>, then the type of Y must be <i>mat</i>
 </ul>
 </li>
 <br>
@@ -4501,9 +4795,9 @@ e.g., if X has the type <i>cx_mat</i>, then the type of Y must be <i>mat</i>
 Usage for complex cubes:
 <ul>
 <li><i>non_complex_cube_type</i> Y = abs(X)</li>
-<li>X must be a have complex cube type, e.g., <i>cx_cube</i> or <i>cx_fcube</i></li>
+<li>X must be a have complex cube type, eg., <i>cx_cube</i> or <i>cx_fcube</i></li>
 <li>The type of Y must be related to the type of X,
-e.g., if X has the type <i>cx_cube</i>, then the type of Y must be <i>cube</i>
+eg., if X has the type <i>cx_cube</i>, then the type of Y must be <i>cube</i>
 </ul>
 </li>
 <br>
@@ -4531,7 +4825,7 @@ Obtain the positive distance of the absolute value of each element of <i>X</i> t
 </li>
 <br>
 <li>
-<i>X</i> can be a scalar (e.g. <i>double</i>), vector or matrix.
+<i>X</i> can be a scalar (eg. <i>double</i>), vector or matrix.
 </li>
 <br>
 <li>
@@ -4563,6 +4857,7 @@ miscellaneous functions:
 <br>&nbsp; exp, exp2, exp10, trunc_exp, 
 <br>&nbsp; log, log2, log10, trunc_log,
 <br>&nbsp; pow, sqrt, square
+<br>&nbsp; floor, ceil
 </b>
 <br>
 <ul>
@@ -4574,62 +4869,62 @@ Apply a function to each element.
 Usage:
 <ul>
 <li>
-<i>matrix_type</i> Y = misc_fn(X)
+<i>matrix_type</i> B = misc_fn(A)
 </li>
 <li>
-<i>cube_type</i> Y = misc_fn(X)
+<i>cube_type</i> B = misc_fn(A)
 </li>
 <li>
-X and Y must have the same <i>matrix_type/cube_type</i>
+A and B must have the same <i>matrix_type/cube_type</i>
 </li>
 <li>
-misc_fn(X) is one of:
+misc_fn(A) is one of:
 <ul>
 
 <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
 <tbody>
   <tr>
     <td style="vertical-align: top;">
-       exp(X)<sup>&nbsp;</sup>
+       exp(A)<sup>&nbsp;</sup>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      base-e exponential of each element &nbsp; (e<sup>x</sup>)
+      base-e exponential, <i>e<sup>x</sup></i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       exp2(X)<sup>&nbsp;</sup>
+       exp2(A)<sup>&nbsp;</sup>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      base-2 exponential of each element &nbsp; (2<sup>x</sup>)
+      base-2 exponential, <i>2<sup>x</sup></i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       exp10(X)<sup>&nbsp;</sup>
+       exp10(A)<sup>&nbsp;</sup>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      base-10 exponential of each element &nbsp; (10<sup>x</sup>)
+      base-10 exponential, <i>10<sup>x</sup></i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-      trunc_exp(X)
+      trunc_exp(A)
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      base-e exponential of each element,
+      base-e exponential,
       truncated to avoid infinity
       <br>
       <font size=-1>(only for elements with type <i>float</i> or <i>double</i>)</font>
@@ -4637,46 +4932,46 @@ misc_fn(X) is one of:
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       log(X)<sub>&nbsp;</sub>
+       log(A)<sub>&nbsp;</sub>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      natural log of each element &nbsp; (log<sub>e</sub> x)
+      natural log, <i>log<sub>e</sub>&nbsp;x</i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       log2(X)<sub>&nbsp;</sub>
+       log2(A)<sub>&nbsp;</sub>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      base-2 log of each element &nbsp; (log<sub>2</sub> x)
+      base-2 log, <i>log<sub>2</sub>&nbsp;x</i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       log10(X)<sub>&nbsp;</sub>
+       log10(A)<sub>&nbsp;</sub>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      base-10 log of each element &nbsp; (log<sub>10</sub> x)
+      base-10 log, <i>log<sub>10</sub>&nbsp;x</i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-      trunc_log(X)
+      trunc_log(A)
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      natural log of each element,
+      natural log,
       truncated to avoid &plusmn;infinity
       <br>
       <font size=-1>(only for elements with type <i>float</i> or <i>double</i>)</font>
@@ -4684,35 +4979,57 @@ misc_fn(X) is one of:
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       pow(X, p)<sup>&nbsp;</sup>
+       pow(A, p)<sup>&nbsp;</sup>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      raise each element to the power of p &nbsp; (x<sup>p</sup>)
+      raise to the power of p, <i>x<sup>p</sup></i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-       sqrt(X)<sup>&nbsp;</sup>
+       sqrt(A)<sup>&nbsp;</sup>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      square root of each element &nbsp; (x<sup>&frac12;</sup>)
+      square root, <i>x<sup>&frac12;</sup></i>
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-      square(X)<sup>&nbsp;</sup>
+      square(A)<sup>&nbsp;</sup>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      square of each element &nbsp; (x<sup>2</sup>)
+      square, <i>x<sup>2</sup></i>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      floor(A)
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      largest integral value that is not greater than the input value
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      ceil(A)
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      smallest integral value that is not less than the input value
     </td>
   </tr>
 </tbody>
@@ -4729,8 +5046,8 @@ misc_fn(X) is one of:
 Examples:
 <ul>
 <pre>
-mat X = randu&lt;mat&gt;(5,5);
-mat Y = exp(X);
+mat A = randu&lt;mat&gt;(5,5);
+mat B = exp(A);
 </pre>
 </ul>
 </li>
@@ -4843,7 +5160,7 @@ followed by converting the 1x1 matrix to a pure scalar.
 </li>
 <br>
 <li>
-If a binary or trinary expression is given (i.e. 2 or 3 terms),
+If a binary or trinary expression is given (ie. 2 or 3 terms),
 the function will try to exploit the fact that the result is a 1x1 matrix
 by using optimised expression evaluations.
 </li>
@@ -5016,7 +5333,7 @@ For matrices, <i>p</i> is one of: 1, 2, "inf", "fro".
 </li>
 <br>
 <li>
-To obtain the zero norm or Hamming norm (i.e. the number of non-zero elements),
+To obtain the zero norm or Hamming norm (ie. the number of non-zero elements),
 you may want to use this expression: <a href="#accu">accu</a>(X&nbsp;!=&nbsp;0).
 </li>
 <br>
@@ -5183,7 +5500,7 @@ Examples:
 colvec q = randu&lt;colvec&gt;(10,1);
 double x = max(q);
 
-mat A = randu&lt;mat&gt;(10,10);
+mat    A = randu&lt;mat&gt;(10,10);
 rowvec b = max(A);
 
 // same result as max(A)
@@ -5200,8 +5517,17 @@ double y = max(max(A));
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>
+See also:
+<ul>
+<li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions of Mat and Cube)</li>
+<li><a href="#running_stat">running_stat</a></li>
+<li><a href="#running_stat_vec">running_stat_vec</a></li>
+</ul>
+</li>
+<br>
+</ul>
 <hr class="greyline"><br>
 
 <a name="prod"></a>
@@ -5224,7 +5550,7 @@ Examples:
 colvec q = randu&lt;colvec&gt;(10,1);
 double x = prod(q);
 
-mat A = randu&lt;mat&gt;(10,10);
+mat    A = randu&lt;mat&gt;(10,10);
 rowvec b = prod(A);
 
 // same result as prod(A)
@@ -5267,7 +5593,7 @@ For a vector argument, return the sum of all elements.
 </li>
 <br>
 <li>
-To get a sum of all the elements regardless of the argument type (i.e. matrix or vector),
+To get a sum of all the elements regardless of the argument type (ie. matrix or vector),
 you may wish to use <a href="#accu">accu()</a> instead.
 </li>
 <br>
@@ -5278,7 +5604,7 @@ Examples:
 colvec q = randu&lt;colvec&gt;(10,1);
 double x = sum(q);
 
-mat A = randu&lt;mat&gt;(10,10);
+mat    A = randu&lt;mat&gt;(10,10);
 rowvec b = sum(A);
 
 // same result as sum(A)
@@ -5448,7 +5774,7 @@ The convolution operation is also equivalent to FIR filtering.
 </li>
 <br>
 <li>
-The orientation of the result vector is the same as the orientation of A (i.e. column or row vector).
+The orientation of the result vector is the same as the orientation of A (ie. column or row vector).
 </li>
 <br>
 <li>
@@ -5486,7 +5812,7 @@ A form of casting
 </li>
 <br>
 <li>
-Convert between matrix/vector types (e.g. <i>mat</i> to <i>fmat</i>), as well as cube types (e.g. <i>cube</i> to <i>fcube</i>).
+Convert between matrix/vector types (eg. <i>mat</i> to <i>fmat</i>), as well as cube types (eg. <i>cube</i> to <i>fcube</i>).
 </li>
 <br>
 <li>
@@ -5800,14 +6126,14 @@ See also:
 <li>Return a column vector of the indices of non-zero elements of <i>X</i>.</li>
 <br>
 <li>The output vector must have the type <a href="#Col">uvec</a> or <a href="#Mat">umat</a>
-(i.e. the indices are stored as unsigned integers of type <a href="#s32_u32">u32</a>)
+(ie. the indices are stored as unsigned integers of type <a href="#s32_u32">u32</a>)
 </li>
 <br>
 <li>
 The input matrix <i>X</i> is interpreted as a vector, with column-by-column ordering of the elements of <i>X</i>.
 </li>
 <br>
-<li>Relational operators can be used instead of <i>X</i>, e.g.&nbsp;<i>A&nbsp;&gt;&nbsp;0.5</i>
+<li>Relational operators can be used instead of <i>X</i>, eg.&nbsp;<i>A&nbsp;&gt;&nbsp;0.5</i>
 </li>
 <br>
 <li>If <i>k=0</i> (default), return the indices of all non-zero elements, otherwise return at most <i>k</i> of their indices.</li>
@@ -5824,6 +6150,7 @@ Examples:
 <pre>
 mat  A  = randu&lt;mat&gt;(5,5);
 mat  B  = randu&lt;mat&gt;(5,5);
+
 uvec q1 = find(A &gt; B);
 uvec q2 = find(A &gt; 0.5);
 uvec q3 = find(A &gt; 0.5, 3, "last");
@@ -5963,7 +6290,7 @@ matrices A and B must have the same number of columns.
 <li>
 join_slices():
 for two cubes A and B, append the slices of B to the slices of A;
-cubes A and B have the same number of rows and columns (i.e. all slices must have the same size).
+cubes A and B have the same number of rows and columns (ie. all slices must have the same size).
 </li>
 <br>
 <li>
@@ -6127,11 +6454,11 @@ mat B = sort(A);
 <br><b>sort_index(rowvec, sort_type=0)</b>
 <ul>
 <li>Return a vector which describes the sorted order of the given vector's elements 
-(i.e. it contains the indices of the given vector's elements).
+(ie. it contains the indices of the given vector's elements).
 </li>
 <br>
 <li>The output vector must have the type <a href="#Col">uvec</a> or <a href="#Mat">umat</a>
-(i.e. the indices are stored as unsigned integers of type <a href="#s32_u32">u32</a>)
+(ie. the indices are stored as unsigned integers of type <a href="#s32_u32">u32</a>)
 </li>
 <br>
 <li><i>sort_type=0</i> (default) indicates an ascending sort</li>
@@ -6408,7 +6735,7 @@ If <i>A</i> appears to be singular, a warning message is printed and the output 
 </li>
 <br>
 <li>
-If you want to solve a system of linear equations, e.g., <i>X = inv(A)*B</i>,
+If you want to solve a system of linear equations, eg., <i>X = inv(A)*B</i>,
 the <a href="#solve">solve()</a> function is more efficient.
 </li>
 <br>
@@ -6659,14 +6986,13 @@ See also:
 
 <a name="solve"></a>
 <b>solve(X, A, B)</b>
-<br>
 <br><b>X = solve(A, B)</b>
 <ul>
-<li>Solve a system of linear equations, i.e., <i>A*X = B</i>, where <i>X</i> is unknown.</li>
+<li>Solve a system of linear equations, ie., <i>A*X = B</i>, where <i>X</i> is unknown.</li>
 <br>
 <li>For a square matrix <i>A</i>, this function is conceptually the same as <i>X = inv(A)*B</i>, but is more efficient.</li>
 <br>
-<li>Similar functionality to the "\" (left division operator) operator in Matlab/Octave, i.e., <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>.</li>
+<li>Similar functionality to the "\" (left division operator) operator in Matlab/Octave, ie., <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>.</li>
 <br>
 <li>The number of rows in <i>A</i> and <i>B</i> must be the same.</li>
 <br>
@@ -6689,8 +7015,8 @@ If no solution is found:
 </li>
 <br>
 <li>
-<b>NOTE:</b> Old versions of the ATLAS library (e.g.&nbsp;3.6) have a bug which can corrupt memory and crash your program
--- later versions of ATLAS (e.g.&nbsp;3.8) should work.
+<b>NOTE:</b> Old versions of the ATLAS library (eg.&nbsp;3.6) have a bug which can corrupt memory and crash your program
+-- later versions of ATLAS (eg.&nbsp;3.8) should work.
 Using the standard LAPACK library works without problems.
 </li>
 <br>
@@ -6759,8 +7085,8 @@ If the decomposition fails:
 </li>
 <br>
 <li>
-<b>NOTE:</b> Old versions of the ATLAS library (e.g.&nbsp;3.6) have a bug which can corrupt memory and crash your program
--- later versions of ATLAS (e.g.&nbsp;3.8) should work.
+<b>NOTE:</b> Old versions of the ATLAS library (eg.&nbsp;3.6) have a bug which can corrupt memory and crash your program
+-- later versions of ATLAS (eg.&nbsp;3.8) should work.
 Using the standard LAPACK library works without problems.
 </li>
 <br>
@@ -6799,6 +7125,52 @@ See also:
 <br>
 <hr class="greyline">
 <br>
+
+<a name="is_finite_standalone"></a>
+<b>is_finite(X)</b>
+<ul>
+<li>
+Returns <i>true</i> if all elements in <i>X</i> are finite.
+</li>
+<br>
+<li>
+Returns <i>false</i> if at least one element in <i>X</i> is non-finite (&plusmn;infinity or NaN).
+</li>
+<br>
+<li>
+<i>X</i> can be a scalar (eg. <i>double</i>), vector, matrix or cube.
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = randu&lt;mat&gt;(5,5);
+
+B(1,1) = math::nan();
+
+cout &lt;&lt; is_finite(A) &lt;&lt; endl;
+cout &lt;&lt; is_finite(B) &lt;&lt; endl;
+
+cout &lt;&lt; is_finite( 0.123456789 ) &lt;&lt; endl;
+cout &lt;&lt; is_finite( math::nan() ) &lt;&lt; endl;
+cout &lt;&lt; is_finite( math::inf() ) &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#math_constants">math::nan()</a></li>
+<li><a href="#math_constants">math::inf()</a></li>
+<li><a href="#is_finite">.is_finite()</a> (member function of <i>Mat</i> and <i>Cube</i>)</li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline"><br>
 
 <a name="logging"></a>
 <b>logging of errors and warnings</b>
@@ -6849,8 +7221,7 @@ See also:
 
 
 <a name="math_constants"></a>
-<b>math constants (pi, e, euler, gratio, sqrt2, eps, log_min, log_max)</b>
-<br>
+<b>math constants (pi, e, euler, gratio, sqrt2, eps, log_min, log_max, nan, inf)</b>
 <br>
 <ul>
 <li>
@@ -6960,9 +7331,38 @@ Meaning of the constants:
       log of maximum value
     </td>
   </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      math::nan()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &ldquo;not a number&rdquo; (NaN)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      math::inf()
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      infinity
+    </td>
+  </tr>
 </tbody>
 </table>
 </ul>
+</li>
+<br>
+<li>
+<b>Caveat:</b>
+nan() is not equal to anything, even itself;
+if you wish to check whether a given number <i>x</i> is finite,
+use <a href="#is_finite_standalone">is_finite</a>(<i>x</i>).
 </li>
 <br>
 <li>
@@ -6979,13 +7379,21 @@ cout &lt;&lt; math::log_max() &lt;&lt; endl;
 </pre>
 </ul>
 </li>
+<li>
+See also:
+<ul>
+<li><a href="#phys_constants">physical constants</a></li>
+<li><a href="#is_finite_standalone">is_finite()</a></li>
+<li><a href="http://en.wikipedia.org/wiki/NaN">Wikipedia entry for NaN</a></li>
+<li><a href="http://cplusplus.com/reference/std/limits/numeric_limits/">std::numeric_limits</a></li>
+</ul>
+</li>
 </ul>
 <br>
 <hr class="greyline"><br>
 
 <a name="phys_constants"></a>
 <b>physical constants (speed of light, etc)</b>
-<br>
 <br>
 <ul>
 <li>
@@ -7353,6 +7761,7 @@ cout &lt;&lt; "speed of light = " &lt;&lt; phy::c_0() &lt;&lt; endl;
 See also:
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/Physical_constant">physical constant</a> entry in Wikipedia</li>
+<li><a href="#math_constants">math constants</a></li>
 </ul>
 </li>
 </ul>
@@ -7746,7 +8155,7 @@ will require taking into account that indexing starts at 0
     </td>
     <td style="vertical-align: top;">
       <font size=-1>
-      A<a href="#submat">.submat</a>(&nbsp;span(p,q),&nbsp;span(r,s)&nbsp;)
+      A(&nbsp;<a href="#submat">span</a>(p,q),&nbsp;<a href="#submat">span</a>(r,s)&nbsp;)
       </font>
     </td>
     <td style="vertical-align: top;">
@@ -7754,7 +8163,7 @@ will require taking into account that indexing starts at 0
     </td>
     <td style="vertical-align: top;">
       <font size=-1>
-      A.submat(&nbsp;span(first_row,&nbsp;last_row), span(first_col,&nbsp;last_col)&nbsp;)
+      A(&nbsp;span(first_row,&nbsp;last_row), span(first_col,&nbsp;last_col)&nbsp;)
       </font>
     </td>
   </tr>
@@ -7811,6 +8220,23 @@ will require taking into account that indexing starts at 0
   </tr>
   <tr>
     <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
       Q(p:q, r:s, t:u)
     </td>
     <td style="vertical-align: top;">
@@ -7828,8 +8254,44 @@ will require taking into account that indexing starts at 0
       <font size=-1>
       .subcube(first_row, first_col, first_slice, last_row, last_col, last_slice)
       </font>
-      <br>
-      can also use span() inside the .subcube specification
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      <font size=-1>
+      or
+      </font>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      <font size=-1>
+      Q(&nbsp;<a href="#subcube">span</a>(p,q),&nbsp;<a href="#subcube">span</a>(r,s),&nbsp;<a href="#subcube">span</a>(t,u)&nbsp;)
+      </font>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
     </td>
   </tr>
   <tr>
@@ -8346,8 +8808,8 @@ using namespace arma;
 
 int main(int argc, char** argv)
   {
-  mat A = randn&lt;mat&gt;(4,5);
-  mat B = randn&lt;mat&gt;(4,5);
+  mat A = randu&lt;mat&gt;(4,5);
+  mat B = randu&lt;mat&gt;(4,5);
   
   cout &lt;&lt; A*trans(B) &lt;&lt; endl;
   
@@ -8360,7 +8822,8 @@ You may also want to have a look at the example programs that come with the Arma
 </li>
 <br>
 <li>
-As Armadillo is a template library, we strongly recommended to have optimisation enabled when compiling programs.
+As Armadillo is a template library, we strongly recommended to have optimisation enabled when compiling programs
+(eg. when compiling with GCC, use the -O1 or -O2 options).
 </li>
 </ul>
 <br>
@@ -8371,8 +8834,32 @@ As Armadillo is a template library, we strongly recommended to have optimisation
 <br>
 <b>API Additions</b>
 <br>
+<ul>
+<li>Added in 1.1.90:
+<ul>
+<li><a href="#min_and_max_member">.min() &amp; .max()</a> member functions of Mat and Cube</li>
+</ul>
 <br>
-Added in 1.1.4:
+</li>
+<li>Added in 1.1.8:
+<ul>
+<li><a href="#misc_fns">floor()</a></li>
+<li><a href="#misc_fns">ceil()</a></li>
+<li>representation of &ldquo;not a number&rdquo;: <a href="#math_constants">math::nan()</a></li>
+<li>representation of infinity: <a href="#math_constants">math::inf()</a></li>
+<li>standalone <a href="#is_finite_standalone">is_finite()</a></li>
+</ul>
+<br>
+</li>
+<li>Added in 1.1.6:
+<ul>
+<li><a href="#in_range">.in_range()</a> can use <b>span()</b> arguments</li>
+<li><a href="#subfield">subfields</a> can be accessed via <i><b>X(</b>&nbsp;<b>span(</b>a,b<b>)</b>,&nbsp;<b>span(</b>c,d<b>)</b>&nbsp;<b>)</b></i></li>
+<li><a href="#adv_constructors_mat">fixed size</a> matrices and vectors can use auxiliary (external) memory</li>
+</ul>
+<br>
+</li>
+<li>Added in 1.1.4:
 <ul>
 <li><a href="#submat">submatrices</a> can be accessed via <i><b>X(</b>&nbsp;<b>span(</b>a,b<b>)</b>,&nbsp;<b>span(</b>c,d<b>)</b>&nbsp;<b>)</b></i></li>
 <li><a href="#subcube">subcubes</a> can be accessed via <i><b>X(</b>&nbsp;<b>span(</b>a,b<b>)</b>,&nbsp;<b>span(</b>c,d<b>)</b>,&nbsp;<b>span(</b>e,f<b>)</b>&nbsp;<b>)</b></i></li>
@@ -8380,7 +8867,7 @@ Added in 1.1.4:
 <i><b>span::all</b></i> or <i><b>span()</b></i>, to indicate an entire range
 </li>
 <li>for cubes, the two argument version of <i><b>span</b></i> can be replaced by
-a single argument version, <i><b>span(</b>a<b>)</b></i>, to indicate a single column, row or slice.
+a single argument version, <i><b>span(</b>a<b>)</b></i>, to indicate a single column, row or slice
 </li>
 <li>arbitrary "flat" subcubes can be interpreted as matrices; for example:
 <ul>
@@ -8390,13 +8877,14 @@ mat  A = Q(&nbsp;span(1),&nbsp;span(1,2),&nbsp;span::all&nbsp;);
 // A has a size of 2x4
 
 vec v = ones&lt;vec&gt;(4);
-Q(&nbsp;span(1),&nbsp;span(1),&nbsp;span::all)&nbsp;=&nbsp;v;
+Q(&nbsp;span(1),&nbsp;span(1),&nbsp;span::all&nbsp;)&nbsp;=&nbsp;v;
 </pre>
 </ul>
 </li>
-<br>
 </ul>
-Added in 1.1.0:
+<br>
+</li>
+<li>Added in 1.1.0:
 <ul>
 <li>interpretation of matrices as triangular through <a href="#trimat">trimatu() / trimatl()</a></li>
 <li>explicit handling of triangular matrices by <a href="#solve">solve()</a> and <a href="#inv">inv()</a></li>
@@ -8404,21 +8892,23 @@ Added in 1.1.0:
 <li>ability to change the stream used for <a href="#logging">logging</a> of errors and warnings</li>
 <li>ability to <a href="#save_load_mat">save/load matrices</a> in raw binary format</li>
 <li>cumulative sum function: <a href="#cumsum">cumsum()</a></li>
-<br>
 </ul>
+</li>
+</ul>
+<br>
 <br>
 <b>API Changes</b>
 <br>
 <br>
-We don't like changes to existing APIs and strongly prefer not to have them.
-However in some rare instances the user API may need to be altered as the library evolves,
-particular use cases come into light, or bugs are discovered.
+The API is stable as of version 1.0.
+We don't like changes to existing APIs and strongly prefer not to break any user software.
+However, in a rare instance the user API may need to be altered if a bug fix absolutely requires it.
 Below is a list of small changes since prior versions of Armadillo:
 <ul>
 <li>
 As of version 0.9.90,
 the 3 argument version of the <a href="#lu">lu()</a> function,
-e.g. lu(L,U,X),
+eg. lu(L,U,X),
 provides L and U which should be the same as produced by Octave 3.2.3.
 This was not the case in previous versions of Armadillo.
 </li>
@@ -8441,11 +8931,11 @@ The solution is easy, as explained below.
 In general, Armadillo queues operations before executing them.
 As such, the direct output of an operation or function cannot be assumed to be a directly accessible matrix.
 The queued operations are executed when the output needs to be stored in a matrix,
-e.g. <i>mat&nbsp;B&nbsp;=&nbsp;trans(A)</i> or <i>mat&nbsp;B(trans(A))</i>.
+eg. <i>mat&nbsp;B&nbsp;=&nbsp;trans(A)</i> or <i>mat&nbsp;B(trans(A))</i>.
 If you need to force the execution of the delayed operations,
 place the operation or function inside the corresponding Mat constructor.
 For example, if your code assumed that the output of some functions was a pure matrix,
-e.g. <i>chol(m).diag()</i>, change the code to <i>mat(chol(m)).diag()</i>.
+eg. <i>chol(m).diag()</i>, change the code to <i>mat(chol(m)).diag()</i>.
 Similarly, if you need to pass the result of an operation such as <i>A+B</i> to one of your own functions,
 use <i>my_function(&nbsp;mat(A+B)&nbsp;)</i>.
 </li>
