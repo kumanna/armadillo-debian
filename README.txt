@@ -425,6 +425,7 @@ Contributors:
 - Dirk Eddelbuettel
 - Romain Francois
 - Charles Gretton
+- Benjamin Herzog
 - Edmund Highcock
 - Kshitij Kulshreshtha
 - Oka Kurniawan
