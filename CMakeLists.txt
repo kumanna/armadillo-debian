@@ -1,5 +1,6 @@
-# Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-# Copyright (C) 2008-2010 Conrad Sanderson
+# Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+# Copyright (C) 2008-2011 Conrad Sanderson
+# Copyright (C)      2011 Clement Creusot
 # 
 # This file is part of the Armadillo C++ library.
 # It is provided without any warranty of fitness
@@ -10,47 +11,44 @@
 # of the License or (at your option) any later version.
 # (see http://www.opensource.org/licenses for more info)
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 
-SET(ARMA_MAJOR 1)
-SET(ARMA_MINOR 1)
-SET(ARMA_PATCH 90)
+set(ARMA_MAJOR 1)
+set(ARMA_MINOR 1)
+set(ARMA_PATCH 92)
 
-MESSAGE(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
+message(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 
-SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/build_aux/cmake/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/build_aux/cmake/Modules/")
 
-INCLUDE(CheckIncludeFileCXX)
-INCLUDE(CheckLibraryExists)
-INCLUDE(FindBoost)
+include(CheckIncludeFileCXX)
+include(CheckLibraryExists)
+include(FindBoost)
+include(ARMA_CheckProto)
+include(ARMA_CheckMathProto)
 
-INCLUDE(ARMA_CheckProto)
-INCLUDE(ARMA_CheckMathProto)
-
-#SET( CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE )
-
-PROJECT(armadillo CXX)
+project(armadillo CXX)
 
 #CMAKE_REQUIRED_FLAGS = string of compile command line flags
 #CMAKE_REQUIRED_DEFINITIONS = list of macros to define (-DFOO=bar)
 #CMAKE_REQUIRED_LIBRARIES = list of libraries to link
 
 
-SET(ARMA_USE_LAPACK false)
-SET(ARMA_USE_BLAS   false)
-SET(ARMA_USE_ATLAS  false)
-SET(ARMA_USE_BOOST  false)
+set(ARMA_USE_LAPACK false)
+set(ARMA_USE_BLAS   false)
+set(ARMA_USE_ATLAS  false)
+set(ARMA_USE_BOOST  false)
 
 
-IF(WIN32)
-  MESSAGE(STATUS "")
-  MESSAGE(STATUS "WARNING:")
-  MESSAGE(STATUS "Automatic installation is currently not available for this platform.")
-  MESSAGE(STATUS "Please use the manual installation, as described in the README.txt file.")
-  MESSAGE(STATUS "You can also use the 'include' folder directly, but you may want to edit")
-  MESSAGE(STATUS "'include/armadillo_bits/config.hpp' if you have LAPACK installed.")
-  MESSAGE(STATUS "")
-ENDIF(WIN32)
+if(WIN32)
+  message(STATUS "")
+  message(STATUS "WARNING:")
+  message(STATUS "Automatic installation is currently not available for this platform.")
+  message(STATUS "Please use the manual installation, as described in the README.txt file.")
+  message(STATUS "You can also use the 'include' folder directly, but you may want to edit")
+  message(STATUS "'include/armadillo_bits/config.hpp' if you have LAPACK installed.")
+  message(STATUS "")
+endif()
 
 
 
@@ -58,163 +56,163 @@ ENDIF(WIN32)
 # Find LAPACK and BLAS libraries, or their optimised versions
 #
 
-IF(APPLE)
-  SET(ARMA_OS macos)
+if(APPLE)
+  set(ARMA_OS macos)
   
-  SET(ARMA_USE_LAPACK true)
-  SET(ARMA_USE_BLAS   true)
+  set(ARMA_USE_LAPACK true)
+  set(ARMA_USE_BLAS   true)
   
   # Under MacOS, the current version of ARMA_FindCLAPACK can get confused between
   # two incompatible versions of "clapack.h" (one provided by the system and one
   # provided by ATLAS).  As such, use of ATLAS under MacOS is disabled for now.
   
-ELSE(APPLE)
-  SET(ARMA_OS unix)
+else()
+  set(ARMA_OS unix)
   
-  INCLUDE(ARMA_FindMKL)
-  INCLUDE(ARMA_FindACMLMP)
-  INCLUDE(ARMA_FindACML)
+  include(ARMA_FindMKL)
+  include(ARMA_FindACMLMP)
+  include(ARMA_FindACML)
   
-  MESSAGE(STATUS "MKL_FOUND     = ${MKL_FOUND}")
-  MESSAGE(STATUS "ACMLMP_FOUND  = ${ACMLMP_FOUND}")
-  MESSAGE(STATUS "ACML_FOUND    = ${ACML_FOUND}")
+  message(STATUS "MKL_FOUND     = ${MKL_FOUND}")
+  message(STATUS "ACMLMP_FOUND  = ${ACMLMP_FOUND}")
+  message(STATUS "ACML_FOUND    = ${ACML_FOUND}")
   
-  IF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
-
-    SET(ARMA_USE_BLAS true)
-    SET(ARMA_USE_LAPACK true)
-
-    MESSAGE(STATUS "*** If the MKL or ACML libraries are installed in a non-standard location,")
-    MESSAGE(STATUS "*** make sure the run-time linker can find them.")
-    MESSAGE(STATUS "*** On Linux systems this can be done by editing /etc/ld.so.conf")
-    MESSAGE(STATUS "*** or modifying the LD_LIBRARY_PATH environment variable.")
-    MESSAGE(STATUS "*** On systems with SELinux enabled (e.g. Fedora, RHEL),")
-    MESSAGE(STATUS "*** you may need to change the SELinux type of all MKL/ACML libraries")
-    MESSAGE(STATUS "*** to fix permission problems that may occur during run-time.")
-    MESSAGE(STATUS "*** See README.txt for more information")
-
-  ELSE(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+  if(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+    
+    set(ARMA_USE_BLAS true)
+    set(ARMA_USE_LAPACK true)
+    
+    message(STATUS "*** If the MKL or ACML libraries are installed in a non-standard location,")
+    message(STATUS "*** make sure the run-time linker can find them.")
+    message(STATUS "*** On Linux systems this can be done by editing /etc/ld.so.conf")
+    message(STATUS "*** or modifying the LD_LIBRARY_PATH environment variable.")
+    message(STATUS "*** On systems with SELinux enabled (e.g. Fedora, RHEL),")
+    message(STATUS "*** you may need to change the SELinux type of all MKL/ACML libraries")
+    message(STATUS "*** to fix permission problems that may occur during run-time.")
+    message(STATUS "*** See README.txt for more information")
+    
+  else()
+    
+    include(ARMA_FindLAPACK)
+    include(ARMA_FindBLAS)
+    include(ARMA_FindCLAPACK)
+    include(ARMA_FindCBLAS)
+    
+    message(STATUS "LAPACK_FOUND  = ${LAPACK_FOUND}")
+    message(STATUS "BLAS_FOUND    = ${BLAS_FOUND}")
+    message(STATUS "CLAPACK_FOUND = ${CLAPACK_FOUND}")
+    message(STATUS "CBLAS_FOUND   = ${CBLAS_FOUND}")
+    
+    if(LAPACK_FOUND)
+      set(ARMA_USE_LAPACK true)
+    endif()
+    
+    if(BLAS_FOUND)
+      set(ARMA_USE_BLAS true)
+    endif()
+    
+    if(CLAPACK_FOUND AND CBLAS_FOUND)
+      message(STATUS "CLAPACK_INCLUDE_DIR = ${CLAPACK_INCLUDE_DIR}")
+      message(STATUS "CBLAS_INCLUDE_DIR   = ${CBLAS_INCLUDE_DIR}")
+      if(${CLAPACK_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
+        set(ARMA_USE_ATLAS true)
+        set(ARMA_ATLAS_INCLUDE_DIR ${CLAPACK_INCLUDE_DIR})
+      endif()
+    endif()
+    
+  endif()
   
-    INCLUDE(ARMA_FindLAPACK)
-    INCLUDE(ARMA_FindBLAS)
-    INCLUDE(ARMA_FindCLAPACK)
-    INCLUDE(ARMA_FindCBLAS)
+endif()
 
-    MESSAGE(STATUS "LAPACK_FOUND  = ${LAPACK_FOUND}")
-    MESSAGE(STATUS "BLAS_FOUND    = ${BLAS_FOUND}")
-    MESSAGE(STATUS "CLAPACK_FOUND = ${CLAPACK_FOUND}")
-    MESSAGE(STATUS "CBLAS_FOUND   = ${CBLAS_FOUND}")
-    
-    IF(LAPACK_FOUND)
-      SET(ARMA_USE_LAPACK true)
-    ENDIF(LAPACK_FOUND)
-    
-    IF(BLAS_FOUND)
-      SET(ARMA_USE_BLAS true)
-    ENDIF(BLAS_FOUND)
-    
-    IF(CLAPACK_FOUND AND CBLAS_FOUND)
-      MESSAGE(STATUS "CLAPACK_INCLUDE_DIR = ${CLAPACK_INCLUDE_DIR}")
-      MESSAGE(STATUS "CBLAS_INCLUDE_DIR   = ${CBLAS_INCLUDE_DIR}")
-      IF(${CLAPACK_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
-        SET(ARMA_USE_ATLAS true)
-        SET(ARMA_ATLAS_INCLUDE_DIR ${CLAPACK_INCLUDE_DIR})
-      ENDIF(${CLAPACK_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
-    ENDIF(CLAPACK_FOUND AND CBLAS_FOUND)
 
-  ENDIF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
+if(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
   
-ENDIF(APPLE)
-
-
-IF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
-
-  IF(MKL_FOUND)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${MKL_LIBRARIES})
- 
-    IF(ACMLMP_FOUND OR ACML_FOUND)
-      MESSAGE(STATUS "*** Intel MKL as well as AMD ACML libraries were found.")
-      MESSAGE(STATUS "*** Using only the MKL library to avoid linking conflicts.")
-      MESSAGE(STATUS "*** If you wish to use ACML instead, please link manually with")
-      MESSAGE(STATUS "*** acml or acml_mp instead of the armadillo run-time component.")
-      MESSAGE(STATUS "*** Alternatively, remove MKL from your system and rerun")
-      MESSAGE(STATUS "*** Armadillo's configuration using ./configure") 
-    ENDIF(ACMLMP_FOUND OR ACML_FOUND)
+  if(MKL_FOUND)
+    set(ARMA_LIBS ${ARMA_LIBS} ${MKL_LIBRARIES})
     
-  ELSE(MKL_FOUND)
+    if(ACMLMP_FOUND OR ACML_FOUND)
+      message(STATUS "*** Intel MKL as well as AMD ACML libraries were found.")
+      message(STATUS "*** Using only the MKL library to avoid linking conflicts.")
+      message(STATUS "*** If you wish to use ACML instead, please link manually with")
+      message(STATUS "*** acml or acml_mp instead of the armadillo run-time component.")
+      message(STATUS "*** Alternatively, remove MKL from your system and rerun")
+      message(STATUS "*** Armadillo's configuration using ./configure") 
+    endif()
     
-    IF(ACMLMP_FOUND)
-      SET(ARMA_LIBS ${ARMA_LIBS} ${ACMLMP_LIBRARIES})
+  else()
+    
+    if(ACMLMP_FOUND)
+      set(ARMA_LIBS ${ARMA_LIBS} ${ACMLMP_LIBRARIES})
       
-      MESSAGE(STATUS "*** Both single-core and multi-core ACML libraries were found.")
-      MESSAGE(STATUS "*** Using only the multi-core library to avoid linking conflicts.")
-    ELSE(ACMLMP_FOUND)
-      IF(ACML_FOUND)
-        SET(ARMA_LIBS ${ARMA_LIBS} ${ACML_LIBRARIES})
-      ENDIF(ACML_FOUND)
-    ENDIF(ACMLMP_FOUND)
-
-  ENDIF(MKL_FOUND)
-
-ELSE(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
-
-  IF(ARMA_USE_BLAS STREQUAL true)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
-  ENDIF(ARMA_USE_BLAS STREQUAL true)
+      message(STATUS "*** Both single-core and multi-core ACML libraries were found.")
+      message(STATUS "*** Using only the multi-core library to avoid linking conflicts.")
+    else()
+      if(ACML_FOUND)
+        set(ARMA_LIBS ${ARMA_LIBS} ${ACML_LIBRARIES})
+      endif()
+    endif()
+    
+  endif()
   
-  IF(ARMA_USE_LAPACK STREQUAL true)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
-  ENDIF(ARMA_USE_LAPACK STREQUAL true)
+else()
   
-  IF(ARMA_USE_ATLAS STREQUAL true)
-    SET(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
-    SET(ARMA_LIBS ${ARMA_LIBS} ${CLAPACK_LIBRARIES})
-  ENDIF(ARMA_USE_ATLAS STREQUAL true)
-
-ENDIF(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
-
-
-IF(APPLE)
-  SET(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
-  MESSAGE(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
-ENDIF(APPLE)
-
-MESSAGE(STATUS "*** ")
-MESSAGE(STATUS "*** The Armadillo run-time library component will be an alias for the following libraries:")
-MESSAGE(STATUS "*** ARMA_LIBS = ${ARMA_LIBS}")
-MESSAGE(STATUS "*** ")
-
-FIND_PACKAGE(Boost)
-
-IF(Boost_FOUND)
+  if(ARMA_USE_BLAS STREQUAL true)
+    set(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
+  endif()
   
-  MESSAGE(STATUS "Boost_MAJOR_VERSION = ${Boost_MAJOR_VERSION}")
-  MESSAGE(STATUS "Boost_MINOR_VERSION = ${Boost_MINOR_VERSION}")
+  if(ARMA_USE_LAPACK STREQUAL true)
+    set(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
+  endif()
   
-  IF(Boost_MAJOR_VERSION GREATER 0)
-    IF(Boost_MINOR_VERSION GREATER 33)
-      SET(ARMA_USE_BOOST true)
-      MESSAGE(STATUS "Boost_INCLUDE_DIR = ${Boost_INCLUDE_DIR}")
-    ENDIF(Boost_MINOR_VERSION GREATER 33)
-  ENDIF(Boost_MAJOR_VERSION GREATER 0)
+  if(ARMA_USE_ATLAS STREQUAL true)
+    set(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
+    set(ARMA_LIBS ${ARMA_LIBS} ${CLAPACK_LIBRARIES})
+  endif()
   
-ENDIF(Boost_FOUND)
+endif()
 
-IF(ARMA_USE_BOOST STREQUAL false)
-  MESSAGE(STATUS "Boost libraries either not found or their version is too low (version 1.34 or later is good).")
-  MESSAGE(STATUS "( It's possible that CMake didn't find the particular version of Boost you may have. )")
-  MESSAGE(STATUS "( If that's the case, please edit include/armadillo_bits/config.hpp manually. )")
-ENDIF(ARMA_USE_BOOST STREQUAL false)
+
+if(APPLE)
+  set(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
+  message(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
+endif()
+
+message(STATUS "*** ")
+message(STATUS "*** The Armadillo run-time library component will be an alias for the following libraries:")
+message(STATUS "*** ARMA_LIBS = ${ARMA_LIBS}")
+message(STATUS "*** ")
+
+find_package(Boost)
+
+if(Boost_FOUND)
+  
+  message(STATUS "Boost_MAJOR_VERSION = ${Boost_MAJOR_VERSION}")
+  message(STATUS "Boost_MINOR_VERSION = ${Boost_MINOR_VERSION}")
+  
+  if(Boost_MAJOR_VERSION GREATER 0)
+    if(Boost_MINOR_VERSION GREATER 33)
+      set(ARMA_USE_BOOST true)
+      message(STATUS "Boost_INCLUDE_DIR = ${Boost_INCLUDE_DIR}")
+    endif()
+  endif()
+  
+endif()
+
+if(ARMA_USE_BOOST STREQUAL false)
+  message(STATUS "Boost libraries either not found or their version is too low (version 1.34 or later is good).")
+  message(STATUS "( It's possible that CMake didn't find the particular version of Boost you may have. )")
+  message(STATUS "( If that's the case, please edit include/armadillo_bits/config.hpp manually. )")
+endif()
 
 
 # If Boost libraries were found, explicitly check if Boost's date_time library is also present.
 # This is due to the non-standard packaging of Boost libraries on Debian and Ubuntu systems,
 # where certain individual Boost libraries are packaged separately.
 
-IF(ARMA_USE_BOOST STREQUAL true)
-  SET(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${Boost_INCLUDE_DIR})
+if(ARMA_USE_BOOST STREQUAL true)
+  set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${Boost_INCLUDE_DIR})
   CHECK_INCLUDE_FILE_CXX("boost/date_time/posix_time/posix_time.hpp" ARMA_USE_BOOST_DATE)
-ENDIF(ARMA_USE_BOOST STREQUAL true)
+endif()
 
 ARMA_CHECK_MATH_PROTO("isfinite" "std" "cmath"  ARMA_HAVE_STD_ISFINITE)
 ARMA_CHECK_MATH_PROTO("isinf"    "std" "cmath"  ARMA_HAVE_STD_ISINF)
@@ -225,18 +223,18 @@ ARMA_CHECK_PROTO("snprintf"     "std" "cstdio"     ARMA_HAVE_STD_SNPRINTF)
 ARMA_CHECK_PROTO("gettimeofday" ""    "sys/time.h" ARMA_HAVE_GETTIMEOFDAY)
 
 
-MESSAGE(STATUS "Generating 'include/armadillo_bits/config.hpp'")
-CONFIGURE_FILE(include/armadillo_bits/config.hpp.cmake include/armadillo_bits/config.hpp)
+message(STATUS "Generating 'include/armadillo_bits/config.hpp'")
+configure_file(include/armadillo_bits/config.hpp.cmake include/armadillo_bits/config.hpp)
 
-MESSAGE(STATUS "Generating 'examples/Makefile'")
-CONFIGURE_FILE(examples/Makefile.cmake examples/Makefile)
+message(STATUS "Generating 'examples/Makefile'")
+configure_file(examples/Makefile.cmake examples/Makefile)
 
 
-IF(ARMA_USE_BOOST STREQUAL true)
-  INCLUDE_DIRECTORIES(include ${Boost_INCLUDE_DIR})
-ELSE(ARMA_USE_BOOST STREQUAL true)
-  INCLUDE_DIRECTORIES(include)
-ENDIF(ARMA_USE_BOOST STREQUAL true)
+if(ARMA_USE_BOOST STREQUAL true)
+  include_directories(include ${Boost_INCLUDE_DIR})
+else()
+  include_directories(include)
+endif()
 
 
 ## For any library that is not in a default location,
@@ -248,65 +246,131 @@ ENDIF(ARMA_USE_BOOST STREQUAL true)
 ## what you're doing.  It might be better to add the
 ## path to the "/etc/ld.so.conf" file and then run "ldconfig".
 ##
-#SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
-#SET(CMAKE_BUILD_WITH_INSTALL_RPATH  FALSE)
-#SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH  TRUE)
+#set(CMAKE_SKIP_BUILD_RPATH  FALSE)
+#set(CMAKE_BUILD_WITH_INSTALL_RPATH  FALSE)
+#set(CMAKE_INSTALL_RPATH_USE_LINK_PATH  TRUE)
 
 
-ADD_LIBRARY( armadillo SHARED src/pull_libs )
-TARGET_LINK_LIBRARIES( armadillo ${ARMA_LIBS} )
+add_library( armadillo SHARED src/pull_libs )
+target_link_libraries( armadillo ${ARMA_LIBS} )
 
-SET_TARGET_PROPERTIES(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH} SOVERSION 1)
+set_target_properties(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH} SOVERSION 1)
+
+
+
+################################################################################
+# INSTALL CONFIGURATION
+
 
 # As Red Hat Enterprise Linux (and related systems such as Fedora)
 # does not search /usr/local/lib by default, we need to place the
 # library in /usr
 
-IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  SET(CMAKE_INSTALL_PREFIX "/usr")
-ENDIF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-
-MESSAGE(STATUS "CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
-
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "/usr")
+endif()
 
 # Allow for the "lib" directory to be specified on the command line
-
-IF(NOT LIB_INSTALL_DIR)
-  IF(UNIX AND NOT APPLE)   # I don't know how Mac OS handles 64 bit systems
-    IF(CMAKE_SIZEOF_VOID_P EQUAL 8)
-      MESSAGE(STATUS "Detected 64 bit system")
-      SET(LIB_INSTALL_DIR "lib64")
-    ELSE(CMAKE_SIZEOF_VOID_P EQUAL 8)
-      SET(LIB_INSTALL_DIR "lib")
-    ENDIF(CMAKE_SIZEOF_VOID_P EQUAL 8)
-  
-  ELSE(UNIX AND NOT APPLE)
-    SET(LIB_INSTALL_DIR "lib")
-  ENDIF(UNIX AND NOT APPLE)
-ENDIF(NOT LIB_INSTALL_DIR)
-
-MESSAGE(STATUS "LIB_INSTALL_DIR = ${LIB_INSTALL_DIR}")
+if(NOT INSTALL_LIB_DIR)
+  if(UNIX AND NOT APPLE)   # I don't know how Mac OS handles 64 bit systems
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+      message(STATUS "Detected 64 bit system")
+      set(INSTALL_LIB_DIR "lib64")
+    else()
+      set(INSTALL_LIB_DIR "lib")
+    endif()
+  else()
+    set(INSTALL_LIB_DIR "lib")
+  endif()
+endif()
 
 # Allow for the "include" directory to be specified on the command line
 
-IF(NOT INCLUDE_INSTALL_DIR)
-  SET(INCLUDE_INSTALL_DIR "include")
-ENDIF(NOT INCLUDE_INSTALL_DIR)
+if(NOT INSTALL_INCLUDE_DIR)
+  set(INSTALL_INCLUDE_DIR "include")
+endif()
 
-MESSAGE(STATUS "INCLUDE_INSTALL_DIR = ${INCLUDE_INSTALL_DIR}")
+# We use data dir to store files shared with other programs 
+# like the ArmadilloConfig.cmake file.
+if(NOT INSTALL_DATA_DIR)
+  set(INSTALL_DATA_DIR "share")
+endif()
+
+# Make relative paths absolute so we can write them in Config.cmake files
+foreach(p LIB INCLUDE DATA)
+  set(var INSTALL_${p}_DIR)
+  if(NOT IS_ABSOLUTE "${${var}}")
+    set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
+  endif()
+endforeach()
+
+message(STATUS "CMAKE_INSTALL_PREFIX = ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "INSTALL_LIB_DIR      = ${INSTALL_LIB_DIR}"     )
+message(STATUS "INSTALL_INCLUDE_DIR  = ${INSTALL_INCLUDE_DIR}" )
+message(STATUS "INSTALL_DATA_DIR     = ${INSTALL_DATA_DIR}"    )
 
 
 # Note that the trailing / character in "include/" is critical
 
-INSTALL(DIRECTORY include/ DESTINATION ${INCLUDE_INSTALL_DIR}
+install(DIRECTORY include/ DESTINATION ${INSTALL_INCLUDE_DIR}
 PATTERN ".svn" EXCLUDE
 PATTERN "*.cmake" EXCLUDE
 PATTERN "*~" EXCLUDE
 PATTERN "*orig" EXCLUDE
 )
 
+install(TARGETS armadillo 
+  DESTINATION ${INSTALL_LIB_DIR}
+  EXPORT ArmadilloLibraryDepends)
 
-INSTALL(TARGETS armadillo DESTINATION ${LIB_INSTALL_DIR})
+# Export the package for use from the build-tree
+# (this registers the build-tree with a global CMake-registry)
+if(CMAKE_VERSION VERSION_GREATER "2.7")
+ export(PACKAGE armadillo)
+endif()
+
+## LOCAL FILES
+# Create ArmadilloConfig.cmake file for the use from the build tree
+set(ARMADILLO_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
+set(ARMADILLO_LIB_DIR      "${PROJECT_BINARY_DIR}")
+set(ARMADILLO_CMAKE_DIR    "${PROJECT_BINARY_DIR}")
 
 
+message(STATUS "Generating '${PROJECT_BINARY_DIR}/ArmadilloConfig.cmake'")
+# copy/change config and configVersion file (modify only the @xyz@ variables)
+configure_file(build_aux/cmake/InstallFiles/ArmadilloConfig.cmake.in
+  "${PROJECT_BINARY_DIR}/ArmadilloConfig.cmake" @ONLY)
 
+message(STATUS "Generating '${PROJECT_BINARY_DIR}/ArmadilloConfigVersion.cmake'")
+configure_file(build_aux/cmake/InstallFiles/ArmadilloConfigVersion.cmake.in
+  "${PROJECT_BINARY_DIR}/ArmadilloConfigVersion.cmake" @ONLY)
+
+
+# Install the export set for use with the install-tree
+install(EXPORT ArmadilloLibraryDepends DESTINATION
+  "${INSTALL_DATA_DIR}/Armadillo/CMake"
+  COMPONENT dev)
+
+
+## GLOBAL INSTALL FILES
+# Create ArmadilloConfig.cmake file for the use from the install tree
+# and install it
+set(ARMADILLO_INCLUDE_DIRS "${INSTALL_INCLUDE_DIR}")
+set(ARMADILLO_LIB_DIR      "${INSTALL_LIB_DIR}")
+set(ARMADILLO_CMAKE_DIR    "${INSTALL_DATA_DIR}/Armadillo/CMake")
+
+
+message(STATUS "Generating '${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfig.cmake'")
+# copy/change config and configVersion file (modify only the @xyz@ variables)
+configure_file(build_aux/cmake/InstallFiles/ArmadilloConfig.cmake.in
+  "${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfig.cmake" @ONLY)
+
+message(STATUS "Generating '${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfigVersion.cmake'")
+configure_file(build_aux/cmake/InstallFiles/ArmadilloConfigVersion.cmake.in
+  "${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfigVersion.cmake" @ONLY)
+
+# Install files to be found by cmake users with find_package()
+install(FILES
+  "${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfig.cmake"
+  "${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfigVersion.cmake"
+  DESTINATION "${ARMADILLO_CMAKE_DIR}" COMPONENT dev)
