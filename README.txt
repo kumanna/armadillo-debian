@@ -424,6 +424,7 @@ Contributors:
 - Chris Davey
 - Dirk Eddelbuettel
 - Romain Francois
+- Stanislav Funiak
 - Charles Gretton
 - Benjamin Herzog
 - Edmund Highcock
@@ -438,6 +439,7 @@ Contributors:
 - Jayden Platell
 - Vikas Reddy
 - Ola Rinta-Koski
+- James Sanders
 - Gerhard Schreiber
 - Shane Stainsby
 - Petter Strandmark

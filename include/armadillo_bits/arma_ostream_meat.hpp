@@ -46,7 +46,7 @@ arma_ostream_state::restore(std::ostream& o) const
 
 template<typename eT>
 inline
-u32
+std::streamsize
 arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
   {
   o.unsetf(ios::showbase);
@@ -55,7 +55,7 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
   
   o.fill(' ');
   
-  u32 cell_width;
+  std::streamsize cell_width;
   
   bool use_layout_B = false;
   bool use_layout_C = false;
@@ -117,7 +117,7 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const u32 n_elem)
 //! "better than nothing" settings for complex numbers
 template<typename T>
 inline
-u32
+std::streamsize
 arma_ostream::modify_stream(std::ostream& o, const std::complex<T>* data, const u32 n_elem)
   {
   arma_ignore(data);
@@ -132,7 +132,7 @@ arma_ostream::modify_stream(std::ostream& o, const std::complex<T>* data, const 
   o.setf(ios::right);
   o.unsetf(ios::fixed);
   
-  u32 cell_width;
+  std::streamsize cell_width;
   
   o.precision(3);
   cell_width = 2 + 2*(1 + 3 + o.precision() + 5) + 1;
@@ -210,42 +210,49 @@ arma_ostream::print(std::ostream& o, const Mat<eT>& m, const bool modify)
   
   const arma_ostream_state stream_state(o);
   
-  const u32 cell_width = modify ? arma_ostream::modify_stream(o, m.memptr(), m.n_elem) : o.width();
+  const std::streamsize cell_width = modify ? arma_ostream::modify_stream(o, m.memptr(), m.n_elem) : o.width();
   
   const u32 m_n_rows = m.n_rows;
   const u32 m_n_cols = m.n_cols;
   
-  if(m_n_cols > 0)
+  if(m.is_empty() == false)
     {
-    if(cell_width > 0)
+    if(m_n_cols > 0)
       {
-      for(u32 row=0; row < m_n_rows; ++row)
+      if(cell_width > 0)
         {
-        for(u32 col=0; col < m_n_cols; ++col)
+        for(u32 row=0; row < m_n_rows; ++row)
           {
-          // the cell width appears to be reset after each element is printed,
-          // hence we need to restore it
-          o.width(cell_width);
-          arma_ostream::print_elem(o, m.at(row,col));
+          for(u32 col=0; col < m_n_cols; ++col)
+            {
+            // the cell width appears to be reset after each element is printed,
+            // hence we need to restore it
+            o.width(cell_width);
+            arma_ostream::print_elem(o, m.at(row,col));
+            }
+        
+          o << '\n';
           }
-      
-        o << '\n';
+        }
+      else
+        {
+        for(u32 row=0; row < m_n_rows; ++row)
+          {
+          for(u32 col=0; col < m_n_cols-1; ++col)
+            {
+            arma_ostream::print_elem(o, m.at(row,col));
+            o << ' ';
+            }
+        
+          arma_ostream::print_elem(o, m.at(row, m_n_cols-1));
+          o << '\n';
+          }
         }
       }
-    else
-      {
-      for(u32 row=0; row < m_n_rows; ++row)
-        {
-        for(u32 col=0; col < m_n_cols-1; ++col)
-          {
-          arma_ostream::print_elem(o, m.at(row,col));
-          o << ' ';
-          }
-      
-        arma_ostream::print_elem(o, m.at(row, m_n_cols-1));
-        o << '\n';
-        }
-      }
+    }
+  else
+    {
+    o << "[matrix size: " << m_n_rows << 'x' << m_n_cols << "]\n";
     }
   
   o.flush();
@@ -263,15 +270,22 @@ arma_ostream::print(std::ostream& o, const Cube<eT>& x, const bool modify)
   arma_extra_debug_sigprint();
   
   const arma_ostream_state stream_state(o);
-
-  const u32 cell_width = modify ? arma_ostream::modify_stream(o, x.memptr(), x.n_elem) : o.width();
   
-  for(u32 slice=0; slice < x.n_slices; ++slice)
+  const std::streamsize cell_width = modify ? arma_ostream::modify_stream(o, x.memptr(), x.n_elem) : o.width();
+  
+  if(x.is_empty() == false)
     {
-    o << "[cube slice " << slice << ']' << '\n';
-    o.width(cell_width);
-    arma_ostream::print(o, x.slice(slice), false);
-    o << '\n';
+    for(u32 slice=0; slice < x.n_slices; ++slice)
+      {
+      o << "[cube slice " << slice << ']' << '\n';
+      o.width(cell_width);
+      arma_ostream::print(o, x.slice(slice), false);
+      o << '\n';
+      }
+    }
+  else
+    {
+    o << "[cube size: " << x.n_rows << 'x' << x.n_cols << 'x' << x.n_slices <<  "]\n";
     }
 
   stream_state.restore(o);
@@ -296,17 +310,24 @@ arma_ostream::print(std::ostream& o, const field<oT>& x)
   const u32 x_n_rows = x.n_rows;
   const u32 x_n_cols = x.n_cols;
   
-  for(u32 col=0; col<x_n_cols; ++col)
+  if(x.is_empty() == false)
     {
-    o << "[field column " << col << ']' << '\n'; 
-    
-    for(u32 row=0; row<x_n_rows; ++row)
+    for(u32 col=0; col<x_n_cols; ++col)
       {
-      o.width(cell_width);
-      o << x.at(row,col) << '\n';
+      o << "[field column " << col << ']' << '\n'; 
+      
+      for(u32 row=0; row<x_n_rows; ++row)
+        {
+        o.width(cell_width);
+        o << x.at(row,col) << '\n';
+        }
+      
+      o << '\n';
       }
-    
-    o << '\n';
+    }
+  else
+    {
+    o << "[field size: " << x_n_rows << 'x' << x_n_cols <<  "]\n";
     }
   
   o.flush();

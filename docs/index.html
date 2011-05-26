@@ -17,9 +17,9 @@
   <tbody>
     <tr>
       <td style="text-align: left; vertical-align: top;">
-        <font size=+2><b>Reference for Armadillo 1.1.92</b></font>
+        <font size=+2><b>Reference for Armadillo 1.99.2</b></font>
         <br>
-        <font size=-1><b>(Jurassic Barbecue)</b></font>
+        <font size=-1><b>(v2.0 beta 2)</b></font>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -62,7 +62,7 @@ First time users may want to have a look at a short <a href="#example_prog">exam
 </li>
 <br>
 <li>
-There is a list of <a href="#api_changes">API changes &amp; additions</a> since previous versions
+There is a list of <a href="#api_changes">API additions &amp; changes</a> since previous versions
 </li>
 </ul>
 </td>
@@ -212,7 +212,6 @@ Technical Report, NICTA, 2010.
 <a href="#diagmat">diagmat</a>&nbsp;&middot;
 <a href="#find">find</a>&nbsp;&middot;
 <a href="#flip">fliplr/flipud</a>&nbsp;&middot;
-<a href="#htrans">htrans</a>&nbsp;&middot;
 <a href="#imag_real">imag/real</a>&nbsp;&middot;
 <a href="#join">join&nbsp;rows/cols/slices</a>&nbsp;&middot;
 <a href="#kron">kron</a>&nbsp;&middot;
@@ -220,12 +219,14 @@ Technical Report, NICTA, 2010.
 <a href="#shuffle">shuffle</a>&nbsp;&middot;
 <a href="#sort">sort</a>&nbsp;&middot;
 <a href="#sort_index">sort_index</a>&nbsp;&middot;
+<a href="#symmat">symmatu/symmatl</a>&nbsp;&middot;
+<a href="#strans">strans</a>&nbsp;&middot;
 <a href="#trans">trans</a>&nbsp;&middot;
 <a href="#trimat">trimatu/trimatl</a>
 </ul>
 <br>
 
-<b>Decompositions, Inverse and Related Functions</b>
+<b>Decompositions, Inverse and Equation Solvers</b>
 <ul>
 <a href="#chol">chol</a>&nbsp;&middot;
 <a href="#eig_sym">eig_sym</a>&nbsp;&middot;
@@ -237,7 +238,8 @@ Technical Report, NICTA, 2010.
 <a href="#princomp_cov">princomp_cov</a>&nbsp;&middot;
 <a href="#qr">qr</a>&nbsp;&middot;
 <a href="#solve">solve</a>&nbsp;&middot;
-<a href="#svd">svd</a>
+<a href="#svd">svd</a>&nbsp;&middot;
+<a href="#syl">syl</a>
 </ul>
 <br>
 
@@ -417,6 +419,7 @@ new memory will be allocated and the auxiliary memory will no longer be used.
 Create a matrix by copying data from read-only auxiliary memory.
 </ul>
 </li>
+<a name="adv_constructors_mat_fixed"></a>
 <br>
 <li>mat::fixed&lt;n_rows, n_cols&gt;
 <br>
@@ -1957,6 +1960,8 @@ cout &lt;&lt; A.is_empty() &lt;&lt; endl;
 <li>
 See also:
 <ul>
+<li><a href="#is_square">.is_square()</a></li>
+<li><a href="#is_vec">.is_vec()</a></li>
 <li><a href="#reset">.reset()</a></li>
 </ul>
 </li>
@@ -2014,7 +2019,7 @@ Member function of the <i>Mat</i> class.
 <li>Returns <i>true</i> if the matrix is square, ie., number of rows is equal to the number of columns.
 </li>
 <br>
-<li>Returns <i>false</i> if the matrix is not square, or the matrix has no elements.
+<li>Returns <i>false</i> if the matrix is not square
 </li>
 <br>
 <li>
@@ -2029,6 +2034,14 @@ cout &lt;&lt; B.is_square() &lt;&lt; endl;
 </pre>
 </ul>
 </li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#is_empty">.is_empty()</a></li>
+<li><a href="#is_vec">.is_vec()</a></li>
+</ul>
+</li>
 </ul>
 <br>
 <hr class="greyline"><br>
@@ -2041,9 +2054,10 @@ Member function of the <i>Mat</i> class.
 </li>
 <br>
 <li>Returns <i>true</i> if the matrix can be interpreted as a vector (either column or row vector).
+Note that an empty matrix can be interpreted as an empty vector.
 </li>
 <br>
-<li>Returns <i>false</i> if the matrix can't be interpreted as a vector, or the matrix has no elements.
+<li>Returns <i>false</i> if the matrix has more than one column or more than one row.
 </li>
 <br>
 <li>
@@ -2058,6 +2072,14 @@ cout &lt;&lt; A.is_vec() &lt;&lt; endl;
 cout &lt;&lt; B.is_vec() &lt;&lt; endl;
 cout &lt;&lt; C.is_vec() &lt;&lt; endl;
 </pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#is_empty">.is_empty()</a></li>
+<li><a href="#is_square">.is_square()</a></li>
 </ul>
 </li>
 </ul>
@@ -5874,7 +5896,7 @@ cx_mat Y = conj(X);
 <br>
 <li>See also:
 <ul>
-<li><a href="#htrans">htrans()</a></li>
+<li><a href="#trans">trans()</a></li>
 </ul>
 </li>
 <br>
@@ -6205,39 +6227,6 @@ See also:
 </ul>
 <hr class="greyline"><br>
 
-<a name="htrans"></a>
-<b>htrans(cx_mat)</b>
-<br><b>htrans(cx_colvec)</b>
-<br><b>htrans(cx_rowvec)</b>
-<ul>
-<li>
-Hermitian transpose.
-</li>
-<br>
-<li>
-This operation is equivalent to taking the transpose and then taking the complex conjugate of each element.
-</li>
-<br>
-<li>
-Examples:
-<ul>
-<pre>
-cx_mat A = randu&lt;cx_mat&gt;(5,10);
-cx_mat B = htrans(A);
-</pre>
-</ul>
-</li>
-<br>
-<li>See also:
-<ul>
-<li><a href="#trans">trans()</a></li>
-<li><a href="#conj">conj()</a></li>
-</ul>
-</li>
-<br>
-</ul>
-<hr class="greyline"><br>
-
 <a name="imag_real"></a>
 <b>imag(cx_mat)</b>
 <br><b>imag(cx_cube)</b>
@@ -6485,17 +6474,97 @@ See also:
 </ul>
 <hr class="greyline"><br>
 
+<a name="symmat"></a>
+<b>symmatu(A)</b>
+<br><b>symmatl(A)</b>
+<ul>
+<li>
+symmatu(A): interpret square matrix A as symmetric, reflecting the upper triangle to the lower triangle
+</li>
+<br>
+<li>
+symmatl(A): interpret square matrix A as symmetric, reflecting the lower triangle to the upper triangle
+</li>
+<br>
+<li>
+An exception is thrown if A is non-square
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A   = randu&lt;mat&gt;(5,5);
+mat Asu = symmatu(A);
+mat Asl = symmatl(A);
+
+mat B = trans(A)*A;
+
+// tell the inv() function to interpret B
+// as a positive definite symmetric matrix
+mat X = inv( symmatu(B) );
+</pre>
+</ul>
+</li>
+<br>
+<li>See also:
+<ul>
+<li><a href="#diagmat">diagmat()</a></li>
+<li><a href="#trimat">trimatu()/trimatl()</a></li>
+<li><a href="#inv">inv()</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Symmetric_matrix">Symmetric matrix in Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
+
+<a name="strans"></a>
+<b>strans(mat)</b>
+<br><b>strans(colvec)</b>
+<br><b>strans(rowvec)</b>
+<ul>
+<li>
+Simple matrix transpose, without taking the conjugate of the elements (complex matrices)
+</li>
+<br>
+<li>
+Use <a href="#trans">trans()</a> instead, unless you explictly need to take the transpose of a complex matrix without taking the conjugate of the elements
+</li>
+<br>
+<li>See also:
+<ul>
+<li><a href="#trans">trans()</a></li>
+</ul>
+</li>
+</ul>
+<br>
+<hr class="greyline"><br>
+
+
 <a name="trans"></a>
 <b>trans(mat)</b>
 <br><b>trans(colvec)</b>
 <br><b>trans(rowvec)</b>
 <ul>
 <li>
-Matrix transpose.
+Matrix transpose / Hermitian transpose
 </li>
 <br>
 <li>
-<b>Caveat</b>: for complex matrices this function does not take the conjugate of the elements -- you may wish to use <a href="#htrans">htrans()</a> instead.
+If a given object has real elements, a normal transpose is done
+</li>
+<br>
+<li>
+If a given object has complex elements, a Hermitian transpose is done (ie. the conjugate of the elements is taken during the transpose operation)
+</li>
+<br>
+<li>
+<b>Caveat:</b> for complex matrices, the functionality of trans() has changed in version 1.99.1:
+<ul>
+<li>in version 1.2.x and earlier, trans() does not take the conjugate of complex elements</li>
+<li>in version 1.2.x and earlier, the deprecated htrans() function is used for the Hermitian transpose</li>
+</ul>
 </li>
 <br>
 <li>
@@ -6509,12 +6578,12 @@ mat B = trans(A);
 <br>
 <li>See also:
 <ul>
-<li><a href="#htrans">htrans()</a></li>
+<li><a href="#strans">strans()</a></li>
 </ul>
 </li>
 </ul>
 <br>
-<hr class="greyline">
+<hr class="greyline"><br>
 
 
 <a name="trimat"></a>
@@ -6538,7 +6607,7 @@ Examples:
 <ul>
 <pre>mat A = randu&lt;mat&gt;(5,5);
 mat U = trimatu(A);
-mat L = trimatL(A);
+mat L = trimatl(A);
 
 // tell the inv() function to look only
 // at the upper triangular part
@@ -6552,7 +6621,8 @@ mat X = inv( trimatu(U) );
 <li><a href="#diagmat">diagmat()</a></li>
 <li><a href="#inv">inv()</a></li>
 <li><a href="#solve">solve()</a></li>
-<li><a href="http://mathworld.wolfram.com/TriangularMatrix.html">Triangular Matrix in MathWorld</a></li>
+<li><a href="http://mathworld.wolfram.com/TriangularMatrix.html">Triangular matrix in MathWorld</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Triangular_matrix">Triangular matrix in Wikipedia</a></li>
 </ul>
 </li>
 </ul>
@@ -6563,7 +6633,7 @@ mat X = inv( trimatu(U) );
 <hr class="greyline">
 <br>
 <br>
-<font size=+1><b>Decompositions and Related Functions</b></font>
+<font size=+1><b>Decompositions, Inverse and Equation Solvers</b></font>
 <br>
 <br>
 <hr class="greyline">
@@ -6584,8 +6654,8 @@ X must be a symmetric, positive-definite matrix.
 <li>
 If the decomposition fails:
 <ul>
-<li>the single argument version will output a matrix with no elements</li>
-<li>the two argument version sets <i>R</i> to have no elements and outputs a bool set to <i>false</i></li>
+<li>the single argument version will output an empty matrix</li>
+<li>the two argument version sets <i>R</i> to be empty and outputs a bool set to <i>false</i></li>
 </ul>
 </li>
 <br>
@@ -6657,6 +6727,7 @@ eig_sym(eigval, eigvec, B);
 See also:
 <ul>
 <li><a href="#eig_gen">eig_gen()</a></li>
+<li><a href="#svd">svd()</a></li>
 <li><a href="#princomp_cov">princomp_cov()</a></li>
 <li><a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a></li>
 </ul>
@@ -6710,6 +6781,7 @@ eig_gen(eigval, eigvec, A);
 See also:
 <ul>
 <li><a href="#eig_sym">eig_sym()</a></li>
+<li><a href="#svd">svd()</a></li>
 <li><a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a></li>
 </ul>
 </li>
@@ -6728,6 +6800,12 @@ Inverse of square matrix <i>A</i>; an exception is thrown if the given matrix is
 If <i>A</i> is known to be a triangular matrix,
 the inverse can be computed faster by explicitly marking the matrix as triangular
 through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>.
+</li>
+<br>
+<li>
+If <i>A</i> is known to be a positive-definite symmetric matrix,
+the inverse can be computed faster by explicitly marking the matrix as symmetric
+through <a href="#symmat">symmatu()</a> or <a href="#symmat">symmatl()</a>.
 </li>
 <br>
 <li>
@@ -6764,7 +6842,9 @@ See also:
 <li><a href="#pinv">pinv()</a>
 <li><a href="#solve">solve()</a></li>
 <li><a href="#trimat">trimatu() / trimatl()</a></li>
+<li><a href="#symmat">symmatu() / symmatl()</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixInverse.html">matrix inverse in MathWorld</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Invertible_matrix">invertible matrix in Wikipedia</a></li>
 </ul>
 </li>
 </ul>
@@ -6850,6 +6930,7 @@ See also:
 <li><a href="#math_constants">math::eps()</a></li>
 <li><a href="http://mathworld.wolfram.com/Pseudoinverse.html">Pseudoinverse in MathWorld</a></li>
 <li><a href="http://mathworld.wolfram.com/Moore-PenroseMatrixInverse.html">Moore-Penrose Matrix Inverse in MathWorld</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse">Moore-Penrose pseudoinverse in Wikipedia</a></li>
 </ul>
 </li>
 </ul>
@@ -7045,6 +7126,7 @@ mat Y = solve( trimatu(A), B );
 See also:
 <ul>
 <li><a href="#inv">inv()</a></li>
+<li><a href="#syl">syl()</a></li>
 <li><a href="#trimat">trimatu() / trimatl()</a></li>
 <li><a href="http://mathworld.wolfram.com/LinearSystemofEquations.html">linear system of equations in MathWorld</a></li>
 </ul>
@@ -7071,8 +7153,7 @@ The single and two argument versions compute the singular values of <i>X</i>
 <li>
 The four argument version computes the singular value decomposition of <i>X</i>, such that:
 <ul>
-<li><i>X = U*diagmat(s)*trans(V)</i>, if <i>X</i> has real numbers</li>
-<li><i>X = U*diagmat(s)*htrans(V)</i>, if <i>X</i> has complex numbers</li>
+<li><i>X = U*diagmat(s)*trans(V)</i>
 </ul>
 </li>
 <br>
@@ -7107,6 +7188,8 @@ bool status = svd(U,s,V,X);
 <li>
 See also:
 <ul>
+<li><a href="#eig_gen">eig_gen()</a></li>
+<li><a href="#eig_sym">eig_sym()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Singular_value_decomposition">singular value decomposition in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/SingularValueDecomposition.html">singular value decomposition in MathWorld</a></li>
 </ul>
@@ -7114,7 +7197,50 @@ See also:
 </ul>
 <br>
 <hr class="greyline">
+<br>
 
+<a name="syl"></a>
+<b>syl(X, A, B, C)</b>
+<br><b>X = syl(A, B, C)</b>
+<ul>
+<li>Solve the Sylvester equation, ie., <i>AX + XB + C = 0</i>, where <i>X</i> is unknown.</li>
+<br>
+<li>Matrices <i>A</i>, <i>B</i> and <i>C</i> must be square sized.</li>
+<br>
+<li>
+If no solution is found:
+<ul>
+<li>the three argument version will output an empty matrix</li>
+<li>the four argument version will set <i>X</i> to be empty and output a bool set to <i>false</i></li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = randu&lt;mat&gt;(5,5);
+mat C = randu&lt;mat&gt;(5,5);
+
+mat X1 = syl(A, B, C);
+
+mat X2;
+bool status = syl(X2, A, B, C);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#solve">solve()</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Sylvester_equation">Sylvester equation in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline">
 
 
 <hr class="greyline">
@@ -8313,7 +8439,7 @@ will require taking into account that indexing starts at 0
   </tr>
   <tr>
     <td style="vertical-align: top;">
-      A.'
+      A'
     </td>
     <td style="vertical-align: top;">
       &nbsp;
@@ -8325,28 +8451,28 @@ will require taking into account that indexing starts at 0
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      simple transpose
+      matrix transpose / Hermitian transpose
       <br>
-      (the conjugate of each element is not taken)
+      (for complex matrices, the conjugate of each element is taken)
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
-      A'
+      A.'
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      <a href="#htrans">htrans</a>(A)
+      <a href="#strans">strans</a>(A)
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      Hermitian transpose
+      simple matrix transpose
       <br>
-      (for complex matrices, the conjugate of each element is taken)
+      (for complex matrices, the conjugate of each element is not taken)
     </td>
   </tr>
   <tr>
@@ -8832,9 +8958,53 @@ As Armadillo is a template library, we strongly recommended to have optimisation
 <a name="api_changes"></a>
 <hr class="greyline">
 <br>
-<b>API Additions</b>
+<b>API Additions &amp; Changes</b>
 <br>
+<br>
+Armadillo's version number is X.Y.Z, where X is a major version, Y is a minor version, and Z is the patch level (indicating bug fixes).
+<br>
+<br>
+Within each major version (eg. 1.x), minor versions with an even number (eg. 1.2) are backwards compatible with earlier even minor versions (eg. 1.0).
+For example, code written for version 1.0 will work with version 1.2.
+However, as each minor version may have more features (ie. API extensions) than earlier versions,
+code written for version 1.2 doesn't necessarily work with 1.0.
+<br>
+<br>
+An odd minor version number (eg. 0.9, 1.3, 1.9) indicates an experimental version.
+Experimental versions are generally faster and have more functionality,
+but their APIs have not been finalised yet (though the likelihood of APIs changes is quite low).
+<br>
+<br>
+In general, we don't like changes to existing APIs and prefer not to break any user software.
+However, to allow evolution, we reserve the right to change the APIs in future major versions of Armadillo,
+while remaining backwards compatible wherever possible
+(eg. 2.x may have slightly different APIs than 1.x).
+Also, in a rare instance the user API may need to be altered if a bug fix absolutely requires it.
+<br>
+<br>
+Below is a list of additions and changes since prior versions of Armadillo:
 <ul>
+<li>Added in 1.99.x:
+<ul>
+<li><a href="#syl">syl()</a></li>
+<li><a href="#strans">strans()</a></li>
+<li><a href="#symmat">symmatu()/symmatl()</a></li>
+<li>submatrices of <a href="#submat">submatrices</a></li>
+<li>faster <a href="#inv">inverse</a> of symmetric matrices</li>
+<li>faster element access for <a href="#adv_constructors_mat_fixed">fixed size</a> matrices</li>
+<li>faster multiplication of tiny matrices (eg. 4x4)</li>
+<li>faster compund expressions containing <a href="#submat">submatrices</a></li>
+<li>handling of arbitrarily sized empty matrices (eg. 5x0)</li>
+</ul>
+<br>
+<li>Changed in 1.99.x:
+<ul>
+<li>htrans() has been deprecated; use <a href="#trans">trans()</a> instead</li>
+<li><a href="#trans">trans()</a> now takes the complex conjugate when transposing a complex matrix</li>
+<li><a href="#is_vec">.is_vec()</a> now outputs <i>true</i> for empty matrices</li>
+<li>most functions with matrix inputs no longer throw exceptions when given empty matrices (eg. 5x0)</li>
+</ul>
+<br>
 <li>Added in 1.1.90:
 <ul>
 <li><a href="#min_and_max_member">.min() &amp; .max()</a> member functions of Mat and Cube</li>
@@ -8894,36 +9064,38 @@ Q(&nbsp;span(1),&nbsp;span(1),&nbsp;span::all&nbsp;)&nbsp;=&nbsp;v;
 <li>cumulative sum function: <a href="#cumsum">cumsum()</a></li>
 </ul>
 </li>
-</ul>
 <br>
-<br>
-<b>API Changes</b>
-<br>
-<br>
-The API is stable as of version 1.0.
-We don't like changes to existing APIs and strongly prefer not to break any user software.
-However, in a rare instance the user API may need to be altered if a bug fix absolutely requires it.
-Below is a list of small changes since prior versions of Armadillo:
+<li>
+Changed in 0.9.90:
 <ul>
 <li>
-As of version 0.9.90,
-the 3 argument version of the <a href="#lu">lu()</a> function,
+the 3 argument version of <a href="#lu">lu()</a>,
 eg. lu(L,U,X),
-provides L and U which should be the same as produced by Octave 3.2.3.
-This was not the case in previous versions of Armadillo.
+provides L and U which should be the same as produced by Octave 3.2
+(this was not the case in previous versions of Armadillo)
+</li>
+<li>
+rand() was removed; use <a href="#randu_randn_standalone">randu()</a> instead
+</li>
+</ul>
 </li>
 <br>
 <li>
-As of version 0.9.50,
-rand() has been deprecated by <a href="#randu_randn_standalone">randu()</a>.
-This has been done to avoid confusion with <a href="http://cplusplus.com/reference/clibrary/cstdlib/rand/">std::rand()</a>,
-which generates random numbers in a different interval.
-In version 0.9.90, rand() was removed.
+Changed in 0.9.50:
+<ul>
+<li>
+rand() has been deprecated by <a href="#randu_randn_standalone">randu()</a>;
+this has been done to avoid confusion with <a href="http://cplusplus.com/reference/clibrary/cstdlib/rand/">std::rand()</a>,
+which generates random numbers in a different interval
+</li>
+</ul>
 </li>
 <br>
 <li>
-As of version 0.9.10,
-almost all functions have been placed in the delayed operations framework (for speed purposes).
+Changed in 0.9.10:
+<ul>
+<li>
+Almost all functions have been placed in the delayed operations framework (for speed purposes).
 This may affect code which assumed that the output of some functions was a pure matrix.
 The solution is easy, as explained below.
 <br>
@@ -8939,15 +9111,24 @@ eg. <i>chol(m).diag()</i>, change the code to <i>mat(chol(m)).diag()</i>.
 Similarly, if you need to pass the result of an operation such as <i>A+B</i> to one of your own functions,
 use <i>my_function(&nbsp;mat(A+B)&nbsp;)</i>.
 </li>
+</ul>
+</li>
 <br>
 <li>
-In versions earlier than 0.9.0, some multiplication operations directly converted result matrices with a size of 1x1 into scalars.
+Changed in 0.9.0:
+<ul>
+<li>
+In versions earlier than 0.9.0,
+some multiplication operations directly converted result matrices with a size of 1x1 into scalars.
 This is no longer the case.
 If you know the result of an expression will be a 1x1 matrix and wish to treat it as a pure scalar,
-use the <a href="#as_scalar">as_scalar()</a> wrapping function.
+use the <a href="#as_scalar">as_scalar()</a> wrapping function
+</li>
+</ul>
 </li>
 <br>
 </ul>
+<br>
 <br>
 
 
