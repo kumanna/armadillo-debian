@@ -21,13 +21,15 @@
 #define arma_warn_unused
 #define arma_deprecated
 #define arma_ignore(variable)  ((void)(variable))
-#define arma_fortran(function) function
 
 
 #if defined(ARMA_BLAS_UNDERSCORE)
-  #undef  arma_fortran
-  #define arma_fortran(function) function##_
+  #define arma_fortran2(function) function##_
+#else
+  #define arma_fortran2(function) function
 #endif
+
+#define arma_fortran(function) arma_fortran2(function)
 
 
 #if defined(__INTEL_COMPILER)
@@ -78,6 +80,10 @@
     #undef ARMA_HAVE_STD_TR1
   #endif
   
+  #if defined(__clang__)
+    #undef ARMA_HAVE_STD_TR1
+  #endif
+  
   #if (ARMA_GCC_VERSION >= 40300)
     #undef  arma_hot
     #undef  arma_cold
@@ -93,7 +99,9 @@
 
 #if defined(_MSC_VER)
   
-  #pragma message ("*** WARNING: This compiler may have an incomplete implementation of the C++ standard ***")
+  #if (_MSC_VER < 1500)
+    #error "*** Need a newer compiler ***"
+  #endif
   
   #undef ARMA_GOOD_COMPILER
   #undef ARMA_HAVE_STD_ISFINITE
@@ -141,15 +149,20 @@
 #if defined(min)
   #undef min
   
-  #if defined(_MSC_VER)
-    #pragma message ("detected min macro and undefined it; you may wish to define NOMINMAX before including any windows header")
+  #if defined(__GNUG__)
+    #warning         "detected 'min' macro and undefined it; you may wish to define NOMINMAX before including any windows header"
+  #elif defined(_MSC_VER)
+    #pragma message ("detected 'min' macro and undefined it; you may wish to define NOMINMAX before including any windows header")
   #endif
 #endif
 
 #if defined(max)
   #undef max
   
-  #if defined(_MSC_VER)
-    #pragma message ("detected max macro and undefined it; you may wish to define NOMINMAX before including any windows header")
+  #if defined(__GNUG__)
+    #warning         "detected 'max' macro and undefined it; you may wish to define NOMINMAX before including any windows header"
+  #elif defined(_MSC_VER)
+    #pragma message ("detected 'max' macro and undefined it; you may wish to define NOMINMAX before including any windows header")
   #endif
 #endif
+
