@@ -13,14 +13,14 @@
 
 
 #if !defined(ARMA_USE_LAPACK)
-// #define ARMA_USE_LAPACK
+#define ARMA_USE_LAPACK
 //// Uncomment the above line if you have LAPACK or a fast replacement for LAPACK,
 //// such as Intel's MKL, AMD's ACML, or the Accelerate framework.
 //// LAPACK is required for matrix decompositions (eg. SVD) and matrix inverse.
 #endif
 
 #if !defined(ARMA_USE_BLAS)
-// #define ARMA_USE_BLAS
+#define ARMA_USE_BLAS
 //// Uncomment the above line if you have BLAS or a fast replacement for BLAS,
 //// such as GotoBLAS, Intel's MKL, AMD's ACML, or the Accelerate framework.
 //// BLAS is used for matrix multiplication.
@@ -48,22 +48,22 @@
 //// If you mainly use lots of very small vectors (eg. <= 4 elements),
 //// change the number to the size of your vectors.
 
-// #define ARMA_USE_ATLAS
-// #define ARMA_ATLAS_INCLUDE_DIR /usr/include/
+/* #undef ARMA_USE_ATLAS */
+#define ARMA_ATLAS_INCLUDE_DIR /
 //// If you're using ATLAS and the compiler can't find cblas.h and/or clapack.h
 //// uncomment the above define and specify the appropriate include directory.
 //// Make sure the directory has a trailing /
 
-// #define ARMA_USE_BOOST
-// #define ARMA_USE_BOOST_DATE
+#define ARMA_USE_BOOST
+#define ARMA_USE_BOOST_DATE
 
-// #define ARMA_HAVE_STD_ISFINITE
-// #define ARMA_HAVE_STD_ISINF
-// #define ARMA_HAVE_STD_ISNAN
-// #define ARMA_HAVE_STD_SNPRINTF
+#define ARMA_HAVE_STD_ISFINITE
+#define ARMA_HAVE_STD_ISINF
+#define ARMA_HAVE_STD_ISNAN
+#define ARMA_HAVE_STD_SNPRINTF
 
-// #define ARMA_HAVE_LOG1P
-// #define ARMA_HAVE_GETTIMEOFDAY
+#define ARMA_HAVE_LOG1P
+#define ARMA_HAVE_GETTIMEOFDAY
 
 // #define ARMA_EXTRA_DEBUG
 // #define ARMA_NO_DEBUG
