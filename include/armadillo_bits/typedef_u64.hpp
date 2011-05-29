@@ -60,14 +60,7 @@ struct deduce_u64<false>
   
   #else
     
-    // #error "don't know how to typedef 'u64' on this system"
-    
-    // use u32 as a last resort
-    
-    typedef u32 u64;
-    
-    static const u64  max   = 0xFFFFFFFF;
-    static const bool trunc = true;
+    #error "don't know how to typedef 'u64' on this system"
     
   #endif
   };

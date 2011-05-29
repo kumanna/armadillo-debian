@@ -17,9 +17,9 @@
   <tbody>
     <tr>
       <td style="text-align: left; vertical-align: top;">
-        <font size=+2><b>Reference for Armadillo 1.99.2</b></font>
+        <font size=+2><b>Reference for Armadillo 1.99.3</b></font>
         <br>
-        <font size=-1><b>(v2.0 beta 2)</b></font>
+        <font size=-1><b>(v2.0 beta 3)</b></font>
       </td>
       <td style="text-align: right; vertical-align: top;">
         <b><a href="http://arma.sourceforge.net">to Armadillo home page</a></b>
@@ -2050,14 +2050,17 @@ See also:
 <b>.is_vec()</b>
 <ul>
 <li>
-Member function of the <i>Mat</i> class.
+Member function of the <i>Mat</i> class
 </li>
 <br>
-<li>Returns <i>true</i> if the matrix can be interpreted as a vector (either column or row vector).
-Note that an empty matrix can be interpreted as an empty vector.
+<li>Returns <i>true</i> if the matrix can be interpreted as a vector (either column or row vector)
 </li>
 <br>
-<li>Returns <i>false</i> if the matrix has more than one column or more than one row.
+<li>Returns <i>false</i> if the matrix does not have exactly one column or one row
+</li>
+<br>
+<li><b>Caveat:</b> do not assume that the vector has elements if this function returns <i>true</i> --
+it's possible to have an empty vector (eg. 0x1)
 </li>
 <br>
 <li>
@@ -4147,8 +4150,7 @@ See also:
 <li>
 Class for keeping statistics of a continuously sampled one dimensional process/signal.
 Useful if the storage of individual samples (scalars) is not necessary or desired.
-Also useful if the number of samples is not known beforehand or exceeds 
-available memory.
+Also useful if the number of samples is not known beforehand or exceeds available memory.
 </li>
 <br>
 <li>
@@ -4230,6 +4232,16 @@ Member functions:
       reset all statistics and set the number of samples to zero
       </td>
     </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.count()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the number of samples so far
+      </td>
+    </tr>
   </tbody>
 </table>
 </ul>
@@ -4240,6 +4252,10 @@ For the .var() and .stddev() functions, the default <i>norm_type=0</i> performs 
 (where N is the number of samples so far),
 providing the best unbiased estimator.
 Using <i>norm_type=1</i> causes normalisation to be done using N, which provides the second moment around the mean.
+</li>
+<br>
+<li>
+The return type of .count() depends on the underlying form of <i>type</i>: it is either <i>float</i> or <i>double</i>.
 </li>
 <br>
 <li>
@@ -4278,8 +4294,7 @@ cout &lt;&lt; "max  = " &lt;&lt; stats.max()  &lt;&lt; endl;
 <li>
 Class for keeping statistics of a continuously sampled multi-dimensional process/signal.
 Useful if the storage of individual samples is not necessary or desired.
-Also useful if the number of samples is not known beforehand or exceeds 
-available memory.
+Also useful if the number of samples is not known beforehand or exceeds available memory.
 </li>
 <br>
 <li>
@@ -4382,6 +4397,15 @@ Member functions:
       reset all statistics and set the number of samples to zero
       </td>
     </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.count()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      get the number of samples so far
+      </td>
     </tr>
   </tbody>
 </table>
@@ -4393,6 +4417,10 @@ For the .var() and .stddev() functions, the default <i>norm_type=0</i> performs 
 (where N is the number of samples so far),
 providing the best unbiased estimator.
 Using <i>norm_type=1</i> causes normalisation to be done using N, which provides the second moment around the mean.
+</li>
+<br>
+<li>
+The return type of .count() depends on the underlying form of <i>type</i>: it is either <i>float</i> or <i>double</i>.
 </li>
 <br>
 <li>
@@ -8995,13 +9023,14 @@ Below is a list of additions and changes since prior versions of Armadillo:
 <li>faster multiplication of tiny matrices (eg. 4x4)</li>
 <li>faster compund expressions containing <a href="#submat">submatrices</a></li>
 <li>handling of arbitrarily sized empty matrices (eg. 5x0)</li>
+<li>.count() member function in <a href="#running_stat">running_stat</a> and <a href="#running_stat_vec">running_stat_vec</a></li>
 </ul>
 <br>
 <li>Changed in 1.99.x:
 <ul>
 <li>htrans() has been deprecated; use <a href="#trans">trans()</a> instead</li>
 <li><a href="#trans">trans()</a> now takes the complex conjugate when transposing a complex matrix</li>
-<li><a href="#is_vec">.is_vec()</a> now outputs <i>true</i> for empty matrices</li>
+<li><a href="#is_vec">.is_vec()</a> now outputs <i>true</i> for empty vectors (eg. 0x1)</li>
 <li>most functions with matrix inputs no longer throw exceptions when given empty matrices (eg. 5x0)</li>
 </ul>
 <br>
