@@ -1,7 +1,8 @@
 // Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
 // Copyright (C) 2008-2011 Conrad Sanderson
-// Copyright (C)      2009 Edmund Highcock
-// Copyright (C)      2011 James Sanders
+// Copyright (C) 2009 Edmund Highcock
+// Copyright (C) 2011 James Sanders
+// Copyright (C) 2011 Stanislav Funiak
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -22,19 +23,19 @@
 template<typename eT, typename T1>
 inline
 bool
-auxlib::inv(Mat<eT>& out, const Base<eT,T1>& X)
+auxlib::inv(Mat<eT>& out, const Base<eT,T1>& X, const bool slow)
   {
   arma_extra_debug_sigprint();
-  
-  bool status = false;
   
   out = X.get_ref();
   
   arma_debug_check( (out.is_square() == false), "inv(): given matrix is not square" );
   
+  bool status = false;
+  
   const u32 N = out.n_rows;
   
-  if(N <= 4)
+  if( (N <= 4) && (slow == false) )
     {
     status = auxlib::inv_inplace_tinymat(out, N);
     }
@@ -42,12 +43,6 @@ auxlib::inv(Mat<eT>& out, const Base<eT,T1>& X)
   if( (N > 4) || (status == false) )
     {
     status = auxlib::inv_inplace_lapack(out);
-    }
-  
-  if(status == false)
-    {
-    arma_print("inv(): matrix appears to be singular" );
-    out.reset();
     }
   
   return status;
@@ -58,7 +53,7 @@ auxlib::inv(Mat<eT>& out, const Base<eT,T1>& X)
 template<typename eT>
 inline
 bool
-auxlib::inv(Mat<eT>& out, const Mat<eT>& X)
+auxlib::inv(Mat<eT>& out, const Mat<eT>& X, const bool slow)
   {
   arma_extra_debug_sigprint();
   
@@ -68,7 +63,7 @@ auxlib::inv(Mat<eT>& out, const Mat<eT>& X)
   
   const u32 N = X.n_rows;
   
-  if(N <= 4)
+  if( (N <= 4) && (slow == false) )
     {
     status = (&out != &X) ? auxlib::inv_noalias_tinymat(out, X, N) : auxlib::inv_inplace_tinymat(out, N);
     }
@@ -77,12 +72,6 @@ auxlib::inv(Mat<eT>& out, const Mat<eT>& X)
     {
     out = X;
     status = auxlib::inv_inplace_lapack(out);
-    }
-  
-  if(status == false)
-    {
-    arma_print("inv(): matrix appears to be singular" );
-    out.reset();
     }
   
   return status;
@@ -364,6 +353,11 @@ bool
 auxlib::inv_inplace_lapack(Mat<eT>& out)
   {
   arma_extra_debug_sigprint();
+
+  if(out.is_empty())
+    {
+    return true;
+    }
   
   #if defined(ARMA_USE_ATLAS)
     {
@@ -424,7 +418,7 @@ auxlib::inv_inplace_lapack(Mat<eT>& out)
   #else
     {
     arma_ignore(out);
-    arma_stop("inv(): use of ATLAS or LAPACK needs to enabled");
+    arma_stop("inv(): use of ATLAS or LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -464,18 +458,13 @@ auxlib::inv_tr(Mat<eT>& out, const Base<eT,T1>& X, const u32 layout)
   #else
     {
     arma_ignore(layout);
-    arma_stop("inv(): use of LAPACK needs to enabled");
+    arma_stop("inv(): use of LAPACK needs to be enabled");
     status = false;
     }
   #endif
   
   
-  if(status == false)
-    {
-    arma_print("inv(): matrix appears to be singular" );
-    out.reset();
-    }
-  else
+  if(status == true)
     {
     if(layout == 0)
       {
@@ -514,30 +503,87 @@ auxlib::inv_sym(Mat<eT>& out, const Base<eT,T1>& X, const u32 layout)
   
   #if defined(ARMA_USE_LAPACK)
     {
+    char     uplo  = (layout == 0) ? 'U' : 'L';
+    blas_int n     = blas_int(out.n_rows);
+    blas_int lwork = n*n; // TODO: use lwork = -1 to determine optimal size
+    blas_int info  = 0;
+    
+    podarray<blas_int> ipiv;
+    ipiv.set_size(out.n_rows);
+    
+    podarray<eT> work;
+    work.set_size( u32(lwork) );
+    
+    lapack::sytrf(&uplo, &n, out.memptr(), &n, ipiv.memptr(), work.memptr(), &lwork, &info);
+    
+    status = (info == 0);
+    
+    if(status == true)
+      {
+      lapack::sytri(&uplo, &n, out.memptr(), &n, ipiv.memptr(), work.memptr(), &info);
+      
+      out = (layout == 0) ? symmatu(out) : symmatl(out);
+      
+      status = (info == 0);
+      }
+    }
+  #else
+    {
+    arma_ignore(layout);
+    arma_stop("inv(): use of LAPACK needs to be enabled");
+    status = false;
+    }
+  #endif
+  
+  return status;
+  }
+
+
+
+template<typename eT, typename T1>
+inline
+bool
+auxlib::inv_sympd(Mat<eT>& out, const Base<eT,T1>& X, const u32 layout)
+  {
+  arma_extra_debug_sigprint();
+  
+  out = X.get_ref();
+  
+  arma_debug_check( (out.is_square() == false), "inv(): given matrix is not square" );
+  
+  if(out.is_empty())
+    {
+    return true;
+    }
+  
+  bool status;
+  
+  #if defined(ARMA_USE_LAPACK)
+    {
     char     uplo = (layout == 0) ? 'U' : 'L';
     blas_int n    = blas_int(out.n_rows);
     blas_int info = 0;
     
     lapack::potrf(&uplo, &n, out.memptr(), &n, &info);
-    lapack::potri(&uplo, &n, out.memptr(), &n, &info);
-    
-    out = (layout == 0) ? symmatu(out) : symmatl(out);
     
     status = (info == 0);
+    
+    if(status == true)
+      {
+      lapack::potri(&uplo, &n, out.memptr(), &n, &info);
+    
+      out = (layout == 0) ? symmatu(out) : symmatl(out);
+    
+      status = (info == 0);
+      }
     }
   #else
     {
     arma_ignore(layout);
-    arma_stop("inv(): use of LAPACK needs to enabled");
+    arma_stop("inv(): use of LAPACK needs to be enabled");
     status = false;
     }
   #endif
-  
-  if(status == false)
-    {
-    arma_print("inv(): matrix appears to be singular" );
-    out.reset();
-    }
   
   return status;
   }
@@ -547,38 +593,43 @@ auxlib::inv_sym(Mat<eT>& out, const Base<eT,T1>& X, const u32 layout)
 template<typename eT, typename T1>
 inline
 eT
-auxlib::det(const Base<eT,T1>& X)
+auxlib::det(const Base<eT,T1>& X, const bool slow)
   {
   const unwrap<T1>   tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
   
-  arma_debug_check( !A.is_square(), "det(): matrix is not square" );
+  arma_debug_check( (A.is_square() == false), "det(): matrix is not square" );
   
   const bool make_copy = (is_Mat<T1>::value == true) ? true : false;
   
-  const u32 N = A.n_rows;
-  
-  switch(N)
+  if(slow == false)
     {
-    case 0:
-    case 1:
-    case 2:
-      return auxlib::det_tinymat(A, N);
-      break;
+    const u32 N = A.n_rows;
     
-    case 3:
-    case 4:
+    switch(N)
       {
-      const eT tmp_det = auxlib::det_tinymat(A, N);
-      return (tmp_det != eT(0)) ? tmp_det : auxlib::det_lapack(A, make_copy);
+      case 0:
+      case 1:
+      case 2:
+        return auxlib::det_tinymat(A, N);
+        break;
+      
+      case 3:
+      case 4:
+        {
+        const eT tmp_det = auxlib::det_tinymat(A, N);
+        return (tmp_det != eT(0)) ? tmp_det : auxlib::det_lapack(A, make_copy);
+        }
+        break;
+      
+      default:
+        return auxlib::det_lapack(A, make_copy);
       }
-      break;
-    
-    default:
-      return auxlib::det_lapack(A, make_copy);
     }
-  
-  return eT(0);  // prevent compiler warnings
+  else
+    {
+    return auxlib::det_lapack(A, make_copy);
+    }
   }
 
 
@@ -697,10 +748,17 @@ auxlib::det_lapack(const Mat<eT>& X, const bool make_copy)
   
   Mat<eT>& tmp = (make_copy == true) ? X_copy : const_cast< Mat<eT>& >(X);
   
+  if(tmp.is_empty())
+    {
+    return eT(1);
+    }
+  
+  
   #if defined(ARMA_USE_ATLAS)
     {
     podarray<int> ipiv(tmp.n_rows);
     
+    //const int info =
     atlas::clapack_getrf(atlas::CblasColMajor, tmp.n_rows, tmp.n_cols, tmp.memptr(), tmp.n_rows, ipiv.memptr());
     
     // on output tmp appears to be L+U_alt, where U_alt is U with the main diagonal set to zero
@@ -754,7 +812,7 @@ auxlib::det_lapack(const Mat<eT>& X, const bool make_copy)
     arma_ignore(X);
     arma_ignore(make_copy);
     arma_ignore(tmp);
-    arma_stop("det(): use of ATLAS or LAPACK needs to enabled");
+    arma_stop("det(): use of ATLAS or LAPACK needs to be enabled");
     return eT(0);
     }
   #endif
@@ -765,7 +823,7 @@ auxlib::det_lapack(const Mat<eT>& X, const bool make_copy)
 //! immediate log determinant of a matrix using ATLAS or LAPACK
 template<typename eT, typename T1>
 inline
-void
+bool
 auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const Base<eT,T1>& X)
   {
   arma_extra_debug_sigprint();
@@ -781,12 +839,12 @@ auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const 
       {
       out_val  = eT(0);
       out_sign =  T(1);
-      return;
+      return true;
       }
     
     podarray<int> ipiv(tmp.n_rows);
     
-    atlas::clapack_getrf(atlas::CblasColMajor, tmp.n_rows, tmp.n_cols, tmp.memptr(), tmp.n_rows, ipiv.memptr());
+    const int info = atlas::clapack_getrf(atlas::CblasColMajor, tmp.n_rows, tmp.n_cols, tmp.memptr(), tmp.n_rows, ipiv.memptr());
     
     // on output tmp appears to be L+U_alt, where U_alt is U with the main diagonal set to zero
     
@@ -811,6 +869,8 @@ auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const 
     
     out_val  = val;
     out_sign = T(sign);
+    
+    return (info == 0);
     }
   #elif defined(ARMA_USE_LAPACK)
     {
@@ -821,7 +881,7 @@ auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const 
       {
       out_val  = eT(0);
       out_sign =  T(1);
-      return;
+      return true;
       }
     
     podarray<blas_int> ipiv(tmp.n_rows);
@@ -855,13 +915,17 @@ auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const 
     
     out_val  = val;
     out_sign = T(sign);
+    
+    return (info == 0);
     }
   #else
     {
-    arma_stop("log_det(): use of ATLAS or LAPACK needs to enabled");
-    
     out_val  = eT(0);
     out_sign =  T(0);
+    
+    arma_stop("log_det(): use of ATLAS or LAPACK needs to be enabled");
+    
+    return false;
     }
   #endif
   }
@@ -871,32 +935,35 @@ auxlib::log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const 
 //! immediate LU decomposition of a matrix using ATLAS or LAPACK
 template<typename eT, typename T1>
 inline
-void
+bool
 auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<blas_int>& ipiv, const Base<eT,T1>& X)
   {
   arma_extra_debug_sigprint();
   
   U = X.get_ref();
   
-  if(U.is_empty())
-    {
-    L.reset();
-    U.reset();
-    ipiv.reset();
-    return;
-    }
-  
   const u32 U_n_rows = U.n_rows;
   const u32 U_n_cols = U.n_cols;
   
+  if(U.is_empty())
+    {
+    L.set_size(U_n_rows, 0);
+    U.set_size(0, U_n_cols);
+    ipiv.reset();
+    return true;
+    }
+  
   #if defined(ARMA_USE_ATLAS) || defined(ARMA_USE_LAPACK)
     {
+    bool status;
+    
     #if defined(ARMA_USE_ATLAS)
       {
       ipiv.set_size( (std::min)(U_n_rows, U_n_cols) );
       
-      //int info = 
-      atlas::clapack_getrf(atlas::CblasColMajor, U_n_rows, U_n_cols, U.memptr(), U_n_rows, ipiv.memptr());
+      int info = atlas::clapack_getrf(atlas::CblasColMajor, U_n_rows, U_n_cols, U.memptr(), U_n_rows, ipiv.memptr());
+      
+      status = (info == 0);
       }
     #elif defined(ARMA_USE_LAPACK)
       {
@@ -912,6 +979,8 @@ auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<blas_int>& ipiv, const Base<eT,T1>& 
       
       // take into account that Fortran counts from 1
       arrayops::inplace_minus(ipiv.memptr(), blas_int(1), ipiv.n_elem);
+      
+      status = (info == 0);
       }
     #endif
     
@@ -935,12 +1004,14 @@ auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<blas_int>& ipiv, const Base<eT,T1>& 
         U.at(row,col) = eT(0);
         }
       }
+    
+    return status;
     }
   #else
     {
-    arma_ignore(U_n_rows);
-    arma_ignore(U_n_cols);
-    arma_stop("lu(): use of ATLAS or LAPACK needs to enabled");
+    arma_stop("lu(): use of ATLAS or LAPACK needs to be enabled");
+    
+    return false;
     }
   #endif
   }
@@ -949,115 +1020,123 @@ auxlib::lu(Mat<eT>& L, Mat<eT>& U, podarray<blas_int>& ipiv, const Base<eT,T1>& 
 
 template<typename eT, typename T1>
 inline
-void
+bool
 auxlib::lu(Mat<eT>& L, Mat<eT>& U, Mat<eT>& P, const Base<eT,T1>& X)
   {
   arma_extra_debug_sigprint();
   
   podarray<blas_int> ipiv1;
-  auxlib::lu(L, U, ipiv1, X);
+  const bool status = auxlib::lu(L, U, ipiv1, X);
   
-  if(U.is_empty())
+  if(status == true)
     {
-    L.reset();
-    U.reset();
-    P.reset();
-    return;
-    }
-  
-  const u32 n      = ipiv1.n_elem;
-  const u32 P_rows = U.n_rows;
-  
-  podarray<blas_int> ipiv2(P_rows);
-  
-  const blas_int* ipiv1_mem = ipiv1.memptr();
-        blas_int* ipiv2_mem = ipiv2.memptr();
-  
-  for(u32 i=0; i<P_rows; ++i)
-    {
-    ipiv2_mem[i] = blas_int(i);
-    }
-  
-  for(u32 i=0; i<n; ++i)
-    {
-    const u32 k = static_cast<u32>(ipiv1_mem[i]);
-    
-    if( ipiv2_mem[i] != ipiv2_mem[k] )
+    if(U.is_empty())
       {
-      std::swap( ipiv2_mem[i], ipiv2_mem[k] );
+      // L and U have been already set to the correct empty matrices
+      P.eye(L.n_rows, L.n_rows);
+      return true;
+      }
+    
+    const u32 n      = ipiv1.n_elem;
+    const u32 P_rows = U.n_rows;
+    
+    podarray<blas_int> ipiv2(P_rows);
+    
+    const blas_int* ipiv1_mem = ipiv1.memptr();
+          blas_int* ipiv2_mem = ipiv2.memptr();
+    
+    for(u32 i=0; i<P_rows; ++i)
+      {
+      ipiv2_mem[i] = blas_int(i);
+      }
+    
+    for(u32 i=0; i<n; ++i)
+      {
+      const u32 k = static_cast<u32>(ipiv1_mem[i]);
+      
+      if( ipiv2_mem[i] != ipiv2_mem[k] )
+        {
+        std::swap( ipiv2_mem[i], ipiv2_mem[k] );
+        }
+      }
+    
+    P.zeros(P_rows, P_rows);
+    
+    for(u32 row=0; row<P_rows; ++row)
+      {
+      P.at(row, static_cast<u32>(ipiv2_mem[row])) = eT(1);
+      }
+    
+    if(L.n_cols > U.n_rows)
+      {
+      L.shed_cols(U.n_rows, L.n_cols-1);
+      }
+      
+    if(U.n_rows > L.n_cols)
+      {
+      U.shed_rows(L.n_cols, U.n_rows-1);
       }
     }
   
-  P.zeros(P_rows, P_rows);
-  
-  for(u32 row=0; row<P_rows; ++row)
-    {
-    P.at(row, static_cast<u32>(ipiv2_mem[row])) = eT(1);
-    }
-  
-  if(L.n_cols > U.n_rows)
-    {
-    L.shed_cols(U.n_rows, L.n_cols-1);
-    }
-    
-  if(U.n_rows > L.n_cols)
-    {
-    U.shed_rows(L.n_cols, U.n_rows-1);
-    }
+  return status;
   }
 
 
 
 template<typename eT, typename T1>
 inline
-void
+bool
 auxlib::lu(Mat<eT>& L, Mat<eT>& U, const Base<eT,T1>& X)
   {
   arma_extra_debug_sigprint();
   
   podarray<blas_int> ipiv1;
-  auxlib::lu(L, U, ipiv1, X);
+  const bool status = auxlib::lu(L, U, ipiv1, X);
   
-  if(U.is_empty())
+  if(status == true)
     {
-    L.reset();
-    U.reset();
-    return;
-    }
-  
-  const u32 n      = ipiv1.n_elem;
-  const u32 P_rows = U.n_rows;
-  
-  podarray<blas_int> ipiv2(P_rows);
-  
-  const blas_int* ipiv1_mem = ipiv1.memptr();
-        blas_int* ipiv2_mem = ipiv2.memptr();
-  
-  for(u32 i=0; i<P_rows; ++i)
-    {
-    ipiv2_mem[i] = blas_int(i);
-    }
-  
-  for(u32 i=0; i<n; ++i)
-    {
-    const u32 k = static_cast<u32>(ipiv1_mem[i]);
-    
-    if( ipiv2_mem[i] != ipiv2_mem[k] )
+    if(U.is_empty())
       {
-      std::swap( ipiv2_mem[i], ipiv2_mem[k] );
-      L.swap_rows( static_cast<u32>(ipiv2_mem[i]), static_cast<u32>(ipiv2_mem[k]) );
+      // L and U have been already set to the correct empty matrices
+      return true;
+      }
+    
+    const u32 n      = ipiv1.n_elem;
+    const u32 P_rows = U.n_rows;
+    
+    podarray<blas_int> ipiv2(P_rows);
+    
+    const blas_int* ipiv1_mem = ipiv1.memptr();
+          blas_int* ipiv2_mem = ipiv2.memptr();
+    
+    for(u32 i=0; i<P_rows; ++i)
+      {
+      ipiv2_mem[i] = blas_int(i);
+      }
+    
+    for(u32 i=0; i<n; ++i)
+      {
+      const u32 k = static_cast<u32>(ipiv1_mem[i]);
+      
+      if( ipiv2_mem[i] != ipiv2_mem[k] )
+        {
+        std::swap( ipiv2_mem[i], ipiv2_mem[k] );
+        L.swap_rows( static_cast<u32>(ipiv2_mem[i]), static_cast<u32>(ipiv2_mem[k]) );
+        }
+      }
+    
+    if(L.n_cols > U.n_rows)
+      {
+      L.shed_cols(U.n_rows, L.n_cols-1);
+      }
+      
+    if(U.n_rows > L.n_cols)
+      {
+      U.shed_rows(L.n_cols, U.n_rows-1);
       }
     }
   
-  if(L.n_cols > U.n_rows)
-    {
-    L.shed_cols(U.n_rows, L.n_cols-1);
-    }
-    
-  if(U.n_rows > L.n_cols)
-    {
-    U.shed_rows(L.n_cols, U.n_rows-1);
-    }
+  return status;
   }
 
 
@@ -1105,7 +1184,7 @@ auxlib::eig_sym(Col<eT>& eigval, const Base<eT,T1>& X)
     {
     arma_ignore(eigval);
     arma_ignore(X);
-    arma_stop("eig_sym(): use of LAPACK needs to enabled");
+    arma_stop("eig_sym(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1157,7 +1236,7 @@ auxlib::eig_sym(Col<T>& eigval, const Base<std::complex<T>,T1>& X)
     {
     arma_ignore(eigval);
     arma_ignore(X);
-    arma_stop("eig_sym(): use of LAPACK needs to enabled");
+    arma_stop("eig_sym(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1209,7 +1288,7 @@ auxlib::eig_sym(Col<eT>& eigval, Mat<eT>& eigvec, const Base<eT,T1>& X)
     {
     arma_ignore(eigval);
     arma_ignore(eigvec);
-    arma_stop("eig_sym(): use of LAPACK needs to enabled");
+    arma_stop("eig_sym(): use of LAPACK needs to be enabled");
     
     return false;
     }
@@ -1265,7 +1344,7 @@ auxlib::eig_sym(Col<T>& eigval, Mat< std::complex<T> >& eigvec, const Base<std::
     arma_ignore(eigval);
     arma_ignore(eigvec);
     arma_ignore(X);
-    arma_stop("eig_sym(): use of LAPACK needs to enabled");
+    arma_stop("eig_sym(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1371,7 +1450,7 @@ auxlib::eig_gen
     arma_ignore(r_eigvec);
     arma_ignore(X);
     arma_ignore(side);
-    arma_stop("eig_gen(): use of LAPACK needs to enabled");
+    arma_stop("eig_gen(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1470,7 +1549,7 @@ auxlib::eig_gen
     arma_ignore(r_eigvec);
     arma_ignore(X);
     arma_ignore(side);
-    arma_stop("eig_gen(): use of LAPACK needs to enabled");
+    arma_stop("eig_gen(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1519,7 +1598,7 @@ auxlib::chol(Mat<eT>& out, const Base<eT,T1>& X)
   #else
     {
     arma_ignore(out);
-    arma_stop("chol(): use of LAPACK needs to enabled");
+    arma_stop("chol(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1538,15 +1617,14 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Base<eT,T1>& X)
     {
     R = X.get_ref();
     
-    if(R.is_empty())
-      {
-      Q.reset();
-      R.reset();
-      return true;
-      }
-    
     const u32 R_n_rows = R.n_rows;
     const u32 R_n_cols = R.n_cols;
+    
+    if(R.is_empty())
+      {
+      Q.eye(R_n_rows, R_n_rows);
+      return true;
+      }
     
     blas_int m            = static_cast<blas_int>(R_n_rows);
     blas_int n            = static_cast<blas_int>(R_n_cols);
@@ -1623,7 +1701,7 @@ auxlib::qr(Mat<eT>& Q, Mat<eT>& R, const Base<eT,T1>& X)
     arma_ignore(Q);
     arma_ignore(R);
     arma_ignore(X);
-    arma_stop("qr(): use of LAPACK needs to enabled");
+    arma_stop("qr(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1648,8 +1726,6 @@ auxlib::svd(Col<eT>& S, const Base<eT,T1>& X, u32& X_n_rows, u32& X_n_cols)
     if(A.is_empty())
       {
       S.reset();
-      X_n_rows = 0;
-      X_n_cols = 0;
       return true;
       }
     
@@ -1718,7 +1794,7 @@ auxlib::svd(Col<eT>& S, const Base<eT,T1>& X, u32& X_n_rows, u32& X_n_cols)
     arma_ignore(X);
     arma_ignore(X_n_rows);
     arma_ignore(X_n_cols);
-    arma_stop("svd(): use of LAPACK needs to enabled");
+    arma_stop("svd(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1745,8 +1821,6 @@ auxlib::svd(Col<T>& S, const Base<std::complex<T>, T1>& X, u32& X_n_rows, u32& X
     if(A.is_empty())
       {
       S.reset();
-      X_n_rows = 0;
-      X_n_cols = 0;
       return true;
       }
     
@@ -1817,7 +1891,7 @@ auxlib::svd(Col<T>& S, const Base<std::complex<T>, T1>& X, u32& X_n_rows, u32& X
     arma_ignore(X_n_rows);
     arma_ignore(X_n_cols);
 
-    arma_stop("svd(): use of LAPACK needs to enabled");
+    arma_stop("svd(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1864,9 +1938,9 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Base<eT,T1>& X)
     
     if(A.is_empty())
       {
-      U.reset();
+      U.eye(A.n_rows, A.n_rows);
       S.reset();
-      V.reset();
+      V.eye(A.n_cols, A.n_cols);
       return true;
       }
     
@@ -1935,7 +2009,7 @@ auxlib::svd(Mat<eT>& U, Col<eT>& S, Mat<eT>& V, const Base<eT,T1>& X)
     arma_ignore(S);
     arma_ignore(V);
     arma_ignore(X);
-    arma_stop("svd(): use of LAPACK needs to enabled");
+    arma_stop("svd(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -1958,9 +2032,9 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T>& S, Mat< std::complex<T> >& V, con
     
     if(A.is_empty())
       {
-      U.reset();
+      U.eye(A.n_rows, A.n_rows);
       S.reset();
-      V.reset();
+      V.eye(A.n_cols, A.n_cols);
       return true;
       }
     
@@ -2031,7 +2105,7 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T>& S, Mat< std::complex<T> >& V, con
     arma_ignore(S);
     arma_ignore(V);
     arma_ignore(X);
-    arma_stop("svd(): use of LAPACK needs to enabled");
+    arma_stop("svd(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -2045,14 +2119,13 @@ auxlib::svd(Mat< std::complex<T> >& U, Col<T>& S, Mat< std::complex<T> >& V, con
 template<typename eT>
 inline
 bool
-auxlib::solve(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
+auxlib::solve(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B, const bool slow)
   {
   arma_extra_debug_sigprint();
   
   if(A.is_empty() || B.is_empty())
     {
-    out.reset();
-    A.reset();
+    out.zeros(A.n_cols, B.n_cols);
     return true;
     }
   else
@@ -2061,7 +2134,7 @@ auxlib::solve(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
     
     bool status = false;
     
-    if(A_n_rows <= 4)
+    if( (A_n_rows <= 4) && (slow == false) )
       {
       Mat<eT> A_inv;
       
@@ -2097,7 +2170,7 @@ auxlib::solve(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
         }
       #else
         {
-        arma_stop("solve(): use of LAPACK needs to enabled");
+        arma_stop("solve(): use of LAPACK needs to be enabled");
         return false;
         }
       #endif
@@ -2122,8 +2195,7 @@ auxlib::solve_od(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
     {
     if(A.is_empty() || B.is_empty())
       {
-      out.reset();
-      A.reset();
+      out.zeros(A.n_cols, B.n_cols);
       return true;
       }
     
@@ -2170,7 +2242,7 @@ auxlib::solve_od(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
     arma_ignore(out);
     arma_ignore(A);
     arma_ignore(B);
-    arma_stop("solve(): use of LAPACK needs to enabled");
+    arma_stop("solve(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -2191,8 +2263,7 @@ auxlib::solve_ud(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
     {
     if(A.is_empty() || B.is_empty())
       {
-      out.reset();
-      A.reset();
+      out.zeros(A.n_cols, B.n_cols);
       return true;
       }
     
@@ -2253,7 +2324,7 @@ auxlib::solve_ud(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B)
     arma_ignore(out);
     arma_ignore(A);
     arma_ignore(B);
-    arma_stop("solve(): use of LAPACK needs to enabled");
+    arma_stop("solve(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -2275,7 +2346,7 @@ auxlib::solve_tr(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const u32 lay
     {
     if(A.is_empty() || B.is_empty())
       {
-      out.reset();
+      out.zeros(A.n_cols, B.n_cols);
       return true;
       }
     
@@ -2298,7 +2369,7 @@ auxlib::solve_tr(Mat<eT>& out, const Mat<eT>& A, const Mat<eT>& B, const u32 lay
     arma_ignore(A);
     arma_ignore(B);
     arma_ignore(layout);
-    arma_stop("solve(): use of LAPACK needs to enabled");
+    arma_stop("solve(): use of LAPACK needs to be enabled");
     return false;
     }
   #endif
@@ -2487,12 +2558,6 @@ auxlib::syl(Mat<eT>& X, const Mat<eT>& A, const Mat<eT>& B, const Mat<eT>& C)
     }
   #endif
   
-  
-  if(status == false)
-    {
-    arma_print("syl(): equation appears to be singular" );
-    X.reset();
-    }
   
   return status;
   }

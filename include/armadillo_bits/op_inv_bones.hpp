@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -22,14 +22,13 @@ class op_inv
   public:
   
   template<typename eT>
-  inline static void apply(Mat<eT>& out, const Mat<eT>& A);
+  inline static void apply(Mat<eT>& out, const Mat<eT>& A, const bool slow = false);
   
   template<typename T1>
   inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& in);
-
+  
   template<typename T1>
   inline static void apply_diag(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type, T1>& X);
-
   };
 
 
@@ -45,13 +44,13 @@ class op_inv_tr
 
 
 
-//! 'invert matrix' operation (positive definite symmetric matrices)
-class op_inv_sym
+//! 'invert matrix' operation (symmetric positive definite matrices)
+class op_inv_sympd
   {
   public:
   
   template<typename T1>
-  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_sym>& in);
+  inline static void apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_sympd>& in);
   };
 
 

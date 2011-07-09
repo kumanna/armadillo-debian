@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -19,7 +19,7 @@
 template<typename eT>
 inline
 void
-op_inv::apply(Mat<eT>& out, const Mat<eT>& A)
+op_inv::apply(Mat<eT>& out, const Mat<eT>& A, const bool slow)
   {
   arma_extra_debug_sigprint();
   
@@ -27,7 +27,13 @@ op_inv::apply(Mat<eT>& out, const Mat<eT>& A)
   // - auxlib::inv() copies A to out before inversion
   // - for 2x2 and 3x3 matrices the code is alias safe
   
-  auxlib::inv(out, A);
+  bool status = auxlib::inv(out, A, slow);
+  
+  if(status == false)
+    {
+    out.reset();
+    arma_bad("inv(): matrix appears to be singular");
+    }
   }
 
 
@@ -50,7 +56,15 @@ op_inv::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& X)
     }
   else
     {
-    auxlib::inv(out, X.m);
+    const u32 mode = X.aux_u32_a;
+    
+    const bool status = (mode == 0) ? auxlib::inv(out, X.m) : auxlib::inv(out, X.m, true);
+    
+    if(status == false)
+      {
+      out.reset();
+      arma_bad("inv(): matrix appears to be singular");
+      }
     }
   }
 
@@ -92,20 +106,32 @@ op_inv_tr::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_tr>& X)
   {
   arma_extra_debug_sigprint();
   
-  auxlib::inv_tr(out, X.m, X.aux_u32_a);
+  const bool status = auxlib::inv_tr(out, X.m, X.aux_u32_a);
+  
+  if(status == false)
+    {
+    out.reset();
+    arma_bad("inv(): matrix appears to be singular");
+    }
   }
 
 
 
-//! inverse of T1 (symmetric matrices)
+//! inverse of T1 (symmetric positive definite matrices)
 template<typename T1>
 inline
 void
-op_inv_sym::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_sym>& X)
+op_inv_sympd::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_sympd>& X)
   {
   arma_extra_debug_sigprint();
   
-  auxlib::inv_sym(out, X.m, X.aux_u32_a);
+  const bool status = auxlib::inv_sympd(out, X.m, X.aux_u32_a);
+  
+  if(status == false)
+    {
+    out.reset();
+    arma_bad("inv(): matrix appears to be singular");
+    }
   }
 
 
