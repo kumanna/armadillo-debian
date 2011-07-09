@@ -1,3 +1,11 @@
+armadillo (2.0.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #632616)
+  * Update build rule to comply with lintian recommendations (provide
+    build-arch and build-indep)
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 09 Jul 2011 09:48:25 -0500
+
 armadillo (1.99.2+dfsg-1) unstable; urgency=low
 
   * New upstream release
