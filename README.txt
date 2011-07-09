@@ -411,6 +411,7 @@ Main developers:
 - Conrad Sanderson - http://itee.uq.edu.au/~conrad/
 - Ian Cullinan
 - Dimitrios Bouzas
+- Stanislav Funiak
 
 Contributors:
 - Eric R. Anderson
@@ -424,7 +425,6 @@ Contributors:
 - Chris Davey
 - Dirk Eddelbuettel
 - Romain Francois
-- Stanislav Funiak
 - Charles Gretton
 - Benjamin Herzog
 - Edmund Highcock

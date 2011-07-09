@@ -36,10 +36,10 @@ class auxlib
   // inv
   
   template<typename eT, typename T1>
-  inline static bool inv(Mat<eT>& out, const Base<eT,T1>& X);
+  inline static bool inv(Mat<eT>& out, const Base<eT,T1>& X, const bool slow = false);
   
   template<typename eT>
-  inline static bool inv(Mat<eT>& out, const Mat<eT>& A);
+  inline static bool inv(Mat<eT>& out, const Mat<eT>& A, const bool slow = false);
   
   template<typename eT>
   inline static bool inv_noalias_tinymat(Mat<eT>& out, const Mat<eT>& X, const u32 N);
@@ -66,10 +66,17 @@ class auxlib
   
   
   //
+  // inv_sympd
+  
+  template<typename eT, typename T1>
+  inline static bool inv_sympd(Mat<eT>& out, const Base<eT,T1>& X, const u32 layout);
+  
+  
+  //
   // det
   
   template<typename eT, typename T1>
-  inline static eT det(const Base<eT,T1>& X);
+  inline static eT det(const Base<eT,T1>& X, const bool slow = false);
   
   template<typename eT>
   inline static eT det_tinymat(const Mat<eT>& X, const u32 N);
@@ -82,20 +89,20 @@ class auxlib
   // log_det
   
   template<typename eT, typename T1>
-  inline static void log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const Base<eT,T1>& X);
+  inline static bool log_det(eT& out_val, typename get_pod_type<eT>::result& out_sign, const Base<eT,T1>& X);
   
   
   //
   // lu
   
   template<typename eT, typename T1>
-  inline static void lu(Mat<eT>& L, Mat<eT>& U, podarray<blas_int>& ipiv, const Base<eT,T1>& X);
+  inline static bool lu(Mat<eT>& L, Mat<eT>& U, podarray<blas_int>& ipiv, const Base<eT,T1>& X);
   
   template<typename eT, typename T1>
-  inline static void lu(Mat<eT>& L, Mat<eT>& U, Mat<eT>& P, const Base<eT,T1>& X);
+  inline static bool lu(Mat<eT>& L, Mat<eT>& U, Mat<eT>& P, const Base<eT,T1>& X);
   
   template<typename eT, typename T1>
-  inline static void lu(Mat<eT>& L, Mat<eT>& U, const Base<eT,T1>& X);
+  inline static bool lu(Mat<eT>& L, Mat<eT>& U, const Base<eT,T1>& X);
   
   
   //
@@ -160,7 +167,7 @@ class auxlib
   // solve
   
   template<typename eT>
-  inline static bool solve   (Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B);
+  inline static bool solve   (Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B, const bool slow = false);
   
   template<typename eT>
   inline static bool solve_od(Mat<eT>& out, Mat<eT>& A, const Mat<eT>& B);

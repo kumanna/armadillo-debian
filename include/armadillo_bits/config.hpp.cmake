@@ -57,6 +57,9 @@
 #cmakedefine ARMA_USE_BOOST
 #cmakedefine ARMA_USE_BOOST_DATE
 
+#define ARMA_PRINT_LOGIC_ERRORS
+#define ARMA_PRINT_RUNTIME_ERRORS
+
 #cmakedefine ARMA_HAVE_STD_ISFINITE
 #cmakedefine ARMA_HAVE_STD_ISINF
 #cmakedefine ARMA_HAVE_STD_ISNAN
@@ -67,3 +70,8 @@
 
 // #define ARMA_EXTRA_DEBUG
 // #define ARMA_NO_DEBUG
+
+#if defined(ARMA_DONT_USE_ATLAS)
+  #undef ARMA_USE_ATLAS
+  #undef ARMA_ATLAS_INCLUDE_DIR
+#endif
