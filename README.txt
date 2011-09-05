@@ -395,10 +395,6 @@ program source (as well as the bug description) to the
 developers. The developers' contact details are available at:
   http://arma.sourceforge.net/contact.html
 
-Alternatively, you can post the source and bug description
-on Armadillo's discussion board:
-  http://sourceforge.net/apps/phpbb/arma/
-
 
 
 === 8: Credits ===
@@ -425,6 +421,7 @@ Contributors:
 - Chris Davey
 - Dirk Eddelbuettel
 - Romain Francois
+- Piotr Gawron
 - Charles Gretton
 - Benjamin Herzog
 - Edmund Highcock
@@ -440,6 +437,7 @@ Contributors:
 - Vikas Reddy
 - Ola Rinta-Koski
 - James Sanders
+- Alexander Scherbatey
 - Gerhard Schreiber
 - Shane Stainsby
 - Petter Strandmark
