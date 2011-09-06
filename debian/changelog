@@ -1,3 +1,11 @@
+armadillo (2.2.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * This update fixes a multiplication issues with some functions
+    operating on complex numbers (Closes: #640474).
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 05 Sep 2011 17:04:00 -0500
+
 armadillo (2.0.1+dfsg-1) unstable; urgency=medium
 
   * New upstream release (Closes: #632616)
