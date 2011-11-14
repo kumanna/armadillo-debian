@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
-// Copyright (C) 2008-2010 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2011 Conrad Sanderson
 // 
 // This file is part of the Armadillo C++ library.
 // It is provided without any warranty of fitness
@@ -20,14 +20,13 @@
 template<typename elem_type, typename derived>
 struct BaseCube
   {
+  arma_inline const derived& get_ref() const;
   
-  arma_inline
-  const derived&
-  get_ref() const
-    {
-    return static_cast<const derived&>(*this);
-    }
-
+  inline void print(const std::string extra_text = "") const;
+  inline void print(std::ostream& user_stream, const std::string extra_text = "") const;
+  
+  inline void raw_print(const std::string extra_text = "") const;
+  inline void raw_print(std::ostream& user_stream, const std::string extra_text = "") const;
   };
 
 
