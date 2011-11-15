@@ -17,25 +17,25 @@
 
 
 arma_inline
-const Gen<mat::elem_type, gen_ones_diag>
-eye(const uword n_rows, const uword n_cols)
+const eOp<mat, eop_ones_diag>
+eye(const u32 n_rows, const u32 n_cols)
   {
   arma_extra_debug_sigprint();
   
-  return Gen<mat::elem_type, gen_ones_diag>(n_rows, n_cols);
+  return eOp<mat, eop_ones_diag>(n_rows, n_cols);
   }
 
 
 
 template<typename mat_type>
 arma_inline
-const Gen<typename mat_type::elem_type, gen_ones_diag>
-eye(const uword n_rows, const uword n_cols, const typename arma_Mat_Col_Row_only<mat_type>::result* junk = 0)
+const eOp<mat_type, eop_ones_diag>
+eye(const u32 n_rows, const u32 n_cols, const typename arma_Mat_Col_Row_only<mat_type>::result* junk = 0)
   {
   arma_extra_debug_sigprint();
   arma_ignore(junk);
   
-  return Gen<typename mat_type::elem_type, gen_ones_diag>(n_rows, n_cols);
+  return eOp<mat_type, eop_ones_diag>(n_rows, n_cols);
   }
 
 

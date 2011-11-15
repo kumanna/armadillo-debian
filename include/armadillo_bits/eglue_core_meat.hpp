@@ -60,7 +60,7 @@ class eglue_schur : public eglue_core<eglue_schur>
 
 #define arma_applier_1(operatorA, operatorB) \
   {\
-  uword i,j;\
+  u32 i,j;\
   \
   for(i=0, j=1; j<n_elem; i+=2, j+=2)\
     {\
@@ -84,11 +84,11 @@ class eglue_schur : public eglue_core<eglue_schur>
 
 #define arma_applier_2(operatorA, operatorB) \
   {\
-  uword count = 0;\
+  u32 count = 0;\
   \
-  for(uword col=0; col<n_cols; ++col)\
+  for(u32 col=0; col<n_cols; ++col)\
     {\
-    uword i,j;\
+    u32 i,j;\
     \
     for(i=0, j=1; j<n_rows; i+=2, j+=2, count+=2)\
       {\
@@ -114,13 +114,13 @@ class eglue_schur : public eglue_core<eglue_schur>
 
 #define arma_applier_3(operatorA, operatorB) \
   {\
-  uword count = 0;\
+  u32 count = 0;\
   \
-  for(uword slice=0; slice<n_slices; ++slice)\
+  for(u32 slice=0; slice<n_slices; ++slice)\
     {\
-    for(uword col=0; col<n_cols; ++col)\
+    for(u32 col=0; col<n_cols; ++col)\
       {\
-      uword i,j;\
+      u32 i,j;\
       \
       for(i=0, j=1; j<n_rows; i+=2, j+=2, count+=2)\
         {\
@@ -163,14 +163,16 @@ eglue_core<eglue_type>::apply(Mat<typename T1::elem_type>& out, const eGlue<T1, 
   
   const bool prefer_at_accessor = (Proxy<T1>::prefer_at_accessor || Proxy<T2>::prefer_at_accessor);
   
-  // NOTE: we're assuming that the matrix has already been set to the correct size and there is no aliasing;
-  // size setting and alias checking is done by either the Mat contructor or operator=()
+  const u32 n_rows = x.get_n_rows();
+  const u32 n_cols = x.get_n_cols();
+  
+  out.set_size(n_rows, n_cols);
   
   eT* out_mem = out.memptr();
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem = out.n_elem;
+    const u32 n_elem = out.n_elem;
     
     typename Proxy<T1>::ea_type P1 = x.P1.get_ea();
     typename Proxy<T2>::ea_type P2 = x.P2.get_ea();
@@ -182,9 +184,6 @@ eglue_core<eglue_type>::apply(Mat<typename T1::elem_type>& out, const eGlue<T1, 
     }
   else
     {
-    const uword n_rows = out.n_rows;
-    const uword n_cols = out.n_cols;
-  
     const Proxy<T1>& P1 = x.P1;
     const Proxy<T2>& P2 = x.P2;
     
@@ -216,7 +215,7 @@ eglue_core<eglue_type>::apply_inplace_plus(Mat<typename T1::elem_type>& out, con
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem = out.n_elem;
+    const u32 n_elem = out.n_elem;
     
     typename Proxy<T1>::ea_type P1 = x.P1.get_ea();
     typename Proxy<T2>::ea_type P2 = x.P2.get_ea();
@@ -228,8 +227,8 @@ eglue_core<eglue_type>::apply_inplace_plus(Mat<typename T1::elem_type>& out, con
     }
   else
     {
-    const uword n_rows = out.n_rows;
-    const uword n_cols = out.n_cols;
+    const u32 n_rows = out.n_rows;
+    const u32 n_cols = out.n_cols;
     
     const Proxy<T1>& P1 = x.P1;
     const Proxy<T2>& P2 = x.P2;
@@ -262,7 +261,7 @@ eglue_core<eglue_type>::apply_inplace_minus(Mat<typename T1::elem_type>& out, co
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem = out.n_elem;
+    const u32 n_elem = out.n_elem;
     
     typename Proxy<T1>::ea_type P1 = x.P1.get_ea();
     typename Proxy<T2>::ea_type P2 = x.P2.get_ea();
@@ -274,8 +273,8 @@ eglue_core<eglue_type>::apply_inplace_minus(Mat<typename T1::elem_type>& out, co
     }
   else
     {
-    const uword n_rows = out.n_rows;
-    const uword n_cols = out.n_cols;
+    const u32 n_rows = out.n_rows;
+    const u32 n_cols = out.n_cols;
     
     const Proxy<T1>& P1 = x.P1;
     const Proxy<T2>& P2 = x.P2;
@@ -308,7 +307,7 @@ eglue_core<eglue_type>::apply_inplace_schur(Mat<typename T1::elem_type>& out, co
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem = out.n_elem;
+    const u32 n_elem = out.n_elem;
     
     typename Proxy<T1>::ea_type P1 = x.P1.get_ea();
     typename Proxy<T2>::ea_type P2 = x.P2.get_ea();
@@ -320,8 +319,8 @@ eglue_core<eglue_type>::apply_inplace_schur(Mat<typename T1::elem_type>& out, co
     }
   else
     {
-    const uword n_rows = out.n_rows;
-    const uword n_cols = out.n_cols;
+    const u32 n_rows = out.n_rows;
+    const u32 n_cols = out.n_cols;
     
     const Proxy<T1>& P1 = x.P1;
     const Proxy<T2>& P2 = x.P2;
@@ -354,7 +353,7 @@ eglue_core<eglue_type>::apply_inplace_div(Mat<typename T1::elem_type>& out, cons
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem = out.n_elem;
+    const u32 n_elem = out.n_elem;
     
     typename Proxy<T1>::ea_type P1 = x.P1.get_ea();
     typename Proxy<T2>::ea_type P2 = x.P2.get_ea();
@@ -366,8 +365,8 @@ eglue_core<eglue_type>::apply_inplace_div(Mat<typename T1::elem_type>& out, cons
     }
   else
     {
-    const uword n_rows = out.n_rows;
-    const uword n_cols = out.n_cols;
+    const u32 n_rows = out.n_rows;
+    const u32 n_cols = out.n_cols;
     
     const Proxy<T1>& P1 = x.P1;
     const Proxy<T2>& P2 = x.P2;
@@ -399,15 +398,17 @@ eglue_core<eglue_type>::apply(Cube<typename T1::elem_type>& out, const eGlueCube
   
   const bool prefer_at_accessor = (ProxyCube<T1>::prefer_at_accessor || ProxyCube<T2>::prefer_at_accessor);
   
-  // NOTE: we're assuming that the cube has already been set to the correct size and there is no aliasing;
-  // size setting and alias checking is done by either the Cube contructor or operator=()
+  const u32 n_rows   = x.get_n_rows();
+  const u32 n_cols   = x.get_n_cols();
+  const u32 n_slices = x.get_n_slices();
   
+  out.set_size(n_rows, n_cols, n_slices);
   
   eT* out_mem = out.memptr();
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem = out.n_elem;
+    const u32 n_elem = out.n_elem;
     
     typename ProxyCube<T1>::ea_type P1 = x.P1.get_ea();
     typename ProxyCube<T2>::ea_type P2 = x.P2.get_ea();
@@ -419,10 +420,6 @@ eglue_core<eglue_type>::apply(Cube<typename T1::elem_type>& out, const eGlueCube
     }
   else
     {
-    const uword n_rows   = x.get_n_rows();
-    const uword n_cols   = x.get_n_cols();
-    const uword n_slices = x.get_n_slices();
-  
     const ProxyCube<T1>& P1 = x.P1;
     const ProxyCube<T2>& P2 = x.P2;
     
@@ -444,9 +441,9 @@ eglue_core<eglue_type>::apply_inplace_plus(Cube<typename T1::elem_type>& out, co
   {
   arma_extra_debug_sigprint();
   
-  const uword n_rows   = x.get_n_rows();
-  const uword n_cols   = x.get_n_cols();
-  const uword n_slices = x.get_n_slices();
+  const u32 n_rows   = x.get_n_rows();
+  const u32 n_cols   = x.get_n_cols();
+  const u32 n_slices = x.get_n_slices();
   
   arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, n_rows, n_cols, n_slices, "addition");
   
@@ -458,7 +455,7 @@ eglue_core<eglue_type>::apply_inplace_plus(Cube<typename T1::elem_type>& out, co
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem  = out.n_elem;
+    const u32 n_elem  = out.n_elem;
     
     typename ProxyCube<T1>::ea_type P1 = x.P1.get_ea();
     typename ProxyCube<T2>::ea_type P2 = x.P2.get_ea();
@@ -491,9 +488,9 @@ eglue_core<eglue_type>::apply_inplace_minus(Cube<typename T1::elem_type>& out, c
   {
   arma_extra_debug_sigprint();
   
-  const uword n_rows   = x.get_n_rows();
-  const uword n_cols   = x.get_n_cols();
-  const uword n_slices = x.get_n_slices();
+  const u32 n_rows   = x.get_n_rows();
+  const u32 n_cols   = x.get_n_cols();
+  const u32 n_slices = x.get_n_slices();
   
   arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, n_rows, n_cols, n_slices, "subtraction");
   
@@ -505,7 +502,7 @@ eglue_core<eglue_type>::apply_inplace_minus(Cube<typename T1::elem_type>& out, c
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem  = out.n_elem;
+    const u32 n_elem  = out.n_elem;
     
     typename ProxyCube<T1>::ea_type P1 = x.P1.get_ea();
     typename ProxyCube<T2>::ea_type P2 = x.P2.get_ea();
@@ -538,9 +535,9 @@ eglue_core<eglue_type>::apply_inplace_schur(Cube<typename T1::elem_type>& out, c
   {
   arma_extra_debug_sigprint();
   
-  const uword n_rows   = x.get_n_rows();
-  const uword n_cols   = x.get_n_cols();
-  const uword n_slices = x.get_n_slices();
+  const u32 n_rows   = x.get_n_rows();
+  const u32 n_cols   = x.get_n_cols();
+  const u32 n_slices = x.get_n_slices();
   
   arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, n_rows, n_cols, n_slices, "element-wise multiplication");
   
@@ -552,7 +549,7 @@ eglue_core<eglue_type>::apply_inplace_schur(Cube<typename T1::elem_type>& out, c
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem  = out.n_elem;
+    const u32 n_elem  = out.n_elem;
     
     typename ProxyCube<T1>::ea_type P1 = x.P1.get_ea();
     typename ProxyCube<T2>::ea_type P2 = x.P2.get_ea();
@@ -585,9 +582,9 @@ eglue_core<eglue_type>::apply_inplace_div(Cube<typename T1::elem_type>& out, con
   {
   arma_extra_debug_sigprint();
   
-  const uword n_rows   = x.get_n_rows();
-  const uword n_cols   = x.get_n_cols();
-  const uword n_slices = x.get_n_slices();
+  const u32 n_rows   = x.get_n_rows();
+  const u32 n_cols   = x.get_n_cols();
+  const u32 n_slices = x.get_n_slices();
   
   arma_debug_assert_same_size(out.n_rows, out.n_cols, out.n_slices, n_rows, n_cols, n_slices, "element-wise division");
   
@@ -599,7 +596,7 @@ eglue_core<eglue_type>::apply_inplace_div(Cube<typename T1::elem_type>& out, con
   
   if(prefer_at_accessor == false)
     {
-    const uword n_elem  = out.n_elem;
+    const u32 n_elem  = out.n_elem;
     
     typename ProxyCube<T1>::ea_type P1 = x.P1.get_ea();
     typename ProxyCube<T2>::ea_type P2 = x.P2.get_ea();

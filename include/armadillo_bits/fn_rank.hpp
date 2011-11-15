@@ -21,7 +21,7 @@
 template<typename T1>
 inline
 arma_warn_unused
-uword
+u32
 rank
   (
   const Base<typename T1::elem_type,T1>& X,
@@ -35,12 +35,12 @@ rank
   typedef typename T1::elem_type eT;
   typedef typename T1::pod_type   T;
   
-  uword    X_n_rows;
-  uword    X_n_cols;
+  u32    X_n_rows;
+  u32    X_n_cols;
   Col<T> s;
   
   const bool status = auxlib::svd(s, X, X_n_rows, X_n_cols);
-  const uword  n_elem = s.n_elem;
+  const u32  n_elem = s.n_elem;
   
   if(status == true)
     {
@@ -52,9 +52,9 @@ rank
     // count non zero valued elements in s
     
     const T*  s_mem  = s.memptr();
-          uword count  = 0;
+          u32 count  = 0;
     
-    for(uword i=0; i<n_elem; ++i)
+    for(u32 i=0; i<n_elem; ++i)
       {
       if(s_mem[i] > tol)
         {
@@ -68,7 +68,7 @@ rank
     {
     arma_bad("rank(): failed to converge");
     
-    return uword(0);
+    return u32(0);
     }
   }
 

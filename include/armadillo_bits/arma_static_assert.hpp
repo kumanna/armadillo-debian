@@ -11,28 +11,47 @@
 // (see http://www.opensource.org/licenses for more info)
 
 
-//! \addtogroup arma_static_check
+//! \addtogroup arma_static_assert
 //! @{
 
 
 
-template<bool ERROR___INCORRECT_OR_UNSUPPORTED_TYPE>
-struct arma_type_check_cxx1998
+//! Classes for primitive compile time assertions and checks (until the next version of C++)
+template<bool x>
+struct arma_static_assert
+  {
+  static const char
+  static_error[  x ? +1 : -1 ];
+  };
+
+
+
+template<bool x>
+struct arma_static_check
+  {
+  static const char
+  static_error[  x ? -1 : +1 ];
+  };
+
+
+
+template<bool val>
+struct arma_type_check
   {
   arma_inline
   static
   void
   apply()
     {
-    static const char
-    junk[ ERROR___INCORRECT_OR_UNSUPPORTED_TYPE ? -1 : +1 ];
+    arma_static_check<val> ERROR___INCORRECT_TYPE;
+    ERROR___INCORRECT_TYPE = ERROR___INCORRECT_TYPE;
     }
   };
 
 
 
 template<>
-struct arma_type_check_cxx1998<false>
+struct arma_type_check<false>
   {
   arma_inline
   static
@@ -41,23 +60,6 @@ struct arma_type_check_cxx1998<false>
     {
     }
   };
-
-
-
-#if !defined(ARMA_USE_CXX11)
-
-  #define arma_static_check(condition, message)  static const char message[ (condition) ? -1 : +1 ]
-  
-  #define arma_type_check(condition)  arma_type_check_cxx1998<condition>::apply()
-
-#else
-
-  #define arma_static_check(condition, message)  static_assert( !(condition), #message )
-  
-  #define arma_type_check(condition)  static_assert( !(condition), "error: incorrect or unsupported type" )
-
-#endif
-
 
 
 //! @}
