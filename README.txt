@@ -20,11 +20,13 @@
 
 5: Documentation / Reference Manual
 
-6: FAQs and Bug Reports
+6: Using Armadillo with IT++
 
-7: Credits
+7: FAQs and Bug Reports
 
-8: License
+8: Credits
+
+9: License
 
 
 
@@ -375,7 +377,15 @@ classes and functions, with snippets of example code.
 
 
 
-=== 6: FAQs and Bug Reports ===
+=== 6: Using Armadillo with IT++ ===
+
+If you wish to use the IT++ library in conjunction with Armadillo,
+use #include "armadillo_itpp" instead of #include "armadillo"
+in your code. See also the "examples/example_itpp.cpp" file.
+
+
+
+=== 7: FAQs and Bug Reports ===
 
 Answers to Frequently Asked Questions (FAQs) can be found at:
   http://arma.sourceforge.net/faq.html
@@ -394,7 +404,7 @@ developers. The developers' contact details are available at:
 
 
 
-=== 7: Credits ===
+=== 8: Credits ===
 
 Main sponsoring organisation:
 - NICTA
@@ -445,7 +455,7 @@ Contributors:
 
 
 
-=== 8: License ===
+=== 9: License ===
 
 Please see the "LICENSE.txt" file.
 

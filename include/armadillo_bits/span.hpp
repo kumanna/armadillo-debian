@@ -36,20 +36,24 @@ class span : public span_base<>
   {
   public:
 
-  uword a;
-  uword b;
-  bool  whole;
+  u32  a;
+  u32  b;
+  bool whole;
   
   inline
   span()
-    : whole(true)
+    : a(a)
+    , b(b)
+    , whole(true)
     {
     }
   
   
   inline
   span(const span_alt&)
-    : whole(true)
+    : a(a)
+    , b(b)
+    , whole(true)
     {
     }
   
@@ -61,7 +65,7 @@ class span : public span_base<>
   // as such, removal of "explicit" needs thorough testing.
   inline
   explicit
-  span(const uword in_a)
+  span(const u32 in_a)
     : a(in_a)
     , b(in_a)
     , whole(false)
@@ -69,7 +73,7 @@ class span : public span_base<>
     }
   
   inline
-  span(const uword in_a, const uword in_b)
+  span(const u32 in_a, const u32 in_b)
     : a(in_a)
     , b(in_b)
     , whole(false)

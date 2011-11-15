@@ -11,27 +11,28 @@
 // (see http://www.opensource.org/licenses for more info)
 
 
-//! \addtogroup op_diagvec
+//! \addtogroup Base
 //! @{
 
 
 
-template<typename T1>
-inline
-void
-op_diagvec::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagvec>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  typedef typename T1::elem_type eT;
-  
-  const s32 id = (X.aux_u32_b > 0) ? -s32(X.aux_u32_a) : s32(X.aux_u32_a);
-  
-  const unwrap_check<T1> tmp(X.m, out);
-  const Mat<eT>& A     = tmp.M;
+//! Class for static polymorphism, modelled after the "Curiously Recurring Template Pattern" (CRTP).
+//! Used for type-safe downcasting in functions that restrict their input(s) to be classes that are
+//! derived from Base (e.g. Mat, Op, Glue, diagview, subview).
+//! A Base object can be converted to a Mat object by the unwrap class.
 
-  out = A.diag(id);
-  }
+template<typename elem_type, typename derived>
+struct Base
+  {
+  
+  arma_inline
+  const derived&
+  get_ref() const
+    {
+    return static_cast<const derived&>(*this);
+    }
+
+  };
 
 
 

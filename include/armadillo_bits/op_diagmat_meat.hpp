@@ -32,7 +32,7 @@ op_diagmat::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat>& X)
     {
     // generate a diagonal matrix out of a vector
     
-    const uword N     = A.n_elem;
+    const u32 N     = A.n_elem;
     const eT* A_mem = A.memptr();
     
     if(&out != &A)
@@ -40,7 +40,7 @@ op_diagmat::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat>& X)
       // no aliasing
       out.zeros(N,N);
       
-      for(uword i=0; i<N; ++i)
+      for(u32 i=0; i<N; ++i)
         {
         out.at(i,i) = A_mem[i];
         }
@@ -55,7 +55,7 @@ op_diagmat::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat>& X)
       
       out.zeros(N,N);
       
-      for(uword i=0; i<N; ++i)
+      for(u32 i=0; i<N; ++i)
         {
         out.at(i,i) = tmp_mem[i];
         }
@@ -67,7 +67,7 @@ op_diagmat::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat>& X)
     
     arma_debug_check( (A.is_square() == false), "diagmat(): given matrix is not square" );
     
-    const uword N = A.n_rows;
+    const u32 N = A.n_rows;
     
     if(&out != &A)
       {
@@ -75,7 +75,7 @@ op_diagmat::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat>& X)
       
       out.zeros(N,N);
       
-      for(uword i=0; i<N; ++i)
+      for(u32 i=0; i<N; ++i)
         {
         out.at(i,i) = A.at(i,i);
         }
@@ -84,7 +84,7 @@ op_diagmat::apply(Mat<typename T1::elem_type>& out, const Op<T1, op_diagmat>& X)
       {
       // aliasing
       
-      for(uword i=0; i<N; ++i)
+      for(u32 i=0; i<N; ++i)
         {
         eT* colptr = out.colptr(i);
         
