@@ -1,3 +1,10 @@
+armadillo (1:2.3.92+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+  * This release fixes DSO linking quirks
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 30 Nov 2011 08:53:38 -0600
+
 armadillo (1:2.2.5+dfsg-1) unstable; urgency=low
 
   * New upstream release
