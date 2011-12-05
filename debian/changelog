@@ -1,3 +1,9 @@
+armadillo (1:2.4.0+dfsg-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 05 Dec 2011 00:38:14 -0600
+
 armadillo (1:2.3.92+dfsg-1) unstable; urgency=low
 
   * New upstream release
