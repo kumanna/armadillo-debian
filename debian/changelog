@@ -1,3 +1,9 @@
+armadillo (1:2.4.2+dfsg-2) unstable; urgency=low
+
+  * Add shlibs file to fix ABI breakage. (Closes: #651997)
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 22 Dec 2011 23:19:31 -0600
+
 armadillo (1:2.4.2+dfsg-1) unstable; urgency=low
 
   * New upstream release
