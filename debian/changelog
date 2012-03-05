@@ -1,8 +1,9 @@
 armadillo (1:2.4.4+dfsg-1) unstable; urgency=low
 
   * New upstream release
+  * Standards version is now 3.9.3 (no changees needed)
 
- -- Kumar Appaiah <akumar@debian.org>  Mon, 05 Mar 2012 13:25:30 -0600
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 05 Mar 2012 13:38:03 -0600
 
 armadillo (1:2.4.3+dfsg-1) unstable; urgency=low
 
