@@ -54,7 +54,7 @@ binary-arch: build install
 	dh_strip -a
 	dh_compress -a -X.cpp
 	dh_fixperms -a
-	dh_makeshlibs -plibarmadillo2 -V 'libarmadillo2 (>= 2.4.2)'
+	dh_makeshlibs -a
 	dh_installdeb -a
 	dh_shlibdeps -a
 	dh_gencontrol -a
