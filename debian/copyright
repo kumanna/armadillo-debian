@@ -70,6 +70,181 @@ Files in build_aux/cmake/Modules:
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+Files in include/:
+      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      Copyright (C) 2008-2012 Conrad Sanderson
+
+      include/armadillo_bits/auxlib_bones.hpp:
+	Copyright (C)      2009 Edmund Highcock
+	Copyright (C)      2011 James Sanders
+
+      include/armadillo_bits/auxlib_meat.hpp:
+	Copyright (C) 2009 Edmund Highcock
+	Copyright (C) 2011 James Sanders
+
+      include/armadillo_bits/auxlib_meat.hpp:
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/debug.hpp:
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/diskio_bones.hpp:
+	Copyright (C) 2009-2010 Ian Cullinan
+
+      include/armadillo_bits/diskio_meat.hpp:
+	Copyright (C) 2009-2010 Ian Cullinan
+
+      include/armadillo_bits/field_bones.hpp:
+	Copyright (C) 2009-2010 Ian Cullinan
+
+      include/armadillo_bits/field_meat.hpp:
+	Copyright (C) 2009-2010 Ian Cullinan
+
+      include/armadillo_bits/fn_cor.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_cov.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_eig.hpp:
+	Copyright (C) 2009 Edmund Highcock
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/fn_eps.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_histc.hpp:
+	Copyright (C) 2012 Boris Sabanin
+
+      include/armadillo_bits/fn_kron.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_pinv.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_princomp.hpp:
+	Copyright (C) 2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_rank.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_rank.hpp:
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/fn_repmat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_shuffle.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/fn_toeplitz.hpp:
+	Copyright (C) 2011 Alcatel Lucent
+	Copyright (C) 2011 Gerhard Schreiber
+
+      include/armadillo_bits/glue_cor_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/glue_cor_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/glue_cov_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/glue_cov_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/glue_histc_bones.hpp:
+	Copyright (C) 2012 Boris Sabanin
+
+      include/armadillo_bits/glue_histc_meat.hpp:
+	Copyright (C) 2012 Boris Sabanin
+
+      include/armadillo_bits/glue_kron_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/glue_kron_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/glue_toeplitz_bones.hpp:
+	Copyright (C) 2011 Alcatel Lucent
+	Copyright (C) 2011 Gerhard Schreiber
+
+      include/armadillo_bits/glue_toeplitz_meat.hpp:
+	Copyright (C) 2011 Alcatel Lucent
+	Copyright (C) 2011 Gerhard Schreiber
+
+      include/armadillo_bits/lapack_bones.hpp:
+	Copyright (C)      2009 Edmund Highcock
+	Copyright (C)      2011 James Sanders
+
+      include/armadillo_bits/lapack_wrapper.hpp:
+	Copyright (C)      2009 Edmund Highcock
+	Copyright (C)      2011 James Sanders
+
+      include/armadillo_bits/op_cor_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_cor_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_cov_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_cov_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_find_bones.hpp:
+	Copyright (C) 2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_find_meat.hpp:
+	Copyright (C) 2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_pinv_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_pinv_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/op_princomp_bones.hpp:
+	Copyright (C) 2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_princomp_meat.hpp:
+	Copyright (C) 2010 Dimitrios Bouzas
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/op_repmat_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_repmat_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_shuffle_bones.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_shuffle_meat.hpp:
+	Copyright (C) 2009-2010 Dimitrios Bouzas
+
+      include/armadillo_bits/op_trimat_bones.hpp:
+	Copyright (C) 2011 Ryan Curtin
+	Copyright (C) 2011      Ryan Curtin
+
+      include/armadillo_bits/span.hpp:
+	Copyright (C) 2011 Stanislav Funiak
+
+      include/armadillo_bits/subview_bones.hpp:
+	Copyright (C)      2011 James Sanders
+
+      include/armadillo_bits/subview_meat.hpp:
+	Copyright (C)      2011 James Sanders
+
+
+File CMakeLists.txt:
+     Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+     Copyright (C) 2008-2011 Conrad Sanderson
+     Copyright (C)      2011 Clement Creusot
+	
+
 The Debian packaging is © 2009-2011, Kumar Appaiah <akumar@debian.org>
 and is licensed under the GNU General Public License version 2. On
 Debian systems, the complete text of the GNU General Public License
