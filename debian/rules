@@ -9,6 +9,8 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
+export DEB_BUILD_HARDENING=1
+
 config.status: configure
 	dh_testdir
 	./configure
