@@ -19,7 +19,7 @@ tarball="$(readlink -f "$tarball")"
 tdir="$(mktemp -d)"
 trap '[ ! -d "$tdir" ] || rm -r "$tdir"' EXIT
 
-zcat "$tarball" | tar --wildcards --delete '*/examples/lib_win32' --delete '*/examples*_win32' --delete '*/docs/*pdf' > "$tdir/${fname/.gz}"
+zcat "$tarball" | tar --wildcards --delete '*/examples/lib_win32' --delete '*/examples*_win32' --delete '*/*pdf' > "$tdir/${fname/.gz}"
 #touch -m -r "$tarball" "$tdir/${fname/.gz}"
 gzip -9 "$tdir/${fname/.gz}"
 
