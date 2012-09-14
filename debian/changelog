@@ -1,8 +1,9 @@
-armadillo (1:3.4.0+dfsg-1) unstable; urgency=low
+armadillo (1:3.4.0+dfsg-1) experimental; urgency=low
 
   * New upstream release
+  * Fix location of documentation in new tarball
 
- -- Kumar Appaiah <akumar@debian.org>  Thu, 13 Sep 2012 19:13:15 -0500
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 13 Sep 2012 21:02:14 -0500
 
 armadillo (1:3.2.3+dfsg-1) unstable; urgency=low
 
