@@ -1,5 +1,11 @@
-# The generated "Makefile" from "Makefile.cmake" is only usable after
-# the Armadillo library has been configured and installed by CMake.
+# NOTE:
+# This file is mainly useful when doing a manual installation of Armadillo.
+# It is overwritten by CMake when doing an automatic installation.
+#
+# You may need to edit this file to reflect the type and capabilities
+# of your system.  The defaults are for a Linux system and will need
+# to be changed for other systems (e.g. Mac OS X).
+
 
 CXX=g++
 #CXX=g++-4.2
@@ -11,22 +17,40 @@ CXX=g++
 ## When using the Sun Studio compiler
 
 
-# flags configured by CMake
-ifeq (unix,macos)
-  EXTRA_LIB_FLAGS = -framework Accelerate
-endif
+ARMA_INCLUDE_FLAG = -I ../include
+## If you've installed Armadillo's headers manually, 
+## you may need to tell the compiler where they are.
+## For example, change ../include to /usr/local/include
+## and uncomment the above line.
+
+
+#BOOST_INCLUDE_FLAG = -I /usr/include
+## If you have Boost libraries, change /usr/include
+## to point to where they are installed and uncomment
+## the above line.
+
+
+#EXTRA_LIB_FLAGS = -llapack -lblas
+## The above line is an example of the extra libraries
+## that can be used by Armadillo. You will also need
+## to modify "include/armadillo_bits/config.hpp"
+## to indicate which extra libraries are present.
+## If you're using Mac OS, comment out the line and
+## instead use the line below.
+
+
+#EXTRA_LIB_FLAGS = -framework Accelerate
+## Uncomment the above line when using Mac OS
+## and modify "include/armadillo_bits/config.hpp"
+## to indicate that LAPACK and BLAS libraries
+## are present
+
 
 #EXTRA_LIB_FLAGS = -library=sunperf
 ## When using the Sun Studio compiler
 
 
-ifeq (true,true)
-  BOOST_INCLUDE_FLAG = -I /usr/include
-endif
-
-
-
-LIB_FLAGS = -larmadillo $(EXTRA_LIB_FLAGS)
+LIB_FLAGS = $(EXTRA_LIB_FLAGS)
 ## NOTE: on Ubuntu and Debian based systems you may need to add 
 ## -lgfortran to LIB_FLAGS
 
@@ -67,7 +91,7 @@ OPT = -O2
 #
 #
 
-CXXFLAGS = $(BOOST_INCLUDE_FLAG) $(DEBUG) $(FINAL) $(OPT) $(EXTRA_OPT)
+CXXFLAGS = $(ARMA_INCLUDE_FLAG) $(BOOST_INCLUDE_FLAG) $(DEBUG) $(FINAL) $(OPT) $(EXTRA_OPT) 
 
 all: example1 example2
 
