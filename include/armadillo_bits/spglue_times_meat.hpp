@@ -72,7 +72,8 @@ spglue_times::apply_noalias(SpMat<eT>& c, const SpProxy<T1>& pa, const SpProxy<T
   //SpMat<typename T1::elem_type> c(x_n_rows, y_n_cols); // Initializes col_ptrs to 0.
   c.zeros(x_n_rows, y_n_cols);
   
-  if( (pa.get_n_elem() == 0) || (pb.get_n_elem() == 0) )
+  //if( (pa.get_n_elem() == 0) || (pb.get_n_elem() == 0) )
+  if( (pa.get_n_nonzero() == 0) || (pb.get_n_nonzero() == 0) )
     {
     return;
     }
@@ -81,7 +82,8 @@ spglue_times::apply_noalias(SpMat<eT>& c, const SpProxy<T1>& pa, const SpProxy<T
   podarray<uword> index(x_n_rows);
   index.fill(x_n_rows); // Fill with invalid links.
   
-  typename SpProxy<T2>::const_iterator_type y_it = pb.begin();
+  typename SpProxy<T2>::const_iterator_type y_it  = pb.begin();
+  typename SpProxy<T2>::const_iterator_type y_end = pb.end();
 
   // SYMBMM: calculate column pointers for resultant matrix to obtain a good
   // upper bound on the number of nonzero elements.
@@ -89,10 +91,12 @@ spglue_times::apply_noalias(SpMat<eT>& c, const SpProxy<T1>& pa, const SpProxy<T
   uword last_ind = x_n_rows + 1;
   do
     {
+    const uword y_it_row = y_it.row();
+    
     // Look through the column that this point (*y_it) could affect.
-    typename SpProxy<T1>::const_iterator_type x_it = pa.begin_col(y_it.row());
-
-    while(x_it.col() == y_it.row())
+    typename SpProxy<T1>::const_iterator_type x_it = pa.begin_col(y_it_row);
+    
+    while(x_it.col() == y_it_row)
       {
       // A point at x(i, j) and y(j, k) implies a point at c(i, k).
       if(index[x_it.row()] == x_n_rows)
@@ -124,7 +128,7 @@ spglue_times::apply_noalias(SpMat<eT>& c, const SpProxy<T1>& pa, const SpProxy<T
         }
       }
     }
-  while(y_it.pos() < pb.get_n_nonzero());
+  while(y_it != y_end);
 
   // Accumulate column pointers.
   for(uword i = 0; i < c.n_cols; ++i)
