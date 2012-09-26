@@ -1,3 +1,9 @@
+armadillo (1:3.4.2+dfsg-2) experimental; urgency=low
+
+  * Add missing docs.html to the package.
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 26 Sep 2012 06:30:56 -0500
+
 armadillo (1:3.4.2+dfsg-1) experimental; urgency=low
 
   * New upstream release
