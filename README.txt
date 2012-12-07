@@ -427,7 +427,9 @@ Contributors:
 - Benoît Bayol
 - Salim Bcoin
 - Justin Bedo
+- Evan Bollig
 - Darius Braziunas
+- Filip Bruman
 - Ted Campbell
 - James Cline
 - Chris Cooper
@@ -447,6 +449,7 @@ Contributors:
 - David Lawrence
 - Jussi Lehtola
 - Jeremy Mason
+- Nikolay Mayorov
 - Carlos Mendes
 - Artem Novikov
 - Martin Orlob
