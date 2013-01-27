@@ -11,15 +11,11 @@ endif
 
 export DEB_BUILD_HARDENING=1
 
-config.status: configure
-	dh_testdir
-	./configure
-
 build: build-arch build-indep
 build-arch: build-stamp
 build-indep: build-stamp
 
-build-stamp: config.status
+build-stamp:
 	dh_testdir
 	cmake -D INSTALL_LIB_DIR=lib -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
 	$(MAKE)
@@ -42,7 +38,7 @@ clean:
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean --exclude ./src/include/armadillo_bits/dgemm_proto.hpp.orig
+	dh_prep --exclude ./src/include/armadillo_bits/dgemm_proto.hpp.orig
 	dh_installdirs
 	$(MAKE) prefix=$(CURDIR)/debian/tmp/usr install DESTDIR=debian/tmp
 
