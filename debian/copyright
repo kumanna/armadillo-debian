@@ -7,41 +7,442 @@ Upstream Author:
 
 	 Conrad Sanderson <conradsand ! ieee !org> (Change first `!' to `@', second one to `.')
 
+Main developers:
+- Conrad Sanderson - http://itee.uq.edu.au/~conrad/
+- Ryan Curtin
+- Ian Cullinan
+- Dimitrios Bouzas
+- Stanislav Funiak
+
 Contributors:
-	Justin Bedo
-	Ian Cullinan
-	Charles Gretton
-	Oka Kurniawan
-	Adam Piątyszek
-	Ola Rinta-Koski
-	Laurianne Sitbon
-	Yong Kang Wong
+- Matthew Amidon
+- Eric R. Anderson
+- Benoît Bayol
+- Salim Bcoin
+- Justin Bedo
+- Evan Bollig
+- Darius Braziunas
+- Filip Bruman
+- Ted Campbell
+- James Cline
+- Chris Cooper
+- Clement Creusot
+- Chris Davey
+- Dirk Eddelbuettel
+- Romain Francois
+- Michael McNeil Forbes
+- Piotr Gawron
+- Charles Gretton
+- Benjamin Herzog
+- Edmund Highcock
+- Friedrich Hust
+- Kshitij Kulshreshtha
+- Oka Kurniawan
+- Simen Kvaal
+- David Lawrence
+- Jussi Lehtola
+- Jeremy Mason
+- Nikolay Mayorov
+- Carlos Mendes
+- Artem Novikov
+- Martin Orlob
+- Ken Panici
+- Adam Piątyszek
+- Jayden Platell
+- Vikas Reddy
+- Ola Rinta-Koski
+- Boris Sabanin
+- James Sanders
+- Alexander Scherbatey
+- Gerhard Schreiber
+- Shane Stainsby
+- Petter Strandmark
+- Eric Jon Sundstrom
+- Paul Torfs
+- Simon Urbanek
+- Arnold Wiliem
+- Yong Kang Wong
+- Buote Xu
+- Sean Young
 
 Copyright:
 
-    Copyright © 2008 - 2011 NICTA
+This software is distributed under the terms of the Mozilla Public
+License version 2.0.
 
-This program is licensed under the GNU Lesser General Public License
-(LGPL), and you may use and redistribute the software under the LGPL
-version 3, or (at your option) any later version.
+Mozilla Public License Version 2.0
+==================================
 
-LGPL:
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public
-    License as published by the Free Software Foundation; either
-    version 3 of the License, or (at your option) any later version.
+1. Definitions
+--------------
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Library General Public License for more details.
+1.1. "Contributor"
+    means each individual or legal entity that creates, contributes to
+    the creation of, or owns Covered Software.
 
-    You should have received a copy of the GNU Library General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA  02110-1301 USA
+1.2. "Contributor Version"
+    means the combination of the Contributions of others (if any) used
+    by a Contributor and that particular Contributor's Contribution.
 
-On Debian systems, the complete text of the GNU Library General
-Public License can be found in `/usr/share/common-licenses/LGPL'.
+1.3. "Contribution"
+    means Covered Software of a particular Contributor.
+
+1.4. "Covered Software"
+    means Source Code Form to which the initial Contributor has attached
+    the notice in Exhibit A, the Executable Form of such Source Code
+    Form, and Modifications of such Source Code Form, in each case
+    including portions thereof.
+
+1.5. "Incompatible With Secondary Licenses"
+    means
+
+    (a) that the initial Contributor has attached the notice described
+        in Exhibit B to the Covered Software; or
+
+    (b) that the Covered Software was made available under the terms of
+        version 1.1 or earlier of the License, but not also under the
+        terms of a Secondary License.
+
+1.6. "Executable Form"
+    means any form of the work other than Source Code Form.
+
+1.7. "Larger Work"
+    means a work that combines Covered Software with other material, in 
+    a separate file or files, that is not Covered Software.
+
+1.8. "License"
+    means this document.
+
+1.9. "Licensable"
+    means having the right to grant, to the maximum extent possible,
+    whether at the time of the initial grant or subsequently, any and
+    all of the rights conveyed by this License.
+
+1.10. "Modifications"
+    means any of the following:
+
+    (a) any file in Source Code Form that results from an addition to,
+        deletion from, or modification of the contents of Covered
+        Software; or
+
+    (b) any new file in Source Code Form that contains any Covered
+        Software.
+
+1.11. "Patent Claims" of a Contributor
+    means any patent claim(s), including without limitation, method,
+    process, and apparatus claims, in any patent Licensable by such
+    Contributor that would be infringed, but for the grant of the
+    License, by the making, using, selling, offering for sale, having
+    made, import, or transfer of either its Contributions or its
+    Contributor Version.
+
+1.12. "Secondary License"
+    means either the GNU General Public License, Version 2.0, the GNU
+    Lesser General Public License, Version 2.1, the GNU Affero General
+    Public License, Version 3.0, or any later versions of those
+    licenses.
+
+1.13. "Source Code Form"
+    means the form of the work preferred for making modifications.
+
+1.14. "You" (or "Your")
+    means an individual or a legal entity exercising rights under this
+    License. For legal entities, "You" includes any entity that
+    controls, is controlled by, or is under common control with You. For
+    purposes of this definition, "control" means (a) the power, direct
+    or indirect, to cause the direction or management of such entity,
+    whether by contract or otherwise, or (b) ownership of more than
+    fifty percent (50%) of the outstanding shares or beneficial
+    ownership of such entity.
+
+2. License Grants and Conditions
+--------------------------------
+
+2.1. Grants
+
+Each Contributor hereby grants You a world-wide, royalty-free,
+non-exclusive license:
+
+(a) under intellectual property rights (other than patent or trademark)
+    Licensable by such Contributor to use, reproduce, make available,
+    modify, display, perform, distribute, and otherwise exploit its
+    Contributions, either on an unmodified basis, with Modifications, or
+    as part of a Larger Work; and
+
+(b) under Patent Claims of such Contributor to make, use, sell, offer
+    for sale, have made, import, and otherwise transfer either its
+    Contributions or its Contributor Version.
+
+2.2. Effective Date
+
+The licenses granted in Section 2.1 with respect to any Contribution
+become effective for each Contribution on the date the Contributor first
+distributes such Contribution.
+
+2.3. Limitations on Grant Scope
+
+The licenses granted in this Section 2 are the only rights granted under
+this License. No additional rights or licenses will be implied from the
+distribution or licensing of Covered Software under this License.
+Notwithstanding Section 2.1(b) above, no patent license is granted by a
+Contributor:
+
+(a) for any code that a Contributor has removed from Covered Software;
+    or
+
+(b) for infringements caused by: (i) Your and any other third party's
+    modifications of Covered Software, or (ii) the combination of its
+    Contributions with other software (except as part of its Contributor
+    Version); or
+
+(c) under Patent Claims infringed by Covered Software in the absence of
+    its Contributions.
+
+This License does not grant any rights in the trademarks, service marks,
+or logos of any Contributor (except as may be necessary to comply with
+the notice requirements in Section 3.4).
+
+2.4. Subsequent Licenses
+
+No Contributor makes additional grants as a result of Your choice to
+distribute the Covered Software under a subsequent version of this
+License (see Section 10.2) or under the terms of a Secondary License (if
+permitted under the terms of Section 3.3).
+
+2.5. Representation
+
+Each Contributor represents that the Contributor believes its
+Contributions are its original creation(s) or it has sufficient rights
+to grant the rights to its Contributions conveyed by this License.
+
+2.6. Fair Use
+
+This License is not intended to limit any rights You have under
+applicable copyright doctrines of fair use, fair dealing, or other
+equivalents.
+
+2.7. Conditions
+
+Sections 3.1, 3.2, 3.3, and 3.4 are conditions of the licenses granted
+in Section 2.1.
+
+3. Responsibilities
+-------------------
+
+3.1. Distribution of Source Form
+
+All distribution of Covered Software in Source Code Form, including any
+Modifications that You create or to which You contribute, must be under
+the terms of this License. You must inform recipients that the Source
+Code Form of the Covered Software is governed by the terms of this
+License, and how they can obtain a copy of this License. You may not
+attempt to alter or restrict the recipients' rights in the Source Code
+Form.
+
+3.2. Distribution of Executable Form
+
+If You distribute Covered Software in Executable Form then:
+
+(a) such Covered Software must also be made available in Source Code
+    Form, as described in Section 3.1, and You must inform recipients of
+    the Executable Form how they can obtain a copy of such Source Code
+    Form by reasonable means in a timely manner, at a charge no more
+    than the cost of distribution to the recipient; and
+
+(b) You may distribute such Executable Form under the terms of this
+    License, or sublicense it under different terms, provided that the
+    license for the Executable Form does not attempt to limit or alter
+    the recipients' rights in the Source Code Form under this License.
+
+3.3. Distribution of a Larger Work
+
+You may create and distribute a Larger Work under terms of Your choice,
+provided that You also comply with the requirements of this License for
+the Covered Software. If the Larger Work is a combination of Covered
+Software with a work governed by one or more Secondary Licenses, and the
+Covered Software is not Incompatible With Secondary Licenses, this
+License permits You to additionally distribute such Covered Software
+under the terms of such Secondary License(s), so that the recipient of
+the Larger Work may, at their option, further distribute the Covered
+Software under the terms of either this License or such Secondary
+License(s).
+
+3.4. Notices
+
+You may not remove or alter the substance of any license notices
+(including copyright notices, patent notices, disclaimers of warranty,
+or limitations of liability) contained within the Source Code Form of
+the Covered Software, except that You may alter any license notices to
+the extent required to remedy known factual inaccuracies.
+
+3.5. Application of Additional Terms
+
+You may choose to offer, and to charge a fee for, warranty, support,
+indemnity or liability obligations to one or more recipients of Covered
+Software. However, You may do so only on Your own behalf, and not on
+behalf of any Contributor. You must make it absolutely clear that any
+such warranty, support, indemnity, or liability obligation is offered by
+You alone, and You hereby agree to indemnify every Contributor for any
+liability incurred by such Contributor as a result of warranty, support,
+indemnity or liability terms You offer. You may include additional
+disclaimers of warranty and limitations of liability specific to any
+jurisdiction.
+
+4. Inability to Comply Due to Statute or Regulation
+---------------------------------------------------
+
+If it is impossible for You to comply with any of the terms of this
+License with respect to some or all of the Covered Software due to
+statute, judicial order, or regulation then You must: (a) comply with
+the terms of this License to the maximum extent possible; and (b)
+describe the limitations and the code they affect. Such description must
+be placed in a text file included with all distributions of the Covered
+Software under this License. Except to the extent prohibited by statute
+or regulation, such description must be sufficiently detailed for a
+recipient of ordinary skill to be able to understand it.
+
+5. Termination
+--------------
+
+5.1. The rights granted under this License will terminate automatically
+if You fail to comply with any of its terms. However, if You become
+compliant, then the rights granted under this License from a particular
+Contributor are reinstated (a) provisionally, unless and until such
+Contributor explicitly and finally terminates Your grants, and (b) on an
+ongoing basis, if such Contributor fails to notify You of the
+non-compliance by some reasonable means prior to 60 days after You have
+come back into compliance. Moreover, Your grants from a particular
+Contributor are reinstated on an ongoing basis if such Contributor
+notifies You of the non-compliance by some reasonable means, this is the
+first time You have received notice of non-compliance with this License
+from such Contributor, and You become compliant prior to 30 days after
+Your receipt of the notice.
+
+5.2. If You initiate litigation against any entity by asserting a patent
+infringement claim (excluding declaratory judgment actions,
+counter-claims, and cross-claims) alleging that a Contributor Version
+directly or indirectly infringes any patent, then the rights granted to
+You by any and all Contributors for the Covered Software under Section
+2.1 of this License shall terminate.
+
+5.3. In the event of termination under Sections 5.1 or 5.2 above, all
+end user license agreements (excluding distributors and resellers) which
+have been validly granted by You or Your distributors under this License
+prior to termination shall survive termination.
+
+************************************************************************
+*                                                                      *
+*  6. Disclaimer of Warranty                                           *
+*  -------------------------                                           *
+*                                                                      *
+*  Covered Software is provided under this License on an "as is"       *
+*  basis, without warranty of any kind, either expressed, implied, or  *
+*  statutory, including, without limitation, warranties that the       *
+*  Covered Software is free of defects, merchantable, fit for a        *
+*  particular purpose or non-infringing. The entire risk as to the     *
+*  quality and performance of the Covered Software is with You.        *
+*  Should any Covered Software prove defective in any respect, You     *
+*  (not any Contributor) assume the cost of any necessary servicing,   *
+*  repair, or correction. This disclaimer of warranty constitutes an   *
+*  essential part of this License. No use of any Covered Software is   *
+*  authorized under this License except under this disclaimer.         *
+*                                                                      *
+************************************************************************
+
+************************************************************************
+*                                                                      *
+*  7. Limitation of Liability                                          *
+*  --------------------------                                          *
+*                                                                      *
+*  Under no circumstances and under no legal theory, whether tort      *
+*  (including negligence), contract, or otherwise, shall any           *
+*  Contributor, or anyone who distributes Covered Software as          *
+*  permitted above, be liable to You for any direct, indirect,         *
+*  special, incidental, or consequential damages of any character      *
+*  including, without limitation, damages for lost profits, loss of    *
+*  goodwill, work stoppage, computer failure or malfunction, or any    *
+*  and all other commercial damages or losses, even if such party      *
+*  shall have been informed of the possibility of such damages. This   *
+*  limitation of liability shall not apply to liability for death or   *
+*  personal injury resulting from such party's negligence to the       *
+*  extent applicable law prohibits such limitation. Some               *
+*  jurisdictions do not allow the exclusion or limitation of           *
+*  incidental or consequential damages, so this exclusion and          *
+*  limitation may not apply to You.                                    *
+*                                                                      *
+************************************************************************
+
+8. Litigation
+-------------
+
+Any litigation relating to this License may be brought only in the
+courts of a jurisdiction where the defendant maintains its principal
+place of business and such litigation shall be governed by laws of that
+jurisdiction, without reference to its conflict-of-law provisions.
+Nothing in this Section shall prevent a party's ability to bring
+cross-claims or counter-claims.
+
+9. Miscellaneous
+----------------
+
+This License represents the complete agreement concerning the subject
+matter hereof. If any provision of this License is held to be
+unenforceable, such provision shall be reformed only to the extent
+necessary to make it enforceable. Any law or regulation which provides
+that the language of a contract shall be construed against the drafter
+shall not be used to construe this License against a Contributor.
+
+10. Versions of the License
+---------------------------
+
+10.1. New Versions
+
+Mozilla Foundation is the license steward. Except as provided in Section
+10.3, no one other than the license steward has the right to modify or
+publish new versions of this License. Each version will be given a
+distinguishing version number.
+
+10.2. Effect of New Versions
+
+You may distribute the Covered Software under the terms of the version
+of the License under which You originally received the Covered Software,
+or under the terms of any subsequent version published by the license
+steward.
+
+10.3. Modified Versions
+
+If you create software not governed by this License, and you want to
+create a new license for such software, you may create and use a
+modified version of this License if you rename the license and remove
+any references to the name of the license steward (except to note that
+such modified license differs from this License).
+
+10.4. Distributing Source Code Form that is Incompatible With Secondary
+Licenses
+
+If You choose to distribute Source Code Form that is Incompatible With
+Secondary Licenses under the terms of this version of the License, the
+notice described in Exhibit B of this License must be attached.
+
+Exhibit A - Source Code Form License Notice
+-------------------------------------------
+
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+If it is not possible or desirable to put the notice in a particular
+file, then You may include the notice in a location (such as a LICENSE
+file in a relevant directory) where a recipient would be likely to look
+for such a notice.
+
+You may add additional accurate notices of copyright ownership.
+
+Exhibit B - "Incompatible With Secondary Licenses" Notice
+---------------------------------------------------------
+
+  This Source Code Form is "Incompatible With Secondary Licenses", as
+  defined by the Mozilla Public License, v. 2.0.
 
 Files in build_aux/cmake/Modules:
     Copyright (c) 2006, Alexander Neundorf, <neundorf@kde.org>
@@ -71,181 +472,1108 @@ Files in build_aux/cmake/Modules:
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files in include/:
-      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
-      Copyright (C) 2008-2012 Conrad Sanderson
-
-      include/armadillo_bits/auxlib_bones.hpp:
-	Copyright (C)      2009 Edmund Highcock
-	Copyright (C)      2011 James Sanders
-
-      include/armadillo_bits/auxlib_meat.hpp:
-	Copyright (C) 2009 Edmund Highcock
-	Copyright (C) 2011 James Sanders
-
-      include/armadillo_bits/auxlib_meat.hpp:
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/debug.hpp:
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/diskio_bones.hpp:
-	Copyright (C) 2009-2010 Ian Cullinan
-
-      include/armadillo_bits/diskio_meat.hpp:
-	Copyright (C) 2009-2010 Ian Cullinan
-
-      include/armadillo_bits/field_bones.hpp:
-	Copyright (C) 2009-2010 Ian Cullinan
-
-      include/armadillo_bits/field_meat.hpp:
-	Copyright (C) 2009-2010 Ian Cullinan
-
-      include/armadillo_bits/fn_cor.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_cov.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_eig.hpp:
-	Copyright (C) 2009 Edmund Highcock
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/fn_eps.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_histc.hpp:
-	Copyright (C) 2012 Boris Sabanin
-
-      include/armadillo_bits/fn_kron.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_pinv.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_princomp.hpp:
-	Copyright (C) 2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_rank.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_rank.hpp:
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/fn_repmat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_shuffle.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/fn_toeplitz.hpp:
-	Copyright (C) 2011 Alcatel Lucent
-	Copyright (C) 2011 Gerhard Schreiber
-
-      include/armadillo_bits/glue_cor_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/glue_cor_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/glue_cov_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/glue_cov_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/glue_histc_bones.hpp:
-	Copyright (C) 2012 Boris Sabanin
-
-      include/armadillo_bits/glue_histc_meat.hpp:
-	Copyright (C) 2012 Boris Sabanin
-
-      include/armadillo_bits/glue_kron_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/glue_kron_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/glue_toeplitz_bones.hpp:
-	Copyright (C) 2011 Alcatel Lucent
-	Copyright (C) 2011 Gerhard Schreiber
-
-      include/armadillo_bits/glue_toeplitz_meat.hpp:
-	Copyright (C) 2011 Alcatel Lucent
-	Copyright (C) 2011 Gerhard Schreiber
-
-      include/armadillo_bits/lapack_bones.hpp:
-	Copyright (C)      2009 Edmund Highcock
-	Copyright (C)      2011 James Sanders
-
-      include/armadillo_bits/lapack_wrapper.hpp:
-	Copyright (C)      2009 Edmund Highcock
-	Copyright (C)      2011 James Sanders
-
-      include/armadillo_bits/op_cor_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_cor_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_cov_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_cov_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_find_bones.hpp:
-	Copyright (C) 2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_find_meat.hpp:
-	Copyright (C) 2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_pinv_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_pinv_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/op_princomp_bones.hpp:
-	Copyright (C) 2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_princomp_meat.hpp:
-	Copyright (C) 2010 Dimitrios Bouzas
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/op_repmat_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_repmat_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_shuffle_bones.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_shuffle_meat.hpp:
-	Copyright (C) 2009-2010 Dimitrios Bouzas
-
-      include/armadillo_bits/op_trimat_bones.hpp:
-	Copyright (C) 2011 Ryan Curtin
-	Copyright (C) 2011      Ryan Curtin
-
-      include/armadillo_bits/span.hpp:
-	Copyright (C) 2011 Stanislav Funiak
-
-      include/armadillo_bits/subview_bones.hpp:
-	Copyright (C)      2011 James Sanders
-
-      include/armadillo_bits/subview_meat.hpp:
-	Copyright (C)      2011 James Sanders
+      armadillo: Copyright (C) 2008-2013 Conrad Sanderson
+      		 Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
 
 
+Files in include/armadillo_bits:
+      access.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      arma_config.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      arma_ostream_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      arma_ostream_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			     Copyright (C) 2012 Ryan Curtin
+      
+      arma_static_check.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			     Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      arma_version.hpp: Copyright (C) 2009-2013 Conrad Sanderson
+      			Copyright (C) 2009-2013 NICTA (www.nicta.com.au)
+      
+      arrayops_bones.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      			  Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      arrayops_meat.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      			 Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      atlas_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		       Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      atlas_wrapper.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      auxlib_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			Copyright (C) 2009 Edmund Highcock
+			Copyright (C) 2011 James Sanders
+      			Copyright (C) 2012 Eric Jon Sundstrom
+      
+      auxlib_meat.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		       Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      		       Copyright (C) 2009 Edmund Highcock
+      		       Copyright (C) 2011 James Sanders
+      		       Copyright (C) 2011 Stanislav Funiak
+      		       Copyright (C) 2012 Eric Jon Sundstrom
+      		       Copyright (C) 2012 Michael McNeil Forbes
+      
+      Base_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      BaseCube_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			  Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      BaseCube_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			 Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      Base_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      blas_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      blas_wrapper.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      cmath_wrap.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      		      Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      Col_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      Col_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      compiler_setup.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      			  Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      cond_rel_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			  Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      cond_rel_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			 Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      config.hpp.cmake: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      config.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      constants_compat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			    Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      constants.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      Cube_bones.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		      Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      Cube_meat.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		     Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      debug.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		 Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      		 Copyright (C) 2011 Stanislav Funiak
+      
+      diagmat_proxy.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      diagview_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      diagview_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      diskio_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      			Copyright (C) 2009-2010 Ian Cullinan
+      
+      diskio_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      		       Copyright (C) 2009-2010 Ian Cullinan
+      		       Copyright (C) 2012 Ryan Curtin
+      
+      eGlue_bones.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		       Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      eglue_core_bones.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			    Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      eglue_core_meat.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			   Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      eGlueCube_bones.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      			   Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      eGlueCube_meat.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      			  Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      eGlue_meat.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		      Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      eop_aux.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		   Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      eOp_bones.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		     Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      eop_core_bones.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			  Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      eop_core_meat.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			 Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      eOpCube_bones.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      			 Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      eOpCube_meat.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      			Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      eOp_meat.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		    Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      field_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		       Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      		       Copyright (C) 2009-2010 Ian Cullinan
+      
+      field_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      		      Copyright (C) 2009-2010 Ian Cullinan
+      
+      fn_accu.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      		   Copyright (C) 2012 Ryan Curtin
+      
+      fn_as_scalar.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      			Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      fn_chol.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      		   Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      fn_conv.hpp: Copyright (C) 2010 Conrad Sanderson
+      		   Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      fn_conv_to.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_cor.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		  Copyright (C) 2009-2010 Dimitrios Bouzas
+      		  Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_cov.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		  Copyright (C) 2009-2010 Dimitrios Bouzas
+		  Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_cross.hpp: Copyright (C) 2010 Conrad Sanderson
+      		    Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      fn_cumsum.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		     Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      fn_det.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		  Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      fn_diagmat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_diagvec.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      		      Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      fn_dot.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+		  Copyright (C) 2012 Ryan Curtin
+      
+      fn_eig.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+		  Copyright (C) 2009 Edmund Highcock
+		  Copyright (C) 2011 Stanislav Funiak
+      
+      fn_elem.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		   Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      fn_eps.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		  Copyright (C) 2009-2010 Dimitrios Bouzas
+		  Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_eye.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_flip.hpp: Copyright (C) 2010 Conrad Sanderson
+      		   Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      fn_histc.hpp: Copyright (C) 2012 Boris Sabanin
+      		    Copyright (C) 2012 Conrad Sanderson
+		    Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      fn_hist.hpp: Copyright (C) 2012 Conrad Sanderson
+      		   Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      fn_inv.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		  Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      fn_join.hpp: Copyright (C) 2010 Conrad Sanderson
+      		   Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      fn_kron.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		   Copyright (C) 2009-2010 Dimitrios Bouzas
+		   Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_log_det.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      		      Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      fn_lu.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		 Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      fn_max.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_mean.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		   Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_median.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		     Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_min.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_misc.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		   Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      fn_norm.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_n_unique.hpp: Copyright (C) 2012 Conrad Sanderson
+      		       Copyright (C) 2012 Ryan Curtin
+      
+      fn_ones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_pinv.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      		   Copyright (C) 2009-2011 Conrad Sanderson
+		   Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      fn_princomp.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		       Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+		       Copyright (C) 2010 Dimitrios Bouzas
+      
+      fn_prod.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		   Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_qr.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		 Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_randn.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_randu.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_rank.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      		   Copyright (C) 2009-2011 Conrad Sanderson
+      
+      fn_rank.hpp: Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      		   Copyright (C) 2011 Stanislav Funiak
+      
+      fn_repmat.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		     Copyright (C) 2009-2010 Dimitrios Bouzas
+		     Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_reshape.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      fn_resize.hpp: Copyright (C) 2011 Conrad Sanderson
+      		     Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      fn_shuffle.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		      Copyright (C) 2009-2010 Dimitrios Bouzas
+		      Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_solve.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      		    Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      fn_sort.hpp: Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      		   Copyright (C) 2008-2012 Conrad Sanderson
+      
+      fn_sort_index.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			 Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_speye.hpp: Copyright (C) 2012 Conrad Sanderson
+      		    Copyright (C) 2012 Ryan Curtin
+      
+      fn_spones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      fn_sprandn.hpp: Copyright (C) 2012 Conrad Sanderson
+      		      Copyright (C) 2012 Conrad Sanderson
+      
+      fn_stddev.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		     Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_strans.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      		     Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      fn_sum.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_svd.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      		  Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      fn_syl_lyap.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      		       Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      fn_symmat.hpp: Copyright (C) 2011 Conrad Sanderson
+      		     Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      fn_toeplitz.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      		       Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      fn_trace.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+		    Copyright (C) 2012 Ryan Curtin
+      
+      fn_trans.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      fn_trig.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		   Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      fn_trimat.hpp: Copyright (C) 2010 Conrad Sanderson
+      		     Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      fn_trunc_exp.hpp: Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      			Copyright (C) 2008-2012 Conrad Sanderson
+      
+      fn_trunc_log.hpp: Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      			Copyright (C) 2008-2012 Conrad Sanderson
+      
+      fn_unique.hpp: Copyright (C) 2012 Arnold Wiliem
+      		     Copyright (C) 2012 Conrad Sanderson
+		     Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      fn_var.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		  Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      fn_zeros.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      format_wrap.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      		       Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      forward_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      gemm.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      gemm_mixed.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      gemv.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      Gen_bones.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      		     Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      GenCube_bones.hpp: Copyright (C) 2011 Conrad Sanderson
+      			 Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      GenCube_meat.hpp: Copyright (C) 2011 Conrad Sanderson
+      			Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      Gen_meat.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      		    Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      Glue_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      glue_conv_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			   Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      glue_conv_meat.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			  Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      glue_cor_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			  Copyright (C) 2009-2010 Dimitrios Bouzas
+			  Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      glue_cor_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      			 Copyright (C) 2009-2012 Conrad Sanderson
+			 Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      glue_cov_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			  Copyright (C) 2009-2010 Dimitrios Bouzas
+			  Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      glue_cov_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      			 Copyright (C) 2009-2012 Conrad Sanderson
+			 Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      glue_cross_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			    Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      glue_cross_meat.hpp: Copyright (C) 2010-2011 Conrad Sanderson
+      			   Copyright (C) 2010-2011 NICTA (www.nicta.com.au)
+      
+      GlueCube_bones.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			  Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      GlueCube_meat.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			 Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      glue_hist_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			   Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      glue_histc_bones.hpp: Copyright (C) 2012 Boris Sabanin
+      			    Copyright (C) 2012 Conrad Sanderson
+			     Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      glue_histc_meat.hpp: Copyright (C) 2012-2013 Conrad Sanderson
+      			   Copyright (C) 2012-2013 NICTA (www.nicta.com.au)
+			   Copyright (C) 2012 Boris Sabanin
+      
+      glue_hist_meat.hpp: Copyright (C) 2012-2013 Conrad Sanderson
+      			  Copyright (C) 2012-2013 NICTA (www.nicta.com.au)
+      
+      glue_join_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			   Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      glue_join_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			  Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      glue_kron_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			   Copyright (C) 2009-2010 Dimitrios Bouzas
+			   Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      glue_kron_meat.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			  Copyright (C) 2009-2010 Dimitrios Bouzas
+			  Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      Glue_meat.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      		     Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      glue_mixed_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			    Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      glue_mixed_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			   Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      glue_relational_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      				 Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      glue_relational_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      				Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      glue_solve_bones.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			    Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      glue_solve_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			   Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      glue_times_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      glue_times_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      glue_toeplitz_bones.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			       Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      glue_toeplitz_meat.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			      Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      hdf5_misc.hpp: Copyright (C) 2012 Conrad Sanderson
+      		     Copyright (C) 2012 Ryan Curtin
+      
+      include_atlas.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			 Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      injector_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			  Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      injector_meat.hpp: Copyright (C) 2010 Conrad Sanderson
+      			 Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      lapack_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			Copyright (C) 2009 Edmund Highcock
+			Copyright (C) 2011 James Sanders
+			Copyright (C) 2012 Eric Jon Sundstrom
+      
+      lapack_wrapper.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			  Copyright (C) 2009 Edmund Highcock
+			  Copyright (C) 2011 James Sanders
+			  Copyright (C) 2012 Eric Jon Sundstrom
+      
+      Mat_bones.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		     Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+		     Copyright (C) 2012 Ryan Curtin
+      
+      Mat_meat.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		    Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+		    Copyright (C) 2012 Ryan Curtin
+      
+      memory.hpp: Copyright (C) 2012 Conrad Sanderson
+      		  Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      mtGlue_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      mtGlueCube_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			    Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtGlueCube_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			   Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtGlue_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		       Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtOp_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtOpCube_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			  Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtOpCube_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			 Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtOp_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		     Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      mtSpOp_bones.hpp: Copyright (C) 2012 Ryan Curtin
+      			Copyright (C) 2012 Ryan Curtin
+      
+      Op_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_chol_bones.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			 Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      op_chol_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      op_cor_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			Copyright (C) 2009-2010 Dimitrios Bouzas
+			Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      op_cor_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      		       Copyright (C) 2009-2011 Conrad Sanderson
+		       Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      op_cov_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			Copyright (C) 2009-2010 Dimitrios Bouzas
+			Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      op_cov_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      		       Copyright (C) 2009-2011 Conrad Sanderson
+		       Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      OpCube_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      OpCube_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		       Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      op_cumsum_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			   Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      op_cumsum_meat.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			  Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      op_cx_scalar_bones.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			      Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      op_cx_scalar_meat.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      			     Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      op_diagmat_bones.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			    Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      op_diagmat_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_diagvec_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_diagvec_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_dot_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_dotext_bones.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			   Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      op_dotext_meat.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			  Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      op_dot_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      operator_cube_div.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			     Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      operator_cube_minus.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			       Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      operator_cube_plus.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			      Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      operator_cube_relational.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      				    Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      operator_cube_schur.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			       Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      operator_cube_times.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			       Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      operator_div.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+			Copyright (C) 2012 Ryan Curtin
+      
+      operator_minus.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			  Copyright (C) 2012 Ryan Curtin
+      
+      operator_ostream.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      operator_plus.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			 Copyright (C) 2012 Ryan Curtin
+      
+      operator_relational.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			       Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      operator_schur.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			  Copyright (C) 2012 Ryan Curtin
+      
+      operator_times.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			  Copyright (C) 2012 Ryan Curtin
+      
+      op_find_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			 Copyright (C) 2010 Dimitrios Bouzas
+			 Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      op_find_meat.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+			Copyright (C) 2010 Dimitrios Bouzas
+      
+      op_flip_bones.hpp: Copyright (C) 2010 Conrad Sanderson
+      			 Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      op_flip_meat.hpp: Copyright (C) 2010 Conrad Sanderson
+      			Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      op_hist_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			 Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      op_hist_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      op_htrans_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_htrans_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			  Copyright (C) 2012 Ryan Curtin
+      
+      op_inv_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      op_inv_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		       Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      op_max_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_max_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_mean_bones.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			 Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_mean_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      Op_meat.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      		   Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      op_median_bones.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			   Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_median_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			  Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_min_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_min_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_misc_bones.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			 Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      op_misc_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_pinv_bones.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      			 Copyright (C) 2009-2011 Conrad Sanderson
+			 Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      op_pinv_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      			Copyright (C) 2009-2011 Conrad Sanderson
+			Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+			Copyright (C) 2011 Stanislav Funiak
+      
+      op_princomp_bones.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			     Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+			     Copyright (C) 2010 Dimitrios Bouzas
+      
+      op_princomp_meat.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			    Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+			    Copyright (C) 2010 Dimitrios Bouzas
+			    Copyright (C) 2011 Stanislav Funiak
+      
+      op_prod_bones.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			 Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_prod_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_relational_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			       Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      op_relational_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			      Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_repmat_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			   Copyright (C) 2009-2010 Dimitrios Bouzas
+			   Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      op_repmat_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      			  Copyright (C) 2009-2012 Conrad Sanderson
+      			  Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_reshape_bones.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      			    Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      op_reshape_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_resize_bones.hpp: Copyright (C) 2011 Conrad Sanderson
+      			   Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      op_resize_meat.hpp: Copyright (C) 2011 Conrad Sanderson
+      			  Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      op_shuffle_bones.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      			    Copyright (C) 2009-2010 Dimitrios Bouzas
+			    Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      op_shuffle_meat.hpp: Copyright (C) 2009-2010 Dimitrios Bouzas
+      			   Copyright (C) 2009-2012 Conrad Sanderson
+			   Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_sort_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_sort_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_stddev_bones.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      			   Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      op_stddev_meat.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      			  Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      op_strans_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_strans_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			  Copyright (C) 2012 Ryan Curtin
+      
+      op_sum_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_sum_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      op_symmat_bones.hpp: Copyright (C) 2011 Conrad Sanderson
+      			   Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      op_symmat_meat.hpp: Copyright (C) 2011-2012 Conrad Sanderson
+      			  Copyright (C) 2011-2012 NICTA (www.nicta.com.au)
+      
+      op_toeplitz_bones.hpp: Copyright (C) 2013 Conrad Sanderson
+      			     Copyright (C) 2013 NICTA (www.nicta.com.au)
+      
+      op_toeplitz_meat.hpp: Copyright (C) 2013 Conrad Sanderson
+      			    Copyright (C) 2013 NICTA (www.nicta.com.au)
+      
+      op_trimat_bones.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			   Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+			   Copyright (C) 2011 Ryan Curtin
+      
+      op_trimat_meat.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			  Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      			  Copyright (C) 2011      Ryan Curtin
+      
+      op_unique_bones.hpp: Copyright (C) 2012 Arnold Wiliem
+      			   Copyright (C) 2012 Conrad Sanderson
+      			   Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      op_unique_meat.hpp: Copyright (C) 2012 Arnold Wiliem
+      			  Copyright (C) 2012 Conrad Sanderson
+      			  Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      op_var_bones.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      			Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      op_var_meat.hpp: Copyright (C) 2009-2012 Conrad Sanderson
+      		       Copyright (C) 2009-2012 NICTA (www.nicta.com.au)
+      
+      podarray_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      podarray_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      promote_type.hpp: Copyright (C) 2009-2013 Conrad Sanderson
+      			Copyright (C) 2009-2013 NICTA (www.nicta.com.au)
+      
+      ProxyCube.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		     Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      Proxy.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		 Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      restrictors.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      		       Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      Row_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      Row_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      running_stat_bones.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      			      Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      running_stat_meat.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      			     Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      running_stat_vec_bones.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      				  Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      running_stat_vec_meat.hpp: Copyright (C) 2009-2011 Conrad Sanderson
+      				 Copyright (C) 2009-2011 NICTA (www.nicta.com.au)
+      
+      span.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+		Copyright (C) 2011 Stanislav Funiak
+      
+      SpBase_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      SpBase_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      		       Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      SpCol_bones.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      		       Copyright (C) 2011 Matthew Amidon
+      
+      SpCol_meat.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      		      Copyright (C) 2011 Matthew Amidon
+      
+      SpGlue_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      SpGlue_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spglue_minus_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spglue_minus_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			     Copyright (C) 2012 Ryan Curtin
+      
+      spglue_plus_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spglue_plus_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			    Copyright (C) 2012 Ryan Curtin
+      
+      spglue_times_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spglue_times_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			     Copyright (C) 2012 Ryan Curtin
+      
+      SpMat_bones.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      		       Copyright (C) 2011 Matthew Amidon
+		       Copyright (C) 2012 Conrad Sanderson
+      
+      SpMat_iterators_meat.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      				Copyright (C) 2011 Matthew Amidon
+				Copyright (C) 2012 Conrad Sanderson
+      
+      SpMat_meat.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      		      Copyright (C) 2011 Matthew Amidon
+      		      Copyright (C) 2012 Conrad Sanderson
+      
+      SpOp_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_htrans_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_htrans_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			    Copyright (C) 2012 Ryan Curtin
+      
+      spop_max_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_max_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			 Copyright (C) 2012 Ryan Curtin
+      
+      spop_mean_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			   Copyright (C) 2012 Ryan Curtin
+      
+      spop_mean_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			  Copyright (C) 2012 Ryan Curtin
+      
+      SpOp_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_min_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_min_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			 Copyright (C) 2012 Ryan Curtin
+      
+      spop_misc_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_misc_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_strans_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_strans_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			    Copyright (C) 2012 Ryan Curtin
+      
+      spop_sum_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      spop_sum_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			 Copyright (C) 2012 Ryan Curtin
+      
+      spop_var_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			  Copyright (C) 2012 Ryan Curtin
+      
+      spop_var_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			 Copyright (C) 2012 Ryan Curtin
+      
+      SpProxy.hpp: Copyright (C) 2012 Conrad Sanderson
+      		   Copyright (C) 2012 Ryan Curtin
+      
+      SpRow_bones.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      		       Copyright (C) 2011 Matthew Amidon
+      
+      SpRow_meat.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      		      Copyright (C) 2011 Matthew Amidon
+      
+      SpSubview_bones.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      			   Copyright (C) 2011 Matthew Amidon
+			   Copyright (C) 2012 Conrad Sanderson
+      
+      SpSubview_iterators_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      SpSubview_iterators_meat.hpp: Copyright (C) 2012 Ryan Curtin
+      				    Copyright (C) 2011-2012 Ryan Curtin
+      
+      SpSubview_meat.hpp: Copyright (C) 2011 Matthew Amidon
+      			  Copyright (C) 2012 Conrad Sanderson
+      
+      SpValProxy_bones.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      
+      SpValProxy_meat.hpp: Copyright (C) 2011-2012 Ryan Curtin
+      			   Copyright (C) 2012 Conrad Sanderson
+      
+      strip.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      		 Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      subview_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			 Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			 Copyright (C)      2011 James Sanders
+      
+      subview_cube_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      subview_cube_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      subview_each_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      subview_each_meat.hpp: Copyright (C) 2012 Conrad Sanderson
+      
+      subview_elem1_bones.hpp: Copyright (C) 2010-2012 Conrad Sanderson
+      			       Copyright (C) 2010-2012 NICTA (www.nicta.com.au)
+      
+      subview_elem1_meat.hpp: Copyright (C) 2010-2013 Conrad Sanderson
+      			      Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+      
+      subview_elem2_bones.hpp: Copyright (C) 2012 Conrad Sanderson
+      			       Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      subview_elem2_meat.hpp: Copyright (C) 2012-2013 Conrad Sanderson
+      			      Copyright (C) 2012-2013 NICTA (www.nicta.com.au)
+      
+      subview_field_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			       Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      subview_field_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			      Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      subview_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+			Copyright (C)      2011 James Sanders
+      
+      traits.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      		  Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      typedef_blas_int.hpp: Copyright (C) 2011 Conrad Sanderson
+      			    Copyright (C) 2011 NICTA (www.nicta.com.au)
+      
+      typedef_fixed.hpp: Copyright (C) 2010 Conrad Sanderson
+      			 Copyright (C) 2010 NICTA (www.nicta.com.au)
+      
+      typedef.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		   Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      undefine_conflicts.hpp: Copyright (C) 2008-2011 Conrad Sanderson
+      			      Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
+      
+      unwrap_cube.hpp: Copyright (C) 2008-2010 Conrad Sanderson
+      		       Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+      
+      unwrap.hpp: Copyright (C) 2008-2013 Conrad Sanderson
+      		  Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+      
+      unwrap_spmat.hpp: Copyright (C) 2012 Conrad Sanderson
+      			Copyright (C) 2012 NICTA (www.nicta.com.au)
+      
+      upgrade_val.hpp: Copyright (C) 2009-2010 Conrad Sanderson
+      		       Copyright (C) 2009-2010 NICTA (www.nicta.com.au)
+      
+      wall_clock_bones.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			    Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
+      wall_clock_meat.hpp: Copyright (C) 2008-2012 Conrad Sanderson
+      			   Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+      
 File CMakeLists.txt:
-     Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
-     Copyright (C) 2008-2011 Conrad Sanderson
-     Copyright (C)      2011 Clement Creusot
+     Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+     Copyright (C) 2008-2012 Conrad Sanderson
+     Copyright (C) 2011 Clement Creusot
 	
 
-The Debian packaging is © 2009-2011, Kumar Appaiah <akumar@debian.org>
+The Debian packaging is © 2009-2013, Kumar Appaiah <akumar@debian.org>
 and is licensed under the GNU General Public License version 2. On
 Debian systems, the complete text of the GNU General Public License
 can be found in `/usr/share/common-licenses/GPL-2'.
