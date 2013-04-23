@@ -1,3 +1,9 @@
+armadillo (1:3.810.1+dfsg-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 23 Apr 2013 07:22:17 -0400
+
 armadillo (1:3.800.0+dfsg-1) experimental; urgency=low
 
   * New upstream release
