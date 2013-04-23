@@ -1,7 +1,7 @@
-// Copyright (C) 2011-2012 Ryan Curtin
+// Copyright (C) 2011-2013 Ryan Curtin
+// Copyright (C) 2012-2013 Conrad Sanderson
 // Copyright (C) 2011 Matthew Amidon
-// Copyright (C) 2012 Conrad Sanderson
-//
+// 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -64,7 +64,9 @@ class SpMat : public SpBase< eT, SpMat<eT> >
   inline                  SpMat(const std::string& text);
   inline const SpMat& operator=(const std::string& text);
   inline                  SpMat(const SpMat<eT>&   x);
-  
+
+  template<typename T1, typename T2> inline SpMat(const Base<uword,T1>& locations, const Base<eT,T2>& values, const bool sort_locations = true);
+  template<typename T1, typename T2> inline SpMat(const Base<uword,T1>& locations, const Base<eT,T2>& values, const uword n_rows, const uword n_cols, const bool sort_locations = true);
   
   inline const SpMat&  operator=(const eT val); //! Sets size to 1x1.
   inline const SpMat& operator*=(const eT val);
