@@ -1,6 +1,6 @@
 
-# Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
-# Copyright (C) 2008-2012 Conrad Sanderson
+# Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+# Copyright (C) 2008-2013 Conrad Sanderson
 # Copyright (C) 2011 Clement Creusot
 # 
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,8 +12,8 @@
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
 
 set(ARMA_MAJOR 3)
-set(ARMA_MINOR 800)
-set(ARMA_PATCH 0)
+set(ARMA_MINOR 810)
+set(ARMA_PATCH 1)
 
 message(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 
@@ -27,17 +27,20 @@ include(ARMA_CheckMathProto)
 
 project(armadillo CXX)
 
-#CMAKE_REQUIRED_FLAGS = string of compile command line flags
-#CMAKE_REQUIRED_DEFINITIONS = list of macros to define (-DFOO=bar)
-#CMAKE_REQUIRED_LIBRARIES = list of libraries to link
-
-
 set(ARMA_USE_LAPACK  false)
 set(ARMA_USE_BLAS    false)
 set(ARMA_USE_ATLAS   false)
 set(ARMA_USE_BOOST   false)
 set(ARMA_USE_HDF5    false)
-set(ARMA_USE_WRAPPER true )  # set this to false if you prefer to directly link with LAPACK and/or BLAS (eg. -llapack -lblas) instead of -larmadillo
+set(ARMA_USE_WRAPPER true )
+
+# NOTE:
+# Set ARMA_USE_WRAPPER to false if you're getting linking errors when compiling your programs,
+# or if you prefer to directly link with LAPACK and/or BLAS.
+# You will then need to link your programs directly with -llapack -lblas instead of -larmadillo
+
+
+message(STATUS "CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
 
 
 if(WIN32)
@@ -83,7 +86,7 @@ else()
     set(ARMA_USE_LAPACK true)
     
     message(STATUS "*** If the MKL or ACML libraries are installed in a non-standard location,")
-    message(STATUS "*** make sure the run-time linker can find them.")
+    message(STATUS "*** such as /opt, make sure the run-time linker can find them.")
     message(STATUS "*** On Linux systems this can be done by editing /etc/ld.so.conf")
     message(STATUS "*** or modifying the LD_LIBRARY_PATH environment variable.")
     message(STATUS "*** On systems with SELinux enabled (e.g. Fedora, RHEL),")
@@ -268,11 +271,27 @@ endif()
 #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH  TRUE)
 
 
+# work around a silly limitation in Mac OS X
+if(APPLE)
+  if(${ARMA_MINOR} GREATER 99)
+    math(EXPR ARMA_MINOR_ALT "${ARMA_MINOR} / 10")
+  else()
+    set(ARMA_MINOR_ALT ${ARMA_MINOR})
+  endif()
+else()
+  set(ARMA_MINOR_ALT ${ARMA_MINOR})
+endif()
+
+
+# necessary when linking against Intel MKL on Linux systems
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-as-needed")
+  message(STATUS "CMAKE_SHARED_LINKER_FLAGS = ${CMAKE_SHARED_LINKER_FLAGS}")
+endif()
+
 add_library( armadillo SHARED src/wrap_libs )
 target_link_libraries( armadillo ${ARMA_LIBS} )
-
-set_target_properties(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH} SOVERSION 3)
-
+set_target_properties(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR_ALT}.${ARMA_PATCH} SOVERSION ${ARMA_MAJOR})
 
 
 ################################################################################
