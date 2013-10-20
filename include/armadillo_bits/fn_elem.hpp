@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
 // Copyright (C) 2008-2013 Conrad Sanderson
+// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -690,6 +690,33 @@ round(const BaseCube<typename T1::elem_type,T1>& A)
   arma_extra_debug_sigprint();
   
   return eOpCube<T1, eop_round>(A.get_ref());
+  }
+
+
+
+//
+// sign
+
+template<typename T1>
+arma_inline
+typename enable_if2< is_arma_type<T1>::value, const eOp<T1, eop_sign> >::result
+sign(const T1& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_sign>(A);
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_sign>
+sign(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOpCube<T1, eop_sign>(A.get_ref());
   }
 
 

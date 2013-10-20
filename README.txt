@@ -1,31 +1,37 @@
+Armadillo C++ Linear Algebra Library
+http://arma.sourceforge.net
+
+
+
 === Contents ===
 
-1: Introduction
+ 1: Introduction
 
-2: Citation Details
+ 2: Citation Details
 
-3: Installation
-   3.0: Preliminaries
-   3.1: Installation on Linux and Mac OS X
-   3.2: Manual Installation / Installation on Windows
+ 3: Installation
+    3.0: Preliminaries
+    3.1: Installation on Linux and Mac OS X
+    3.2: Manual Installation / Installation on Windows
 
-4: Compiling Programs and Linking
-   4.0: Examples
-   4.1: Compiling & Linking on Linux and Mac OS X
-   4.2: Compiling & Linking on Windows
+ 4: Compiling Programs and Linking
+    4.0: Examples
+    4.1: Compiling & Linking on Linux and Mac OS X
+    4.2: Compiling & Linking on Windows
 
-5: Support for high-speed BLAS & LAPACK replacements
-   5.0: Support for OpenBLAS, Intel MKL and AMD ACML
-   5.1: Support for ATLAS
+ 5: Support for high-speed BLAS & LAPACK replacements
+    5.0: Support for OpenBLAS, Intel MKL and AMD ACML
+    5.1: Support for ATLAS
 
-6: Documentation / API Reference Manual
+ 6: Documentation / API Reference Manual
 
-7: FAQs and Bug Reports
+ 7: Bug Reports and Frequently Asked Questions
 
-8: Developers and Contributors
+ 8: Developers and Contributors
 
-9: License
+ 9: License
 
+10: Related Software
 
 
 
@@ -124,8 +130,9 @@ section 3.2, or the following CMake based automatic installation.
   the most important. If you have ATLAS and Boost, it's also necessary
   to have the corresponding header files installed.
   
-  For best performance, we recommend using the multi-threaded OpenBLAS
-  library instead of standard BLAS.  See http://xianyi.github.com/OpenBLAS/
+  For best performance, we recommend using the multi-threaded
+  OpenBLAS library instead of standard BLAS.
+  See http://xianyi.github.com/OpenBLAS/
   
 * Step 3:
   Open a shell (command line), change into the directory that was
@@ -144,6 +151,10 @@ section 3.2, or the following CMake based automatic installation.
   
   If you need to re-run cmake, it's a good idea to first delete the
   "CMakeCache.txt" file (not "CMakeLists.txt").
+  
+  Caveat: out-of-tree builds are currently not supported; for example,
+  creating a sub-directory called "build" and running cmake .. from 
+  within "build" is currently not supported.
   
 * Step 4:
   If you have access to root/administrator/superuser privileges,
@@ -251,14 +262,13 @@ Notes:
 === 4.2: Compiling & Linking on Windows ===
 
 As a courtesy, we've provided pre-compiled 32 bit versions of
-standard LAPACK and BLAS for Windows, as well as MSVC project
-files to compile example1.cpp and example2.cpp.
+standard LAPACK and BLAS libaries for Windows, as well as MSVC
+project files to compile example1.cpp and example2.cpp.
 The project files are stored in the following folders:
   examples/example1_win32
   examples/example2_win32
 
-The standard 32 bit versions of the LAPACK and BLAS libraries
-are stored in:
+The standard 32 bit versions of LAPACK and BLAS are stored in:
   examples/lib_win32
 
 If you're getting messages such as "use of LAPACK needs to be enabled",
@@ -283,11 +293,10 @@ and ARMA_BLAS_UNDERSCORE macros in "armadillo_bits/config.hpp".
 The pre-compiled versions of LAPACK and BLAS were downloaded from:
   http://www.fi.muni.cz/~xsvobod2/misc/lapack/
 
-If the provided libraries don't work for you, or you want more speed,
-try these versions:
+Faster and/or alternative implementations of BLAS and LAPACK are available:
+  http://xianyi.github.com/OpenBLAS/
   http://software.intel.com/en-us/intel-mkl/
   http://developer.amd.com/tools-and-sdks/cpu-development/amd-core-math-library-acml/
-  http://xianyi.github.com/OpenBLAS/
   http://www.stanford.edu/~vkl/code/libs.html
   http://icl.cs.utk.edu/lapack-for-windows/lapack/
 
@@ -316,17 +325,19 @@ For the Intel compiler, use version 10.0 or later.
 
 For best results we also recommend using an operating system
 that's more reliable and more suitable for heavy duty work,
-such as Mac OS X or the various flavours of Linux,
-eg. Scientific Linux: http://www.scientificlinux.org/
+such as Mac OS X or various Linux-based systems:
+Ubuntu:           http://www.ubuntu.com/
+Debian:           http://www.debian.org/
+Scientific Linux: http://www.scientificlinux.org/
 
 
 
 === 5.0: Support for OpenBLAS, Intel MKL and AMD ACML ===
 
-Armadillo can use OpenBLAS, or Intel Math Kernel Library (MKL), or the
-AMD Core Math Library (ACML) as high-speed replacements for BLAS and LAPACK.
-Generally this just involves linking with the replacement libraries
-instead of BLAS and LAPACK.
+Armadillo can use OpenBLAS, or Intel Math Kernel Library (MKL),
+or the AMD Core Math Library (ACML) as high-speed replacements
+for BLAS and LAPACK.  Generally this just involves linking with
+the replacement libraries instead of BLAS and LAPACK.
 
 You may need to make minor modifications to "include/armadillo_bits/config.hpp"
 in order to make sure Armadillo uses the same style of function names
@@ -378,8 +389,8 @@ The minimum recommended version of ATLAS is 3.8.
 Old versions (eg. 3.6) can produce incorrect results
 as well as corrupting memory, leading to random crashes.
 
-Users of Ubuntu and Debian based systems should explicitly
-check that version 3.6 is not installed.  It's better to
+Users of older Ubuntu and Debian based systems should explicitly
+check that ATLAS 3.6 is not installed.  It's better to
 remove the old version and use the standard LAPACK library.
 
 
@@ -398,9 +409,9 @@ classes and functions, with snippets of example code.
 
 
 
-=== 7: FAQs and Bug Reports ===
+=== 7: Bug Reports and Frequently Asked Questions ===
 
-Answers to Frequently Asked Questions (FAQs) can be found at:
+Answers to frequently asked questions can be found at:
 
   http://arma.sourceforge.net/faq.html
 
@@ -411,8 +422,8 @@ to guarantee 100% correct functionality.
 
 If you find a bug in the library (or the documentation),
 we are interested in hearing about it. Please make a
-_small_ _self-contained_ program which exposes the bug
-and send the program source (as well as the bug description)
+_small_ and _self-contained_ program which exposes the bug,
+and then send the program source (as well as the bug description)
 to the developers.  The developers' contact details are at:
 
   http://arma.sourceforge.net/contact.html
@@ -426,7 +437,7 @@ Main sponsoring organisation:
   http://nicta.com.au
 
 Main developers:
-- Conrad Sanderson - http://itee.uq.edu.au/~conrad/
+- Conrad Sanderson - http://conradsanderson.id.au
 - Ryan Curtin
 - Ian Cullinan
 - Dimitrios Bouzas
@@ -463,6 +474,7 @@ Contributors:
 - Jeremy Mason
 - Nikolay Mayorov
 - Carlos Mendes
+- Sergey Nenakhov
 - Artem Novikov
 - Martin Orlob
 - Ken Panici
@@ -497,5 +509,23 @@ See the "LICENSE.txt" file for license details.
 The file "include/armadillo_bits/fft_engine.hpp" is licensed under
 both the Mozilla Public License v2.0 and a 3-clause BSD license.
 See "include/armadillo_bits/fft_engine.hpp" for license details.
+
+
+
+=== 10: Related Software ===
+
+* MLPACK: C++ library for machine learning
+  and pattern recognition, built on top of Armadillo.
+  http://mlpack.org
+  
+* libpca: C++ library for principal component analysis
+  http://sourceforge.net/projects/libpca/
+  
+* KL1p: C++ library for sparse recovery of underdetermined linear systems,
+  such as compressed sensing.
+  http://kl1p.sourceforge.net  
+  
+* ArmaNpy: interfaces Armadillo matrices with Python
+  http://sourceforge.net/projects/armanpy/
 
 

@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
 // Copyright (C) 2008-2013 Conrad Sanderson
+// Copyright (C) 2008-2011 NICTA (www.nicta.com.au)
 // Copyright (C) 2009-2010 Ian Cullinan
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
@@ -27,9 +27,6 @@ field<oT>::~field()
   if(arma_config::debug == true)
     {
     // try to expose buggy user code that accesses deleted objects
-    access::rw(n_rows) = 0;
-    access::rw(n_cols) = 0;
-    access::rw(n_elem) = 0;
     mem = 0;
     }
   }

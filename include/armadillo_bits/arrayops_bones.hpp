@@ -1,5 +1,5 @@
-// Copyright (C) 2011-2013 NICTA (www.nicta.com.au)
 // Copyright (C) 2011-2013 Conrad Sanderson
+// Copyright (C) 2011-2013 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -20,8 +20,8 @@ class arrayops
   
   
   template<typename eT>
-  static inline void
-  copy_big(eT* dest, const eT* src, const uword n_elem);
+  arma_hot inline static void
+  copy_small(eT* dest, const eT* src, const uword n_elem);
   
   
   template<typename eT>
@@ -32,6 +32,11 @@ class arrayops
   template<typename eT>
   arma_hot inline static void
   copy_backwards(eT* dest, const eT* src, const uword n_elem);
+  
+  
+  template<typename eT>
+  arma_hot inline static void
+  fill_zeros(eT* dest, const uword n_elem);
   
   
   // 

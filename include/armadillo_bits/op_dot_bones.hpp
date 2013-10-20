@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
 // Copyright (C) 2008-2013 Conrad Sanderson
+// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -94,6 +94,18 @@ class op_cdot
   
   template<typename T1, typename T2>
   arma_hot inline static typename T1::elem_type apply_proxy (const T1& X, const T2& Y);
+  };
+
+
+
+class op_dot_mixed
+  {
+  public:
+  
+  template<typename T1, typename T2>
+  arma_hot inline static
+  typename promote_type<typename T1::elem_type, typename T2::elem_type>::result
+  apply(const T1& A, const T2& B);
   };
 
 

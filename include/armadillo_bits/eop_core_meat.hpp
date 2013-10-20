@@ -1,5 +1,5 @@
-// Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
 // Copyright (C) 2010-2013 Conrad Sanderson
+// Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -155,7 +155,8 @@ eop_core<eop_type>::apply(Mat<typename T1::elem_type>& out, const eOp<T1, eop_ty
     {
     const uword n_elem = (Proxy<T1>::is_fixed) ? x.get_n_elem() : out.n_elem;
     
-    if(memory::is_aligned(out_mem))
+    //if(memory::is_aligned(out_mem))
+    if( memory::is_aligned(out_mem) && ((Proxy<T1>::is_fixed) ? (x.get_n_elem() >= 32) : true) )
       {
       memory::mark_as_aligned(out_mem);
       
@@ -842,6 +843,9 @@ eop_core<eop_ceil             >::process(const eT val, const eT  ) { return eop_
 
 template<> template<typename eT> arma_hot arma_pure arma_inline eT
 eop_core<eop_round            >::process(const eT val, const eT  ) { return eop_aux::round(val);      }
+
+template<> template<typename eT> arma_hot arma_pure arma_inline eT
+eop_core<eop_sign             >::process(const eT val, const eT  ) { return eop_aux::sign(val);       }
 
 
 #undef arma_applier_1u

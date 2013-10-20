@@ -1,5 +1,5 @@
-// Copyright (C) 2012-2013 NICTA (www.nicta.com.au)
 // Copyright (C) 2012-2013 Conrad Sanderson
+// Copyright (C) 2012-2013 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -142,6 +142,8 @@ memory::is_aligned(const eT* mem)
     }
   #else
     {
+    arma_ignore(mem);
+    
     return false;
     }
   #endif
