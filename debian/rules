@@ -17,7 +17,7 @@ build-indep: build-stamp
 
 build-stamp:
 	dh_testdir
-	cmake -D INSTALL_LIB_DIR=lib -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
+	cmake -DCMAKE_VERBOSE_MAKEFILE=ON -D INSTALL_LIB_DIR=lib -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
 	$(MAKE)
 	touch $@
 
