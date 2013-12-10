@@ -457,6 +457,7 @@ Contributors:
 - Chris Cooper
 - Clement Creusot
 - Chris Davey
+- Alexandre Drouin
 - Dirk Eddelbuettel
 - Romain Francois
 - Michael McNeil Forbes
@@ -466,6 +467,7 @@ Contributors:
 - Edmund Highcock
 - Szabolcs Horvat
 - Friedrich Hust
+- Yaron Keren
 - Kshitij Kulshreshtha
 - Oka Kurniawan
 - Simen Kvaal
