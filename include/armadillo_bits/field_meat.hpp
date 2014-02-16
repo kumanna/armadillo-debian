@@ -1109,7 +1109,7 @@ field<oT>::init(const uword n_rows_in, const uword n_cols_in)
         ? ( (float(n_rows_in) * float(n_cols_in)) > float(ARMA_MAX_UWORD) )
         : false
       ),
-    "field::init(): requested size is too large"
+    "field::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD"
     );
   
   const uword n_elem_new = n_rows_in * n_cols_in;
@@ -1592,7 +1592,7 @@ field_aux::save(const field<oT>&, const std::string&, const file_type, std::stri
   {
   arma_extra_debug_sigprint();
   
-  err_msg = " [sorry, saving/loading this type of field is currently not supported] filename = ";
+  err_msg = " [saving/loading this type of field is currently not supported] filename = ";
   
   return false;
   }
@@ -1606,7 +1606,7 @@ field_aux::save(const field<oT>&, std::ostream&, const file_type, std::string& e
   {
   arma_extra_debug_sigprint();
   
-  err_msg = " [sorry, saving/loading this type of field is currently not supported] filename = ";
+  err_msg = " [saving/loading this type of field is currently not supported] filename = ";
   
   return false;
   }
@@ -1620,7 +1620,7 @@ field_aux::load(field<oT>&, const std::string&, const file_type, std::string& er
   {
   arma_extra_debug_sigprint();
   
-  err_msg = " [sorry, saving/loading this type of field is currently not supported] filename = ";
+  err_msg = " [saving/loading this type of field is currently not supported] filename = ";
   
   return false;
   }
@@ -1634,7 +1634,7 @@ field_aux::load(field<oT>&, std::istream&, const file_type, std::string& err_msg
   {
   arma_extra_debug_sigprint();
   
-  err_msg = " [sorry, saving/loading this type of field is currently not supported] filename = ";
+  err_msg = " [saving/loading this type of field is currently not supported] filename = ";
   
   return false;
   }
@@ -1867,11 +1867,11 @@ field_aux::save(const field< Row<eT> >& x, const std::string& name, const file_t
   switch(type)
     {
     case arma_binary:
-      return diskio::save_arma_binary(x, name, err_msg);
+      return diskio::save_arma_binary(x, name);
       break;
       
     case ppm_binary:
-      return diskio::save_ppm_binary(x, name, err_msg);
+      return diskio::save_ppm_binary(x, name);
       break;
     
     default:
@@ -1892,11 +1892,11 @@ field_aux::save(const field< Row<eT> >& x, std::ostream& os, const file_type typ
   switch(type)
     {
     case arma_binary:
-      return diskio::save_arma_binary(x, os, err_msg);
+      return diskio::save_arma_binary(x, os);
       break;
       
     case ppm_binary:
-      return diskio::save_ppm_binary(x, os, err_msg);
+      return diskio::save_ppm_binary(x, os);
       break;
     
     default:
@@ -1975,11 +1975,7 @@ field_aux::save(const field< Cube<eT> >& x, const std::string& name, const file_
   switch(type)
     {
     case arma_binary:
-      return diskio::save_arma_binary(x, name, err_msg);
-      break;
-      
-    case ppm_binary:
-      return diskio::save_ppm_binary(x, name, err_msg);
+      return diskio::save_arma_binary(x, name);
       break;
     
     default:
@@ -2000,11 +1996,7 @@ field_aux::save(const field< Cube<eT> >& x, std::ostream& os, const file_type ty
   switch(type)
     {
     case arma_binary:
-      return diskio::save_arma_binary(x, os, err_msg);
-      break;
-      
-    case ppm_binary:
-      return diskio::save_ppm_binary(x, os, err_msg);
+      return diskio::save_arma_binary(x, os);
       break;
     
     default:
@@ -2025,15 +2017,8 @@ field_aux::load(field< Cube<eT> >& x, const std::string& name, const file_type t
   switch(type)
     {
     case auto_detect:
-      return diskio::load_auto_detect(x, name, err_msg);
-      break;
-    
     case arma_binary:
       return diskio::load_arma_binary(x, name, err_msg);
-      break;
-      
-    case ppm_binary:
-      return diskio::load_ppm_binary(x, name, err_msg);
       break;
     
     default:
@@ -2054,15 +2039,8 @@ field_aux::load(field< Cube<eT> >& x, std::istream& is, const file_type type, st
   switch(type)
     {
     case auto_detect:
-      return diskio::load_auto_detect(x, is, err_msg);
-      break;
-    
     case arma_binary:
       return diskio::load_arma_binary(x, is, err_msg);
-      break;
-      
-    case ppm_binary:
-      return diskio::load_ppm_binary(x, is, err_msg);
       break;
     
     default:
