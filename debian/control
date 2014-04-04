@@ -6,8 +6,8 @@ Build-Depends: debhelper (>= 7), libblas-dev, liblapack-dev, cmake, libarpack2-d
 Standards-Version: 3.9.5
 Section: libs
 Homepage: http://arma.sourceforge.net/
-Vcs-Git: git://git.debian.org/git/debian-science/packages/armadillo.git
-Vcs-Browser: http://git.debian.org/?p=debian-science/packages/armadillo.git
+Vcs-Git: git://anonscm.debian.org/debian-science/packages/armadillo.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=debian-science/packages/armadillo.git
 
 Package: libarmadillo-dev
 Section: libdevel
