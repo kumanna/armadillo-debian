@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2012 Conrad Sanderson
-// Copyright (C) 2008-2012 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2013 Conrad Sanderson
+// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,7 +14,8 @@
 template<typename derived>
 struct Base_blas_elem_type
   {
-  arma_inline const Op<derived,op_inv> i(const bool slow = false) const;   //!< matrix inverse
+  arma_inline const Op<derived,op_inv> i(const bool  slow   = false) const;   //!< matrix inverse
+  arma_inline const Op<derived,op_inv> i(const char* method        ) const;   //!< matrix inverse
   };
 
 
@@ -38,14 +39,14 @@ struct Base_extra<derived, false> { typedef Base_other_elem_type<derived> result
 template<typename elem_type, typename derived>
 struct Base_eval_Mat
   {
-  const derived& eval() const;
+  arma_inline const derived& eval() const;
   };
 
 
 template<typename elem_type, typename derived>
 struct Base_eval_expr
   {
-  Mat<elem_type> eval() const;   //!< force the immediate evaluation of a delayed expression
+  arma_inline Mat<elem_type> eval() const;   //!< force the immediate evaluation of a delayed expression
   };
 
 

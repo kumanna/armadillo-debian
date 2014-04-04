@@ -2190,12 +2190,12 @@ diskio::load_auto_detect(Mat<eT>& x, std::istream& f, std::string& err_msg)
   static const std::string ARMA_MAT_BIN = "ARMA_MAT_BIN";
   static const std::string           P5 = "P5";
   
-  podarray<char> raw_header(ARMA_MAT_TXT.length() + 1);
+  podarray<char> raw_header( uword(ARMA_MAT_TXT.length()) + 1);
   
   std::streampos pos = f.tellg();
     
   f.read( raw_header.memptr(), std::streamsize(ARMA_MAT_TXT.length()) );
-  raw_header[ARMA_MAT_TXT.length()] = '\0';
+  raw_header[uword(ARMA_MAT_TXT.length())] = '\0';
   
   f.clear();
   f.seekg(pos);
@@ -3817,12 +3817,12 @@ diskio::load_auto_detect(Cube<eT>& x, std::istream& f, std::string& err_msg)
   static const std::string ARMA_CUB_BIN = "ARMA_CUB_BIN";
   static const std::string           P6 = "P6";
   
-  podarray<char> raw_header(ARMA_CUB_TXT.length() + 1);
+  podarray<char> raw_header(uword(ARMA_CUB_TXT.length()) + 1);
   
   std::streampos pos = f.tellg();
   
   f.read( raw_header.memptr(), std::streamsize(ARMA_CUB_TXT.length()) );
-  raw_header[ARMA_CUB_TXT.length()] = '\0';
+  raw_header[uword(ARMA_CUB_TXT.length())] = '\0';
   
   f.clear();
   f.seekg(pos);
@@ -3918,9 +3918,19 @@ diskio::save_arma_binary(const field<T1>& x, std::ostream& f)
   
   arma_type_check(( (is_Mat<T1>::value == false) && (is_Cube<T1>::value == false) ));
   
-  f << "ARMA_FLD_BIN" << '\n';
-  f << x.n_rows << '\n';
-  f << x.n_cols << '\n';
+  if(x.n_slices <= 1)
+    {
+    f << "ARMA_FLD_BIN" << '\n';
+    f << x.n_rows << '\n';
+    f << x.n_cols << '\n';
+    }
+  else
+    {
+    f << "ARMA_FL3_BIN" << '\n';
+    f << x.n_rows   << '\n';
+    f << x.n_cols   << '\n';
+    f << x.n_slices << '\n';
+    }
   
   bool save_okay = true;
   
@@ -3975,12 +3985,7 @@ diskio::load_arma_binary(field<T1>& x, std::istream& f, std::string& err_msg)
   std::string f_type;
   f >> f_type;
   
-  if(f_type != "ARMA_FLD_BIN")
-    {
-    load_okay = false;
-    err_msg = "unsupported field type in ";
-    }
-  else
+  if(f_type == "ARMA_FLD_BIN")
     {
     uword f_n_rows;
     uword f_n_cols;
@@ -4001,6 +4006,36 @@ diskio::load_arma_binary(field<T1>& x, std::istream& f, std::string& err_msg)
         break;
         }
       }
+    }
+  else
+  if(f_type == "ARMA_FL3_BIN")
+    {
+    uword f_n_rows;
+    uword f_n_cols;
+    uword f_n_slices;
+  
+    f >> f_n_rows;
+    f >> f_n_cols;
+    f >> f_n_slices;
+    
+    x.set_size(f_n_rows, f_n_cols, f_n_slices);
+    
+    f.get();      
+    
+    for(uword i=0; i<x.n_elem; ++i)
+      {
+      load_okay = diskio::load_arma_binary(x[i], f, err_msg);
+      
+      if(load_okay == false)
+        {
+        break;
+        }
+      }
+    }
+  else
+    {
+    load_okay = false;
+    err_msg = "unsupported field type in ";
     }
   
   return load_okay;
@@ -4195,9 +4230,10 @@ diskio::load_auto_detect(field<T1>& x, std::istream& f, std::string& err_msg)
   arma_type_check(( is_Mat<T1>::value == false ));
   
   static const std::string ARMA_FLD_BIN = "ARMA_FLD_BIN";
+  static const std::string ARMA_FL3_BIN = "ARMA_FL3_BIN";
   static const std::string           P6 = "P6";
   
-  podarray<char> raw_header(ARMA_FLD_BIN.length() + 1);
+  podarray<char> raw_header(uword(ARMA_FLD_BIN.length()) + 1);
   
   std::streampos pos = f.tellg();
   
@@ -4206,11 +4242,16 @@ diskio::load_auto_detect(field<T1>& x, std::istream& f, std::string& err_msg)
   f.clear();
   f.seekg(pos);
   
-  raw_header[ARMA_FLD_BIN.length()] = '\0';
+  raw_header[uword(ARMA_FLD_BIN.length())] = '\0';
   
   const std::string header = raw_header.mem;
   
   if(ARMA_FLD_BIN == header.substr(0, ARMA_FLD_BIN.length()))
+    {
+    return load_arma_binary(x, f, err_msg);
+    }
+  else
+  if(ARMA_FL3_BIN == header.substr(0, ARMA_FL3_BIN.length()))
     {
     return load_arma_binary(x, f, err_msg);
     }
