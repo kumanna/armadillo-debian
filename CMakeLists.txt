@@ -14,7 +14,7 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 set(ARMA_MAJOR 4)
 set(ARMA_MINOR 300)
-set(ARMA_PATCH 0)
+set(ARMA_PATCH 8)
 
 message(STATUS "Configuring Armadillo ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH}")
 
@@ -247,10 +247,12 @@ message(STATUS "*** ARMA_LIBS = ${ARMA_LIBS}")
 message(STATUS "")
 
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT ${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 4.9)
-  set(ARMA_USE_CXX11_RNG true)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-  message(STATUS "Detected gcc 4.9 or later. Added '-std=c++11' to compiler flags")
+if(DEFINED CMAKE_CXX_COMPILER_ID AND DEFINED CMAKE_CXX_COMPILER_VERSION)
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT ${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 4.9)
+    set(ARMA_USE_CXX11_RNG true)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    message(STATUS "Detected gcc 4.9 or later. Added '-std=c++11' to compiler flags")
+  endif()
 endif()
 
 
@@ -264,7 +266,7 @@ message(STATUS "Generating ${PROJECT_SOURCE_DIR}/examples/Makefile")
 configure_file(${PROJECT_SOURCE_DIR}/examples/Makefile.cmake ${PROJECT_SOURCE_DIR}/examples/Makefile)
 
 
-include_directories(${PROJECT_BINARY_DIR}/build_tmp/include/)
+include_directories(${PROJECT_BINARY_DIR}/build_tmp/include/ ${CMAKE_REQUIRED_INCLUDES})
 
 
 ## For any library that is not in a default location,
@@ -305,6 +307,7 @@ endif()
 
 message(STATUS "CMAKE_CXX_FLAGS           = ${CMAKE_CXX_FLAGS}"          )
 message(STATUS "CMAKE_SHARED_LINKER_FLAGS = ${CMAKE_SHARED_LINKER_FLAGS}")
+message(STATUS "CMAKE_REQUIRED_INCLUDES   = ${CMAKE_REQUIRED_INCLUDES}"  )
 
 add_library( armadillo SHARED ${PROJECT_SOURCE_DIR}/src/wrapper.cpp )
 target_link_libraries( armadillo ${ARMA_LIBS} )
