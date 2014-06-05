@@ -7033,7 +7033,7 @@ See also:
 </li>
 <br>
 <li>
-<i>norm_dot(A,B)</i>: normalised version of <i>dot(A,B)</i>
+<i>norm_dot(A,B)</i>: equivalent to <i>dot(A,B)&nbsp;/&nbsp;(&#8741;A&#8741;&#8226;&#8741;B&#8741;)</i>
 </li>
 <br>
 <li>
@@ -8066,6 +8066,9 @@ mat  B  = randu&lt;mat&gt;(5,5);
 uvec q1 = find(A &gt; B);
 uvec q2 = find(A &gt; 0.5);
 uvec q3 = find(A &gt; 0.5, 3, "last");
+
+// change elements of A greater than 0.5 to 1
+A.elem( find(A > 0.5) ).ones();
 </pre>
 </ul>
 </li>
