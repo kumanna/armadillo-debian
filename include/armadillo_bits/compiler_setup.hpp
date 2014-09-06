@@ -203,7 +203,7 @@
 
 #if defined(_MSC_VER)
   
-  #if (_MSC_VER < 1600)
+  #if (_MSC_VER < 1700)
     #error "*** Need a newer compiler ***"
   #endif
   
@@ -278,13 +278,15 @@
 #endif
 
 
-#if defined(__CUDACC__)
+#if defined(__NVCC__)
   
   #undef ARMA_HAVE_SNPRINTF
   #undef ARMA_HAVE_ISFINITE
   #undef ARMA_HAVE_LOG1P
   #undef ARMA_HAVE_TR1
   
+  #undef  arma_noinline
+  #define arma_noinline
 #endif
 
 
