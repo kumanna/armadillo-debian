@@ -1,4 +1,4 @@
-armadillo (1:4.400.1+dfsg-1) unstable; urgency=medium
+armadillo (1:4.400.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
   * Depend on dpkg-dev 1.16.1 or higher and use buildflags.mk instead of
