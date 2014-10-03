@@ -1,3 +1,9 @@
+armadillo (1:4.400.2+dfsg-2) unstable; urgency=medium
+
+  * Remove hdf5 build dependency
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 08 Sep 2014 15:43:44 +0530
+
 armadillo (1:4.400.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
