@@ -1871,6 +1871,26 @@ Mat<eT>::Mat(const xvec_htrans<eT>& X)
 
 
 
+template<typename eT>
+template<bool do_conj>
+inline
+Mat<eT>::Mat(const xtrans_mat<eT,do_conj>& X)
+  : n_rows(X.n_rows)
+  , n_cols(X.n_cols)
+  , n_elem(X.n_elem)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  
+  X.extract(*this);
+  }
+
+
+
 //! construct a matrix from a subview_cube instance
 template<typename eT>
 inline
@@ -6443,11 +6463,11 @@ Mat<eT>::row_col_iterator::row_col_iterator(const row_col_iterator& in_it)
 
 template<typename eT>
 inline
-Mat<eT>::row_col_iterator::row_col_iterator(Mat<eT>& in_M, const uword row, const uword col)
-  : M           (&in_M            )
-  , current_pos (&in_M.at(row,col))
-  , internal_col(col              )
-  , internal_row(row              )
+Mat<eT>::row_col_iterator::row_col_iterator(Mat<eT>& in_M, const uword in_row, const uword in_col)
+  : M           (&in_M                  )
+  , current_pos (&in_M.at(in_row,in_col))
+  , internal_col(in_col                 )
+  , internal_row(in_row                 )
   {
   arma_extra_debug_sigprint();
   }
@@ -6636,11 +6656,11 @@ Mat<eT>::const_row_col_iterator::const_row_col_iterator(const const_row_col_iter
 
 template<typename eT>
 inline
-Mat<eT>::const_row_col_iterator::const_row_col_iterator(const Mat<eT>& in_M, const uword row, const uword col)
-  : M           (&in_M            )
-  , current_pos (&in_M.at(row,col))
-  , internal_col(col              )
-  , internal_row(row              )
+Mat<eT>::const_row_col_iterator::const_row_col_iterator(const Mat<eT>& in_M, const uword in_row, const uword in_col)
+  : M           (&in_M                  )
+  , current_pos (&in_M.at(in_row,in_col))
+  , internal_col(in_col                 )
+  , internal_row(in_row                 )
   {
   arma_extra_debug_sigprint();
   }
