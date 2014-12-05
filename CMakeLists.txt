@@ -1,8 +1,8 @@
 
 # Copyright (C) 2008-2014 Conrad Sanderson
 # Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+# Copyright (C) 2013-2014 Ryan Curtin
 # Copyright (C) 2011 Clement Creusot
-# Copyright (C) 2013 Ryan Curtin
 # 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -13,8 +13,8 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 set(ARMA_MAJOR 4)
-set(ARMA_MINOR 450)
-set(ARMA_PATCH 4)
+set(ARMA_MINOR 550)
+set(ARMA_PATCH 2)
 set(ARMADILLO_VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH})
 
 message(STATUS "Configuring Armadillo ${ARMADILLO_VERSION}")
@@ -28,6 +28,9 @@ include(ARMA_CheckMathProto)
 
 project(armadillo CXX)
 
+option(BUILD_SHARED_LIBS "build shared library" ON)
+option(DETECT_HDF5 "Detect HDF5 and include HDF5 support, if found" OFF)
+
 set(ARMA_USE_LAPACK    false)
 set(ARMA_USE_BLAS      false)
 set(ARMA_USE_ATLAS     false)
@@ -35,7 +38,6 @@ set(ARMA_USE_HDF5_ALT  false)
 set(ARMA_USE_ARPACK    false)
 set(ARMA_USE_CXX11_RNG false)
 set(ARMA_USE_WRAPPER   true )
-option(BUILD_SHARED_LIBS "build shared library" ON)
 
 ## NOTE:
 ## Set ARMA_USE_WRAPPER to false if you're getting linking errors when compiling your programs,
@@ -93,10 +95,12 @@ else()
     set(ARMA_USE_LAPACK true)
     
     message(STATUS "")
-    message(STATUS "*** If the MKL or ACML libraries are installed in")
-    message(STATUS "*** /opt or /usr/local, make sure the run-time linker can find them.")
+    message(STATUS "*** If the MKL or ACML libraries are installed in non-standard locations such as")
+    message(STATUS "*** /opt/intel/mkl, /opt/intel/composerxe/, /usr/local/intel/mkl")
+    message(STATUS "*** make sure the run-time linker can find them.")
     message(STATUS "*** On Linux systems this can be done by editing /etc/ld.so.conf")
     message(STATUS "*** or modifying the LD_LIBRARY_PATH environment variable.")
+    message(STATUS "")
     message(STATUS "*** On systems with SELinux enabled (eg. Fedora, RHEL),")
     message(STATUS "*** you may need to change the SELinux type of all MKL/ACML libraries")
     message(STATUS "*** to fix permission problems that may occur during run-time.")
@@ -224,18 +228,50 @@ if(APPLE)
 endif()
 
 
-## TODO: to take into account various HDF5 installations which have varying include folders,
-##       need to specify the hdf5 include folder in include/armadillo_bits/config.hpp and include/armadillo_bits/config.hpp.cmake
-##       and then include the hdf5 header file within the main armadillo header in a similar manner to including the ATLAS header
+# set(DETECT_HDF5 true)
 
-# find_package(HDF5)
-# message(STATUS "HDF5_FOUND     = ${HDF5_FOUND}")
-# 
-# if(HDF5_FOUND)
-#   set(ARMA_USE_HDF5_ALT true)
-#   set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${HDF5_INCLUDE_DIRS})
-#   set(ARMA_LIBS ${ARMA_LIBS} ${HDF5_LIBRARIES})
-# endif()
+## uncomment the above line to enable the detection of the HDF5 library;
+## you can also enable HDF5 detection directly on the command line:
+## cmake -D DETECT_HDF5=true .
+
+if(DETECT_HDF5)
+  find_package(HDF5 QUIET)
+
+  if(NOT HDF5_FOUND)
+    # On Debian systems, the HDF5 package has been split into multiple packages
+    # so that it is co-installable.  But this may mean that the include files
+    # are hidden somewhere very odd that the FindHDF5.cmake script will not
+    # find.  Thus, we'll also quickly check pkgconfig to see if there is
+    # information on what to use there.
+    find_package(PkgConfig)
+    if (PKG_CONFIG_FOUND)
+      pkg_check_modules(HDF5 hdf5)
+      # But using pkgconfig is a little weird because HDF5_LIBRARIES won't be
+      # filled with exact library paths, like the other scripts.  So instead
+      # what we get is HDF5_LIBRARY_DIRS which is the equivalent of what we'd
+      # pass to -L.  So we have to add those...
+      if (HDF5_FOUND)
+        link_directories("${HDF5_LIBRARY_DIRS}")
+      endif()
+    endif()
+  endif()
+ 
+  message(STATUS "HDF5_FOUND     = ${HDF5_FOUND}")
+  if(HDF5_FOUND)
+    set(ARMA_USE_HDF5_ALT true)
+    set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${HDF5_INCLUDE_DIRS})
+    set(ARMA_LIBS ${ARMA_LIBS} ${HDF5_LIBRARIES})
+    # Since we called HDF5 with no arguments, the script will find only the C
+    # bindings.  So HDF5_INCLUDE_DIRS may now contain one or two elements; if it
+    # contains two, the first is what the user passed as HDF5_INCLUDE_DIR and we
+    # should use that as ARMA_HDF5_INCLUDE_DIR.  Otherwise, the one entry in
+    # HDF5_INCLUDE_DIRS is the correct include directory.  So, in either case we
+    # can use the first element in the list.  Issue a status message, too, just
+    # for good measure.
+    list(GET HDF5_INCLUDE_DIRS 0 ARMA_HDF5_INCLUDE_DIR)
+    message(STATUS "Set ARMA_HDF5_INCLUDE_DIR to ${ARMA_HDF5_INCLUDE_DIR}")
+  endif()
+endif()
 
 
 include(ARMA_FindARPACK)

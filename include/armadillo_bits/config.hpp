@@ -9,15 +9,15 @@
 
 
 #if !defined(ARMA_USE_LAPACK)
-// #define ARMA_USE_LAPACK
-//// Uncomment the above line if you have LAPACK or a high-speed replacement for LAPACK,
+#define ARMA_USE_LAPACK
+//// Comment out the above line if you don't have LAPACK or a high-speed replacement for LAPACK,
 //// such as Intel MKL, AMD ACML, or the Accelerate framework.
 //// LAPACK is required for matrix decompositions (eg. SVD) and matrix inverse.
 #endif
 
 #if !defined(ARMA_USE_BLAS)
-// #define ARMA_USE_BLAS
-//// Uncomment the above line if you have BLAS or a high-speed replacement for BLAS,
+#define ARMA_USE_BLAS
+//// Comment out the above line if you don't have BLAS or a high-speed replacement for BLAS,
 //// such as OpenBLAS, GotoBLAS, Intel MKL, AMD ACML, or the Accelerate framework.
 //// BLAS is used for matrix multiplication.
 //// Without BLAS, matrix multiplication will still work, but might be slower.
@@ -31,7 +31,7 @@
 
 // #define ARMA_USE_WRAPPER
 //// Comment out the above line if you're getting linking errors when compiling your programs,
-//// or if you prefer to directly link with LAPACK, BLAS or ARPACK.
+//// or if you prefer to directly link with LAPACK, BLAS or ARPACK instead of the Armadillo runtime library.
 //// You will then need to link your programs directly with -llapack -lblas instead of -larmadillo
 
 // #define ARMA_BLAS_CAPITALS
@@ -94,6 +94,8 @@
 #if defined(ARMA_USE_HDF5_ALT) && defined(ARMA_USE_WRAPPER)
   #undef  ARMA_USE_HDF5
   #define ARMA_USE_HDF5
+  
+  // #define ARMA_HDF5_INCLUDE_DIR /usr/include/
 #endif
 
 #if !defined(ARMA_MAT_PREALLOC)
@@ -155,6 +157,7 @@
 
 #if defined(ARMA_DONT_USE_WRAPPER)
   #undef ARMA_USE_WRAPPER
+  #undef ARMA_USE_HDF5_ALT
 #endif
 
 #if defined(ARMA_DONT_USE_CXX11)

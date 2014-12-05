@@ -71,15 +71,7 @@
 
 
 #include "armadillo_bits/include_atlas.hpp"
-
-
-#if defined(ARMA_USE_HDF5)
-  #include <hdf5.h>
-  #if defined(H5_USE_16_API_DEFAULT) || defined(H5_USE_16_API)
-    #pragma message ("WARNING: disabling use of HDF5 due to its incompatible configuration")
-    #undef ARMA_USE_HDF5
-  #endif
-#endif
+#include "armadillo_bits/include_hdf5.hpp"
 
 
 #if defined(_OPENMP)
@@ -250,6 +242,7 @@ namespace arma
   #include "armadillo_bits/op_all_bones.hpp"
   #include "armadillo_bits/op_normalise_bones.hpp"
   #include "armadillo_bits/op_clamp_bones.hpp"
+  #include "armadillo_bits/op_expmat_bones.hpp"
   
   #include "armadillo_bits/glue_times_bones.hpp"
   #include "armadillo_bits/glue_mixed_bones.hpp"
@@ -450,6 +443,7 @@ namespace arma
   #include "armadillo_bits/fn_cond.hpp"
   #include "armadillo_bits/fn_normalise.hpp"
   #include "armadillo_bits/fn_clamp.hpp"
+  #include "armadillo_bits/fn_expmat.hpp"
   
   #include "armadillo_bits/fn_speye.hpp"
   #include "armadillo_bits/fn_spones.hpp"
@@ -565,6 +559,7 @@ namespace arma
   #include "armadillo_bits/op_all_meat.hpp"
   #include "armadillo_bits/op_normalise_meat.hpp"
   #include "armadillo_bits/op_clamp_meat.hpp"
+  #include "armadillo_bits/op_expmat_meat.hpp"
   
   #include "armadillo_bits/glue_times_meat.hpp"
   #include "armadillo_bits/glue_mixed_meat.hpp"

@@ -187,24 +187,22 @@ In general, programs which use Armadillo are compiled along these lines:
 If you want to use Armadillo without installation,
 or you're getting linking errors, compile along these lines:
   
-  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-4.450.4/include -DARMA_USE_BLAS -DARMA_USE_LAPACK -DARMA_DONT_USE_WRAPPER -lblas -llapack 
+  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-4.550.2/include -DARMA_DONT_USE_WRAPPER -lblas -llapack 
   
-The above command line assumes that you have unpacked the armadillo archive
-(armadillo-4.450.4.tar.gz in this case) into /home/blah/
+The above command line assumes that you have unpacked the armadillo archive into /home/blah/
 You will need to adjust this for later versions of Armadillo,
 and/or if you have unpacked into a different directory.
 
-
 Notes:
 
-* On Mac OS X, replace -lblas -llapack with -framework Accelerate
+* To use the high speed OpenBLAS library instead of BLAS and LAPACK,
+  replace -lblas -llapack with -lopenblas
+  To get OpenBLAS, see http://xianyi.github.com/OpenBLAS/
   
 * On most Linux-based systems, using -lblas -llapack should be enough;
   however, on Ubuntu and Debian you may need to add -lgfortran
   
-* To use the high speed OpenBLAS library instead of BLAS and LAPACK,
-  replace -lblas -llapack with -lopenblas
-  To get OpenBLAS, see http://xianyi.github.com/OpenBLAS/
+* On Mac OS X, replace -lblas -llapack with -framework Accelerate
   
 * If you have ARPACK present, also link with it by adding -larpack
   to the command line
@@ -265,13 +263,12 @@ You can find the original sources for standard BLAS and LAPACK at:
   http://www.netlib.org/lapack/
   
 Faster and/or alternative implementations of BLAS and LAPACK are available:
+  http://xianyi.github.com/OpenBLAS/
   http://software.intel.com/en-us/intel-mkl/
   http://developer.amd.com/tools-and-sdks/cpu-development/amd-core-math-library-acml/
-  http://xianyi.github.com/OpenBLAS/
-  http://www.stanford.edu/~vkl/code/libs.html
   http://icl.cs.utk.edu/lapack-for-windows/lapack/
 
-The MKL, ACML and OpenBLAS libraries are generally the fastest.
+The OpenBLAS, MKL and ACML libraries are generally the fastest.
 See section 8 for more info on making Armadillo use these libraries.
 
 For better performance, we recommend the following high-quality C++ compilers:
@@ -290,6 +287,7 @@ such as Mac OS X, or various Linux-based systems:
   OpenSUSE                  http://www.opensuse.org/
   Fedora                    http://fedoraproject.org/
   Scientific Linux          http://www.scientificlinux.org/
+  CentOS                    http://centos.org/
   Red Hat Enterprise Linux  http://www.redhat.com/
 
 
@@ -455,6 +453,7 @@ Contributors:
 - Szabolcs Horvat
 - Friedrich Hust
 - Ping-Keng Jao
+- Jacques-Henri Jourdan
 - Yaron Keren
 - Kshitij Kulshreshtha
 - Oka Kurniawan
