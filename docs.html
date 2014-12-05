@@ -101,8 +101,10 @@ hr.greyline
 </head>
 <body>
 
+
 <a name="top"></a>
-<a style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a> 
+<!--  -->
+<a style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
 <center>
 <table style="text-align: left; width: 80%; margin-left: auto; margin-right: auto;" border="0" cellpadding="0" cellspacing="0">
@@ -114,7 +116,7 @@ hr.greyline
   <tbody>
     <tr>
       <td style="text-align: left; vertical-align: top;">
-        <font size=+2><b>Reference for Armadillo 4.450</b></font>
+        <font size=+2><b>Reference for Armadillo 4.550</b></font>
         <br>
       </td>
       <td style="text-align: right; vertical-align: top;">
@@ -314,6 +316,7 @@ Technical Report, NICTA, 2010.
 <a href="#cross">cross</a>&nbsp;&middot;
 <a href="#cumsum">cumsum</a>&nbsp;&middot;
 <a href="#diagmat">diagmat</a>&nbsp;&middot;
+<a href="#expmat">expmat</a>&nbsp;&middot;
 <a href="#find">find</a>&nbsp;&middot;
 <a href="#find_finite">find_finite</a>&nbsp;&middot;
 <a href="#find_nonfinite">find_nonfinite</a>&nbsp;&middot;
@@ -408,7 +411,7 @@ The root matrix class is <b>Mat&lt;</b><i>type</i><b>&gt;</b>, where <i>type</i>
 <ul>
 <li>
 <i>float</i>, <i>double</i>, <i>std::complex&lt;float&gt;</i>, <i>std::complex&lt;double&gt;</i>,
-<i>char</i>, <i>short</i>, <i>int</i>, <i>long</i> and unsigned versions of <i>char</i>, <i>short</i>, <i>int</i>, <i>long</i>
+<i>short</i>, <i>int</i>, <i>long</i>, and unsigned versions of <i>short</i>, <i>int</i>, <i>long</i>
 </li>
 </ul>
 </li>
@@ -1197,7 +1200,7 @@ The cube class is <b>Cube&lt;</b><i>type</i><b>&gt;</b>, where <i>type</i> is on
 <ul>
 <li>
 <i>float</i>, <i>double</i>, <i>std::complex&lt;float&gt;</i>, <i>std::complex&lt;double&gt;</i>,
-<i>char</i>, <i>short</i>, <i>int</i>, <i>long</i> and unsigned versions of <i>char</i>, <i>short</i>, <i>int</i>, <i>long</i>
+<i>short</i>, <i>int</i>, <i>long</i> and unsigned versions of <i>short</i>, <i>int</i>, <i>long</i>
 </li>
 </ul>
 </li>
@@ -1512,7 +1515,7 @@ The root sparse matrix class is <b>SpMat&lt;</b><i>type</i><b>&gt;</b>, where <i
 <ul>
 <li>
 <i>float</i>, <i>double</i>, <i>std::complex&lt;float&gt;</i>, <i>std::complex&lt;double&gt;</i>,
-<i>char</i>, <i>short</i>, <i>int</i>, <i>long</i> and unsigned versions of <i>char</i>, <i>short</i>, <i>int</i>, <i>long</i>
+<i>short</i>, <i>int</i>, <i>long</i> and unsigned versions of <i>short</i>, <i>int</i>, <i>long</i>
 </li>
 </ul>
 </li>
@@ -6457,6 +6460,7 @@ See also:
 <li><a href="#clamp">clamp()</a></li>
 <li><a href="#conj">conj()</a></li>
 <li><a href="#imag_real">imag() / real()</a></li>
+<li><a href="#expmat">expmat()</a></li>
 <li><a href="#constants">pre-defined constants</a></li>
 </ul>
 </li>
@@ -7752,6 +7756,40 @@ See also:
 <hr class="greyline">
 <br>
 
+<a name="expmat"></a>
+<b>expmat( X )</b>
+<ul>
+<li>Return the matrix exponential of square matrix <i>X</i></li>
+<br>
+<li>If <i>X</i> is not square, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li><b>Caveat</b>: the matrix exponential operation is <b>not</b> the same as applying the <a href="#misc_fns">exp()</a> function to each element
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+
+mat B = expmat(A);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#misc_fns">element-wise functions</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
+</ul>
+</li>
+<br>
+</ul>
+<hr class="greyline">
+<br>
+
 <a name="find"></a>
 <b>find( X )</b>
 <br><b>find( X, k )</b>
@@ -8729,13 +8767,24 @@ See also:
 <a name="chol"></a>
 <b>R = chol( X )</b>
 <br><b>chol( R, X )</b>
+<br>
+<br><b>R = chol( X, layout )</b>
+<br><b>chol( R, X, layout )</b>
 <ul>
 <li>
-Cholesky decomposition of matrix <i>X</i>, such that <i>R.t()*R = X</i>
+Cholesky decomposition of matrix <i>X</i>
 </li>
 <br>
 <li>
 Matrix <i>X</i> must be symmetric and positive-definite
+</li>
+<br>
+<li>
+By default, <i>R</i> is upper triangular, such that <i>R.t()*R = X</i>
+</li>
+<br>
+<li>
+The argument <i>layout</i> is optional; <i>layout</i> is either "upper" or "lower", which specifies whether <i>R</i> is upper or lower triangular
 </li>
 <br>
 <li>If the decomposition fails, <i>R</i> is reset and:
@@ -8752,7 +8801,8 @@ Examples:
 mat X = randu&lt;mat&gt;(5,5);
 mat Y = X.t()*X;
 
-mat R = chol(Y);
+mat R1 = chol(Y);
+mat R2 = chol(Y, "lower");
 </pre>
 </ul>
 </li>
@@ -10269,7 +10319,8 @@ For an instance of <i>gmm_diag</i> named as <i>M</i>, the member functions and v
       <td style="vertical-align: top;">&nbsp;<br></td>
       <td style="vertical-align: top;">&nbsp;<br></td>
       <td style="vertical-align: top;">
-      learn the model parameters via the k-means and/or EM algorithms
+      learn the model parameters via the k-means and/or EM algorithms,
+      <br>and return a <code>bool</code> variable, with <i>true</i> indicating success, and <i>false</i> indicating failure
       </td>
     </tr>
   </tbody>
@@ -10483,6 +10534,7 @@ model.save("my_model.gmm");
 <ul>
 <li><a href="#stats_fns">statistics functions</a></li>
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
+<li><a href="#diagmat">diagmat()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Mahalanobis_distance">Mahalanobis distance in Wikipedia</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Normal_distribution">normal distribution in Wikipedia</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Mixture_model">mixture model in Wikipedia</a></li>
@@ -13304,6 +13356,24 @@ List of additions and changes for each version:
 <br>
 <ul>
 
+<a name="added_in_4550"></a>
+<li>Added in 4.550:
+<ul>
+<li>added matrix exponential function: <a href="#expmat">expmat()</a></li>
+<li>faster <i>.log_p()</i> and <i>.avg_log_p()</i> functions in the <a href="#gmm_diag">gmm_diag</a> class when compiling with OpenMP enabled</li>
+<li>faster handling of in-place addition/subtraction of expressions with an outer product
+</ul>
+</li>
+<br>
+<a name="added_in_4500"></a>
+<li>Added in 4.500:
+<ul>
+<li>faster handling of complex vectors by <a href="#norm">norm()</a></li>
+<li>expanded <a href="#chol">chol()</a> to optionally specify output matrix as upper or lower triangular</li>
+<li>better handling of non-finite values when <a href="#save_load_mat">saving</a> matrices as text files</li>
+</ul>
+</li>
+<br>
 <a name="added_in_4450"></a>
 <li>Added in 4.450:
 <ul>
