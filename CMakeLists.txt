@@ -1,7 +1,7 @@
 
-# Copyright (C) 2008-2014 Conrad Sanderson
-# Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
-# Copyright (C) 2013-2014 Ryan Curtin
+# Copyright (C) 2008-2015 Conrad Sanderson
+# Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
+# Copyright (C) 2013-2015 Ryan Curtin
 # Copyright (C) 2011 Clement Creusot
 # 
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,12 +12,31 @@
 
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-set(ARMA_MAJOR 4)
-set(ARMA_MINOR 550)
-set(ARMA_PATCH 2)
+set(ARMA_MAJOR 5)
+set(ARMA_MINOR 000)
+set(ARMA_PATCH 1)
 set(ARMADILLO_VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH})
 
 message(STATUS "Configuring Armadillo ${ARMADILLO_VERSION}")
+
+
+## Set ARMA_USE_WRAPPER to false if you're getting linking errors when compiling your programs,
+## or if you prefer to directly link with BLAS and/or LAPACK.
+## You will then need to link your programs with -lblas -llapack instead of -larmadillo
+## If you're using OpenBLAS, link your programs with -lopenblas -llapack instead of -larmadillo
+
+set(ARMA_USE_WRAPPER true)
+
+
+# the settings below will be automatically configured by the rest of this script
+
+set(ARMA_USE_LAPACK           false)
+set(ARMA_USE_BLAS             false)
+set(ARMA_USE_ATLAS            false)
+set(ARMA_USE_HDF5_ALT         false)
+set(ARMA_USE_ARPACK           false)
+set(ARMA_USE_EXTERN_CXX11_RNG false)
+set(ARMA_USE_SUPERLU          false)  # Caveat: only SuperLU version 4.3 can be used!
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_aux/Modules/")
 
@@ -30,21 +49,6 @@ project(armadillo CXX)
 
 option(BUILD_SHARED_LIBS "build shared library" ON)
 option(DETECT_HDF5 "Detect HDF5 and include HDF5 support, if found" OFF)
-
-set(ARMA_USE_LAPACK    false)
-set(ARMA_USE_BLAS      false)
-set(ARMA_USE_ATLAS     false)
-set(ARMA_USE_HDF5_ALT  false)
-set(ARMA_USE_ARPACK    false)
-set(ARMA_USE_CXX11_RNG false)
-set(ARMA_USE_WRAPPER   true )
-
-## NOTE:
-## Set ARMA_USE_WRAPPER to false if you're getting linking errors when compiling your programs,
-## or if you prefer to directly link with BLAS and/or LAPACK.
-## You will then need to link your programs with -lblas -llapack instead of -larmadillo
-## If you're using OpenBLAS, link your programs with -lopenblas -llapack instead of -larmadillo
-
 
 message(STATUS "CMAKE_SYSTEM_NAME          = ${CMAKE_SYSTEM_NAME}"         )
 message(STATUS "CMAKE_CXX_COMPILER_ID      = ${CMAKE_CXX_COMPILER_ID}"     )
@@ -69,30 +73,44 @@ endif()
 ##
 
 if(APPLE)
+  
   set(ARMA_OS macos)
   
   set(ARMA_USE_LAPACK true)
   set(ARMA_USE_BLAS   true)
   
-  ## Under MacOS, the current version of ARMA_FindCLAPACK can get confused between two incompatible
-  ## versions of "clapack.h" (one provided by the system and one provided by ATLAS).
-  ## As such, use of ATLAS under MacOS is disabled for now.
+  set(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
+  message(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
+  
+  if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    message(STATUS "Clang compiler on MacOS X detected. Added '-stdlib=libc++' to compiler flags")
+  endif()
   
 else()
+  
   set(ARMA_OS unix)
   
   include(ARMA_FindMKL)
   include(ARMA_FindACMLMP)
   include(ARMA_FindACML)
+  include(ARMA_FindOpenBLAS)
+  include(ARMA_FindATLAS)
+  include(ARMA_FindBLAS)
+  include(ARMA_FindLAPACK)
   
-  message(STATUS "   MKL_FOUND   = ${MKL_FOUND}")
-  message(STATUS "ACMLMP_FOUND   = ${ACMLMP_FOUND}")
-  message(STATUS "  ACML_FOUND   = ${ACML_FOUND}")
+  message(STATUS "     MKL_FOUND = ${MKL_FOUND}"     )
+  message(STATUS "  ACMLMP_FOUND = ${ACMLMP_FOUND}"  )
+  message(STATUS "    ACML_FOUND = ${ACML_FOUND}"    )
+  message(STATUS "OpenBLAS_FOUND = ${OpenBLAS_FOUND}")
+  message(STATUS "   ATLAS_FOUND = ${ATLAS_FOUND}"   )
+  message(STATUS "    BLAS_FOUND = ${BLAS_FOUND}"    )
+  message(STATUS "  LAPACK_FOUND = ${LAPACK_FOUND}"  )
   
   if(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
     
-    set(ARMA_USE_BLAS   true)
     set(ARMA_USE_LAPACK true)
+    set(ARMA_USE_BLAS   true)
     
     message(STATUS "")
     message(STATUS "*** If the MKL or ACML libraries are installed in non-standard locations such as")
@@ -107,36 +125,49 @@ else()
     message(STATUS "*** See README.txt for more information")
     message(STATUS "")
     
+    if(MKL_FOUND)
+      set(ARMA_LIBS ${ARMA_LIBS} ${MKL_LIBRARIES})
+      
+      if(ACMLMP_FOUND OR ACML_FOUND)
+        message(STATUS "*** Intel MKL as well as AMD ACML libraries were found.")
+        message(STATUS "*** Using only the MKL library to avoid linking conflicts.")
+        message(STATUS "*** If you wish to use ACML instead, please link manually with")
+        message(STATUS "*** acml or acml_mp instead of the armadillo wrapper library.")
+        message(STATUS "*** Alternatively, remove MKL from your system and rerun")
+        message(STATUS "*** Armadillo's configuration using ./configure") 
+      endif()
+      
+    else()
+      
+      if(ACMLMP_FOUND)
+        set(ARMA_LIBS ${ARMA_LIBS} ${ACMLMP_LIBRARIES})
+        
+        message(STATUS "*** Both single-core and multi-core ACML libraries were found.")
+        message(STATUS "*** Using only the multi-core library to avoid linking conflicts.")
+      else()
+        if(ACML_FOUND)
+          set(ARMA_LIBS ${ARMA_LIBS} ${ACML_LIBRARIES})
+        endif()
+      endif()
+      
+    endif()
+    
   else()
     
-    include(ARMA_FindLAPACK)
-    include(ARMA_FindOpenBLAS)
-    include(ARMA_FindBLAS)
-    include(ARMA_FindCLAPACK)
-    include(ARMA_FindCBLAS)
-    
-    message(STATUS "  LAPACK_FOUND = ${LAPACK_FOUND}")
-    message(STATUS "    BLAS_FOUND = ${BLAS_FOUND}")
-    message(STATUS "OpenBLAS_FOUND = ${OpenBLAS_FOUND}")
-    message(STATUS " CLAPACK_FOUND = ${CLAPACK_FOUND}")
-    message(STATUS "   CBLAS_FOUND = ${CBLAS_FOUND}")
-    
-    if(LAPACK_FOUND)
-      set(ARMA_USE_LAPACK true)
-    endif()
-    
-    if(BLAS_FOUND)
-      set(ARMA_USE_BLAS true)
-    endif()
-    
-    if(OpenBLAS_FOUND AND CLAPACK_FOUND AND CBLAS_FOUND)
+    if(OpenBLAS_FOUND AND ATLAS_FOUND)
       message(STATUS "")
-      message(STATUS "*** WARNING: both OpenBLAS and ATLAS have been found; ATLAS will not be used")
+      message(STATUS "*** WARNING: found both OpenBLAS and ATLAS; ATLAS will not be used")
+    endif()
+    
+    if(OpenBLAS_FOUND AND BLAS_FOUND)
+      message(STATUS "")
+      message(STATUS "*** WARNING: found both OpenBLAS and BLAS; BLAS will not be used")
     endif()
     
     if(OpenBLAS_FOUND)
       
       set(ARMA_USE_BLAS true)
+      set(ARMA_LIBS ${ARMA_LIBS} ${OpenBLAS_LIBRARIES})
       
       message(STATUS "")
       message(STATUS "*** If the OpenBLAS library is installed in")
@@ -148,83 +179,28 @@ else()
       
     else()
       
-      if(CLAPACK_FOUND AND CBLAS_FOUND)
-        message(STATUS "CLAPACK_INCLUDE_DIR = ${CLAPACK_INCLUDE_DIR}")
-        message(STATUS "  CBLAS_INCLUDE_DIR = ${CBLAS_INCLUDE_DIR}")
+      if(ATLAS_FOUND)
+        set(ARMA_USE_ATLAS true)
+        set(ARMA_ATLAS_INCLUDE_DIR ${ATLAS_INCLUDE_DIR})
+        set(ARMA_LIBS ${ARMA_LIBS} ${ATLAS_LIBRARIES})
         
-        if(${CLAPACK_INCLUDE_DIR} STREQUAL ${CBLAS_INCLUDE_DIR})
-          set(ARMA_USE_ATLAS true)
-          set(ARMA_ATLAS_INCLUDE_DIR ${CLAPACK_INCLUDE_DIR})
-        endif()
+        message(STATUS "ATLAS_INCLUDE_DIR = ${ATLAS_INCLUDE_DIR}")
+      endif()
+      
+      if(BLAS_FOUND)
+        set(ARMA_USE_BLAS true)
+        set(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
       endif()
       
     endif()
     
-  endif()
-
-endif()
-
-
-if(MKL_FOUND OR ACMLMP_FOUND OR ACML_FOUND)
-  
-  if(MKL_FOUND)
-    set(ARMA_LIBS ${ARMA_LIBS} ${MKL_LIBRARIES})
-    
-    if(ACMLMP_FOUND OR ACML_FOUND)
-      message(STATUS "*** Intel MKL as well as AMD ACML libraries were found.")
-      message(STATUS "*** Using only the MKL library to avoid linking conflicts.")
-      message(STATUS "*** If you wish to use ACML instead, please link manually with")
-      message(STATUS "*** acml or acml_mp instead of the armadillo wrapper library.")
-      message(STATUS "*** Alternatively, remove MKL from your system and rerun")
-      message(STATUS "*** Armadillo's configuration using ./configure") 
+    if(LAPACK_FOUND)
+      set(ARMA_USE_LAPACK true)
+      set(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
     endif()
-    
-  else()
-    
-    if(ACMLMP_FOUND)
-      set(ARMA_LIBS ${ARMA_LIBS} ${ACMLMP_LIBRARIES})
       
-      message(STATUS "*** Both single-core and multi-core ACML libraries were found.")
-      message(STATUS "*** Using only the multi-core library to avoid linking conflicts.")
-    else()
-      if(ACML_FOUND)
-        set(ARMA_LIBS ${ARMA_LIBS} ${ACML_LIBRARIES})
-      endif()
-    endif()
-    
   endif()
   
-else()
-  
-  if(ARMA_USE_BLAS STREQUAL true)
-    if(OpenBLAS_FOUND)
-      set(ARMA_LIBS ${ARMA_LIBS} ${OpenBLAS_LIBRARIES})
-    else()
-      set(ARMA_LIBS ${ARMA_LIBS} ${BLAS_LIBRARIES})
-    endif()
-  endif()
-  
-  if(ARMA_USE_LAPACK STREQUAL true)
-    set(ARMA_LIBS ${ARMA_LIBS} ${LAPACK_LIBRARIES})
-  endif()
-  
-  if(ARMA_USE_ATLAS STREQUAL true)
-    set(ARMA_LIBS ${ARMA_LIBS} ${CBLAS_LIBRARIES})
-    set(ARMA_LIBS ${ARMA_LIBS} ${CLAPACK_LIBRARIES})
-  endif()
-  
-endif()
-
-
-if(APPLE)
-  set(ARMA_LIBS ${ARMA_LIBS} "-framework Accelerate")  # or "-framework accelerate" ?
-  message(STATUS "MacOS X detected. Added '-framework Accelerate' to compiler flags")
-  
-  if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
-  message(STATUS "Clang compiler on MacOS X detected. Added '-stdlib=libc++' to compiler flags")
-  endif()
-
 endif()
 
 
@@ -256,7 +232,7 @@ if(DETECT_HDF5)
     endif()
   endif()
  
-  message(STATUS "HDF5_FOUND     = ${HDF5_FOUND}")
+  message(STATUS "HDF5_FOUND = ${HDF5_FOUND}")
   if(HDF5_FOUND)
     set(ARMA_USE_HDF5_ALT true)
     set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${HDF5_INCLUDE_DIRS})
@@ -282,6 +258,16 @@ if(ARPACK_FOUND)
   set(ARMA_LIBS ${ARMA_LIBS} ${ARPACK_LIBRARY})
 endif()
 
+include(ARMA_FindSuperLU)
+message(STATUS "SuperLU_FOUND = ${SuperLU_FOUND}")
+
+if(SuperLU_FOUND)
+  message(STATUS "SuperLU_INCLUDE_DIR = ${SuperLU_INCLUDE_DIR}")
+  set(ARMA_USE_SUPERLU true)
+  set(ARMA_LIBS ${ARMA_LIBS} ${SuperLU_LIBRARY})
+  set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${SuperLU_INCLUDE_DIR})
+  set(ARMA_SUPERLU_INCLUDE_DIR ${SuperLU_INCLUDE_DIR})
+endif()
 
 message(STATUS "")
 message(STATUS "*** Armadillo wrapper library will use the following libraries:")
@@ -291,7 +277,7 @@ message(STATUS "")
 
 if(DEFINED CMAKE_CXX_COMPILER_ID AND DEFINED CMAKE_CXX_COMPILER_VERSION)
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT ${CMAKE_CXX_COMPILER_VERSION} VERSION_LESS 4.8.3)
-    set(ARMA_USE_CXX11_RNG true)
+    set(ARMA_USE_EXTERN_CXX11_RNG true)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
     message(STATUS "Detected gcc 4.8.3 or later. Added '-std=c++11' to compiler flags")
   endif()
@@ -309,20 +295,6 @@ configure_file(${PROJECT_SOURCE_DIR}/examples/Makefile.cmake ${PROJECT_SOURCE_DI
 
 
 include_directories(${PROJECT_BINARY_DIR}/tmp/include/ ${CMAKE_REQUIRED_INCLUDES})
-
-
-## For any library that is not in a default location,
-## embed its path into the Armadillo runtime library.
-## Examples of default locations are "/lib", "/usr/lib",
-## or as specified in "/etc/ld.so.conf".
-##
-## Path embedding is not recommended unless you know
-## what you're doing.  It might be better to add the
-## path to the "/etc/ld.so.conf" file and then run "ldconfig".
-##
-#set(CMAKE_SKIP_BUILD_RPATH  FALSE)
-#set(CMAKE_BUILD_WITH_INSTALL_RPATH  FALSE)
-#set(CMAKE_INSTALL_RPATH_USE_LINK_PATH  TRUE)
 
 
 ## work around a silly limitation in Mac OS X
