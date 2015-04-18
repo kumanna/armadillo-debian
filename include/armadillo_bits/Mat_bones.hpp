@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2014 Conrad Sanderson
-// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // Copyright (C) 2012-2014 Ryan Curtin
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
@@ -128,6 +128,14 @@ class Mat : public Base< eT, Mat<eT> >
   inline const Mat& operator%=(const diagview<eT>& X);
   inline const Mat& operator/=(const diagview<eT>& X);
   
+  inline                   Mat(const spdiagview<eT>& X);
+  inline const Mat&  operator=(const spdiagview<eT>& X);
+  inline const Mat& operator+=(const spdiagview<eT>& X);
+  inline const Mat& operator-=(const spdiagview<eT>& X);
+  inline const Mat& operator*=(const spdiagview<eT>& X);
+  inline const Mat& operator%=(const spdiagview<eT>& X);
+  inline const Mat& operator/=(const spdiagview<eT>& X);
+  
   template<typename T1> inline                   Mat(const subview_elem1<eT,T1>& X);
   template<typename T1> inline const Mat& operator= (const subview_elem1<eT,T1>& X);
   template<typename T1> inline const Mat& operator+=(const subview_elem1<eT,T1>& X);
@@ -201,6 +209,18 @@ class Mat : public Base< eT, Mat<eT> >
   
   inline            subview<eT> operator()(const uword in_row1, const uword in_col1, const SizeMat& s);
   inline      const subview<eT> operator()(const uword in_row1, const uword in_col1, const SizeMat& s) const;
+  
+  inline       subview<eT> head_rows(const uword N);
+  inline const subview<eT> head_rows(const uword N) const;
+  
+  inline       subview<eT> tail_rows(const uword N);
+  inline const subview<eT> tail_rows(const uword N) const;
+  
+  inline       subview<eT> head_cols(const uword N);
+  inline const subview<eT> head_cols(const uword N) const;
+  
+  inline       subview<eT> tail_cols(const uword N);
+  inline const subview<eT> tail_cols(const uword N) const;
   
   template<typename T1> arma_inline       subview_elem1<eT,T1> elem(const Base<uword,T1>& a);
   template<typename T1> arma_inline const subview_elem1<eT,T1> elem(const Base<uword,T1>& a) const;
@@ -372,7 +392,8 @@ class Mat : public Base< eT, Mat<eT> >
   inline void   resize(const uword in_elem);
   inline void   resize(const uword in_rows, const uword in_cols);
   
-  inline void  reshape(const uword in_rows, const uword in_cols, const uword dim = 0);
+  inline void  reshape(const uword in_rows, const uword in_cols);
+  inline void  reshape(const uword in_rows, const uword in_cols, const uword dim);
   
   
   template<typename functor>
@@ -698,6 +719,10 @@ class Mat<eT>::fixed : public Mat<eT>
   #endif
   
   arma_inline const Mat& operator=(const fixed<fixed_n_rows, fixed_n_cols>& X);
+  
+  template<typename T1, typename eop_type> inline const Mat& operator=(const eOp<T1, eop_type>& X);
+  
+  template<typename T1, typename T2, typename eglue_type> inline const Mat& operator=(const eGlue<T1, T2, eglue_type>& X);
   
   arma_inline const Op< Mat_fixed_type, op_htrans >  t() const;
   arma_inline const Op< Mat_fixed_type, op_htrans > ht() const;

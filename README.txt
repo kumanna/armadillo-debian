@@ -62,6 +62,10 @@ Armadillo is primarily developed at NICTA (Australia),
 with contributions from around the world.  More information
 about NICTA can be obtained from http://nicta.com.au
 
+Main developers:
+  Conrad Sanderson - http://conradsanderson.id.au
+  Ryan Curtin      - http://ratml.org
+
 
 
 2: Citation Details
@@ -86,13 +90,13 @@ and template based function overloading.  As such, C++ compilers which do not
 fully implement the C++ standard may not work correctly.
 
 The functionality of Armadillo is partly dependent on other libraries:
-LAPACK, BLAS and ARPACK. The LAPACK and BLAS libraries are used for
-dense matrices, while the ARPACK library is used for sparse matrices.
-Armadillo can work without these libraries, but its functionality
-will be reduced. In particular, basic functionality will be available
-(eg. matrix addition and multiplication), but things like eigen
-decomposition or matrix inversion will not be.  Matrix multiplication
-(mainly for big matrices) may not be as fast.
+LAPACK, BLAS, ARPACK and SuperLU.  The LAPACK and BLAS libraries are
+used for dense matrices, while the ARPACK and SuperLU libraries are
+used for sparse matrices.  Armadillo can work without these libraries,
+but its functionality will be reduced. In particular, basic functionality
+will be available (eg. matrix addition and multiplication), but things
+like eigen decomposition or matrix inversion will not be.
+Matrix multiplication (mainly for big matrices) may not be as fast.
 
 As Armadillo is a template library, we recommended that optimisation
 is enabled during compilation of programs that use Armadillo.
@@ -121,10 +125,11 @@ Installation procedure:
   If you have LAPACK or BLAS, install them before installing Armadillo.
   Under Mac OS X this is not necessary.
   
-  If you have ARPACK, install it before installing Armadillo.
+  If you have ARPACK and/or SuperLU, install them before installing Armadillo.
+  Caveat: only SuperLU version 4.3 can be used!
   
   On Linux systems it is recommended that the following libraries
-  are present: LAPACK, BLAS, ARPACK and ATLAS.
+  are present: LAPACK, BLAS, ARPACK, SuperLU and ATLAS.
   LAPACK and BLAS are the most important.  It is also necessary to
   install the corresponding development files for each library.
   For example, when installing the "lapack" package, also install
@@ -147,7 +152,7 @@ Installation procedure:
   and will modify Armadillo's configuration correspondingly.
   CMake will also generate a run-time armadillo library, which is a 
   wrapper for all the relevant libraries present on your system
-  (eg. LAPACK, BLAS, ARPACK, ATLAS).
+  (eg. LAPACK, BLAS, ARPACK, SuperLU, ATLAS).
   
   If you need to re-run cmake, it's a good idea to first delete the
   "CMakeCache.txt" file (not "CMakeLists.txt").
@@ -187,7 +192,7 @@ In general, programs which use Armadillo are compiled along these lines:
 If you want to use Armadillo without installation,
 or you're getting linking errors, compile along these lines:
   
-  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-4.550.2/include -DARMA_DONT_USE_WRAPPER -lblas -llapack 
+  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-5.000.1/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
   
 The above command line assumes that you have unpacked the armadillo archive into /home/blah/
 You will need to adjust this for later versions of Armadillo,
@@ -195,8 +200,8 @@ and/or if you have unpacked into a different directory.
 
 Notes:
 
-* To use the high speed OpenBLAS library instead of BLAS and LAPACK,
-  replace -lblas -llapack with -lopenblas
+* To use the high speed OpenBLAS library instead of BLAS,
+  replace -lblas -llapack with -lopenblas -llapack
   To get OpenBLAS, see http://xianyi.github.com/OpenBLAS/
   
 * On most Linux-based systems, using -lblas -llapack should be enough;
@@ -204,10 +209,11 @@ Notes:
   
 * On Mac OS X, replace -lblas -llapack with -framework Accelerate
   
-* If you have ARPACK present, also link with it by adding -larpack
-  to the command line
-
-
+* If you have ARPACK present, also link with it by adding -larpack to the command line
+  
+* If you have SuperLU present, also link with it by adding -lsuperlu to the command line
+  Caveat: only SuperLU version 4.3 can be used!
+  
 
 6: Windows: Installation
 ========================
@@ -223,17 +229,19 @@ The installation is comprised of 3 steps:
 * Step 2:
   Modify "include/armadillo_bits/config.hpp" to indicate which
   libraries are currently available on your system. For example,
-  if you have LAPACK, BLAS (or OpenBLAS) and ARPACK present,
+  if you have LAPACK, BLAS (or OpenBLAS), ARPACK and SuperLU present,
   uncomment the following lines:
   
   #define ARMA_USE_LAPACK
   #define ARMA_USE_BLAS
   #define ARMA_USE_ARPACK
+  #define ARMA_USE_SUPERLU
   
-  If you're not going to use sparse matrices, don't worry about ARPACK.
+  If you don't need sparse matrices, don't worry about ARPACK or SuperLU.
   
 * Step 3:
-  Configure your compiler to link with LAPACK and BLAS.
+  Configure your compiler to link with LAPACK and BLAS
+  (and optionally ARPACK and SuperLU).
 
 
 
@@ -407,7 +415,11 @@ See the "LICENSE.txt" file for license details.
 
 The file "include/armadillo_bits/fft_engine.hpp" is licensed under
 both the Mozilla Public License v2.0 and a 3-clause BSD license.
-See "include/armadillo_bits/fft_engine.hpp" for license details.
+See the file for license details.
+
+The file "include/armadillo_bits/include_superlu.hpp"
+is licensed under both the Mozilla Public License v2.0 and
+a 3-clause BSD license.  See the file for license details.
 
 
 
@@ -448,6 +460,7 @@ Contributors:
 - Michael McNeil Forbes
 - Piotr Gawron
 - Charles Gretton
+- Franz Gritschneder
 - Benjamin Herzog
 - Edmund Highcock
 - Szabolcs Horvat
@@ -467,12 +480,13 @@ Contributors:
 - Artem Novikov
 - Martin Orlob
 - Ken Panici
-- Adam Piątyszek
+- Adam Piatyszek
 - Jayden Platell
 - Vikas Reddy
 - Ola Rinta-Koski
 - Boris Sabanin
 - James Sanders
+- Pierre-Andre Savalle
 - Alexander Scherbatey
 - Gerhard Schreiber
 - Ruslan Shestopalyuk
@@ -506,6 +520,4 @@ Contributors:
   
 * ArmaNpy: interfaces Armadillo matrices with Python
   http://sourceforge.net/projects/armanpy/
-
-
 
