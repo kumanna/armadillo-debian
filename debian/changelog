@@ -1,3 +1,11 @@
+armadillo (1:5.000.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * The new package (with soname) is libarmadillo5
+  * Standards version is now 3.9.6 (no changes)
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 18 Apr 2015 06:06:13 +0530
+
 armadillo (1:4.550.2+dfsg-1) experimental; urgency=medium
 
   * New upstream release
