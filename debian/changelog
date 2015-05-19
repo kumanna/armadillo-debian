@@ -1,3 +1,9 @@
+armadillo (1:5.100.2+dfsg-2) experimental; urgency=medium
+
+  * Add libsuperlu dependency
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 19 May 2015 11:30:01 +0530
+
 armadillo (1:5.100.2+dfsg-1) experimental; urgency=medium
 
   * New upstream release
