@@ -1,3 +1,9 @@
+armadillo (1:5.100.2+dfsg-3) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 21 May 2015 18:33:04 +0530
+
 armadillo (1:5.100.2+dfsg-2) experimental; urgency=medium
 
   * Add libsuperlu dependency
