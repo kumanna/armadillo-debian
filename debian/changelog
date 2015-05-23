@@ -1,3 +1,9 @@
+armadillo (1:5.100.2+dfsg-4) unstable; urgency=medium
+
+  * libarmadillo-dev depends on libsuperlu-dev
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 23 May 2015 14:40:49 +0530
+
 armadillo (1:5.100.2+dfsg-3) unstable; urgency=medium
 
   * Upload to unstable.

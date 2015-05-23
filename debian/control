@@ -13,7 +13,7 @@ Package: libarmadillo-dev
 Section: libdevel
 Architecture: any
 Suggests: libitpp-dev
-Depends: libarmadillo5 (= ${binary:Version}), ${misc:Depends}, libarpack2-dev, libhdf5-dev
+Depends: libarmadillo5 (= ${binary:Version}), ${misc:Depends}, libarpack2-dev, libhdf5-dev, libsuperlu-dev (>= 4.3), libsuperlu-dev (<< 4.4)
 Replaces: libarmadillo-doc (<= 1.1.2-1)
 Conflicts: libarmadillo-doc
 Description: streamlined C++ linear algebra library - Headers
