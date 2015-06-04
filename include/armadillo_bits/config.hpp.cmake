@@ -1,6 +1,6 @@
-// Copyright (C) 2008-2014 Conrad Sanderson
-// Copyright (C) 2013 Ryan Curtin
-// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2013-2015 Ryan Curtin
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -10,14 +10,14 @@
 
 #if !defined(ARMA_USE_LAPACK)
 #cmakedefine ARMA_USE_LAPACK
-//// Uncomment the above line if you have LAPACK or a high-speed replacement for LAPACK,
+//// Comment out the above line if you don't have LAPACK or a high-speed replacement for LAPACK,
 //// such as Intel MKL, AMD ACML, or the Accelerate framework.
 //// LAPACK is required for matrix decompositions (eg. SVD) and matrix inverse.
 #endif
 
 #if !defined(ARMA_USE_BLAS)
 #cmakedefine ARMA_USE_BLAS
-//// Uncomment the above line if you have BLAS or a high-speed replacement for BLAS,
+//// Comment out the above line if you don't have BLAS or a high-speed replacement for BLAS,
 //// such as OpenBLAS, GotoBLAS, Intel MKL, AMD ACML, or the Accelerate framework.
 //// BLAS is used for matrix multiplication.
 //// Without BLAS, matrix multiplication will still work, but might be slower.
@@ -26,12 +26,26 @@
 #if !defined(ARMA_USE_ARPACK)
 #cmakedefine ARMA_USE_ARPACK
 //// Uncomment the above line if you have ARPACK or a high-speed replacement for ARPACK.
-//// ARPACK is required for eigendecompositions of sparse matrices, eg. eigs_sym() 
+//// ARPACK is required for eigendecompositions of sparse matrices, eg. eigs_sym(), svds() 
+#endif
+
+#if !defined(ARMA_USE_SUPERLU)
+#cmakedefine ARMA_USE_SUPERLU
+//// Uncomment the above line if you have SuperLU.
+//// SuperLU is used for solving sparse linear systems via spsolve()
+//// Caveat: only SuperLU version 4.3 can be used!
+#endif
+
+#if !defined(ARMA_SUPERLU_INCLUDE_DIR)
+#define ARMA_SUPERLU_INCLUDE_DIR ${ARMA_SUPERLU_INCLUDE_DIR}/
+//// If you're using SuperLU and want to explicitly include the SuperLU headers,
+//// uncomment the above define and specify the appropriate include directory.
+//// Make sure the directory has a trailing /
 #endif
 
 #cmakedefine ARMA_USE_WRAPPER
 //// Comment out the above line if you're getting linking errors when compiling your programs,
-//// or if you prefer to directly link with LAPACK, BLAS or ARPACK.
+//// or if you prefer to directly link with LAPACK, BLAS + etc instead of the Armadillo runtime library.
 //// You will then need to link your programs directly with -llapack -lblas instead of -larmadillo
 
 // #define ARMA_BLAS_CAPITALS
@@ -59,29 +73,32 @@
 //// uncomment the above define and specify the appropriate include directory.
 //// Make sure the directory has a trailing /
 
+#if !defined(ARMA_USE_CXX11)
+// #define ARMA_USE_CXX11
+//// Uncomment the above line to forcefully enable use of C++11 features (eg. initialiser lists).
+//// Note that ARMA_USE_CXX11 is automatically enabled when a C++11 compiler is detected
+#endif
+
 #if !defined(ARMA_64BIT_WORD)
 // #define ARMA_64BIT_WORD
 //// Uncomment the above line if you require matrices/vectors capable of holding more than 4 billion elements.
 //// Your machine and compiler must have support for 64 bit integers (eg. via "long" or "long long")
-#endif
-
-#if !defined(ARMA_USE_CXX11)
-// #define ARMA_USE_CXX11
-//// Uncomment the above line if you have a C++ compiler that supports the C++11 standard
-//// This will enable additional features, such as use of initialiser lists
-#endif
-
-#if !defined(ARMA_USE_U64S64)
-// #define ARMA_USE_U64S64
-//// Uncomment the above line if you require u64 and s64 integer types.
-//// Your machine and compiler must have support for 64 bit integers (eg. via "long" or "long long").
-//// Note that ARMA_USE_U64S64 is automatically enabled when ARMA_64BIT_WORD or ARMA_USE_CXX11 are enabled
+//// Note that ARMA_64BIT_WORD is automatically enabled when a C++11 compiler is detected
 #endif
 
 #if !defined(ARMA_USE_HDF5)
-#cmakedefine ARMA_USE_HDF5
-//// Uncomment the above line if you want the ability to save and load matrices stored in the HDF5 format;
-//// the hdf5.h header file must be available on your system and you will need to link with the hdf5 library (eg. -lhdf5)
+// #define ARMA_USE_HDF5
+//// Uncomment the above line to allow the ability to save and load matrices stored in HDF5 format;
+//// the hdf5.h header file must be available on your system,
+//// and you will need to link with the hdf5 library (eg. -lhdf5)
+#endif
+
+#cmakedefine ARMA_USE_HDF5_ALT
+#if defined(ARMA_USE_HDF5_ALT) && defined(ARMA_USE_WRAPPER)
+  #undef  ARMA_USE_HDF5
+  #define ARMA_USE_HDF5
+  
+  #define ARMA_HDF5_INCLUDE_DIR ${ARMA_HDF5_INCLUDE_DIR}/
 #endif
 
 #if !defined(ARMA_MAT_PREALLOC)
@@ -136,6 +153,11 @@
   #undef ARMA_USE_ARPACK
 #endif
 
+#if defined(ARMA_DONT_USE_SUPERLU)
+  #undef ARMA_USE_SUPERLU
+  #undef ARMA_SUPERLU_INCLUDE_DIR
+#endif
+
 #if defined(ARMA_DONT_USE_ATLAS)
   #undef ARMA_USE_ATLAS
   #undef ARMA_ATLAS_INCLUDE_DIR
@@ -143,19 +165,28 @@
 
 #if defined(ARMA_DONT_USE_WRAPPER)
   #undef ARMA_USE_WRAPPER
+  #undef ARMA_USE_HDF5_ALT
 #endif
 
 #if defined(ARMA_DONT_USE_CXX11)
   #undef ARMA_USE_CXX11
-  #undef ARMA_USE_CXX11_RNG
+  #undef ARMA_USE_EXTERN_CXX11_RNG
 #endif
 
 #if defined(ARMA_USE_WRAPPER)
   #if defined(ARMA_USE_CXX11)
-    #if !defined(ARMA_USE_CXX11_RNG)
-      #cmakedefine ARMA_USE_CXX11_RNG
+    #if !defined(ARMA_USE_EXTERN_CXX11_RNG)
+      #cmakedefine ARMA_USE_EXTERN_CXX11_RNG
     #endif
   #endif
+#endif
+
+#if defined(ARMA_DONT_USE_EXTERN_CXX11_RNG)
+  #undef ARMA_USE_EXTERN_CXX11_RNG
+#endif
+
+#if defined(ARMA_32BIT_WORD)
+  #undef ARMA_64BIT_WORD
 #endif
 
 #if defined(ARMA_DONT_USE_HDF5)

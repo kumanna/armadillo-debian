@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2014 Conrad Sanderson
-// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // Copyright (C) 2012 Ryan Curtin
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
@@ -55,10 +55,21 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const uword n_elem)
   
   bool use_layout_B = false;
   bool use_layout_C = false;
+  bool use_layout_D = false;
   
   for(uword i=0; i<n_elem; ++i)
     {
     const eT val = data[i];
+    
+    if(
+      ( cond_rel< (sizeof(eT) > 4) && (is_same_type<uword,eT>::yes || is_same_type<sword,eT>::yes) >::geq(val, eT(+10000000000)) )
+      ||
+      ( cond_rel< (sizeof(eT) > 4) &&  is_same_type<sword,eT>::yes                                 >::leq(val, eT(-10000000000)) )
+      )
+      {
+      use_layout_D = true;
+      break;
+      }
     
     if(
       ( val >= eT(+100) )
@@ -96,6 +107,15 @@ arma_ostream::modify_stream(std::ostream& o, const eT* data, const uword n_elem)
       }
     }
   
+  if(use_layout_D == true)
+    {
+    o.setf(ios::scientific);
+    o.setf(ios::right);
+    o.unsetf(ios::fixed);
+    o.precision(4);
+    cell_width = 21;
+    }
+  else
   if(use_layout_C == true)
     {
     o.setf(ios::scientific);
@@ -285,13 +305,38 @@ arma_inline
 void
 arma_ostream::print_elem(std::ostream& o, const eT& x, const bool modify)
   {
-  if(x != eT(0))
+  if(is_signed<eT>::value)
     {
-    o << x;
+    typedef typename promote_type<eT, s16>::result promoted_eT;
+    
+    if(x != eT(0))
+      {
+      if(arma_isfinite(x))
+        {
+        o << promoted_eT(x);
+        }
+      else
+        {
+        o << ( arma_isinf(x) ? ((x <= eT(0)) ? "-inf" : "inf") : "nan" );
+        }
+      }
+    else
+      {
+      arma_ostream::print_elem_zero<promoted_eT>(o, modify);
+      }
     }
   else
     {
-    arma_ostream::print_elem_zero<eT>(o, modify);
+    typedef typename promote_type<eT, u16>::result promoted_eT;
+    
+    if(x != eT(0))
+      {
+      o << promoted_eT(x);
+      }
+    else
+      {
+      arma_ostream::print_elem_zero<promoted_eT>(o, modify);
+      }
     }
   }
 
@@ -309,8 +354,35 @@ arma_ostream::print_elem(std::ostream& o, const std::complex<T>& x, const bool m
     ss.flags(o.flags());
     //ss.imbue(o.getloc());
     ss.precision(o.precision());
-  
-    ss << '(' << x.real() << ',' << x.imag() << ')';
+    
+    ss << '(';
+    
+    const T a = x.real();
+    
+    if(arma_isfinite(a))
+      {
+      ss << a;
+      }
+    else
+      {
+      ss << ( arma_isinf(a) ? ((a <= T(0)) ? "-inf" : "+inf") : "nan" );
+      }
+    
+    ss << ',';
+    
+    const T b = x.imag();
+    
+    if(arma_isfinite(b))
+      {
+      ss << b;
+      }
+    else
+      {
+      ss << ( arma_isinf(b) ? ((b <= T(0)) ? "-inf" : "+inf") : "nan" );
+      }
+    
+    ss << ')';
+    
     o << ss.str();
     }
   else
@@ -732,7 +804,7 @@ arma_ostream::print(std::ostream& o, const SizeMat& S)
   
   o.setf(ios::fixed);
   
-  o << S.n_rows << 'x' << S.n_cols << '\n';
+  o << S.n_rows << 'x' << S.n_cols;
   
   stream_state.restore(o);
   }
@@ -753,7 +825,7 @@ arma_ostream::print(std::ostream& o, const SizeCube& S)
   
   o.setf(ios::fixed);
     
-  o << S.n_rows << 'x' << S.n_cols << 'x' << S.n_slices << '\n';
+  o << S.n_rows << 'x' << S.n_cols << 'x' << S.n_slices;
   
   stream_state.restore(o);
   }

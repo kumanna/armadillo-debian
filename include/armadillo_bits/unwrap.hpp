@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2014 Conrad Sanderson
-// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -355,6 +355,30 @@ struct quasi_unwrap< mtOp<out_eT, T1, op_type> >
 
 
 
+template<typename T1>
+struct quasi_unwrap< Op<T1, op_vectorise_col> >
+  {
+  static const bool has_subview = true;
+  
+  typedef typename T1::elem_type eT;
+  
+  inline
+  quasi_unwrap(const Op<T1, op_vectorise_col>& A)
+    : U( A.m )
+    , M( const_cast<eT*>(U.M.memptr()), U.M.n_elem, 1, false, false )
+    {
+    arma_extra_debug_sigprint();
+    }
+  
+  const unwrap<T1> U;
+  const Mat<eT>    M;
+  
+  template<typename eT2>
+  arma_inline bool is_alias(const Mat<eT2>& X) const { return (void_ptr(&(U.M)) == void_ptr(&X)); }
+  };
+
+
+
 //
 //
 //
@@ -463,6 +487,7 @@ struct unwrap_check< Mat<eT> >
     arma_extra_debug_sigprint();
     }
   
+  inline
   unwrap_check(const Mat<eT>& A, const bool is_alias)
     : M_local( is_alias ? new Mat<eT>(A) : 0 )
     , M      ( is_alias ? (*M_local)     : A )
@@ -499,6 +524,7 @@ struct unwrap_check< Row<eT> >
     arma_extra_debug_sigprint();
     }
   
+  inline
   unwrap_check(const Row<eT>& A, const bool is_alias)
     : M_local( is_alias ? new Row<eT>(A) : 0 )
     , M      ( is_alias ? (*M_local)     : A )
@@ -535,6 +561,7 @@ struct unwrap_check< Col<eT> >
     arma_extra_debug_sigprint();
     }
   
+  inline
   unwrap_check(const Col<eT>& A, const bool is_alias)
     : M_local( is_alias ? new Col<eT>(A) : 0 )
     , M      ( is_alias ? (*M_local)     : A )
@@ -721,9 +748,9 @@ struct partial_unwrap_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -745,9 +772,9 @@ struct partial_unwrap_fixed
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -790,9 +817,9 @@ struct partial_unwrap< Mat<eT> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return ((&X) == (&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return ((&X) == (&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -814,9 +841,9 @@ struct partial_unwrap< Row<eT> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -838,9 +865,9 @@ struct partial_unwrap< Col<eT> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -863,9 +890,9 @@ struct partial_unwrap< subview_col<eT> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&orig)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&orig)); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -888,9 +915,9 @@ struct partial_unwrap< subview_row<eT> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -913,9 +940,9 @@ struct partial_unwrap_htrans_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -937,9 +964,9 @@ struct partial_unwrap_htrans_fixed
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -983,7 +1010,7 @@ struct partial_unwrap< Op< Mat<eT>, op_htrans> >
   
   arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -1007,7 +1034,7 @@ struct partial_unwrap< Op< Row<eT>, op_htrans> >
   
   arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -1031,7 +1058,7 @@ struct partial_unwrap< Op< Col<eT>, op_htrans> >
   
   arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -1056,7 +1083,7 @@ struct partial_unwrap< Op< subview_col<eT>, op_htrans> >
   
   arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&orig)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&orig)); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -1081,7 +1108,7 @@ struct partial_unwrap< Op< subview_row<eT>, op_htrans> >
   
   arma_inline eT get_val() const { return eT(1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -1107,7 +1134,7 @@ struct partial_unwrap_htrans2_default
   
   arma_inline eT get_val() const { return val; }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = true;
   static const bool do_times = true;
@@ -1284,9 +1311,9 @@ struct partial_unwrap< Op< subview_row<eT>, op_htrans2> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return val; }
+  arma_inline eT get_val() const { return val; }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = true;
   static const bool do_times = true;
@@ -1311,9 +1338,9 @@ struct partial_unwrap_scalar_times_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return val; }
+  arma_inline eT get_val() const { return val; }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1495,9 +1522,9 @@ struct partial_unwrap< eOp<subview_row<eT>, eop_scalar_times> >
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return val; }
+  arma_inline eT get_val() const { return val; }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1521,9 +1548,9 @@ struct partial_unwrap_neg_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1546,9 +1573,9 @@ struct partial_unwrap_neg_fixed
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1594,9 +1621,9 @@ struct partial_unwrap< eOp<Mat<eT>, eop_neg> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1618,9 +1645,9 @@ struct partial_unwrap< eOp<Row<eT>, eop_neg> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1642,9 +1669,9 @@ struct partial_unwrap< eOp<Col<eT>, eop_neg> >
     arma_extra_debug_sigprint();
     }
   
-  inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&M)); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1667,9 +1694,9 @@ struct partial_unwrap< eOp<subview_col<eT>, eop_neg> >
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&orig)); }
+  arma_inline bool is_alias(const Mat<eT>& X) const { return (void_ptr(&X) == void_ptr(&orig)); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1692,9 +1719,9 @@ struct partial_unwrap< eOp<subview_row<eT>, eop_neg> >
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
-  arma_hot arma_inline bool is_alias(const Mat<eT>&) const { return false; }
+  arma_inline bool is_alias(const Mat<eT>&) const { return false; }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -1721,7 +1748,7 @@ struct partial_unwrap_check_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -1752,7 +1779,7 @@ struct partial_unwrap_check_fixed
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -1807,7 +1834,7 @@ struct partial_unwrap_check< Mat<eT> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -1841,7 +1868,7 @@ struct partial_unwrap_check< Row<eT> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -1875,7 +1902,7 @@ struct partial_unwrap_check< Col<eT> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -1901,7 +1928,7 @@ struct partial_unwrap_check< subview_col<eT> >
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = false;
   static const bool do_times = false;
@@ -1924,7 +1951,7 @@ struct partial_unwrap_check_htrans_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -1955,7 +1982,7 @@ struct partial_unwrap_check_htrans_fixed
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -2010,7 +2037,7 @@ struct partial_unwrap_check< Op< Mat<eT>, op_htrans> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -2043,7 +2070,7 @@ struct partial_unwrap_check< Op< Row<eT>, op_htrans> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -2076,7 +2103,7 @@ struct partial_unwrap_check< Op< Col<eT>, op_htrans> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -2102,7 +2129,7 @@ struct partial_unwrap_check< Op< subview_col<eT>, op_htrans> >
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(1); }
+  arma_inline eT get_val() const { return eT(1); }
   
   static const bool do_trans = true;
   static const bool do_times = false;
@@ -2550,7 +2577,7 @@ struct partial_unwrap_check_neg_default
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -2582,7 +2609,7 @@ struct partial_unwrap_check_neg_fixed
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -2637,7 +2664,7 @@ struct partial_unwrap_check< eOp<Mat<eT>, eop_neg> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -2669,7 +2696,7 @@ struct partial_unwrap_check< eOp<Row<eT>, eop_neg> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -2701,7 +2728,7 @@ struct partial_unwrap_check< eOp<Col<eT>, eop_neg> >
     if(M_local) { delete M_local; }
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
   static const bool do_trans = false;
   static const bool do_times = true;
@@ -2726,7 +2753,7 @@ struct partial_unwrap_check< eOp<subview_col<eT>, eop_neg> >
     arma_extra_debug_sigprint();
     }
   
-  arma_hot arma_inline eT get_val() const { return eT(-1); }
+  arma_inline eT get_val() const { return eT(-1); }
   
   static const bool do_trans = false;
   static const bool do_times = true;

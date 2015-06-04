@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2014 Conrad Sanderson
+// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -307,15 +307,18 @@ subview_cube<eT>::operator/= (const BaseCube<eT,T1>& in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator= (const subview_cube<eT>& x_in)
+subview_cube<eT>::operator= (const subview_cube<eT>& x)
   {
   arma_extra_debug_sigprint();
   
-  const bool overlap = check_overlap(x_in);
-  
-        Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
-  const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.n_rows, x_in.n_cols, x_in.n_slices) : 0;
-  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
+  if(check_overlap(x))
+    {
+    const Cube<eT> tmp(x);
+    
+    (*this).operator=(tmp);
+    
+    return;
+    }
   
   subview_cube<eT>& t = *this;
   
@@ -332,13 +335,6 @@ subview_cube<eT>::operator= (const subview_cube<eT>& x_in)
       arrayops::copy( t.slice_colptr(slice,col), x.slice_colptr(slice,col), t_n_rows );
       }
     }
-    
-  if(overlap)
-    {
-    delete tmp_subview_cube;
-    delete tmp_cube;
-    }
-  
   }
 
 
@@ -346,15 +342,18 @@ subview_cube<eT>::operator= (const subview_cube<eT>& x_in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator+= (const subview_cube<eT>& x_in)
+subview_cube<eT>::operator+= (const subview_cube<eT>& x)
   {
   arma_extra_debug_sigprint();
   
-  const bool overlap = check_overlap(x_in);
-  
-        Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
-  const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.n_rows, x_in.n_cols, x_in.n_slices) : 0;
-  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
+  if(check_overlap(x))
+    {
+    const Cube<eT> tmp(x);
+    
+    (*this).operator+=(tmp);
+    
+    return;
+    }
   
   subview_cube<eT>& t = *this;
   
@@ -371,13 +370,6 @@ subview_cube<eT>::operator+= (const subview_cube<eT>& x_in)
       arrayops::inplace_plus( t.slice_colptr(slice,col), x.slice_colptr(slice,col), t_n_rows );
       }
     }
-  
-  if(overlap)
-    {
-    delete tmp_subview_cube;
-    delete tmp_cube;
-    }
-  
   }
 
 
@@ -385,15 +377,18 @@ subview_cube<eT>::operator+= (const subview_cube<eT>& x_in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator-= (const subview_cube<eT>& x_in)
+subview_cube<eT>::operator-= (const subview_cube<eT>& x)
   {
   arma_extra_debug_sigprint();
   
-  const bool overlap = check_overlap(x_in);
-  
-        Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
-  const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.n_rows, x_in.n_cols, x_in.n_slices) : 0;
-  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
+  if(check_overlap(x))
+    {
+    const Cube<eT> tmp(x);
+    
+    (*this).operator-=(tmp);
+    
+    return;
+    }
   
   subview_cube<eT>& t = *this;
   
@@ -410,13 +405,6 @@ subview_cube<eT>::operator-= (const subview_cube<eT>& x_in)
       arrayops::inplace_minus( t.slice_colptr(slice,col), x.slice_colptr(slice,col), t_n_rows );
       }
     }
-  
-  if(overlap)
-    {
-    delete tmp_subview_cube;
-    delete tmp_cube;
-    }
-    
   }
 
 
@@ -424,15 +412,18 @@ subview_cube<eT>::operator-= (const subview_cube<eT>& x_in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator%= (const subview_cube<eT>& x_in)
+subview_cube<eT>::operator%= (const subview_cube<eT>& x)
   {
   arma_extra_debug_sigprint();
   
-  const bool overlap = check_overlap(x_in);
-  
-        Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
-  const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.n_rows, x_in.n_cols, x_in.n_slices) : 0;
-  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
+  if(check_overlap(x))
+    {
+    const Cube<eT> tmp(x);
+    
+    (*this).operator%=(tmp);
+    
+    return;
+    }
   
   subview_cube<eT>& t = *this;
   
@@ -449,13 +440,6 @@ subview_cube<eT>::operator%= (const subview_cube<eT>& x_in)
       arrayops::inplace_mul( t.slice_colptr(slice,col), x.slice_colptr(slice,col), t_n_rows );
       }
     }
-  
-  if(overlap)
-    {
-    delete tmp_subview_cube;
-    delete tmp_cube;
-    }
-  
   }
 
 
@@ -463,15 +447,18 @@ subview_cube<eT>::operator%= (const subview_cube<eT>& x_in)
 template<typename eT>
 inline
 void
-subview_cube<eT>::operator/= (const subview_cube<eT>& x_in)
+subview_cube<eT>::operator/= (const subview_cube<eT>& x)
   {
   arma_extra_debug_sigprint();
   
-  const bool overlap = check_overlap(x_in);
-  
-        Cube<eT>*         tmp_cube         = overlap ? new Cube<eT>(x_in.m) : 0;
-  const subview_cube<eT>* tmp_subview_cube = overlap ? new subview_cube<eT>(*tmp_cube, x_in.aux_row1, x_in.aux_col1, x_in.aux_slice1, x_in.n_rows, x_in.n_cols, x_in.n_slices) : 0;
-  const subview_cube<eT>& x                = overlap ? (*tmp_subview_cube) : x_in;
+  if(check_overlap(x))
+    {
+    const Cube<eT> tmp(x);
+    
+    (*this).operator/=(tmp);
+    
+    return;
+    }
   
   subview_cube<eT>& t = *this;
   
@@ -488,13 +475,6 @@ subview_cube<eT>::operator/= (const subview_cube<eT>& x_in)
       arrayops::inplace_div( t.slice_colptr(slice,col), x.slice_colptr(slice,col), t_n_rows );
       }
     }
-  
-  if(overlap)
-    {
-    delete tmp_subview_cube;
-    delete tmp_cube;
-    }
-  
   }
 
 
@@ -519,6 +499,32 @@ subview_cube<eT>::operator= (const Base<eT,T1>& in)
   const uword x_n_rows   = x.n_rows;
   const uword x_n_cols   = x.n_cols;
   
+  if( ((x_n_rows == 1) || (x_n_cols == 1)) && (t_n_rows == 1) && (t_n_cols == 1) && (x.n_elem == t_n_slices) )
+    {
+    Cube<eT>& Q = const_cast< Cube<eT>& >(t.m);
+    
+    const uword t_aux_row1   = t.aux_row1;
+    const uword t_aux_col1   = t.aux_col1;
+    const uword t_aux_slice1 = t.aux_slice1;
+    
+    const eT* x_mem = x.memptr();
+    
+    uword i,j;
+    for(i=0, j=1; j < t_n_slices; i+=2, j+=2)
+      {
+      const eT tmp_i = x_mem[i];
+      const eT tmp_j = x_mem[j];
+      
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) = tmp_i;
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + j) = tmp_j;
+      }
+    
+    if(i < t_n_slices)
+      {
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) = x_mem[i];
+      }
+    }
+  else
   if( (t_n_rows == x_n_rows) && (t_n_cols == x_n_cols) && (t_n_slices == 1) )
     {
     // interpret the matrix as a cube with one slice
@@ -598,6 +604,32 @@ subview_cube<eT>::operator+= (const Base<eT,T1>& in)
   const uword x_n_rows   = x.n_rows;
   const uword x_n_cols   = x.n_cols;
   
+  if( ((x_n_rows == 1) || (x_n_cols == 1)) && (t_n_rows == 1) && (t_n_cols == 1) && (x.n_elem == t_n_slices) )
+    {
+    Cube<eT>& Q = const_cast< Cube<eT>& >(t.m);
+    
+    const uword t_aux_row1   = t.aux_row1;
+    const uword t_aux_col1   = t.aux_col1;
+    const uword t_aux_slice1 = t.aux_slice1;
+    
+    const eT* x_mem = x.memptr();
+    
+    uword i,j;
+    for(i=0, j=1; j < t_n_slices; i+=2, j+=2)
+      {
+      const eT tmp_i = x_mem[i];
+      const eT tmp_j = x_mem[j];
+      
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) += tmp_i;
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + j) += tmp_j;
+      }
+    
+    if(i < t_n_slices)
+      {
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) += x_mem[i];
+      }
+    }
+  else
   if( (t_n_rows == x_n_rows) && (t_n_cols == x_n_cols) && (t_n_slices == 1) )
     {
     for(uword col = 0; col < t_n_cols; ++col)
@@ -675,6 +707,32 @@ subview_cube<eT>::operator-= (const Base<eT,T1>& in)
   const uword x_n_rows   = x.n_rows;
   const uword x_n_cols   = x.n_cols;
   
+  if( ((x_n_rows == 1) || (x_n_cols == 1)) && (t_n_rows == 1) && (t_n_cols == 1) && (x.n_elem == t_n_slices) )
+    {
+    Cube<eT>& Q = const_cast< Cube<eT>& >(t.m);
+    
+    const uword t_aux_row1   = t.aux_row1;
+    const uword t_aux_col1   = t.aux_col1;
+    const uword t_aux_slice1 = t.aux_slice1;
+    
+    const eT* x_mem = x.memptr();
+    
+    uword i,j;
+    for(i=0, j=1; j < t_n_slices; i+=2, j+=2)
+      {
+      const eT tmp_i = x_mem[i];
+      const eT tmp_j = x_mem[j];
+      
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) -= tmp_i;
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + j) -= tmp_j;
+      }
+    
+    if(i < t_n_slices)
+      {
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) -= x_mem[i];
+      }
+    }
+  else
   if( (t_n_rows == x_n_rows) && (t_n_cols == x_n_cols) && (t_n_slices == 1) )
     {
     for(uword col = 0; col < t_n_cols; ++col)
@@ -752,6 +810,32 @@ subview_cube<eT>::operator%= (const Base<eT,T1>& in)
   const uword x_n_rows   = x.n_rows;
   const uword x_n_cols   = x.n_cols;
   
+  if( ((x_n_rows == 1) || (x_n_cols == 1)) && (t_n_rows == 1) && (t_n_cols == 1) && (x.n_elem == t_n_slices) )
+    {
+    Cube<eT>& Q = const_cast< Cube<eT>& >(t.m);
+    
+    const uword t_aux_row1   = t.aux_row1;
+    const uword t_aux_col1   = t.aux_col1;
+    const uword t_aux_slice1 = t.aux_slice1;
+    
+    const eT* x_mem = x.memptr();
+    
+    uword i,j;
+    for(i=0, j=1; j < t_n_slices; i+=2, j+=2)
+      {
+      const eT tmp_i = x_mem[i];
+      const eT tmp_j = x_mem[j];
+      
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) *= tmp_i;
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + j) *= tmp_j;
+      }
+    
+    if(i < t_n_slices)
+      {
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) *= x_mem[i];
+      }
+    }
+  else
   if( (t_n_rows == x_n_rows) && (t_n_cols == x_n_cols) && (t_n_slices == 1) )
     {
     for(uword col = 0; col < t_n_cols; ++col)
@@ -829,6 +913,32 @@ subview_cube<eT>::operator/= (const Base<eT,T1>& in)
   const uword x_n_rows   = x.n_rows;
   const uword x_n_cols   = x.n_cols;
   
+  if( ((x_n_rows == 1) || (x_n_cols == 1)) && (t_n_rows == 1) && (t_n_cols == 1) && (x.n_elem == t_n_slices) )
+    {
+    Cube<eT>& Q = const_cast< Cube<eT>& >(t.m);
+    
+    const uword t_aux_row1   = t.aux_row1;
+    const uword t_aux_col1   = t.aux_col1;
+    const uword t_aux_slice1 = t.aux_slice1;
+    
+    const eT* x_mem = x.memptr();
+    
+    uword i,j;
+    for(i=0, j=1; j < t_n_slices; i+=2, j+=2)
+      {
+      const eT tmp_i = x_mem[i];
+      const eT tmp_j = x_mem[j];
+      
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) /= tmp_i;
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + j) /= tmp_j;
+      }
+    
+    if(i < t_n_slices)
+      {
+      Q.at(t_aux_row1, t_aux_col1, t_aux_slice1 + i) /= x_mem[i];
+      }
+    }
+  else
   if( (t_n_rows == x_n_rows) && (t_n_cols == x_n_cols) && (t_n_slices == 1) )
     {
     for(uword col = 0; col < t_n_cols; ++col)
@@ -1040,6 +1150,85 @@ subview_cube<eT>::randn()
       arma_rng::randn<eT>::fill( slice_colptr(slice,col), local_n_rows );
       }
     }
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+subview_cube<eT>::is_finite() const
+  {
+  arma_extra_debug_sigprint();
+  
+  const uword local_n_rows   = n_rows;
+  const uword local_n_cols   = n_cols;
+  const uword local_n_slices = n_slices;
+  
+  for(uword slice = 0; slice < local_n_slices; ++slice)
+    {
+    for(uword col = 0; col < local_n_cols; ++col)
+      {
+      if(arrayops::is_finite(slice_colptr(slice,col), local_n_rows) == false)  { return false; }
+      }
+    }
+  
+  return true;
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+eT
+subview_cube<eT>::min() const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "subview_cube::min(): object has no elements" );
+  
+  const uword local_n_rows   = n_rows;
+  const uword local_n_cols   = n_cols;
+  const uword local_n_slices = n_slices;
+  
+  eT min_val = at(0,0,0);
+  
+  for(uword si=0; si < local_n_slices; ++si)
+  for(uword ci=0; ci < local_n_cols;   ++ci)
+    {
+    min_val = (std::min)( min_val, op_min::direct_min(slice_colptr(si,ci), local_n_rows) );
+    }
+  
+  return min_val;
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+eT
+subview_cube<eT>::max() const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (n_elem == 0), "subview_cube::max(): object has no elements" );
+  
+  const uword local_n_rows   = n_rows;
+  const uword local_n_cols   = n_cols;
+  const uword local_n_slices = n_slices;
+  
+  eT max_val = at(0,0,0);
+  
+  for(uword si=0; si < local_n_slices; ++si)
+  for(uword ci=0; ci < local_n_cols;   ++ci)
+    {
+    max_val = (std::max)( max_val, op_max::direct_max(slice_colptr(si,ci), local_n_rows) );
+    }
+  
+  return max_val;
   }
 
 

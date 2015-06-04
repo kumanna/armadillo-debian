@@ -11,12 +11,12 @@
 
 
 
-template<bool is_eT_blas_type>
+template<bool do_inv_detect>
 template<typename T1, typename T2>
 arma_hot
 inline
 void
-glue_times_redirect2_helper<is_eT_blas_type>::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X)
+glue_times_redirect2_helper<do_inv_detect>::apply(Mat<typename T1::elem_type>& out, const Glue<T1,T2,glue_times>& X)
   {
   arma_extra_debug_sigprint();
   
@@ -73,47 +73,7 @@ glue_times_redirect2_helper<true>::apply(Mat<typename T1::elem_type>& out, const
   
   typedef typename T1::elem_type eT;
   
-  if(strip_inv<T1>::do_inv == false)
-    {
-    const partial_unwrap<T1> tmp1(X.A);
-    const partial_unwrap<T2> tmp2(X.B);
-    
-    const typename partial_unwrap<T1>::stored_type& A = tmp1.M;
-    const typename partial_unwrap<T2>::stored_type& B = tmp2.M;
-    
-    const bool use_alpha = partial_unwrap<T1>::do_times || partial_unwrap<T2>::do_times;
-    const eT       alpha = use_alpha ? (tmp1.get_val() * tmp2.get_val()) : eT(0);
-    
-    const bool alias = tmp1.is_alias(out) || tmp2.is_alias(out);
-    
-    if(alias == false)
-      {
-      glue_times::apply
-        <
-        eT,
-        partial_unwrap<T1>::do_trans,
-        partial_unwrap<T2>::do_trans,
-        (partial_unwrap<T1>::do_times || partial_unwrap<T2>::do_times)
-        >
-        (out, A, B, alpha);
-      }
-    else
-      {
-      Mat<eT> tmp;
-      
-      glue_times::apply
-        <
-        eT,
-        partial_unwrap<T1>::do_trans,
-        partial_unwrap<T2>::do_trans,
-        (partial_unwrap<T1>::do_times || partial_unwrap<T2>::do_times)
-        >
-        (tmp, A, B, alpha);
-      
-      out.steal_mem(tmp);
-      }
-    }
-  else
+  if(strip_inv<T1>::do_inv == true)
     {
     arma_extra_debug_print("glue_times_redirect<2>::apply(): detected inv(A)*B");
     
@@ -126,18 +86,24 @@ glue_times_redirect2_helper<true>::apply(Mat<typename T1::elem_type>& out, const
     const unwrap_check<T2> B_tmp(X.B, out);
     const Mat<eT>& B = B_tmp.M;
     
+    arma_debug_assert_mul_size(A, B, "matrix multiplication");
+    
     glue_solve::solve_direct( out, A, B, A_strip.slow );
+    
+    return;
     }
+  
+  glue_times_redirect2_helper<false>::apply(out, X);
   }
 
 
 
-template<bool is_eT_blas_type>
+template<bool do_inv_detect>
 template<typename T1, typename T2, typename T3>
 arma_hot
 inline
 void
-glue_times_redirect3_helper<is_eT_blas_type>::apply(Mat<typename T1::elem_type>& out, const Glue< Glue<T1,T2,glue_times>, T3, glue_times>& X)
+glue_times_redirect3_helper<do_inv_detect>::apply(Mat<typename T1::elem_type>& out, const Glue< Glue<T1,T2,glue_times>, T3, glue_times>& X)
   {
   arma_extra_debug_sigprint();
   
@@ -199,58 +165,49 @@ glue_times_redirect3_helper<true>::apply(Mat<typename T1::elem_type>& out, const
   {
   arma_extra_debug_sigprint();
   
-  // TODO: investigate detecting inv(A)*B*C and replacing with solve(A,B)*C
-  
   typedef typename T1::elem_type eT;
   
-  if(strip_inv<T2>::do_inv == false)
+  if(strip_inv<T1>::do_inv == true)
     {
-    // we have exactly 3 objects
-    // hence we can safely expand X as X.A.A, X.A.B and X.B
+    // replace inv(A)*B*C with solve(A,B*C);
     
-    const partial_unwrap<T1> tmp1(X.A.A);
+    arma_extra_debug_print("glue_times_redirect<3>::apply(): detected inv(A)*B*C");
+    
+    const strip_inv<T1> A_strip(X.A.A);
+    
+    Mat<eT> A = A_strip.M;
+    
+    arma_debug_check( (A.is_square() == false), "inv(): given matrix is not square" );
+    
     const partial_unwrap<T2> tmp2(X.A.B);
     const partial_unwrap<T3> tmp3(X.B  );
     
-    const typename partial_unwrap<T1>::stored_type& A = tmp1.M;
     const typename partial_unwrap<T2>::stored_type& B = tmp2.M;
     const typename partial_unwrap<T3>::stored_type& C = tmp3.M;
     
-    const bool use_alpha = partial_unwrap<T1>::do_times || partial_unwrap<T2>::do_times || partial_unwrap<T3>::do_times;
-    const eT       alpha = use_alpha ? (tmp1.get_val() * tmp2.get_val() * tmp3.get_val()) : eT(0);
+    const bool use_alpha = partial_unwrap<T2>::do_times || partial_unwrap<T3>::do_times;
+    const eT       alpha = use_alpha ? (tmp2.get_val() * tmp3.get_val()) : eT(0);
     
-    const bool alias = tmp1.is_alias(out) || tmp2.is_alias(out) || tmp3.is_alias(out);
+    Mat<eT> BC;
     
-    if(alias == false)
-      {
-      glue_times::apply
-        <
-        eT,
-        partial_unwrap<T1>::do_trans,
-        partial_unwrap<T2>::do_trans,
-        partial_unwrap<T3>::do_trans,
-        (partial_unwrap<T1>::do_times || partial_unwrap<T2>::do_times || partial_unwrap<T3>::do_times)
-        >
-        (out, A, B, C, alpha);
-      }
-    else
-      {
-      Mat<eT> tmp;
-      
-      glue_times::apply
-        <
-        eT,
-        partial_unwrap<T1>::do_trans,
-        partial_unwrap<T2>::do_trans,
-        partial_unwrap<T3>::do_trans,
-        (partial_unwrap<T1>::do_times || partial_unwrap<T2>::do_times || partial_unwrap<T3>::do_times)
-        >
-        (tmp, A, B, C, alpha);
-      
-      out.steal_mem(tmp);
-      }
+    glue_times::apply
+      <
+      eT,
+      partial_unwrap<T2>::do_trans,
+      partial_unwrap<T3>::do_trans,
+      (partial_unwrap<T2>::do_times || partial_unwrap<T3>::do_times)
+      >
+      (BC, B, C, alpha);
+    
+    arma_debug_assert_mul_size(A, BC, "matrix multiplication");
+    
+    glue_solve::solve_direct( out, A, BC, A_strip.slow );
+    
+    return;
     }
-  else
+  
+  
+  if(strip_inv<T2>::do_inv == true)
     {
     // replace A*inv(B)*C with A*solve(B,C)
     
@@ -264,6 +221,8 @@ glue_times_redirect3_helper<true>::apply(Mat<typename T1::elem_type>& out, const
     
     const unwrap<T3> C_tmp(X.B);
     const Mat<eT>& C = C_tmp.M;
+    
+    arma_debug_assert_mul_size(B, C, "matrix multiplication");
     
     Mat<eT> solve_result;
     
@@ -284,7 +243,12 @@ glue_times_redirect3_helper<true>::apply(Mat<typename T1::elem_type>& out, const
       partial_unwrap_check<T1>::do_times
       >
       (out, A, solve_result, alpha);
+    
+    return;
     }
+  
+  
+  glue_times_redirect3_helper<false>::apply(out, X);
   }
 
 
@@ -458,42 +422,7 @@ glue_times::apply_inplace(Mat<typename T1::elem_type>& out, const T1& X)
   {
   arma_extra_debug_sigprint();
   
-  typedef typename T1::elem_type eT;
-  
-  const unwrap_check<T1> B_tmp(X, out);
-  const Mat<eT>& B     = B_tmp.M;
-  
-  arma_debug_assert_mul_size(out, B, "matrix multiplication");
-  
-  const uword out_n_rows = out.n_rows;
-  const uword out_n_cols = out.n_cols;
-  
-  if(out_n_cols == B.n_cols)
-    {
-    // size of resulting matrix is the same as 'out'
-    
-    podarray<eT> tmp(out_n_cols);
-    
-    eT* tmp_rowdata = tmp.memptr();
-    
-    for(uword row=0; row < out_n_rows; ++row)
-      {
-      tmp.copy_row(out, row);
-      
-      for(uword col=0; col < out_n_cols; ++col)
-        {
-        out.at(row,col) = op_dot::direct_dot( out_n_cols, tmp_rowdata, B.colptr(col) );
-        }
-      }
-    
-    }
-  else
-    {
-    const Mat<eT> tmp(out);
-    
-    glue_times::apply<eT, false, false, false>(out, tmp, B, eT(1));
-    }
-  
+  out = out * X;
   }
 
 
@@ -508,6 +437,17 @@ glue_times::apply_inplace_plus(Mat<typename T1::elem_type>& out, const Glue<T1, 
   
   typedef typename T1::elem_type            eT;
   typedef typename get_pod_type<eT>::result  T;
+  
+  if( (is_outer_product<T1>::value) || (has_op_inv<T1>::value) || (has_op_inv<T2>::value) )
+    {
+    // partial workaround for corner cases
+    
+    const Mat<eT> tmp(X);
+    
+    if(sign > sword(0))  { out += tmp; }  else  { out -= tmp; }
+    
+    return;
+    }
   
   const partial_unwrap_check<T1> tmp1(X.A, out);
   const partial_unwrap_check<T2> tmp2(X.B, out);

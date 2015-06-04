@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // Copyright (C)      2011 James Sanders
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
@@ -67,6 +67,10 @@ class subview : public Base<eT, subview<eT> >
   inline void operator%= (const subview& x);
   inline void operator/= (const subview& x);
   
+  template<typename T1, typename gen_type>
+  inline typename enable_if2< is_same_type<typename T1::elem_type, eT>::value, void>::result operator=(const Gen<T1,gen_type>& x);
+  
+  
   inline static void extract(Mat<eT>& out, const subview& in);
   
   inline static void  plus_inplace(Mat<eT>& out, const subview& in);
@@ -103,7 +107,8 @@ class subview : public Base<eT, subview<eT> >
   
   inline bool check_overlap(const subview& x) const;
   
-  inline bool is_vec() const;
+  inline arma_warn_unused bool is_vec()    const;
+  inline arma_warn_unused bool is_finite() const;
   
   inline       subview_row<eT> row(const uword row_num);
   inline const subview_row<eT> row(const uword row_num) const;
@@ -148,34 +153,6 @@ class subview : public Base<eT, subview<eT> >
   inline void swap_cols(const uword in_col1, const uword in_col2);
   
   
-  // // primitive forward iterator
-  // class iter
-  //   {
-  //   public:
-  //   
-  //   inline iter(const subview<eT>& in_M);
-  //   
-  //   arma_inline eT operator* () const;
-  //   
-  //   inline void operator++();
-  //   inline void operator++(int);
-  //   
-  //   
-  //   private:
-  //   
-  //   arma_aligned const eT* mem;
-  //   
-  //   arma_aligned uword n_rows;
-  //   
-  //   arma_aligned uword row_start;
-  //   arma_aligned uword row_end_p1;
-  //   
-  //   arma_aligned uword row;
-  //   arma_aligned uword col;
-  //   arma_aligned uword i;
-  //   };
-  
-  
   private:
   
   friend class Mat<eT>;
@@ -203,6 +180,9 @@ class subview_col : public subview<eT>
   
   template<typename T1>
   inline void operator= (const Base<eT,T1>& x);
+  
+  template<typename T1, typename gen_type>
+  inline typename enable_if2< is_same_type<typename T1::elem_type, eT>::value, void>::result operator=(const Gen<T1,gen_type>& x);
   
   arma_inline const Op<subview_col<eT>,op_htrans>  t() const;
   arma_inline const Op<subview_col<eT>,op_htrans> ht() const;
@@ -235,7 +215,12 @@ class subview_col : public subview<eT>
   inline       subview_col<eT> subvec(const uword in_row1, const uword in_row2);
   inline const subview_col<eT> subvec(const uword in_row1, const uword in_row2) const;
   
-  // TODO: add operator()(span)
+  inline       subview_col<eT> head(const uword N);
+  inline const subview_col<eT> head(const uword N) const;
+  
+  inline       subview_col<eT> tail(const uword N);
+  inline const subview_col<eT> tail(const uword N) const;
+  
   
   protected:
   
@@ -272,6 +257,9 @@ class subview_row : public subview<eT>
   template<typename T1>
   inline void operator= (const Base<eT,T1>& x);
   
+  template<typename T1, typename gen_type>
+  inline typename enable_if2< is_same_type<typename T1::elem_type, eT>::value, void>::result operator=(const Gen<T1,gen_type>& x);
+  
   arma_inline const Op<subview_row<eT>,op_htrans>  t() const;
   arma_inline const Op<subview_row<eT>,op_htrans> ht() const;
   arma_inline const Op<subview_row<eT>,op_strans> st() const;
@@ -296,7 +284,12 @@ class subview_row : public subview<eT>
   inline       subview_row<eT> subvec(const uword in_col1, const uword in_col2);
   inline const subview_row<eT> subvec(const uword in_col1, const uword in_col2) const;
   
-  // TODO: add operator()(span)
+  inline       subview_row<eT> head(const uword N);
+  inline const subview_row<eT> head(const uword N) const;
+  
+  inline       subview_row<eT> tail(const uword N);
+  inline const subview_row<eT> tail(const uword N) const;
+  
   
   protected:
   

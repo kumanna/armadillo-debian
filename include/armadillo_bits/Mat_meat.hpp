@@ -1,6 +1,6 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
-// Copyright (C) 2012 Ryan Curtin
+// Copyright (C) 2008-2014 Conrad Sanderson
+// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2012-2014 Ryan Curtin
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -148,14 +148,20 @@ Mat<eT>::init_cold()
   
   // ensure that n_elem can hold the result of (n_rows * n_cols)
   
+  #if (defined(ARMA_USE_CXX11) || defined(ARMA_64BIT_WORD))
+    const char* error_message = "Mat::init(): requested size is too large";
+  #else
+    const char* error_message = "Mat::init(): requested size is too large; suggest to compile in C++11 mode or enable ARMA_64BIT_WORD";
+  #endif
+  
   arma_debug_check
     (
       (
       ( (n_rows > ARMA_MAX_UHWORD) || (n_cols > ARMA_MAX_UHWORD) )
-        ? ( (float(n_rows) * float(n_cols)) > float(ARMA_MAX_UWORD) )
+        ? ( (double(n_rows) * double(n_cols)) > double(ARMA_MAX_UWORD) )
         : false
       ),
-    "Mat::init(): requested size is too large; suggest to enable ARMA_64BIT_WORD"
+    error_message
     );
   
   if(n_elem <= arma_config::mat_prealloc)
@@ -243,16 +249,22 @@ Mat<eT>::init_warm(uword in_n_rows, uword in_n_cols)
   
   // ensure that n_elem can hold the result of (n_rows * n_cols)
   
+  #if (defined(ARMA_USE_CXX11) || defined(ARMA_64BIT_WORD))
+    const char* error_message = "Mat::init(): requested size is too large";
+  #else
+    const char* error_message = "Mat::init(): requested size is too large; suggest to compile in C++11 mode or enable ARMA_64BIT_WORD";
+  #endif
+  
   arma_debug_set_error
     (
     err_state,
     err_msg,
       (
       ( (in_n_rows > ARMA_MAX_UHWORD) || (in_n_cols > ARMA_MAX_UHWORD) )
-        ? ( (float(in_n_rows) * float(in_n_cols)) > float(ARMA_MAX_UWORD) )
+        ? ( (double(in_n_rows) * double(in_n_cols)) > double(ARMA_MAX_UWORD) )
         : false
       ),
-    "Mat::init(): requested size is too large"
+    error_message
     );
   
   arma_debug_check(err_state, err_msg);
@@ -967,14 +979,14 @@ Mat<eT>::steal_mem(Mat<eT>& x)
   
   if(this != &x)
     {
-    const uword x_n_rows    = x.n_rows;
-    const uword x_n_cols    = x.n_cols;
-    const uword x_n_elem    = x.n_elem;
-    const uword x_vec_state = x.vec_state;
-    const uword x_mem_state = x.mem_state;
+    const uword  x_n_rows    = x.n_rows;
+    const uword  x_n_cols    = x.n_cols;
+    const uword  x_n_elem    = x.n_elem;
+    const uhword x_vec_state = x.vec_state;
+    const uhword x_mem_state = x.mem_state;
     
-    const uword t_vec_state = vec_state;
-    const uword t_mem_state = mem_state;
+    const uhword t_vec_state = vec_state;
+    const uhword t_mem_state = mem_state;
     
     bool layout_ok = false;
     
@@ -1009,6 +1021,65 @@ Mat<eT>::steal_mem(Mat<eT>& x)
       {
       (*this).operator=(x);
       }
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+Mat<eT>::steal_mem_col(Mat<eT>& x, const uword max_n_rows)
+  {
+  arma_extra_debug_sigprint();
+  
+  const uword  x_n_elem    = x.n_elem;
+  const uhword x_mem_state = x.mem_state;
+  
+  const uhword t_vec_state = vec_state;
+  const uhword t_mem_state = mem_state;
+  
+  const uword alt_n_rows = (std::min)(x.n_rows, max_n_rows);
+  
+  if((x_n_elem == 0) || (alt_n_rows == 0))
+    {
+    (*this).set_size(0,1);
+    
+    return;
+    }
+  
+  if( (this != &x) && (t_vec_state <= 1) && (t_mem_state <= 1) && (x_mem_state <= 1) )
+    {
+    if( (x_mem_state == 0) && ((x_n_elem <= arma_config::mat_prealloc) || (alt_n_rows <= arma_config::mat_prealloc)) )
+      {
+      (*this).set_size(alt_n_rows, uword(1));
+      
+      arrayops::copy( (*this).memptr(), x.memptr(), alt_n_rows );
+      }
+    else
+      {
+      reset();
+      
+      access::rw(n_rows)    = alt_n_rows;
+      access::rw(n_cols)    = 1;
+      access::rw(n_elem)    = alt_n_rows;
+      access::rw(mem_state) = x_mem_state;
+      access::rw(mem)       = x.mem;
+      
+      access::rw(x.n_rows)    = 0;
+      access::rw(x.n_cols)    = 0;
+      access::rw(x.n_elem)    = 0;
+      access::rw(x.mem_state) = 0;
+      access::rw(x.mem)       = 0;
+      }
+    }
+  else
+    {
+    Mat<eT> tmp(alt_n_rows, 1);
+    
+    arrayops::copy( tmp.memptr(), x.memptr(), alt_n_rows );
+    
+    steal_mem(tmp);
     }
   }
 
@@ -1812,6 +1883,26 @@ Mat<eT>::Mat(const xvec_htrans<eT>& X)
 
 
 
+template<typename eT>
+template<bool do_conj>
+inline
+Mat<eT>::Mat(const xtrans_mat<eT,do_conj>& X)
+  : n_rows(X.n_rows)
+  , n_cols(X.n_cols)
+  , n_elem(X.n_elem)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  
+  X.extract(*this);
+  }
+
+
+
 //! construct a matrix from a subview_cube instance
 template<typename eT>
 inline
@@ -1983,6 +2074,7 @@ Mat<eT>::operator+=(const diagview<eT>& X)
   }
 
 
+
 //! in-place matrix subtraction (using a diagview on the right-hand-side)
 template<typename eT>
 inline
@@ -2037,6 +2129,121 @@ Mat<eT>::operator/=(const diagview<eT>& X)
   arma_extra_debug_sigprint();
   
   diagview<eT>::div_inplace(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::Mat(const spdiagview<eT>& X)
+  : n_rows(X.n_rows)
+  , n_cols(X.n_cols)
+  , n_elem(X.n_elem)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  
+  spdiagview<eT>::extract(*this, X);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator=(const spdiagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  init_warm(X.n_rows, X.n_cols);
+  
+  spdiagview<eT>::extract(*this, X);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator+=(const spdiagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Mat<eT> tmp(X);
+  
+  (*this).operator+=(tmp);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator-=(const spdiagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Mat<eT> tmp(X);
+  
+  (*this).operator-=(tmp);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator*=(const spdiagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Mat<eT> tmp(X);
+  
+  (*this).operator*=(tmp);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator%=(const spdiagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Mat<eT> tmp(X);
+  
+  (*this).operator%=(tmp);
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::operator/=(const spdiagview<eT>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  const Mat<eT> tmp(X);
+  
+  (*this).operator/=(tmp);
   
   return *this;
   }
@@ -3096,6 +3303,126 @@ Mat<eT>::operator()(const uword in_row1, const uword in_col1, const SizeMat& s) 
   arma_extra_debug_sigprint();
   
   return (*this).submat(in_row1, in_col1, s);
+  }
+
+
+
+template<typename eT>
+inline
+subview<eT>
+Mat<eT>::head_rows(const uword N)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_rows), "Mat::head_rows(): size out of bounds");
+  
+  return subview<eT>(*this, 0, 0, N, n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const subview<eT>
+Mat<eT>::head_rows(const uword N) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_rows), "Mat::head_rows(): size out of bounds");
+  
+  return subview<eT>(*this, 0, 0, N, n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+subview<eT>
+Mat<eT>::tail_rows(const uword N)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_rows), "Mat::tail_rows(): size out of bounds");
+  
+  const uword start_row = n_rows - N;
+  
+  return subview<eT>(*this, start_row, 0, N, n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const subview<eT>
+Mat<eT>::tail_rows(const uword N) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_rows), "Mat::tail_rows(): size out of bounds");
+  
+  const uword start_row = n_rows - N;
+  
+  return subview<eT>(*this, start_row, 0, N, n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+subview<eT>
+Mat<eT>::head_cols(const uword N)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_cols), "Mat::head_cols(): size out of bounds");
+  
+  return subview<eT>(*this, 0, 0, n_rows, N);
+  }
+
+
+
+template<typename eT>
+inline
+const subview<eT>
+Mat<eT>::head_cols(const uword N) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_cols), "Mat::head_cols(): size out of bounds");
+  
+  return subview<eT>(*this, 0, 0, n_rows, N);
+  }
+
+
+
+template<typename eT>
+inline
+subview<eT>
+Mat<eT>::tail_cols(const uword N)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_cols), "Mat::tail_cols(): size out of bounds");
+  
+  const uword start_col = n_cols - N;
+  
+  return subview<eT>(*this, 0, start_col, n_rows, N);
+  }
+
+
+
+template<typename eT>
+inline
+const subview<eT>
+Mat<eT>::tail_cols(const uword N) const
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (N > n_cols), "Mat::tail_cols(): size out of bounds");
+  
+  const uword start_col = n_cols - N;
+  
+  return subview<eT>(*this, 0, start_col, n_rows, N);
   }
 
 
@@ -5356,6 +5683,19 @@ Mat<eT>::resize(const uword in_rows, const uword in_cols)
 template<typename eT>
 inline
 void
+Mat<eT>::reshape(const uword in_rows, const uword in_cols)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::reshape(*this, in_rows, in_cols);
+  }
+
+
+
+//!< don't use this in new code; kept only for compatibility with old code
+template<typename eT>
+inline
+void
 Mat<eT>::reshape(const uword in_rows, const uword in_cols, const uword dim)
   {
   arma_extra_debug_sigprint();
@@ -5752,7 +6092,7 @@ Mat<eT>::min() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
   
   return op_min::direct_min(memptr(), n_elem);
   }
@@ -5767,7 +6107,7 @@ Mat<eT>::max() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
   
   return op_max::direct_max(memptr(), n_elem);
   }
@@ -5781,7 +6121,7 @@ Mat<eT>::min(uword& index_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
   
   return op_min::direct_min(memptr(), n_elem, index_of_min_val);
   }
@@ -5795,7 +6135,7 @@ Mat<eT>::max(uword& index_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
   
   return op_max::direct_max(memptr(), n_elem, index_of_max_val);
   }
@@ -5809,7 +6149,7 @@ Mat<eT>::min(uword& row_of_min_val, uword& col_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
   
   uword iq;
   
@@ -5830,7 +6170,7 @@ Mat<eT>::max(uword& row_of_max_val, uword& col_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
   
   uword iq;
   
@@ -6357,6 +6697,380 @@ Mat<eT>::const_row_iterator::operator==(const typename Mat<eT>::const_row_iterat
 
 template<typename eT>
 inline
+Mat<eT>::row_col_iterator::row_col_iterator()
+  : M           (NULL)
+  , current_pos (NULL)
+  , internal_col(0   )
+  , internal_row(0   )
+  {
+  arma_extra_debug_sigprint();
+  // Technically this iterator is invalid (it does not point to a real element)
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::row_col_iterator::row_col_iterator(const row_col_iterator& in_it)
+  : M           (in_it.M           )
+  , current_pos (in_it.current_pos )
+  , internal_col(in_it.internal_col)
+  , internal_row(in_it.internal_row)
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::row_col_iterator::row_col_iterator(Mat<eT>& in_M, const uword in_row, const uword in_col)
+  : M           (&in_M                  )
+  , current_pos (&in_M.at(in_row,in_col))
+  , internal_col(in_col                 )
+  , internal_row(in_row                 )
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+inline
+eT&
+Mat<eT>::row_col_iterator::operator*()
+  {
+  return *current_pos;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::row_col_iterator&
+Mat<eT>::row_col_iterator::operator++()
+  {
+  current_pos++;
+  internal_row++;
+  
+  // Check to see if we moved a column.
+  if(internal_row == M->n_rows)
+    {
+    internal_col++;
+    internal_row = 0;
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::row_col_iterator
+Mat<eT>::row_col_iterator::operator++(int)
+  {
+  typename Mat<eT>::row_col_iterator temp(*this);
+  
+  ++(*this);
+  
+  return temp;
+  }
+
+
+
+template<typename eT>
+inline typename Mat<eT>::row_col_iterator&
+Mat<eT>::row_col_iterator::operator--()
+  {
+  if(internal_row > 0)
+    {
+    current_pos--;
+    internal_row--;
+    }
+  else
+  if(internal_col > 0)
+    {
+    current_pos--;
+    internal_col--;
+    internal_row = M->n_rows - 1;
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::row_col_iterator
+Mat<eT>::row_col_iterator::operator--(int)
+  {
+  typename Mat<eT>::row_col_iterator temp(*this);
+  
+  --(*this);
+  
+  return temp;
+  }
+
+
+
+template<typename eT>
+inline
+uword
+Mat<eT>::row_col_iterator::row() const
+  {
+  return internal_row;
+  }
+
+
+
+template<typename eT>
+inline
+uword
+Mat<eT>::row_col_iterator::col() const
+  {
+  return internal_col;
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::row_col_iterator::operator==(const row_col_iterator& rhs) const
+  {
+  return (current_pos == rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::row_col_iterator::operator!=(const row_col_iterator& rhs) const
+  {
+  return (current_pos != rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::row_col_iterator::operator==(const const_row_col_iterator& rhs) const
+  {
+  return (current_pos == rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::row_col_iterator::operator!=(const const_row_col_iterator& rhs) const
+  {
+  return (current_pos != rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::const_row_col_iterator::const_row_col_iterator()
+  : M           (NULL)
+  , current_pos (NULL)
+  , internal_col(0   )
+  , internal_row(0   )
+  {
+  arma_extra_debug_sigprint();
+  // Technically this iterator is invalid (it does not point to a real element)
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::const_row_col_iterator::const_row_col_iterator(const row_col_iterator& in_it)
+  : M           (in_it.M          )
+  , current_pos (in_it.current_pos)
+  , internal_col(in_it.col()      )
+  , internal_row(in_it.row()      )
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::const_row_col_iterator::const_row_col_iterator(const const_row_col_iterator& in_it)
+  : M           (in_it.M          )
+  , current_pos (in_it.current_pos)
+  , internal_col(in_it.col()      )
+  , internal_row(in_it.row()      )
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+inline
+Mat<eT>::const_row_col_iterator::const_row_col_iterator(const Mat<eT>& in_M, const uword in_row, const uword in_col)
+  : M           (&in_M                  )
+  , current_pos (&in_M.at(in_row,in_col))
+  , internal_col(in_col                 )
+  , internal_row(in_row                 )
+  {
+  arma_extra_debug_sigprint();
+  }
+
+
+
+template<typename eT>
+inline
+const eT&
+Mat<eT>::const_row_col_iterator::operator*() const
+  {
+  return *current_pos;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::const_row_col_iterator&
+Mat<eT>::const_row_col_iterator::operator++()
+  {
+  current_pos++;
+  internal_row++;
+  
+  // Check to see if we moved a column.
+  if(internal_row == M->n_rows)
+    {
+    internal_col++;
+    internal_row = 0;
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::const_row_col_iterator
+Mat<eT>::const_row_col_iterator::operator++(int)
+  {
+  typename Mat<eT>::const_row_col_iterator temp(*this);
+  
+  ++(*this);
+  
+  return temp;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::const_row_col_iterator&
+Mat<eT>::const_row_col_iterator::operator--()
+  {
+  if(internal_row > 0)
+    {
+    current_pos--;
+    internal_row--;
+    }
+  else
+  if(internal_col > 0)
+    {
+    current_pos--;
+    internal_col--;
+    internal_row = M->n_rows - 1;
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::const_row_col_iterator
+Mat<eT>::const_row_col_iterator::operator--(int)
+  {
+  typename Mat<eT>::const_row_col_iterator temp(*this);
+  
+  --(*this);
+  
+  return temp;
+  }
+
+
+
+template<typename eT>
+inline
+uword
+Mat<eT>::const_row_col_iterator::row() const
+  {
+  return internal_row;
+  }
+
+
+
+template<typename eT>
+inline
+uword
+Mat<eT>::const_row_col_iterator::col() const
+  {
+  return internal_col;
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::const_row_col_iterator::operator==(const const_row_col_iterator& rhs) const
+  {
+  return (current_pos == rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::const_row_col_iterator::operator!=(const const_row_col_iterator& rhs) const
+  {
+  return (current_pos != rhs.current_pos);
+  }
+
+
+  
+template<typename eT>
+inline
+bool
+Mat<eT>::const_row_col_iterator::operator==(const row_col_iterator& rhs) const
+  {
+  return (current_pos == rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
+bool
+Mat<eT>::const_row_col_iterator::operator!=(const row_col_iterator& rhs) const
+  {
+  return (current_pos != rhs.current_pos);
+  }
+
+
+
+template<typename eT>
+inline
 typename Mat<eT>::iterator
 Mat<eT>::begin()
   {
@@ -6434,7 +7148,7 @@ Mat<eT>::begin_col(const uword col_num)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (col_num >= n_cols), "begin_col(): index out of bounds");
+  arma_debug_check( (col_num >= n_cols), "Mat::begin_col(): index out of bounds");
   
   return colptr(col_num);
   }
@@ -6448,7 +7162,7 @@ Mat<eT>::begin_col(const uword col_num) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (col_num >= n_cols), "begin_col(): index out of bounds");
+  arma_debug_check( (col_num >= n_cols), "Mat::begin_col(): index out of bounds");
   
   return colptr(col_num);
   }
@@ -6462,7 +7176,7 @@ Mat<eT>::end_col(const uword col_num)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (col_num >= n_cols), "end_col(): index out of bounds");
+  arma_debug_check( (col_num >= n_cols), "Mat::end_col(): index out of bounds");
   
   return colptr(col_num) + n_rows;
   }
@@ -6476,7 +7190,7 @@ Mat<eT>::end_col(const uword col_num) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (col_num >= n_cols), "end_col(): index out of bounds");
+  arma_debug_check( (col_num >= n_cols), "Mat::end_col(): index out of bounds");
   
   return colptr(col_num) + n_rows;
   }
@@ -6535,6 +7249,44 @@ Mat<eT>::end_row(const uword row_num) const
   arma_debug_check( (row_num >= n_rows), "Mat::end_row(): index out of bounds" );
   
   return typename Mat<eT>::const_row_iterator(*this, row_num + 1);
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::row_col_iterator
+Mat<eT>::begin_row_col()
+  {
+  return row_col_iterator(*this);
+  }
+
+
+
+template<typename eT>
+inline
+typename Mat<eT>::const_row_col_iterator
+Mat<eT>::begin_row_col() const
+  {
+  return const_row_col_iterator(*this);
+  }
+
+
+
+template<typename eT>
+inline typename Mat<eT>::row_col_iterator
+Mat<eT>::end_row_col()
+  {
+  return row_col_iterator(*this, 0, n_cols);
+  }
+
+
+
+template<typename eT>
+inline typename Mat<eT>::const_row_col_iterator
+Mat<eT>::end_row_col() const
+  {
+  return const_row_col_iterator(*this, 0, n_cols);
   }
 
 
@@ -6734,10 +7486,85 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const fixed<fixed_n_rows, 
   {
   arma_extra_debug_sigprint();
   
-        eT* dest = (use_extra) ?   mem_local_extra :   mem_local;
-  const eT* src  = (use_extra) ? X.mem_local_extra : X.mem_local;
+  if(this != &X)
+    {
+          eT* dest = (use_extra) ?   mem_local_extra :   mem_local;
+    const eT* src  = (use_extra) ? X.mem_local_extra : X.mem_local;
+    
+    arrayops::copy( dest, src, fixed_n_elem );
+    }
   
-  arrayops::copy( dest, src, fixed_n_elem );
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<uword fixed_n_rows, uword fixed_n_cols>
+template<typename T1, typename eop_type>
+inline
+const Mat<eT>&
+Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const eOp<T1, eop_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check(( is_same_type< eT, typename T1::elem_type >::no ));
+  
+  const bool bad_alias = (eOp<T1, eop_type>::proxy_type::has_subview  &&  X.P.is_alias(*this));
+  
+  if(bad_alias == false)
+    {
+    arma_debug_assert_same_size(fixed_n_rows, fixed_n_cols, X.get_n_rows(), X.get_n_cols(), "Mat::fixed::operator=");
+    
+    eop_type::apply(*this, X);
+    }
+  else
+    {
+    arma_extra_debug_print("bad_alias = true");
+    
+    Mat<eT> tmp(X);
+    
+    (*this) = tmp;
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<uword fixed_n_rows, uword fixed_n_cols>
+template<typename T1, typename T2, typename eglue_type>
+inline
+const Mat<eT>&
+Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const eGlue<T1, T2, eglue_type>& X)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_type_check(( is_same_type< eT, typename T1::elem_type >::no ));
+  arma_type_check(( is_same_type< eT, typename T2::elem_type >::no ));
+  
+  const bool bad_alias =
+    (
+    (eGlue<T1, T2, eglue_type>::proxy1_type::has_subview  &&  X.P1.is_alias(*this))
+    ||
+    (eGlue<T1, T2, eglue_type>::proxy2_type::has_subview  &&  X.P2.is_alias(*this))
+    );
+  
+  if(bad_alias == false)
+    {
+    arma_debug_assert_same_size(fixed_n_rows, fixed_n_cols, X.get_n_rows(), X.get_n_cols(), "Mat::fixed::operator=");
+    
+    eglue_type::apply(*this, X);
+    }
+  else
+    {
+    arma_extra_debug_print("bad_alias = true");
+    
+    Mat<eT> tmp(X);
+    
+    (*this) = tmp;
+    }
   
   return *this;
   }

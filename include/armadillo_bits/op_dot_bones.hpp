@@ -50,9 +50,6 @@ class op_dot
   
   template<typename T1, typename T2>
   arma_hot inline static typename arma_cx_only<typename T1::elem_type>::result apply_proxy(const Proxy<T1>& PA, const Proxy<T2>& PB);
-  
-  template<typename eT, typename TA>
-  arma_hot inline static eT dot_and_copy_row(eT* out, const TA& A, const uword row, const eT* B_mem, const uword N);
   };
 
 
@@ -61,19 +58,6 @@ class op_dot
 //! normalised dot product operation 
 
 class op_norm_dot
-  {
-  public:
-  
-  template<typename T1, typename T2>
-  arma_hot inline static typename T1::elem_type apply       (const T1& X, const T2& Y);
-  
-  template<typename T1, typename T2>
-  arma_hot inline static typename T1::elem_type apply_unwrap(const T1& X, const T2& Y);
-  };
-
-
-
-class op_norm_dot_slow
   {
   public:
   

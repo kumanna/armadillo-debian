@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2014 Conrad Sanderson
+// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -47,10 +47,11 @@ arma_isfinite(float x)
     }
   #else
     {
-    const bool x_is_inf = ( (x == x) && ((x - x) != float(0)) );
-    const bool x_is_nan = (x != x);
+    const float y = (std::numeric_limits<float>::max)();
     
-    return ( (x_is_inf == false) && (x_is_nan == false) );
+    const volatile float xx = x;
+    
+    return (xx == xx) && (x >= -y) && (x <= y);
     }
   #endif
   }
@@ -76,10 +77,11 @@ arma_isfinite(double x)
     }
   #else
     {
-    const bool x_is_inf = ( (x == x) && ((x - x) != double(0)) );
-    const bool x_is_nan = (x != x);
+    const double y = (std::numeric_limits<double>::max)();
     
-    return ( (x_is_inf == false) && (x_is_nan == false) );
+    const volatile double xx = x;
+    
+    return (xx == xx) && (x >= -y) && (x <= y);
     }
   #endif
   }
@@ -100,6 +102,224 @@ arma_isfinite(const std::complex<T>& x)
     return true;
     }
   }
+
+
+
+//
+// wrappers for isinf
+
+
+template<typename eT>
+arma_inline
+bool
+arma_isinf(eT val)
+  {
+  arma_ignore(val);
+    
+  return false;
+  }
+
+
+
+template<>
+arma_inline
+bool
+arma_isinf(float x)
+  {
+  #if defined(ARMA_USE_CXX11)
+    {
+    return std::isinf(x);
+    }
+  #elif defined(ARMA_HAVE_ISINF)
+    {
+    return (std::isinf(x) != 0);
+    }
+  #else
+    {
+    const float y = (std::numeric_limits<float>::max)();
+    
+    const volatile float xx = x;
+    
+    return (xx == xx) && ((x < -y) || (x > y));
+    }
+  #endif
+  }
+
+
+
+template<>
+arma_inline
+bool
+arma_isinf(double x)
+  {
+  #if defined(ARMA_USE_CXX11)
+    {
+    return std::isinf(x);
+    }
+  #elif defined(ARMA_HAVE_ISINF)
+    {
+    return (std::isinf(x) != 0);
+    }
+  #else
+    {
+    const double y = (std::numeric_limits<double>::max)();
+    
+    const volatile double xx = x;
+    
+    return (xx == xx) && ((x < -y) || (x > y));
+    }
+  #endif
+  }
+
+
+
+template<typename T>
+arma_inline
+bool
+arma_isinf(const std::complex<T>& x)
+  {
+  return ( arma_isinf(x.real()) || arma_isinf(x.imag()) );
+  }
+
+
+
+//
+// wrappers for isnan
+
+
+template<typename eT>
+arma_inline
+bool
+arma_isnan(eT val)
+  {
+  arma_ignore(val);
+    
+  return false;
+  }
+
+
+
+template<>
+arma_inline
+bool
+arma_isnan(float x)
+  {
+  #if defined(ARMA_USE_CXX11)
+    {
+    return std::isnan(x);
+    }
+  #elif defined(ARMA_HAVE_ISNAN)
+    {
+    return (std::isnan(x) != 0);
+    }
+  #else
+    {
+    const volatile float xx = x;
+    
+    return (xx != xx);
+    }
+  #endif
+  }
+
+
+
+template<>
+arma_inline
+bool
+arma_isnan(double x)
+  {
+  #if defined(ARMA_USE_CXX11)
+    {
+    return std::isnan(x);
+    }
+  #elif defined(ARMA_HAVE_ISNAN)
+    {
+    return (std::isnan(x) != 0);
+    }
+  #else
+    {
+    const volatile double xx = x;
+    
+    return (xx != xx);
+    }
+  #endif
+  }
+
+
+
+template<typename T>
+arma_inline
+bool
+arma_isnan(const std::complex<T>& x)
+  {
+  return ( arma_isnan(x.real()) || arma_isnan(x.imag()) );
+  }
+
+
+
+// rudimentary wrappers for log1p()
+
+arma_inline
+float
+arma_log1p(const float x)
+  {
+  #if defined(ARMA_USE_CXX11)
+    {
+    return std::log1p(x);
+    }
+  #else
+    {
+    if((x >= float(0)) && (x < std::numeric_limits<float>::epsilon()))
+      {
+      return x;
+      }
+    else
+    if((x < float(0)) && (-x < std::numeric_limits<float>::epsilon()))
+      {
+      return x;
+      }
+    else
+      {
+      return std::log(float(1) + x);
+      }
+    }
+  #endif
+  }
+
+
+
+arma_inline
+double
+arma_log1p(const double x)
+  {
+  #if defined(ARMA_USE_CXX11)
+    {
+    return std::log1p(x);
+    }
+  #elif defined(ARMA_HAVE_LOG1P)
+    {
+    return log1p(x);
+    }
+  #else
+    {
+    if((x >= double(0)) && (x < std::numeric_limits<double>::epsilon()))
+      {
+      return x;
+      }
+    else
+    if((x < double(0)) && (-x < std::numeric_limits<double>::epsilon()))
+      {
+      return x;
+      }
+    else
+      {
+      return std::log(double(1) + x);
+      }
+    }
+  #endif
+  }
+
+
 
 
 
@@ -144,6 +364,7 @@ arma_acos(const std::complex<T>& x)
     }
   #else
     {
+    arma_ignore(x);
     arma_stop("acos(): need C++11 compiler");
     
     return std::complex<T>(0);
@@ -168,6 +389,7 @@ arma_asin(const std::complex<T>& x)
     }
   #else
     {
+    arma_ignore(x);
     arma_stop("asin(): need C++11 compiler");
     
     return std::complex<T>(0);
@@ -192,6 +414,7 @@ arma_atan(const std::complex<T>& x)
     }
   #else
     {
+    arma_ignore(x);
     arma_stop("atan(): need C++11 compiler");
     
     return std::complex<T>(0);
@@ -313,6 +536,7 @@ arma_acosh(const std::complex<T>& x)
     }
   #else
     {
+    arma_ignore(x);
     arma_stop("acosh(): need C++11 compiler");
     
     return std::complex<T>(0);
@@ -337,6 +561,7 @@ arma_asinh(const std::complex<T>& x)
     }
   #else
     {
+    arma_ignore(x);
     arma_stop("asinh(): need C++11 compiler");
     
     return std::complex<T>(0);
@@ -361,6 +586,7 @@ arma_atanh(const std::complex<T>& x)
     }
   #else
     {
+    arma_ignore(x);
     arma_stop("atanh(): need C++11 compiler");
     
     return std::complex<T>(0);

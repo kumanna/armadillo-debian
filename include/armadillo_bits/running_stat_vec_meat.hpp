@@ -12,6 +12,7 @@
 
 
 template<typename obj_type>
+inline
 running_stat_vec<obj_type>::~running_stat_vec()
   {
   arma_extra_debug_sigprint_this(this);
@@ -20,6 +21,7 @@ running_stat_vec<obj_type>::~running_stat_vec()
 
 
 template<typename obj_type>
+inline
 running_stat_vec<obj_type>::running_stat_vec(const bool in_calc_cov)
   : calc_cov(in_calc_cov)
   {
@@ -29,6 +31,7 @@ running_stat_vec<obj_type>::running_stat_vec(const bool in_calc_cov)
 
 
 template<typename obj_type>
+inline
 running_stat_vec<obj_type>::running_stat_vec(const running_stat_vec<obj_type>& in_rsv)
   : calc_cov    (in_rsv.calc_cov)
   , counter     (in_rsv.counter)
@@ -46,6 +49,7 @@ running_stat_vec<obj_type>::running_stat_vec(const running_stat_vec<obj_type>& i
 
 
 template<typename obj_type>
+inline
 const running_stat_vec<obj_type>&
 running_stat_vec<obj_type>::operator=(const running_stat_vec<obj_type>& in_rsv)
   {
@@ -77,7 +81,7 @@ running_stat_vec<obj_type>::operator() (const Base<typename running_stat_vec<obj
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1>       tmp(X.get_ref());
+  const quasi_unwrap<T1> tmp(X.get_ref());
   const Mat<T>& sample = tmp.M;
   
   if( sample.is_empty() )
@@ -105,7 +109,7 @@ running_stat_vec<obj_type>::operator() (const Base< std::complex<typename runnin
   {
   arma_extra_debug_sigprint();
   
-  const unwrap<T1> tmp(X.get_ref());
+  const quasi_unwrap<T1> tmp(X.get_ref());
   
   const Mat< std::complex<T> >& sample = tmp.M;
   
