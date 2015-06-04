@@ -2,8 +2,8 @@ Source: armadillo
 Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Kumar Appaiah <akumar@debian.org>
-Build-Depends: debhelper (>= 7), libblas-dev, liblapack-dev, cmake, libarpack2-dev, hardening-wrapper
-Standards-Version: 3.9.5
+Build-Depends: debhelper (>= 7), libblas-dev, liblapack-dev, cmake, libarpack2-dev, dpkg-dev (>= 1.16.1~), libsuperlu-dev (>= 4.3), libsuperlu-dev (<< 4.4)
+Standards-Version: 3.9.6
 Section: libs
 Homepage: http://arma.sourceforge.net/
 Vcs-Git: git://anonscm.debian.org/debian-science/packages/armadillo.git
@@ -13,7 +13,7 @@ Package: libarmadillo-dev
 Section: libdevel
 Architecture: any
 Suggests: libitpp-dev
-Depends: libarmadillo4 (= ${binary:Version}), ${misc:Depends}, libarpack2-dev
+Depends: libarmadillo5 (= ${binary:Version}), ${misc:Depends}, libarpack2-dev, libhdf5-dev, libsuperlu-dev (>= 4.3), libsuperlu-dev (<< 4.4)
 Replaces: libarmadillo-doc (<= 1.1.2-1)
 Conflicts: libarmadillo-doc
 Description: streamlined C++ linear algebra library - Headers
@@ -25,7 +25,7 @@ Description: streamlined C++ linear algebra library - Headers
  .
  This package has the development libraries and headers for Armadillo.
 
-Package: libarmadillo4
+Package: libarmadillo5
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}

@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2014 Conrad Sanderson
-// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // Copyright (C) 2012-2014 Ryan Curtin
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
@@ -394,9 +394,11 @@ Mat<eT>::init(const std::string& text_orig)
   
   const bool replace_commas = (is_cx<eT>::yes) ? false : ( text_orig.find(',') != std::string::npos );
   
-  std::string* text_mod = (replace_commas) ? new std::string(text_orig) : NULL;
+  std::string text_mod;
   
-  const std::string& text = (replace_commas) ? ( std::replace((*text_mod).begin(), (*text_mod).end(), ',', ' '), (*text_mod) ) : text_orig;
+  if(replace_commas)  { text_mod = text_orig;  std::replace(text_mod.begin(), text_mod.end(), ',', ' '); }
+  
+  const std::string& text = (replace_commas) ? text_mod : text_orig;
   
   //
   // work out the size
@@ -485,17 +487,12 @@ Mat<eT>::init(const std::string& text_orig)
     eT val;
     while(line_stream >> val)
       {
-      x.at(urow,ucol) = val;
+      x(urow,ucol) = val;
       ++ucol;
       }
     
     ++urow;
     line_start = line_end+1;
-    }
-    
-  if(replace_commas)
-    {
-    delete text_mod;
     }
   }
 
@@ -577,6 +574,37 @@ Mat<eT>::operator=(const std::vector<eT>& x)
   
   
   
+  template<typename eT>
+  inline
+  Mat<eT>::Mat(const std::initializer_list< std::initializer_list<eT> >& list)
+    : n_rows(0)
+    , n_cols(0)
+    , n_elem(0)
+    , vec_state(0)
+    , mem_state(0)
+    , mem()
+    {
+    arma_extra_debug_sigprint_this(this);
+    
+    init(list);
+    }
+  
+  
+  
+  template<typename eT>
+  inline
+  const Mat<eT>&
+  Mat<eT>::operator=(const std::initializer_list< std::initializer_list<eT> >& list)
+    {
+    arma_extra_debug_sigprint();
+    
+    init(list);
+    
+    return *this;
+    }
+
+
+
   template<typename eT>
   inline
   Mat<eT>::Mat(Mat<eT>&& X)
@@ -759,21 +787,84 @@ Mat<eT>::operator=(const Mat<eT>& in_mat)
 
 
 #if defined(ARMA_USE_CXX11)
-
-template<typename eT>
-inline
-void
-Mat<eT>::init(const std::initializer_list<eT>& list)
-  {
-  arma_extra_debug_sigprint();
   
-  const uword N = list.size();
+  template<typename eT>
+  inline
+  void
+  Mat<eT>::init(const std::initializer_list<eT>& list)
+    {
+    arma_extra_debug_sigprint();
+    
+    const uword N = uword(list.size());
+    
+    set_size(1, N);
+    
+    arrayops::copy( memptr(), list.begin(), N );
+    }
   
-  set_size(1, N);
   
-  arrayops::copy( memptr(), list.begin(), N );
-  }
-
+  
+  template<typename eT>
+  inline
+  void
+  Mat<eT>::init(const std::initializer_list< std::initializer_list<eT> >& list)
+    {
+    arma_extra_debug_sigprint();
+    
+    uword x_n_rows = uword(list.size());
+    uword x_n_cols = 0;
+    
+    bool x_n_cols_found = false;
+    
+    auto it     = list.begin();
+    auto it_end = list.end();
+    
+    for(; it != it_end; ++it)
+      {
+      if(x_n_cols_found == false)
+        {
+        x_n_cols       = (*it).size();
+        x_n_cols_found = true;
+        }
+      else
+        {
+        arma_check( ((*it).size() != x_n_cols), "Mat::init(): inconsistent number of columns in initialiser list" );
+        }
+      }
+    
+    Mat<eT>& t = (*this);
+    
+    if(t.mem_state == 3)
+      {
+      arma_debug_check( ((x_n_rows != t.n_rows) || (x_n_cols != t.n_cols)), "Mat::init(): size mismatch between fixed size matrix and initialiser list" );
+      }
+    else
+      {
+      t.set_size(x_n_rows, x_n_cols);
+      }
+    
+    uword row_num = 0;
+    
+    auto row_it     = list.begin();
+    auto row_it_end = list.end();
+    
+    for(; row_it != row_it_end; ++row_it)
+      {
+      uword col_num = 0;
+      
+      auto col_it     = (*row_it).begin();
+      auto col_it_end = (*row_it).end();
+      
+      for(; col_it != col_it_end; ++col_it)
+        {
+        t.at(row_num, col_num) = (*col_it);
+        ++col_num;
+        }
+      
+      ++row_num;
+      }
+    }
+  
 #endif
 
 
@@ -5316,6 +5407,159 @@ Mat<eT>::is_finite() const
 
 
 
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Mat<eT>::is_sorted(const char* direction) const
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).is_sorted(direction, (((vec_state == 2) || (n_rows == 1)) ? uword(1) : uword(0)));
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Mat<eT>::is_sorted(const char* direction, const uword dim) const
+  {
+  arma_extra_debug_sigprint();
+  
+  const char sig = (direction != NULL) ? direction[0] : char(0);
+  
+  arma_debug_check( ((sig != 'a') && (sig != 'd')), "Mat::is_sorted(): unknown sort direction" );
+  
+  arma_debug_check( (dim > 1), "Mat::is_sorted(): dim must be 0 or 1" );
+  
+  if(n_elem <= 1)  { return true; }
+  
+  const uword local_n_cols = n_cols;
+  const uword local_n_rows = n_rows;
+  
+  if(sig == 'a')
+    {
+    // deliberately using the opposite direction comparator,
+    // as we need to handle the case of two elements being equal
+    
+    arma_descend_sort_helper<eT> comparator;
+    
+    if(dim == 0)
+      {
+      if(local_n_rows <= 1u)  { return true; }
+      
+      const uword local_n_rows_m1 = local_n_rows - 1;
+      
+      for(uword col=0; col < local_n_cols; ++col)
+        {
+        const eT* coldata = colptr(col);
+        
+        for(uword row=0; row < local_n_rows_m1; ++row)
+          {
+          const eT val1 = (*coldata); coldata++;
+          const eT val2 = (*coldata);
+          
+          if(comparator(val1,val2))  { return false; }
+          }
+        }
+      }
+    else  // dim == 1
+      {
+      if(local_n_cols <= 1u)  { return true; }
+      
+      const uword local_n_cols_m1 = local_n_cols - 1;
+      
+      if(local_n_rows == 1)
+        {
+        const eT* rowdata = memptr();
+        
+        for(uword col=0; col < local_n_cols_m1; ++col)
+          {
+          const eT val1 = (*rowdata);  rowdata++;
+          const eT val2 = (*rowdata);
+          
+          if(comparator(val1,val2))  { return false; }
+          }
+        }
+      else
+        {
+        for(uword row=0; row < local_n_rows;    ++row)
+        for(uword col=0; col < local_n_cols_m1; ++col)
+          {
+          const eT val1 = at(row,col  );
+          const eT val2 = at(row,col+1);
+          
+          if(comparator(val1,val2))  { return false; }
+          }
+        }
+      }
+    }
+  else
+  if(sig == 'd')
+    {
+    // deliberately using the opposite direction comparator,
+    // as we need to handle the case of two elements being equal
+    
+    arma_ascend_sort_helper<eT> comparator;
+    
+    if(dim == 0)
+      {
+      if(local_n_rows <= 1u)  { return true; }
+      
+      const uword local_n_rows_m1 = local_n_rows - 1;
+      
+      for(uword col=0; col < local_n_cols; ++col)
+        {
+        const eT* coldata = colptr(col);
+        
+        for(uword row=0; row < local_n_rows_m1; ++row)
+          {
+          const eT val1 = (*coldata); coldata++;
+          const eT val2 = (*coldata);
+          
+          if(comparator(val1,val2))  { return false; }
+          }
+        }
+      }
+    else  // dim == 1
+      {
+      if(local_n_cols <= 1u)  { return true; }
+      
+      const uword local_n_cols_m1 = local_n_cols - 1;
+      
+      if(local_n_rows == 1)
+        {
+        const eT* rowdata = memptr();
+        
+        for(uword col=0; col < local_n_cols_m1; ++col)
+          {
+          const eT val1 = (*rowdata);  rowdata++;
+          const eT val2 = (*rowdata);
+          
+          if(comparator(val1,val2))  { return false; }
+          }
+        }
+      else
+        {
+        for(uword row=0; row < local_n_rows;    ++row)
+        for(uword col=0; col < local_n_cols_m1; ++col)
+          {
+          const eT val1 = at(row,col  );
+          const eT val2 = at(row,col+1);
+          
+          if(comparator(val1,val2))  { return false; }
+          }
+        }
+      }
+    }
+  
+  return true;
+  }
+
+
+
 //! returns true if the given index is currently in range
 template<typename eT>
 arma_inline
@@ -7450,9 +7694,9 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::string& text)
     
     (*this).operator=(list);
     }
-
-
-
+  
+  
+  
   template<typename eT>
   template<uword fixed_n_rows, uword fixed_n_cols>
   inline
@@ -7461,7 +7705,7 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::string& text)
     {
     arma_extra_debug_sigprint();
     
-    const uword N = list.size();
+    const uword N = uword(list.size());
     
     arma_debug_check( (N > fixed_n_elem), "Mat::fixed: initialiser list is too long" );
     
@@ -7470,6 +7714,34 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::string& text)
     arrayops::copy( this_mem, list.begin(), N );
     
     for(uword iq=N; iq < fixed_n_elem; ++iq) { this_mem[iq] = eT(0); }
+    
+    return *this;
+    }
+  
+  
+  
+  template<typename eT>
+  template<uword fixed_n_rows, uword fixed_n_cols>
+  inline
+  Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::initializer_list< std::initializer_list<eT> >& list)
+    : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+    {
+    arma_extra_debug_sigprint_this(this);
+    
+    Mat<eT>::init(list);
+    }
+  
+  
+  
+  template<typename eT>
+  template<uword fixed_n_rows, uword fixed_n_cols>
+  inline
+  const Mat<eT>&
+  Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const std::initializer_list< std::initializer_list<eT> >& list)
+    {
+    arma_extra_debug_sigprint();
+    
+    Mat<eT>::init(list);
     
     return *this;
     }
@@ -7499,75 +7771,79 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const fixed<fixed_n_rows, 
 
 
 
-template<typename eT>
-template<uword fixed_n_rows, uword fixed_n_cols>
-template<typename T1, typename eop_type>
-inline
-const Mat<eT>&
-Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const eOp<T1, eop_type>& X)
-  {
-  arma_extra_debug_sigprint();
+#if defined(ARMA_GOOD_COMPILER)
   
-  arma_type_check(( is_same_type< eT, typename T1::elem_type >::no ));
-  
-  const bool bad_alias = (eOp<T1, eop_type>::proxy_type::has_subview  &&  X.P.is_alias(*this));
-  
-  if(bad_alias == false)
+  template<typename eT>
+  template<uword fixed_n_rows, uword fixed_n_cols>
+  template<typename T1, typename eop_type>
+  inline
+  const Mat<eT>&
+  Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const eOp<T1, eop_type>& X)
     {
-    arma_debug_assert_same_size(fixed_n_rows, fixed_n_cols, X.get_n_rows(), X.get_n_cols(), "Mat::fixed::operator=");
+    arma_extra_debug_sigprint();
     
-    eop_type::apply(*this, X);
-    }
-  else
-    {
-    arma_extra_debug_print("bad_alias = true");
+    arma_type_check(( is_same_type< eT, typename T1::elem_type >::no ));
     
-    Mat<eT> tmp(X);
+    const bool bad_alias = (eOp<T1, eop_type>::proxy_type::has_subview  &&  X.P.is_alias(*this));
     
-    (*this) = tmp;
-    }
-  
-  return *this;
-  }
-
-
-
-template<typename eT>
-template<uword fixed_n_rows, uword fixed_n_cols>
-template<typename T1, typename T2, typename eglue_type>
-inline
-const Mat<eT>&
-Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const eGlue<T1, T2, eglue_type>& X)
-  {
-  arma_extra_debug_sigprint();
-  
-  arma_type_check(( is_same_type< eT, typename T1::elem_type >::no ));
-  arma_type_check(( is_same_type< eT, typename T2::elem_type >::no ));
-  
-  const bool bad_alias =
-    (
-    (eGlue<T1, T2, eglue_type>::proxy1_type::has_subview  &&  X.P1.is_alias(*this))
-    ||
-    (eGlue<T1, T2, eglue_type>::proxy2_type::has_subview  &&  X.P2.is_alias(*this))
-    );
-  
-  if(bad_alias == false)
-    {
-    arma_debug_assert_same_size(fixed_n_rows, fixed_n_cols, X.get_n_rows(), X.get_n_cols(), "Mat::fixed::operator=");
+    if(bad_alias == false)
+      {
+      arma_debug_assert_same_size(fixed_n_rows, fixed_n_cols, X.get_n_rows(), X.get_n_cols(), "Mat::fixed::operator=");
+      
+      eop_type::apply(*this, X);
+      }
+    else
+      {
+      arma_extra_debug_print("bad_alias = true");
+      
+      Mat<eT> tmp(X);
+      
+      (*this) = tmp;
+      }
     
-    eglue_type::apply(*this, X);
-    }
-  else
-    {
-    arma_extra_debug_print("bad_alias = true");
-    
-    Mat<eT> tmp(X);
-    
-    (*this) = tmp;
+    return *this;
     }
   
-  return *this;
-  }
+  
+  
+  template<typename eT>
+  template<uword fixed_n_rows, uword fixed_n_cols>
+  template<typename T1, typename T2, typename eglue_type>
+  inline
+  const Mat<eT>&
+  Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::operator=(const eGlue<T1, T2, eglue_type>& X)
+    {
+    arma_extra_debug_sigprint();
+    
+    arma_type_check(( is_same_type< eT, typename T1::elem_type >::no ));
+    arma_type_check(( is_same_type< eT, typename T2::elem_type >::no ));
+    
+    const bool bad_alias =
+      (
+      (eGlue<T1, T2, eglue_type>::proxy1_type::has_subview  &&  X.P1.is_alias(*this))
+      ||
+      (eGlue<T1, T2, eglue_type>::proxy2_type::has_subview  &&  X.P2.is_alias(*this))
+      );
+    
+    if(bad_alias == false)
+      {
+      arma_debug_assert_same_size(fixed_n_rows, fixed_n_cols, X.get_n_rows(), X.get_n_cols(), "Mat::fixed::operator=");
+      
+      eglue_type::apply(*this, X);
+      }
+    else
+      {
+      arma_extra_debug_print("bad_alias = true");
+      
+      Mat<eT> tmp(X);
+      
+      (*this) = tmp;
+      }
+    
+    return *this;
+    }
+  
+#endif
 
 
 

@@ -9,7 +9,10 @@ else
 CROSS= --build $(DEB_BUILD_GNU_TYPE)
 endif
 
-export DEB_BUILD_HARDENING=1
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+CFLAGS+=$(CPPFLAGS)
+CXXFLAGS+=$(CPPFLAGS)
 
 build: build-arch build-indep
 build-arch: build-stamp
@@ -17,7 +20,7 @@ build-indep: build-stamp
 
 build-stamp:
 	dh_testdir
-	cmake -DCMAKE_VERBOSE_MAKEFILE=ON -D INSTALL_LIB_DIR=lib -D CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
+	cmake -DCMAKE_VERBOSE_MAKEFILE=ON -D INSTALL_LIB_DIR=lib -D CMAKE_INpppSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=ON  . # specified to install to the debian/tmp directory.
 	$(MAKE)
 	touch $@
 

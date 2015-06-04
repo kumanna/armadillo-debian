@@ -1,8 +1,85 @@
-armadillo (1:4.200.0+dfsg-1~bpo70+1) wheezy-backports; urgency=low
+armadillo (1:5.100.2+dfsg-4) unstable; urgency=medium
 
-  * Upload to wheezy-backports.
+  * libarmadillo-dev depends on libsuperlu-dev
 
- -- Kumar Appaiah <akumar@debian.org>  Mon, 07 Apr 2014 20:25:16 -0400
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 23 May 2015 14:40:49 +0530
+
+armadillo (1:5.100.2+dfsg-3) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 21 May 2015 18:33:04 +0530
+
+armadillo (1:5.100.2+dfsg-2) experimental; urgency=medium
+
+  * Add libsuperlu dependency
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 19 May 2015 11:30:01 +0530
+
+armadillo (1:5.100.2+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 16 May 2015 20:27:43 +0530
+
+armadillo (1:5.000.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * The new package (with soname) is libarmadillo5
+  * Standards version is now 3.9.6 (no changes)
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 18 Apr 2015 06:06:13 +0530
+
+armadillo (1:4.550.2+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 05 Dec 2014 19:26:06 +0530
+
+armadillo (1:4.450.4+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 27 Oct 2014 20:06:26 +0530
+
+armadillo (1:4.450.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 04 Oct 2014 09:31:39 +0530
+
+armadillo (1:4.400.2+dfsg-2) unstable; urgency=medium
+
+  * Remove hdf5 build dependency
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 08 Sep 2014 15:43:44 +0530
+
+armadillo (1:4.400.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Depend on dpkg-dev 1.16.1 or higher and use buildflags.mk instead of
+    hardening-wrapper.
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 06 Sep 2014 15:41:57 +0530
+
+armadillo (1:4.320.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream releasep
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 11 Jul 2014 16:14:15 +0530
+
+armadillo (1:4.300.8+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 05 Jun 2014 00:32:53 -0400
+
+armadillo (1:4.300.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Depend on libhdf5-dev dor upstream changes
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 05 May 2014 22:52:03 -0400
 
 armadillo (1:4.200.0+dfsg-1) unstable; urgency=medium
 
