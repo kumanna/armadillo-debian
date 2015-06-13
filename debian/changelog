@@ -1,3 +1,9 @@
+armadillo (1:5.200.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 13 Jun 2015 16:17:23 +0530
+
 armadillo (1:5.100.2+dfsg-5) unstable; urgency=medium
 
   * Remove extraneous Proxy.hpp patch
