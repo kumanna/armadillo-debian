@@ -1,3 +1,9 @@
+armadillo (1:5.100.2+dfsg-5) unstable; urgency=medium
+
+  * Remove extraneous Proxy.hpp patch
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 26 May 2015 08:43:29 +0530
+
 armadillo (1:5.100.2+dfsg-4) unstable; urgency=medium
 
   * libarmadillo-dev depends on libsuperlu-dev
