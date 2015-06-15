@@ -1,3 +1,21 @@
+armadillo (1:5.200.1+dfsg-1~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 15 Jun 2015 12:47:41 +0530
+
+armadillo (1:5.200.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 13 Jun 2015 16:17:23 +0530
+
+armadillo (1:5.100.2+dfsg-5) unstable; urgency=medium
+
+  * Remove extraneous Proxy.hpp patch
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 26 May 2015 08:43:29 +0530
+
 armadillo (1:5.100.2+dfsg-4~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
@@ -95,7 +113,7 @@ armadillo (1:4.200.0+dfsg-1) unstable; urgency=medium
  -- Kumar Appaiah <akumar@debian.org>  Mon, 07 Apr 2014 20:25:16 -0400
 
 armadillo (1:4.100.2+dfsg-2~bpo70+1) wheezy-backports; urgency=low
-  
+
   * New upstream release
 
  -- Kumar Appaiah <akumar@debian.org>  Sun, 16 Mar 2014 18:51:49 -0400
