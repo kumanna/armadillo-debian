@@ -69,6 +69,23 @@ Mat<eT>::Mat(const uword in_n_rows, const uword in_n_cols)
 
 
 
+template<typename eT>
+inline
+Mat<eT>::Mat(const SizeMat& s)
+  : n_rows(s.n_rows)
+  , n_cols(s.n_cols)
+  , n_elem(s.n_rows*s.n_cols)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  }
+
+
+
 //! construct the matrix to have user specified dimensions and fill with specified pattern
 template<typename eT>
 template<typename fill_type>
@@ -77,6 +94,26 @@ Mat<eT>::Mat(const uword in_n_rows, const uword in_n_cols, const fill::fill_clas
   : n_rows(in_n_rows)
   , n_cols(in_n_cols)
   , n_elem(in_n_rows*in_n_cols)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  
+  (*this).fill(f);
+  }
+
+
+
+template<typename eT>
+template<typename fill_type>
+inline
+Mat<eT>::Mat(const SizeMat& s, const fill::fill_class<fill_type>& f)
+  : n_rows(s.n_rows)
+  , n_cols(s.n_cols)
+  , n_elem(s.n_rows*s.n_cols)
   , vec_state(0)
   , mem_state(0)
   , mem()
@@ -5411,6 +5448,32 @@ template<typename eT>
 inline
 arma_warn_unused
 bool
+Mat<eT>::has_inf() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return arrayops::has_inf(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Mat<eT>::has_nan() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return arrayops::has_nan(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
 Mat<eT>::is_sorted(const char* direction) const
   {
   arma_extra_debug_sigprint();
@@ -5432,7 +5495,7 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
   
   arma_debug_check( ((sig != 'a') && (sig != 'd')), "Mat::is_sorted(): unknown sort direction" );
   
-  arma_debug_check( (dim > 1), "Mat::is_sorted(): dim must be 0 or 1" );
+  arma_debug_check( (dim > 1), "Mat::is_sorted(): parameter 'dim' must be 0 or 1" );
   
   if(n_elem <= 1)  { return true; }
   
@@ -5452,11 +5515,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
       
       const uword local_n_rows_m1 = local_n_rows - 1;
       
-      for(uword col=0; col < local_n_cols; ++col)
+      for(uword c=0; c < local_n_cols; ++c)
         {
-        const eT* coldata = colptr(col);
+        const eT* coldata = colptr(c);
         
-        for(uword row=0; row < local_n_rows_m1; ++row)
+        for(uword r=0; r < local_n_rows_m1; ++r)
           {
           const eT val1 = (*coldata); coldata++;
           const eT val2 = (*coldata);
@@ -5475,7 +5538,7 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         {
         const eT* rowdata = memptr();
         
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
           const eT val1 = (*rowdata);  rowdata++;
           const eT val2 = (*rowdata);
@@ -5485,11 +5548,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         }
       else
         {
-        for(uword row=0; row < local_n_rows;    ++row)
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword r=0; r < local_n_rows;    ++r)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
-          const eT val1 = at(row,col  );
-          const eT val2 = at(row,col+1);
+          const eT val1 = at(r,c  );
+          const eT val2 = at(r,c+1);
           
           if(comparator(val1,val2))  { return false; }
           }
@@ -5510,11 +5573,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
       
       const uword local_n_rows_m1 = local_n_rows - 1;
       
-      for(uword col=0; col < local_n_cols; ++col)
+      for(uword c=0; c < local_n_cols; ++c)
         {
-        const eT* coldata = colptr(col);
+        const eT* coldata = colptr(c);
         
-        for(uword row=0; row < local_n_rows_m1; ++row)
+        for(uword r=0; r < local_n_rows_m1; ++r)
           {
           const eT val1 = (*coldata); coldata++;
           const eT val2 = (*coldata);
@@ -5533,7 +5596,7 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         {
         const eT* rowdata = memptr();
         
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
           const eT val1 = (*rowdata);  rowdata++;
           const eT val2 = (*rowdata);
@@ -5543,11 +5606,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         }
       else
         {
-        for(uword row=0; row < local_n_rows;    ++row)
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword r=0; r < local_n_rows;    ++r)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
-          const eT val1 = at(row,col  );
-          const eT val2 = at(row,col+1);
+          const eT val1 = at(r,c  );
+          const eT val2 = at(r,c+1);
           
           if(comparator(val1,val2))  { return false; }
           }
@@ -5884,6 +5947,18 @@ Mat<eT>::set_size(const uword in_rows, const uword in_cols)
 
 
 
+template<typename eT>
+inline
+void
+Mat<eT>::set_size(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  init_warm(s.n_rows, s.n_cols);
+  }
+
+
+
 //! change the matrix to have user specified dimensions (data is preserved)
 template<typename eT>
 inline
@@ -5923,6 +5998,18 @@ Mat<eT>::resize(const uword in_rows, const uword in_cols)
 
 
 
+template<typename eT>
+inline
+void
+Mat<eT>::resize(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::resize(*this, s.n_rows, s.n_cols);
+  }
+
+
+
 //! change the matrix to have user specified dimensions (data is preserved)
 template<typename eT>
 inline
@@ -5932,6 +6019,18 @@ Mat<eT>::reshape(const uword in_rows, const uword in_cols)
   arma_extra_debug_sigprint();
   
   *this = arma::reshape(*this, in_rows, in_cols);
+  }
+
+
+
+template<typename eT>
+inline
+void
+Mat<eT>::reshape(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::reshape(*this, s.n_rows, s.n_cols);
   }
 
 
@@ -6121,6 +6220,18 @@ Mat<eT>::zeros(const uword in_n_rows, const uword in_n_cols)
 template<typename eT>
 inline
 const Mat<eT>&
+Mat<eT>::zeros(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).zeros(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
 Mat<eT>::ones()
   {
   arma_extra_debug_sigprint();
@@ -6150,10 +6261,22 @@ const Mat<eT>&
 Mat<eT>::ones(const uword in_rows, const uword in_cols)
   {
   arma_extra_debug_sigprint();
-
+  
   set_size(in_rows, in_cols);
   
   return fill(eT(1));
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::ones(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).ones(s.n_rows, s.n_cols);
   }
 
 
@@ -6203,6 +6326,18 @@ Mat<eT>::randu(const uword in_rows, const uword in_cols)
 template<typename eT>
 inline
 const Mat<eT>&
+Mat<eT>::randu(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).randu(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
 Mat<eT>::randn()
   {
   arma_extra_debug_sigprint();
@@ -6245,6 +6380,18 @@ Mat<eT>::randn(const uword in_rows, const uword in_cols)
 template<typename eT>
 inline
 const Mat<eT>&
+Mat<eT>::randn(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).randn(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
 Mat<eT>::eye()
   {
   arma_extra_debug_sigprint();
@@ -6273,6 +6420,18 @@ Mat<eT>::eye(const uword in_rows, const uword in_cols)
   set_size(in_rows, in_cols);
   
   return (*this).eye();
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::eye(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).eye(s.n_rows, s.n_cols);
   }
 
 
@@ -6336,7 +6495,12 @@ Mat<eT>::min() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_min::direct_min(memptr(), n_elem);
   }
@@ -6351,7 +6515,12 @@ Mat<eT>::max() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_max::direct_max(memptr(), n_elem);
   }
@@ -6365,7 +6534,12 @@ Mat<eT>::min(uword& index_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_min::direct_min(memptr(), n_elem, index_of_min_val);
   }
@@ -6379,7 +6553,12 @@ Mat<eT>::max(uword& index_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_max::direct_max(memptr(), n_elem, index_of_max_val);
   }
@@ -6393,7 +6572,12 @@ Mat<eT>::min(uword& row_of_min_val, uword& col_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   uword iq;
   
@@ -6414,7 +6598,12 @@ Mat<eT>::max(uword& row_of_max_val, uword& col_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   uword iq;
   

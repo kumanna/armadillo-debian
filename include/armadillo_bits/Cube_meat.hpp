@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -47,7 +47,7 @@ Cube<eT>::Cube()
   , n_slices(0)
   , n_elem(0)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -65,7 +65,26 @@ Cube<eT>::Cube(const uword in_n_rows, const uword in_n_cols, const uword in_n_sl
   , n_slices(in_n_slices)
   , n_elem(in_n_rows*in_n_cols*in_n_slices)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  }
+
+
+
+template<typename eT>
+inline
+Cube<eT>::Cube(const SizeCube& s)
+  : n_rows(s.n_rows)
+  , n_cols(s.n_cols)
+  , n_elem_slice(s.n_rows*s.n_cols)
+  , n_slices(s.n_slices)
+  , n_elem(s.n_rows*s.n_cols*s.n_slices)
+  , mem_state(0)
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -86,7 +105,34 @@ Cube<eT>::Cube(const uword in_n_rows, const uword in_n_cols, const uword in_n_sl
   , n_slices(in_n_slices)
   , n_elem(in_n_rows*in_n_cols*in_n_slices)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  
+  if(is_same_type<fill_type, fill::fill_zeros>::yes)  (*this).zeros();
+  if(is_same_type<fill_type, fill::fill_ones >::yes)  (*this).ones();
+  if(is_same_type<fill_type, fill::fill_randu>::yes)  (*this).randu();
+  if(is_same_type<fill_type, fill::fill_randn>::yes)  (*this).randn();
+  
+  if(is_same_type<fill_type, fill::fill_eye  >::yes)  { arma_debug_check(true, "Cube::Cube(): unsupported fill type"); }
+  }
+
+
+
+template<typename eT>
+template<typename fill_type>
+inline
+Cube<eT>::Cube(const SizeCube& s, const fill::fill_class<fill_type>&)
+  : n_rows(s.n_rows)
+  , n_cols(s.n_cols)
+  , n_elem_slice(s.n_rows*s.n_cols)
+  , n_slices(s.n_slices)
+  , n_elem(s.n_rows*s.n_cols*s.n_slices)
+  , mem_state(0)
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -114,7 +160,7 @@ Cube<eT>::Cube(const uword in_n_rows, const uword in_n_cols, const uword in_n_sl
     , n_slices(0)
     , n_elem(0)
     , mem_state(0)
-    , mat_ptrs()
+    , mat_ptrs(0)
     , mem()
     {
     arma_extra_debug_sigprint_this(this);
@@ -144,7 +190,7 @@ Cube<eT>::Cube(const uword in_n_rows, const uword in_n_cols, const uword in_n_sl
 template<typename eT>
 inline
 void
-Cube<eT>::init_cold()
+Cube<eT>::init_cold(const bool prealloc_mat)
   {
   arma_extra_debug_sigprint( arma_boost::format("n_rows = %d, n_cols = %d, n_slices = %d") % n_rows % n_cols % n_slices );
   
@@ -187,7 +233,7 @@ Cube<eT>::init_cold()
     }
   else
     {
-    create_mat();
+    create_mat(prealloc_mat);
     }
   }
 
@@ -384,16 +430,19 @@ Cube<eT>::delete_mat()
   {
   arma_extra_debug_sigprint();
   
-  for(uword uslice = 0; uslice < n_slices; ++uslice)
+  if(mat_ptrs != NULL)
     {
-    delete access::rw(mat_ptrs[uslice]);
-    }
-  
-  if(mem_state <= 2)
-    {
-    if(n_slices > Cube_prealloc::mat_ptrs_size)
+    for(uword uslice = 0; uslice < n_slices; ++uslice)
       {
-      delete [] mat_ptrs;
+      if(mat_ptrs[uslice] != NULL)  { delete access::rw(mat_ptrs[uslice]); }
+      }
+    
+    if(mem_state <= 2)
+      {
+      if(n_slices > Cube_prealloc::mat_ptrs_size)
+        {
+        delete [] mat_ptrs;
+        }
       }
     }
   }
@@ -403,7 +452,7 @@ Cube<eT>::delete_mat()
 template<typename eT>
 inline
 void
-Cube<eT>::create_mat()
+Cube<eT>::create_mat(const bool prealloc_mat)
   {
   arma_extra_debug_sigprint();
   
@@ -423,7 +472,7 @@ Cube<eT>::create_mat()
   
   for(uword uslice = 0; uslice < n_slices; ++uslice)
     {
-    mat_ptrs[uslice] = new Mat<eT>('j', slice_memptr(uslice), n_rows, n_cols);
+    mat_ptrs[uslice] = prealloc_mat ? new Mat<eT>('j', slice_memptr(uslice), n_rows, n_cols) : NULL;
     }
   }
 
@@ -515,7 +564,7 @@ Cube<eT>::Cube(const Cube<eT>& x)
   , n_slices(x.n_slices)
   , n_elem(x.n_elem)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -556,7 +605,7 @@ Cube<eT>::operator=(const Cube<eT>& x)
 
 template<typename eT>
 inline
-Cube<eT>::Cube(eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols, const uword aux_n_slices, const bool copy_aux_mem, const bool strict)
+Cube<eT>::Cube(eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols, const uword aux_n_slices, const bool copy_aux_mem, const bool strict, const bool prealloc_mat)
   : n_rows      ( aux_n_rows                          )
   , n_cols      ( aux_n_cols                          )
   , n_elem_slice( aux_n_rows*aux_n_cols               )
@@ -570,13 +619,13 @@ Cube<eT>::Cube(eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols, cons
   
   if(copy_aux_mem == true)
     {
-    init_cold();
+    init_cold(prealloc_mat);
     
     arrayops::copy( memptr(), aux_mem, n_elem );
     }
   else
     {
-    create_mat();
+    create_mat(prealloc_mat);
     }
   }
 
@@ -593,7 +642,7 @@ Cube<eT>::Cube(const eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols
   , n_slices(aux_n_slices)
   , n_elem(aux_n_rows*aux_n_cols*aux_n_slices)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -688,7 +737,7 @@ Cube<eT>::Cube
   , n_slices(0)
   , n_elem(0)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -708,7 +757,7 @@ Cube<eT>::Cube(const subview_cube<eT>& X)
   , n_slices(X.n_slices)
   , n_elem(X.n_elem)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -816,11 +865,12 @@ Cube<eT>::slice(const uword in_slice)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check
-    (
-    (in_slice >= n_slices),
-    "Cube::slice(): index out of bounds"
-    );
+  arma_debug_check( (in_slice >= n_slices), "Cube::slice(): index out of bounds" );
+  
+  if(mat_ptrs[in_slice] == NULL)
+    {
+    mat_ptrs[in_slice] = new Mat<eT>('j', slice_memptr(in_slice), n_rows, n_cols);
+    }
   
   return const_cast< Mat<eT>& >( *(mat_ptrs[in_slice]) );
   }
@@ -835,12 +885,13 @@ Cube<eT>::slice(const uword in_slice) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check
-    (
-    (in_slice >= n_slices),
-    "Cube::slice(): index out of bounds"
-    );
-   
+  arma_debug_check( (in_slice >= n_slices), "Cube::slice(): index out of bounds" );
+  
+  if(mat_ptrs[in_slice] == NULL)
+    {
+    mat_ptrs[in_slice] = new Mat<eT>('j', slice_memptr(in_slice), n_rows, n_cols);
+    }
+  
   return *(mat_ptrs[in_slice]);
   }
 
@@ -1536,7 +1587,7 @@ Cube<eT>::Cube(const GenCube<eT, gen_type>& X)
   , n_slices(X.n_slices)
   , n_elem(X.n_rows*X.n_cols*X.n_slices)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -1636,7 +1687,7 @@ Cube<eT>::Cube(const OpCube<T1, op_type>& X)
   , n_slices(0)
   , n_elem(0)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -1749,7 +1800,7 @@ Cube<eT>::Cube(const eOpCube<T1, eop_type>& X)
   , n_slices(X.get_n_slices())
   , n_elem(X.get_n_elem())
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -1877,7 +1928,7 @@ Cube<eT>::Cube(const mtOpCube<eT, T1, op_type>& X)
   , n_slices(0)
   , n_elem(0)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -1978,7 +2029,7 @@ Cube<eT>::Cube(const GlueCube<T1, T2, glue_type>& X)
   , n_slices(0)
   , n_elem(0)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -2092,7 +2143,7 @@ Cube<eT>::Cube(const eGlueCube<T1, T2, eglue_type>& X)
   , n_slices(X.get_n_slices())
   , n_elem(X.get_n_elem())
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -2226,7 +2277,7 @@ Cube<eT>::Cube(const mtGlueCube<eT, T1, T2, glue_type>& X)
   , n_slices(0)
   , n_elem(0)
   , mem_state(0)
-  , mat_ptrs()
+  , mat_ptrs(0)
   , mem()
   {
   arma_extra_debug_sigprint_this(this);
@@ -2540,6 +2591,32 @@ Cube<eT>::is_empty() const
 
 
 
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Cube<eT>::has_inf() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return arrayops::has_inf( memptr(), n_elem );
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Cube<eT>::has_nan() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return arrayops::has_nan( memptr(), n_elem );
+  }
+
+
+
 //! returns true if the given index is currently in range
 template<typename eT>
 arma_inline
@@ -2835,6 +2912,42 @@ Cube<eT>::resize(const uword in_rows, const uword in_cols, const uword in_slices
 
 
 
+template<typename eT>
+inline
+void
+Cube<eT>::set_size(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  init_warm(s.n_rows, s.n_cols, s.n_slices);
+  }
+
+
+
+template<typename eT>
+inline
+void
+Cube<eT>::reshape(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::reshape(*this, s.n_rows, s.n_cols, s.n_slices, 0);
+  }
+
+
+
+template<typename eT>
+inline
+void
+Cube<eT>::resize(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::resize(*this, s.n_rows, s.n_cols, s.n_slices);
+  }
+
+
+
 //! change the cube (without preserving data) to have the same dimensions as the given cube 
 template<typename eT>
 template<typename eT2>
@@ -2966,6 +3079,18 @@ Cube<eT>::zeros(const uword in_rows, const uword in_cols, const uword in_slices)
 template<typename eT>
 inline
 const Cube<eT>&
+Cube<eT>::zeros(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).zeros(s.n_rows, s.n_cols, s.n_slices);
+  }
+
+
+
+template<typename eT>
+inline
+const Cube<eT>&
 Cube<eT>::ones()
   {
   arma_extra_debug_sigprint();
@@ -2985,6 +3110,18 @@ Cube<eT>::ones(const uword in_rows, const uword in_cols, const uword in_slices)
   set_size(in_rows, in_cols, in_slices);
   
   return (*this).fill(eT(1));
+  }
+
+
+
+template<typename eT>
+inline
+const Cube<eT>&
+Cube<eT>::ones(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).ones(s.n_rows, s.n_cols, s.n_slices);
   }
 
 
@@ -3020,6 +3157,18 @@ Cube<eT>::randu(const uword in_rows, const uword in_cols, const uword in_slices)
 template<typename eT>
 inline
 const Cube<eT>&
+Cube<eT>::randu(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).randu(s.n_rows, s.n_cols, s.n_slices);
+  }
+
+
+
+template<typename eT>
+inline
+const Cube<eT>&
 Cube<eT>::randn()
   {
   arma_extra_debug_sigprint();
@@ -3041,6 +3190,18 @@ Cube<eT>::randn(const uword in_rows, const uword in_cols, const uword in_slices)
   set_size(in_rows, in_cols, in_slices);
   
   return (*this).randn();
+  }
+
+
+
+template<typename eT>
+inline
+const Cube<eT>&
+Cube<eT>::randn(const SizeCube& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).randn(s.n_rows, s.n_cols, s.n_slices);
   }
 
 
@@ -3091,7 +3252,12 @@ Cube<eT>::min() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Cube::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_min::direct_min(memptr(), n_elem);
   }
@@ -3106,7 +3272,12 @@ Cube<eT>::max() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Cube::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_max::direct_max(memptr(), n_elem);
   }
@@ -3120,7 +3291,12 @@ Cube<eT>::min(uword& index_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Cube::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_min::direct_min(memptr(), n_elem, index_of_min_val);
   }
@@ -3134,7 +3310,12 @@ Cube<eT>::max(uword& index_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Cube::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_max::direct_max(memptr(), n_elem, index_of_max_val);
   }
@@ -3148,7 +3329,12 @@ Cube<eT>::min(uword& row_of_min_val, uword& col_of_min_val, uword& slice_of_min_
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Cube::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   uword i;
   
@@ -3174,7 +3360,12 @@ Cube<eT>::max(uword& row_of_max_val, uword& col_of_max_val, uword& slice_of_max_
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Cube::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   uword i;
   

@@ -12,9 +12,9 @@
 
 
 #define ARMA_VERSION_MAJOR 5
-#define ARMA_VERSION_MINOR 200
-#define ARMA_VERSION_PATCH 1
-#define ARMA_VERSION_NAME  "Boston Tea Smuggler"
+#define ARMA_VERSION_MINOR 500
+#define ARMA_VERSION_PATCH 2
+#define ARMA_VERSION_NAME  "Molotov Cocktail"
 
 
 

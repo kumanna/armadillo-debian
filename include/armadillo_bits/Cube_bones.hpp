@@ -1,5 +1,5 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 Conrad Sanderson
+// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -42,7 +42,7 @@ class Cube : public BaseCube< eT, Cube<eT> >
   // mem_state = 3: fixed size (e.g. via template based size specification).
   
   
-  arma_aligned const Mat<eT>** const mat_ptrs; //!< pointer to an array containing pointers to Mat instances (one for each slice)
+  arma_aligned const Mat<eT>** const mat_ptrs; //!< WARNING: DO NOT USE! mat_ptrs will be private in version 6.0
   arma_aligned const eT*       const mem;      //!< pointer to the memory used by the cube (memory is read-only)
   
   protected:
@@ -55,17 +55,18 @@ class Cube : public BaseCube< eT, Cube<eT> >
   inline ~Cube();
   inline  Cube();
   
-  inline Cube(const uword in_rows, const uword in_cols, const uword in_slices);
+  inline explicit Cube(const uword in_rows, const uword in_cols, const uword in_slices);
+  inline explicit Cube(const SizeCube& s);
   
-  template<typename fill_type>
-  inline Cube(const uword in_rows, const uword in_cols, const uword in_slices, const fill::fill_class<fill_type>& f);
+  template<typename fill_type> inline Cube(const uword in_rows, const uword in_cols, const uword in_slices, const fill::fill_class<fill_type>& f);
+  template<typename fill_type> inline Cube(const SizeCube& s,                                               const fill::fill_class<fill_type>& f);
   
   #if defined(ARMA_USE_CXX11)
   inline                  Cube(Cube&& m);
   inline const Cube& operator=(Cube&& m);
   #endif
   
-  inline Cube(      eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols, const uword aux_n_slices, const bool copy_aux_mem = true, const bool strict = true);
+  inline Cube(      eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols, const uword aux_n_slices, const bool copy_aux_mem = true, const bool strict = true, const bool prealloc_mat = true);
   inline Cube(const eT* aux_mem, const uword aux_n_rows, const uword aux_n_cols, const uword aux_n_slices);
   
   arma_inline const Cube&  operator=(const eT val);
@@ -217,6 +218,9 @@ class Cube : public BaseCube< eT, Cube<eT> >
   arma_inline arma_warn_unused bool is_finite() const;
   arma_inline arma_warn_unused bool is_empty()  const;
   
+  inline arma_warn_unused bool has_inf() const;
+  inline arma_warn_unused bool has_nan() const;
+  
   arma_inline arma_warn_unused bool in_range(const uword i) const;
   arma_inline arma_warn_unused bool in_range(const span& x) const;
   
@@ -234,15 +238,19 @@ class Cube : public BaseCube< eT, Cube<eT> >
   arma_inline arma_warn_unused       eT* slice_colptr(const uword in_slice, const uword in_col);
   arma_inline arma_warn_unused const eT* slice_colptr(const uword in_slice, const uword in_col) const;
   
-  inline void impl_print(const std::string& extra_text) const;
+  inline void impl_print(                           const std::string& extra_text) const;
   inline void impl_print(std::ostream& user_stream, const std::string& extra_text) const;
   
-  inline void impl_raw_print(const std::string& extra_text) const;
+  inline void impl_raw_print(                           const std::string& extra_text) const;
   inline void impl_raw_print(std::ostream& user_stream, const std::string& extra_text) const;
   
   inline void  set_size(const uword in_rows, const uword in_cols, const uword in_slices);
   inline void   reshape(const uword in_rows, const uword in_cols, const uword in_slices, const uword dim = 0);
   inline void    resize(const uword in_rows, const uword in_cols, const uword in_slices);
+  
+  inline void  set_size(const SizeCube& s);
+  inline void   reshape(const SizeCube& s);
+  inline void    resize(const SizeCube& s);
   
   template<typename eT2> inline void copy_size(const Cube<eT2>& m);
   
@@ -258,15 +266,19 @@ class Cube : public BaseCube< eT, Cube<eT> >
   
   inline const Cube& zeros();
   inline const Cube& zeros(const uword in_rows, const uword in_cols, const uword in_slices);
+  inline const Cube& zeros(const SizeCube& s);
   
   inline const Cube& ones();
   inline const Cube& ones(const uword in_rows, const uword in_cols, const uword in_slices);
+  inline const Cube& ones(const SizeCube& s);
   
   inline const Cube& randu();
   inline const Cube& randu(const uword in_rows, const uword in_cols, const uword in_slices);
+  inline const Cube& randu(const SizeCube& s);
   
   inline const Cube& randn();
   inline const Cube& randn(const uword in_rows, const uword in_cols, const uword in_slices);
+  inline const Cube& randn(const SizeCube& s);
   
   inline void reset();
   
@@ -333,14 +345,14 @@ class Cube : public BaseCube< eT, Cube<eT> >
   
   protected:
   
-  inline void init_cold();
+  inline void init_cold(const bool prealloc_mat = true);
   inline void init_warm(const uword in_rows, const uword in_cols, const uword in_slices);
   
   template<typename T1, typename T2>
   inline void init(const BaseCube<pod_type,T1>& A, const BaseCube<pod_type,T2>& B);
   
   inline void delete_mat();
-  inline void create_mat();
+  inline void create_mat(const bool prealloc_mat = true);
   
   friend class glue_join;
   friend class op_reshape;
