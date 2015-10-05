@@ -11,10 +11,10 @@
 
 
 
-#define ARMA_VERSION_MAJOR 5
-#define ARMA_VERSION_MINOR 500
-#define ARMA_VERSION_PATCH 2
-#define ARMA_VERSION_NAME  "Molotov Cocktail"
+#define ARMA_VERSION_MAJOR 6
+#define ARMA_VERSION_MINOR 100
+#define ARMA_VERSION_PATCH 0
+#define ARMA_VERSION_NAME  "Midnight Blue"
 
 
 

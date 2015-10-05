@@ -48,6 +48,10 @@ template<typename eT, typename T1, typename T2> class subview_elem2;
 template<typename parent, unsigned int mode>              class subview_each1;
 template<typename parent, unsigned int mode, typename TB> class subview_each2;
 
+template<typename eT>              class subview_cube_each1;
+template<typename eT, typename TB> class subview_cube_each2;
+
+
 class SizeMat;
 class SizeCube;
 
@@ -70,10 +74,12 @@ class op_diagvec;
 class op_vectorise_col;
 class op_normalise_vec;
 class op_clamp;
-class op_cumsum_simple;
-class op_cumprod_simple;
+class op_cumsum_default;
+class op_cumprod_default;
 class op_shuffle;
+class op_shuffle_default;
 class op_sort;
+class op_sort_default;
 class op_find;
 class op_find_simple;
 class op_find_unique;
@@ -86,12 +92,16 @@ class op_sort_index;
 class op_stable_sort_index;
 class op_unique;
 class op_unique_index;
-class op_diff_simple;
+class op_diff_default;
+class op_hist;
 
 class eop_conj;
 
 class glue_times;
 class glue_times_diag;
+class glue_conv;
+class glue_join_cols;
+class glue_join_rows;
 
 class glue_rel_lt;
 class glue_rel_gt;
@@ -124,6 +134,12 @@ class glue_mixed_minus;
 class glue_mixed_div;
 class glue_mixed_schur;
 class glue_mixed_times;
+
+class glue_hist;
+class glue_hist_default;
+
+class glue_histc;
+class glue_histc_default;
 
 class op_cx_scalar_times;
 class op_cx_scalar_plus;
