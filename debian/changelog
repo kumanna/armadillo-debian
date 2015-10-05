@@ -1,3 +1,10 @@
+armadillo (1:6.100.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * The new package (with soname) is libarmadillo6
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 05 Oct 2015 21:24:27 +0530
+
 armadillo (1:5.500.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
