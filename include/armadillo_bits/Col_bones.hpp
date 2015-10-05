@@ -25,10 +25,12 @@ class Col : public Mat<eT>
   inline          Col();
   inline          Col(const Col<eT>& X);
   inline explicit Col(const uword n_elem);
-  inline          Col(const uword in_rows, const uword in_cols);
+  inline explicit Col(const uword in_rows, const uword in_cols);
+  inline explicit Col(const SizeMat& s);
   
   template<typename fill_type> inline Col(const uword n_elem,                       const fill::fill_class<fill_type>& f);
   template<typename fill_type> inline Col(const uword in_rows, const uword in_cols, const fill::fill_class<fill_type>& f);
+  template<typename fill_type> inline Col(const SizeMat& s,                         const fill::fill_class<fill_type>& f);
   
   inline                  Col(const char*        text);
   inline const Col& operator=(const char*        text);
@@ -55,7 +57,7 @@ class Col : public Mat<eT>
   template<typename T1> inline                   Col(const Base<eT,T1>& X);
   template<typename T1> inline const Col&  operator=(const Base<eT,T1>& X);
   
-  inline Col(      eT* aux_mem, const uword aux_length, const bool copy_aux_mem = true, const bool strict = true);
+  inline Col(      eT* aux_mem, const uword aux_length, const bool copy_aux_mem = true, const bool strict = false);
   inline Col(const eT* aux_mem, const uword aux_length);
   
   template<typename T1, typename T2>
