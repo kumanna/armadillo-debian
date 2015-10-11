@@ -1,3 +1,9 @@
+armadillo (1:6.100.0+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 11 Oct 2015 07:16:19 +0530
+
 armadillo (1:6.100.0+dfsg-1) experimental; urgency=medium
 
   * New upstream release
