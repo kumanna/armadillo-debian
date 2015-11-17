@@ -1,4 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<!--
+Copyright (C) 2008-2015 National ICT Australia (NICTA)
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+===================================================================
+
+Written by Conrad Sanderson - http://conradsanderson.id.au
+-->
+
 <html>
 <head>
   <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
@@ -127,7 +139,7 @@ hr.greyline
   <tbody>
     <tr>
       <td style="text-align: left; vertical-align: top;">
-        <font size=+2><b>Reference for Armadillo 6.100</b></font>
+        <font size=+2><b>Reference for Armadillo 6.200</b></font>
         <br>
       </td>
       <td style="text-align: right; vertical-align: top;">
@@ -634,38 +646,38 @@ Advanced constructors:
 <br>
 <br>
 <ul>
-<code>mat(*aux_mem, n_rows, n_cols, copy_aux_mem = true, strict = false)</code>
+<code>mat(ptr_aux_mem, n_rows, n_cols, copy_aux_mem = true, strict = false)</code>
 <br>
 <br>
 <ul>
-Create a matrix using data from writable auxiliary (external) memory.
+Create a matrix using data from writable auxiliary (external) memory, where <i>ptr_aux_mem</i> is a pointer to the memory.
 By default the matrix allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the matrix will instead directly use the auxiliary memory (ie. no copying).
-This is faster, but can be dangerous unless you know what you're doing!
+the matrix will instead directly use the auxiliary memory (ie. no copying);
+this is faster, but can be dangerous unless you know what you're doing!
 <br>
 <br>
 The <i>strict</i> parameter comes into effect only when <i>copy_aux_mem</i> is set to <i>false</i>
-(ie. the matrix is directly using auxiliary memory).
+(ie. the matrix is directly using auxiliary memory)
 <ul>
 <li>
-When <i>strict</i> is set to <i>false</i>, the matrix will use the auxiliary memory and allow size changes;
-if a size change results in the number of elements to increase, new memory will be allocated and the auxiliary memory will no longer be used
+when <i>strict</i> is set to <i>false</i>, the matrix will use the auxiliary memory until a size change
 </li>
 <li>
-When <i>strict</i> is set to <i>true</i>, the matrix will be bound to the auxiliary memory for its lifetime;
-the number of elements in the matrix can't be changed (directly or indirectly)
+when <i>strict</i> is set to <i>true</i>, the matrix will be bound to the auxiliary memory for its lifetime;
+the number of elements in the matrix can't be changed
 </li>
-<li>The default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>The default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
+<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
+<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
-<code>mat(const *aux_mem, n_rows, n_cols)</code>
+<code>mat(const ptr_aux_mem, n_rows, n_cols)</code>
 <br>
 <br>
 <ul>
-Create a matrix by copying data from read-only auxiliary memory.
+Create a matrix by copying data from read-only auxiliary memory,
+where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 <a name="adv_constructors_mat_fixed"></a>
 <br>
@@ -686,12 +698,12 @@ The typedefs were defined by simply appending a two digit form of the size to th
 while <i>cx_mat44</i> is equivalent to <i>cx_mat::fixed&lt;4,4&gt;</i>.
 </ul>
 <br>
-<code>mat::fixed&lt;n_rows, n_cols&gt;(const *aux_mem)</code>
+<code>mat::fixed&lt;n_rows, n_cols&gt;(const ptr_aux_mem)</code>
 <br>
 <br>
 <ul>
-Create a fixed size matrix, with the size specified via template arguments,
-and copying data from auxiliary memory.
+Create a fixed size matrix, with the size specified via template arguments;
+data is copied from auxiliary memory, where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 </ul>
 </li>
@@ -930,38 +942,38 @@ Advanced constructors:
 <br>
 <br>
 <ul>
-<code>vec(*aux_mem, number_of_elements, copy_aux_mem = true, strict = false)</code>
+<code>vec(ptr_aux_mem, number_of_elements, copy_aux_mem = true, strict = false)</code>
 <br>
 <br>
 <ul>
-Create a column vector using data from writable auxiliary (external) memory.
+Create a column vector using data from writable auxiliary (external) memory, where <i>ptr_aux_mem</i> is a pointer to the memory.
 By default the vector allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the vector will instead directly use the auxiliary memory (ie. no copying).
-This is faster, but can be dangerous unless you know what you're doing!
+the vector will instead directly use the auxiliary memory (ie. no copying);
+this is faster, but can be dangerous unless you know what you're doing!
 <br>
 <br>
 The <i>strict</i> parameter comes into effect only when <i>copy_aux_mem</i> is set to <i>false</i>
-(ie. the vector is directly using auxiliary memory).
+(ie. the vector is directly using auxiliary memory)
 <ul>
 <li>
-When <i>strict</i> is set to <i>false</i>, the vector will use the auxiliary memory and allow size changes;
-if a size change results in the number of elements to increase, new memory will be allocated and the auxiliary memory will no longer be used
+when <i>strict</i> is set to <i>false</i>, the vector will use the auxiliary memory until a size change
 </li>
 <li>
-When <i>strict</i> is set to <i>true</i>, the vector will be bound to the auxiliary memory for its lifetime;
-the number of elements in the vector can't be changed (directly or indirectly)
+when <i>strict</i> is set to <i>true</i>, the vector will be bound to the auxiliary memory for its lifetime;
+the number of elements in the vector can't be changed
 </li>
-<li>The default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>The default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
+<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
+<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
-<code>vec(const *aux_mem, number_of_elements)</code>
+<code>vec(const ptr_aux_mem, number_of_elements)</code>
 <br>
 <br>
 <ul>
-Create a column vector by copying data from read-only auxiliary memory.
+Create a column vector by copying data from read-only auxiliary memory,
+where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 <a name="adv_constructors_col_fixed"></a>
 <br>
@@ -982,12 +994,12 @@ The typedefs were defined by simply appending a single digit form of the size to
 while <i>cx_vec4</i> is equivalent to <i>cx_vec::fixed&lt;4&gt;</i>.
 </ul>
 <br>
-<code>vec::fixed&lt;number_of_elements&gt;(const *aux_mem)</code>
+<code>vec::fixed&lt;number_of_elements&gt;(const ptr_aux_mem)</code>
 <br>
 <br>
 <ul>
-Create a fixed size column vector, with the size specified via the template argument,
-and copying data from auxiliary memory.
+Create a fixed size column vector, with the size specified via the template argument;
+data is copied from auxiliary memory, where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 </ul>
 </li>
@@ -1161,38 +1173,38 @@ Advanced constructors:
 <br>
 <br>
 <ul>
-<code>rowvec(*aux_mem, number_of_elements, copy_aux_mem = true, strict = false)</code>
+<code>rowvec(ptr_aux_mem, number_of_elements, copy_aux_mem = true, strict = false)</code>
 <br>
 <br>
 <ul>
-Create a row vector using data from writable auxiliary (external) memory.
+Create a row vector using data from writable auxiliary (external) memory, where <i>ptr_aux_mem</i> is a pointer to the memory.
 By default the vector allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the vector will instead directly use the auxiliary memory (ie. no copying).
-This is faster, but can be dangerous unless you know what you're doing!
+the vector will instead directly use the auxiliary memory (ie. no copying);
+this is faster, but can be dangerous unless you know what you're doing!
 <br>
 <br>
 The <i>strict</i> parameter comes into effect only when <i>copy_aux_mem</i> is set to <i>false</i>
-(ie. the vector is directly using auxiliary memory).
+(ie. the vector is directly using auxiliary memory)
 <ul>
 <li>
-When <i>strict</i> is set to <i>false</i>, the vector will use the auxiliary memory and allow size changes;
-if a size change results in the number of elements to increase, new memory will be allocated and the auxiliary memory will no longer be used
+when <i>strict</i> is set to <i>false</i>, the vector will use the auxiliary memory until a size change
 </li>
 <li>
-When <i>strict</i> is set to <i>true</i>, the vector will be bound to the auxiliary memory for its lifetime;
-the number of elements in the vector can't be changed (directly or indirectly)
+when <i>strict</i> is set to <i>true</i>, the vector will be bound to the auxiliary memory for its lifetime;
+the number of elements in the vector can't be changed
 </li>
-<li>The default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>The default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
+<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
+<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
-<code>rowvec(const *aux_mem, number_of_elements)</code>
+<code>rowvec(const ptr_aux_mem, number_of_elements)</code>
 <br>
 <br>
 <ul>
-Create a row vector by copying data from read-only auxiliary memory.
+Create a row vector by copying data from read-only auxiliary memory,
+where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 <br>
 <code>rowvec::fixed&lt;number_of_elements&gt;</code>
@@ -1212,12 +1224,12 @@ The typedefs were defined by simply appending a single digit form of the size to
 while <i>cx_rowvec4</i> is equivalent to <i>cx_rowvec::fixed&lt;4&gt;</i>.
 </ul>
 <br>
-<code>rowvec::fixed&lt;number_of_elements&gt;(const *aux_mem)</code>
+<code>rowvec::fixed&lt;number_of_elements&gt;(const ptr_aux_mem)</code>
 <br>
 <br>
 <ul>
-Create a fixed size row vector, with the size specified via the template argument,
-and copying data from auxiliary memory.
+Create a fixed size row vector, with the size specified via the template argument;
+data is copied from auxiliary memory, where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 </ul>
 </li>
@@ -1407,38 +1419,38 @@ Memory for the cube is allocated at compile time.
 This is generally faster than dynamic memory allocation, but the size of the cube can't be changed afterwards (directly or indirectly).
 </ul>
 <br>
-<code>cube(*aux_mem, n_rows, n_cols, n_slices, copy_aux_mem = true, strict = false)</code>
+<code>cube(ptr_aux_mem, n_rows, n_cols, n_slices, copy_aux_mem = true, strict = false)</code>
 <br>
 <br>
 <ul>
-Create a cube using data from writable auxiliary (external) memory.
+Create a cube using data from writable auxiliary (external) memory, where <i>ptr_aux_mem</i> is a pointer to the memory.
 By default the cube allocates its own memory and copies data from the auxiliary memory (for safety).
 However, if <i>copy_aux_mem</i> is set to <i>false</i>,
-the cube will instead directly use the auxiliary memory (ie. no copying).
-This is faster, but can be dangerous unless you know what you're doing!
+the cube will instead directly use the auxiliary memory (ie. no copying);
+this is faster, but can be dangerous unless you know what you're doing!
 <br>
 <br>
 The <i>strict</i> parameter comes into effect only when <i>copy_aux_mem</i> is set to <i>false</i>
-(ie. the cube is directly using auxiliary memory).
+(ie. the cube is directly using auxiliary memory)
 <ul>
 <li>
-When <i>strict</i> is set to <i>false</i>, the cube will use the auxiliary memory and allow size changes;
-if a size change results in the number of elements to increase, new memory will be allocated and the auxiliary memory will no longer be used
+when <i>strict</i> is set to <i>false</i>, the cube will use the auxiliary memory until a size change
 </li>
 <li>
-When <i>strict</i> is set to <i>true</i>, the cube will be bound to the auxiliary memory for its lifetime;
-the number of elements in the cube can't be changed (directly or indirectly)
+when <i>strict</i> is set to <i>true</i>, the cube will be bound to the auxiliary memory for its lifetime;
+the number of elements in the cube can't be changed
 </li>
-<li>The default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>The default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
+<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
+<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
-<code>cube(const *aux_mem, n_rows, n_cols, n_slices)</code>
+<code>cube(const ptr_aux_mem, n_rows, n_cols, n_slices)</code>
 <br>
 <br>
 <ul>
-Create a cube by copying data from read-only auxiliary memory.
+Create a cube by copying data from read-only auxiliary memory,
+where <i>ptr_aux_mem</i> is a pointer to the memory
 </ul>
 </ul>
 </li>
@@ -1768,7 +1780,7 @@ If <i>check_for_zeros</i> is set to <i>false</i>, the <i>values</i> vector is as
 <li>fundamental arithmetic <a href="#operators">operations</a> (such as addition and multiplication)</li>
 <li><a href="#submat">submatrix views</a> (contiguous forms only)</li>
 <li><a href="#diag">diagonal views</a></li>
-<li><a href="save_load_mat">saving and loading</a> (<i>arma_binary</i> format only)</li>
+<li><a href="#save_load_mat">saving and loading</a> (using <i>arma_binary</i> format only)</li>
 <li>element-wise functions: <a href="#abs">abs()</a>, <a href="#imag_real">imag()</a>, <a href="#imag_real">real()</a>, <a href="#conj">conj()</a>, <a href="#misc_fns">sqrt()</a>, <a href="#misc_fns">square()</a></li>
 <li>scalar functions of matrices: <a href="#accu">accu()</a>, <a href="#as_scalar">as_scalar()</a>, <a href="#dot">dot()</a>, <a href="#norm">norm()</a>, <a href="#trace">trace()</a></li>
 <li>vector valued functions of matrices: <a href="#min_and_max">min()</a>, <a href="#min_and_max">max()</a>, <a href="#nonzeros">nonzeros()</a>, <a href="#sum">sum()</a>, <a href="#stats_fns">mean()</a>, <a href="#stats_fns">var()</a></li>
@@ -3280,10 +3292,9 @@ The aggregate set of the specified elements is treated as a column vector
 The function <i>.unsafe_col()</i> is provided for speed reasons and should be used only if you know what you're doing.
 It creates a seemingly independent <i>Col</i> vector object (eg.&nbsp;<i>vec</i>),
 but uses memory from the existing matrix object.
-As such, the created <i>Col</i> vector is not alias safe
-and does not take into account that the parent matrix object could be deleted.
-If deleted memory is accessed through the created <i>Col</i> vector,
-it will cause memory corruption and/or a crash.
+As such, the created vector is not alias safe,
+and does not take into account that the underlying matrix memory could be freed
+(eg. due to any operation involving a size change of the matrix).
 </li>
 <br>
 <li>
@@ -5587,47 +5598,43 @@ A.raw_print(cout, "A =");
 <a name="save_load_mat"></a>
 <b>saving/loading matrices &amp; cubes</b>
 <br>
+<br><b>.save( name )</b>
+<br><b>.save( name, file_type )</b>
 <br>
-<table>
-<tbody>
-<tr><td><b>.save( name )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>             <td><b>.quiet_save( name )</b></td></tr>
-<tr><td><b>.save( name, file_type )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>  <td><b>.quiet_save( name, file_type )</b></td></tr>
-<tr><td>&nbsp;</td><td>&nbsp;</td>                       <td>&nbsp;</td></tr>
-<tr><td><b>.save( stream )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>           <td><b>.quiet_save( stream )</b></td></tr>
-<tr><td><b>.save( stream, file_type )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td><td><b>.quiet_save( stream, file_type )</b></td></tr>
-<tr><td>&nbsp;</td><td>&nbsp;</td>                       <td>&nbsp;</td></tr>
-<tr><td><b>.load( name )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>             <td><b>.quiet_load( name )</b></td></tr>
-<tr><td><b>.load( name, file_type )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>  <td><b>.quiet_load( name, file_type )</b></td></tr>
-<tr><td>&nbsp;</td><td>&nbsp;</td>                       <td>&nbsp;</td></tr>
-<tr><td><b>.load( stream )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>           <td><b>.quiet_load( stream )</b></td></tr>
-<tr><td><b>.load( stream, file_type )</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td><td><b>.quiet_load( stream, file_type )</b></td></tr>
-</tbody>
-</table>
+<br><b>.save( stream )</b>
+<br><b>.save( stream, file_type )</b>
+<br>
+<br><b>.load( name )</b>
+<br><b>.load( name, file_type )</b>
+<br>
+<br><b>.load( stream )</b>
+<br><b>.load( stream, file_type )</b>
 <ul>
 <li>Member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i></li>
 <br>
-<li>Store/retrieve data in files or streams</li>
-<br>
 <li>
-The default <i>file_type</i> for <i>.save()</i> and <i>.quiet_save()</i> is <i>arma_binary</i> (see below) 
+Store/retrieve data in a file or stream
+<ul>
+<li><b>caveat:</b> the stream must be opened in binary mode</li>
+</ul>
 </li>
 <br>
 <li>
-The default <i>file_type</i> for <i>.load()</i> and <i>.quiet_load()</i> is <i>auto_detect</i> (see below) 
+The default <i>file_type</i> for <i>.save()</i> is <i>arma_binary</i> (see below) 
 </li>
 <br>
-<li>On success, <i>save()</i>, <i>load()</i>, <i>quiet_save()</i>, and <i>quite_load()</i> will return a <i>bool</i> set to <i>true</i></li>
+<li>
+The default <i>file_type</i> for <i>.load()</i> is <i>auto_detect</i> (see below) 
+</li>
 <br>
-<li><i>save()</i> and <i>quiet_save()</i> will return a <i>bool</i> set to <i>false</i> if the saving process fails</li>
+<li>On success, <i>.save()</i> and <i>.load()</i> will return a <i>bool</i> set to <i>true</i></li>
+<br>
+<li><i>.save()</i> will return a <i>bool</i> set to <i>false</i> if the saving process fails</li>
 <br>
 <li>
-<i>load()</i> and <i>quiet_load()</i> will return a <i>bool</i> set to <i>false</i> if the loading process fails;
+<i>.load()</i> will return a <i>bool</i> set to <i>false</i> if the loading process fails;
 additionally, the object will be reset so it has no elements
 </li>
-<br>
-<li><i>load()</i> and <i>save()</i> will print warning messages if any problems are encountered</li>
-<br>
-<li><i>quiet_load()</i> and <i>quiet_save()</i> do not print any error messages</li>
 <br>
 <li>
 <i>file_type</i> can be one of the following:
@@ -5641,7 +5648,7 @@ additionally, the object will be reset so it has no elements
                         <td style="vertical-align: top;"><br>
                         </td>
                         <td style="vertical-align: top;">
-Used by <i>load()</i> and <i>quiet_load()</i> only:
+Used by <i>.load()</i> only:
 try to automatically detect the file type as one of the formats described below.
 This is the default operation.
 <br>
@@ -5696,7 +5703,7 @@ For cubes, the header additionally specifies the number of slices.
 Numerical data stored in machine dependent binary format, with a simple header to speed up loading.
 The header indicates the type of matrix as well as the number of rows and columns.
 For cubes, the header additionally specifies the number of slices.
-<i>arma_binary</i> is the default <i>file_type</i> for <i>.save()</i> and <i>.quiet_save()</i>
+<i>arma_binary</i> is the default <i>file_type</i> for <i>.save()</i>
 <br>
 <br>
                         </td>
@@ -5763,28 +5770,19 @@ Examples:
 mat A = randu&lt;mat&gt;(5,5);
 
 A.save("A1.mat");  // default save format is arma_binary
-A.save("A2.mat", arma_ascii);
+
+A.save("A2.mat", arma_ascii);  // force saving in arma_ascii format
 
 mat B;
-// automatically detect format type
-B.load("A1.mat");
+B.load("A1.mat");  // automatically detect format type
 
 mat C;
-// force loading in the arma_ascii format
-C.load("A2.mat", arma_ascii);
-
-
-// example of saving/loading using a stream
-std::stringstream s;
-A.save(s);
-
-mat D;
-D.load(s);
+C.load("A2.mat", arma_ascii);  // force loading in arma_ascii format
 
 
 // example of testing for success
-mat E;
-bool status = E.load("A2.mat");
+mat D;
+bool status = D.load("A2.mat");
 
 if(status == true)
   {
@@ -5810,39 +5808,41 @@ else
 <a name="save_load_field"></a>
 <b>saving/loading fields</b>
 <br>
+<br><b>.save( name )</b>
+<br><b>.save( name, file_type )</b>
 <br>
-<table>
-<tbody>
-<tr><td><b>.save( name,</b> file_type = arma_binary <b>)</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>  <td><b>.quiet_save( name,</b> file_type = arma_binary <b>)</b></td></tr>
-<tr><td><b>.save( stream,</b> file_type = arma_binary <b>)</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td><td><b>.quiet_save( stream,</b> file_type = arma_binary <b>)</b></td></tr>
-<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-<tr><td><b>.load( name,</b> file_type = auto_detect <b>)</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td>  <td><b>.quiet_load( name,</b> file_type = auto_detect <b>)</b></td></tr>
-<tr><td><b>.load( stream,</b> file_type = auto_detect <b>)</b></td><td>&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;</td><td><b>.quiet_load( stream,</b> file_type = auto_detect <b>)</b></td></tr>
-</tbody>
-</table>
+<br><b>.save( stream )</b>
+<br><b>.save( stream, file_type )</b>
+<br>
+<br><b>.load( name )</b>
+<br><b>.load( name, file_type )</b>
+<br>
+<br><b>.load( stream )</b>
+<br><b>.load( stream, file_type )</b>
 <ul>
 <li>Member functions of <i>field</i></li>
 <br>
-<li>Store/retrieve fields in files or stream</li>
-<br>
-<li>On success, <i>save()</i>, <i>load()</i>, <i>quiet_save()</i>, and <i>quite_load()</i> will return a <i>bool</i> set to <i>true</i></li>
-<br>
-<li><i>save()</i> and <i>quiet_save()</i> will return a <i>bool</i> set to <i>false</i> if the saving process fails</li>
-<br>
 <li>
-<i>load()</i> and <i>quiet_load()</i> will return a <i>bool</i> set to <i>false</i> if the loading process fails;
-additionally, the field will be reset so it has no elements
+Store/retrieve data in a file or stream
+<ul>
+<li><b>caveat:</b> the stream must be opened in binary mode</li>
+</ul>
 </li>
 <br>
-<li><i>load()</i> and <i>save()</i> will print warning messages if any problems are encountered</li>
+<li>On success, <i>.save()</i> and <i>.load()</i> will return a <i>bool</i> set to <i>true</i></li>
 <br>
-<li><i>quiet_load()</i> and <i>quiet_save()</i> do not print any error messages</li>
+<li><i>.save()</i> will return a <i>bool</i> set to <i>false</i> if the saving process fails</li>
+<br>
+<li>
+<i>.load()</i> will return a <i>bool</i> set to <i>false</i> if the loading process fails;
+additionally, the field will be reset so it has no elements
+</li>
 <br>
 <li>
 Fields with objects of type <i>std::string</i> are saved and loaded as raw text files.
 The text files do not have a header.
 Each string is separated by a whitespace.
-<i>load()</i> and <i>quiet_load()</i> will only accept text files that have the same number of strings on each line.
+<i>load()</i> will only accept text files that have the same number of strings on each line.
 The strings can have variable lengths.
 </li>
 <br>
@@ -5860,7 +5860,7 @@ Other than storing string fields as text files, the following file formats are s
                         <td style="vertical-align: top;">
 <br>
 <li>
-load(): try to automatically detect the field format type as one of the formats described below;
+<i>.load()</i>: try to automatically detect the field format type as one of the formats described below;
 this is the default operation.
 </li>
 <br>
@@ -7023,7 +7023,7 @@ For vectors, <i>X</i> and <i>Y</i> must have the same number of elements
 </li>
 <br>
 <li>
-<i>cor(X)</i> is equivalent to <i>cor(X, X)</i>, also called autocorrelation
+<i>cor(X)</i> is equivalent to <i>cor(X, X)</i>
 </li>
 <br>
 <li>
@@ -7292,18 +7292,33 @@ See also:
 <hr class="greyline"><br>
 
 <a name="diagmat"></a>
-<b>diagmat( X )</b>
+<b>diagmat( V )</b>
+<br><b>diagmat( V, k )</b>
+<br><b>diagmat( X )</b>
+<br><b>diagmat( X, k )</b>
 <ul>
 <li>
-Generate a diagonal matrix from <i>X</i>
+Generate a diagonal matrix from vector <i>V</i> or matrix <i>X</i>
 </li>
 <br>
 <li>
-If <i>X</i> is a matrix, the matrix must be square; the main diagonal is copied and all other elements in the generated matrix are set to zero
+Given vector <i>V</i>, generate a square matrix with the <i>k</i>-th diagonal containing a copy of the vector; all other elements are set to zero
 </li>
 <br>
 <li>
-If <i>X</i> is a vector, elements of the vector are placed on the main diagonal in the generated matrix and all other elements are set to zero
+Given matrix <i>X</i>, generate a matrix with the <i>k</i>-th diagonal containing a copy of the <i>k</i>-th diagonal of <i>X</i>; all other elements are set to zero
+</li>
+<br>
+<li>
+The argument <i>k</i> is optional; by default the main diagonal is used (<i>k=0</i>)
+</li>
+<br>
+<li>
+For <i>k &gt; 0</i>, the <i>k</i>-th super-diagonal is used (top-right corner)
+</li>
+<br>
+<li>
+For <i>k &lt; 0</i>, the <i>k</i>-th sub-diagonal is used (bottom-left corner)
 </li>
 <br>
 <li>
@@ -7312,11 +7327,11 @@ Examples:
 <pre>
 mat A = randu&lt;mat&gt;(5,5);
 mat B = diagmat(A);
-mat C = A*diagmat(A);
+mat C = diagmat(A,1);
 
-rowvec q = randu&lt;rowvec&gt;(5);
-colvec r = randu&lt;colvec&gt;(5);
-mat    X = diagmat(q)*diagmat(r);
+vec v = randu&lt;vec&gt;(5);
+mat D = diagmat(v);
+mat E = diagmat(v,1);
 </pre>
 </ul>
 </li>
@@ -7324,8 +7339,8 @@ mat    X = diagmat(q)*diagmat(r);
 <li>
 See also:
 <ul>
-<li><a href="#diagvec">diagvec()</a></li>
 <li><a href="#diag">.diag()</a></li>
+<li><a href="#diagvec">diagvec()</a></li>
 <li><a href="#trimat">trimatu() / trimatl()</a></li>
 <li><a href="#symmat">symmatu() / symmatl()</a></li>
 <li><a href="#reshape">reshape()</a></li>
@@ -8983,16 +8998,12 @@ mat C = symmatl(A);
 <b>trace( X )</b>
 <ul>
 <li>
-Sum of the diagonal elements of square matrix <i>X</i>
+Sum of the elements on the main diagonal of matrix <i>X</i>
 </li>
 <br>
 <li>
 If <i>X</i> is an expression,
 the function will try to use optimised expression evaluations to calculate only the diagonal elements
-</li>
-<br>
-<li>
-A <i>std::logic_error</i> exception is thrown if <i>X</i> does not evaluate to a square matrix
 </li>
 <br>
 <li>
@@ -9697,20 +9708,18 @@ See also:
 <li>If <i>X</i> is not square, a <i>std::logic_error</i> exception is thrown</li>
 <br>
 <li>
-The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>,
-with <code>"dc"</code> indicating divide-and-conquer and <code>"std"</code> indicating standard
+The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>
 <ul>
 <li>
-In version 4.000 and later, the default method is <code>"dc"</code>
+<code>"dc"</code> indicates divide-and-conquer method (default setting)
 </li>
 <li>
-In version 3.930, the default method is <code>"std"</code>
+<code>"std"</code> indicates standard method
+</li>
+<li>
+the divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 </ul>
-</li>
-<br>
-<li>
-The divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 <br>
 <li>If the decomposition fails:
@@ -10475,20 +10484,18 @@ The computation is based on singular value decomposition
 <li>Any singular values less than <i>tolerance</i> are treated as zero</li>
 <br>
 <li>
-The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>,
-with <code>"dc"</code> indicating divide-and-conquer and <code>"std"</code> indicating standard
+The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>
 <ul>
 <li>
-In version 4.000 and later, the default method is <code>"dc"</code>
+<code>"dc"</code> indicates divide-and-conquer method (default setting)
 </li>
 <li>
-In version 3.930, the default method is <code>"std"</code>
+<code>"std"</code> indicates standard method
+</li>
+<li>
+the divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 </ul>
-</li>
-<br>
-<li>
-The divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 <br>
 <li>If the decomposition fails:
@@ -11009,20 +11016,18 @@ The singular values are in descending order
 </li>
 <br>
 <li>
-The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>,
-with <code>"dc"</code> indicating divide-and-conquer and "std" indicating standard
+The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>
 <ul>
 <li>
-In version 4.000 and later, the default method is <code>"dc"</code>
+<code>"dc"</code> indicates divide-and-conquer method (default setting)
 </li>
 <li>
-In version 3.930, the default method is <code>"std"</code>
+<code>"std"</code> indicates standard method
+</li>
+<li>
+the divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 </ul>
-</li>
-<br>
-<li>
-The divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 <br>
 <li>
@@ -11066,12 +11071,12 @@ See also:
 
 <a name="svd_econ"></a>
 <b>svd_econ( mat U, vec s, mat V, mat X )</b>
-<br><b>svd_econ( mat U, vec s, mat V, mat X, side )</b>
-<br><b>svd_econ( mat U, vec s, mat V, mat X, side, method )</b>
+<br><b>svd_econ( mat U, vec s, mat V, mat X, mode )</b>
+<br><b>svd_econ( mat U, vec s, mat V, mat X, mode, method )</b>
 <br>
 <br><b>svd_econ( cx_mat U, vec s, cx_mat V, cx_mat X )</b>
-<br><b>svd_econ( cx_mat U, vec s, cx_mat V, cx_mat X, side )</b>
-<br><b>svd_econ( cx_mat U, vec s, cx_mat V, cx_mat X, side, method )</b>
+<br><b>svd_econ( cx_mat U, vec s, cx_mat V, cx_mat X, mode )</b>
+<br><b>svd_econ( cx_mat U, vec s, cx_mat V, cx_mat X, mode, method )</b>
 <ul>
 <li>
 Economical singular value decomposition of <b>dense</b> matrix <i>X</i>
@@ -11082,7 +11087,7 @@ The singular values are in descending order
 </li>
 <br>
 <li>
-The <i>side</i> argument is optional; <i>side</i> is one of:
+The <i>mode</i> argument is optional; <i>mode</i> is one of:
 <ul>
 <table>
 <tbody>
@@ -11095,20 +11100,18 @@ The <i>side</i> argument is optional; <i>side</i> is one of:
 </li>
 <br>
 <li>
-The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>,
-with <code>"dc"</code> indicating divide-and-conquer and <code>"std"</code> indicating standard
+The <i>method</i> argument is optional; <i>method</i> is either <code>"dc"</code> or <code>"std"</code>
 <ul>
 <li>
-In version 4.000 and later, the default method is <code>"dc"</code>
+<code>"dc"</code> indicates divide-and-conquer method (default setting)
 </li>
 <li>
-In version 3.930, the default method is <code>"std"</code>
+<code>"std"</code> indicates standard method
+</li>
+<li>
+the divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 </ul>
-</li>
-<br>
-<li>
-The divide-and-conquer method provides slightly different results than the standard method, but is considerably faster for large matrices
 </li>
 <br>
 <li>
@@ -12858,8 +12861,11 @@ cout &lt;&lt; "number of seconds: " &lt;&lt; n &lt;&lt; endl;
 <br>
 <ul>
 <li>
-By default, Armadillo prints warnings and messages associated with <i>std::logic_error</i>, <i>std::runtime_error</i> and <i>std::bad_alloc</i> exceptions
-to the <i>std::cout</i> stream
+By default, warnings and messages associated with exceptions are printed to the <i>std::cout</i> stream
+<ul>
+<li>the printing can be disabled by defining <a href="#config_hpp">ARMA_DONT_PRINT_ERRORS</a> before including the armadillo header</li>
+<li>detailed information about errors is always reported via the base <i>std::exception</i> class</li>
+</ul>
 </li>
 <br>
 <li><b>set_stream_err1()</b>: change the stream for messages associated with <i>std::logic_error</i> exceptions (eg. out of bounds accesses)</li>
@@ -12869,10 +12875,6 @@ to the <i>std::cout</i> stream
 <li><b>get_stream_err1()</b>: get a reference to the stream for messages associated with <i>std::logic_error</i> exceptions</li>
 <br>
 <li><b>get_stream_err2()</b>: get a reference to the stream for warnings and messages associated with <i>std::runtime_error</i> exceptions</li>
-<br>
-<li>
-The printing of all errors and warnings can be disabled by defining <a href="#config_hpp">ARMA_DONT_PRINT_ERRORS</a> before including the armadillo header
-</li>
 <br>
 <li>
 Examples:
@@ -12909,6 +12911,7 @@ See also:
 <li><a href="#print">.print()</a></li>
 <li><a href="http://cplusplus.com/reference/iostream/cout/">std::cout</a></li>
 <li><a href="http://cplusplus.com/reference/iostream/ostream/">std::ostream</a></li>
+<li><a href="http://www.cplusplus.com/reference/exception/exception/">std::exception</a></li>
 <li><a href="http://cplusplus.com/reference/std/stdexcept/logic_error/">std::logic_error</a></li>
 <li><a href="http://cplusplus.com/reference/std/stdexcept/runtime_error/">std::runtime_error</a></li>
 <li><a href="http://cplusplus.com/doc/tutorial/exceptions/">tutorial on exceptions</a></li>
@@ -14616,6 +14619,14 @@ List of additions and changes for each version:
 <br>
 <ul>
 
+<a name="version_6200"></a>
+<li>Version 6.200:
+<ul>
+<li>expanded <a href="#diagmat">diagmat()</a> to handle non-square matrices and arbitrary diagonals</li>
+<li>expanded <a href="#trace">trace()</a> to handle non-square matrices</li>
+</ul>
+</li>
+<br>
 <a name="version_6100"></a>
 <li>Version 6.100:
 <ul>
