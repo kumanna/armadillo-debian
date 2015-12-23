@@ -266,6 +266,15 @@ class Mat : public Base< eT, Mat<eT> >
   template<typename T1> inline const subview_each2< Mat<eT>, 0, T1 > each_col(const Base<uword, T1>& indices) const;
   template<typename T1> inline const subview_each2< Mat<eT>, 1, T1 > each_row(const Base<uword, T1>& indices) const;
   
+  #if defined(ARMA_USE_CXX11)
+  inline const Mat& each_col(const std::function< void(      Col<eT>&) >& F);
+  inline const Mat& each_col(const std::function< void(const Col<eT>&) >& F) const;
+  
+  inline const Mat& each_row(const std::function< void(      Row<eT>&) >& F);
+  inline const Mat& each_row(const std::function< void(const Row<eT>&) >& F) const;
+  #endif
+  
+  
   arma_inline       diagview<eT> diag(const sword in_id = 0);
   arma_inline const diagview<eT> diag(const sword in_id = 0) const;
   
@@ -420,11 +429,11 @@ class Mat : public Base< eT, Mat<eT> >
   arma_deprecated inline void reshape(const uword in_rows, const uword in_cols, const uword dim);  //!< NOTE: don't use this form: it's deprecated
   
   
-  template<typename functor>
-  inline const Mat& transform(functor F);
+  template<typename functor> inline const Mat&  for_each(functor F);
+  template<typename functor> inline const Mat&  for_each(functor F) const;
   
-  template<typename functor>
-  inline const Mat& imbue(functor F);
+  template<typename functor> inline const Mat& transform(functor F);
+  template<typename functor> inline const Mat&     imbue(functor F);
   
   
   arma_hot inline const Mat& fill(const eT val);
@@ -688,6 +697,7 @@ class Mat : public Base< eT, Mat<eT> >
   
   
   friend class Cube<eT>;
+  friend class subview_cube<eT>;
   friend class glue_join;
   friend class op_strans;
   friend class op_htrans;
