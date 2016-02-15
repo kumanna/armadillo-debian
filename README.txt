@@ -8,23 +8,25 @@ Contents
 
  1: Introduction
  2: Citation Details
- 3: Requirements
- 
- 4: Linux and Mac OS X: Installation
- 5: Linux and Mac OS X: Compiling & Linking
- 
- 6: Windows: Installation
- 7: Windows: Compiling & Linking
- 
- 8: Support for OpenBLAS, Intel MKL and AMD ACML
- 9: Support for ATLAS
- 
-10: Documentation / API Reference Manual
-11: MEX Interface to Octave
-12: Bug Reports and Frequently Asked Questions
 
-13: License
-14: Developers and Contributors
+ 3: Licenses
+ 4: Technical Support
+
+ 5: Requirements
+
+ 6: Linux and Mac OS X: Installation
+ 7: Linux and Mac OS X: Compiling & Linking
+
+ 8: Windows: Installation
+ 9: Windows: Compiling & Linking
+
+10: Support for OpenBLAS, Intel MKL and AMD ACML
+11: Support for ATLAS
+
+12: API Documentation
+13: MEX Interface to Octave/Matlab
+
+14: Bug Reports and Frequently Asked Questions
 15: Related Software
 
 
@@ -35,6 +37,7 @@ Contents
 
 Armadillo is a high quality C++ linear algebra library,
 aiming towards a good balance between speed and ease of use.
+
 It's useful for algorithm development directly in C++,
 and/or quick conversion of research code into production environments.
 The syntax (API) is deliberately similar to Matlab.
@@ -51,12 +54,8 @@ combines several operations (at compile time) to increase efficiency.
 The library can be used for machine learning, pattern recognition,
 signal processing, bioinformatics, statistics, econometrics, etc.
 
-The library is open-source software, and is distributed under a license
-that is useful in both open-source and commercial/proprietary contexts.
-
-Armadillo is primarily developed at Data61 / NICTA (Australia),
-with contributions from around the world.  More information
-about Data61 can be obtained from http://data61.csiro.au
+Armadillo is primarily developed at Data61 / NICTA (Australia).
+For information about Data61 see http://data61.csiro.au
 
 Main developers:
   Conrad Sanderson - http://conradsanderson.id.au
@@ -78,7 +77,30 @@ development and maintenance of the library.
 
 
 
-3: Requirements
+3: Licenses
+===========
+
+Armadillo is available under 2 licenses:
+
+- Open source, using the Mozilla Public License (MPL) 2.0.
+  See the "LICENSE.txt" file for details.
+  
+- Non-open source (commercial) license, available for purchase.
+  Please contact Conrad Sanderson for more information:
+  http://conradsanderson.id.au
+
+
+
+4: Technical Support
+====================
+
+You can purchase technical support on a commercial basis.
+Please contact Conrad Sanderson for more information:
+http://conradsanderson.id.au
+
+
+
+5: Requirements
 ===============
 
 Armadillo makes extensive use of template meta-programming, recursive templates
@@ -100,13 +122,8 @@ For example, for GCC and Clang compilers use -O2 or -O3
 
 
 
-4: Linux and Mac OS X: Installation
+6: Linux and Mac OS X: Installation
 ===================================
-
-You can install Armadillo on your system using the procedure detailed below,
-or use Armadillo without installation (detailed in section 5).
-
-Installation procedure:
 
 * Step 1:
   Ensure a C++ compiler is installed on your system.
@@ -120,28 +137,25 @@ Installation procedure:
   You can download it from http://www.cmake.org
   or (preferably) install it using your package manager.
   
-  On Linux-based systems, you can get CMake through
-  PackageKit, yum, dnf, apt, aptitude, ...
+  On Linux-based systems, you can get CMake using yum, dnf, apt, aptitude, ...
   
   On Mac OS X systems, you can get CMake through MacPorts or Homebrew.
   
 * Step 3:
-  Ensure LAPACK and BLAS (or their equivalents) are installed on your system.
+  Ensure LAPACK and BLAS are installed on your system.
   On Mac OS X this is not necessary.
+  
+  For better performance, we recommend installing the OpenBLAS library.
+  See http://xianyi.github.com/OpenBLAS/
   
   If you are using sparse matrices, also install ARPACK and SuperLU.
   Caveat: only SuperLU version 4.3 can be used!
   
   On Linux-based systems, the following libraries are recommended
-  to be present: LAPACK, BLAS, ARPACK, SuperLU and ATLAS.
-  LAPACK and BLAS are the most important.  It is also necessary to
-  install the corresponding development files for each library.
-  For example, when installing the "lapack" package, also install
-  the "lapack-devel" or "lapack-dev" package.
-  
-  Caveat: for better performance, we recommend using the multi-threaded
-  OpenBLAS library instead of standard BLAS.
-  See http://xianyi.github.com/OpenBLAS/
+  to be present: OpenBLAS, LAPACK, SuperLU and ARPACK.
+  It is also necessary to install the corresponding development
+  files for each library.  For example, when installing the "lapack"
+  package, also install the "lapack-devel" or "lapack-dev" package.
   
 * Step 4:
   Open a terminal window, change into the directory that was created
@@ -151,11 +165,11 @@ Installation procedure:
   make 
   
   The full stop separated from "cmake" by a space is important.
-  CMake will figure out what other libraries are currently installed
+  CMake will detect which relevant libraries are installed on your system
+  (eg. OpenBLAS, LAPACK, SuperLU, ARPACK, etc)
   and will modify Armadillo's configuration correspondingly.
-  CMake will also generate a run-time armadillo library, which is a
-  wrapper for all the relevant libraries present on your system
-  (eg. LAPACK, BLAS, ARPACK, SuperLU, ATLAS).
+  CMake will also generate a run-time armadillo library,
+  which is a wrapper for all the detected libraries.
   
   If you need to re-run cmake, it's a good idea to first delete the
   "CMakeCache.txt" file (not "CMakeLists.txt").
@@ -181,7 +195,7 @@ Installation procedure:
 
 
 
-5: Linux and Mac OS X: Compiling & Linking
+7: Linux and Mac OS X: Compiling & Linking
 ==========================================
 
 The "examples" directory contains several quick example programs
@@ -191,33 +205,20 @@ In general, programs which use Armadillo are compiled along these lines:
   
   g++ example1.cpp -o example1 -O2 -larmadillo
   
-If you want to use Armadillo without installation,
-or you're getting linking errors, compile along these lines:
+If you want to use Armadillo without installation (not recommended),
+compile along these lines:
   
-  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-6.400.3/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
+  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-6.500.5/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
   
 The above command line assumes that you have unpacked the armadillo archive into /home/blah/
 You will need to adjust this for later versions of Armadillo,
-and/or if you have unpacked into a different directory.
+and/or if you have unpacked the armadillo archive into a different directory.
+Replace -lblas with -lopenblas if you have OpenBLAS.
+On Mac OS X, replace -lblas -llapack with -framework Accelerate
 
-Notes:
 
-* To use the high speed OpenBLAS library instead of BLAS,
-  replace -lblas -llapack with -lopenblas -llapack
-  To get OpenBLAS, see http://xianyi.github.com/OpenBLAS/
-  
-* On most Linux-based systems, using -lblas -llapack should be enough;
-  however, on Ubuntu and Debian you may need to add -lgfortran
-  
-* On Mac OS X, replace -lblas -llapack with -framework Accelerate
-  
-* If you have ARPACK present, also link with it by adding -larpack to the command line
-  
-* If you have SuperLU present, also link with it by adding -lsuperlu to the command line
-  Caveat: only SuperLU version 4.3 can be used!
-  
 
-6: Windows: Installation
+8: Windows: Installation
 ========================
 
 The installation is comprised of 3 steps:
@@ -247,7 +248,7 @@ The installation is comprised of 3 steps:
 
 
 
-7: Windows: Compiling & Linking
+9: Windows: Compiling & Linking
 ===============================
 
 Within the "examples" folder, we have included an MSVC project named "example1_win64"
@@ -275,7 +276,6 @@ Faster and/or alternative implementations of BLAS and LAPACK are available:
   http://icl.cs.utk.edu/lapack-for-windows/lapack/
 
 The OpenBLAS, MKL and ACML libraries are generally the fastest.
-See section 8 for more info on making Armadillo use these libraries.
 
 For better performance, we recommend the following high-quality C++ compilers:
   GCC from MinGW:     http://www.mingw.org/
@@ -298,8 +298,8 @@ such as Mac OS X, or various Linux-based systems:
 
 
 
-8: Support for OpenBLAS, Intel MKL and AMD ACML
-===============================================
+10: Support for OpenBLAS, Intel MKL and AMD ACML
+================================================
 
 Armadillo can use OpenBLAS, or Intel Math Kernel Library (MKL),
 or the AMD Core Math Library (ACML) as high-speed replacements
@@ -346,8 +346,8 @@ the lines containing:
 
 
 
-9: Support for ATLAS
-====================
+11: Support for ATLAS
+=====================
 
 Armadillo can use the ATLAS library for faster versions of
 certain LAPACK and BLAS functions. Not all ATLAS functions are
@@ -363,10 +363,10 @@ remove the old version and use the standard LAPACK library.
 
 
 
-10: Documentation / API Reference Manual
-========================================
+12: API Documentation
+=====================
 
-A reference manual (documentation of functions and classes) is available at:
+Documentation of functions and classes is available at:
   
   http://arma.sourceforge.net/docs.html
 
@@ -375,15 +375,15 @@ which can be viewed with a web browser.
 
 
 
-11: MEX Interface to Octave
-===========================
+13: MEX Interface to Octave/Matlab
+==================================
 
 The "mex_interface" folder contains examples of how to interface
-Octave with C++ code that uses Armadillo matrices.
+Octave/Matlab with C++ code that uses Armadillo matrices.
 
 
 
-12: Bug Reports and Frequently Asked Questions
+14: Bug Reports and Frequently Asked Questions
 ==============================================
 
 Answers to frequently asked questions can be found at:
@@ -402,50 +402,6 @@ and then send the program source (as well as the bug description)
 to the developers.  The developers' contact details are at:
 
   http://arma.sourceforge.net/contact.html
-
-
-
-13: License
-===========
-
-Unless specified otherwise, the Mozilla Public License v2.0 is used.
-See the "LICENSE.txt" file for license details.
-
-The file "include/armadillo_bits/fft_engine.hpp" is licensed under
-both the Mozilla Public License v2.0 and a 3-clause BSD license.
-See the file for license details.
-
-The file "include/armadillo_bits/include_superlu.hpp"
-is licensed under both the Mozilla Public License v2.0 and
-a 3-clause BSD license.  See the file for license details.
-
-
-
-14: Developers and Contributors
-===============================
-
-Main sponsoring organisation:
-- Data61 / NICTA
-  http://data61.csiro.au
-  http://nicta.com.au
-
-Main developers:
-- Conrad Sanderson - http://conradsanderson.id.au
-- Ryan Curtin      - http://www.ratml.org
-
-Notable contributors:
-- Matthew Amidon
-- Dimitrios Bouzas
-- Ian Cullinan
-- Clement Creusot
-- Alexandre Drouin
-- Michael McNeil Forbes
-- Szabolcs Horvat
-- Keith O'Hara
-- James Sanders
-- Eric Jon Sundstrom
-- Arnold Wiliem
-- George Yammine
 
 
 
