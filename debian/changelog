@@ -1,3 +1,10 @@
+armadillo (1:6.500.5+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Alter dfsg-repack.sh to ignore .mat files
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 15 Feb 2016 21:02:28 +0530
+
 armadillo (1:6.400.3+dfsg-1) unstable; urgency=medium
 
   * New upstream release
