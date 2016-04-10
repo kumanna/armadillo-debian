@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2015 National ICT Australia (NICTA)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -29,7 +29,7 @@ op_inv::apply(Mat<eT>& out, const Mat<eT>& A)
   if(status == false)
     {
     out.reset();
-    arma_bad("inv(): matrix appears to be singular");
+    arma_bad("inv(): matrix seems singular");
     }
   }
 
@@ -59,7 +59,7 @@ op_inv::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv>& X)
   if(status == false)
     {
     out.reset();
-    arma_bad("inv(): matrix appears to be singular");
+    arma_bad("inv(): matrix seems singular");
     }
   }
 
@@ -129,7 +129,7 @@ op_inv_tr::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_tr>& X)
   if(status == false)
     {
     out.reset();
-    arma_bad("inv(): matrix appears to be singular");
+    arma_bad("inv(): matrix seems singular");
     }
   }
 
@@ -148,7 +148,7 @@ op_inv_sympd::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_inv_sympd>&
   if(status == false)
     {
     out.reset();
-    arma_bad("inv_sympd(): matrix appears to be singular");
+    arma_bad("inv_sympd(): matrix seems singular");
     }
   }
 

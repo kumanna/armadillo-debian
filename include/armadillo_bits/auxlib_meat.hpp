@@ -3739,11 +3739,26 @@ auxlib::schur(Mat<std::complex<T> >& U, Mat<std::complex<T> >& S, const Base<std
   {
   arma_extra_debug_sigprint();
   
+  S = X.get_ref();
+  
+  arma_debug_check( (S.is_square() == false), "schur(): given matrix must be square sized" );
+  
+  return auxlib::schur(U,S,calc_U);
+  }
+
+
+
+template<typename T>
+inline
+bool
+auxlib::schur(Mat<std::complex<T> >& U, Mat<std::complex<T> >& S, const bool calc_U)
+  {
+  arma_extra_debug_sigprint();
+  
   #if (defined(ARMA_USE_LAPACK) && defined(ARMA_CRIPPLED_LAPACK))
     {
     arma_ignore(U);
     arma_ignore(S);
-    arma_ignore(X);
     arma_ignore(calc_U);
     arma_stop("schur() for complex matrices not available due to crippled LAPACK");
     return false;
@@ -3751,10 +3766,6 @@ auxlib::schur(Mat<std::complex<T> >& U, Mat<std::complex<T> >& S, const Base<std
   #elif defined(ARMA_USE_LAPACK)
     {
     typedef std::complex<T> eT;
-  
-    S = X.get_ref();
-    
-    arma_debug_check( (S.is_square() == false), "schur(): given matrix must be square sized" );
     
     if(S.is_empty())
       {
@@ -3792,7 +3803,6 @@ auxlib::schur(Mat<std::complex<T> >& U, Mat<std::complex<T> >& S, const Base<std
     {
     arma_ignore(U);
     arma_ignore(S);
-    arma_ignore(X);
     arma_ignore(calc_U);
     arma_stop("schur(): use of LAPACK must be enabled");
     return false;

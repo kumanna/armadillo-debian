@@ -246,6 +246,8 @@ class auxlib
   template<typename  T, typename T1>
   inline static bool schur(Mat<std::complex<T> >& U, Mat<std::complex<T> >& S, const Base<std::complex<T>,T1>& X, const bool calc_U = true);
   
+  template<typename  T>
+  inline static bool schur(Mat<std::complex<T> >& U, Mat<std::complex<T> >& S, const bool calc_U = true);
   
   //
   // syl (solution of the Sylvester equation AX + XB = C)
