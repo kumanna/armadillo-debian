@@ -144,7 +144,7 @@ hr.greyline
 <!--  -->
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
-<big><b>API Documentation for Armadillo 6.500</b></big>
+<big><b>API Documentation for Armadillo 6.700</b></big>
 <br>
 <br>
 <br>
@@ -319,16 +319,18 @@ Technical Report, NICTA, 2010.
 <table>
 <tbody>
 <tr style="background-color: #F5F5F5;"><td><a href="#eye_standalone">eye</a></td><td>&nbsp;</td><td>generate identity matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#linspace">linspace</a></td><td>&nbsp;</td><td>generate vector with linearly increasing elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#ones_standalone">ones</a></td><td>&nbsp;</td><td>generate object filled with ones</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#linspace">linspace</a></td><td>&nbsp;</td><td>generate vector with linearly spaced elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#logspace">logspace</a></td><td>&nbsp;</td><td>generate vector with logarithmically spaced elements</td></tr>
+<tr><td><a href="#ones_standalone">ones</a></td><td>&nbsp;</td><td>generate object filled with ones</td></tr>
 <tr><td><a href="#randi">randi</a></td><td>&nbsp;</td><td>generate object with random integer values in specified interval</td></tr>
 <tr><td><a href="#randu_randn_standalone">randu&nbsp;/&nbsp;randn</a></td><td>&nbsp;</td><td>generate object with random values (uniform and normal distributions)</td></tr>
-<tr><td><a href="#randg">randg</a></td><td>&nbsp;</td><td>generate object with random values (gamma distribution)</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#randg">randg</a></td><td>&nbsp;</td><td>generate object with random values (gamma distribution)</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#regspace">regspace</a></td><td>&nbsp;</td><td>generate vector with regularly spaced elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#speye">speye</a></td><td>&nbsp;</td><td>generate sparse identity matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#spones">spones</a></td><td>&nbsp;</td><td>generate sparse matrix with non-zero elements set to one</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#sprandu_sprandn">sprandu&nbsp;/&nbsp;sprandn</a></td><td>&nbsp;</td><td>generate sparse matrix with non-zero elements set to random values</td></tr>
+<tr><td><a href="#spones">spones</a></td><td>&nbsp;</td><td>generate sparse matrix with non-zero elements set to one</td></tr>
+<tr><td><a href="#sprandu_sprandn">sprandu&nbsp;/&nbsp;sprandn</a></td><td>&nbsp;</td><td>generate sparse matrix with non-zero elements set to random values</td></tr>
 <tr><td><a href="#toeplitz">toeplitz</a></td><td>&nbsp;</td><td>generate Toeplitz matrix</td></tr>
-<tr><td><a href="#zeros_standalone">zeros</a></td><td>&nbsp;</td><td>generate object filled with zeros</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#zeros_standalone">zeros</a></td><td>&nbsp;</td><td>generate object filled with zeros</td></tr>
 </tbody>
 </table>
 </ul>
@@ -343,57 +345,62 @@ Technical Report, NICTA, 2010.
 <tr style="background-color: #F5F5F5;"><td><a href="#accu">accu</a></td><td>&nbsp;</td><td>accumulate (sum) all elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#all">all</a></td><td>&nbsp;</td><td>check whether all elements are non-zero, or satisfy a relational condition</td></tr>
 <tr><td><a href="#any">any</a></td><td>&nbsp;</td><td>check whether any element is non-zero, or satisfies a relational condition</td></tr>
+<tr><td><a href="#approx_equal">approx_equal</a></td><td>&nbsp;</td><td>approximate equality</td></tr>
 <tr><td><a href="#as_scalar">as_scalar</a></td><td>&nbsp;</td><td>convert 1x1 matrix to pure scalar</td></tr>
-<tr><td><a href="#clamp">clamp</a></td><td>&nbsp;</td><td>obtain clamped elements according to given limits</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#clamp">clamp</a></td><td>&nbsp;</td><td>obtain clamped elements according to given limits</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#cond">cond</a></td><td>&nbsp;</td><td>condition number of matrix</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#conj">conj</a></td><td>&nbsp;</td><td>obtain complex conjugate of each element</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#conv_to">conv_to</a></td><td>&nbsp;</td><td>convert between matrix types</td></tr>
+<tr><td><a href="#conv_to">conv_to</a></td><td>&nbsp;</td><td>convert between matrix types</td></tr>
 <tr><td><a href="#cross">cross</a></td><td>&nbsp;</td><td>cross product</td></tr>
 <tr><td><a href="#cumsum">cumsum</a></td><td>&nbsp;</td><td>cumulative sum</td></tr>
-<tr><td><a href="#cumprod">cumprod</a></td><td>&nbsp;</td><td>cumulative product</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#cumprod">cumprod</a></td><td>&nbsp;</td><td>cumulative product</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#det">det / log_det</a></td><td>&nbsp;</td><td>determinant</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#diagmat">diagmat</a></td><td>&nbsp;</td><td>generate diagonal matrix from given matrix or vector</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#diagvec">diagvec</a></td><td>&nbsp;</td><td>extract specified diagonal</td></tr>
+<tr><td><a href="#diagvec">diagvec</a></td><td>&nbsp;</td><td>extract specified diagonal</td></tr>
 <tr><td><a href="#diff">diff</a></td><td>&nbsp;</td><td>differences between adjacent elements</td></tr>
 <tr><td><a href="#dot">dot/cdot/norm_dot</a></td><td>&nbsp;</td><td>dot product</td></tr>
-<tr><td><a href="#eps">eps</a></td><td>&nbsp;</td><td>obtain distance of each element to next largest floating point representation</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#eps">eps</a></td><td>&nbsp;</td><td>obtain distance of each element to next largest floating point representation</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#expmat">expmat</a></td><td>&nbsp;</td><td>matrix exponential</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#find">find</a></td><td>&nbsp;</td><td>find indices of non-zero elements, or elements satisfying a relational condition</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#find_finite">find_finite</a></td><td>&nbsp;</td><td>find indices of finite elements</td></tr>
+<tr><td><a href="#find_finite">find_finite</a></td><td>&nbsp;</td><td>find indices of finite elements</td></tr>
 <tr><td><a href="#find_nonfinite">find_nonfinite</a></td><td>&nbsp;</td><td>find indices of non-finite elements</td></tr>
 <tr><td><a href="#find_unique">find_unique</a></td><td>&nbsp;</td><td>find indices of unique elements</td></tr>
-<tr><td><a href="#flip">fliplr&nbsp;/&nbsp;flipud</a></td><td>&nbsp;</td><td>reverse order of columns or rows</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#flip">fliplr&nbsp;/&nbsp;flipud</a></td><td>&nbsp;</td><td>reverse order of columns or rows</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#imag_real">imag / real</a></td><td>&nbsp;</td><td>extract imaginary/real part</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#ind2sub">ind2sub</a></td><td>&nbsp;</td><td>convert linear index to subscripts</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#inplace_trans">inplace_trans</a></td><td>&nbsp;</td><td>in-place transpose</td></tr>
+<tr><td><a href="#inplace_trans">inplace_trans</a></td><td>&nbsp;</td><td>in-place transpose</td></tr>
 <tr><td><a href="#is_finite">is_finite</a></td><td>&nbsp;</td><td>check whether all elements are finite</td></tr>
 <tr><td><a href="#join">join_rows / join_cols</a></td><td>&nbsp;</td><td>concatenation of matrices</td></tr>
-<tr><td><a href="#join_slices">join_slices</a></td><td>&nbsp;</td><td>concatenation of cubes</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#join_slices">join_slices</a></td><td>&nbsp;</td><td>concatenation of cubes</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#kron">kron</a></td><td>&nbsp;</td><td>Kronecker tensor product</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#min_and_max">min&nbsp;/&nbsp;max</a></td><td>&nbsp;</td><td>return extremum values</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#nonzeros">nonzeros</a></td><td>&nbsp;</td><td>return non-zero values</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#logmat">logmat</a></td><td>&nbsp;</td><td>matrix logarithm</td></tr>
+<tr><td><a href="#min_and_max">min&nbsp;/&nbsp;max</a></td><td>&nbsp;</td><td>return extremum values</td></tr>
+<tr><td><a href="#nonzeros">nonzeros</a></td><td>&nbsp;</td><td>return non-zero values</td></tr>
 <tr><td><a href="#norm">norm</a></td><td>&nbsp;</td><td>various norms of vectors and matrices</td></tr>
-<tr><td><a href="#normalise">normalise</a></td><td>&nbsp;</td><td>normalise vectors to unit <i>p</i>-norm</td></tr>
-<tr><td><a href="#prod">prod</a></td><td>&nbsp;</td><td>product of elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#normalise">normalise</a></td><td>&nbsp;</td><td>normalise vectors to unit <i>p</i>-norm</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#prod">prod</a></td><td>&nbsp;</td><td>product of elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#rank">rank</a></td><td>&nbsp;</td><td>rank of matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#rcond">rcond</a></td><td>&nbsp;</td><td>reciprocal of condition number</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#repmat">repmat</a></td><td>&nbsp;</td><td>replicate matrix in block-like fashion</td></tr>
+<tr><td><a href="#rcond">rcond</a></td><td>&nbsp;</td><td>reciprocal of condition number</td></tr>
+<tr><td><a href="#repmat">repmat</a></td><td>&nbsp;</td><td>replicate matrix in block-like fashion</td></tr>
 <tr><td><a href="#reshape">reshape</a></td><td>&nbsp;</td><td>change size while keeping elements</td></tr>
-<tr><td><a href="#resize">resize</a></td><td>&nbsp;</td><td>change size while keeping elements and preserving layout</td></tr>
-<tr><td><a href="#shuffle">shuffle</a></td><td>&nbsp;</td><td>randomly shuffle elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#size">size</a></td><td>&nbsp;</td><td>obtain dimensions of given object</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#sort">sort</a></td><td>&nbsp;</td><td>sort elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#sort_index">sort_index</a></td><td>&nbsp;</td><td>vector describing sorted order of elements</td></tr>
-<tr><td><a href="#sum">sum</a></td><td>&nbsp;</td><td>sum of elements</td></tr>
-<tr><td><a href="#sub2ind">sub2ind</a></td><td>&nbsp;</td><td>convert subscripts to linear index</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#resize">resize</a></td><td>&nbsp;</td><td>change size while keeping elements and preserving layout</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#shift">shift</a></td><td>&nbsp;</td><td>shift elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#shuffle">shuffle</a></td><td>&nbsp;</td><td>randomly shuffle elements</td></tr>
+<tr><td><a href="#size">size</a></td><td>&nbsp;</td><td>obtain dimensions of given object</td></tr>
+<tr><td><a href="#sort">sort</a></td><td>&nbsp;</td><td>sort elements</td></tr>
+<tr><td><a href="#sort_index">sort_index</a></td><td>&nbsp;</td><td>vector describing sorted order of elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#sqrtmat">sqrtmat</a></td><td>&nbsp;</td><td>square root of matrix</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#sum">sum</a></td><td>&nbsp;</td><td>sum of elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#sub2ind">sub2ind</a></td><td>&nbsp;</td><td>convert subscripts to linear index</td></tr>
 <tr><td><a href="#symmat">symmatu&nbsp;/&nbsp;symmatl</a></td><td>&nbsp;</td><td>generate symmetric matrix from given matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#trace">trace</a></td><td>&nbsp;</td><td>sum of diagonal elements of square matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#trans">trans</a></td><td>&nbsp;</td><td>transpose of matrix</td></tr>
+<tr><td><a href="#trace">trace</a></td><td>&nbsp;</td><td>sum of diagonal elements</td></tr>
+<tr><td><a href="#trans">trans</a></td><td>&nbsp;</td><td>transpose of matrix</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#trapz">trapz</a></td><td>&nbsp;</td><td>trapezoidal numerical integration</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#trimat">trimatu&nbsp;/&nbsp;trimatl</a></td><td>&nbsp;</td><td>generate triangular matrix from given matrix</td></tr>
-<tr><td><a href="#unique">unique</a></td><td>&nbsp;</td><td>return unique elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#unique">unique</a></td><td>&nbsp;</td><td>return unique elements</td></tr>
 <tr><td><a href="#vectorise">vectorise</a></td><td>&nbsp;</td><td>convert matrix to vector</td></tr>
 <tr><td><a href="#misc_fns">misc&nbsp;functions</a></td><td>&nbsp;</td><td>miscellaneous element-wise functions:&nbsp;exp,&nbsp;log,&nbsp;pow,&nbsp;sqrt,&nbsp;round,&nbsp;sign,&nbsp;...</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#trig_fns">trig&nbsp;functions</a></td><td>&nbsp;</td><td>trigonometric element-wise functions:&nbsp;cos,&nbsp;sin,&nbsp;...</td></tr>
+<tr><td><a href="#trig_fns">trig&nbsp;functions</a></td><td>&nbsp;</td><td>trigonometric element-wise functions:&nbsp;cos,&nbsp;sin,&nbsp;...</td></tr>
 </tbody>
 </table>
 </ul>
@@ -1870,7 +1877,7 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="operators"></a>
-<b>operators:&nbsp; <code><big>+</big>&nbsp; <big>-</big>&nbsp; <big>*</big>&nbsp; /&nbsp; %&nbsp; ==&nbsp; !=&nbsp; &lt;=&nbsp; &gt;=&nbsp; &lt;&nbsp; &gt;</code></b>
+<b>operators:&nbsp; <code><big>+</big>&nbsp; <big>&minus;</big>&nbsp; <big>*</big>&nbsp; /&nbsp; %&nbsp; ==&nbsp; !=&nbsp; &lt;=&nbsp; &gt;=&nbsp; &lt;&nbsp; &gt;</code></b>
 <ul>
 <li>
 Overloaded operators for <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i> classes
@@ -1890,7 +1897,7 @@ Meanings:
       <td style="vertical-align: top;">Addition of two objects</td>
     </tr>
     <tr>
-      <td style="vertical-align: top;"><code><b><big>-</big></b></code></td>
+      <td style="vertical-align: top;"><code><b><big>&minus;</big></b></code></td>
       <td style="vertical-align: top;"><br>
       </td>
       <td style="vertical-align: top;">Subtraction of one object from another or negation of an object</td>
@@ -1981,9 +1988,8 @@ Meanings:
 <br>
 <li>
 <b>Caveat:</b> operators involving an equality comparison (ie. <code><b>==</b></code>, <code><b>!=</b></code>, <code><b>&gt;=</b></code>, <code><b>&lt;=</b></code>)
-may not work as expected for floating point element types (ie. <i>float</i>, <i>double</i>)
-due to the necessarily limited precision of these types;
-these operators are (in general) not recommended for matrices of type <i>mat</i> or <i>fmat</i>
+are not recommended for matrices of type <i>mat</i> or <i>fmat</i>, due to the necessarily limited precision of the underlying element types;
+you may wish to use <a href="#approx_equal">approx_equal()</a> instead
 </li>
 <br>
 <li>
@@ -1991,7 +1997,7 @@ A <i>std::logic_error</i> exception is thrown if incompatible object sizes are u
 </li>
 <br>
 <li>
-If the <code><b>+</b></code>, <code><b>-</b></code> and <code><b>%</b></code> operators are chained, Armadillo will try to avoid the generation of temporaries;
+If the <code><b>+</b></code>, <code><b>&minus;</b></code> and <code><b>%</b></code> operators are chained, Armadillo will try to avoid the generation of temporaries;
 no temporaries are generated if all given objects are of the same type and size
 </li>
 <br>
@@ -2032,6 +2038,7 @@ See also:
 <li><a href="#any">any()</a></li>
 <li><a href="#all">all()</a></li>
 <li><a href="#accu">accu()</a></li>
+<li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#as_scalar">as_scalar()</a></li>
 <li><a href="#find">find()</a></li>
 <li><a href="#each_colrow">.each_col() &amp; .each_row()</a></li>
@@ -5427,7 +5434,7 @@ If the object is a vector, return a <i>bool</i> indicating whether the elements 
 </li>
 <br>
 <li>
-If the object is a matrix, return a <i>bool</i> indicating whether the elements in each column (<i>dim=0</i>) or each row (<i>dim=1</i>) are sorted
+If the object is a matrix, return a <i>bool</i> indicating whether the elements are sorted in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
 </li>
 <br>
 <li>
@@ -5699,17 +5706,29 @@ A.raw_print(cout, "A =");
 <a name="save_load_mat"></a>
 <b>saving/loading matrices &amp; cubes</b>
 <br>
-<br><b>.save( name )</b>
+<br>
+<table>
+<tbody>
+<tr>
+<td>
+<b>.save( name )</b>
 <br><b>.save( name, file_type )</b>
 <br>
 <br><b>.save( stream )</b>
 <br><b>.save( stream, file_type )</b>
-<br>
-<br><b>.load( name )</b>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<b>.load( name )</b>
 <br><b>.load( name, file_type )</b>
 <br>
 <br><b>.load( stream )</b>
 <br><b>.load( stream, file_type )</b>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
 <ul>
 <li>Member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i></li>
 <br>
@@ -5835,6 +5854,16 @@ the <i>hdf5.h</i> header file must be available on your system and you will need
                         </td>
                       </tr>
                       <tr>
+                        <td style="vertical-align: top;"><b>hdf5_binary_trans</b></td>
+                        <td style="vertical-align: top;"><br>
+                        </td>
+                        <td style="vertical-align: top;">
+As per <i>hdf5_binary</i>, but save/load the data with columns transposed to rows (and vice versa)
+<br>
+<br>
+                        </td>
+                      </tr>
+                      <tr>
                         <td style="vertical-align: top;"><b>pgm_binary</b></td>
                         <td style="vertical-align: top;"><br>
                         </td>
@@ -5909,20 +5938,30 @@ else
 <a name="save_load_field"></a>
 <b>saving/loading fields</b>
 <br>
-<br><b>.save( name )</b>
+<br>
+<table>
+<tbody>
+<tr>
+<td>
+<b>.save( name )</b>
 <br><b>.save( name, file_type )</b>
 <br>
 <br><b>.save( stream )</b>
 <br><b>.save( stream, file_type )</b>
-<br>
-<br><b>.load( name )</b>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<b>.load( name )</b>
 <br><b>.load( name, file_type )</b>
 <br>
 <br><b>.load( stream )</b>
 <br><b>.load( stream, file_type )</b>
-<ul>
-<li>Member functions of <i>field</i></li>
+</td>
+</tr>
+</tbody>
+</table>
 <br>
+<ul>
 <li>
 Store/retrieve data in a file or stream
 <ul>
@@ -6093,31 +6132,26 @@ mat C = eye&lt;mat&gt;( size(B) );
 <ul>
 <li>
 Generate a vector with <i>N</i> elements;
-the values of the elements linearly increase from <i>start</i> to (and including) <i>end</i>
+the values of the elements are linearly spaced from <i>start</i> to (and including) <i>end</i>
 </li>
 <br>
 <li>
-By default <i>N = 100</i>
+The argument <i>N</i> is optional; by default <i>N = 100</i>
 </li>
 <br>
 <li>
 Usage:
 <ul>
 <li><i>vector_type</i> v = linspace&lt;<i>vector_type</i>&gt;(start, end, N)</li>
-<li><i>matrix_type</i> X = linspace&lt;<i>matrix_type</i>&gt;(start, end, N)</li>
 </ul>
-</li>
-<br>
-<li>
-If a <i>matrix_type</i> is specified, the resultant matrix will have one column
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-vec v = linspace&lt;vec&gt;(10, 20, 5);
-mat X = linspace&lt;mat&gt;(10, 20, 5);
+vec a = linspace&lt;vec&gt;(0,  5,  6);
+vec b = linspace&lt;vec&gt;(5,  0,  6);
 </pre>
 </ul>
 </li>
@@ -6125,8 +6159,51 @@ mat X = linspace&lt;mat&gt;(10, 20, 5);
 <li>
 See also:
 <ul>
+<li><a href="#regspace">regspace()</a></li>
+<li><a href="#logspace">logspace()</a></li>
 <li><a href="#ones_standalone">ones()</a></li>
 <li><a href="#interp1">interp1()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="logspace"></a>
+<b>logspace( A, B )</b>
+<br><b>logspace( A, B, N )</b>
+<ul>
+<li>
+Generate a vector with <i>N</i> elements;
+the values of the elements are logarithmically spaced from <i>10<sup><font size=-1>A</font></sup></i> to (and including) <i>10<sup><font size=-1>B</font></sup></i>
+</li>
+<br>
+<li>
+The argument <i>N</i> is optional; by default <i>N = 50</i>
+</li>
+<br>
+<li>
+Usage:
+<ul>
+<li><i>vector_type</i> v = logspace&lt;<i>vector_type</i>&gt;(A, B, N)</li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+vec a = logspace&lt;vec&gt;(0,  5,  6);
+vec b = logspace&lt;vec&gt;(5,  0,  6);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#linspace">linspace()</a></li>
+<li><a href="#regspace">regspace()</a></li>
 </ul>
 </li>
 <br>
@@ -6176,6 +6253,7 @@ See also:
 <li><a href="#ones_member">.ones()</a> (member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i>)</li>
 <li><a href="#eye_standalone">eye()</a></li>
 <li><a href="#linspace">linspace()</a></li>
+<li><a href="#regspace">regspace()</a></li>
 <li><a href="#zeros_standalone">zeros()</a></li>
 <li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
 <li><a href="#spones">spones()</a></li>
@@ -6209,7 +6287,7 @@ Generate a vector, matrix or cube with the elements set to random <b>integer</b>
 <li>
 Usage:
 <ul>
-<li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem)</li>
+<li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem )</li>
 <li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem, distr_param(a,b) )</li>
 <br>
 <li><i>matrix_type</i> X = randi&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
@@ -6248,6 +6326,7 @@ arma_rng::set_seed_random();  // set the seed to a random value
 <li>See also:
 <ul>
 <li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
+<li><a href="#randg">randg()</a></li>
 <li><a href="#imbue">.imbue()</a></li>
 <li><a href="#ones_standalone">ones()</a></li>
 <li><a href="#zeros_standalone">zeros()</a></li>
@@ -6315,9 +6394,9 @@ arma_rng::set_seed_random();  // set the seed to a random value
 <li>See also:
 <ul>
 <li><a href="#randu_randn_member">.randu() &amp; .randn()</a> (member functions)</li>
-<li><a href="#imbue">.imbue()</a></li>
 <li><a href="#randi">randi()</a></li>
 <li><a href="#randg">randg()</a></li>
+<li><a href="#imbue">.imbue()</a></li>
 <li><a href="#ones_standalone">ones()</a></li>
 <li><a href="#zeros_standalone">zeros()</a></li>
 <li><a href="#shuffle">shuffle()</a></li>
@@ -6369,7 +6448,7 @@ Generate a vector, matrix or cube with the elements set to random values from a 
 <li>
 Usage:
 <ul>
-<li><i>vector_type</i> v = randg&lt;<i>vector_type</i>&gt;( n_elem)</li>
+<li><i>vector_type</i> v = randg&lt;<i>vector_type</i>&gt;( n_elem )</li>
 <li><i>vector_type</i> v = randg&lt;<i>vector_type</i>&gt;( n_elem, distr_param(a,b) )</li>
 <br>
 <li><i>matrix_type</i> X = randg&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
@@ -6405,9 +6484,75 @@ mat X = randg&lt;mat&gt;(10, 10, distr_param(2,1));
 <li>See also:
 <ul>
 <li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
+<li><a href="#randi">randi()</a></li>
 <li><a href="#imbue">.imbue()</a></li>
 <li><a href="#size">size()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Gamma_distribution">gamma distribution in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="regspace"></a>
+<b>regspace( start, end )</b>
+<br><b>regspace( start, delta, end )</b>
+<ul>
+<li>
+Generate a vector with regularly spaced elements:
+<br>[&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;0*delta)</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;1*delta)</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;2*delta)</i>,&nbsp;&nbsp;<i>&#8943;</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;M*delta)</i>&nbsp;&nbsp;]
+<br>where <i>M&nbsp;=&nbsp;floor((end-start)/delta)</i>, so that <i>(start&nbsp;+&nbsp;M*delta)&nbsp;&le;&nbsp;end</i>
+</li>
+<br>
+<li>
+Similar in operation to the Matlab/Octave colon operator, ie. <i>start:end</i>&nbsp;&nbsp;and&nbsp;&nbsp;<i>start:delta:end</i>
+</li>
+<br>
+<li>
+If <i>delta</i> is not specified:
+<ul>
+<li><i>delta</i>&nbsp;=&nbsp;+1,       if <i>start&nbsp;&le;&nbsp;end</i></li>
+<li><i>delta</i>&nbsp;=&nbsp;&minus;1, if <i>start&nbsp;&gt;&nbsp;end</i> &nbsp; (<b>caveat:</b> this is different to Matlab/Octave)</li>
+</ul>
+</li>
+<br>
+<li>
+An empty vector is generated when one of the following conditions is true:
+<ul>
+<li><i>start&nbsp;&lt;&nbsp;end</i>, and <i>delta&nbsp;&lt;&nbsp;0</i></li>
+<li><i>start&nbsp;&gt;&nbsp;end</i>, and <i>delta&nbsp;&gt;&nbsp;0</i></li>
+<li><i>delta&nbsp;=&nbsp;0</i></li>
+</ul>
+</li>
+<br>
+<li>
+Usage:
+<ul>
+<li><i>vector_type</i> v = regspace&lt;<i>vector_type</i>&gt;(start, end)</li>
+<li><i>vector_type</i> v = regspace&lt;<i>vector_type</i>&gt;(start, delta, end)</li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+ vec a = regspace&lt; vec&gt;(0,  9);       // 0,  1, ...,   9
+uvec b = regspace&lt;uvec&gt;(2,  2,  10);  // 2,  4, ...,  10
+ivec c = regspace&lt;ivec&gt;(0, -1, -10);  // 0, -1, ..., -10
+</pre>
+</ul>
+</li>
+<br>
+<li>
+<b>Caveat:</b> do not use <i>regpspace()</i> to specify ranges for contiguous submatrix views; use <a href="#submat">span()</a> instead
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#linspace">linspace()</a></li>
+<li><a href="#logspace">logspace()</a></li>
 </ul>
 </li>
 <br>
@@ -6719,10 +6864,11 @@ double y = accu(A % B);
 See also:
 <ul>
 <li><a href="#sum">sum()</a></li>
-<li><a href="#dot">dot()</a></li>
 <li><a href="#cumsum">cumsum()</a></li>
-<li><a href="#as_scalar">as_scalar()</a></li>
 <li><a href="#trace">trace()</a></li>
+<li><a href="#stats_fns">mean()</a></li>
+<li><a href="#dot">dot()</a></li>
+<li><a href="#as_scalar">as_scalar()</a></li>
 </ul>
 </li>
 <br>
@@ -6786,6 +6932,7 @@ umat A = all(X &gt; 0.7);
 See also:
 <ul>
 <li><a href="#any">any()</a></li>
+<li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#find">find()</a></li>
 <li><a href="#conv_to">conv_to()</a> (convert between matrix/vector types)</li>
 <li><a href="#vectorise">vectorise()</a></li>
@@ -6852,9 +6999,67 @@ umat A = any(X &gt; 0.7);
 See also:
 <ul>
 <li><a href="#all">all()</a></li>
+<li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#find">find()</a></li>
 <li><a href="#conv_to">conv_to()</a> (convert between matrix/vector types)</li>
 <li><a href="#vectorise">vectorise()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="approx_equal"></a>
+<b>approx_equal( A, B, method, tol )</b>
+<br><b>approx_equal( A, B, method, abs_tol, rel_tol )</b>
+<ul>
+<li>
+Return <i>true</i> if all corresponding elements in <i>A</i> and <i>B</i> are approximately equal
+</li>
+<br>
+<li>
+Return <i>false</i> if any of the corresponding elements in <i>A</i> and <i>B</i> are not approximately equal, or if <i>A</i> and <i>B</i> have different dimensions
+</li>
+<br>
+<li>
+The argument <i>method</i> controls how the approximate equality is determined; it is one of:
+<ul>
+<table>
+<tbody>
+<tr><td><code>"absdiff"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>scalars <i>x</i> and <i>y</i> are considered equal if <i>|x&nbsp;&minus;&nbsp;y|&nbsp;&le;&nbsp;tol</i></td></tr>
+<tr><td><code>"reldiff"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>scalars <i>x</i> and <i>y</i> are considered equal if <i>|x&nbsp;&minus;&nbsp;y|&nbsp;/&nbsp;max(&nbsp;|x|,&nbsp;|y|&nbsp;)&nbsp;&le;&nbsp;tol</i></td></tr>
+<tr><td><code>"both"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>scalars <i>x</i> and <i>y</i> are considered equal if <i>|x&nbsp;&minus;&nbsp;y|&nbsp;&le;&nbsp;abs_tol</i>&nbsp;&nbsp;<b>or</b>&nbsp;&nbsp;<i>|x&nbsp;&minus;&nbsp;y|&nbsp;/&nbsp;max(&nbsp;|x|,&nbsp;|y|&nbsp;)&nbsp;&le;&nbsp;rel_tol</i></td></tr>
+</tbody>
+</table>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = A + 0.001;
+
+bool same1 = approx_equal(A, B, "abs", 0.002);
+
+
+mat C = 1000 * randu&lt;mat&gt;(5,5);
+mat D = C + 1;
+
+bool same2 = approx_equal(C, D, "rel", 0.1);
+
+bool same3 = approx_equal(C, D, "both", 2, 0.1);
+</pre>
+</ul>
+</li>
+<li>
+See also:
+<ul>
+<li><a href="#all">all()</a></li>
+<li><a href="#any">any()</a></li>
+<li><a href="#find">find()</a></li>
+<li><a href="#operators">relational operators</a></li>
 </ul>
 </li>
 <br>
@@ -7482,6 +7687,8 @@ mat B = expmat(A);
 <li>
 See also:
 <ul>
+<li><a href="#logmat">logmat()</a></li>
+<li><a href="#sqrtmat">sqrtmat()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
@@ -7539,6 +7746,7 @@ See also:
 <ul>
 <li><a href="#all">all()</a></li>
 <li><a href="#any">any()</a></li>
+<li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#clamp">clamp()</a></li>
 <li><a href="#find_finite">find_finite()</a></li>
 <li><a href="#find_nonfinite">find_nonfinite()</a></li>
@@ -7713,6 +7921,7 @@ mat C = flipud(A);
 <li>
 See also:
 <ul>
+<li><a href="#shift">shift()</a></li>
 <li><a href="#swap_rows">.swap_rows() &amp; .swap_cols()</a></li>
 <li><a href="#t_st_members">.t()</a></li>
 </ul>
@@ -8045,57 +8254,23 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="min_and_max"></a>
-<b>min( V )</b>
-<br><b>min( X )</b>
-<br><b>min( X, dim )</b>
-<br><b>min( A, B )</b>
-<br>
-<br><b>max( V )</b>
-<br><b>max( X )</b>
-<br><b>max( X, dim )</b>
-<br><b>max( A, B )</b>
+<a name="logmat"></a>
+<b>logmat( X )</b>
 <ul>
-<li>
-For vector <i>V</i>, return the extremum value
-</li>
+<li>Return the complex matrix logarithm of square matrix <i>X</i></li>
 <br>
-<li>
-For matrix <i>X</i>, return the extremum value for each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
-</li>
+<li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
-<li>
-The <i>dim</i> argument is optional; by default <i>dim=0</i> is used
-</li>
-<br>
-<li>
-For two matrices <i>A</i> and <i>B</i>, return a matrix containing element-wise extremum values
+<li><b>Caveat</b>: the matrix logarithm operation is <b>not</b> the same as applying the <a href="#misc_fns">log()</a> function to each element
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-colvec v   = randu&lt;colvec&gt;(10,1);
-double val = max(v);
+   mat A = randu&lt;mat&gt;(5,5);
 
-mat    X = randu&lt;mat&gt;(10,10);
-rowvec r = max(X);
-
-// same result as max(X)
-// the 0 explicitly indicates "traverse across rows"
-rowvec s = max(X,0); 
-
-// the 1 explicitly indicates "traverse across columns"
-colvec t = max(X,1);
-
-// find the overall maximum value
-double y = max(max(X));
-
-// element-wise maximum
-mat A = randu&lt;mat&gt;(5,6);
-mat B = randu&lt;mat&gt;(5,6);
-mat C = arma::max(A,B);  // use arma:: prefix to distinguish from std::max()
+cx_mat B = logmat(A);
 </pre>
 </ul>
 </li>
@@ -8103,8 +8278,88 @@ mat C = arma::max(A,B);  // use arma:: prefix to distinguish from std::max()
 <li>
 See also:
 <ul>
-<li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions of Mat and Cube)</li>
+<li><a href="#expmat">expmat()</a></li>
+<li><a href="#sqrtmat">sqrtmat()</a></li>
+<li><a href="#imag_real">real()</a></li>
+<li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logarithm_of_a_matrix">matrix logarithm in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="min_and_max"></a>
+<table>
+<tbody>
+<tr>
+<td>
+<b>min( V )</b>
+<br><b>min( M )</b>
+<br><b>min( M, dim )</b>
+<br><b>min( Q )</b>
+<br><b>min( Q, dim )</b>
+<br><b>min( A, B )</b>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<b>max( V )</b>
+<br><b>max( M )</b>
+<br><b>max( M, dim )</b>
+<br><b>max( Q )</b>
+<br><b>max( Q, dim )</b>
+<br><b>max( A, B )</b>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+For vector <i>V</i>, return the extremum value
+</li>
+<br>
+<li>
+For matrix <i>M</i>, return the extremum value for each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+</li>
+<br>
+<li>
+For cube <i>Q</i>, return the extremum values of elements along dimension <i>dim</i>, where <i>dim</i> &isin; {&nbsp;0,&nbsp;1,&nbsp;2&nbsp;}
+</li>
+<br>
+<li>
+The <i>dim</i> argument is optional; by default <i>dim=0</i> is used
+</li>
+<br>
+<li>
+For two matrices/cubes <i>A</i> and <i>B</i>, return a matrix/cube containing element-wise extremum values
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+colvec v = randu&lt;colvec&gt;(10,1);
+double x = max(v);
+
+mat    M = randu&lt;mat&gt;(10,10);
+
+rowvec a = max(M);
+rowvec b = max(M,0); 
+colvec c = max(M,1);
+
+// element-wise maximum
+mat X = randu&lt;mat&gt;(5,6);
+mat Y = randu&lt;mat&gt;(5,6);
+mat Z = arma::max(X,Y);  // use arma:: prefix to distinguish from std::max()
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
 <li><a href="#clamp">clamp()</a>
+<li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions of Mat and Cube)</li>
 <li><a href="#running_stat">running_stat</a></li>
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
 </ul>
@@ -8260,15 +8515,15 @@ See also:
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="prod"></a>
 <b>prod( V )</b>
-<br><b>prod( X )</b>
-<br><b>prod( X, dim )</b>
+<br><b>prod( M )</b>
+<br><b>prod( M, dim )</b>
 <ul>
 <li>
 For vector <i>V</i>, return the product of all elements
 </li>
 <br>
 <li>
-For matrix <i>X</i>, return the product of elements in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+For matrix <i>M</i>, return the product of elements in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
 </li>
 <br>
 <li>
@@ -8279,23 +8534,14 @@ The <i>dim</i> argument is optional; by default <i>dim=0</i> is used
 Examples:
 <ul>
 <pre>
-colvec q = randu&lt;colvec&gt;(10,1);
-double x = prod(q);
+colvec v = randu&lt;colvec&gt;(10,1);
+double x = prod(v);
 
-mat    A = randu&lt;mat&gt;(10,10);
-rowvec b = prod(A);
+mat    M = randu&lt;mat&gt;(10,10);
 
-// same result as prod(A)
-// the 0 explicitly indicates
-// "traverse across rows"
-rowvec c = prod(A,0);
-
-// the 1 explicitly indicates
-// "traverse across columns"
-colvec d = prod(A,1);
-
-// find the overall product
-double y = prod(prod(A));
+rowvec a = prod(M);
+rowvec b = prod(M,0);
+colvec c = prod(M,1);
 </pre>
 </ul>
 </li>
@@ -8561,6 +8807,49 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="shift"></a>
+<b>shift( V, N )</b>
+<br><b>shift( X, N )</b>
+<br><b>shift( X, N, dim )</b>
+<ul>
+<li>
+For vector <i>V</i>, generate a copy of the vector with the elements shifted by <i>N</i> positions in a circular manner
+</li>
+<br>
+<li>
+For matrix <i>X</i>, generate a copy of the matrix with the elements shifted by <i>N</i> positions in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+</li>
+<br>
+<li>
+<i>N</i> can be positive of negative
+</li>
+<br>
+<li>
+The <i>dim</i> argument is optional; by default <i>dim=0</i> is used
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(4,5);
+mat B = shift(A, -1);
+mat C = shift(A, +1);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#shuffle">shuffle()</a></li>
+<li><a href="#flip">fliplr() &amp; flipud()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="shuffle"></a>
 <b>shuffle( V )</b>
 <br><b>shuffle( X )</b>
@@ -8571,7 +8860,7 @@ For vector <i>V</i>, generate a copy of the vector with the elements shuffled
 </li>
 <br>
 <li>
-For matrix <i>X</i>, generate a copy of the matrix with the rows (<i>dim=0</i>) or columns (<i>dim=1</i>) shuffled
+For matrix <i>X</i>, generate a copy of the matrix with the elements shuffled in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
 </li>
 <br>
 <li>
@@ -8591,8 +8880,9 @@ mat B = shuffle(A);
 <li>
 See also:
 <ul>
-<li><a href="#randu_randn_standalone">randu() / randn()</a></li>
+<li><a href="#shift">shift()</a></li>
 <li><a href="#sort">sort()</a></li>
+<li><a href="#randu_randn_standalone">randu() / randn()</a></li>
 </ul>
 </li>
 <br>
@@ -8751,17 +9041,59 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="sqrtmat"></a>
+<b>sqrtmat( X )</b>
+<ul>
+<li>Return the complex square root of square matrix <i>X</i></li>
+<br>
+<li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li><b>Caveat</b>: the square root of a matrix is generally <b>not</b> the same as applying the <a href="#misc_fns">sqrt()</a> function to each element
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+   mat A = randu&lt;mat&gt;(5,5);
+
+cx_mat B = sqrtmat(A);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#expmat">expmat()</a></li>
+<li><a href="#expmat">logmat()</a></li>
+<li><a href="#imag_real">real()</a></li>
+<li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Square_root_of_a_matrix">square root of a matrix in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="sum"></a>
 <b>sum( V )</b>
-<br><b>sum( X )</b>
-<br><b>sum( X, dim )</b>
+<br><b>sum( M )</b>
+<br><b>sum( M, dim )</b>
+<br><b>sum( Q )</b>
+<br><b>sum( Q, dim )</b>
 <ul>
 <li>
 For vector <i>V</i>, return the sum of all elements
 </li>
 <br>
 <li>
-For matrix <i>X</i>, return the sum of elements in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+For matrix <i>M</i>, return the sum of elements in each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+</li>
+<br>
+<li>
+For cube <i>Q</i>, return the sums of elements along dimension <i>dim</i>, where <i>dim</i> &isin; {&nbsp;0,&nbsp;1,&nbsp;2&nbsp;};
+for example, <i>dim=0</i> indicates the sum of elements in each column within each slice
 </li>
 <br>
 <li>
@@ -8769,29 +9101,23 @@ The <i>dim</i> argument is optional; by default <i>dim=0</i> is used
 </li>
 <br>
 <li>
-To get a sum of all the elements regardless of the argument type (ie. matrix or vector),
-use <a href="#accu">accu()</a> instead
+<b>Caveat:</b> to get a sum of all the elements regardless of the object type (ie. vector, or matrix, or cube), use <a href="#accu">accu()</a> instead
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-colvec q = randu&lt;colvec&gt;(10,1);
-double x = sum(q);
+colvec v = randu&lt;colvec&gt;(10,1);
+double x = sum(v);
 
-mat    A = randu&lt;mat&gt;(10,10);
-rowvec b = sum(A);
+mat    M = randu&lt;mat&gt;(10,10);
 
-// same result as sum(A)
-// the 0 explicitly indicates "traverse across rows"
-rowvec c = sum(A,0);
+rowvec a = sum(M);
+rowvec b = sum(M,0);
+colvec c = sum(M,1);
 
-// the 1 explicitly indicates "traverse across columns"
-colvec d = sum(A,1);
-
-// find the overall sum
-double y = accu(A);
+double y = accu(M);   // find the overall sum regardless of object type
 </pre>
 </ul>
 </li>
@@ -8802,6 +9128,8 @@ See also:
 <li><a href="#accu">accu()</a></li>
 <li><a href="#cumsum">cumsum()</a></li>
 <li><a href="#trace">trace()</a></li>
+<li><a href="#trapz">trapz()</a></li>
+<li><a href="#stats_fns">mean()</a></li>
 <li><a href="#as_scalar">as_scalar()</a></li>
 </ul>
 </li>
@@ -8965,6 +9293,53 @@ mat C = A.t();    // equivalent to trans(A), but more compact
 <ul>
 <li><a href="#t_st_members">.t()</a></li>
 <li><a href="#inplace_trans">inplace_trans</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="trapz"></a>
+<b>trapz( X, Y )</b>
+<br><b>trapz( X, Y, dim )</b>
+<br>
+<br><b>trapz( Y )</b>
+<br><b>trapz( Y, dim )</b>
+<ul>
+<li>
+Compute the trapezoidal integral of <i>Y</i> with respect to spacing in <i>X</i>, in each column (<i>dim=0</i>) or each row (<i>dim=1</i>) of <i>Y</i>
+</li>
+<br>
+<li>
+<i>X</i> must be a vector; its length must equal either the number of rows in <i>Y</i> (when <i>dim=0</i>), or the number of columns in <i>Y</i> (when <i>dim=1</i>)
+</li>
+<br>
+<li>
+If <i>X</i> is not specified, unit spacing is used
+</li>
+<br>
+<li>
+The <i>dim</i> argument is optional; by default <i>dim=0</i>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+vec X = linspace&lt;vec&gt;(0, datum::pi, 1000);
+vec Y = sin(X);
+
+mat Z = trapz(X,Y);
+</pre>
+</ul>
+</li>
+<br>
+<li>See also:
+<ul>
+<li><a href="#sum">sum()</a></li>
+<li><a href="#linspace">linspace()</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Numerical_integration">numerical integration in Wikipedia</a>
+<li><a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule in Wikipedia</a>
 </ul>
 </li>
 <br>
@@ -9346,6 +9721,8 @@ See also:
 <li><a href="#imag_real">imag() / real()</a></li>
 <li><a href="#transform">.transform()</a> &nbsp; (apply user-defined function to each element)</li>
 <li><a href="#expmat">expmat()</a></li>
+<li><a href="#logmat">logmat()</a></li>
+<li><a href="#sqrtmat">sqrtmat()</a></li>
 <li><a href="#trig_fns">trigonometric functions</a></li>
 <li><a href="#stats_fns">statistics functions</a></li>
 <li><a href="#constants">miscellaneous constants</a></li>
@@ -10305,7 +10682,7 @@ mat X1 = solve(A, B);
 
 mat X2 = solve(A, B, solve_opts::fast);
 
-mat X3 = solve(A, trimatu(B));  // indicate that B is triangular
+mat X3 = solve(trimatu(A), B);  // indicate that A is triangular
 </pre>
 </ul>
 </li>
@@ -11016,6 +11393,8 @@ The <i>shape</i> argument is optional; it is one of:
 </ul>
 </li>
 <br>
+<li>The implementation of 2D convolution in this version is preliminary; it is not yet fully optimised</li>
+<br>
 <li>
 Examples:
 <ul>
@@ -11228,13 +11607,15 @@ See also:
 <a name="stats_fns"></a>
 <b>mean, median, stddev, var</b>
 <ul>
-<table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+<table style="text-align: left;" border="0" cellpadding="0" cellspacing="0">
 <tbody>
   <tr>
     <td style="vertical-align: top;">
        <b>mean( V )</b>
-       <br><b>mean( X )</b>
-       <br><b>mean( X, dim )</b>
+       <br><b>mean( M )</b>
+       <br><b>mean( M, dim )</b>
+       <br><b>mean( Q )</b>
+       <br><b>mean( Q, dim )</b>
        <br>
        <br>
     </td>
@@ -11242,14 +11623,18 @@ See also:
       &nbsp;&nbsp;&nbsp;
     </td>
     <td style="vertical-align: top;">
-      mean (average value)
+      &#9131;&nbsp;<br>
+      &#9130;&nbsp;<br>
+      &#9132;&nbsp;&nbsp;mean (average value)<br>
+      &#9130;&nbsp;<br>
+      &#9133;&nbsp;
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
        <b>median( V )</b>
-       <br><b>median( X )</b>
-       <br><b>median( X, dim )</b>
+       <br><b>median( M )</b>
+       <br><b>median( M, dim )</b>
        <br>
        <br>
     </td>
@@ -11257,16 +11642,18 @@ See also:
       &nbsp;&nbsp;&nbsp;
     </td>
     <td style="vertical-align: top;">
-      median
+      &#9131;&nbsp;<br>
+      &#9132;&nbsp;&nbsp;median<br>
+      &#9133;&nbsp;
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
        <b>stddev( V )</b>
        <br><b>stddev( V, norm_type )</b>
-       <br><b>stddev( X )</b>
-       <br><b>stddev( X, norm_type )</b>
-       <br><b>stddev( X, norm_type, dim )</b>
+       <br><b>stddev( M )</b>
+       <br><b>stddev( M, norm_type )</b>
+       <br><b>stddev( M, norm_type, dim )</b>
        <br>
        <br>
     </td>
@@ -11274,16 +11661,20 @@ See also:
       &nbsp;&nbsp;&nbsp;
     </td>
     <td style="vertical-align: top;">
-      standard deviation
+      &#9131;&nbsp;<br>
+      &#9130;&nbsp;<br>
+      &#9132;&nbsp;&nbsp;standard deviation<br>
+      &#9130;&nbsp;<br>
+      &#9133;&nbsp;
     </td>
   </tr>
   <tr>
     <td style="vertical-align: top;">
        <b>var( V )</b>
        <br><b>var( V, norm_type )</b>
-       <br><b>var( X )</b>
-       <br><b>var( X, norm_type )</b>
-       <br><b>var( X, norm_type, dim )</b>
+       <br><b>var( M )</b>
+       <br><b>var( M, norm_type )</b>
+       <br><b>var( M, norm_type, dim )</b>
        <br>
        <br>
     </td>
@@ -11291,17 +11682,25 @@ See also:
       &nbsp;&nbsp;&nbsp;
     </td>
     <td style="vertical-align: top;">
-      variance
+      &#9131;&nbsp;<br>
+      &#9130;&nbsp;<br>
+      &#9132;&nbsp;&nbsp;variance<br>
+      &#9130;&nbsp;<br>
+      &#9133;&nbsp;
     </td>
   </tr>
 </tbody>
 </table>
 <li>
-For vector <i>V</i>, return a particular statistic calculated using all the elements of the vector
+For vector <i>V</i>, return the statistic calculated using all the elements of the vector
 </li>
 <br>
 <li>
-For matrix <i>X</i>, find a particular statistic for each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+For matrix <i>M</i>, find the statistic for each column (<i>dim=0</i>), or each row (<i>dim=1</i>)
+</li>
+<br>
+<li>
+For cube <i>Q</i>, find the statistics of elements along dimension <i>dim</i>, where <i>dim</i> &isin; {&nbsp;0,&nbsp;1,&nbsp;2&nbsp;}
 </li>
 <br>
 <li>
@@ -11329,8 +11728,8 @@ mat B    = mean(A);
 mat C    = var(A);
 double m = mean(mean(A));
 
-vec    q = randu&lt;vec&gt;(5);
-double v = var(q);
+vec    v = randu&lt;vec&gt;(5);
+double x = var(v);
 </pre>
 </ul>
 </li>
@@ -11343,9 +11742,9 @@ See also:
 <li><a href="#diff">diff()</a></li>
 <li><a href="#hist">hist()</a></li>
 <li><a href="#histc">histc()</a></li>
-<li><a href="#running_stat">running_stat</a>: class for running statistics of scalars</li>
-<li><a href="#running_stat_vec">running_stat_vec</a>: class for running statistics of vectors</li>
-<li><a href="#gmm_diag">gmm_diag</a>: class for modelling data as a Gaussian mixture model</li>
+<li><a href="#running_stat">running_stat</a> - class for running statistics of scalars</li>
+<li><a href="#running_stat_vec">running_stat_vec</a> - class for running statistics of vectors</li>
+<li><a href="#gmm_diag">gmm_diag</a> - class for modelling data as a Gaussian mixture model</li>
 <li><a href="#kmeans">kmeans()</a></li>
 </ul>
 </li>
@@ -13231,22 +13630,20 @@ model.save("my_model.gmm");
 </table>
 <br>
 <li>
+The constants are stored in the <i>Datum&lt;type&gt;</i> class,
+where <i>type</i> is either <i>float</i> or <i>double</i>;
+<br>
+for convenience,
+<i>Datum&lt;double&gt;</i> is typedefed as <i>datum</i>,
+and
+<i>Datum&lt;float&gt;</i> is typedefed as <i>fdatum</i>
+</li>
+<br>
+<li>
 <b>Caveat:</b>
 <code>datum::nan</code> is not equal to anything, even itself;
 to check whether a given number <i>x</i> is finite,
 use <a href="#is_finite">is_finite</a>(<i>x</i>)
-</li>
-<br>
-<li>
-The constants are stored in the <i>Datum&lt;type&gt;</i> class,
-where <i>type</i> is either <i>float</i> or <i>double</i>
-</li>
-<br>
-<li>
-For convenience,
-<i>Datum&lt;double&gt;</i> has been typedefed as <i>datum</i>
-while 
-<i>Datum&lt;float&gt;</i> has been typedefed as <i>fdatum</i>
 </li>
 <br>
 <li>
@@ -15086,6 +15483,28 @@ List of additions and changes for each version:
 <br>
 <ul>
 
+<a name="version_6700"></a>
+<li>Version 6.700:
+<ul>
+<li>added <a href="#logmat">logmat()</a> for calcuating the matrix logarithm</li>
+<li>added <a href="#regspace">regspace()</a> for generating vectors with regularly spaced elements</li>
+<li>added <a href="#logspace">logspace()</a> for generating vectors with logarithmically spaced elements</li>
+<li>added <a href="#approx_equal">approx_equal()</a> for determining approximate equality</li>
+<li>added <a href="#trapz">trapz()</a> for numerical integration</li>
+<li>expanded <a href="#save_load_mat">.save()</a> and <a href="#save_load_mat">.load()</a> with <i>hdf5_binary_trans</i> file type, to save/load data with columns transposed to rows 
+</ul>
+</li>
+<br>
+<a name="version_6600"></a>
+<li>Version 6.600:
+<ul>
+<li>expanded <a href="#sum">sum()</a>, <a href="#stats_fns">mean()</a>, <a href="#min_and_max">min()</a>, <a href="#min_and_max">max()</a> to handle cubes</li>
+<li>expanded <a href="#Cube">Cube</a> class to handle arbitrarily sized empty cubes (eg. 0x5x2)</li>
+<li>added <a href="#shift">shift()</a> for circular shifts of elements</li>
+<li>added <a href="#sqrtmat">sqrtmat()</a> for finding the square root of a matrix</li>
+</ul>
+</li>
+<br>
 <a name="version_6500"></a>
 <li>Version 6.500:
 <ul>
