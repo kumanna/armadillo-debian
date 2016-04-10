@@ -1,3 +1,10 @@
+armadillo (1:6.700.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards version is now 3.6.7 (no changes required)
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 10 Apr 2016 18:17:04 +0530
+
 armadillo (1:6.500.5+dfsg-1) unstable; urgency=medium
 
   * New upstream release

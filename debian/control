@@ -3,7 +3,7 @@ Priority: optional
 Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
 Uploaders: Kumar Appaiah <akumar@debian.org>
 Build-Depends: debhelper (>= 7), libblas-dev, liblapack-dev, cmake, libarpack2-dev, dpkg-dev (>= 1.16.1~), libsuperlu-dev (>= 4.3), libsuperlu-dev (<< 4.4)
-Standards-Version: 3.9.6
+Standards-Version: 3.9.7
 Section: libs
 Homepage: http://arma.sourceforge.net/
 Vcs-Git: git://anonscm.debian.org/debian-science/packages/armadillo.git
