@@ -159,7 +159,7 @@ hr.greyline
 <td style="text-align: left; vertical-align: top; width: 50%;">
 <ul>
 <li>
-To aid the conversion of Matlab/Octave programs,
+For converting Matlab/Octave programs,
 see the <a href="#syntax">syntax conversion table</a>
 </li>
 <br>
@@ -172,7 +172,7 @@ If you discover any bugs or regressions, please <a href="http://arma.sourceforge
 </li>
 <br>
 <li>
-Notes on <a href="#api_additions">API additions</a>
+History of <a href="#api_additions">API additions</a>
 </li>
 </ul>
 </td>
@@ -191,11 +191,14 @@ Citations are useful for the continued development and maintenance of the librar
 <br>
 <font size=-1>
 Conrad Sanderson.
-<br>
 <i><a href="armadillo_nicta_2010.pdf">Armadillo: An Open Source C++ Linear Algebra Library for Fast Prototyping and Computationally Intensive Experiments</a></i>.
-<br>
 Technical Report, NICTA, 2010.
 </font>
+</li>
+<br>
+<li>
+If you use Armadillo in products,
+please obtain the <a href="http://arma.sourceforge.net/faq.html#licenses">commercial license</a>
 </li>
 </ul>
 </td>
@@ -7041,13 +7044,13 @@ Examples:
 mat A = randu&lt;mat&gt;(5,5);
 mat B = A + 0.001;
 
-bool same1 = approx_equal(A, B, "abs", 0.002);
+bool same1 = approx_equal(A, B, "absdiff", 0.002);
 
 
 mat C = 1000 * randu&lt;mat&gt;(5,5);
 mat D = C + 1;
 
-bool same2 = approx_equal(C, D, "rel", 0.1);
+bool same2 = approx_equal(C, D, "reldiff", 0.1);
 
 bool same3 = approx_equal(C, D, "both", 2, 0.1);
 </pre>
@@ -7577,8 +7580,9 @@ vec b = diff(a);
 <br>
 <li>See also:
 <ul>
-<li><a href="#cumsum">cumsum()</a></li>
-<li><a href="#stats_fns">statistics functions</a></li>
+<li><a href="#trapz">trapz()</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Numerical_differentiation">numerical differentiation in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/NumericalDifferentiation.html">numerical differentiation in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -9337,8 +9341,10 @@ mat Z = trapz(X,Y);
 <li>See also:
 <ul>
 <li><a href="#sum">sum()</a></li>
+<li><a href="#diff">diff()</a></li>
 <li><a href="#linspace">linspace()</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Numerical_integration">numerical integration in Wikipedia</a>
+<li><a href="http://mathworld.wolfram.com/NumericalIntegration.html">numerical integration in MathWorld</a>
 <li><a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule in Wikipedia</a>
 </ul>
 </li>
@@ -10610,10 +10616,10 @@ See also:
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="solve"></a>
 <b>X = solve( A, B )</b>
-<br><b>X = solve( A, B, options )</b> &nbsp;&nbsp;&nbsp; (version 6.300+)
+<br><b>X = solve( A, B, settings )</b> &nbsp;&nbsp;&nbsp; (version 6.300+)
 <br>
 <br><b>solve( X, A, B )</b>
-<br><b>solve( X, A, B, options )</b> &nbsp;&nbsp;&nbsp; (version 6.300+)
+<br><b>solve( X, A, B, settings )</b> &nbsp;&nbsp;&nbsp; (version 6.300+)
 <ul>
 <li>Solve a <b>dense</b> system of linear equations, <i>A*X = B</i>, where <i>X</i> is unknown;
 similar functionality to the \ operator in Matlab/Octave, ie. <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>
@@ -10630,31 +10636,28 @@ similar functionality to the \ operator in Matlab/Octave, ie. <i>X&nbsp;=&nbsp;A
 The number of rows in <i>A</i> and <i>B</i> must be the same
 </li>
 <br>
-<li>The <i>options</i> argument is optional; it is one or a combination of the following:
-<ul>
+<li>The <i>settings</i> argument is optional; it is one of the following, or a combination thereof:
+<br>
 <br>
 <table>
 <tbody>
-<tr><td><code>solve_opts::fast</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not apply iterative refinement and/or equilibration</td></tr>
+<tr><td><code>solve_opts::fast</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>fast mode: do not apply iterative refinement and/or equilibration</td></tr>
 <tr><td><code>solve_opts::equilibrate</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>equilibrate the system before solving &nbsp; (matrix <i>A</i> must be square)</td></tr>
 <tr><td><code>solve_opts::no_approx</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not find approximate solutions for rank deficient systems</td></tr>
 </tbody>
 </table>
 <br>
-<li>
-Options can be combined using the <code>+</code> operator; for example: <code>solve_opts::fast&nbsp;+&nbsp;solve_opts::no_approx</code>
+the above settings can be combined using the <code>+</code> operator; for example: <code>solve_opts::fast&nbsp;+&nbsp;solve_opts::no_approx</code>
 </li>
 <br>
 <li>
-<b>Caveat:</b> <code>solve_opts::fast</code> is recommended only for well-conditioned systems 
-</li>
-</ul>
+<b>Caveat:</b> using <i><code>solve_opts::fast</code></i> will speed up finding the solution, but for poorly conditioned systems the solution may have lower quality 
 </li>
 <br>
 <li>
 If <i>A</i> is known to be a triangular matrix,
 the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>;
-<br>indicating a triangular matrix also implies that <code>solve_opts::fast</code> is enabled
+<br>indicating a triangular matrix also implies that <i><code>solve_opts::fast</code></i> is enabled
 </li>
 <br>
 <li>
@@ -10680,7 +10683,7 @@ bool status = solve(x2, A, b);
 
 mat X1 = solve(A, B);
 
-mat X2 = solve(A, B, solve_opts::fast);
+mat X2 = solve(A, B, solve_opts::fast);  // enable fast mode
 
 mat X3 = solve(trimatu(A), B);  // indicate that A is triangular
 </pre>
@@ -15486,11 +15489,11 @@ List of additions and changes for each version:
 <a name="version_6700"></a>
 <li>Version 6.700:
 <ul>
-<li>added <a href="#logmat">logmat()</a> for calcuating the matrix logarithm</li>
+<li>added <a href="#trapz">trapz()</a> for numerical integration</li>
+<li>added <a href="#logmat">logmat()</a> for calculating the matrix logarithm</li>
 <li>added <a href="#regspace">regspace()</a> for generating vectors with regularly spaced elements</li>
 <li>added <a href="#logspace">logspace()</a> for generating vectors with logarithmically spaced elements</li>
 <li>added <a href="#approx_equal">approx_equal()</a> for determining approximate equality</li>
-<li>added <a href="#trapz">trapz()</a> for numerical integration</li>
 <li>expanded <a href="#save_load_mat">.save()</a> and <a href="#save_load_mat">.load()</a> with <i>hdf5_binary_trans</i> file type, to save/load data with columns transposed to rows 
 </ul>
 </li>

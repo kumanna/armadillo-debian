@@ -43,15 +43,16 @@ and/or quick conversion of research code into production environments.
 The syntax (API) is deliberately similar to Matlab.
 
 The library provides efficient classes for vectors, matrices and cubes,
-as well as 150+ associated functions (eg. contiguous and non-contiguous
+as well as 200+ associated functions (eg. contiguous and non-contiguous
 submatrix views).  Various matrix decompositions are provided through
 integration with LAPACK, or one of its high performance drop-in replacements
 (eg. OpenBLAS, Intel MKL, AMD ACML, Apple Accelerate framework, etc).
 
-An automatic expression evaluator (via C++ template meta-programming)
-combines several operations (at compile time) to increase efficiency.
+A sophisticated expression evaluator (via C++ template meta-programming)
+automatically combines several operations (at compile time) to increase speed
+and efficiency.
 
-The library can be used for machine learning, pattern recognition,
+The library can be used for machine learning, pattern recognition, computer vision,
 signal processing, bioinformatics, statistics, econometrics, etc.
 
 Armadillo is primarily developed at Data61 / NICTA (Australia).
@@ -82,10 +83,10 @@ development and maintenance of the library.
 
 Armadillo is available under 2 licenses:
 
-- Open source, using the Mozilla Public License (MPL) 2.0.
+- Open source, under the restrictions of the Mozilla Public License (MPL) 2.0.
   See the "LICENSE.txt" file for details.
   
-- Non-open source (commercial) license, available for purchase.
+- Commercial license (not open source), available for purchase.
   Please contact Conrad Sanderson for more information:
   http://conradsanderson.id.au
 
@@ -94,7 +95,7 @@ Armadillo is available under 2 licenses:
 4: Technical Support
 ====================
 
-You can purchase technical support on a commercial basis.
+Technical support can be obtained by purchasing the commercial license (see above).
 Please contact Conrad Sanderson for more information:
 http://conradsanderson.id.au
 
@@ -208,11 +209,12 @@ In general, programs which use Armadillo are compiled along these lines:
 If you want to use Armadillo without installation (not recommended),
 compile along these lines:
   
-  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-6.700.3/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
+  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-6.700.6/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
   
 The above command line assumes that you have unpacked the armadillo archive into /home/blah/
 You will need to adjust this for later versions of Armadillo,
 and/or if you have unpacked the armadillo archive into a different directory.
+
 Replace -lblas with -lopenblas if you have OpenBLAS.
 On Mac OS X, replace -lblas -llapack with -framework Accelerate
 
@@ -303,12 +305,22 @@ such as Mac OS X, or various Linux-based systems:
 
 Armadillo can use OpenBLAS, or Intel Math Kernel Library (MKL),
 or the AMD Core Math Library (ACML) as high-speed replacements
-for BLAS and LAPACK.  Generally this just involves linking with
-the replacement libraries instead of BLAS and LAPACK.
+for BLAS and LAPACK.  In essence this involves linking with the
+replacement libraries instead of BLAS and LAPACK.
 
-You may need to make minor modifications to "include/armadillo_bits/config.hpp"
-in order to make sure Armadillo uses the same style of function names
-as used by MKL or ACML. For example, the function names might be in capitals.
+You may need to make minor modifications to include/armadillo_bits/config.hpp
+to make sure Armadillo uses the same integer sizes and style of function names
+as used by MKL or ACML. Specifically, you may need comment or uncomment the
+following defines:
+
+ARMA_USE_WRAPPER
+ARMA_BLAS_CAPITALS
+ARMA_BLAS_UNDERSCORE
+ARMA_BLAS_LONG
+ARMA_BLAS_LONG_LONG
+
+See the associated descriptions in include/armadillo_bits/config.hpp
+for more information about the above defines.  
 
 On Linux systems, MKL and ACML might be installed in a non-standard
 location, such as /opt, which can cause problems during linking.
@@ -369,8 +381,8 @@ remove the old version and use the standard LAPACK library.
 Documentation of functions and classes is available at:
   
   http://arma.sourceforge.net/docs.html
-
-The documentation is also in the "docs.html" file in this archive,
+  
+The documentation is also in the "docs.html" file in this folder,
 which can be viewed with a web browser.
 
 
