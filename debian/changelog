@@ -1,3 +1,9 @@
+armadillo (1:6.700.6+dfsg-1~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Andreas Tille <tille@debian.org>  Mon, 30 May 2016 13:25:20 +0200
+
 armadillo (1:6.700.6+dfsg-1) unstable; urgency=medium
 
   * New upstream release
