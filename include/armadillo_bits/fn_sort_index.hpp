@@ -1,9 +1,11 @@
-// Copyright (C) 2009-2015 Conrad Sanderson
-// Copyright (C) 2009-2015 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2015 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_sort_index
@@ -24,7 +26,7 @@ sort_index
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (sort_type > 1), "sort_index(): sort_type must be 0 or 1");
+  arma_debug_check( (sort_type > 1), "sort_index(): parameter 'sort_type' must be 0 or 1" );
   
   return mtOp<uword,T1,op_sort_index>(X.get_ref(), sort_type, uword(0));
   }
@@ -43,7 +45,7 @@ stable_sort_index
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (sort_type > 1), "stable_sort_index(): sort_type must be 0 or 1");
+  arma_debug_check( (sort_type > 1), "stable_sort_index(): parameter 'sort_type' must be 0 or 1" );
   
   return mtOp<uword,T1,op_stable_sort_index>(X.get_ref(), sort_type, uword(0));
   }

@@ -1,9 +1,11 @@
-// Copyright (C) 2008-2013 Conrad Sanderson
-// Copyright (C) 2008-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_max
@@ -138,6 +140,38 @@ max
 
 
 template<typename T1>
+arma_inline
+const OpCube<T1, op_max>
+max
+  (
+  const BaseCube<typename T1::elem_type, T1>& X,
+  const uword dim = 0
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  return OpCube<T1, op_max>(X.get_ref(), dim, 0);
+  }
+
+
+
+template<typename T1, typename T2>
+arma_inline
+const GlueCube<T1, T2, glue_max>
+max
+  (
+  const BaseCube<typename T1::elem_type, T1>& X,
+  const BaseCube<typename T1::elem_type, T2>& Y
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  return GlueCube<T1, T2, glue_max>(X.get_ref(), Y.get_ref());
+  }
+
+
+
+template<typename T1>
 inline
 arma_warn_unused
 typename
@@ -194,6 +228,24 @@ max(const SpOp<T1, spop_max>& in, const uword dim)
   arma_extra_debug_sigprint();
   
   return SpOp< SpOp<T1, spop_max>, spop_max>(in, dim, 0);
+  }
+
+
+
+inline
+uword
+max(const SizeMat& s)
+  {
+  return (std::max)(s.n_rows, s.n_cols);
+  }
+
+
+
+inline
+uword
+max(const SizeCube& s)
+  {
+  return (std::max)( (std::max)(s.n_rows, s.n_cols), s.n_slices );
   }
 
 

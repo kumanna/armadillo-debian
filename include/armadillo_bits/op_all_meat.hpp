@@ -1,9 +1,11 @@
-// Copyright (C) 2013-2014 Conrad Sanderson
-// Copyright (C) 2013-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2013-2014 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 
@@ -238,7 +240,7 @@ op_all::apply_helper(Mat<uword>& out, const Proxy<T1>& P, const uword dim)
     
     uword* out_mem = out.memptr();
     
-    if(is_Mat<typename Proxy<T1>::stored_type>::value == true)
+    if(is_Mat<typename Proxy<T1>::stored_type>::value)
       {
       const unwrap<typename Proxy<T1>::stored_type> U(P.Q);
       
@@ -279,7 +281,7 @@ op_all::apply_helper(Mat<uword>& out, const Proxy<T1>& P, const uword dim)
     
     // internal dual use of 'out': keep the counts for each row
     
-    if(is_Mat<typename Proxy<T1>::stored_type>::value == true)
+    if(is_Mat<typename Proxy<T1>::stored_type>::value)
       {
       const unwrap<typename Proxy<T1>::stored_type> U(P.Q);
       

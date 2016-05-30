@@ -1,9 +1,11 @@
-// Copyright (C) 2010-2013 Conrad Sanderson
-// Copyright (C) 2010-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2010-2015 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_as_scalar
@@ -45,13 +47,18 @@ as_scalar_redirect<N>::apply(const T1& X)
   {
   arma_extra_debug_sigprint();
   
-  // typedef typename T1::elem_type eT;
+  typedef typename T1::elem_type eT;
   
   const Proxy<T1> P(X);
   
-  arma_debug_check( (P.get_n_elem() != 1), "as_scalar(): expression doesn't evaluate to exactly one element" );
+  if(P.get_n_elem() != 1)
+    {
+    arma_debug_check(true, "as_scalar(): expression doesn't evaluate to exactly one element");
+    
+    return Datum<eT>::nan;
+    }
   
-  return (Proxy<T1>::prefer_at_accessor == true) ? P.at(0,0) : P[0];
+  return (Proxy<T1>::prefer_at_accessor) ? P.at(0,0) : P[0];
   }
 
 
@@ -138,7 +145,12 @@ as_scalar_redirect<3>::apply(const Glue< Glue<T1, T2, glue_times>, T3, glue_time
     {
     const Mat<eT> tmp(X);
     
-    arma_debug_check( (tmp.n_elem != 1), "as_scalar(): expression doesn't evaluate to exactly one element" );
+    if(tmp.n_elem != 1)
+      {
+      arma_debug_check(true, "as_scalar(): expression doesn't evaluate to exactly one element");
+      
+      return Datum<eT>::nan;
+      }
     
     return tmp[0];
     }
@@ -215,7 +227,12 @@ as_scalar_diag(const Base<typename T1::elem_type,T1>& X)
   const unwrap<T1>   tmp(X.get_ref());
   const Mat<eT>& A = tmp.M;
   
-  arma_debug_check( (A.n_elem != 1), "as_scalar(): expression doesn't evaluate to exactly one element" );
+  if(A.n_elem != 1)
+    {
+    arma_debug_check(true, "as_scalar(): expression doesn't evaluate to exactly one element");
+    
+    return Datum<eT>::nan;
+    }
   
   return A.mem[0];
   }
@@ -296,7 +313,7 @@ as_scalar(const Glue<T1, T2, glue_times>& X, const typename arma_not_cx<typename
     {
     const sword N_mat = 1 + depth_lhs< glue_times, Glue<T1,T2,glue_times> >::num;
     
-    arma_extra_debug_print(arma_boost::format("N_mat = %d") % N_mat);
+    arma_extra_debug_print(arma_str::format("N_mat = %d") % N_mat);
     
     return as_scalar_redirect<N_mat>::apply(X);
     }
@@ -316,13 +333,18 @@ as_scalar(const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  // typedef typename T1::elem_type eT;
+  typedef typename T1::elem_type eT;
   
   const Proxy<T1> P(X.get_ref());
   
-  arma_debug_check( (P.get_n_elem() != 1), "as_scalar(): expression doesn't evaluate to exactly one element" );
+  if(P.get_n_elem() != 1)
+    {
+    arma_debug_check(true, "as_scalar(): expression doesn't evaluate to exactly one element");
+    
+    return Datum<eT>::nan;
+    }
   
-  return (Proxy<T1>::prefer_at_accessor == true) ? P.at(0,0) : P[0];
+  return (Proxy<T1>::prefer_at_accessor) ? P.at(0,0) : P[0];
   }
 
 
@@ -380,13 +402,18 @@ as_scalar(const BaseCube<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
-  // typedef typename T1::elem_type eT;
+  typedef typename T1::elem_type eT;
   
   const ProxyCube<T1> P(X.get_ref());
   
-  arma_debug_check( (P.get_n_elem() != 1), "as_scalar(): expression doesn't evaluate to exactly one element" );
+  if(P.get_n_elem() != 1)
+    {
+    arma_debug_check(true, "as_scalar(): expression doesn't evaluate to exactly one element");
+    
+    return Datum<eT>::nan;
+    }
   
-  return (ProxyCube<T1>::prefer_at_accessor == true) ? P.at(0,0,0) : P[0];
+  return (ProxyCube<T1>::prefer_at_accessor) ? P.at(0,0,0) : P[0];
   }
 
 
@@ -413,7 +440,12 @@ as_scalar(const SpBase<typename T1::elem_type, T1>& X)
   const unwrap_spmat<T1>  tmp(X.get_ref());
   const SpMat<eT>& A    = tmp.M;
   
-  arma_debug_check( (A.n_elem != 1), "as_scalar(): expression doesn't evaluate to exactly one element" );
+  if(A.n_elem != 1)
+    {
+    arma_debug_check(true, "as_scalar(): expression doesn't evaluate to exactly one element");
+    
+    return Datum<eT>::nan;
+    }
   
   return A.at(0,0);
   }

@@ -1,10 +1,12 @@
-// Copyright (C) 2008-2015 Conrad Sanderson
-// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
-// Copyright (C) 2012-2014 Ryan Curtin
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
+// Written by Ryan Curtin
 
 
 //! \addtogroup Mat
@@ -17,14 +19,11 @@ Mat<eT>::~Mat()
   {
   arma_extra_debug_sigprint_this(this);
   
-  if(mem_state == 0)
+  if( (mem_state == 0) && (n_elem > arma_config::mat_prealloc) )
     {
-    if(n_elem > arma_config::mat_prealloc)
-      {
-      memory::release( access::rw(mem) );
-      }
+    memory::release( access::rw(mem) );
     }
-    
+  
   if(arma_config::debug == true)
     {
     // try to expose buggy user code that accesses deleted objects
@@ -69,6 +68,23 @@ Mat<eT>::Mat(const uword in_n_rows, const uword in_n_cols)
 
 
 
+template<typename eT>
+inline
+Mat<eT>::Mat(const SizeMat& s)
+  : n_rows(s.n_rows)
+  , n_cols(s.n_cols)
+  , n_elem(s.n_rows*s.n_cols)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  }
+
+
+
 //! construct the matrix to have user specified dimensions and fill with specified pattern
 template<typename eT>
 template<typename fill_type>
@@ -77,6 +93,26 @@ Mat<eT>::Mat(const uword in_n_rows, const uword in_n_cols, const fill::fill_clas
   : n_rows(in_n_rows)
   , n_cols(in_n_cols)
   , n_elem(in_n_rows*in_n_cols)
+  , vec_state(0)
+  , mem_state(0)
+  , mem()
+  {
+  arma_extra_debug_sigprint_this(this);
+  
+  init_cold();
+  
+  (*this).fill(f);
+  }
+
+
+
+template<typename eT>
+template<typename fill_type>
+inline
+Mat<eT>::Mat(const SizeMat& s, const fill::fill_class<fill_type>& f)
+  : n_rows(s.n_rows)
+  , n_cols(s.n_cols)
+  , n_elem(s.n_rows*s.n_cols)
   , vec_state(0)
   , mem_state(0)
   , mem()
@@ -144,7 +180,7 @@ inline
 void
 Mat<eT>::init_cold()
   {
-  arma_extra_debug_sigprint( arma_boost::format("n_rows = %d, n_cols = %d") % n_rows % n_cols );
+  arma_extra_debug_sigprint( arma_str::format("n_rows = %d, n_cols = %d") % n_rows % n_cols );
   
   // ensure that n_elem can hold the result of (n_rows * n_cols)
   
@@ -166,32 +202,33 @@ Mat<eT>::init_cold()
   
   if(n_elem <= arma_config::mat_prealloc)
     {
-    arma_extra_debug_print("Mat::init(): using local memory");
-    
-    access::rw(mem) = mem_local;
+    if(n_elem == 0)
+      {
+      access::rw(mem) = NULL;
+      }
+    else
+      {
+      arma_extra_debug_print("Mat::init(): using local memory");
+      access::rw(mem) = mem_local;
+      }
     }
   else
     {
-    arma_extra_debug_print("Mat::init(): allocating memory");
-    
+    arma_extra_debug_print("Mat::init(): acquiring memory");
     access::rw(mem) = memory::acquire<eT>(n_elem);
     }
   }
 
 
 
-//! internal matrix construction; if the requested size is small enough, memory from the stack is used. otherwise memory is allocated via 'new'
 template<typename eT>
 inline
 void
 Mat<eT>::init_warm(uword in_n_rows, uword in_n_cols)
   {
-  arma_extra_debug_sigprint( arma_boost::format("in_n_rows = %d, in_n_cols = %d") % in_n_rows % in_n_cols );
+  arma_extra_debug_sigprint( arma_str::format("in_n_rows = %d, in_n_cols = %d") % in_n_rows % in_n_cols );
   
-  if( (n_rows == in_n_rows) && (n_cols == in_n_cols) )
-    {
-    return;
-    }
+  if( (n_rows == in_n_rows) && (n_cols == in_n_cols) )  { return; }
   
   bool  err_state = false;
   char* err_msg   = 0;
@@ -199,51 +236,19 @@ Mat<eT>::init_warm(uword in_n_rows, uword in_n_cols)
   const uhword t_vec_state = vec_state;
   const uhword t_mem_state = mem_state;
   
-  arma_debug_set_error
-    (
-    err_state,
-    err_msg,
-    (t_mem_state == 3),
-    "Mat::init(): size is fixed and hence cannot be changed"
-    );
+  arma_debug_set_error( err_state, err_msg, (t_mem_state == 3), "Mat::init(): size is fixed and hence cannot be changed" );
   
   if(t_vec_state > 0)
     {
     if( (in_n_rows == 0) && (in_n_cols == 0) )
       {
-      if(t_vec_state == 1)
-        {
-        in_n_cols = 1;
-        }
-      else
-      if(t_vec_state == 2)
-        {
-        in_n_rows = 1;
-        }
+      if(t_vec_state == 1)  { in_n_cols = 1; }
+      if(t_vec_state == 2)  { in_n_rows = 1; }
       }
     else
       {
-      if(t_vec_state == 1)
-        {
-        arma_debug_set_error
-          (
-          err_state,
-          err_msg,
-          (in_n_cols != 1),
-          "Mat::init(): requested size is not compatible with column vector layout"
-          );
-        }
-      else
-      if(t_vec_state == 2)
-        {
-        arma_debug_set_error
-          (
-          err_state,
-          err_msg,
-          (in_n_rows != 1),
-          "Mat::init(): requested size is not compatible with row vector layout"
-          );
-        }
+      if(t_vec_state == 1)  { arma_debug_set_error( err_state, err_msg, (in_n_cols != 1), "Mat::init(): requested size is not compatible with column vector layout" ); }
+      if(t_vec_state == 2)  { arma_debug_set_error( err_state, err_msg, (in_n_rows != 1), "Mat::init(): requested size is not compatible with row vector layout"    ); }
       }
     }
   
@@ -275,46 +280,63 @@ Mat<eT>::init_warm(uword in_n_rows, uword in_n_cols)
   if(old_n_elem == new_n_elem)
     {
     arma_extra_debug_print("Mat::init(): reusing memory");
-    
     access::rw(n_rows) = in_n_rows;
     access::rw(n_cols) = in_n_cols;
     }
-  else
+  else  // condition: old_n_elem != new_n_elem
     {
-    arma_debug_check
-      (
-      (t_mem_state == 2),
-      "Mat::init(): mismatch between size of auxiliary memory and requested size"
-      );
+    arma_debug_check( (t_mem_state == 2), "Mat::init(): mismatch between size of auxiliary memory and requested size" );
     
-    if(t_mem_state == 0)
+    if(new_n_elem < old_n_elem)  // reuse existing memory if possible
       {
-      if(old_n_elem > arma_config::mat_prealloc)
+      if( (t_mem_state == 0) && (new_n_elem <= arma_config::mat_prealloc) )
         {
-        arma_extra_debug_print("Mat::init(): freeing memory");
+        if(old_n_elem > arma_config::mat_prealloc)
+          {
+          arma_extra_debug_print("Mat::init(): releasing memory");
+          memory::release( access::rw(mem) );
+          }
         
-        memory::release( access::rw(mem) );
+        if(new_n_elem == 0)
+          {
+          access::rw(mem) = NULL;
+          }
+        else
+          {
+          arma_extra_debug_print("Mat::init(): using local memory");
+          access::rw(mem) = mem_local;
+          }
+        }
+      else
+        {
+        arma_extra_debug_print("Mat::init(): reusing memory");
         }
       }
-    
-    
-    if(new_n_elem <= arma_config::mat_prealloc)
+    else  // condition: new_n_elem > old_n_elem
       {
-      arma_extra_debug_print("Mat::init(): using local memory");
+      if( (t_mem_state == 0) && (old_n_elem > arma_config::mat_prealloc) )
+        {
+        arma_extra_debug_print("Mat::init(): releasing memory");
+        memory::release( access::rw(mem) );
+        }
       
-      access::rw(mem) = mem_local;
-      }
-    else
-      {
-      arma_extra_debug_print("Mat::init(): allocating memory");
+      if(new_n_elem <= arma_config::mat_prealloc)
+        {
+        arma_extra_debug_print("Mat::init(): using local memory");
+        access::rw(mem) = mem_local;
+        }
+      else
+        {
+        arma_extra_debug_print("Mat::init(): acquiring memory");
+        access::rw(mem) = memory::acquire<eT>(new_n_elem);
+        }
       
-      access::rw(mem) = memory::acquire<eT>(new_n_elem);
+      access::rw(mem_state) = 0;
       }
-    
-    access::rw(n_rows)    = in_n_rows;
-    access::rw(n_cols)    = in_n_cols;
-    access::rw(n_elem)    = new_n_elem;
-    access::rw(mem_state) = 0;
+      
+    access::rw(n_rows) = in_n_rows;
+    access::rw(n_cols) = in_n_cols;
+    access::rw(n_elem) = new_n_elem;
     }
   }
 
@@ -615,7 +637,7 @@ Mat<eT>::operator=(const std::vector<eT>& x)
     , mem_state(0       )
     , mem      (        )
     {
-    arma_extra_debug_sigprint(arma_boost::format("this = %x   X = %x") % this % &X);
+    arma_extra_debug_sigprint(arma_str::format("this = %x   X = %x") % this % &X);
     
     if( ((X.mem_state == 0) && (X.n_elem > arma_config::mat_prealloc)) || (X.mem_state == 1) || (X.mem_state == 2) )
       {
@@ -651,7 +673,7 @@ Mat<eT>::operator=(const std::vector<eT>& x)
   const Mat<eT>&
   Mat<eT>::operator=(Mat<eT>&& X)
     {
-    arma_extra_debug_sigprint(arma_boost::format("this = %x   X = %x") % this % &X);
+    arma_extra_debug_sigprint(arma_str::format("this = %x   X = %x") % this % &X);
     
     (*this).steal_mem(X);
     
@@ -757,7 +779,7 @@ Mat<eT>::Mat(const Mat<eT>& in_mat)
   , mem_state(0)
   , mem()
   {
-  arma_extra_debug_sigprint(arma_boost::format("this = %x   in_mat = %x") % this % &in_mat);
+  arma_extra_debug_sigprint(arma_str::format("this = %x   in_mat = %x") % this % &in_mat);
   
   init_cold();
   
@@ -772,7 +794,7 @@ inline
 const Mat<eT>&
 Mat<eT>::operator=(const Mat<eT>& in_mat)
   {
-  arma_extra_debug_sigprint(arma_boost::format("this = %x   in_mat = %x") % this % &in_mat);
+  arma_extra_debug_sigprint(arma_str::format("this = %x   in_mat = %x") % this % &in_mat);
   
   if(this != &in_mat)
     {
@@ -823,12 +845,12 @@ Mat<eT>::operator=(const Mat<eT>& in_mat)
       {
       if(x_n_cols_found == false)
         {
-        x_n_cols       = (*it).size();
+        x_n_cols       = uword((*it).size());
         x_n_cols_found = true;
         }
       else
         {
-        arma_check( ((*it).size() != x_n_cols), "Mat::init(): inconsistent number of columns in initialiser list" );
+        arma_check( (uword((*it).size()) != x_n_cols), "Mat::init(): inconsistent number of columns in initialiser list" );
         }
       }
     
@@ -939,7 +961,7 @@ Mat<eT>::swap(Mat<eT>& B)
   {
   Mat<eT>& A = (*this);
   
-  arma_extra_debug_sigprint(arma_boost::format("A = %x   B = %x") % &A % &B);
+  arma_extra_debug_sigprint(arma_str::format("A = %x   B = %x") % &A % &B);
 
   bool layout_ok = false;
   
@@ -1068,50 +1090,49 @@ Mat<eT>::steal_mem(Mat<eT>& x)
   {
   arma_extra_debug_sigprint();
   
-  if(this != &x)
+  if(this == &x)  { return; }
+  
+  const uword  x_n_rows    = x.n_rows;
+  const uword  x_n_cols    = x.n_cols;
+  const uword  x_n_elem    = x.n_elem;
+  const uhword x_vec_state = x.vec_state;
+  const uhword x_mem_state = x.mem_state;
+  
+  const uhword t_vec_state = vec_state;
+  const uhword t_mem_state = mem_state;
+  
+  bool layout_ok = false;
+  
+  if(t_vec_state == x_vec_state)
     {
-    const uword  x_n_rows    = x.n_rows;
-    const uword  x_n_cols    = x.n_cols;
-    const uword  x_n_elem    = x.n_elem;
-    const uhword x_vec_state = x.vec_state;
-    const uhword x_mem_state = x.mem_state;
+    layout_ok = true;
+    }
+  else
+    {
+    if( (t_vec_state == 1) && (x_n_cols == 1) )  { layout_ok = true; }
+    if( (t_vec_state == 2) && (x_n_rows == 1) )  { layout_ok = true; }
+    }
+  
+  
+  if( (t_mem_state <= 1) && ( ((x_mem_state == 0) && (x_n_elem > arma_config::mat_prealloc)) || (x_mem_state == 1) ) && layout_ok )
+    {
+    reset();
     
-    const uhword t_vec_state = vec_state;
-    const uhword t_mem_state = mem_state;
+    access::rw(n_rows)    = x_n_rows;
+    access::rw(n_cols)    = x_n_cols;
+    access::rw(n_elem)    = x_n_elem;
+    access::rw(mem_state) = x_mem_state;
+    access::rw(mem)       = x.mem;
     
-    bool layout_ok = false;
-    
-    if(t_vec_state == x_vec_state)
-      {
-      layout_ok = true;
-      }
-    else
-      {
-      if( (t_vec_state == 1) && (x_n_cols == 1) )  { layout_ok = true; }
-      if( (t_vec_state == 2) && (x_n_rows == 1) )  { layout_ok = true; }
-      }
-    
-    
-    if( (t_mem_state <= 1) && ( ((x_mem_state == 0) && (x_n_elem > arma_config::mat_prealloc)) || (x_mem_state == 1) ) && layout_ok )
-      {
-      reset();
-      
-      access::rw(n_rows)    = x_n_rows;
-      access::rw(n_cols)    = x_n_cols;
-      access::rw(n_elem)    = x_n_elem;
-      access::rw(mem_state) = x_mem_state;
-      access::rw(mem)       = x.mem;
-      
-      access::rw(x.n_rows)    = 0;
-      access::rw(x.n_cols)    = 0;
-      access::rw(x.n_elem)    = 0;
-      access::rw(x.mem_state) = 0;
-      access::rw(x.mem)       = 0;
-      }
-    else
-      {
-      (*this).operator=(x);
-      }
+    access::rw(x.n_rows)    = 0;
+    access::rw(x.n_cols)    = 0;
+    access::rw(x.n_elem)    = 0;
+    access::rw(x.mem_state) = 0;
+    access::rw(x.mem)       = 0;
+    }
+  else
+    {
+    (*this).operator=(x);
     }
   }
 
@@ -3725,6 +3746,30 @@ Mat<eT>::each_row()
 
 
 template<typename eT>
+arma_inline
+const subview_each1< Mat<eT>, 0 >
+Mat<eT>::each_col() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return subview_each1< Mat<eT>, 0>(*this);
+  }
+
+
+
+template<typename eT>
+arma_inline
+const subview_each1< Mat<eT>, 1 >
+Mat<eT>::each_row() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return subview_each1< Mat<eT>, 1>(*this);
+  }
+
+
+
+template<typename eT>
 template<typename T1>
 inline
 subview_each2< Mat<eT>, 0, T1 >
@@ -3747,6 +3792,172 @@ Mat<eT>::each_row(const Base<uword, T1>& indices)
   
   return subview_each2< Mat<eT>, 1, T1 >(*this, indices);
   }
+
+
+
+template<typename eT>
+template<typename T1>
+inline
+const subview_each2< Mat<eT>, 0, T1 >
+Mat<eT>::each_col(const Base<uword, T1>& indices) const
+  {
+  arma_extra_debug_sigprint();
+  
+  return subview_each2< Mat<eT>, 0, T1 >(*this, indices);
+  }
+
+
+
+template<typename eT>
+template<typename T1>
+inline
+const subview_each2< Mat<eT>, 1, T1 >
+Mat<eT>::each_row(const Base<uword, T1>& indices) const
+  {
+  arma_extra_debug_sigprint();
+  
+  return subview_each2< Mat<eT>, 1, T1 >(*this, indices);
+  }
+
+
+
+#if defined(ARMA_USE_CXX11)
+  
+  //! apply a lambda function to each column, where each column is interpreted as a column vector
+  template<typename eT>
+  inline
+  const Mat<eT>&
+  Mat<eT>::each_col(const std::function< void(Col<eT>&) >& F)
+    {
+    arma_extra_debug_sigprint();
+    
+    for(uword ii=0; ii < n_cols; ++ii)
+      {
+      Col<eT> tmp(colptr(ii), n_rows, false, true);
+      F(tmp);
+      }
+    
+    return *this;
+    }
+  
+  
+  
+  template<typename eT>
+  inline
+  const Mat<eT>&
+  Mat<eT>::each_col(const std::function< void(const Col<eT>&) >& F) const
+    {
+    arma_extra_debug_sigprint();
+    
+    for(uword ii=0; ii < n_cols; ++ii)
+      {
+      const Col<eT> tmp(colptr(ii), n_rows, false, true);
+      F(tmp);
+      }
+    
+    return *this;
+    }
+  
+  
+  
+  //! apply a lambda function to each row, where each row is interpreted as a row vector
+  template<typename eT>
+  inline
+  const Mat<eT>&
+  Mat<eT>::each_row(const std::function< void(Row<eT>&) >& F)
+    {
+    arma_extra_debug_sigprint();
+    
+    podarray<eT> array1(n_cols);
+    podarray<eT> array2(n_cols);
+    
+    Row<eT> tmp1( array1.memptr(), n_cols, false, true );
+    Row<eT> tmp2( array2.memptr(), n_cols, false, true );
+    
+    eT* tmp1_mem = tmp1.memptr();
+    eT* tmp2_mem = tmp2.memptr();
+    
+    uword ii, jj;
+    
+    for(ii=0, jj=1; jj < n_rows; ii+=2, jj+=2)
+      {
+      for(uword col_id = 0; col_id < n_cols; ++col_id)
+        {
+        const eT* col_mem = colptr(col_id);
+        
+        tmp1_mem[col_id] = col_mem[ii];
+        tmp2_mem[col_id] = col_mem[jj];
+        }
+      
+      F(tmp1);
+      F(tmp2);
+      
+      for(uword col_id = 0; col_id < n_cols; ++col_id)
+        {
+        eT* col_mem = colptr(col_id);
+        
+        col_mem[ii] = tmp1_mem[col_id];
+        col_mem[jj] = tmp2_mem[col_id];
+        }
+      }
+    
+    if(ii < n_rows)
+      {
+      tmp1 = (*this).row(ii);
+      
+      F(tmp1);
+      
+      (*this).row(ii) = tmp1;
+      }
+    
+    return *this;
+    }
+  
+  
+  
+  template<typename eT>
+  inline
+  const Mat<eT>&
+  Mat<eT>::each_row(const std::function< void(const Row<eT>&) >& F) const
+    {
+    arma_extra_debug_sigprint();
+    
+    podarray<eT> array1(n_cols);
+    podarray<eT> array2(n_cols);
+    
+    Row<eT> tmp1( array1.memptr(), n_cols, false, true );
+    Row<eT> tmp2( array2.memptr(), n_cols, false, true );
+    
+    eT* tmp1_mem = tmp1.memptr();
+    eT* tmp2_mem = tmp2.memptr();
+    
+    uword ii, jj;
+    
+    for(ii=0, jj=1; jj < n_rows; ii+=2, jj+=2)
+      {
+      for(uword col_id = 0; col_id < n_cols; ++col_id)
+        {
+        const eT* col_mem = colptr(col_id);
+        
+        tmp1_mem[col_id] = col_mem[ii];
+        tmp2_mem[col_id] = col_mem[jj];
+        }
+      
+      F(tmp1);
+      F(tmp2);
+      }
+    
+    if(ii < n_rows)
+      {
+      tmp1 = (*this).row(ii);
+      
+      F(tmp1);
+      }
+    
+    return *this;
+    }
+  
+#endif
 
 
 
@@ -5411,6 +5622,32 @@ template<typename eT>
 inline
 arma_warn_unused
 bool
+Mat<eT>::has_inf() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return arrayops::has_inf(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+Mat<eT>::has_nan() const
+  {
+  arma_extra_debug_sigprint();
+  
+  return arrayops::has_nan(memptr(), n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
 Mat<eT>::is_sorted(const char* direction) const
   {
   arma_extra_debug_sigprint();
@@ -5432,7 +5669,7 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
   
   arma_debug_check( ((sig != 'a') && (sig != 'd')), "Mat::is_sorted(): unknown sort direction" );
   
-  arma_debug_check( (dim > 1), "Mat::is_sorted(): dim must be 0 or 1" );
+  arma_debug_check( (dim > 1), "Mat::is_sorted(): parameter 'dim' must be 0 or 1" );
   
   if(n_elem <= 1)  { return true; }
   
@@ -5452,11 +5689,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
       
       const uword local_n_rows_m1 = local_n_rows - 1;
       
-      for(uword col=0; col < local_n_cols; ++col)
+      for(uword c=0; c < local_n_cols; ++c)
         {
-        const eT* coldata = colptr(col);
+        const eT* coldata = colptr(c);
         
-        for(uword row=0; row < local_n_rows_m1; ++row)
+        for(uword r=0; r < local_n_rows_m1; ++r)
           {
           const eT val1 = (*coldata); coldata++;
           const eT val2 = (*coldata);
@@ -5475,7 +5712,7 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         {
         const eT* rowdata = memptr();
         
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
           const eT val1 = (*rowdata);  rowdata++;
           const eT val2 = (*rowdata);
@@ -5485,11 +5722,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         }
       else
         {
-        for(uword row=0; row < local_n_rows;    ++row)
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword r=0; r < local_n_rows;    ++r)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
-          const eT val1 = at(row,col  );
-          const eT val2 = at(row,col+1);
+          const eT val1 = at(r,c  );
+          const eT val2 = at(r,c+1);
           
           if(comparator(val1,val2))  { return false; }
           }
@@ -5510,11 +5747,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
       
       const uword local_n_rows_m1 = local_n_rows - 1;
       
-      for(uword col=0; col < local_n_cols; ++col)
+      for(uword c=0; c < local_n_cols; ++c)
         {
-        const eT* coldata = colptr(col);
+        const eT* coldata = colptr(c);
         
-        for(uword row=0; row < local_n_rows_m1; ++row)
+        for(uword r=0; r < local_n_rows_m1; ++r)
           {
           const eT val1 = (*coldata); coldata++;
           const eT val2 = (*coldata);
@@ -5533,7 +5770,7 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         {
         const eT* rowdata = memptr();
         
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
           const eT val1 = (*rowdata);  rowdata++;
           const eT val2 = (*rowdata);
@@ -5543,11 +5780,11 @@ Mat<eT>::is_sorted(const char* direction, const uword dim) const
         }
       else
         {
-        for(uword row=0; row < local_n_rows;    ++row)
-        for(uword col=0; col < local_n_cols_m1; ++col)
+        for(uword r=0; r < local_n_rows;    ++r)
+        for(uword c=0; c < local_n_cols_m1; ++c)
           {
-          const eT val1 = at(row,col  );
-          const eT val2 = at(row,col+1);
+          const eT val1 = at(r,c  );
+          const eT val2 = at(r,c+1);
           
           if(comparator(val1,val2))  { return false; }
           }
@@ -5884,6 +6121,18 @@ Mat<eT>::set_size(const uword in_rows, const uword in_cols)
 
 
 
+template<typename eT>
+inline
+void
+Mat<eT>::set_size(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  init_warm(s.n_rows, s.n_cols);
+  }
+
+
+
 //! change the matrix to have user specified dimensions (data is preserved)
 template<typename eT>
 inline
@@ -5923,6 +6172,18 @@ Mat<eT>::resize(const uword in_rows, const uword in_cols)
 
 
 
+template<typename eT>
+inline
+void
+Mat<eT>::resize(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::resize(*this, s.n_rows, s.n_cols);
+  }
+
+
+
 //! change the matrix to have user specified dimensions (data is preserved)
 template<typename eT>
 inline
@@ -5936,8 +6197,21 @@ Mat<eT>::reshape(const uword in_rows, const uword in_cols)
 
 
 
-//!< don't use this in new code; kept only for compatibility with old code
 template<typename eT>
+inline
+void
+Mat<eT>::reshape(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  *this = arma::reshape(*this, s.n_rows, s.n_cols);
+  }
+
+
+
+//!< NOTE: don't use this in new code; kept only for compatibility with old code
+template<typename eT>
+arma_deprecated
 inline
 void
 Mat<eT>::reshape(const uword in_rows, const uword in_cols, const uword dim)
@@ -5964,6 +6238,67 @@ Mat<eT>::copy_size(const Base<eT2, expr>& X)
   const uword X_n_cols = P.get_n_cols();
   
   init_warm(X_n_rows, X_n_cols);
+  }
+
+
+
+//! apply a functor to each element
+template<typename eT>
+template<typename functor>
+inline
+const Mat<eT>&
+Mat<eT>::for_each(functor F)
+  {
+  arma_extra_debug_sigprint();
+  
+  eT* data = memptr();
+  
+  const uword N = n_elem;
+  
+  uword ii, jj;
+  
+  for(ii=0, jj=1; jj < N; ii+=2, jj+=2)
+    {
+    F(data[ii]);
+    F(data[jj]);
+    }
+  
+  if(ii < N)
+    {
+    F(data[ii]);
+    }
+  
+  return *this;
+  }
+
+
+
+template<typename eT>
+template<typename functor>
+inline
+const Mat<eT>&
+Mat<eT>::for_each(functor F) const
+  {
+  arma_extra_debug_sigprint();
+  
+  const eT* data = memptr();
+  
+  const uword N = n_elem;
+  
+  uword ii, jj;
+  
+  for(ii=0, jj=1; jj < N; ii+=2, jj+=2)
+    {
+    F(data[ii]);
+    F(data[jj]);
+    }
+  
+  if(ii < N)
+    {
+    F(data[ii]);
+    }
+  
+  return *this;
   }
 
 
@@ -6121,6 +6456,18 @@ Mat<eT>::zeros(const uword in_n_rows, const uword in_n_cols)
 template<typename eT>
 inline
 const Mat<eT>&
+Mat<eT>::zeros(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).zeros(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
 Mat<eT>::ones()
   {
   arma_extra_debug_sigprint();
@@ -6150,10 +6497,22 @@ const Mat<eT>&
 Mat<eT>::ones(const uword in_rows, const uword in_cols)
   {
   arma_extra_debug_sigprint();
-
+  
   set_size(in_rows, in_cols);
   
   return fill(eT(1));
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::ones(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).ones(s.n_rows, s.n_cols);
   }
 
 
@@ -6203,6 +6562,18 @@ Mat<eT>::randu(const uword in_rows, const uword in_cols)
 template<typename eT>
 inline
 const Mat<eT>&
+Mat<eT>::randu(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).randu(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
 Mat<eT>::randn()
   {
   arma_extra_debug_sigprint();
@@ -6245,6 +6616,18 @@ Mat<eT>::randn(const uword in_rows, const uword in_cols)
 template<typename eT>
 inline
 const Mat<eT>&
+Mat<eT>::randn(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).randn(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
 Mat<eT>::eye()
   {
   arma_extra_debug_sigprint();
@@ -6273,6 +6656,18 @@ Mat<eT>::eye(const uword in_rows, const uword in_cols)
   set_size(in_rows, in_cols);
   
   return (*this).eye();
+  }
+
+
+
+template<typename eT>
+inline
+const Mat<eT>&
+Mat<eT>::eye(const SizeMat& s)
+  {
+  arma_extra_debug_sigprint();
+  
+  return (*this).eye(s.n_rows, s.n_cols);
   }
 
 
@@ -6336,7 +6731,12 @@ Mat<eT>::min() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_min::direct_min(memptr(), n_elem);
   }
@@ -6351,7 +6751,12 @@ Mat<eT>::max() const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_max::direct_max(memptr(), n_elem);
   }
@@ -6365,7 +6770,12 @@ Mat<eT>::min(uword& index_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_min::direct_min(memptr(), n_elem, index_of_min_val);
   }
@@ -6379,7 +6789,12 @@ Mat<eT>::max(uword& index_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   return op_max::direct_max(memptr(), n_elem, index_of_max_val);
   }
@@ -6393,7 +6808,12 @@ Mat<eT>::min(uword& row_of_min_val, uword& col_of_min_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::min(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   uword iq;
   
@@ -6414,7 +6834,12 @@ Mat<eT>::max(uword& row_of_max_val, uword& col_of_max_val) const
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (n_elem == 0), "Mat::max(): object has no elements" );
+  if(n_elem == 0)
+    {
+    arma_debug_check(true, "Mat::max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
   
   uword iq;
   
@@ -6468,12 +6893,22 @@ Mat<eT>::save(const std::string name, const file_type type, const bool print_sta
       save_okay = diskio::save_hdf5_binary(*this, name);
       break;
     
+    case hdf5_binary_trans:
+      {
+      Mat<eT> tmp;
+      
+      op_strans::apply_mat_noalias(tmp, *this);
+      
+      save_okay = diskio::save_hdf5_binary(tmp, name);
+      }
+      break;
+    
     default:
-      arma_warn(print_status, "Mat::save(): unsupported file type");
+      if(print_status)  { arma_debug_warn("Mat::save(): unsupported file type"); }
       save_okay = false;
     }
   
-  arma_warn( (print_status && (save_okay == false)), "Mat::save(): couldn't write to ", name);
+  if(print_status && (save_okay == false))  { arma_debug_warn("Mat::save(): couldn't write to ", name); }
   
   return save_okay;
   }
@@ -6517,11 +6952,11 @@ Mat<eT>::save(std::ostream& os, const file_type type, const bool print_status) c
       break;
     
     default:
-      arma_warn(print_status, "Mat::save(): unsupported file type");
+      if(print_status)  { arma_debug_warn("Mat::save(): unsupported file type"); }
       save_okay = false;
     }
   
-  arma_warn( (print_status && (save_okay == false)), "Mat::save(): couldn't write to the given stream");
+  if(print_status && (save_okay == false))  { arma_debug_warn("Mat::save(): couldn't write to the given stream"); }
   
   return save_okay;
   }
@@ -6573,8 +7008,18 @@ Mat<eT>::load(const std::string name, const file_type type, const bool print_sta
       load_okay = diskio::load_hdf5_binary(*this, name, err_msg);
       break;
 
+    case hdf5_binary_trans:
+      {
+      Mat<eT> tmp;
+      
+      load_okay = diskio::load_hdf5_binary(tmp, name, err_msg);
+      
+      if(load_okay)  { op_strans::apply_mat_noalias(*this, tmp); }
+      }
+      break;
+
     default:
-      arma_warn(print_status, "Mat::load(): unsupported file type");
+      if(print_status)  { arma_debug_warn("Mat::load(): unsupported file type"); }
       load_okay = false;
     }
   
@@ -6582,11 +7027,11 @@ Mat<eT>::load(const std::string name, const file_type type, const bool print_sta
     {
     if(err_msg.length() > 0)
       {
-      arma_warn(true, "Mat::load(): ", err_msg, name);
+      arma_debug_warn("Mat::load(): ", err_msg, name);
       }
     else
       {
-      arma_warn(true, "Mat::load(): couldn't read ", name);
+      arma_debug_warn("Mat::load(): couldn't read ", name);
       }
     }
   
@@ -6642,7 +7087,7 @@ Mat<eT>::load(std::istream& is, const file_type type, const bool print_status)
       break;
     
     default:
-      arma_warn(print_status, "Mat::load(): unsupported file type");
+      if(print_status)  { arma_debug_warn("Mat::load(): unsupported file type"); }
       load_okay = false;
     }
   
@@ -6651,11 +7096,11 @@ Mat<eT>::load(std::istream& is, const file_type type, const bool print_status)
     {
     if(err_msg.length() > 0)
       {
-      arma_warn(true, "Mat::load(): ", err_msg, "the given stream");
+      arma_debug_warn("Mat::load(): ", err_msg, "the given stream");
       }
     else
       {
-      arma_warn(true, "Mat::load(): couldn't load from the given stream");
+      arma_debug_warn("Mat::load(): couldn't load from the given stream");
       }
     }
   
@@ -7572,7 +8017,7 @@ template<typename eT>
 template<uword fixed_n_rows, uword fixed_n_cols>
 arma_inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed()
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   }
@@ -7583,7 +8028,7 @@ template<typename eT>
 template<uword fixed_n_rows, uword fixed_n_cols>
 arma_inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const fixed<fixed_n_rows, fixed_n_cols>& X)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7600,7 +8045,7 @@ template<uword fixed_n_rows, uword fixed_n_cols>
 template<typename fill_type>
 inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const fill::fill_class<fill_type>&)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7618,7 +8063,7 @@ template<uword fixed_n_rows, uword fixed_n_cols>
 template<typename T1>
 inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const Base<eT,T1>& A)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7632,7 +8077,7 @@ template<uword fixed_n_rows, uword fixed_n_cols>
 template<typename T1, typename T2>
 inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const Base<pod_type,T1>& A, const Base<pod_type,T2>& B)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7645,7 +8090,7 @@ template<typename eT>
 template<uword fixed_n_rows, uword fixed_n_cols>
 inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const eT* aux_mem)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7660,7 +8105,7 @@ template<typename eT>
 template<uword fixed_n_rows, uword fixed_n_cols>
 inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const char* text)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7673,7 +8118,7 @@ template<typename eT>
 template<uword fixed_n_rows, uword fixed_n_cols>
 inline
 Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::string& text)
-  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+  : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
   {
   arma_extra_debug_sigprint_this(this);
   
@@ -7688,7 +8133,7 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::string& text)
   template<uword fixed_n_rows, uword fixed_n_cols>
   inline
   Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::initializer_list<eT>& list)
-    : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+    : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
     {
     arma_extra_debug_sigprint_this(this);
     
@@ -7724,7 +8169,7 @@ Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::string& text)
   template<uword fixed_n_rows, uword fixed_n_cols>
   inline
   Mat<eT>::fixed<fixed_n_rows, fixed_n_cols>::fixed(const std::initializer_list< std::initializer_list<eT> >& list)
-    : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : mem_local) )
+    : Mat<eT>( arma_fixed_indicator(), fixed_n_rows, fixed_n_cols, 0, ((use_extra) ? mem_local_extra : Mat<eT>::mem_local) )
     {
     arma_extra_debug_sigprint_this(this);
     

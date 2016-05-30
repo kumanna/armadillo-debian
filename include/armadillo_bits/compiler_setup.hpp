@@ -1,16 +1,16 @@
-// Copyright (C) 2008-2015 Conrad Sanderson
-// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 
 #undef arma_hot
 #undef arma_cold
-#undef arma_pure
-#undef arma_const
 #undef arma_aligned
 #undef arma_align_mem
 #undef arma_warn_unused
@@ -22,8 +22,6 @@
 
 #define arma_hot
 #define arma_cold
-#define arma_pure
-#define arma_const
 #define arma_aligned
 #define arma_align_mem
 #define arma_warn_unused
@@ -33,6 +31,11 @@
 #define arma_noinline
 #define arma_ignore(variable)  ((void)(variable))
 
+// arma_pure and arma_const kept only for compatibility with old code
+#undef  arma_pure
+#define arma_pure
+#undef  arma_const
+#define arma_const
 
 #undef arma_fortran_noprefix
 #undef arma_fortran_prefix
@@ -65,9 +68,10 @@
 
 #if defined(__CYGWIN__)
   #if defined(ARMA_USE_CXX11)
-    #undef ARMA_USE_CXX11
-    #undef ARMA_USE_EXTERN_CXX11_RNG
-    #pragma message ("WARNING: disabled use of C++11 features in Armadillo, due to incomplete support for C++11 by Cygwin")
+    #pragma message ("WARNING: Cygwin may have incomplete support for C++11 features;")
+    #pragma message ("WARNING: if something breaks, you get to keep all the pieces.")
+    #pragma message ("WARNING: to forcefully prevent Armadillo from using C++11 features,")
+    #pragma message ("WARNING: #define ARMA_DONT_USE_CXX11 before #include <armadillo>")
   #endif
 #endif
 
@@ -84,7 +88,7 @@
   
   #if defined(ARMA_64BIT_WORD) && defined(SIZE_MAX)
     #if (SIZE_MAX < 0xFFFFFFFFFFFFFFFFull)
-      #pragma message ("WARNING: disabled use of 64 bit integers, as std::size_t is smaller than 64 bits")
+      // #pragma message ("WARNING: disabled use of 64 bit integers, as std::size_t is smaller than 64 bits")
       #undef ARMA_64BIT_WORD
     #endif
   #endif
@@ -178,8 +182,6 @@
   
   #define ARMA_GOOD_COMPILER
   
-  #undef  arma_pure
-  #undef  arma_const
   #undef  arma_aligned
   #undef  arma_align_mem
   #undef  arma_warn_unused
@@ -188,8 +190,6 @@
   #undef  arma_inline
   #undef  arma_noinline
   
-  #define arma_pure               __attribute__((__pure__))
-  #define arma_const              __attribute__((__const__))
   #define arma_aligned            __attribute__((__aligned__))
   #define arma_align_mem          __attribute__((__aligned__(16)))
   #define arma_warn_unused        __attribute__((__warn_unused_result__))
@@ -203,9 +203,9 @@
   
   #if defined(ARMA_USE_CXX11)
     #if (ARMA_GCC_VERSION < 40800)
-      #pragma message ("WARNING: compiler is in C++11 mode, but it has incomplete support for C++11 features;")
-      #pragma message ("WARNING: if something breaks, you get to keep all the pieces")
-      #pragma message ("WARNING: To forcefully prevent Armadillo from using C++11 features,")
+      #pragma message ("WARNING: compiler is in C++11 mode, but it has INCOMPLETE support for C++11 features;")
+      #pragma message ("WARNING: if something breaks, you get to keep all the pieces.")
+      #pragma message ("WARNING: to forcefully prevent Armadillo from using C++11 features,")
       #pragma message ("WARNING: #define ARMA_DONT_USE_CXX11 before #include <armadillo>")
       #define ARMA_DONT_USE_CXX11_CHRONO
     #endif
@@ -263,16 +263,6 @@
     #define __has_attribute(x) 0
   #endif
   
-  #if __has_attribute(__pure__)
-    #undef  arma_pure
-    #define arma_pure __attribute__((__pure__))
-  #endif
-  
-  #if __has_attribute(__const__)
-    #undef  arma_const
-    #define arma_const __attribute__((__const__))
-  #endif
-  
   #if __has_attribute(__aligned__)
     #undef  arma_aligned
     #undef  arma_align_mem
@@ -326,7 +316,7 @@
   
   #if defined(__apple_build_version__)
     #undef ARMA_USE_EXTERN_CXX11_RNG
-    // because Apple engineers are too lazy to implement thread_local
+    // TODO: check the status of support for "extern thread_local" in clang shipped with Mac OS X
   #endif
   
   #if (defined(_POSIX_C_SOURCE) && (_POSIX_C_SOURCE >= 200112L))
@@ -360,15 +350,17 @@
   #endif
   
   #if (_MSC_VER < 1700)
-    #pragma message ("WARNING: this compiler is outdated and has incomplete support for the C++ standard;")
+    #pragma message ("WARNING: this compiler is OUTDATED and has INCOMPLETE support for the C++ standard;")
     #pragma message ("WARNING: if something breaks, you get to keep all the pieces")
     #define ARMA_BAD_COMPILER
   #endif
   
   #if defined(ARMA_USE_CXX11)
-    #if (_MSC_VER < 1800)
-      #pragma message ("WARNING: compiler is in C++11 mode, but it has incomplete support for C++11 features;")
-      #pragma message ("WARNING: if something breaks, you get to keep all the pieces")
+    #if (_MSC_VER < 1900)
+      #pragma message ("WARNING: compiler is in C++11 mode, but it has INCOMPLETE support for C++11 features;")
+      #pragma message ("WARNING: if something breaks, you get to keep all the pieces.")
+      #pragma message ("WARNING: to forcefully prevent Armadillo from using C++11 features,")
+      #pragma message ("WARNING: #define ARMA_DONT_USE_CXX11 before #include <armadillo>")
     #endif
   #endif
   
@@ -378,6 +370,7 @@
   #pragma warning(push)
   
   #pragma warning(disable: 4127)  // conditional expression is constant
+  #pragma warning(disable: 4244)  // possible loss of data when converting types
   #pragma warning(disable: 4510)  // default constructor could not be generated
   #pragma warning(disable: 4511)  // copy constructor can't be generated
   #pragma warning(disable: 4512)  // assignment operator can't be generated
@@ -388,6 +381,7 @@
   #pragma warning(disable: 4624)  // destructor can't be generated
   #pragma warning(disable: 4625)  // copy constructor can't be generated
   #pragma warning(disable: 4626)  // assignment operator can't be generated
+  #pragma warning(disable: 4702)  // unreachable code
   #pragma warning(disable: 4710)  // function not inlined
   #pragma warning(disable: 4711)  // call was inlined
   #pragma warning(disable: 4714)  // __forceinline can't be inlined

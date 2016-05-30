@@ -1,10 +1,12 @@
-// Copyright (C) 2008-2015 Conrad Sanderson
-// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
-// Copyright (C) 2011 Stanislav Funiak
+// Copyright (C) 2008-2015 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
+// Written by Stanislav Funiak
 
 
 //! \addtogroup debug
@@ -95,16 +97,7 @@ arma_stop(const T1& x)
   {
   #if defined(ARMA_PRINT_ERRORS)
     {
-    std::ostream& out = get_stream_err1();
-    
-    out << '\n';
-    out << "error: " << x << '\n';
-    out << '\n';
-    out.flush();
-    }
-  #else
-    {
-    arma_ignore(x);
+    get_stream_err1() << "\nerror: " << x << '\n';
     }
   #endif
   
@@ -122,12 +115,7 @@ arma_stop_bad_alloc(const T1& x)
   {
   #if defined(ARMA_PRINT_ERRORS)
     {
-    std::ostream& out = get_stream_err2();
-    
-    out << '\n';
-    out << "error: " << x << '\n';
-    out << '\n';
-    out.flush();
+    get_stream_err2() << "\nerror: " << x << '\n';
     }
   #else
     {
@@ -149,27 +137,15 @@ arma_cold
 arma_noinline
 static
 void
-arma_bad(const T1& x, const bool hurl = true)
+arma_bad(const T1& x)
   {
   #if defined(ARMA_PRINT_ERRORS)
     {
-    std::ostream& out = get_stream_err2();
-    
-    out << '\n';
-    out << "error: " << x << '\n';
-    out << '\n';
-    out.flush();
-    }
-  #else
-    {
-    arma_ignore(x);
+    get_stream_err2() << "\nerror: " << x << '\n';
     }
   #endif
   
-  if(hurl == true)
-    {
-    throw std::runtime_error( std::string(x) );
-    }
+  throw std::runtime_error( std::string(x) );
   }
 
 
@@ -299,12 +275,17 @@ arma_cold
 arma_noinline
 static
 void
-arma_warn(const bool state, const T1& x)
+arma_warn(const T1& x)
   {
-  if(state==true)
+  #if defined(ARMA_PRINT_ERRORS)
     {
-    get_stream_err2() << x << std::endl;
+    get_stream_err2() << "\nwarning: " << x << '\n';
     }
+  #else
+    {
+    arma_ignore(x);
+    }
+  #endif
   }
 
 
@@ -313,12 +294,18 @@ arma_cold
 arma_noinline
 static
 void
-arma_warn(const bool state, const T1& x, const T2& y)
+arma_warn(const T1& x, const T2& y)
   {
-  if(state==true)
+  #if defined(ARMA_PRINT_ERRORS)
     {
-    get_stream_err2() << x << y << std::endl;
+    get_stream_err2() << "\nwarning: " << x << y << '\n';
     }
+  #else
+    {
+    arma_ignore(x);
+    arma_ignore(y);
+    }
+  #endif
   }
 
 
@@ -327,12 +314,19 @@ arma_cold
 arma_noinline
 static
 void
-arma_warn(const bool state, const T1& x, const T2& y, const T3& z)
+arma_warn(const T1& x, const T2& y, const T3& z)
   {
-  if(state==true)
+  #if defined(ARMA_PRINT_ERRORS)
     {
-    get_stream_err2() << x << y << z << std::endl;
+    get_stream_err2() << "\nwarning: " << x << y << z << '\n';
     }
+  #else
+    {
+    arma_ignore(x);
+    arma_ignore(y);
+    arma_ignore(z);
+    }
+  #endif
   }
 
 
@@ -349,7 +343,7 @@ arma_check(const bool state, const T1& x)
   {
   if(state==true)
     {
-    arma_stop(arma_boost::str_wrapper(x));
+    arma_stop(arma_str::str_wrapper(x));
     }
   }
 
@@ -458,7 +452,7 @@ arma_incompat_size_string(const subview_cube<eT>& Q, const Mat<eT>& A, const cha
 
 
 //
-// functions for checking whether two matrices have the same dimensions
+// functions for checking whether two dense matrices have the same dimensions
 
 
 
@@ -648,6 +642,31 @@ arma_assert_same_size(const subview<eT1>& A, const Proxy<eT2>& B, const char* x)
   
   const uword B_n_rows = B.get_n_rows();
   const uword B_n_cols = B.get_n_cols();
+  
+  if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
+    {
+    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    }
+  }
+
+
+
+//
+// functions for checking whether two sparse matrices have the same dimensions
+
+
+
+template<typename eT1, typename eT2>
+arma_hot
+inline
+void
+arma_assert_same_size(const SpMat<eT1>& A, const SpMat<eT2>& B, const char* x)
+  {
+  const uword A_n_rows = A.n_rows;
+  const uword A_n_cols = A.n_cols;
+  
+  const uword B_n_rows = B.n_rows;
+  const uword B_n_cols = B.n_cols;
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {

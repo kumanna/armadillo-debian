@@ -1,9 +1,11 @@
-// Copyright (C) 2008-2012 Conrad Sanderson
-// Copyright (C) 2008-2010 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_trunc_log
@@ -21,11 +23,11 @@ trunc_log(const eT x)
     {
     if(x == std::numeric_limits<eT>::infinity())
       {
-      return Math<eT>::log_max();
+      return Datum<eT>::log_max;
       }
     else
       {
-      return (x <= eT(0)) ? Math<eT>::log_min() : std::log(x);
+      return (x <= eT(0)) ? Datum<eT>::log_min : std::log(x);
       }
     }
   else

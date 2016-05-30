@@ -1,9 +1,11 @@
-// Copyright (C) 2008-2015 Conrad Sanderson
-// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2015 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup Row
@@ -57,6 +59,18 @@ Row<eT>::Row(const uword in_n_rows, const uword in_n_cols)
 
 
 template<typename eT>
+inline
+Row<eT>::Row(const SizeMat& s)
+  : Mat<eT>(arma_vec_indicator(), 2)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::init_warm(s.n_rows, s.n_cols);
+  }
+
+
+
+template<typename eT>
 template<typename fill_type>
 inline
 Row<eT>::Row(const uword in_n_elem, const fill::fill_class<fill_type>& f)
@@ -78,6 +92,21 @@ Row<eT>::Row(const uword in_n_rows, const uword in_n_cols, const fill::fill_clas
   arma_extra_debug_sigprint();
   
   Mat<eT>::init_warm(in_n_rows, in_n_cols);
+  
+  (*this).fill(f);
+  }
+
+
+
+template<typename eT>
+template<typename fill_type>
+inline
+Row<eT>::Row(const SizeMat& s, const fill::fill_class<fill_type>& f)
+  : Mat<eT>(arma_vec_indicator(), 2)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>::init_warm(s.n_rows, s.n_cols);
   
   (*this).fill(f);
   }
@@ -208,7 +237,7 @@ Row<eT>::operator=(const std::vector<eT>& x)
   Row<eT>::Row(Row<eT>&& X)
     : Mat<eT>(arma_vec_indicator(), 2)
     {
-    arma_extra_debug_sigprint(arma_boost::format("this = %x   X = %x") % this % &X);
+    arma_extra_debug_sigprint(arma_str::format("this = %x   X = %x") % this % &X);
     
     access::rw(Mat<eT>::n_rows) = 1;
     access::rw(Mat<eT>::n_cols) = X.n_cols;
@@ -248,7 +277,7 @@ Row<eT>::operator=(const std::vector<eT>& x)
   const Row<eT>&
   Row<eT>::operator=(Row<eT>&& X)
     {
-    arma_extra_debug_sigprint(arma_boost::format("this = %x   X = %x") % this % &X);
+    arma_extra_debug_sigprint(arma_str::format("this = %x   X = %x") % this % &X);
     
     (*this).steal_mem(X);
     

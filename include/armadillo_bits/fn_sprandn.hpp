@@ -1,8 +1,11 @@
-// Copyright (C) 2012 Conrad Sanderson
+// Copyright (C) 2012-2015 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_sprandn
@@ -45,6 +48,19 @@ sprandn
 
 
 
+template<typename obj_type>
+inline
+obj_type
+sprandn(const SizeMat& s, const double density, const typename arma_SpMat_SpCol_SpRow_only<obj_type>::result* junk = 0)
+  {
+  arma_extra_debug_sigprint();
+  arma_ignore(junk);
+  
+  return sprandn<obj_type>(s.n_rows, s.n_cols, density);
+  }
+
+
+
 inline
 sp_mat
 sprandn(const uword n_rows, const uword n_cols, const double density)
@@ -54,6 +70,21 @@ sprandn(const uword n_rows, const uword n_cols, const double density)
   sp_mat out;
   
   out.sprandn(n_rows, n_cols, density);
+  
+  return out;
+  }
+
+
+
+inline
+sp_mat
+sprandn(const SizeMat& s, const double density)
+  {
+  arma_extra_debug_sigprint();
+  
+  sp_mat out;
+  
+  out.sprandn(s.n_rows, s.n_cols, density);
   
   return out;
   }

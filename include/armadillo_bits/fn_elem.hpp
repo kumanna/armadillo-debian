@@ -1,9 +1,11 @@
-// Copyright (C) 2008-2015 Conrad Sanderson
-// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_elem
@@ -38,6 +40,18 @@ real(const BaseCube<typename T1::pod_type, T1>& X)
 
 
 template<typename T1>
+arma_inline
+const T1&
+real(const SpBase<typename T1::pod_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return A.get_ref();
+  }
+
+
+
+template<typename T1>
 inline
 typename enable_if2< (is_arma_type<T1>::value && is_cx<typename T1::elem_type>::yes), const mtOp<typename T1::pod_type, T1, op_real> >::result
 real(const T1& X)
@@ -57,6 +71,18 @@ real(const BaseCube<std::complex<typename T1::pod_type>, T1>& X)
   arma_extra_debug_sigprint();
   
   return mtOpCube<typename T1::pod_type, T1, op_real>( X.get_ref() );
+  }
+
+
+
+template<typename T1>
+arma_inline
+const mtSpOp<typename T1::pod_type, T1, spop_real>
+real(const SpBase<std::complex<typename T1::pod_type>,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return mtSpOp<typename T1::pod_type, T1, spop_real>(A.get_ref());
   }
 
 
@@ -94,6 +120,20 @@ imag(const BaseCube<typename T1::pod_type,T1>& X)
 
 template<typename T1>
 inline
+SpMat<typename T1::pod_type>
+imag(const SpBase<typename T1::pod_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  const SpProxy<T1> P(A.get_ref());
+  
+  return SpMat<typename T1::pod_type>(P.get_n_rows(), P.get_n_cols());
+  }
+
+
+
+template<typename T1>
+inline
 typename enable_if2< (is_arma_type<T1>::value && is_cx<typename T1::elem_type>::yes), const mtOp<typename T1::pod_type, T1, op_imag> >::result
 imag(const T1& X)
   {
@@ -112,6 +152,18 @@ imag(const BaseCube<std::complex<typename T1::pod_type>,T1>& X)
   arma_extra_debug_sigprint();
   
   return mtOpCube<typename T1::pod_type, T1, op_imag>( X.get_ref() );
+  }
+
+
+
+template<typename T1>
+arma_inline
+const mtSpOp<typename T1::pod_type, T1, spop_imag>
+imag(const SpBase<std::complex<typename T1::pod_type>,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return mtSpOp<typename T1::pod_type, T1, spop_imag>(A.get_ref());
   }
 
 
@@ -445,7 +497,7 @@ const T1&
 conj(const Base<typename T1::pod_type,T1>& A)
   {
   arma_extra_debug_sigprint();
-
+  
   return A.get_ref();
   }
 
@@ -457,7 +509,19 @@ const T1&
 conj(const BaseCube<typename T1::pod_type,T1>& A)
   {
   arma_extra_debug_sigprint();
+  
+  return A.get_ref();
+  }
 
+
+
+template<typename T1>
+arma_inline
+const T1&
+conj(const SpBase<typename T1::pod_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
   return A.get_ref();
   }
 
@@ -469,7 +533,7 @@ const eOp<T1, eop_conj>
 conj(const Base<std::complex<typename T1::pod_type>,T1>& A)
   {
   arma_extra_debug_sigprint();
-
+  
   return eOp<T1, eop_conj>(A.get_ref());
   }
 
@@ -489,24 +553,12 @@ conj(const BaseCube<std::complex<typename T1::pod_type>,T1>& A)
 
 template<typename T1>
 arma_inline
-const typename Proxy<T1>::stored_type&
-conj(const eOp<T1, eop_conj>& A)
+const SpOp<T1, spop_conj>
+conj(const SpBase<std::complex<typename T1::pod_type>,T1>& A)
   {
   arma_extra_debug_sigprint();
   
-  return A.P.Q;
-  }
-
-
-
-template<typename T1>
-arma_inline
-const typename ProxyCube<T1>::stored_type&
-conj(const eOpCube<T1, eop_conj>& A)
-  {
-  arma_extra_debug_sigprint();
-  
-  return A.P.Q;
+  return SpOp<T1, spop_conj>(A.get_ref());
   }
 
 
@@ -644,6 +696,33 @@ round(const BaseCube<typename T1::elem_type,T1>& A)
   arma_extra_debug_sigprint();
   
   return eOpCube<T1, eop_round>(A.get_ref());
+  }
+
+
+
+//
+// trunc
+
+template<typename T1>
+arma_inline
+typename enable_if2< is_arma_type<T1>::value, const eOp<T1, eop_trunc> >::result
+trunc(const T1& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOp<T1, eop_trunc>(A);
+  }
+
+
+
+template<typename T1>
+arma_inline
+const eOpCube<T1, eop_trunc>
+trunc(const BaseCube<typename T1::elem_type,T1>& A)
+  {
+  arma_extra_debug_sigprint();
+  
+  return eOpCube<T1, eop_trunc>(A.get_ref());
   }
 
 

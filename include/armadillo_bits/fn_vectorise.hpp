@@ -1,9 +1,11 @@
-// Copyright (C) 2013-2014 Conrad Sanderson
-// Copyright (C) 2013-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2013-2014 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_vectorise
@@ -40,7 +42,7 @@ vectorise(const T1& X, const uword dim)
   {
   arma_extra_debug_sigprint();
   
-  arma_debug_check( (dim > 1), "vectorise(): dim must be 0 or 1");
+  arma_debug_check( (dim > 1), "vectorise(): parameter 'dim' must be 0 or 1" );
   
   return Op<T1, op_vectorise_all>(X, dim, 0);
   }

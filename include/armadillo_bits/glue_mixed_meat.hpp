@@ -1,9 +1,11 @@
-// Copyright (C) 2009-2013 Conrad Sanderson
-// Copyright (C) 2009-2013 NICTA (www.nicta.com.au)
+// Copyright (C) 2009-2015 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup glue_mixed
@@ -91,13 +93,11 @@ glue_mixed_plus::apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<t
     }
   else
     {
-    uword i = 0;
-    
     for(uword col=0; col < n_cols; ++col)
     for(uword row=0; row < n_rows; ++row)
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col)) + upgrade_val<eT1,eT2>::apply(B.at(row,col));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col)) + upgrade_val<eT1,eT2>::apply(B.at(row,col));
+      out_mem++;
       }
     }
   }
@@ -158,13 +158,11 @@ glue_mixed_minus::apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<
     }
   else
     {
-    uword i = 0;
-    
     for(uword col=0; col < n_cols; ++col)
     for(uword row=0; row < n_rows; ++row)
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col)) - upgrade_val<eT1,eT2>::apply(B.at(row,col));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col)) - upgrade_val<eT1,eT2>::apply(B.at(row,col));
+      out_mem++;
       }
     }
   }
@@ -225,13 +223,11 @@ glue_mixed_div::apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<ty
     }
   else
     {
-    uword i = 0;
-    
     for(uword col=0; col < n_cols; ++col)
     for(uword row=0; row < n_rows; ++row)
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col)) / upgrade_val<eT1,eT2>::apply(B.at(row,col));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col)) / upgrade_val<eT1,eT2>::apply(B.at(row,col));
+      out_mem++;
       }
     }
   }
@@ -292,13 +288,11 @@ glue_mixed_schur::apply(Mat<typename eT_promoter<T1,T2>::eT>& out, const mtGlue<
     }
   else
     {
-    uword i = 0;
-    
     for(uword col=0; col < n_cols; ++col)
     for(uword row=0; row < n_rows; ++row)
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col)) * upgrade_val<eT1,eT2>::apply(B.at(row,col));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col)) * upgrade_val<eT1,eT2>::apply(B.at(row,col));
+      out_mem++;
       }
     }
   }
@@ -354,14 +348,12 @@ glue_mixed_plus::apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlueC
     }
   else
     {
-    uword i = 0;
-    
     for(uword slice = 0; slice < n_slices; ++slice)
     for(uword col   = 0; col   < n_cols;   ++col  )
     for(uword row   = 0; row   < n_rows;   ++row  )
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) + upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) + upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
+      out_mem++;
       }
     }
   }
@@ -411,14 +403,12 @@ glue_mixed_minus::apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlue
     }
   else
     {
-    uword i = 0;
-    
     for(uword slice = 0; slice < n_slices; ++slice)
     for(uword col   = 0; col   < n_cols;   ++col  )
     for(uword row   = 0; row   < n_rows;   ++row  )
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) - upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) - upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
+      out_mem++;
       }
     }
   }
@@ -468,14 +458,12 @@ glue_mixed_div::apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlueCu
     }
   else
     {
-    uword i = 0;
-    
     for(uword slice = 0; slice < n_slices; ++slice)
     for(uword col   = 0; col   < n_cols;   ++col  )
     for(uword row   = 0; row   < n_rows;   ++row  )
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) / upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) / upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
+      out_mem++;
       }
     }
   }
@@ -525,14 +513,12 @@ glue_mixed_schur::apply(Cube<typename eT_promoter<T1,T2>::eT>& out, const mtGlue
     }
   else
     {
-    uword i = 0;
-    
     for(uword slice = 0; slice < n_slices; ++slice)
     for(uword col   = 0; col   < n_cols;   ++col  )
     for(uword row   = 0; row   < n_rows;   ++row  )
       {
-      out_mem[i] = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) * upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
-      ++i;
+      (*out_mem) = upgrade_val<eT1,eT2>::apply(A.at(row,col,slice)) * upgrade_val<eT1,eT2>::apply(B.at(row,col,slice));
+      out_mem++;
       }
     }
   }

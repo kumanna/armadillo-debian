@@ -1,9 +1,11 @@
-// Copyright (C) 2008-2014 Conrad Sanderson
-// Copyright (C) 2008-2014 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2014 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 
@@ -446,7 +448,7 @@ arma_acosh(const eT x)
       }
     else
       {
-      if(std::numeric_limits<eT>::has_quiet_NaN == true)
+      if(std::numeric_limits<eT>::has_quiet_NaN)
         {
         return -(std::numeric_limits<eT>::quiet_NaN());
         }
@@ -506,7 +508,7 @@ arma_atanh(const eT x)
       }
     else
       {
-      if(std::numeric_limits<eT>::has_quiet_NaN == true)
+      if(std::numeric_limits<eT>::has_quiet_NaN)
         {
         return -(std::numeric_limits<eT>::quiet_NaN());
         }

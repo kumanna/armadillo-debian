@@ -1,3 +1,61 @@
+armadillo (1:6.700.6+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 04 May 2016 07:11:13 +0530
+
+armadillo (1:6.700.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards version is now 3.6.7 (no changes required)
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 10 Apr 2016 18:17:04 +0530
+
+armadillo (1:6.500.5+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Alter dfsg-repack.sh to ignore .mat files
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 15 Feb 2016 21:02:28 +0530
+
+armadillo (1:6.400.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 23 Dec 2015 16:45:14 +0530
+
+armadillo (1:6.200.4+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/copyright updated to reflect correct copyright assignment.
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 17 Nov 2015 18:15:06 +0530
+
+armadillo (1:6.100.0+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 11 Oct 2015 07:16:19 +0530
+
+armadillo (1:6.100.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * The new package (with soname) is libarmadillo6
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 05 Oct 2015 21:24:27 +0530
+
+armadillo (1:5.500.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 04 Sep 2015 12:04:31 +0530
+
+armadillo (1:5.400.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 24 Aug 2015 20:03:56 +0530
+
 armadillo (1:5.200.1+dfsg-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.

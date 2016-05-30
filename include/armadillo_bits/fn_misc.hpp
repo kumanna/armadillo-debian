@@ -1,9 +1,11 @@
-// Copyright (C) 2008-2015 Conrad Sanderson
-// Copyright (C) 2008-2015 NICTA (www.nicta.com.au)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// -------------------------------------------------------------------
+// 
+// Written by Conrad Sanderson - http://conradsanderson.id.au
 
 
 //! \addtogroup fn_misc
@@ -15,28 +17,28 @@
 //! Generate a vector with 'num' elements.
 //! The values of the elements linearly increase from 'start' upto (and including) 'end'.
 
-template<typename vec_type>
+template<typename out_type>
 inline
 typename
 enable_if2
   <
-  is_Mat<vec_type>::value,
-  vec_type
+  is_Mat<out_type>::value,
+  out_type
   >::result
 linspace
   (
-  const typename vec_type::pod_type start,
-  const typename vec_type::pod_type end,
-  const uword num = 100u
+  const typename out_type::pod_type start,
+  const typename out_type::pod_type end,
+  const uword                       num = 100u
   )
   {
   arma_extra_debug_sigprint();
   
-  typedef typename vec_type::elem_type eT;
-  typedef typename vec_type::pod_type   T;
+  typedef typename out_type::elem_type eT;
+  typedef typename out_type::pod_type   T;
   
-  vec_type x;
-    
+  out_type x;
+  
   if(num >= 2)
     {
     x.set_size(num);
@@ -67,8 +69,6 @@ linspace
       
       x_mem[num_m1] = eT(end);
       }
-    
-    return x;
     }
   else
     {
@@ -83,11 +83,57 @@ linspace
 
 
 inline
-mat
+vec
 linspace(const double start, const double end, const uword num = 100u)
   {
   arma_extra_debug_sigprint();
-  return linspace<mat>(start, end, num);
+  return linspace<vec>(start, end, num);
+  }
+
+
+
+template<typename out_type>
+inline
+typename
+enable_if2
+  <
+  (is_Mat<out_type>::value && is_real<typename out_type::pod_type>::value),
+  out_type
+  >::result
+logspace
+  (
+  const typename out_type::pod_type A,
+  const typename out_type::pod_type B,
+  const uword                       N = 50u
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  typedef typename out_type::elem_type eT;
+  typedef typename out_type::pod_type   T;
+  
+  out_type x = linspace<out_type>(A,B,N);
+  
+  const uword n_elem = x.n_elem;
+  
+  eT* x_mem = x.memptr();
+  
+  for(uword i=0; i < n_elem; ++i)
+    {
+    x_mem[i] = std::pow(T(10), x_mem[i]);
+    }
+  
+  return x;
+  }
+
+
+
+inline
+vec
+logspace(const double A, const double B, const uword N = 50u)
+  {
+  arma_extra_debug_sigprint();
+  return logspace<vec>(A, B, N);
   }
 
 
@@ -268,6 +314,8 @@ sympd(const Base<typename T1::elem_type,T1>& X)
   {
   arma_extra_debug_sigprint();
   
+  arma_debug_warn("sympd() is deprecated and will be removed; change inv(sympd(X)) to inv_sympd(X)");
+  
   return X.get_ref();
   }
 
@@ -323,6 +371,106 @@ orth(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type, T1>& X
   try { out = orth(X,tol); } catch (std::runtime_error&) { return false; }
   
   return true;
+  }
+
+
+
+template<typename T1>
+arma_inline
+const Op<T1, op_null>
+null(const Base<typename T1::elem_type, T1>& X, const typename T1::pod_type tol = 0.0, const typename arma_blas_type_only<typename T1::elem_type>::result* junk = 0)
+  {
+  arma_extra_debug_sigprint();
+  arma_ignore(junk);
+  
+  typedef typename T1::elem_type eT;
+  
+  return Op<T1, op_null>(X.get_ref(), eT(tol));
+  }
+
+
+
+template<typename T1>
+inline
+bool
+null(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type, T1>& X, const typename T1::pod_type tol = 0.0, const typename arma_blas_type_only<typename T1::elem_type>::result* junk = 0)
+  {
+  arma_extra_debug_sigprint();
+  arma_ignore(junk);
+  
+  try { out = null(X,tol); } catch (std::runtime_error&) { return false; }
+  
+  return true;
+  }
+
+
+
+inline
+uvec
+ind2sub(const SizeMat& s, const uword i)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (i >= (s.n_rows * s.n_cols) ), "ind2sub(): index out of range" );
+  
+  uvec out(2);
+  
+  out[0] = i % s.n_rows;
+  out[1] = i / s.n_rows;
+  
+  return out;
+  }
+
+
+
+inline
+uvec
+ind2sub(const SizeCube& s, const uword i)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( (i >= (s.n_rows * s.n_cols * s.n_slices) ), "ind2sub(): index out of range" );
+  
+  const uword n_elem_slice = s.n_rows * s.n_cols;
+  
+  const uword slice  = i / n_elem_slice;
+  const uword j      = i - (slice * n_elem_slice);
+  const uword row    = j % s.n_rows;
+  const uword col    = j / s.n_rows;
+  
+  uvec out(3);
+  
+  out[0] = row;
+  out[1] = col;
+  out[2] = slice;
+  
+  return out;
+  }
+
+
+
+arma_inline
+uword
+sub2ind(const SizeMat& s, const uword row, const uword col)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( ((row >= s.n_rows) || (col >= s.n_cols)), "sub2ind(): subscript out of range" );
+  
+  return uword(row + col*s.n_rows);
+  }
+
+
+
+arma_inline
+uword
+sub2ind(const SizeCube& s, const uword row, const uword col, const uword slice)
+  {
+  arma_extra_debug_sigprint();
+  
+  arma_debug_check( ((row >= s.n_rows) || (col >= s.n_cols) || (slice >= s.n_slices)), "sub2ind(): subscript out of range" );
+  
+  return uword( (slice * s.n_rows * s.n_cols) + (col * s.n_rows) + row );
   }
 
 
