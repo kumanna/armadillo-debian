@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2015 National ICT Australia (NICTA)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -192,8 +192,8 @@ subview<eT>::inplace_op(const Base<eT,T1>& in, const char* identifier)
         {
         const uword ii = (jj-1);
         
-        const eT tmp1 = (Proxy<T1>::prefer_at_accessor) ? P.at(0,ii) : P[ii];
-        const eT tmp2 = (Proxy<T1>::prefer_at_accessor) ? P.at(0,jj) : P[jj];
+        const eT tmp1 = (Proxy<T1>::use_at) ? P.at(0,ii) : P[ii];
+        const eT tmp2 = (Proxy<T1>::use_at) ? P.at(0,jj) : P[jj];
         
         if(is_same_type<op_type, op_internal_equ  >::yes)  { (*Aptr) =  tmp1; Aptr += A_n_rows;  (*Aptr) =  tmp2; Aptr += A_n_rows; }
         if(is_same_type<op_type, op_internal_plus >::yes)  { (*Aptr) += tmp1; Aptr += A_n_rows;  (*Aptr) += tmp2; Aptr += A_n_rows; }
@@ -205,16 +205,16 @@ subview<eT>::inplace_op(const Base<eT,T1>& in, const char* identifier)
       const uword ii = (jj-1);
       if(ii < s_n_cols)
         {
-        if(is_same_type<op_type, op_internal_equ  >::yes)  { (*Aptr) =  (Proxy<T1>::prefer_at_accessor) ? P.at(0,ii) : P[ii]; }
-        if(is_same_type<op_type, op_internal_plus >::yes)  { (*Aptr) += (Proxy<T1>::prefer_at_accessor) ? P.at(0,ii) : P[ii]; }
-        if(is_same_type<op_type, op_internal_minus>::yes)  { (*Aptr) -= (Proxy<T1>::prefer_at_accessor) ? P.at(0,ii) : P[ii]; }
-        if(is_same_type<op_type, op_internal_schur>::yes)  { (*Aptr) *= (Proxy<T1>::prefer_at_accessor) ? P.at(0,ii) : P[ii]; }
-        if(is_same_type<op_type, op_internal_div  >::yes)  { (*Aptr) /= (Proxy<T1>::prefer_at_accessor) ? P.at(0,ii) : P[ii]; }
+        if(is_same_type<op_type, op_internal_equ  >::yes)  { (*Aptr) =  (Proxy<T1>::use_at) ? P.at(0,ii) : P[ii]; }
+        if(is_same_type<op_type, op_internal_plus >::yes)  { (*Aptr) += (Proxy<T1>::use_at) ? P.at(0,ii) : P[ii]; }
+        if(is_same_type<op_type, op_internal_minus>::yes)  { (*Aptr) -= (Proxy<T1>::use_at) ? P.at(0,ii) : P[ii]; }
+        if(is_same_type<op_type, op_internal_schur>::yes)  { (*Aptr) *= (Proxy<T1>::use_at) ? P.at(0,ii) : P[ii]; }
+        if(is_same_type<op_type, op_internal_div  >::yes)  { (*Aptr) /= (Proxy<T1>::use_at) ? P.at(0,ii) : P[ii]; }
         }
       }
     else  // not a row vector
       {
-      if(Proxy<T1>::prefer_at_accessor)
+      if(Proxy<T1>::use_at)
         {
         for(uword ucol=0; ucol < s_n_cols; ++ucol)
           {
@@ -2212,8 +2212,8 @@ subview<eT>::diag(const sword in_id) const
   {
   arma_extra_debug_sigprint();
   
-  const uword row_offset = (in_id < 0) ? -in_id : 0;
-  const uword col_offset = (in_id > 0) ?  in_id : 0;
+  const uword row_offset = uword( (in_id < 0) ? -in_id : 0 );
+  const uword col_offset = uword( (in_id > 0) ?  in_id : 0 );
   
   arma_debug_check
     (
@@ -2762,6 +2762,90 @@ subview_col<eT>::tail(const uword N) const
 
 
 
+template<typename eT>
+inline
+arma_warn_unused
+eT
+subview_col<eT>::min() const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(subview<eT>::n_elem == 0)
+    {
+    arma_debug_check(true, "min(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
+  
+  return op_min::direct_min(colmem, subview<eT>::n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+eT
+subview_col<eT>::max() const
+  {
+  arma_extra_debug_sigprint();
+  
+  if(subview<eT>::n_elem == 0)
+    {
+    arma_debug_check(true, "max(): object has no elements");
+    
+    return Datum<eT>::nan;
+    }
+  
+  return op_max::direct_max(colmem, subview<eT>::n_elem);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+uword
+subview_col<eT>::index_min() const
+  {
+  uword index = 0;
+  
+  if(subview<eT>::n_elem == 0)
+    {
+    arma_debug_check(true, "index_min(): object has no elements");
+    }
+  else
+    {
+    op_min::direct_min(colmem, subview<eT>::n_elem, index);
+    }
+  
+  return index;
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+uword
+subview_col<eT>::index_max() const
+  {
+  uword index = 0;
+  
+  if(subview<eT>::n_elem == 0)
+    {
+    arma_debug_check(true, "index_max(): object has no elements");
+    }
+  else
+    {
+    op_max::direct_max(colmem, subview<eT>::n_elem, index);
+    }
+  
+  return index;
+  }
+
+
+
 //
 //
 //
@@ -3126,6 +3210,54 @@ subview_row<eT>::tail(const uword N) const
   const uword start_col = subview<eT>::aux_col1 + subview<eT>::n_cols - N;
   
   return subview_row<eT>(this->m, this->aux_row1, start_col, N);
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+uword
+subview_row<eT>::index_min() const
+  {
+  const Proxy< subview_row<eT> > P(*this);
+  
+  uword index = 0;
+  
+  if(P.get_n_elem() == 0)
+    {
+    arma_debug_check(true, "index_min(): object has no elements");
+    }
+  else
+    {
+    op_min::min_with_index(P, index);
+    }
+  
+  return index;
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+uword
+subview_row<eT>::index_max() const
+  {
+  const Proxy< subview_row<eT> > P(*this);
+  
+  uword index = 0;
+  
+  if(P.get_n_elem() == 0)
+    {
+    arma_debug_check(true, "index_max(): object has no elements");
+    }
+  else
+    {
+    op_max::max_with_index(P, index);
+    }
+  
+  return index;
   }
 
 

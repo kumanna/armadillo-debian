@@ -14,9 +14,9 @@
 
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-set(ARMA_MAJOR 6)
-set(ARMA_MINOR 700)
-set(ARMA_PATCH 6)
+set(ARMA_MAJOR 7)
+set(ARMA_MINOR 200)
+set(ARMA_PATCH 2)
 set(ARMADILLO_VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH})
 
 message(STATUS "Configuring Armadillo ${ARMADILLO_VERSION}")
@@ -38,7 +38,7 @@ set(ARMA_USE_ATLAS            false)
 set(ARMA_USE_HDF5_ALT         false)
 set(ARMA_USE_ARPACK           false)
 set(ARMA_USE_EXTERN_CXX11_RNG false)
-set(ARMA_USE_SUPERLU          false)  # Caveat: only SuperLU version 4.3 can be used!
+set(ARMA_USE_SUPERLU          false)  # Caveat: only SuperLU version 5.x can be used!
 
 project(armadillo CXX)
 
@@ -271,7 +271,7 @@ if(ARPACK_FOUND)
   set(ARMA_LIBS ${ARMA_LIBS} ${ARPACK_LIBRARY})
 endif()
 
-include(ARMA_FindSuperLU)
+include(ARMA_FindSuperLU5)
 message(STATUS "SuperLU_FOUND = ${SuperLU_FOUND}")
 
 if(SuperLU_FOUND)
