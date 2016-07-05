@@ -5,6 +5,7 @@ armadillo (1:7.200.2+dfsg-1) experimental; urgency=medium
   * Switch to dpkg-source 3.0 (quilt) format
   * Standards version is now 3.9.8 (no changes needed)
   * The new package (with soname) is libarmadillo7
+  * Convert to 3.0 (quilt)
 
  -- Kumar Appaiah <akumar@debian.org>  Tue, 05 Jul 2016 10:50:51 +0530
 
