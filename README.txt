@@ -67,14 +67,13 @@ Main developers:
 2: Citation Details
 ===================
 
-Please cite the following tech report if you use Armadillo in your
+Please cite the following article if you use Armadillo in your
 research and/or software. Citations are useful for the continued
 development and maintenance of the library.
 
-  Conrad Sanderson.
-  Armadillo: An Open Source C++ Linear Algebra Library for
-  Fast Prototyping and Computationally Intensive Experiments.
-  Technical Report, NICTA, 2010.
+  Conrad Sanderson and Ryan Curtin.
+  Armadillo: a template-based C++ library for linear algebra.
+  Journal of Open Source Software, Vol. 1, pp. 26, 2016.
 
 
 
@@ -150,7 +149,7 @@ For example, for GCC and Clang compilers use -O2 or -O3
   See http://xianyi.github.com/OpenBLAS/
   
   If you are using sparse matrices, also install ARPACK and SuperLU.
-  Caveat: only SuperLU version 4.3 can be used!
+  Caveat: only SuperLU version 5.2 can be used!
   
   On Linux-based systems, the following libraries are recommended
   to be present: OpenBLAS, LAPACK, SuperLU and ARPACK.
@@ -209,7 +208,7 @@ In general, programs which use Armadillo are compiled along these lines:
 If you want to use Armadillo without installation (not recommended),
 compile along these lines:
   
-  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-6.700.6/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
+  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-7.200.2/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
   
 The above command line assumes that you have unpacked the armadillo archive into /home/blah/
 You will need to adjust this for later versions of Armadillo,

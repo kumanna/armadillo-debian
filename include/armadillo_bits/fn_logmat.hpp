@@ -14,6 +14,7 @@
 
 
 template<typename T1>
+arma_warn_unused
 arma_inline
 typename enable_if2< (is_supported_blas_type<typename T1::elem_type>::value && is_cx<typename T1::elem_type>::no), const mtOp<std::complex<typename T1::elem_type>, T1, op_logmat> >::result
 logmat(const Base<typename T1::elem_type,T1>& X, const uword n_iters = 100u)
@@ -26,6 +27,7 @@ logmat(const Base<typename T1::elem_type,T1>& X, const uword n_iters = 100u)
 
 
 template<typename T1>
+arma_warn_unused
 arma_inline
 typename enable_if2< (is_supported_blas_type<typename T1::elem_type>::value && is_cx<typename T1::elem_type>::yes), const Op<T1, op_logmat_cx> >::result
 logmat(const Base<typename T1::elem_type,T1>& X, const uword n_iters = 100u)
@@ -44,7 +46,15 @@ logmat(Mat< std::complex<typename T1::elem_type> >& Y, const Base<typename T1::e
   {
   arma_extra_debug_sigprint();
   
-  return op_logmat::apply_direct(Y, X.get_ref(), n_iters);
+  const bool status = op_logmat::apply_direct(Y, X.get_ref(), n_iters);
+  
+  if(status == false)
+    {
+    Y.reset();
+    arma_debug_warn("logmat(): transformation failed");
+    }
+  
+  return status;
   }
 
 
@@ -56,7 +66,15 @@ logmat(Mat<typename T1::elem_type>& Y, const Base<typename T1::elem_type,T1>& X,
   {
   arma_extra_debug_sigprint();
   
-  return op_logmat_cx::apply_direct(Y, X.get_ref(), n_iters);
+  const bool status = op_logmat_cx::apply_direct(Y, X.get_ref(), n_iters);
+  
+  if(status == false)
+    {
+    Y.reset();
+    arma_debug_warn("logmat(): transformation failed");
+    }
+  
+  return status;
   }
 
 

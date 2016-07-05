@@ -816,7 +816,7 @@ diskio::save_raw_ascii(const Mat<eT>& x, std::ostream& f)
       
       if( (is_float<eT>::value) || (is_double<eT>::value) )
         {
-        f.width(cell_width);
+        f.width(std::streamsize(cell_width));
         }
       
       arma_ostream::print_elem(f, x.at(row,col), false);
@@ -942,7 +942,7 @@ diskio::save_arma_ascii(const Mat<eT>& x, std::ostream& f)
       
       if( (is_float<eT>::value) || (is_double<eT>::value) )        
         {
-        f.width(cell_width);
+        f.width(std::streamsize(cell_width));
         }
       
       arma_ostream::print_elem(f, x.at(row,col), false);
@@ -1250,7 +1250,7 @@ diskio::save_hdf5_binary(const Mat<eT>& x, const std::string& final_name)
     arma_ignore(x);
     arma_ignore(final_name);
     
-    arma_stop("Mat::save(): use of HDF5 needs to be enabled");
+    arma_stop_logic_error("Mat::save(): use of HDF5 needs to be enabled");
     
     return false;
     }
@@ -1456,10 +1456,10 @@ diskio::load_raw_binary(Mat<eT>& x, std::istream& f, std::string& err_msg)
   //f.seekg(0, ios::beg);
   f.seekg(pos1);
   
-  x.set_size(N / sizeof(eT), 1);
+  x.set_size(N / uword(sizeof(eT)), 1);
   
   f.clear();
-  f.read( reinterpret_cast<char *>(x.memptr()), std::streamsize(N) );
+  f.read( reinterpret_cast<char *>(x.memptr()), std::streamsize(x.n_elem * uword(sizeof(eT))) );
   
   return f.good();
   }
@@ -2128,7 +2128,7 @@ diskio::load_hdf5_binary(Mat<eT>& x, const std::string& name, std::string& err_m
     arma_ignore(name);
     arma_ignore(err_msg);
 
-    arma_stop("Mat::load(): use of HDF5 needs to be enabled");
+    arma_stop_logic_error("Mat::load(): use of HDF5 needs to be enabled");
 
     return false;
     }
@@ -3159,7 +3159,7 @@ diskio::save_raw_ascii(const Cube<eT>& x, std::ostream& f)
         
         if( (is_float<eT>::value) || (is_double<eT>::value) )
           {
-          f.width(cell_width);
+          f.width(std::streamsize(cell_width));
           }
         
         arma_ostream::print_elem(f, x.at(row,col,slice), false);
@@ -3288,7 +3288,7 @@ diskio::save_arma_ascii(const Cube<eT>& x, std::ostream& f)
         
         if( (is_float<eT>::value) || (is_double<eT>::value) )        
           {
-          f.width(cell_width);
+          f.width(std::streamsize(cell_width));
           }
         
         arma_ostream::print_elem(f, x.at(row,col,slice), false);
@@ -3417,7 +3417,7 @@ diskio::save_hdf5_binary(const Cube<eT>& x, const std::string& final_name)
     arma_ignore(x);
     arma_ignore(final_name);
 
-    arma_stop("Cube::save(): use of HDF5 needs to be enabled");
+    arma_stop_logic_error("Cube::save(): use of HDF5 needs to be enabled");
 
     return false;
     }
@@ -3536,10 +3536,10 @@ diskio::load_raw_binary(Cube<eT>& x, std::istream& f, std::string& err_msg)
   //f.seekg(0, ios::beg);
   f.seekg(pos1);
   
-  x.set_size(N / sizeof(eT), 1, 1);
+  x.set_size(N / uword(sizeof(eT)), 1, 1);
   
   f.clear();
-  f.read( reinterpret_cast<char *>(x.memptr()), std::streamsize(N) );
+  f.read( reinterpret_cast<char *>(x.memptr()), std::streamsize(x.n_elem * uword(sizeof(eT))) );
   
   return f.good();
   }
@@ -3881,7 +3881,7 @@ diskio::load_hdf5_binary(Cube<eT>& x, const std::string& name, std::string& err_
     arma_ignore(name);
     arma_ignore(err_msg);
 
-    arma_stop("Cube::load(): use of HDF5 needs to be enabled");
+    arma_stop_logic_error("Cube::load(): use of HDF5 needs to be enabled");
 
     return false;
     }

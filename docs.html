@@ -144,7 +144,7 @@ hr.greyline
 <!--  -->
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
-<big><b>API Documentation for Armadillo 6.700</b></big>
+<big><b>API Documentation for Armadillo 7.200</b></big>
 <br>
 <br>
 <br>
@@ -190,9 +190,9 @@ Citations are useful for the continued development and maintenance of the librar
 <br>
 <br>
 <font size=-1>
-Conrad Sanderson.
-<i><a href="armadillo_nicta_2010.pdf">Armadillo: An Open Source C++ Linear Algebra Library for Fast Prototyping and Computationally Intensive Experiments</a></i>.
-Technical Report, NICTA, 2010.
+Conrad Sanderson and Ryan Curtin.
+<i><a href="armadillo_joss_2016.pdf">Armadillo: a template-based C++ library for linear algebra</a></i>.
+Journal of Open Source Software, Vol.&nbsp;1, pp.&nbsp;26, 2016.
 </font>
 </li>
 <br>
@@ -293,7 +293,8 @@ please obtain the <a href="http://arma.sourceforge.net/faq.html#licenses">commer
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#t_st_members">.t&nbsp;/&nbsp;.st&nbsp;</a></td><td>&nbsp;</td><td>return matrix transpose</td></tr>
 <tr><td><a href="#i_member">.i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td><td>&nbsp;</td><td>return inverse of square matrix</td></tr>
-<tr><td><a href="#min_and_max_member">.min&nbsp;/&nbsp;.max</a></td><td>&nbsp;</td><td>return extremum value, and optionally its location</td></tr>
+<tr><td><a href="#min_and_max_member">.min&nbsp;/&nbsp;.max</a></td><td>&nbsp;</td><td>return extremum value</td></tr>
+<tr><td><a href="#index_min_and_index_max">.index_min&nbsp;/&nbsp;.index_max</a></td><td>&nbsp;</td><td>return index of extremum value</td></tr>
 <tr><td><a href="#eval_member">.eval</a></td><td>&nbsp;</td><td>force evaluation of delayed expression</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#in_range">.in_range</a></td><td>&nbsp;</td><td>check whether given location or span is valid</td></tr>
@@ -479,7 +480,7 @@ please obtain the <a href="http://arma.sourceforge.net/faq.html#licenses">commer
 <tr><td><a href="#princomp">princomp</a></td><td>&nbsp;</td><td>principal component analysis</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#running_stat">running_stat</a></td><td>&nbsp;</td><td>running statistics of one dimensional process/signal</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#running_stat_vec">running_stat_vec</a></td><td>&nbsp;</td><td>running statistics of multi-dimensional process/signal</td></tr>
-<tr><td><a href="#kmeans">kmeans</a></td><td>&nbsp;</td><td>cluster data using k-means algorithm</td></tr>
+<tr><td><a href="#kmeans">kmeans</a></td><td>&nbsp;</td><td>cluster data into disjoint sets</td></tr>
 <tr><td><a href="#gmm_diag">gmm_diag</a></td><td>&nbsp;</td><td>model data as a Gaussian Mixture Model (GMM)</td></tr>
 </tbody>
 </table>
@@ -2314,6 +2315,8 @@ double z = p[9];
 <ul>
 <li><a href="#in_range">.in_range()</a></li>
 <li><a href="#element_initialisation">element initialisation</a></li>
+<li><a href="#ind2sub">ind2sub()</a></li>
+<li><a href="#sub2ind">sub2ind()</a></li>
 <li><a href="#submat">submatrix views</a></li>
 <li><a href="#memptr">.memptr()</a></li>
 <li><a href="#iterators_mat">iterators (matrices)</a></li>
@@ -3475,6 +3478,9 @@ Q<b>(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b> l
 Q<b>(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> first_slice<b>, size(</b>n_rows<b>,</b> n_cols<b>, </b>n_slices<b>)&nbsp;)</b><br>
 Q<b>(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> first_slice<b>, size(</b>R<b>)&nbsp;)</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>(R is a cube)</i><br>
 <br>
+Q.<b>head_slices(&nbsp;</b>number_of_slices<b>&nbsp;)</b><br>
+Q.<b>tail_slices(&nbsp;</b>number_of_slices<b>&nbsp;)</b><br>
+<br>
 Q.<b>tube(&nbsp;</b>row<b>,</b> col&nbsp;<b>)</b><br>
 Q.<b>tube(&nbsp;</b>first_row<b>,</b> first_col<b>,</b> last_row<b>,</b> last_col&nbsp;<b>)</b><br>
 Q.<b>tube(&nbsp;span(</b>first_row<b>,</b> last_row<b>), span(</b>first_col<b>,</b> last_col<b>)&nbsp;)</b><br>
@@ -3545,7 +3551,7 @@ Examples:
 <pre>
 cube A = randu&lt;cube&gt;(2,3,4);
 
-mat B = A.slice(1);
+mat  B = A.slice(1); // each slice is a matrix
 
 A.slice(0) = randu&lt;mat&gt;(2,3);
 A.slice(0)(1,2) = 99.0;
@@ -3556,6 +3562,10 @@ A( 0,0,1, size(2,2,2) )              = randu&lt;cube&gt;(2,2,2);
 
 // add 123 to all elements of A greater than 0.5
 A.elem( find(A &gt; 0.5) ) += 123.0;
+
+cube C = A.head_slices(2);  // get first two slices
+
+A.head_slices(2) += 123.0;
 </pre>
 </ul>
 </li>
@@ -4952,133 +4962,24 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="min_and_max_member"></a>
-<table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
-  <tbody>
-    <tr>
-      <td style="vertical-align: top;"><b>.min()</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">(member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>SpMat</i>, <i>Cube</i>)
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.max()</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">&nbsp;</td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.min(</b>&nbsp;index_of_min_val&nbsp;<b>)</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">(member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>SpMat</i>, <i>Cube</i>)
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.max(</b>&nbsp;index_of_max_val&nbsp;<b>)</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">&nbsp;</td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.min(</b>&nbsp;row_of_min_val<b>,</b> col_of_min_val&nbsp;<b>)</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">(member functions of <i>Mat</i> and <i>SpMat</i>)
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.max(</b>&nbsp;row_of_max_val<b>,</b> col_of_max_val&nbsp;<b>)</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">&nbsp;</td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.min(</b>&nbsp;row_of_min_val<b>,</b> col_of_min_val<b>,</b> slice_of_min_val&nbsp;<b>)</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">(member functions of <i>Cube</i>)
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;"><b>.max(</b>&nbsp;row_of_max_val<b>,</b> col_of_max_val<b>,</b> slice_of_max_val&nbsp;<b>)</b></td>
-      <td style="vertical-align: top;"><br>
-      </td>
-      <td>&nbsp;</td>
-      <td style="vertical-align: top;">&nbsp;
-      </td>
-    </tr>
-  </tbody>
-</table>
+<b>.min()</b>
+<br><b>.max()</b>
 <ul>
 <li>
-Without arguments: return the extremum value of an object
+Return the extremum value of any matrix or cube expression
 </li>
 <br>
 <li>
-With one or more arguments: return the extremum value of an object and store the location of the extremum value in the provided variable(s)
-</li>
-<br>
-<li>
-The provided variables must be of type <a href="#uword">uword</a>
+For objects with complex numbers, absolute values are used for comparison
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-vec v = randu&lt;vec&gt;(10);
-
-cout &lt;&lt; "min value is " &lt;&lt; v.min() &lt;&lt; endl;
-
-
-uword  index;
-double min_val = v.min(index);
-
-cout &lt;&lt; "index of min value is " &lt;&lt; index &lt;&lt; endl;
-
-
 mat A = randu&lt;mat&gt;(5,5);
 
-uword  row;
-uword  col;
-double min_val2 = A.max(row,col);
-
-cout &lt;&lt; "max value is at " &lt;&lt; row &lt;&lt; ',' &lt;&lt; col &lt;&lt; endl;
+double max_val = A.max();
 </pre>
 </ul>
 </li>
@@ -5086,10 +4987,53 @@ cout &lt;&lt; "max value is at " &lt;&lt; row &lt;&lt; ',' &lt;&lt; col &lt;&lt;
 <li>
 See also:
 <ul>
+<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a></li>
 <li><a href="#min_and_max">min() &amp; max()</a> (standalone functions)</li>
 <li><a href="#clamp">clamp()</a>
 <li><a href="#running_stat">running_stat</a></li>
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="index_min_and_index_max"></a>
+<b>.index_min()</b>
+<br><b>.index_max()</b>
+<ul>
+<li>
+Return the linear index of the extremum value of any matrix or cube expression
+</li>
+<br>
+<li>
+For objects with complex numbers, absolute values are used for comparison
+</li>
+<br>
+<li>
+The returned index is of type <a href="#uword">uword</a>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+
+uword i = A.index_max();
+
+double max_val = A(i);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#min_and_max_member">.min() &amp; .max()</a></li>
+<li><a href="#ind2sub">ind2sub()</a></li>
+<li><a href="#sort_index">sort_index()</a></li>
+<li><a href="#element_access">element access</a></li>
 </ul>
 </li>
 <br>
@@ -5682,7 +5626,7 @@ Member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>SpMat</i> and <i>Cube
 <br>
 <li>
 Similar to the <a href="#print">.print()</a> member function,
-with the difference that no formatting of the output is done -- ie. the user can set the stream's parameters such as precision, cell width, etc.
+with the difference that no formatting of the output is done; the stream's parameters such as precision, cell width, etc. can be set manually
 </li>
 <br>
 <li>
@@ -5698,12 +5642,19 @@ mat A = randu&lt;mat&gt;(5,5);
 cout.precision(11);
 cout.setf(ios::fixed);
 
-A.raw_print(cout, "A =");
+A.raw_print(cout, "A:");
 </pre>
 </ul>
 </li>
-</ul>
 <br>
+<li>See also:
+<ul>
+<li><a href="http://en.cppreference.com/w/cpp/io/ios_base/fmtflags">std::ios_base::fmtflags</a> (cppreference.com)</li>
+<li><a href="http://www.cplusplus.com/reference/ios/ios_base/fmtflags/">std::ios_base::fmtflags</a> (cplusplus.com)</li>
+</ul>
+</li>
+<br>
+</ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="save_load_mat"></a>
@@ -7105,14 +7056,12 @@ double d = as_scalar(r*inv(diagmat(X))*q);
 <li>
 See also:
 <ul>
+<li><a href="#vectorise">vectorise()</a></li>
 <li><a href="#accu">accu()</a></li>
 <li><a href="#trace">trace()</a></li>
 <li><a href="#dot">dot()</a></li>
 <li><a href="#norm">norm()</a></li>
 <li><a href="#conv_to">conv_to()</a></li>
-<li><a href="#reshape">reshape()</a></li>
-<li><a href="#resize">resize()</a></li>
-<li><a href="#vectorise">vectorise()</a></li>
 </ul>
 </li>
 <br>
@@ -7603,11 +7552,11 @@ vec b = diff(a);
 </li>
 <br>
 <li>
-<i>norm_dot(A,B)</i>: equivalent to <i>dot(A,B)&nbsp;/&nbsp;(&#8741;A&#8741;&#8226;&#8741;B&#8741;)</i>
+<i>norm_dot(A,B)</i>: normalised dot product; equivalent to <i>dot(A,B)&nbsp;/&nbsp;(&#8741;A&#8741;&#8226;&#8741;B&#8741;)</i>
 </li>
 <br>
 <li>
-<b>Caveat:</b> to calculate the norm, the <a href="#norm">norm()</a> function is more robust
+<b>Caveat:</b> <a href="#norm">norm()</a> is more robust for calculating the norm, as it handles underflows and overflows
 </li>
 <br>
 <li>
@@ -7668,11 +7617,19 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="expmat"></a>
-<b>expmat( X )</b>
+<b>B = expmat(A)</b>
+<br><b>expmat(B, A)</b>
 <ul>
-<li>Return the matrix exponential of square matrix <i>X</i></li>
+<li>Matrix exponential of square matrix <i>A</i></li>
 <br>
-<li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li>If the matrix exponential cannot be found:
+<ul>
+<li><i>B = expmat(A)</i> resets <i>B</i> and throws a <i>std::runtime_error</i> exception</li>
+<li><i>expmat(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
+</ul>
+</li>
 <br>
 <li><b>Caveat</b>: the matrix exponential operation is <b>not</b> the same as applying the <a href="#misc_fns">exp()</a> function to each element
 </li>
@@ -7758,7 +7715,7 @@ See also:
 <li><a href="#nonzeros">nonzeros()</a></li>
 <li><a href="#unique">unique()</a></li>
 <li><a href="#sort_index">sort_index()</a></li>
-<li><a href="#conv_to">conv_to()</a> (convert between matrix/vector types)</li>
+<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a></li>
 <li><a href="#submat">submatrix views</a></li>
 <li><a href="#subcube">subcube views</a></li>
 </ul>
@@ -7971,32 +7928,57 @@ to work around this bug, preface Armadillo's <i>imag()</i> and <i>real()</i> wit
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="ind2sub"></a>
-sub&nbsp;=&nbsp;<b>ind2sub(&nbsp;size(</b>n_rows,&nbsp;n_cols<b>),</b>&nbsp;index&nbsp;<b>)</b>
-<br>
-<br>
-sub&nbsp;=&nbsp;<b>ind2sub(&nbsp;size(</b>n_rows<b>,</b>&nbsp;n_cols<b>,</b>&nbsp;n_slices<b>),</b>&nbsp;index&nbsp;<b>)</b>
+<table>
+<tbody>
+<tr><td>uvec</td><td>&nbsp;sub&nbsp;=&nbsp;<b>ind2sub(&nbsp;size(</b>X<b>),</b>&nbsp;index&nbsp;<b>)</b></td></tr>
+<tr><td>umat</td><td>&nbsp;sub&nbsp;=&nbsp;<b>ind2sub(&nbsp;size(</b>X<b>),</b>&nbsp;vector_of_indices&nbsp;<b>)</b></td></tr>
+</tbody>
+</table>
 <ul>
 <li>
-Convert a linear index to subscript notation
+Convert a linear index, or a vector of indices, to subscript notation
 </li>
 <br>
 <li>
-A&nbsp;<i>std::logic_error</i> exception is thrown if the index is out of range
+The argument <i><b>size(</b>X<b>)</b></i> can be replaced with <i><b>size(</b>n_rows<b>,</b>&nbsp;n_cols<b>)</b></i> or <i><b>size(</b>n_rows<b>,</b>&nbsp;n_cols<b>,</b>&nbsp;n_slices<b>)</b></i>
 </li>
 <br>
 <li>
-The subscripts are returned in a vector of type <a href="#Col">uvec</a>;
-the length of the vector is the same as the number of arguments given to the <i>size()</i> function (ie.&nbsp;either 2 or 3)
+A&nbsp;<i>std::logic_error</i> exception is thrown if an index is out of range
+</li>
+<br>
+<li>
+When only one index is given, the subscripts are returned in a vector of type <a href="#Col">uvec</a>
+</li>
+<br>
+<li>
+When a vector of indices (of type <a href="#Col">uvec</a>) is given, the corresponding subscripts are returned in each column of an <i>m&nbsp;x&nbsp;n</i> matrix of type <a href="#Mat">umat</a>;
+<i>m=2</i> for matrix subscripts, while <i>m=3</i> for cube subscripts
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-uvec s = ind2sub( size(4, 5), 6 );
+mat M(4, 5, fill::randu);
+
+uvec s = ind2sub( size(M), 6 );
 
 cout &lt;&lt; "row: " &lt;&lt; s(0) &lt;&lt; endl;
 cout &lt;&lt; "col: " &lt;&lt; s(1) &lt;&lt; endl;
+
+
+uvec indices = find(M &gt; 0.5);
+umat t       = ind2sub( size(M), indices );
+
+
+cube Q(2,3,4);
+
+uvec u = ind2sub( size(Q), 8 );
+
+cout &lt;&lt; "row:   " &lt;&lt; u(0) &lt;&lt; endl;
+cout &lt;&lt; "col:   " &lt;&lt; u(1) &lt;&lt; endl;
+cout &lt;&lt; "slice: " &lt;&lt; u(2) &lt;&lt; endl;
 </pre>
 </ul>
 </li>
@@ -8006,6 +7988,7 @@ cout &lt;&lt; "col: " &lt;&lt; s(1) &lt;&lt; endl;
 <li><a href="#size">size()</a></li>
 <li><a href="#sub2ind">sub2ind()</a></li>
 <li><a href="#element_access">element access</a></li>
+<li><a href="#find">find()</a></li>
 </ul>
 </li>
 <br>
@@ -8259,11 +8242,19 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="logmat"></a>
-<b>logmat( X )</b>
+<b>B = logmat(A)</b>
+<br><b>logmat(B, A)</b>
 <ul>
-<li>Return the complex matrix logarithm of square matrix <i>X</i></li>
+<li>Complex matrix logarithm of square matrix <i>A</i></li>
 <br>
-<li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li>If the matrix logarithm cannot be found:
+<ul>
+<li><i>B = logmat(A)</i> resets <i>B</i> and throws a <i>std::runtime_error</i> exception</li>
+<li><i>logmat(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
+</ul>
+</li>
 <br>
 <li><b>Caveat</b>: the matrix logarithm operation is <b>not</b> the same as applying the <a href="#misc_fns">log()</a> function to each element
 </li>
@@ -8339,6 +8330,10 @@ For two matrices/cubes <i>A</i> and <i>B</i>, return a matrix/cube containing el
 </li>
 <br>
 <li>
+For objects with complex numbers, absolute values are used for comparison
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
@@ -8362,8 +8357,9 @@ mat Z = arma::max(X,Y);  // use arma:: prefix to distinguish from std::max()
 <li>
 See also:
 <ul>
+<li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions)</li>
+<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a>
 <li><a href="#clamp">clamp()</a>
-<li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions of Mat and Cube)</li>
 <li><a href="#running_stat">running_stat</a></li>
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
 </ul>
@@ -8913,6 +8909,7 @@ The dimensions can be used in conjunction with:
 <li><a href="#submat">submatrix views</a></li>
 <li><a href="#subcube">subcube views</a></li>
 <li><a href="#subfield">subfield views</a></li>
+<li><a href="#ind2sub">ind2sub()</a> and <a href="#sub2ind">sub2ind()</a></li>
 </ul>
 </li>
 <br>
@@ -9037,8 +9034,10 @@ uvec indices = sort_index(q);
 <li>
 See also:
 <ul>
-<li><a href="#find">find()</a></li>
 <li><a href="#sort">sort()</a></li>
+<li><a href="#find">find()</a></li>
+<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a></li>
+<li><a href="#ind2sub">ind2sub()</a></li>
 </ul>
 </li>
 <br>
@@ -9046,11 +9045,16 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="sqrtmat"></a>
-<b>sqrtmat( X )</b>
+<b>B = sqrtmat(A)</b>
+<br><b>sqrtmat(B,A)</b>
 <ul>
-<li>Return the complex square root of square matrix <i>X</i></li>
+<li>Complex square root of square matrix <i>A</i></li>
 <br>
 <li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li>
+If matrix <i>A</i> appears to be singular, an approximate square root is attempted; additionally, <i>sqrtmat(B,A)</i> returns a bool set to false
+</li>
 <br>
 <li><b>Caveat</b>: the square root of a matrix is generally <b>not</b> the same as applying the <a href="#misc_fns">sqrt()</a> function to each element
 </li>
@@ -9070,7 +9074,7 @@ cx_mat B = sqrtmat(A);
 See also:
 <ul>
 <li><a href="#expmat">expmat()</a></li>
-<li><a href="#expmat">logmat()</a></li>
+<li><a href="#logmat">logmat()</a></li>
 <li><a href="#imag_real">real()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Square_root_of_a_matrix">square root of a matrix in Wikipedia</a></li>
@@ -9142,13 +9146,27 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="sub2ind"></a>
-index&nbsp;=&nbsp;<b>sub2ind(&nbsp;size(</b>n_rows,&nbsp;n_cols<b>),</b>&nbsp;row<b>,</b>&nbsp;col&nbsp;<b>)</b>
-<br>
-<br>
-index&nbsp;=&nbsp;<b>sub2ind(&nbsp;size(</b>n_rows<b>,</b>&nbsp;n_cols<b>,</b>&nbsp;n_slices<b>),</b>&nbsp;row<b>,</b>&nbsp;col<b>,</b>&nbsp;slice&nbsp;<b>)</b>
+<table>
+<tbody>
+<tr><td>uword&nbsp;</td><td>index</td><td>&nbsp;=&nbsp;<b>sub2ind(&nbsp;size(</b>M<b>),</b>&nbsp;row<b>,</b>&nbsp;col&nbsp;<b>)</b></td><td>(<i>M</i> is a matrix)</td></tr>
+<tr><td>uvec&nbsp;</td><td>indices</td><td>&nbsp;=&nbsp;<b>sub2ind(&nbsp;size(</b>M<b>),</b>&nbsp;matrix_of_subscripts&nbsp;<b>)</b></td><td></td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>uword&nbsp;</td><td>index</td><td>&nbsp;=&nbsp;<b>sub2ind(&nbsp;size(</b>Q<b>),</b>&nbsp;row<b>,</b>&nbsp;col<b>,</b>&nbsp;slice&nbsp;<b>)</b></td><td>(<i>Q</i> is a cube)</td></tr>
+<tr><td>uvec&nbsp;</td><td>indices</td><td>&nbsp;=&nbsp;<b>sub2ind(&nbsp;size(</b>Q<b>),</b>&nbsp;matrix_of_subscripts&nbsp;<b>)</b></td><td></td></tr>
+</tbody>
+</table>
 <ul>
 <li>
 Convert subscripts to a linear index
+</li>
+<br>
+<li>
+The argument <i><b>size(</b>X<b>)</b></i> can be replaced with <i><b>size(</b>n_rows<b>,</b>&nbsp;n_cols<b>)</b></i> or <i><b>size(</b>n_rows<b>,</b>&nbsp;n_cols<b>,</b>&nbsp;n_slices<b>)</b></i>
+</li>
+<br>
+<li>
+For the <i>matrix_of_subscripts</i> argument, the subscripts must be stored in each column of an <i>m&nbsp;x&nbsp;n</i> matrix of type <a href="#Mat">umat</a>;
+<i>m=2</i> for matrix subscripts, while <i>m=3</i> for cube subscripts
 </li>
 <br>
 <li>
@@ -9159,9 +9177,11 @@ A&nbsp;<i>std::logic_error</i> exception is thrown if a subscript is out of rang
 Examples:
 <ul>
 <pre>
-uword i = sub2ind( size(4, 5), 2, 3 );
+mat  M(4,5);
+cube Q(4,5,6);
 
-uword j = sub2ind( size(4, 5, 6), 2, 3, 4 );
+uword i = sub2ind( size(M), 2, 3 );
+uword j = sub2ind( size(Q), 2, 3, 4 );
 </pre>
 </ul>
 </li>
@@ -9482,11 +9502,13 @@ See also:
 <b>miscellaneous element-wise functions:</b>
 <ul>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td><b>exp  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_exp</b></td></tr>
-<tr><td><b>log  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_log</b></td></tr>
-<tr><td><b>pow  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>square</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>sqrt  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
-<tr><td><b>floor</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>ceil  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>round </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc    </b></td></tr>
-<tr><td><b>sign </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
+<tr><td><b>exp   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_exp</b></td></tr>
+<tr><td><b>log   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_log</b></td></tr>
+<tr><td><b>pow   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>square</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>sqrt  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
+<tr><td><b>floor </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>ceil  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>round </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc    </b></td></tr>
+<tr><td><b>erf   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>erfc  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
+<tr><td><b>lgamma</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
+<tr><td><b>sign  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
 </table>
 </ul>
 <ul>
@@ -9680,6 +9702,39 @@ fn(A) is one of:
     </td>
   </tr>
   <tr style="background-color: #F5F5F5;">
+    <td style="vertical-align: top; text-align: right;">
+      <code>erf(A)</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      error function
+    </td>
+  </tr>
+  <tr style="background-color: #F5F5F5;">
+    <td style="vertical-align: top; text-align: right;">
+      <code>erfc(A)</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      complementary error function
+    </td>
+  </tr>
+  <tr style="background-color: #F5F5F5;">
+    <td style="vertical-align: top; text-align: right;">
+      <code>lgamma(A)</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      natural log of the gamma function
+    </td>
+  </tr>
+  <tr>
     <td style="vertical-align: top; text-align: right;">
       <code>sign(A)</code>
     </td>
@@ -10057,7 +10112,6 @@ See also:
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="inv"></a>
 <b>B = inv( A )</b>
-<br>
 <br><b>inv( B, A )</b>
 <ul>
 <li>
@@ -10616,10 +10670,10 @@ See also:
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="solve"></a>
 <b>X = solve( A, B )</b>
-<br><b>X = solve( A, B, settings )</b> &nbsp;&nbsp;&nbsp; (version 6.300+)
+<br><b>X = solve( A, B, settings )</b>
 <br>
 <br><b>solve( X, A, B )</b>
-<br><b>solve( X, A, B, settings )</b> &nbsp;&nbsp;&nbsp; (version 6.300+)
+<br><b>solve( X, A, B, settings )</b>
 <ul>
 <li>Solve a <b>dense</b> system of linear equations, <i>A*X = B</i>, where <i>X</i> is unknown;
 similar functionality to the \ operator in Matlab/Octave, ie. <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>
@@ -11547,8 +11601,8 @@ The <i>method</i> argument is optional; it is one of:
 <table>
 <tbody>
 <tr><td style="text-align: right;"><code>"nearest"</code></td><td>&nbsp;=&nbsp;</td><td>interpolate using single nearest neighbour</td></tr>
-<tr><td style="text-align: right;"><code>"*nearest"</code></td><td>&nbsp;=&nbsp;</td><td>as per <code>"nearest"</code>, but faster by assuming that <i>X</i> and <i>XI</i> are monotonically increasing</td></tr>
 <tr><td style="text-align: right;"><code>"linear"</code></td><td>&nbsp;=&nbsp;</td><td>linear interpolation between two nearest neighbours (<b>default setting</b>)</td></tr>
+<tr><td style="text-align: right;"><code>"*nearest"</code></td><td>&nbsp;=&nbsp;</td><td>as per <code>"nearest"</code>, but faster by assuming that <i>X</i> and <i>XI</i> are monotonically increasing</td></tr>
 <tr><td style="text-align: right;"><code>"*linear"</code></td><td>&nbsp;=&nbsp;</td><td>as per <code>"linear"</code>, but faster by assuming that <i>X</i> and <i>XI</i> are monotonically increasing</td></tr>
 </tbody>
 </table>
@@ -11587,6 +11641,7 @@ interp1(x, y, xx, yy, "nearest");
 See also:
 <ul>
 <li><a href="#linspace">linspace()</a></li>
+<li><a href="#regspace">regspace()</a></li>
 <li><a href="#conv">conv()</a></li>
 </ul>
 </li>
@@ -12399,11 +12454,11 @@ cout &lt;&lt; more_stats.cov() / (sd.t() * sd);
 <b>kmeans(</b> means<b>,</b> data<b>,</b> k<b>,</b> seed_mode<b>,</b> n_iter<b>,</b> print_mode <b>)</b>
 <ul>
 <li>
-Cluster given data using the k-means algorithm
+Cluster given data into <i>k</i> disjoint sets
 </li>
 <br>
 <li>
-The <i>means</i> parameter is the output matrix containing the resulting means, with each mean stored as a column vector
+The <i>means</i> parameter is the output matrix for storing the resulting centroids of the sets, with each centroid stored as a column vector
 </li>
 <br>
 <li>
@@ -12411,15 +12466,15 @@ The <i>data</i> parameter is the input data matrix, with each sample stored as a
 </li>
 <br>
 <li>
-The <i>k</i> parameter indicates the number of means
+The <i>k</i> parameter indicates the number of centroids
 </li>
 <br>
 <li>
-The <i>seed_mode</i> parameter specifies how the initial means are seeded prior to running k-means; it is one of:
+The <i>seed_mode</i> parameter specifies how the initial centroids are seeded; it is one of:
 <ul>
 <table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
   <tbody>
-  <tr><td><code>keep_existing</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>use the means specified in the <i>means</i> matrix as the starting point</td></tr>
+  <tr><td><code>keep_existing</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>use the centroids specified in the <i>means</i> matrix as the starting point</td></tr>
   <tr><td><code>static_subset</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>use a subset of the data vectors (repeatable)</td></tr>
   <tr><td><code>random_subset</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>use a subset of the data vectors (random)</td></tr>
   <tr><td><code>static_spread</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>use a maximally spread subset of data vectors (repeatable)</td></tr>
@@ -12430,7 +12485,7 @@ The <i>seed_mode</i> parameter specifies how the initial means are seeded prior 
 </li>
 <br>
 <li>
-The <i>n_iter</i> parameter specifies the number of iterations of the k-means algorithm; a sufficient number of iterations is typically about 10
+The <i>n_iter</i> parameter specifies the number of clustering iterations; about 10 is typically sufficient
 </li>
 <br>
 <li>
@@ -12438,11 +12493,11 @@ The <i>print_mode</i> parameter is either <i>true</i> or <i>false</i>, indicatin
 </li>
 <br>
 <li>
-If the k-means algorithm fails, the <i>means</i> matrix is reset and a bool set to <i>false</i> is returned
+If the clustering fails, the <i>means</i> matrix is reset and a bool set to <i>false</i> is returned
 </li>
 <br>
 <li>
-The k-means algorithm will run faster on multi-core machines when OpenMP is enabled in your compiler (eg. <i>-fopenmp</i> in GCC)
+The clustering will run faster on multi-core machines when OpenMP is enabled in your compiler (eg. <i>-fopenmp</i> in GCC)
 </li>
 <br>
 <li>
@@ -12450,11 +12505,11 @@ The k-means algorithm will run faster on multi-core machines when OpenMP is enab
 <ul>
 <br>
 <li>
-the number of data vectors (number of columns in the <i>data</i> matrix) should be much larger than <i>k</i>&nbsp; (number of means)
+the number of data vectors (number of columns in the <i>data</i> matrix) should be much larger than <i>k</i>&nbsp; (number of centroids)
 </li>
 <br>
 <li>
-seeding the initial means with <code>static_spread</code> and <code>random_spread</code>
+seeding the initial centroids with <code>static_spread</code> and <code>random_spread</code>
 can be much more time consuming than with <code>static_subset</code> and <code>random_subset</code>
 </li>
 </ul>
@@ -12477,7 +12532,7 @@ bool status = kmeans(means, data, 2, random_subset, 10, true);
 
 if(status == false)
   {
-  cout &lt;&lt; "k-means failed" &lt;&lt; endl;
+  cout &lt;&lt; "clustering failed" &lt;&lt; endl;
   }
 
 means.print("means:");
@@ -13830,7 +13885,7 @@ log_a, log_b and log_c must have the same type
 <li>The minimum width of both <i>uword</i> and <i>sword</i> is either 32 or 64 bits:
 <ul>
 <li>when using the old C++98 / C++03 standards, the default width is 32 bits</li>
-<li>when using the new C++11 / C++14 standards, the default width is 64 bits on 64-bit platforms (as of Armadillo 5.000)</li>
+<li>when using the new C++11 / C++14 standards, the default width is 64 bits on 64-bit platforms</li>
 </ul>
 </li>
 <br>
@@ -14768,7 +14823,7 @@ Specific functionality can be enabled or disabled by uncommenting or commenting 
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-Enable the use of LAPACK, or a high-speed replacement for LAPACK (eg. Intel MKL, AMD ACML or the Accelerate framework).
+Enable use of LAPACK, or a high-speed replacement for LAPACK (eg. Intel MKL, AMD ACML or the Accelerate framework).
 Armadillo requires LAPACK for functions such as <a href="#svd">svd()</a>, <a href="#inv">inv()</a>, <a href="#eig_sym">eig_sym()</a>, <a href="#solve">solve()</a>, etc.
     </td>
   </tr>
@@ -14813,10 +14868,9 @@ Disable use of LAPACK. Overrides <i>ARMA_USE_LAPACK</i>
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-Enable the use of BLAS, or a high-speed replacement for BLAS (eg. OpenBLAS, Intel MKL, AMD ACML or the Accelerate framework).
+Enable use of BLAS, or a high-speed replacement for BLAS (eg. OpenBLAS, Intel MKL, AMD ACML or the Accelerate framework).
 BLAS is used for <a href="#operators">matrix multiplication</a>.
 Without BLAS, Armadillo will use a built-in matrix multiplication routine, which might be slower for large matrices.
-<!--However, if you're using  64 bit operating system with 32 bit BLAS, it's better to disable the use of BLAS.-->
     </td>
   </tr>
   <tr>
@@ -14854,14 +14908,60 @@ Disable use of BLAS. Overrides <i>ARMA_USE_BLAS</i>
   </tr>
   <tr>
     <td style="vertical-align: top;">
+<code>ARMA_USE_NEWARP</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+Enable use of the built-in reimplementation of ARPACK (Armadillo 7.x).
+This is used for the eigen decomposition of real (non-complex) sparse matrices, ie. <a href="#eigs_gen">eigs_gen()</a>, <a href="#eigs_sym">eigs_sym()</a> and <a href="#svds">svds().</a>
+Requires ARMA_USE_LAPACK to be enabled.
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+<code>ARMA_DONT_USE_NEWARP</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+Disable use of the built-in reimplementation of ARPACK. Overrides <i>ARMA_USE_NEWARP</i>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
 <code>ARMA_USE_ARPACK</code>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-Enable the use of ARPACK, or a high-speed replacement for ARPACK.
-Armadillo requires ARPACK for the eigen decomposition of sparse matrices, ie. <a href="#eigs_gen">eigs_gen()</a>, <a href="#eigs_sym">eigs_sym()</a> and <a href="#svds">svds()</a>
+Enable use of ARPACK, or a high-speed replacement for ARPACK.
+Armadillo requires ARPACK for the eigen decomposition of complex sparse matrices, ie. <a href="#eigs_gen">eigs_gen()</a>, <a href="#eigs_sym">eigs_sym()</a> and <a href="#svds">svds()</a>
     </td>
   </tr>
   <tr>
@@ -14905,8 +15005,9 @@ Disable use of ARPACK. Overrides <i>ARMA_USE_ARPACK</i>
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-Enable the use of SuperLU, which is used by <a href="#spsolve">spsolve()</a> for finding the solutions of sparse systems.
-Only SuperLU versions 4.x are supported. You will need to link with the superlu library (eg. -lsuperlu)
+Enable use of SuperLU, which is used by <a href="#spsolve">spsolve()</a> for finding the solutions of sparse systems;
+you will need to link with the superlu library, for example <code><i>-lsuperlu</i></code>
+<br><b>Caveat:</b> Armadillo&nbsp;6.x requires SuperLU&nbsp;4.3, while Armadillo&nbsp;7.x requires SuperLU&nbsp;5.2
     </td>
   </tr>
   <tr>
@@ -15198,7 +15299,7 @@ Use Intel MKL <i>mkl_malloc()</i> and <i>mkl_free()</i> instead of standard <i>m
     </td>
     <td style="vertical-align: top;">
 Use 64 bit integers.
-Automatically enabled when using a C++11 compiler (as of Armadillo 5.000).
+Automatically enabled when using a C++11 compiler on 64-bit platforms.
 Useful if you require matrices/vectors capable of holding more than 4 billion elements.
 Your machine and compiler must have support for 64 bit integers (eg. via "long" or "long&nbsp;long").
 This can also be enabled by adding <i>#define&nbsp;ARMA_64BIT_WORD</i> before each instance of <i>#include&nbsp;&lt;armadillo&gt;</i>
@@ -15486,6 +15587,27 @@ List of additions and changes for each version:
 <br>
 <ul>
 
+<a name="version_7200"></a>
+<li>Version 7.200:
+<ul>
+<li>added <a href="#index_min_and_index_max">.index_min()</a> and <a href="#index_min_and_index_max">.index_max()</a></li>
+<li>expanded <a href="#ind2sub">ind2sub()</a> to handle vectors of indices</li>
+<li>expanded <a href="#sub2ind">sub2ind()</a> to handle matrix of subscripts</li>
+<li>expanded <a href="#expmat">expmat()</a>, <a href="#logmat">logmat()</a> and <a href="#sqrtmat">sqrtmat()</a> to optionally return a bool indicating success</li>
+<li>faster handling of compound expressions by <a href="#vectorise">vectorise()</a></li>
+</ul>
+</li>
+<br>
+<a name="version_7100"></a>
+<li>Version 7.100:
+<ul>
+<li>added <a href="#misc_fns">erf()</a>, <a href="#misc_fns">erfc()</a>, <a href="#misc_fns">lgamma()</a></li>
+<li>added <a href="#subcube">.head_slices()</a> and <a href="#subcube">.tail_slices()</a> to subcube views</li>
+<li><a href="#spsolve">spsolve()</a> now requires SuperLU 5.2</li>
+<li><a href="#eigs_sym">eigs_sym()</a>, <a href="#eigs_gen">eigs_gen()</a> and <a href="#svds">svds()</a> now use a built-in reimplementation of ARPACK for real (non-complex) matrices; contributed by Yixuan Qiu</li>
+</ul>
+</li>
+<br>
 <a name="version_6700"></a>
 <li>Version 6.700:
 <ul>
