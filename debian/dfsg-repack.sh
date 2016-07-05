@@ -19,11 +19,11 @@ tarball="$(readlink -f "$tarball")"
 tdir="$(mktemp -d)"
 trap '[ ! -d "$tdir" ] || rm -r "$tdir"' EXIT
 
-zcat "$tarball" | tar --wildcards --delete '*/mex_interface/*.mat' --delete '*/examples/lib_win64' --delete '*/examples/*_win64.*' --delete '*/*pdf' > "$tdir/${fname/.gz}"
+xzcat "$tarball" | tar --wildcards --delete '*/mex_interface/*.mat' --delete '*/examples/lib_win64' --delete '*/examples/*_win64.*' --delete '*/*pdf' > "$tdir/${fname/.xz}"
 #touch -m -r "$tarball" "$tdir/${fname/.gz}"
-gzip -9 "$tdir/${fname/.gz}"
+xz "$tdir/${fname/.xz}"
 
 mv "$tarball" "$tarball.bkp"
-tarballdfsg=$(echo $3|sed 's/\.orig\.tar\.gz/+dfsg.orig.tar.gz/')
+tarballdfsg=$(echo $3|sed 's/\.orig\.tar\.xz/+dfsg.orig.tar.xz/')
 echo Writing $tarballdfsg
 mv "$tdir/$fname" "$tarballdfsg"
