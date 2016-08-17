@@ -144,7 +144,7 @@ hr.greyline
 <!--  -->
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
-<big><b>API Documentation for Armadillo 7.200</b></big>
+<big><b>API Documentation for Armadillo 7.400</b></big>
 <br>
 <br>
 <br>
@@ -261,6 +261,8 @@ please obtain the <a href="http://arma.sourceforge.net/faq.html#licenses">commer
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#fill">.fill</a></td><td>&nbsp;</td><td>set all elements to specified value</td></tr>
 <tr><td><a href="#imbue">.imbue</a></td><td>&nbsp;</td><td>imbue (fill) with values provided by functor or lambda function</td></tr>
+<tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
+<tr><td><a href="#replace">.replace</a></td><td>&nbsp;</td><td>replace specific elements with a new value</td></tr>
 <tr><td><a href="#transform">.transform</a></td><td>&nbsp;</td><td>transform each element via functor or lambda function</td></tr>
 <tr><td><a href="#for_each">.for_each</a></td><td>&nbsp;</td><td>apply a functor or lambda function to each element</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
@@ -294,7 +296,7 @@ please obtain the <a href="http://arma.sourceforge.net/faq.html#licenses">commer
 <tr><td><a href="#t_st_members">.t&nbsp;/&nbsp;.st&nbsp;</a></td><td>&nbsp;</td><td>return matrix transpose</td></tr>
 <tr><td><a href="#i_member">.i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td><td>&nbsp;</td><td>return inverse of square matrix</td></tr>
 <tr><td><a href="#min_and_max_member">.min&nbsp;/&nbsp;.max</a></td><td>&nbsp;</td><td>return extremum value</td></tr>
-<tr><td><a href="#index_min_and_index_max">.index_min&nbsp;/&nbsp;.index_max</a></td><td>&nbsp;</td><td>return index of extremum value</td></tr>
+<tr><td><a href="#index_min_and_index_max_member">.index_min&nbsp;/&nbsp;.index_max</a></td><td>&nbsp;</td><td>return index of extremum value</td></tr>
 <tr><td><a href="#eval_member">.eval</a></td><td>&nbsp;</td><td>force evaluation of delayed expression</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#in_range">.in_range</a></td><td>&nbsp;</td><td>check whether given location or span is valid</td></tr>
@@ -365,45 +367,49 @@ please obtain the <a href="http://arma.sourceforge.net/faq.html#licenses">commer
 <tr><td><a href="#dot">dot/cdot/norm_dot</a></td><td>&nbsp;</td><td>dot product</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#eps">eps</a></td><td>&nbsp;</td><td>obtain distance of each element to next largest floating point representation</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#expmat">expmat</a></td><td>&nbsp;</td><td>matrix exponential</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#find">find</a></td><td>&nbsp;</td><td>find indices of non-zero elements, or elements satisfying a relational condition</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#expmat_sym">expmat_sym</a></td><td>&nbsp;</td><td>matrix exponential (symmetric)</td></tr>
+<tr><td><a href="#find">find</a></td><td>&nbsp;</td><td>find indices of non-zero elements, or elements satisfying a relational condition</td></tr>
 <tr><td><a href="#find_finite">find_finite</a></td><td>&nbsp;</td><td>find indices of finite elements</td></tr>
 <tr><td><a href="#find_nonfinite">find_nonfinite</a></td><td>&nbsp;</td><td>find indices of non-finite elements</td></tr>
-<tr><td><a href="#find_unique">find_unique</a></td><td>&nbsp;</td><td>find indices of unique elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#find_unique">find_unique</a></td><td>&nbsp;</td><td>find indices of unique elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#flip">fliplr&nbsp;/&nbsp;flipud</a></td><td>&nbsp;</td><td>reverse order of columns or rows</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#imag_real">imag / real</a></td><td>&nbsp;</td><td>extract imaginary/real part</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#ind2sub">ind2sub</a></td><td>&nbsp;</td><td>convert linear index to subscripts</td></tr>
+<tr><td><a href="#ind2sub">ind2sub</a></td><td>&nbsp;</td><td>convert linear index to subscripts</td></tr>
+<tr><td><a href="#index_min_and_index_max_standalone">index_min / index_max</a></td><td>&nbsp;</td><td>indices of extremum values</td></tr>
 <tr><td><a href="#inplace_trans">inplace_trans</a></td><td>&nbsp;</td><td>in-place transpose</td></tr>
-<tr><td><a href="#is_finite">is_finite</a></td><td>&nbsp;</td><td>check whether all elements are finite</td></tr>
-<tr><td><a href="#join">join_rows / join_cols</a></td><td>&nbsp;</td><td>concatenation of matrices</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#is_finite">is_finite</a></td><td>&nbsp;</td><td>check whether all elements are finite</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#join">join_rows / join_cols</a></td><td>&nbsp;</td><td>concatenation of matrices</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#join_slices">join_slices</a></td><td>&nbsp;</td><td>concatenation of cubes</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#kron">kron</a></td><td>&nbsp;</td><td>Kronecker tensor product</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#logmat">logmat</a></td><td>&nbsp;</td><td>matrix logarithm</td></tr>
-<tr><td><a href="#min_and_max">min&nbsp;/&nbsp;max</a></td><td>&nbsp;</td><td>return extremum values</td></tr>
-<tr><td><a href="#nonzeros">nonzeros</a></td><td>&nbsp;</td><td>return non-zero values</td></tr>
-<tr><td><a href="#norm">norm</a></td><td>&nbsp;</td><td>various norms of vectors and matrices</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#normalise">normalise</a></td><td>&nbsp;</td><td>normalise vectors to unit <i>p</i>-norm</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#prod">prod</a></td><td>&nbsp;</td><td>product of elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#rank">rank</a></td><td>&nbsp;</td><td>rank of matrix</td></tr>
-<tr><td><a href="#rcond">rcond</a></td><td>&nbsp;</td><td>reciprocal of condition number</td></tr>
-<tr><td><a href="#repmat">repmat</a></td><td>&nbsp;</td><td>replicate matrix in block-like fashion</td></tr>
-<tr><td><a href="#reshape">reshape</a></td><td>&nbsp;</td><td>change size while keeping elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#resize">resize</a></td><td>&nbsp;</td><td>change size while keeping elements and preserving layout</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#shift">shift</a></td><td>&nbsp;</td><td>shift elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#shuffle">shuffle</a></td><td>&nbsp;</td><td>randomly shuffle elements</td></tr>
-<tr><td><a href="#size">size</a></td><td>&nbsp;</td><td>obtain dimensions of given object</td></tr>
-<tr><td><a href="#sort">sort</a></td><td>&nbsp;</td><td>sort elements</td></tr>
-<tr><td><a href="#sort_index">sort_index</a></td><td>&nbsp;</td><td>vector describing sorted order of elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#sqrtmat">sqrtmat</a></td><td>&nbsp;</td><td>square root of matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#sum">sum</a></td><td>&nbsp;</td><td>sum of elements</td></tr>
+<tr><td><a href="#kron">kron</a></td><td>&nbsp;</td><td>Kronecker tensor product</td></tr>
+<tr><td><a href="#logmat">logmat</a></td><td>&nbsp;</td><td>matrix logarithm</td></tr>
+<tr><td><a href="#logmat_sympd">logmat_sympd</a></td><td>&nbsp;</td><td>matrix logarithm (symmetric)</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#min_and_max">min&nbsp;/&nbsp;max</a></td><td>&nbsp;</td><td>return extremum values</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#nonzeros">nonzeros</a></td><td>&nbsp;</td><td>return non-zero values</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#norm">norm</a></td><td>&nbsp;</td><td>various norms of vectors and matrices</td></tr>
+<tr><td><a href="#normalise">normalise</a></td><td>&nbsp;</td><td>normalise vectors to unit <i>p</i>-norm</td></tr>
+<tr><td><a href="#prod">prod</a></td><td>&nbsp;</td><td>product of elements</td></tr>
+<tr><td><a href="#rank">rank</a></td><td>&nbsp;</td><td>rank of matrix</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#rcond">rcond</a></td><td>&nbsp;</td><td>reciprocal of condition number</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#repmat">repmat</a></td><td>&nbsp;</td><td>replicate matrix in block-like fashion</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#reshape">reshape</a></td><td>&nbsp;</td><td>change size while keeping elements</td></tr>
+<tr><td><a href="#resize">resize</a></td><td>&nbsp;</td><td>change size while keeping elements and preserving layout</td></tr>
+<tr><td><a href="#shift">shift</a></td><td>&nbsp;</td><td>shift elements</td></tr>
+<tr><td><a href="#shuffle">shuffle</a></td><td>&nbsp;</td><td>randomly shuffle elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#size">size</a></td><td>&nbsp;</td><td>obtain dimensions of given object</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#sort">sort</a></td><td>&nbsp;</td><td>sort elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#sort_index">sort_index</a></td><td>&nbsp;</td><td>vector describing sorted order of elements</td></tr>
+<tr><td><a href="#sqrtmat">sqrtmat</a></td><td>&nbsp;</td><td>square root of matrix</td></tr>
+<tr><td><a href="#sqrtmat_sympd">sqrtmat_sympd</a></td><td>&nbsp;</td><td>square root of matrix (symmetric)</td></tr>
+<tr><td><a href="#sum">sum</a></td><td>&nbsp;</td><td>sum of elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#sub2ind">sub2ind</a></td><td>&nbsp;</td><td>convert subscripts to linear index</td></tr>
-<tr><td><a href="#symmat">symmatu&nbsp;/&nbsp;symmatl</a></td><td>&nbsp;</td><td>generate symmetric matrix from given matrix</td></tr>
-<tr><td><a href="#trace">trace</a></td><td>&nbsp;</td><td>sum of diagonal elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#symmat">symmatu&nbsp;/&nbsp;symmatl</a></td><td>&nbsp;</td><td>generate symmetric matrix from given matrix</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#trace">trace</a></td><td>&nbsp;</td><td>sum of diagonal elements</td></tr>
 <tr><td><a href="#trans">trans</a></td><td>&nbsp;</td><td>transpose of matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#trapz">trapz</a></td><td>&nbsp;</td><td>trapezoidal numerical integration</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#trimat">trimatu&nbsp;/&nbsp;trimatl</a></td><td>&nbsp;</td><td>generate triangular matrix from given matrix</td></tr>
+<tr><td><a href="#trapz">trapz</a></td><td>&nbsp;</td><td>trapezoidal numerical integration</td></tr>
+<tr><td><a href="#trimat">trimatu&nbsp;/&nbsp;trimatl</a></td><td>&nbsp;</td><td>generate triangular matrix from given matrix</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#unique">unique</a></td><td>&nbsp;</td><td>return unique elements</td></tr>
-<tr><td><a href="#vectorise">vectorise</a></td><td>&nbsp;</td><td>convert matrix to vector</td></tr>
-<tr><td><a href="#misc_fns">misc&nbsp;functions</a></td><td>&nbsp;</td><td>miscellaneous element-wise functions:&nbsp;exp,&nbsp;log,&nbsp;pow,&nbsp;sqrt,&nbsp;round,&nbsp;sign,&nbsp;...</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#vectorise">vectorise</a></td><td>&nbsp;</td><td>convert matrix to vector</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#misc_fns">misc&nbsp;functions</a></td><td>&nbsp;</td><td>miscellaneous element-wise functions:&nbsp;exp,&nbsp;log,&nbsp;pow,&nbsp;sqrt,&nbsp;round,&nbsp;sign,&nbsp;...</td></tr>
 <tr><td><a href="#trig_fns">trig&nbsp;functions</a></td><td>&nbsp;</td><td>trigonometric element-wise functions:&nbsp;cos,&nbsp;sin,&nbsp;...</td></tr>
 </tbody>
 </table>
@@ -1992,7 +1998,7 @@ Meanings:
 <br>
 <li>
 <b>Caveat:</b> operators involving an equality comparison (ie. <code><b>==</b></code>, <code><b>!=</b></code>, <code><b>&gt;=</b></code>, <code><b>&lt;=</b></code>)
-are not recommended for matrices of type <i>mat</i> or <i>fmat</i>, due to the necessarily limited precision of the underlying element types;
+are not recommended for matrices of type <i>mat</i> or <i>fmat</i>, due to the necessarily <a href="https://en.wikipedia.org/wiki/Floating_point">limited precision</a> of the underlying element types;
 you may wish to use <a href="#approx_equal">approx_equal()</a> instead
 </li>
 <br>
@@ -2045,9 +2051,12 @@ See also:
 <li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#as_scalar">as_scalar()</a></li>
 <li><a href="#find">find()</a></li>
-<li><a href="#each_colrow">.each_col() &amp; .each_row()</a></li>
+<li><a href="#replace">.replace()</a></li>
 <li><a href="#transform">.transform()</a></li>
+<li><a href="#each_colrow">.each_col() &amp; .each_row()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a> &nbsp; (exp, log, pow, sqrt, square, round, ...)</li>
+<li><a href="https://en.wikipedia.org/wiki/Floating_point">floating point representation in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/Floating-PointRepresentation.html">floating point representation in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -2734,7 +2743,7 @@ Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i>
 <br>
 <li>Sets the elements to a specified value</li>
 <br>
-<li>the type of value must match the type of elements used by the container object (eg. for <i>mat</i> the type is double)
+<li>The type of value must match the type of elements used by the container object (eg. for <i>mat</i> the type is <i>double</i>)
 </li>
 <br>
 <li>
@@ -2754,6 +2763,7 @@ See also:
 <li><a href="#ones_member">.ones()</a></li>
 <li><a href="#zeros_member">.zeros()</a></li>
 <li><a href="#randu_randn_member">.randu() &amp; .randn()</a></li>
+<li><a href="#replace">.replace()</a></li>
 <li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
 </ul>
 </li>
@@ -2815,6 +2825,53 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="replace"></a>
+<b>.replace( old_value, new_value )</b>
+<ul>
+<li>
+Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>SpMat</i>
+</li>
+<br>
+<li>For all elements equal to <i>old_value</i>, set them to <i>new_value</i></li>
+<br>
+<li>The type of <i>old_value</i> and <i>new_value</i> must match the type of elements used by the container object (eg. for <i>mat</i> the type is <i>double</i>)
+</li>
+<br>
+<li>
+<b>Caveats:</b>
+<ul>
+<li>floating point numbers (<i>float</i> and <i>double</i>) are approximations due to their <a href="https://en.wikipedia.org/wiki/Floating_point">necessarily limited precision</a></li>
+<li>for sparse matrices (<i>SpMat</i>), replacement is not done when <i>old_value = 0</i></li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A(5,6,fill::randu);
+
+A.diag().fill(datum::nan);
+
+A.replace(datum::nan, 0);  // replace each NaN with 0
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#transform">.transform()</a></li>
+<li><a href="#fill">.fill()</a></li>
+<li><a href="#find">find()</a></li>
+<li><a href="#operators">relational operators</a></li>
+<li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="transform"></a>
 <b>.transform(&nbsp;</b>functor<b>&nbsp;)</b>
 <br>
@@ -2855,6 +2912,7 @@ A.transform( [](double val) { return (val + 123.0); } );
 See also:
 <ul>
 <li><a href="#for_each">.for_each()</a></li>
+<li><a href="#replace">.replace()</a></li>
 <li><a href="#imbue">.imbue()</a></li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="#operators">overloaded operators</a></li>
@@ -3302,6 +3360,8 @@ contiguous views for vector V:
 <ul>
 V<b>(&nbsp;span(</b>first_index<b>,</b> last_index<b>)&nbsp;)</b><br>
 V.<b>subvec(&nbsp;</b>first_index<b>,</b> last_index<b>&nbsp;)</b><br>
+<br>
+V.<b>subvec(&nbsp;</b>first_index<b>, size(</b>W<b>)&nbsp;)</b>&nbsp;&nbsp;&nbsp;&nbsp;<i>(W&nbsp;is&nbsp;a&nbsp;vector)</i><br>
 <br>
 V.<b>head(&nbsp;</b>number_of_elements<b>&nbsp;)</b><br>
 V.<b>tail(&nbsp;</b>number_of_elements<b>&nbsp;)</b>
@@ -4987,7 +5047,7 @@ double max_val = A.max();
 <li>
 See also:
 <ul>
-<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a></li>
+<li><a href="#index_min_and_index_max_member">.index_min() &amp; .index_max()</a></li>
 <li><a href="#min_and_max">min() &amp; max()</a> (standalone functions)</li>
 <li><a href="#clamp">clamp()</a>
 <li><a href="#running_stat">running_stat</a></li>
@@ -4998,7 +5058,7 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="index_min_and_index_max"></a>
+<a name="index_min_and_index_max_member"></a>
 <b>.index_min()</b>
 <br><b>.index_max()</b>
 <ul>
@@ -5031,6 +5091,7 @@ double max_val = A(i);
 See also:
 <ul>
 <li><a href="#min_and_max_member">.min() &amp; .max()</a></li>
+<li><a href="#index_min_and_index_max_standalone">index_min() &amp; index_max()</a> (standalone functions)</li>
 <li><a href="#ind2sub">ind2sub()</a></li>
 <li><a href="#sort_index">sort_index()</a></li>
 <li><a href="#element_access">element access</a></li>
@@ -6842,7 +6903,6 @@ For matrix <i>X</i> and
 <li>
 <i>dim=0</i>, return a row vector (of type <a href="#Row">urowvec</a> or <a href="#Mat">umat</a>),
 with each element (0 or 1) indicating whether the corresponding column of <i>X</i> has all non-zero elements</li>
-<br>
 <li>
 <i>dim=1</i>, return a column vector (of type <a href="#Col">ucolvec</a> or <a href="#Mat">umat</a>),
 with each element (0 or 1) indicating whether the corresponding row of <i>X</i> has all non-zero elements</li>
@@ -6909,7 +6969,6 @@ For matrix <i>X</i> and
 <li>
 <i>dim=0</i>, return a row vector (of type <a href="#Row">urowvec</a> or <a href="#Mat">umat</a>),
 with each element (0 or 1) indicating whether the corresponding column of <i>X</i> has any non-zero elements</li>
-<br>
 <li>
 <i>dim=1</i>, return a column vector (of type <a href="#Col">ucolvec</a> or <a href="#Mat">umat</a>),
 with each element (0 or 1) indicating whether the corresponding row of <i>X</i> has any non-zero elements</li>
@@ -7620,7 +7679,7 @@ See also:
 <b>B = expmat(A)</b>
 <br><b>expmat(B, A)</b>
 <ul>
-<li>Matrix exponential of square matrix <i>A</i></li>
+<li>Matrix exponential of general square matrix <i>A</i></li>
 <br>
 <li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
@@ -7631,8 +7690,9 @@ See also:
 </ul>
 </li>
 <br>
-<li><b>Caveat</b>: the matrix exponential operation is <b>not</b> the same as applying the <a href="#misc_fns">exp()</a> function to each element
-</li>
+<li><b>Caveat</b>: if matrix <i>A</i> is symmetric, using <a href="#expmat_sym">expmat_sym()</a> is faster</li>
+<br>
+<li><b>Caveat</b>: the matrix exponential operation is generally <b>not</b> the same as applying the <a href="#misc_fns">exp()</a> function to each element</li>
 <br>
 <li>
 Examples:
@@ -7648,8 +7708,56 @@ mat B = expmat(A);
 <li>
 See also:
 <ul>
+<li><a href="#expmat_sym">expmat_sym()</a></li>
 <li><a href="#logmat">logmat()</a></li>
 <li><a href="#sqrtmat">sqrtmat()</a></li>
+<li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="expmat_sym"></a>
+<b>B = expmat_sym(A)</b>
+<br><b>expmat_sym(B, A)</b>
+<ul>
+<li>Matrix exponential of symmetric/hermitian matrix <i>A</i></li>
+<br>
+<li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li>If the matrix exponential cannot be found:
+<ul>
+<li><i>B = expmat_sym(A)</i> resets <i>B</i> and throws a <i>std::runtime_error</i> exception</li>
+<li><i>expmat_sym(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
+</ul>
+</li>
+<br>
+<li><b>Caveat</b>: there is currently no check whether <i>A</i> is symmetric</li>
+<br>
+<li><b>Caveat</b>: the matrix exponential operation is generally <b>not</b> the same as applying the <a href="#misc_fns">exp()</a> function to each element</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+
+mat B = A*A.t();   // make symmetric matrix
+
+mat C = expmat_sym(B);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#expmat">expmat()</a></li>
+<li><a href="#logmat_sympd">logmat_sympd()</a></li>
+<li><a href="#sqrtmat_sympd">sqrtmat_sympd()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
@@ -7707,6 +7815,7 @@ See also:
 <ul>
 <li><a href="#all">all()</a></li>
 <li><a href="#any">any()</a></li>
+<li><a href="#replace">.replace()</a></li>
 <li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#clamp">clamp()</a></li>
 <li><a href="#find_finite">find_finite()</a></li>
@@ -7715,7 +7824,7 @@ See also:
 <li><a href="#nonzeros">nonzeros()</a></li>
 <li><a href="#unique">unique()</a></li>
 <li><a href="#sort_index">sort_index()</a></li>
-<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a></li>
+<li><a href="#index_min_and_index_max_member">.index_min() &amp; .index_max()</a></li>
 <li><a href="#submat">submatrix views</a></li>
 <li><a href="#subcube">subcube views</a></li>
 </ul>
@@ -7796,6 +7905,7 @@ See also:
 <ul>
 <li><a href="#find">find()</a></li>
 <li><a href="#find_finite">find_finite()</a></li>
+<li><a href="#replace">.replace()</a></li>
 <li><a href="#submat">submatrix views</a></li>
 <li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
 </ul>
@@ -7989,6 +8099,89 @@ cout &lt;&lt; "slice: " &lt;&lt; u(2) &lt;&lt; endl;
 <li><a href="#sub2ind">sub2ind()</a></li>
 <li><a href="#element_access">element access</a></li>
 <li><a href="#find">find()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="index_min_and_index_max_standalone"></a>
+<table>
+<tbody>
+<tr>
+<td>
+<b>index_min( V )</b>
+<br><b>index_min( M )</b>
+<br><b>index_min( M, dim )</b>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<b>index_max( V )</b>
+<br><b>index_max( M )</b>
+<br><b>index_max( M, dim )</b>
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+For vector <i>V</i>, return the linear index of the extremum value; the returned index is of type <a href="#uword">uword</a>
+</li>
+<br>
+<li>
+For matrix <i>M</i> and:
+<ul>
+<li>
+<i>dim=0</i>, return a row vector (of type <a href="#Row">urowvec</a> or <a href="#Mat">umat</a>), 
+with each column containing the index of the extremum value in the corresponding column of <i>M</i>
+</li>
+<li>
+<i>dim=1</i>, return a column vector (of type <a href="#Col">uvec</a> or <a href="#Mat">umat</a>),
+with each row containing the index of the extremum value in the corresponding row of <i>M</i>
+</li>
+</ul>
+</li>
+<br>
+<li>
+For each column and row, the index starts at zero
+</li>
+<br>
+<li>
+The <i>dim</i> argument is optional; by default <i>dim=0</i> is used
+</li>
+<br>
+<li>
+For objects with complex numbers, absolute values are used for comparison
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+vec   v = randu&lt;vec&gt;(10);
+uword i = index_max(v);
+
+double max_val_in_v = v(i);
+
+
+mat     M  = randu&lt;mat&gt;(5,6);
+
+urowvec ii = index_max(M);
+ucolvec jj = index_max(M,1);
+
+double max_val_in_col_2 = M( ii(2), 2 );
+
+double max_val_in_row_4 = M( 4, jj(4) );
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#min_and_max">min() &amp; max()</a></li>
+<li><a href="#index_min_and_index_max_member">.index_min() &amp; .index_max()</a> (member functions)</li>
+<li><a href="#sort_index">sort_index()</a></li>
 </ul>
 </li>
 <br>
@@ -8245,7 +8438,7 @@ See also:
 <b>B = logmat(A)</b>
 <br><b>logmat(B, A)</b>
 <ul>
-<li>Complex matrix logarithm of square matrix <i>A</i></li>
+<li>Complex matrix logarithm of general square matrix <i>A</i></li>
 <br>
 <li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
@@ -8256,8 +8449,9 @@ See also:
 </ul>
 </li>
 <br>
-<li><b>Caveat</b>: the matrix logarithm operation is <b>not</b> the same as applying the <a href="#misc_fns">log()</a> function to each element
-</li>
+<li><b>Caveat</b>: if matrix <i>A</i> is symmetric positive definite, using <a href="#logmat_sympd">logmat_sympd()</a> is faster</li>
+<br>
+<li><b>Caveat</b>: the matrix logarithm operation is generally <b>not</b> the same as applying the <a href="#misc_fns">log()</a> function to each element</li>
 <br>
 <li>
 Examples:
@@ -8273,11 +8467,60 @@ cx_mat B = logmat(A);
 <li>
 See also:
 <ul>
+<li><a href="#logmat_sympd">logmat_sympd()</a></li>
 <li><a href="#expmat">expmat()</a></li>
 <li><a href="#sqrtmat">sqrtmat()</a></li>
 <li><a href="#imag_real">real()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Logarithm_of_a_matrix">matrix logarithm in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="logmat_sympd"></a>
+<b>B = logmat_sympd(A)</b>
+<br><b>logmat_sympd(B, A)</b>
+<ul>
+<li>Matrix logarithm of symmetric/hermitian positive definite matrix <i>A</i></li>
+<br>
+<li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li>If the matrix logarithm cannot be found:
+<ul>
+<li><i>B = logmat_sympd(A)</i> resets <i>B</i> and throws a <i>std::runtime_error</i> exception</li>
+<li><i>logmat_sympd(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
+</ul>
+</li>
+<br>
+<li><b>Caveat</b>: there is currently no check whether <i>A</i> is symmetric</li>
+<br>
+<li><b>Caveat</b>: the matrix logarithm operation is generally <b>not</b> the same as applying the <a href="#misc_fns">log()</a> function to each element</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+
+mat B = A*A.t();   // make symmetric matrix
+
+mat C = logmat_sympd(A);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#logmat">logmat()</a></li>
+<li><a href="#expmat_sym">expmat_sym()</a></li>
+<li><a href="#sqrtmat_sympd">sqrtmat_sympd()</a></li>
+<li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logarithm_of_a_matrix">matrix logarithm in Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Positive-definite_matrix">positive definite matrix in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/PositiveDefiniteMatrix.html">positive definite matrix in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -8358,7 +8601,7 @@ mat Z = arma::max(X,Y);  // use arma:: prefix to distinguish from std::max()
 See also:
 <ul>
 <li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions)</li>
-<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a>
+<li><a href="#index_min_and_index_max_standalone">index_min() &amp; index_max()</a>
 <li><a href="#clamp">clamp()</a>
 <li><a href="#running_stat">running_stat</a></li>
 <li><a href="#running_stat_vec">running_stat_vec</a></li>
@@ -9036,7 +9279,7 @@ See also:
 <ul>
 <li><a href="#sort">sort()</a></li>
 <li><a href="#find">find()</a></li>
-<li><a href="#index_min_and_index_max">.index_min() &amp; .index_max()</a></li>
+<li><a href="#index_min_and_index_max_member">.index_min() &amp; .index_max()</a></li>
 <li><a href="#ind2sub">ind2sub()</a></li>
 </ul>
 </li>
@@ -9048,16 +9291,17 @@ See also:
 <b>B = sqrtmat(A)</b>
 <br><b>sqrtmat(B,A)</b>
 <ul>
-<li>Complex square root of square matrix <i>A</i></li>
+<li>Complex square root of general square matrix <i>A</i></li>
 <br>
-<li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
 <li>
 If matrix <i>A</i> appears to be singular, an approximate square root is attempted; additionally, <i>sqrtmat(B,A)</i> returns a bool set to false
 </li>
 <br>
-<li><b>Caveat</b>: the square root of a matrix is generally <b>not</b> the same as applying the <a href="#misc_fns">sqrt()</a> function to each element
-</li>
+<li><b>Caveat</b>: if matrix <i>A</i> is symmetric positive definite, using <a href="#sqrtmat_sympd">sqrtmat_sympd()</a> is faster</li>
+<br>
+<li><b>Caveat</b>: the square root of a matrix is generally <b>not</b> the same as applying the <a href="#misc_fns">sqrt()</a> function to each element</li>
 <br>
 <li>
 Examples:
@@ -9073,11 +9317,62 @@ cx_mat B = sqrtmat(A);
 <li>
 See also:
 <ul>
+<li><a href="#sqrtmat_sympd">sqrtmat_sympd()</a></li>
 <li><a href="#expmat">expmat()</a></li>
 <li><a href="#logmat">logmat()</a></li>
+<li><a href="#chol">chol()</a></li>
 <li><a href="#imag_real">real()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Square_root_of_a_matrix">square root of a matrix in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="sqrtmat_sympd"></a>
+<b>B = sqrtmat_sympd(A)</b>
+<br><b>sqrtmat_sympd(B,A)</b>
+<ul>
+<li>Square root of symmetric/hermitian positive definite matrix <i>A</i></li>
+<br>
+<li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
+<br>
+<li>If the square root cannot be found:
+<ul>
+<li><i>B = sqrtmat_sympd(A)</i> resets <i>B</i> and throws a <i>std::runtime_error</i> exception</li>
+<li><i>sqrtmat_sympd(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
+</ul>
+</li>
+<br>
+<li><b>Caveat</b>: there is currently no check whether <i>A</i> is symmetric</li>
+<br>
+<li><b>Caveat</b>: the matrix square root operation is generally <b>not</b> the same as applying the <a href="#misc_fns">sqrt()</a> function to each element</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+
+mat B = A*A.t();   // make symmetric matrix
+
+mat C = sqrtmat_sympd(B);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#sqrtmat">sqrtmat()</a></li>
+<li><a href="#expmat_sym">expmat_sym()</a></li>
+<li><a href="#logmat_sympd">logmat_sympd()</a></li>
+<li><a href="#chol">chol()</a></li>
+<li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Square_root_of_a_matrix">square root of a matrix in Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Positive-definite_matrix">positive definite matrix in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/PositiveDefiniteMatrix.html">positive definite matrix in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -9908,6 +10203,7 @@ mat R2 = chol(Y, "lower");
 <li>
 See also:
 <ul>
+<li><a href="#sqrtmat">sqrtmat()</a></li>
 <li><a href="#lu">lu()</a></li>
 <li><a href="#qr">qr()</a></li>
 <li><a href="http://mathworld.wolfram.com/CholeskyDecomposition.html">Cholesky decomposition in MathWorld</a></li>
@@ -9957,7 +10253,7 @@ the divide-and-conquer method provides slightly different results than the stand
 </ul>
 </li>
 <br>
-<li>There is currently no check whether <i>X</i> is symmetric</li>
+<li><b>Caveat:</b> there is currently no check whether <i>X</i> is symmetric</li>
 <br>
 <li>
 Examples:
@@ -10115,7 +10411,7 @@ See also:
 <br><b>inv( B, A )</b>
 <ul>
 <li>
-Inverse of square matrix <i>A</i>
+Inverse of general square matrix <i>A</i>
 </li>
 <br>
 <li>
@@ -10133,14 +10429,14 @@ If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown
 <b>Caveats:</b>
 <ul>
 <li>
-if matrix <i>A</i> is know to be symmetric positive definite, it's faster to use <a href="#inv_sympd">inv_sympd()</a> instead 
+if matrix <i>A</i> is know to be symmetric positive definite, using <a href="#inv_sympd">inv_sympd()</a> is faster
 </li>
 <li>
 if matrix <i>A</i> is know to be diagonal, use <i>inv(&nbsp;diagmat(A)&nbsp;)</i>
 </li>
 <li>
 to solve a system of linear equations, such as <i>Z&nbsp;=&nbsp;inv(X)*Y</i>,
-it is faster and more accurate to use <a href="#solve">solve()</a> instead
+using <a href="#solve">solve()</a> is faster and more accurate
 </li>
 </ul>
 </li>
@@ -10179,7 +10475,7 @@ See also:
 <br><b>inv_sympd( B, A )</b>
 <ul>
 <li>
-Inverse of symmetric positive definite matrix <i>A</i>
+Inverse of symmetric/hermitian positive definite matrix <i>A</i>
 </li>
 <br>
 <li>
@@ -10200,7 +10496,7 @@ There is currently no explicit check whether <i>A</i> is symmetric or positive d
 <li>
 <b>Caveat:</b> 
 to solve a system of linear equations, such as <i>Z&nbsp;=&nbsp;inv(X)*Y</i>,
-it is faster and more accurate to use <a href="#solve">solve()</a> instead
+using <a href="#solve">solve()</a> is faster and more accurate
 </li>
 <br>
 <li>
@@ -11019,7 +11315,7 @@ The argument <i>tol</i> is optional; it specifies the tolerance for convergence
 </ul>
 </li>
 <br>
-<li>There is currently no check whether <i>X</i> is symmetric</li>
+<li><b>Caveat:</b> there is currently no check whether <i>X</i> is symmetric</li>
 <br>
 <li>
 Examples:
@@ -13167,7 +13463,7 @@ model.save("my_model.gmm");
 <li><a href="http://en.wikipedia.org/wiki/K-means_clustering">k-means clustering in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/K-MeansClusteringAlgorithm.html">k-means clustering in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Expectation-maximization_algorithm">expectation maximisation algorithm in Wikipedia</a></li>
-<li><a href="http://mathworld.wolfram.com/MaximumLikelihood.html">maximum likelihood in Wolfram</a></li>
+<li><a href="http://mathworld.wolfram.com/MaximumLikelihood.html">maximum likelihood in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Vector_quantization">vector quantisation in Wikipedia</a></li>
 <li><a href="http://en.wikipedia.org/wiki/OpenMP">OpenMP in Wikipedia</a></li>
 </ul>
@@ -15587,10 +15883,27 @@ List of additions and changes for each version:
 <br>
 <ul>
 
+<a name="version_7400"></a>
+<li>Version 7.400:
+<ul>
+<li>added <a href="#expmat_sym">expmat_sym()</a>, <a href="#logmat_sympd">logmat_sympd()</a>, <a href="#sqrtmat_sympd">sqrtmat_sympd()</a></li>
+<li>added <a href="#replace">.replace()</a></li>
+</ul>
+</li>
+<br>
+<a name="version_7300"></a>
+<li>Version 7.300:
+<ul>
+<li>added <a href="#index_min_and_index_max_standalone">index_min()</a> and <a href="#index_min_and_index_max_standalone">index_max()</a> standalone functions</li>
+<li>expanded <a href="#submat">.subvec()</a> to accept <a href="#size">size()</a> arguments</li>
+<li>more robust handling of non-square matrices by <a href="#lu">lu()</a></li>
+</ul>
+</li>
+<br>
 <a name="version_7200"></a>
 <li>Version 7.200:
 <ul>
-<li>added <a href="#index_min_and_index_max">.index_min()</a> and <a href="#index_min_and_index_max">.index_max()</a></li>
+<li>added <a href="#index_min_and_index_max_member">.index_min()</a> and <a href="#index_min_and_index_max_member">.index_max()</a> member functions</li>
 <li>expanded <a href="#ind2sub">ind2sub()</a> to handle vectors of indices</li>
 <li>expanded <a href="#sub2ind">sub2ind()</a> to handle matrix of subscripts</li>
 <li>expanded <a href="#expmat">expmat()</a>, <a href="#logmat">logmat()</a> and <a href="#sqrtmat">sqrtmat()</a> to optionally return a bool indicating success</li>

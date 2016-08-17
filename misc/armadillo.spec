@@ -1,14 +1,19 @@
 Name:           armadillo
-Version:        7.100.2
+Version:        7.400.1
 Release:        1%{?dist}
-Summary:        Fast C++ matrix library with interfaces to LAPACK and ATLAS
+Summary:        Fast C++ matrix library with syntax similar to MATLAB and Octave
 
 Group:          Development/Libraries
 License:        MPLv2.0
 URL:            http://arma.sourceforge.net/
 Source:         http://sourceforge.net/projects/arma/files/%{name}-%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires:  cmake, openblas-devel, blas-devel, lapack-devel, atlas-devel, arpack-devel, hdf5-devel, libstdc++-devel, SuperLU-devel
+BuildRequires:  cmake, lapack-devel, arpack-devel, hdf5-devel
+%ifarch x86_64 %{ix86} armv7hl ppc64le aarch64
+BuildRequires:  openblas-devel
+%endif
+BuildRequires:  SuperLU-devel
+
 
 %description
 Armadillo is a high quality C++ linear algebra library,
@@ -32,7 +37,12 @@ computer vision, signal processing, bioinformatics, statistics, etc.
 Summary:        Development headers and documentation for the Armadillo C++ library
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
-Requires:       openblas-devel, blas-devel, lapack-devel, atlas-devel, arpack-devel, hdf5-devel, libstdc++-devel, SuperLU-devel
+Requires:       lapack-devel, arpack-devel, hdf5-devel, libstdc++-devel
+%ifarch x86_64 %{ix86} armv7hl ppc64le aarch64
+Requires:       openblas-devel
+%endif
+Requires:       SuperLU-devel
+
 
 %description devel
 This package contains files necessary for development using the
@@ -76,17 +86,16 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%defattr(-,root,root,-)
 %{_libdir}/*.so.*
-%doc LICENSE.txt
+%license LICENSE.txt
 
 %files devel
-%defattr(-,root,root,-)
 %{_libdir}/*.so
 %{_includedir}/armadillo
 %{_includedir}/armadillo_bits/
 %{_datadir}/Armadillo/
 %doc README.txt index.html docs.html
 %doc examples armadillo_icon.png
-%doc armadillo_nicta_2010.pdf rcpp_armadillo_csda_2014.pdf
+%doc armadillo_nicta_2010.pdf rcpp_armadillo_csda_2014.pdf armadillo_joss_2016.pdf
 %doc mex_interface
+
