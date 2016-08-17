@@ -208,10 +208,10 @@ In general, programs which use Armadillo are compiled along these lines:
 If you want to use Armadillo without installation (not recommended),
 compile along these lines:
   
-  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-7.200.2/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
+  g++ example1.cpp -o example1 -O2 -I /home/blah/armadillo-7.200.3/include -DARMA_DONT_USE_WRAPPER -lblas -llapack
   
 The above command line assumes that you have unpacked the armadillo archive into /home/blah/
-You will need to adjust this for later versions of Armadillo,
+You will need to adjust this for later versions of Armadillo (ie. change the 7.200.3 part)
 and/or if you have unpacked the armadillo archive into a different directory.
 
 Replace -lblas with -lopenblas if you have OpenBLAS.
@@ -283,8 +283,8 @@ For better performance, we recommend the following high-quality C++ compilers:
   GCC from CygWin:    http://www.cygwin.com/
   Intel C++ compiler: http://software.intel.com/en-us/intel-compilers/
 
-For the GCC compiler, use version 4.2 or later.
-For the Intel compiler, use version 11.0 or later.
+For the GCC compiler, use version 4.6 or later.
+For the Intel compiler, use version 13.0 or later.
 
 For best results we also recommend using an operating system
 that's more reliable and more suitable for heavy duty work,
