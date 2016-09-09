@@ -1,3 +1,10 @@
+armadillo (1:7.400.1+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable
+  * Works with superlu 5 (Closes: #837152)
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 09 Sep 2016 20:56:23 +0530
+
 armadillo (1:7.400.1+dfsg-1) experimental; urgency=medium
 
   * New upstream release
