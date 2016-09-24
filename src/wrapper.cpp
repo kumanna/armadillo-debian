@@ -13,7 +13,7 @@
 #include <limits>
 #include <complex>
 
-#if (__cplusplus >= 201103L) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#if (__cplusplus >= 201103L)
   #undef  ARMA_USE_CXX11
   #define ARMA_USE_CXX11
 #endif
@@ -777,6 +777,97 @@ extern "C"
       }
     
     
+    
+    void arma_fortran_prefix(arma_ssytrs)(char* uplo, blas_int* n, blas_int* nrhs, float*  a, blas_int* lda, blas_int* ipiv, float*  b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_ssytrs)(uplo, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    void arma_fortran_prefix(arma_dsytrs)(char* uplo, blas_int* n, blas_int* nrhs, double* a, blas_int* lda, blas_int* ipiv, double* b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_dsytrs)(uplo, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    void arma_fortran_prefix(arma_csytrs)(char* uplo, blas_int* n, blas_int* nrhs, void*   a, blas_int* lda, blas_int* ipiv, void*   b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_csytrs)(uplo, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    void arma_fortran_prefix(arma_zsytrs)(char* uplo, blas_int* n, blas_int* nrhs, void*   a, blas_int* lda, blas_int* ipiv, void*   b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_zsytrs)(uplo, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    
+    
+    void arma_fortran_prefix(arma_sgetrs)(char* trans, blas_int* n, blas_int* nrhs, float*  a, blas_int* lda, blas_int* ipiv, float*  b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_sgetrs)(trans, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    void arma_fortran_prefix(arma_dgetrs)(char* trans, blas_int* n, blas_int* nrhs, double* a, blas_int* lda, blas_int* ipiv, double* b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_dgetrs)(trans, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    void arma_fortran_prefix(arma_cgetrs)(char* trans, blas_int* n, blas_int* nrhs, void*   a, blas_int* lda, blas_int* ipiv, void*   b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_cgetrs)(trans, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    void arma_fortran_prefix(arma_zgetrs)(char* trans, blas_int* n, blas_int* nrhs, void*   a, blas_int* lda, blas_int* ipiv, void*   b, blas_int* ldb, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_zgetrs)(trans, n, nrhs, a, lda, ipiv, b, ldb, info);
+      }
+    
+    
+    
+    void arma_fortran_prefix(arma_slahqr)(blas_int* wantt, blas_int* wantz, blas_int* n, blas_int* ilo, blas_int* ihi, float*  h, blas_int* ldh, float*  wr, float*  wi, blas_int* iloz, blas_int* ihiz, float*  z, blas_int* ldz, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_slahqr)(wantt, wantz, n, ilo, ihi, h, ldh, wr, wi, iloz, ihiz, z, ldz, info);
+      }
+    
+    void arma_fortran_prefix(arma_dlahqr)(blas_int* wantt, blas_int* wantz, blas_int* n, blas_int* ilo, blas_int* ihi, double* h, blas_int* ldh, double* wr, double* wi, blas_int* iloz, blas_int* ihiz, double* z, blas_int* ldz, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_dlahqr)(wantt, wantz, n, ilo, ihi, h, ldh, wr, wi, iloz, ihiz, z, ldz, info);
+      }
+    
+    
+    
+    void arma_fortran_prefix(arma_sstedc)(char* compz, blas_int* n, float*  d, float*  e, float*  z, blas_int* ldz, float*  work, blas_int* lwork, blas_int* iwork, blas_int* liwork, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_sstedc)(compz, n, d, e, z, ldz, work, lwork, iwork, liwork, info);
+      }
+    
+    void arma_fortran_prefix(arma_dstedc)(char* compz, blas_int* n, double* d, double* e, double* z, blas_int* ldz, double* work, blas_int* lwork, blas_int* iwork, blas_int* liwork, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_dstedc)(compz, n, d, e, z, ldz, work, lwork, iwork, liwork, info);
+      }
+    
+    
+    
+    void arma_fortran_prefix(arma_strevc)(char* side, char* howmny, blas_int* select, blas_int* n, float*  t, blas_int* ldt, float*  vl, blas_int* ldvl, float*  vr, blas_int* ldvr, blas_int* mm, blas_int* m, float*  work, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_strevc)(side, howmny, select, n, t, ldt, vl, ldvl, vr, ldvr, mm, m, work, info);
+      }
+    
+    void arma_fortran_prefix(arma_dtrevc)(char* side, char* howmny, blas_int* select, blas_int* n, double* t, blas_int* ldt, double* vl, blas_int* ldvl, double* vr, blas_int* ldvr, blas_int* mm, blas_int* m, double* work, blas_int* info)
+      {
+      arma_fortran_noprefix(arma_dtrevc)(side, howmny, select, n, t, ldt, vl, ldvl, vr, ldvr, mm, m, work, info);
+      }
+    
+    
+    
+    void arma_fortran_prefix(arma_slarnv)(blas_int* idist, blas_int* iseed, blas_int* n, float*  x)
+      {
+      arma_fortran_noprefix(arma_slarnv)(idist, iseed, n, x);
+      }
+    
+    void arma_fortran_prefix(arma_dlarnv)(blas_int* idist, blas_int* iseed, blas_int* n, double* x)
+      {
+      arma_fortran_noprefix(arma_dlarnv)(idist, iseed, n, x);
+      }
+    
   #endif
   
   
@@ -1079,24 +1170,24 @@ extern "C"
     
     
     
-    void wrapper_sgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f,  float* g,  float* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n,  float* o,  float* p,  float* q,  float* r, superlu::mem_usage_t* s, superlu::SuperLUStat_t* t, int* u)
+    void wrapper_sgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f,  float* g,  float* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n,  float* o,  float* p,  float* q,  float* r, superlu::GlobalLU_t* s, superlu::mem_usage_t* t, superlu::SuperLUStat_t* u, int* v)
       {
-      sgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
+      sgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v);
       }
     
-    void wrapper_dgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f, double* g, double* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n, double* o, double* p, double* q, double* r, superlu::mem_usage_t* s, superlu::SuperLUStat_t* t, int* u)
+    void wrapper_dgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f, double* g, double* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n, double* o, double* p, double* q, double* r, superlu::GlobalLU_t* s, superlu::mem_usage_t* t, superlu::SuperLUStat_t* u, int* v)
       {
-      dgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
+      dgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v);
       }
     
-    void wrapper_cgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f,  float* g,  float* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n,  float* o,  float* p,  float* q,  float* r, superlu::mem_usage_t* s, superlu::SuperLUStat_t* t, int* u)
+    void wrapper_cgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f,  float* g,  float* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n,  float* o,  float* p,  float* q,  float* r, superlu::GlobalLU_t* s, superlu::mem_usage_t* t, superlu::SuperLUStat_t* u, int* v)
       {
-      cgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
+      cgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v);
       }
     
-    void wrapper_zgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f, double* g, double* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n, double* o, double* p, double* q, double* r, superlu::mem_usage_t* s, superlu::SuperLUStat_t* t, int* u)
+    void wrapper_zgssvx(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int* c, int* d, int* e, char* f, double* g, double* h, superlu::SuperMatrix* i, superlu::SuperMatrix* j, void* k, int l, superlu::SuperMatrix* m, superlu::SuperMatrix* n, double* o, double* p, double* q, double* r, superlu::GlobalLU_t* s, superlu::mem_usage_t* t, superlu::SuperLUStat_t* u, int* v)
       {
-      zgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u);
+      zgssvx(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v);
       }
     
     
