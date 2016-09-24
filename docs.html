@@ -6162,11 +6162,16 @@ Usage:
 </li>
 <br>
 <li>
+<b>Caveat:</b> if N &le; 1, the generated vector will have a size of one, with the single element equal to <i>end</i>
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
-vec a = linspace&lt;vec&gt;(0,  5,  6);
-vec b = linspace&lt;vec&gt;(5,  0,  6);
+vec a = linspace&lt;vec&gt;(0, 5, 6);
+
+vec b = linspace&lt;vec&gt;(5, 0, 6);
 </pre>
 </ul>
 </li>
@@ -6208,8 +6213,9 @@ Usage:
 Examples:
 <ul>
 <pre>
-vec a = logspace&lt;vec&gt;(0,  5,  6);
-vec b = logspace&lt;vec&gt;(5,  0,  6);
+vec a = logspace&lt;vec&gt;(0, 5, 6);
+
+vec b = logspace&lt;vec&gt;(5, 0, 6);
 </pre>
 </ul>
 </li>
@@ -6560,7 +6566,7 @@ ivec c = regspace&lt;ivec&gt;(0, -1, -10);  // 0, -1, ..., -10
 </li>
 <br>
 <li>
-<b>Caveat:</b> do not use <i>regpspace()</i> to specify ranges for contiguous submatrix views; use <a href="#submat">span()</a> instead
+<b>Caveat:</b> do not use <i>regspace()</i> to specify ranges for contiguous submatrix views; use <a href="#submat">span()</a> instead
 </li>
 <br>
 <li>
@@ -8506,7 +8512,7 @@ mat A = randu&lt;mat&gt;(5,5);
 
 mat B = A*A.t();   // make symmetric matrix
 
-mat C = logmat_sympd(A);
+mat C = logmat_sympd(B);
 </pre>
 </ul>
 </li>
