@@ -8,32 +8,29 @@ Contents
 
  1: Introduction
  2: Citation Details
+ 3: License
 
- 3: Licenses
- 4: Technical Support
+ 4: Requirements
 
- 5: Requirements
+ 5: Linux and Mac OS X: Installation
+ 6: Linux and Mac OS X: Compiling & Linking
 
- 6: Linux and Mac OS X: Installation
- 7: Linux and Mac OS X: Compiling & Linking
+ 7: Windows: Installation
+ 8: Windows: Compiling & Linking
 
- 8: Windows: Installation
- 9: Windows: Compiling & Linking
+ 9: Support for OpenBLAS, Intel MKL and AMD ACML
+10: Support for ATLAS
 
-10: Support for OpenBLAS, Intel MKL and AMD ACML
-11: Support for ATLAS
+11: API Documentation
+12: MEX Interface to Octave/Matlab
 
-12: API Documentation
-13: MEX Interface to Octave/Matlab
-
-14: Bug Reports and Frequently Asked Questions
-15: Related Software
+13: Bug Reports and Frequently Asked Questions
+14: Related Software
 
 
 
 1: Introduction
 ===============
-
 
 Armadillo is a high quality C++ linear algebra library,
 aiming towards a good balance between speed and ease of use.
@@ -55,10 +52,7 @@ and efficiency.
 The library can be used for machine learning, pattern recognition, computer vision,
 signal processing, bioinformatics, statistics, econometrics, etc.
 
-Armadillo is primarily developed at Data61 / NICTA (Australia).
-For information about Data61 see http://data61.csiro.au
-
-Main developers:
+Authors:
   Conrad Sanderson - http://conradsanderson.id.au
   Ryan Curtin      - http://ratml.org
 
@@ -77,30 +71,15 @@ development and maintenance of the library.
 
 
 
-3: Licenses
-===========
+3: License
+==========
 
-Armadillo is available under 2 licenses:
-
-- Open source, under the restrictions of the Mozilla Public License (MPL) 2.0.
-  See the "LICENSE.txt" file for details.
-  
-- Commercial license (not open source), available for purchase.
-  Please contact Conrad Sanderson for more information:
-  http://conradsanderson.id.au
+Armadillo is available as open source, under the restrictions of the
+Mozilla Public License (MPL) 2.0. See the "LICENSE.txt" file for details.
 
 
 
-4: Technical Support
-====================
-
-Technical support can be obtained by purchasing the commercial license (see above).
-Please contact Conrad Sanderson for more information:
-http://conradsanderson.id.au
-
-
-
-5: Requirements
+4: Requirements
 ===============
 
 Armadillo makes extensive use of template meta-programming, recursive templates
@@ -122,7 +101,7 @@ For example, for GCC and Clang compilers use -O2 or -O3
 
 
 
-6: Linux and Mac OS X: Installation
+5: Linux and Mac OS X: Installation
 ===================================
 
 * Step 1:
@@ -195,7 +174,7 @@ For example, for GCC and Clang compilers use -O2 or -O3
 
 
 
-7: Linux and Mac OS X: Compiling & Linking
+6: Linux and Mac OS X: Compiling & Linking
 ==========================================
 
 The "examples" directory contains several quick example programs
@@ -219,7 +198,7 @@ On Mac OS X, replace -lblas -llapack with -framework Accelerate
 
 
 
-8: Windows: Installation
+7: Windows: Installation
 ========================
 
 The installation is comprised of 3 steps:
@@ -249,7 +228,7 @@ The installation is comprised of 3 steps:
 
 
 
-9: Windows: Compiling & Linking
+8: Windows: Compiling & Linking
 ===============================
 
 Within the "examples" folder, we have included an MSVC project named "example1_win64"
@@ -299,8 +278,8 @@ such as Mac OS X, or various Linux-based systems:
 
 
 
-10: Support for OpenBLAS, Intel MKL and AMD ACML
-================================================
+9: Support for OpenBLAS, Intel MKL and AMD ACML
+===============================================
 
 Armadillo can use OpenBLAS, or Intel Math Kernel Library (MKL),
 or the AMD Core Math Library (ACML) as high-speed replacements
@@ -357,7 +336,7 @@ the lines containing:
 
 
 
-11: Support for ATLAS
+10: Support for ATLAS
 =====================
 
 Armadillo can use the ATLAS library for faster versions of
@@ -374,7 +353,7 @@ remove the old version and use the standard LAPACK library.
 
 
 
-12: API Documentation
+11: API Documentation
 =====================
 
 Documentation of functions and classes is available at:
@@ -386,7 +365,7 @@ which can be viewed with a web browser.
 
 
 
-13: MEX Interface to Octave/Matlab
+12: MEX Interface to Octave/Matlab
 ==================================
 
 The "mex_interface" folder contains examples of how to interface
@@ -394,7 +373,7 @@ Octave/Matlab with C++ code that uses Armadillo matrices.
 
 
 
-14: Bug Reports and Frequently Asked Questions
+13: Bug Reports and Frequently Asked Questions
 ==============================================
 
 Answers to frequently asked questions can be found at:
@@ -416,14 +395,11 @@ to the developers.  The developers' contact details are at:
 
 
 
-15: Related Software
+14: Related Software
 ====================
 
 * MLPACK: C++ library for machine learning and pattern recognition, built on top of Armadillo.
   http://mlpack.org
-  
-* Mantella: C++ library for analysing and solving optimisation problems
-  https://github.com/SebastianNiemann/Mantella
   
 * libpca: C++ library for principal component analysis
   http://sourceforge.net/projects/libpca/
