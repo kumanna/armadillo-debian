@@ -14,13 +14,9 @@
 
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-set(ARMA_MAJOR 7)
-set(ARMA_MINOR 400)
-set(ARMA_PATCH 2)
-set(ARMADILLO_VERSION ${ARMA_MAJOR}.${ARMA_MINOR}.${ARMA_PATCH})
-
-message(STATUS "Configuring Armadillo ${ARMADILLO_VERSION}")
-
+project(armadillo CXX)
+include(CheckIncludeFileCXX)
+include(CheckLibraryExists)
 
 ## Set ARMA_USE_WRAPPER to false if you're getting linking errors when compiling your programs,
 ## or if you prefer to directly link with BLAS and/or LAPACK.
@@ -40,12 +36,24 @@ set(ARMA_USE_ARPACK           false)
 set(ARMA_USE_EXTERN_CXX11_RNG false)
 set(ARMA_USE_SUPERLU          false)  # Caveat: only SuperLU version 5.x can be used!
 
-project(armadillo CXX)
+
+## extract version from sources
+
+set(ARMA_VERSION_FILE_NAME "${PROJECT_SOURCE_DIR}/include/armadillo_bits/arma_version.hpp")
+
+if(NOT EXISTS ${ARMA_VERSION_FILE_NAME})
+  message(FATAL_ERROR "Can't read ${ARMA_VERSION_FILE_NAME}")
+endif()
+
+file(READ ${ARMA_VERSION_FILE_NAME} ARMA_VERSION_FILE_CONTENTS)
+string(REGEX REPLACE ".*#define ARMA_VERSION_MAJOR ([0-9]+).*" "\\1" ARMA_VERSION_MAJOR "${ARMA_VERSION_FILE_CONTENTS}")
+string(REGEX REPLACE ".*#define ARMA_VERSION_MINOR ([0-9]+).*" "\\1" ARMA_VERSION_MINOR "${ARMA_VERSION_FILE_CONTENTS}")
+string(REGEX REPLACE ".*#define ARMA_VERSION_PATCH ([0-9]+).*" "\\1" ARMA_VERSION_PATCH "${ARMA_VERSION_FILE_CONTENTS}")
+
+message(STATUS "Configuring Armadillo ${ARMA_VERSION_MAJOR}.${ARMA_VERSION_MINOR}.${ARMA_VERSION_PATCH}")
+
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_aux/Modules/")
-
-include(CheckIncludeFileCXX)
-include(CheckLibraryExists)
 
 
 if(MSVC)
@@ -312,13 +320,13 @@ include_directories(${PROJECT_BINARY_DIR}/tmp/include/ ${CMAKE_REQUIRED_INCLUDES
 
 ## work around a silly limitation in Mac OS X
 if(APPLE)
-  if(${ARMA_MINOR} GREATER 99)
-    math(EXPR ARMA_MINOR_ALT "${ARMA_MINOR} / 10")
+  if(${ARMA_VERSION_MINOR} GREATER 99)
+    math(EXPR ARMA_VERSION_MINOR_ALT "${ARMA_VERSION_MINOR} / 10")
   else()
-    set(ARMA_MINOR_ALT ${ARMA_MINOR})
+    set(ARMA_VERSION_MINOR_ALT ${ARMA_VERSION_MINOR})
   endif()
 else()
-  set(ARMA_MINOR_ALT ${ARMA_MINOR})
+  set(ARMA_VERSION_MINOR_ALT ${ARMA_VERSION_MINOR})
 endif()
 
 
@@ -339,7 +347,7 @@ message(STATUS "CMAKE_REQUIRED_INCLUDES   = ${CMAKE_REQUIRED_INCLUDES}"  )
 
 add_library( armadillo ${PROJECT_SOURCE_DIR}/src/wrapper.cpp )
 target_link_libraries( armadillo ${ARMA_LIBS} )
-set_target_properties(armadillo PROPERTIES VERSION ${ARMA_MAJOR}.${ARMA_MINOR_ALT}.${ARMA_PATCH} SOVERSION ${ARMA_MAJOR})
+set_target_properties(armadillo PROPERTIES VERSION ${ARMA_VERSION_MAJOR}.${ARMA_VERSION_MINOR_ALT}.${ARMA_VERSION_PATCH} SOVERSION ${ARMA_VERSION_MAJOR})
 
 
 ################################################################################

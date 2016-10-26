@@ -439,7 +439,9 @@ armaSetCubePi(mxArray *matlabMatrix, const Cube<double>& armaCube)
   std::memcpy(dst_pointer, src_pointer, sizeof(double)*armaCube.n_elem); 
   }
 
+
 // Return double complex cube to Matlab/Octave.
+inline
 void
 armaSetCubeCx(mxArray *matlabMatrix, const cx_cube& armaCube)
   {
@@ -925,7 +927,7 @@ armaReadMatFromFile(const char *filename)
   MATFile *file;
   file = matOpen(filename,"r");
   
-  char buffer[64];
+  char buffer[1024];
   const char *name;
   name = buffer;
   
@@ -951,7 +953,7 @@ armaReadCxMatFromFile(const char *filename)
   MATFile *file;
   file = matOpen(filename,"r");
   
-  char buffer[64];
+  char buffer[1024];
   const char *name;
   name = buffer;
   
@@ -977,7 +979,7 @@ armaReadCubeFromFile(const char *filename)
   MATFile *file;
   file = matOpen(filename,"r");
   
-  char buffer[64];
+  char buffer[1024];
   const char *name;
   name = buffer;
   
@@ -1003,7 +1005,7 @@ armaReadCxCubeFromFile(const char *filename)
   MATFile *file;
   file = matOpen(filename,"r");
   
-  char buffer[64];
+  char buffer[1024];
   const char *name;
   name = buffer;
   
