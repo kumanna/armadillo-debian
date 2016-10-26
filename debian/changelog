@@ -1,3 +1,11 @@
+armadillo (1:7.500.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch file
+  * Update copyright file
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 26 Oct 2016 20:47:35 +0530
+
 armadillo (1:7.400.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
