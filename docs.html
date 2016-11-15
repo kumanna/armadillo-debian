@@ -6084,7 +6084,7 @@ as each matrix element is copied and converted to an 8 bit representation
 <hr class="greyline">
 <br>
 <br>
-<font size=+1><b>Generated Vectors/Matrices</b></font>
+<font size=+1><b>Generated Vectors/Matrices/Cubes</b></font>
 <br>
 <br>
 
@@ -9749,11 +9749,11 @@ mat Y = unique(X);
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="vectorise"></a>
-<b>vectorise( A )</b>
-<br><b>vectorise( A, dim )</b>
+<b>vectorise( X )</b>
+<br><b>vectorise( X, dim )</b>
 <ul>
 <li>
-Generate a column vector (<i>dim=0</i>) or row vector (<i>dim=1</i>) from matrix <i>A</i>
+Generate a column vector (<i>dim=0</i>) or row vector (<i>dim=1</i>) from matrix <i>X</i>
 </li>
 <br>
 <li>
@@ -9761,11 +9761,11 @@ The argument <i>dim</i> is optional; by default <i>dim=0</i> is used
 </li>
 <br>
 <li>
-For <i>dim=0</i>, the elements are copied from <i>X</i> column-wise; equivalent to concatenating all the columns of <i>A</i>
+For <i>dim=0</i>, the elements are copied from <i>X</i> column-wise; equivalent to concatenating all the columns of <i>X</i>
 </li>
 <br>
 <li>
-For <i>dim=1</i>, the elements are copied from <i>X</i> row-wise; equivalent to concatenating all the rows of <i>A</i>
+For <i>dim=1</i>, the elements are copied from <i>X</i> row-wise; equivalent to concatenating all the rows of <i>X</i>
 </li>
 <br>
 <li>
@@ -9776,9 +9776,9 @@ Concatenating columns is faster than concatenating rows
 Examples:
 <ul>
 <pre>
-mat A = randu&lt;mat&gt;(4, 5);
+mat X = randu&lt;mat&gt;(4, 5);
 
-vec v = vectorise(A);
+vec v = vectorise(X);
 </pre>
 </ul>
 </li>
@@ -10882,7 +10882,7 @@ Generalised Schur decomposition for pair of general square matrices <i>A</i> and
 <ul>
 <table>
 <tbody>
-<tr><td><code>"none"</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>no selection (default operation)</td></tr>
+<tr><td><code>"none"</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>no ordering (default operation)</td></tr>
 <tr><td><code>"lhp"</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>left-half-plane: eigenvalues with real part &lt; 0</td></tr>
 <tr><td><code>"rhp"</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>right-half-plane: eigenvalues with real part &gt; 0</td></tr>
 <tr><td><code>"iuc"</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>inside-unit-circle: eigenvalues with absolute value &lt; 1</td></tr>
@@ -15852,8 +15852,10 @@ See also:
 <a name="api_changes"></a>
 <b>History of API Additions, Changes and Deprecations</b>
 <br>
+<ul>
+<li>API Version Policy:
 <br>
-<li>API Version Policy
+<br>
 <ul>
 <li>
 Armadillo's version number is <i>A.B.C</i>, where <i>A</i> is a major version, <i>B</i> is a minor version, and <i>C</i> is the patch level (indicating bug fixes)
@@ -15906,7 +15908,7 @@ List of additions and changes for each version:
 <li>Version 7.500:
 <ul>
 <li>expanded <a href="#qz">qz()</a> to optionally specify ordering of the Schur form</li>
-<li>expanded <a href="#each_slice">each_slice()</a> to support matrix multiplication</li>
+<li>expanded <a href="#each_slice">.each_slice()</a> to support matrix multiplication</li>
 </ul>
 </li>
 <br>
@@ -16494,6 +16496,7 @@ use <i>my_function(&nbsp;mat(A+B)&nbsp;)</i>.
 </ul>
 </li>
 <br>
+</ul>
 
 <!-- END CONTENT -->
 
