@@ -62,6 +62,8 @@ else()
   option(BUILD_SHARED_LIBS "build shared library" ON)
 endif()
 
+option(DETECT_PKG_CONFIG "Detect pkg-config and install pkg-config data, if found" ON)
+
 option(DETECT_HDF5 "Detect HDF5 and include HDF5 support, if found" OFF)
 
 
@@ -86,6 +88,7 @@ message(STATUS "CMAKE_CXX_COMPILER_ID      = ${CMAKE_CXX_COMPILER_ID}"     )
 message(STATUS "CMAKE_CXX_COMPILER_VERSION = ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "CMAKE_COMPILER_IS_GNUCXX   = ${CMAKE_COMPILER_IS_GNUCXX}"  )
 message(STATUS "BUILD_SHARED_LIBS          = ${BUILD_SHARED_LIBS}"         )
+message(STATUS "DETECT_PKG_CONFIG          = ${DETECT_PKG_CONFIG}"         )
 message(STATUS "DETECT_HDF5                = ${DETECT_HDF5}"               )
 
 
@@ -225,6 +228,11 @@ else()
 endif()
 
 
+if(DETECT_PKG_CONFIG)
+  find_package(PkgConfig)
+endif()
+
+
 # set(DETECT_HDF5 true)
 
 ## uncomment the above line to enable the detection of the HDF5 library;
@@ -240,7 +248,6 @@ if(DETECT_HDF5)
     # are hidden somewhere very odd that the FindHDF5.cmake script will not
     # find.  Thus, we'll also quickly check pkgconfig to see if there is
     # information on what to use there.
-    find_package(PkgConfig)
     if (PKG_CONFIG_FOUND)
       pkg_check_modules(HDF5 hdf5)
       # But using pkgconfig is a little weird because HDF5_LIBRARIES won't be
@@ -269,7 +276,6 @@ if(DETECT_HDF5)
     message(STATUS "Set ARMA_HDF5_INCLUDE_DIR to ${ARMA_HDF5_INCLUDE_DIR}")
   endif()
 endif()
-
 
 include(ARMA_FindARPACK)
 message(STATUS "ARPACK_FOUND = ${ARPACK_FOUND}")
@@ -452,7 +458,6 @@ message(STATUS "Generating '${PROJECT_BINARY_DIR}/ArmadilloConfigVersion.cmake'"
 configure_file(${PROJECT_SOURCE_DIR}/cmake_aux/InstallFiles/ArmadilloConfigVersion.cmake.in
   "${PROJECT_BINARY_DIR}/ArmadilloConfigVersion.cmake" @ONLY)
 
-
 # Install the export set for use with the install-tree
 install(EXPORT ArmadilloLibraryDepends DESTINATION
   "${INSTALL_DATA_DIR}/Armadillo/CMake"
@@ -481,3 +486,18 @@ install(FILES
   "${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfig.cmake"
   "${PROJECT_BINARY_DIR}/InstallFiles/ArmadilloConfigVersion.cmake"
   DESTINATION "${ARMADILLO_CMAKE_DIR}" COMPONENT dev)
+
+
+if(PKG_CONFIG_FOUND)
+  message(STATUS "Copying ${PROJECT_SOURCE_DIR}/misc/ to ${PROJECT_BINARY_DIR}/tmp/misc/")
+  file(COPY ${PROJECT_SOURCE_DIR}/misc/ DESTINATION ${PROJECT_BINARY_DIR}/tmp/misc/)
+
+  message(STATUS "Generating '${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc'")
+  configure_file(${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc.in "${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc" @ONLY)
+  
+  if(NOT PKG_CONFIG_DIR)
+    set(PKG_CONFIG_DIR "${INSTALL_LIB_DIR}/pkgconfig")
+  endif()
+  
+  install(FILES "${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc" DESTINATION ${PKG_CONFIG_DIR})
+endif()
