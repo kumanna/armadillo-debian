@@ -1,3 +1,9 @@
+armadillo (1:7.600.2+dfsg-2) unstable; urgency=medium
+
+  * Add patch for conv_alias from upstream
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 19 Feb 2017 12:24:41 +0530
+
 armadillo (1:7.600.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
