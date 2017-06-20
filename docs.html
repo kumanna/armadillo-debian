@@ -149,7 +149,7 @@ hr.greyline
 <!--  -->
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
-<big><b>API Documentation for Armadillo 7.900</b></big>
+<big><b>API Documentation for Armadillo 7.950</b></big>
 <br>
 <br>
 <br>
@@ -4438,7 +4438,8 @@ Iterators for dense matrices and vectors traverse over all elements
 </li>
 <br>
 <li>
-Iterators for sparse matrices traverse over non-zero elements
+Iterators for sparse matrices traverse over non-zero elements;
+<br><b>caveat:</b> writing a zero value into a sparse matrix through an iterator will invalidate all current iterators associated with the sparse matrix
 </li>
 <br>
 <li>
@@ -5131,7 +5132,8 @@ Explicitly forces the evaluation of a delayed expression and outputs a matrix
 </li>
 <br>
 <li>
-This function should be used sparingly and only in cases where it is absolutely necessary; indiscriminate use can cause slow downs
+This function should be used sparingly and only in cases where it is absolutely necessary;
+indiscriminate use can cause performance degradations
 </li>
 <br>
 <li>
@@ -7525,11 +7527,11 @@ The argument <i>k</i> is optional; by default the main diagonal is used (<i>k=0<
 </li>
 <br>
 <li>
-For <i>k &gt; 0</i>, the <i>k</i>-th super-diagonal is used (top-right corner)
+For <i>k &gt; 0</i>, the <i>k</i>-th super-diagonal is used (above main diagonal, towards top-right corner)
 </li>
 <br>
 <li>
-For <i>k &lt; 0</i>, the <i>k</i>-th sub-diagonal is used (bottom-left corner)
+For <i>k &lt; 0</i>, the <i>k</i>-th sub-diagonal is used (below main diagonal, towards bottom-left corner)
 </li>
 <br>
 <li>
@@ -8766,6 +8768,7 @@ See also:
 <ul>
 <li><a href="#find">find()</a>
 <li><a href="#unique">unique()</a></li>
+<li><a href="#vectorise">vectorise()</a>
 </ul>
 </li>
 <br>
@@ -9795,7 +9798,10 @@ mat Z = trapz(X,Y);
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="trimat"></a>
 <b>trimatu( A )</b>
+<br><b>trimatu( A, k )</b>
+<br>
 <br><b>trimatl( A )</b>
+<br><b>trimatl( A, k )</b>
 <ul>
 <li>
 Create a new matrix by copying either the upper or lower triangular part from square matrix <i>A</i>, and setting the remaining elements to zero
@@ -9803,6 +9809,22 @@ Create a new matrix by copying either the upper or lower triangular part from sq
 <li><i>trimatu()</i> copies the upper triangular part</li>
 <li><i>trimatl()</i> copies the lower triangular part</li>
 </ul>
+</li>
+<br>
+<li>
+The argument <i>k</i> specifies the diagonal which inclusively delineates the boundary of the triangular part
+<ul>
+<li>
+for <i>k &gt; 0</i>, the <i>k</i>-th super-diagonal is used (above main diagonal, towards top-right corner)
+</li>
+<li>
+for <i>k &lt; 0</i>, the <i>k</i>-th sub-diagonal is used (below main diagonal, towards bottom-left corner)
+</li>
+</ul>
+</li>
+<br>
+<li>
+The argument <i>k</i> is optional; by default the main diagonal is used (<i>k=0</i>)
 </li>
 <br>
 <li>
@@ -9815,8 +9837,11 @@ Examples:
 <pre>
 mat A = randu&lt;mat&gt;(5,5);
 
-mat U = trimatu(A);
-mat L = trimatl(A);
+mat U  = trimatu(A);
+mat L  = trimatl(A);
+
+mat UU = trimatu(A,  1);  // omit the main diagonal
+mat LL = trimatl(A, -1);  // omit the main diagonal
 </pre>
 </ul>
 </li>
@@ -9825,6 +9850,7 @@ mat L = trimatl(A);
 <ul>
 <li><a href="#symmat">symmatu() / symmatl()</a></li>
 <li><a href="#diagmat">diagmat()</a></li>
+<li><a href="#nonzeros">nonzeros()</a></li>
 <li><a href="http://mathworld.wolfram.com/TriangularMatrix.html">Triangular matrix in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Triangular_matrix">Triangular matrix in Wikipedia</a></li>
 </ul>
@@ -9909,10 +9935,11 @@ vec v = vectorise(X);
 <li>
 See also:
 <ul>
+<li><a href="#nonzeros">nonzeros()</a></li>
 <li><a href="#reshape">reshape()</a></li>
 <li><a href="#resize">resize()</a></li>
-<li><a href="#as_scalar">as_scalar()</a></li>
 <li><a href="#diagvec">diagvec()</a></li>
+<li><a href="#as_scalar">as_scalar()</a></li>
 </ul>
 </li>
 <br>
@@ -11419,7 +11446,7 @@ See also:
 <table>
 <tbody>
 <tr><td><code>"lm"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with largest magnitude (default operation)</td></tr>
-<tr><td><code>"sm"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with smallest magnitude</td></tr>
+<tr><td><code>"sm"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with smallest magnitude (see caveat below)</td></tr>
 <tr><td><code>"la"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with largest algebraic value</td></tr>
 <tr><td><code>"sa"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with smallest algebraic value</td></tr>
 </tbody>
@@ -11443,7 +11470,15 @@ The argument <i>tol</i> is optional; it specifies the tolerance for convergence
 </ul>
 </li>
 <br>
-<li><b>Caveat:</b> there is currently no check whether <i>X</i> is symmetric</li>
+<li><b>Caveats:</b>
+<ul>
+<li>there is currently no check whether <i>X</i> is symmetric</li>
+<li>
+it's more difficult to compute the smallest eigenvalues than the largest eigenvalues;
+<br>if the decomposition fails, try increasing <i>k</i> (number of eigenvalues) and/or the tolerance
+</li>
+</ul>
+</li>
 <br>
 <li>
 Examples:
@@ -11501,7 +11536,7 @@ Obtain a limited number of eigenvalues and eigenvectors of <b>sparse</b> general
 <table>
 <tbody>
 <tr><td><code>"lm"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with largest magnitude (default operation)</td></tr>
-<tr><td><code>"sm"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with smallest magnitude</td></tr>
+<tr><td><code>"sm"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with smallest magnitude (see caveat below)</td></tr>
 <tr><td><code>"lr"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with largest real part</td></tr>
 <tr><td><code>"sr"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with smallest real part</td></tr>
 <tr><td><code>"li"</code></td><td>&nbsp;=&nbsp;</td><td>obtain eigenvalues with largest imaginary part</td></tr>
@@ -11529,6 +11564,10 @@ If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown
 <li><i>eigs_gen(eigval,X,k)</i> resets <i>eigval</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 <li><i>eigs_gen(eigval,eigvec,X,k)</i> resets <i>eigval</i> &amp; <i>eigvec</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 </ul>
+</li>
+<br>
+<li><b>Caveat:</b> it's more difficult to compute the smallest eigenvalues than the largest eigenvalues;
+<br>if the decomposition fails, try increasing <i>k</i> (number of eigenvalues) and/or the tolerance
 </li>
 <br>
 <li>
@@ -15790,7 +15829,29 @@ Disable use of OpenMP for parallelisation of element-wise operations. Overrides 
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-The minimum number of elements in a matrix to allow the use of OpenMP for parallelisation; default value is 384
+The minimum number of elements in a matrix to enable OpenMP based parallelisation of computationally expensive element-wise functions; default value is 384
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+<code>ARMA_OPENMP_THREADS</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+The maximum number of threads for OpenMP based parallelisation of computationally expensive element-wise functions; default value is 8
     </td>
   </tr>
   <tr>
@@ -16244,6 +16305,14 @@ List of additions and changes for each version:
 
 
 
+<a name="version_7950"></a>
+<li>Version 7.950:
+<ul>
+<li>expanded <a href="#accu">accu()</a> and <a href="#sum">sum()</a> to use OpenMP for processing expressions with computationally expensive element-wise functions</li>
+<li>expanded <a href="#trimat">trimatu()</a> and <a href="#trimat">trimatl()</a> to allow specification of the diagonal which delineates the boundary of the triangular part</li>
+</ul>
+</li>
+<br>
 <a name="version_7900"></a>
 <li>Version 7.900:
 <ul>
