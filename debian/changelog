@@ -1,3 +1,9 @@
+armadillo (1:7.950.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 20 Jun 2017 20:36:34 +0530
+
 armadillo (1:7.900.1+dfsg-2) experimental; urgency=medium
 
   * Update copyright to reflect Apache License
