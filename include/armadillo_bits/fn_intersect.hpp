@@ -14,33 +14,8 @@
 // ------------------------------------------------------------------------
 
 
-//! \addtogroup fn_polyfit
+//! \addtogroup fn_intersect
 //! @{
-
-
-
-template<typename T1, typename T2>
-inline
-typename
-enable_if2
-  <
-  is_supported_blas_type<typename T1::elem_type>::value,
-  bool
-  >::result
-polyfit(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type, T1>& X, const Base<typename T1::elem_type, T2>& Y, const uword N)
-  {
-  arma_extra_debug_sigprint();
-  
-  const bool status = glue_polyfit::apply_direct(out, X.get_ref(), Y.get_ref(), N);
-  
-  if(status == false)
-    {
-    out.soft_reset();
-    arma_debug_warn("polyfit(): failed");
-    }
-  
-  return status;
-  }
 
 
 
@@ -50,14 +25,37 @@ inline
 typename
 enable_if2
   <
-  is_supported_blas_type<typename T1::elem_type>::value,
-  const Glue<T1, T2, glue_polyfit>
+  ( is_arma_type<T1>::value && is_arma_type<T2>::value && is_same_type<typename T1::elem_type, typename T2::elem_type>::value ),
+  const Glue<T1, T2, glue_intersect>
   >::result
-polyfit(const Base<typename T1::elem_type, T1>& X, const Base<typename T1::elem_type, T2>& Y, const uword N)
+intersect
+  (
+  const T1& A,
+  const T2& B
+  )
   {
   arma_extra_debug_sigprint();
   
-  return Glue<T1, T2, glue_polyfit>(X.get_ref(), Y.get_ref(), N);
+  return Glue<T1, T2, glue_intersect>(A, B);
+  }
+
+
+
+template<typename T1, typename T2>
+inline
+void
+intersect
+  (
+  Mat<typename T1::elem_type>&            C,
+  uvec&                                  iA,
+  uvec&                                  iB, 
+  const Base<typename T1::elem_type,T1>&  A,
+  const Base<typename T1::elem_type,T2>&  B
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  glue_intersect::apply(C, iA, iB, A.get_ref(), B.get_ref(), true);  
   }
 
 
