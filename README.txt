@@ -1,8 +1,10 @@
 Armadillo C++ Linear Algebra Library
 http://arma.sourceforge.net
 
-Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
+Copyright 2008-2017 Conrad Sanderson (http://conradsanderson.id.au)
 Copyright 2008-2016 National ICT Australia (NICTA)
+Copyright 2017      Arroyo Consortium
+Copyright 2017      Data61, CSIRO
 
 
 
@@ -139,7 +141,7 @@ For example, for GCC and Clang compilers use -O2 or -O3
   On Mac OS X this is not necessary.
   
   For better performance, we recommend installing the OpenBLAS library.
-  See http://xianyi.github.com/OpenBLAS/
+  See http://www.openblas.net/
   
   If you are using sparse matrices, also install ARPACK and SuperLU.
   Caveat: only SuperLU version 5.2 can be used!
@@ -180,11 +182,15 @@ For example, for GCC and Clang compilers use -O2 or -O3
   If you don't have root/administrator/superuser privileges, 
   type the following command:
   
-  make install DESTDIR=my_usr_dir
+  make install DESTDIR=my_directory
   
-  where "my_usr_dir" is for storing C++ headers and library files.
+  where "my_directory" is an alternative directory for storing
+  C++ headers and library files.
   Caveat: make sure your C++ compiler is configured to use the
   "lib" and "include" sub-directories present within this directory.
+  Note that the "lib" directory might be named differently on your system.
+  On recent 64 bit Debian & Ubuntu systems it is "lib/x86_64-linux-gnu".
+  On recent 64 bit Fedora & RHEL systems it is "lib64".
 
 
 
@@ -260,7 +266,7 @@ The compiled versions of LAPACK and BLAS were obtained from:
   http://ylzhao.blogspot.com.au/2013/10/blas-lapack-precompiled-binaries-for.html
 
 Faster and/or alternative implementations of BLAS and LAPACK are available:
-  http://xianyi.github.com/OpenBLAS/
+  http://www.openblas.net/
   http://icl.cs.utk.edu/lapack-for-windows/lapack/
   http://software.intel.com/en-us/intel-mkl/
 
@@ -268,13 +274,9 @@ The OpenBLAS and Intel MKL libraries are generally the fastest.
 
 Caveat: for any serious and/or performance critical work,
 we recommend using either Mac OS X or a Linux based operating system:
-  Ubuntu                    http://www.ubuntu.com/
-  Debian                    http://www.debian.org/
-  OpenSUSE                  http://www.opensuse.org/
-  Fedora                    http://fedoraproject.org/
-  Scientific Linux          http://www.scientificlinux.org/
-  CentOS                    http://centos.org/
-  Red Hat Enterprise Linux  http://www.redhat.com/
+  Fedora  http://fedoraproject.org/
+  Ubuntu  http://www.ubuntu.com/
+  CentOS  http://centos.org/
 
 
 
@@ -470,9 +472,6 @@ Octave/Matlab with C++ code that uses Armadillo matrices.
   
 * SigPack: C++ signal processing library using Armadillo
   https://sourceforge.net/projects/sigpack/
-
-* libpca: C++ library for principal component analysis
-  https://sourceforge.net/projects/libpca/
   
 * matlab2cpp: conversion of Matlab code to Armadillo based C++ code
-  https://github.com/emc2norway/m2cpp
+  https://github.com/jonathf/matlab2cpp
