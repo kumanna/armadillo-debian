@@ -1,3 +1,11 @@
+armadillo (1:8.200.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * The new package (with soname) is libarmadillo7
+  * Standards Version is now 4.1.1 (no changes)
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 10 Oct 2017 05:22:15 +0530
+
 armadillo (1:7.960.1+dfsg-1) unstable; urgency=medium
 
   * New upstream release
