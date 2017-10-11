@@ -1,7 +1,14 @@
+armadillo (1:8.200.0+dfsg-2) experimental; urgency=medium
+
+  * Update and fix copyright to reflect new and corrected license and
+    copyright holder details.
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 11 Oct 2017 08:56:05 +0530
+
 armadillo (1:8.200.0+dfsg-1) experimental; urgency=medium
 
   * New upstream release
-  * The new package (with soname) is libarmadillo7
+  * The new package (with soname) is libarmadillo8
   * Standards Version is now 4.1.1 (no changes)
 
  -- Kumar Appaiah <akumar@debian.org>  Tue, 10 Oct 2017 05:22:15 +0530
