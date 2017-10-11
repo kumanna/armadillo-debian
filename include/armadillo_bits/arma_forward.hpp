@@ -1,11 +1,17 @@
-// Copyright (C) 2008-2016 National ICT Australia (NICTA)
+// Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
+// Copyright 2008-2016 National ICT Australia (NICTA)
 // 
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// -------------------------------------------------------------------
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-// Written by Conrad Sanderson - http://conradsanderson.id.au
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ------------------------------------------------------------------------
 
 
 using std::cout;
@@ -44,6 +50,11 @@ template<typename eT> class SpSubview;
 template<typename eT> class diagview;
 template<typename eT> class spdiagview;
 
+template<typename eT> class MapMat;
+template<typename eT> class MapMat_val;
+template<typename eT> class MapMat_elem;
+template<typename eT> class MapMat_svel;
+
 template<typename eT, typename T1>              class subview_elem1;
 template<typename eT, typename T1, typename T2> class subview_elem2;
 
@@ -70,6 +81,7 @@ class op_htrans2;
 class op_inv;
 class op_sum;
 class op_abs;
+class op_arg;
 class op_diagmat;
 class op_trimat;
 class op_diagvec;
@@ -106,6 +118,14 @@ class glue_times_diag;
 class glue_conv;
 class glue_join_cols;
 class glue_join_rows;
+class glue_atan2;
+class glue_hypot;
+class glue_max;
+class glue_min;
+class glue_polyfit;
+class glue_polyval;
+class glue_intersect;
+class glue_affmul;
 
 class glue_rel_lt;
 class glue_rel_gt;
@@ -253,6 +273,24 @@ enum file_type
   hdf5_binary,        //!< Open binary format, not specific to Armadillo, which can store arbitrary data
   hdf5_binary_trans,  //!< as per hdf5_binary, but save/load the data with columns transposed to rows
   coord_ascii         //!< simple co-ordinate format for sparse matrices
+  };
+
+
+struct hdf5_name
+  {
+  const std::string filename;
+  const std::string dsname;
+  
+  inline
+  hdf5_name(const std::string& in_filename)
+    : filename(in_filename)
+    {}
+  
+  inline
+  hdf5_name(const std::string& in_filename, const std::string& in_dsname)
+    : filename(in_filename)
+    , dsname  (in_dsname  )
+    {}
   };
 
 

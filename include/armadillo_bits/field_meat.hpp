@@ -1,12 +1,17 @@
-// Copyright (C) 2008-2016 National ICT Australia (NICTA)
+// Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
+// Copyright 2008-2016 National ICT Australia (NICTA)
 // 
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// -------------------------------------------------------------------
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-// Written by Conrad Sanderson - http://conradsanderson.id.au
-// Written by Ian Cullinan
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ------------------------------------------------------------------------
 
 
 //! \addtogroup field
@@ -21,16 +26,10 @@ field<oT>::~field()
   
   delete_objects();
   
-  if(n_elem > field_prealloc_n_elem::val)
-    {
-    delete [] mem;
-    }
+  if(n_elem > field_prealloc_n_elem::val)  { delete [] mem; }
   
-  if(arma_config::debug == true)
-    {
-    // try to expose buggy user code that accesses deleted objects
-    mem = 0;
-    }
+  // try to expose buggy user code that accesses deleted objects
+  if(arma_config::debug)  { mem = 0; }
   }
 
 
@@ -69,7 +68,7 @@ field<oT>::field(const field& x)
 //! construct a field from a given field
 template<typename oT>
 inline
-const field<oT>&
+field<oT>&
 field<oT>::operator=(const field& x)
   {
   arma_extra_debug_sigprint();
@@ -100,7 +99,7 @@ field<oT>::field(const subview_field<oT>& X)
 //! construct a field from subview_field (e.g. construct a field from a delayed subfield operation)
 template<typename oT>
 inline
-const field<oT>&
+field<oT>&
 field<oT>::operator=(const subview_field<oT>& X)
   {
   arma_extra_debug_sigprint();
@@ -274,7 +273,7 @@ field<oT>::set_size(const SizeCube& s)
   
   template<typename oT>
   inline
-  const field<oT>&
+  field<oT>&
   field<oT>::operator=(const std::initializer_list<oT>& list)
     {
     arma_extra_debug_sigprint();
@@ -312,7 +311,7 @@ field<oT>::set_size(const SizeCube& s)
   
   template<typename oT>
   inline
-  const field<oT>&
+  field<oT>&
   field<oT>::operator=(const std::initializer_list< std::initializer_list<oT> >& list)
     {
     arma_extra_debug_sigprint();
@@ -334,7 +333,7 @@ field<oT>::set_size(const SizeCube& s)
         }
       else
         {
-        arma_check( (uword((*it).size()) != x_n_cols), "Mat::init(): inconsistent number of columns in initialiser list" );
+        arma_check( (uword((*it).size()) != x_n_cols), "field::init(): inconsistent number of columns in initialiser list" );
         }
       }
     
@@ -399,10 +398,12 @@ field<oT>::set_size(const SizeCube& s)
   
   template<typename oT>
   inline
-  const field<oT>&
+  field<oT>&
   field<oT>::operator=(field<oT>&& X)
     {
     arma_extra_debug_sigprint(arma_str::format("this = %x   X = %x") % this % &X);
+    
+    reset();
     
     access::rw(n_rows  ) = X.n_rows;
     access::rw(n_cols  ) = X.n_cols;
@@ -1338,14 +1339,14 @@ field<oT>::print(const std::string extra_text) const
   
   if(extra_text.length() != 0)
     {
-    const std::streamsize orig_width = ARMA_DEFAULT_OSTREAM.width();
+    const std::streamsize orig_width = get_cout_stream().width();
     
-    ARMA_DEFAULT_OSTREAM << extra_text << '\n';
-  
-    ARMA_DEFAULT_OSTREAM.width(orig_width);
+    get_cout_stream() << extra_text << '\n';
+    
+    get_cout_stream().width(orig_width);
     }
   
-  arma_ostream::print(ARMA_DEFAULT_OSTREAM, *this);
+  arma_ostream::print(get_cout_stream(), *this);
   }
 
 

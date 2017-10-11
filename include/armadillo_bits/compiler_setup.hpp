@@ -1,11 +1,17 @@
-// Copyright (C) 2008-2016 National ICT Australia (NICTA)
+// Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
+// Copyright 2008-2016 National ICT Australia (NICTA)
 // 
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// -------------------------------------------------------------------
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-// Written by Conrad Sanderson - http://conradsanderson.id.au
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ------------------------------------------------------------------------
 
 
 
@@ -163,8 +169,8 @@
   #endif
   
   #if (ARMA_GCC_VERSION < 40600)
-    #pragma message ("WARNING: this compiler is OUTDATED and has INCOMPLETE support for the C++ standard;")
-    #pragma message ("WARNING: if something breaks, you get to keep all the pieces.")
+    #undef  ARMA_PRINT_CXX98_WARNING
+    #define ARMA_PRINT_CXX98_WARNING
   #endif
   
   #if ( (ARMA_GCC_VERSION >= 40700) && (ARMA_GCC_VERSION <= 40701) )
@@ -228,8 +234,6 @@
     #define ARMA_HAVE_ISINF
     #define ARMA_HAVE_ISNAN
   #endif
-  
-  #undef ARMA_GCC_VERSION
   
 #endif
 
@@ -312,6 +316,10 @@
 
 #if defined(__INTEL_COMPILER)
   
+  #if (__INTEL_COMPILER == 9999)
+    #error "*** Need a newer compiler ***"
+  #endif
+  
   #if (__INTEL_COMPILER < 1300)
     #error "*** Need a newer compiler ***"
   #endif
@@ -336,6 +344,11 @@
     #error "*** Need a newer compiler ***"
   #endif
   
+  #if (_MSC_VER < 1800)
+    #undef  ARMA_PRINT_CXX98_WARNING
+    #define ARMA_PRINT_CXX98_WARNING
+  #endif
+  
   #if defined(ARMA_USE_CXX11)
     #if (_MSC_VER < 1900)
       #undef  ARMA_PRINT_CXX11_WARNING
@@ -343,6 +356,8 @@
     #endif
   #endif
   
+  #undef  arma_deprecated
+  #define arma_deprecated __declspec(deprecated)
   // #undef  arma_inline
   // #define arma_inline inline __forceinline
   
@@ -411,7 +426,7 @@
 #endif
 
 
-#if defined(ARMA_USE_CXX11) && defined(__CYGWIN__)
+#if defined(ARMA_USE_CXX11) && defined(__CYGWIN__) && !defined(ARMA_DONT_PRINT_CXX11_WARNING)
   #pragma message ("WARNING: Cygwin may have incomplete support for C++11 features.")
 #endif
 
@@ -422,15 +437,68 @@
 #endif
 
 
-#if defined(ARMA_PRINT_CXX11_WARNING)
+#if defined(ARMA_PRINT_CXX98_WARNING) && !defined(ARMA_DONT_PRINT_CXX98_WARNING)
+  #pragma message ("WARNING: this compiler is OUTDATED and has INCOMPLETE support for the C++ standard;")
+  #pragma message ("WARNING: if something breaks, you get to keep all the pieces.")
+#endif
+
+
+#if defined(ARMA_PRINT_CXX11_WARNING) && !defined(ARMA_DONT_PRINT_CXX11_WARNING)
   #pragma message ("WARNING: use of C++11 features has been enabled,")
   #pragma message ("WARNING: but this compiler has INCOMPLETE support for C++11;")
   #pragma message ("WARNING: if something breaks, you get to keep all the pieces.")
   #pragma message ("WARNING: to forcefully prevent Armadillo from using C++11 features,")
   #pragma message ("WARNING: #define ARMA_DONT_USE_CXX11 before #include <armadillo>")
-
-  #undef ARMA_PRINT_CXX11_WARNING
 #endif
+
+
+#if ( defined(ARMA_USE_OPENMP) && (!defined(_OPENMP) || (defined(_OPENMP) && (_OPENMP < 200805))) )
+  // we require OpenMP 3.0 to enable parallelisation of for loops with unsigned integers;
+  // earlier versions of OpenMP can only handle signed integers
+  #undef  ARMA_USE_OPENMP
+  #undef  ARMA_PRINT_OPENMP_WARNING
+  #define ARMA_PRINT_OPENMP_WARNING
+#endif
+
+
+#if ( (defined(_OPENMP) && (_OPENMP < 200805)) && !defined(ARMA_DONT_USE_OPENMP) )
+  // if the compiler has an ancient version of OpenMP and use of OpenMP hasn't been explicitly disabled,
+  // print a warning to ensure there is no confusion about OpenMP support
+  #undef  ARMA_USE_OPENMP
+  #undef  ARMA_PRINT_OPENMP_WARNING
+  #define ARMA_PRINT_OPENMP_WARNING
+#endif
+
+
+#if defined(ARMA_PRINT_OPENMP_WARNING) && !defined(ARMA_DONT_PRINT_OPENMP_WARNING)
+  #pragma message ("WARNING: use of OpenMP disabled; this compiler doesn't support OpenMP 3.0+")
+#endif
+
+
+#if defined(ARMA_USE_OPENMP) && !defined(ARMA_USE_CXX11)
+  #if (defined(ARMA_GCC_VERSION) && (ARMA_GCC_VERSION >= 40803)) || (defined(__clang__) && !defined(ARMA_FAKE_CLANG))
+    #undef  ARMA_PRINT_OPENMP_CXX11_WARNING
+    #define ARMA_PRINT_OPENMP_CXX11_WARNING
+  #endif
+#endif
+
+
+#if defined(ARMA_PRINT_OPENMP_CXX11_WARNING) && !defined(ARMA_DONT_PRINT_OPENMP_WARNING)
+  #pragma message ("WARNING: support for OpenMP requires C++11/C++14; add -std=c++11 or -std=c++14 to compiler flags")
+#endif
+
+
+
+// cleanup
+
+#undef ARMA_FAKE_GCC
+#undef ARMA_FAKE_CLANG
+#undef ARMA_GCC_VERSION
+#undef ARMA_PRINT_CXX98_WARNING
+#undef ARMA_PRINT_CXX11_WARNING
+#undef ARMA_PRINT_OPENMP_WARNING
+#undef ARMA_PRINT_OPENMP_CXX11_WARNING
+
 
 
 #if defined(log2)

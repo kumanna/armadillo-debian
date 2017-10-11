@@ -1,3 +1,81 @@
+armadillo (1:8.200.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * The new package (with soname) is libarmadillo7
+  * Standards Version is now 4.1.1 (no changes)
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 10 Oct 2017 05:22:15 +0530
+
+armadillo (1:7.960.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 23 Aug 2017 22:38:28 +0530
+
+armadillo (1:7.950.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 20 Jun 2017 20:36:34 +0530
+
+armadillo (1:7.900.1+dfsg-2) experimental; urgency=medium
+
+  * Update copyright to reflect Apache License
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 16 May 2017 07:08:51 +0530
+
+armadillo (1:7.900.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 15 May 2017 20:42:34 +0530
+
+armadillo (1:7.600.2+dfsg-2) unstable; urgency=medium
+
+  * Add patch for conv_alias from upstream
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 19 Feb 2017 12:24:41 +0530
+
+armadillo (1:7.600.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 24 Dec 2016 21:19:03 +0530
+
+armadillo (1:7.500.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 29 Nov 2016 18:40:29 +0530
+
+armadillo (1:7.500.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 15 Nov 2016 06:02:42 +0530
+
+armadillo (1:7.500.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch file
+  * Update copyright file
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 26 Oct 2016 20:47:35 +0530
+
+armadillo (1:7.400.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch file to use SF magic URL
+
+ -- Kumar Appaiah <akumar@debian.org>  Sat, 24 Sep 2016 17:07:31 +0530
+
+armadillo (1:7.400.1+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable
+  * Works with superlu 5 (Closes: #837152)
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 09 Sep 2016 20:56:23 +0530
+
 armadillo (1:7.400.1+dfsg-1) experimental; urgency=medium
 
   * New upstream release
@@ -11,6 +89,7 @@ armadillo (1:7.200.2+dfsg-1) experimental; urgency=medium
   * Switch to dpkg-source 3.0 (quilt) format
   * Standards version is now 3.9.8 (no changes needed)
   * The new package (with soname) is libarmadillo7
+  * Convert to 3.0 (quilt)
 
  -- Kumar Appaiah <akumar@debian.org>  Tue, 05 Jul 2016 10:50:51 +0530
 

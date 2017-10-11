@@ -1,12 +1,17 @@
-// Copyright (C) 2008-2015 National ICT Australia (NICTA)
+// Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
+// Copyright 2008-2016 National ICT Australia (NICTA)
 // 
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// -------------------------------------------------------------------
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-// Written by Conrad Sanderson - http://conradsanderson.id.au
-// Written by Ryan Curtin
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ------------------------------------------------------------------------
 
 
 #include <climits>
@@ -1352,6 +1357,16 @@ extern "C"
     htri_t arma_H5Fis_hdf5(const char* name)
       {
       return H5Fis_hdf5(name);
+      }
+
+    hid_t arma_H5Gcreate(hid_t loc_id, const char* name, hid_t lcpl_id, hid_t gcpl_id, hid_t gapl_id)
+      {
+      return H5Gcreate(loc_id, name, lcpl_id, gcpl_id, gapl_id);
+      }
+
+    herr_t arma_H5Gclose(hid_t group_id)
+      {
+      return H5Gclose(group_id);
       }
     
     // H5T_NATIVE_* types.  The rhs here expands to some macros.

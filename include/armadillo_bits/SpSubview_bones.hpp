@@ -1,13 +1,17 @@
-// Copyright (C) 2011-2016 National ICT Australia (NICTA)
+// Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
+// Copyright 2008-2016 National ICT Australia (NICTA)
 // 
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-// -------------------------------------------------------------------
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// http://www.apache.org/licenses/LICENSE-2.0
 // 
-// Written by Conrad Sanderson - http://conradsanderson.id.au
-// Written by Ryan Curtin
-// Written by Matthew Amidon
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// ------------------------------------------------------------------------
 
 
 //! \addtogroup SpSubview
@@ -68,7 +72,7 @@ class SpSubview : public SpBase<eT, SpSubview<eT> >
   template<typename T1> inline const SpSubview& operator*=(const SpBase<eT, T1>& x);
   template<typename T1> inline const SpSubview& operator%=(const SpBase<eT, T1>& x);
   template<typename T1> inline const SpSubview& operator/=(const SpBase<eT, T1>& x);
-
+  
   /*
   inline static void extract(SpMat<eT>& out, const SpSubview& in);
 
@@ -85,20 +89,20 @@ class SpSubview : public SpBase<eT, SpSubview<eT> >
   inline void ones();
   inline void eye();
 
-  arma_hot inline SpValProxy<SpSubview<eT> > operator[](const uword i);
-  arma_hot inline eT                         operator[](const uword i) const;
+  arma_hot inline MapMat_svel<eT> operator[](const uword i);
+  arma_hot inline eT              operator[](const uword i) const;
 
-  arma_hot inline SpValProxy<SpSubview<eT> > operator()(const uword i);
-  arma_hot inline eT                         operator()(const uword i) const;
+  arma_hot inline MapMat_svel<eT> operator()(const uword i);
+  arma_hot inline eT              operator()(const uword i) const;
 
-  arma_hot inline SpValProxy<SpSubview<eT> > operator()(const uword in_row, const uword in_col);
-  arma_hot inline eT                         operator()(const uword in_row, const uword in_col) const;
+  arma_hot inline MapMat_svel<eT> operator()(const uword in_row, const uword in_col);
+  arma_hot inline eT              operator()(const uword in_row, const uword in_col) const;
 
-  arma_hot inline SpValProxy<SpSubview<eT> > at(const uword i);
-  arma_hot inline eT                         at(const uword i) const;
+  arma_hot inline MapMat_svel<eT> at(const uword i);
+  arma_hot inline eT              at(const uword i) const;
 
-  arma_hot inline SpValProxy<SpSubview<eT> > at(const uword in_row, const uword in_col);
-  arma_hot inline eT                         at(const uword in_row, const uword in_col) const;
+  arma_hot inline MapMat_svel<eT> at(const uword in_row, const uword in_col);
+  arma_hot inline eT              at(const uword in_row, const uword in_col) const;
 
   inline bool check_overlap(const SpSubview& x) const;
 
@@ -150,7 +154,7 @@ class SpSubview : public SpBase<eT, SpSubview<eT> >
     inline iterator_base(const SpSubview& in_M);
     inline iterator_base(const SpSubview& in_M, const uword col, const uword pos, const uword skip_pos);
 
-    inline eT operator*() const;
+    arma_inline eT operator*() const;
 
     // Don't hold location internally; call "dummy" methods to get that information.
     arma_inline uword row() const { return M.m.row_indices[internal_pos + skip_pos] - M.aux_row1; }
