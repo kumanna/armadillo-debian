@@ -1,3 +1,10 @@
+armadillo (1:8.200.0+dfsg-3) unstable; urgency=medium
+
+  * Upload to unstable
+  * Fix copyright file to adhere to copyright format 1.0
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 06 Nov 2017 11:59:34 +0530
+
 armadillo (1:8.200.0+dfsg-2) experimental; urgency=medium
 
   * Update and fix copyright to reflect new and corrected license and
