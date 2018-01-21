@@ -25,7 +25,7 @@ Contents
 
  9: Support for OpenBLAS and Intel MKL
 10: Support for ATLAS
-11: Support for C++11/C++14 Features
+11: Support for C++11 / C++14 Features
 12: Support for OpenMP
 
 13: API Documentation
@@ -336,17 +336,13 @@ the CMake based installation. Comment out the lines containing:
 10: Support for ATLAS
 =====================
 
-Armadillo can use the ATLAS library for faster versions of
-certain LAPACK and BLAS functions. Not all ATLAS functions are
-currently used, and as such LAPACK should still be installed.
+Armadillo can use the ATLAS library for faster versions of a subset
+of LAPACK and BLAS functions. LAPACK should still be installed to
+obtain full functionality.
 
-The minimum recommended version of ATLAS is 3.8.
-Old versions (eg. 3.6) can produce incorrect results
-as well as corrupting memory, leading to random crashes.
-
-Users of older Ubuntu and Debian based systems should explicitly
-check that ATLAS 3.6 is not installed. It's better to
-remove the old version and use the standard LAPACK library.
+Caveat: the minimum recommended version of ATLAS is 3.10;
+earlier versions (such as 3.6 and 3.8) can produce incorrect
+results and/or corrupt memory, leading to random crashes.
 
 
 
