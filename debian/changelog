@@ -1,3 +1,12 @@
+armadillo (1:8.400.0+dfsg-2) unstable; urgency=medium
+
+  * Fix debian/rules to allow armadillo to build from source. Patch from
+    Helmut Grohne. (Closes: #875405)
+  * Add -V to dh_makeshlibs to obtain versioned dependencies. (Closes: #885971)
+  * debhelper compay 9 automagically produces debug symbols.. (Closes: #744048)
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 21 Feb 2018 06:04:02 +0530
+
 armadillo (1:8.400.0+dfsg-1) unstable; urgency=medium
 
   * New upstream release
