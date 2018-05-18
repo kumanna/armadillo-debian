@@ -1,3 +1,9 @@
+armadillo (1:8.400.0+dfsg-3) unstable; urgency=medium
+
+  * Add patch from upstream to fix band matrix bug.
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 18 May 2018 16:54:54 +0530
+
 armadillo (1:8.400.0+dfsg-2) unstable; urgency=medium
 
   * Fix debian/rules to allow armadillo to build from source. Patch from
