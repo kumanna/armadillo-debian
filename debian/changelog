@@ -1,6 +1,7 @@
 armadillo (1:8.400.0+dfsg-3) unstable; urgency=medium
 
   * Add patch from upstream to fix band matrix bug.
+  * Move VCS details to Debian Salsa.
 
  -- Kumar Appaiah <akumar@debian.org>  Fri, 18 May 2018 16:54:54 +0530
 
