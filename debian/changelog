@@ -1,3 +1,11 @@
+armadillo (1:9.100.5+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * soname is now 9, add libarmadillo9 package
+  * Remove band mattrix patch
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 16 Aug 2018 14:52:34 +0530
+
 armadillo (1:8.400.0+dfsg-3) unstable; urgency=medium
 
   * Add patch from upstream to fix band matrix bug.
