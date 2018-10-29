@@ -1,5 +1,6 @@
 armadillo (1:9.100.6+dfsg-1) unstable; urgency=medium
 
+  * New upstream release
   * Update watch file to avoid RC releases.
 
  -- Kumar Appaiah <akumar@debian.org>  Mon, 29 Oct 2018 22:04:27 +0530
