@@ -136,7 +136,7 @@ class eop_aux
   template<typename eT> arma_inline static typename arma_unsigned_integral_only<eT>::result sign (const eT  x) { return (x > eT(0)) ? eT(+1) : eT(0);                                                                      }
   template<typename eT> arma_inline static typename   arma_signed_integral_only<eT>::result sign (const eT  x) { return (x > eT(0)) ? eT(+1) : ( (x < eT(0)) ? eT(-1) : eT(0) );                                           }
   template<typename eT> arma_inline static typename              arma_real_only<eT>::result sign (const eT  x) { return (x > eT(0)) ? eT(+1) : ( (x < eT(0)) ? eT(-1) : eT(0) );                                           }
-  template<typename eT> arma_inline static typename                arma_cx_only<eT>::result sign (const eT& x) { typedef typename eT::value_type T; return (x.real() != T(0) && x.imag() != T(0)) ? (x / std::abs(x)) : x; }
+  template<typename eT> arma_inline static typename                arma_cx_only<eT>::result sign (const eT& x) { typedef typename eT::value_type T; const T abs_x = std::abs(x); return (abs_x != T(0)) ? (x / abs_x) : x; }
   
   #if defined(ARMA_USE_CXX11)
   template<typename eT> arma_inline static typename arma_integral_only<eT>::result erf (const eT  x) { return eT( std::erf(double(x)) ); }
