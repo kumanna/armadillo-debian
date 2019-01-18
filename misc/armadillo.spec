@@ -1,5 +1,5 @@
 Name:           armadillo
-Version:        8.200.0
+Version:        9.100.0
 Release:        1%{?dist}
 Summary:        Fast C++ matrix library with syntax similar to MATLAB and Octave
 
@@ -7,7 +7,7 @@ License:        ASL 2.0
 URL:            http://arma.sourceforge.net/
 Source:         http://sourceforge.net/projects/arma/files/%{name}-%{version}.tar.xz
 
-BuildRequires:  cmake, lapack-devel, arpack-devel, hdf5-devel, zlib-devel
+BuildRequires:  gcc-c++, cmake, lapack-devel, arpack-devel, hdf5-devel, zlib-devel
 %{!?openblas_arches:%global openblas_arches x86_64 %{ix86} armv7hl %{power64} aarch64}
 %ifarch %{openblas_arches}
 BuildRequires:  openblas-devel
@@ -16,7 +16,7 @@ BuildRequires:  SuperLU-devel
 
 
 %description
-Armadillo is a high quality C++ linear algebra library,
+Armadillo is a high quality C++ library for linear algebra and scientific computing,
 aiming towards a good balance between speed and ease of use.
 Useful for algorithm development directly in C++,
 and/or quick conversion of research code into production environments.
@@ -36,7 +36,7 @@ computer vision, signal processing, bioinformatics, statistics, finance, etc.
 %package devel
 Summary:        Development headers and documentation for the Armadillo C++ library
 Requires:       %{name} = %{version}-%{release}
-Requires:       lapack-devel, arpack-devel, hdf5-devel, zlib-devel, libstdc++-devel
+Requires:       lapack-devel,  atlas-devel, arpack-devel, hdf5-devel, zlib-devel, libstdc++-devel
 %ifarch %{openblas_arches}
 Requires:       openblas-devel
 %endif
@@ -54,7 +54,7 @@ and user documentation (API reference guide).
 
 # convert DOS end-of-line to UNIX end-of-line
 
-for file in README.txt; do
+for file in README.md; do
   sed 's/\r//' $file >$file.new && \
   touch -r $file $file.new && \
   mv $file.new $file
@@ -90,8 +90,12 @@ rm -rf examples/lib_win64
 %{_includedir}/armadillo
 %{_includedir}/armadillo_bits/
 %{_datadir}/Armadillo/
-%doc README.txt index.html docs.html
+%doc README.md index.html docs.html
 %doc examples armadillo_icon.png
-%doc armadillo_nicta_2010.pdf rcpp_armadillo_csda_2014.pdf armadillo_joss_2016.pdf armadillo_mtgmm_2017.pdf
+%doc armadillo_joss_2016.pdf
+%doc arma_spmat_icms_2018.pdf
+%doc arma_gmm_joss_2017.pdf
+%doc arma_gmm_spcs_2017.pdf
+%doc rcpp_armadillo_csda_2014.pdf
+%doc armadillo_nicta_2010.pdf
 %doc mex_interface
-

@@ -1,6 +1,4 @@
 // Copyright 2011-2017 Ryan Curtin (http://www.ratml.org/)
-// Copyright 2011-2012 Matthew Amidon
-// Copyright 2011-2012 James Cline
 // Copyright 2017 National ICT Australia (NICTA)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -298,51 +296,51 @@ TEST_CASE("iterator_test")
   REQUIRE( (double) *it == Approx(3.1) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 1 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(4.2) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 2 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(5.5) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 3 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(4.5) );
   REQUIRE( it.row() == 2 );
   REQUIRE( it.col() == 3 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(6.4) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 4 );
-  it++;
+  ++it;
 
   REQUIRE( it == x.end() );
 
   // Now let's go backwards.
-  it--; // Get it off the end.
+  --it; // Get it off the end.
   REQUIRE( (double) *it == Approx(6.4) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 4 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(4.5) );
   REQUIRE( it.row() == 2 );
   REQUIRE( it.col() == 3 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(5.5) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 3 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(4.2) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 2 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(3.1) );
   REQUIRE( it.row() == 4 );
@@ -351,8 +349,8 @@ TEST_CASE("iterator_test")
   REQUIRE( it == x.begin() );
 
   // Try removing an element we iterated to.
-  it++;
-  it++;
+  ++it;
+  ++it;
   *it = 0;
   REQUIRE( x.n_nonzero == 4 );
 }
@@ -371,51 +369,51 @@ TEST_CASE("row_iterator_test")
   REQUIRE( (double) *it == Approx(4.2) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 2 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(5.5) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 3 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(4.5) );
   REQUIRE( it.row() == 2 );
   REQUIRE( it.col() == 3 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(3.1) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 1 );
-  it++;
+  ++it;
 
   REQUIRE( (double) *it == Approx(6.4) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 4 );
-  it++;
+  ++it;
 
 //  REQUIRE( it == x.end_row() );
 
   // Now let's go backwards.
-  it--; // Get it off the end.
+  --it; // Get it off the end.
   REQUIRE( (double) *it == Approx(6.4) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 4 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(3.1) );
   REQUIRE( it.row() == 4 );
   REQUIRE( it.col() == 1 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(4.5) );
   REQUIRE( it.row() == 2 );
   REQUIRE( it.col() == 3 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(5.5) );
   REQUIRE( it.row() == 1 );
   REQUIRE( it.col() == 3 );
-  it--;
+  --it;
 
   REQUIRE( (double) *it == Approx(4.2) );
   REQUIRE( it.row() == 1 );
@@ -423,9 +421,9 @@ TEST_CASE("row_iterator_test")
 
   REQUIRE( it == x.begin_row() );
 
-  // Try removing an element we itreated to.
-  it++;
-  it++;
+  // Try removing an element we iterated to.
+  ++it;
+  ++it;
   *it = 0;
   REQUIRE( x.n_nonzero == 4 );
   }
@@ -877,46 +875,46 @@ TEST_CASE("sp_mat_reshape_columnwise_test")
   REQUIRE( (unsigned int) ref(2, 3) == 6 );
   }
 
-TEST_CASE("sp_mat_reshape_rowwise_test")
-  {
-  // Input matrix:
-  // [[0 2 0]
-  //  [1 3 0]
-  //  [0 0 5]
-  //  [0 4 6]]
-  //
-  // Output matrix:
-  // [[0 2 0 1]
-  //  [3 0 0 0]
-  //  [5 0 4 6]]
-  SpMat<unsigned int> ref(4, 3);
-  ref(1, 0) = 1;
-  ref(0, 1) = 2;
-  ref(1, 1) = 3;
-  ref(3, 1) = 4;
-  ref(2, 2) = 5;
-  ref(3, 2) = 6;
-
-  // Now reshape.
-  ref.reshape(3, 4, 1 /* row-wise */);
-
-  // Check everything.
-  REQUIRE( ref.n_cols == 4 );
-  REQUIRE( ref.n_rows == 3 );
-
-  REQUIRE( (unsigned int) ref(0, 0) == 0 );
-  REQUIRE( (unsigned int) ref(1, 0) == 3 );
-  REQUIRE( (unsigned int) ref(2, 0) == 5 );
-  REQUIRE( (unsigned int) ref(0, 1) == 2 );
-  REQUIRE( (unsigned int) ref(1, 1) == 0 );
-  REQUIRE( (unsigned int) ref(2, 1) == 0 );
-  REQUIRE( (unsigned int) ref(0, 2) == 0 );
-  REQUIRE( (unsigned int) ref(1, 2) == 0 );
-  REQUIRE( (unsigned int) ref(2, 2) == 4 );
-  REQUIRE( (unsigned int) ref(0, 3) == 1 );
-  REQUIRE( (unsigned int) ref(1, 3) == 0 );
-  REQUIRE( (unsigned int) ref(2, 3) == 6 );
-  }
+// TEST_CASE("sp_mat_reshape_rowwise_test")
+//   {
+//   // Input matrix:
+//   // [[0 2 0]
+//   //  [1 3 0]
+//   //  [0 0 5]
+//   //  [0 4 6]]
+//   //
+//   // Output matrix:
+//   // [[0 2 0 1]
+//   //  [3 0 0 0]
+//   //  [5 0 4 6]]
+//   SpMat<unsigned int> ref(4, 3);
+//   ref(1, 0) = 1;
+//   ref(0, 1) = 2;
+//   ref(1, 1) = 3;
+//   ref(3, 1) = 4;
+//   ref(2, 2) = 5;
+//   ref(3, 2) = 6;
+// 
+//   // Now reshape.
+//   ref.reshape(3, 4, 1 /* row-wise */);
+// 
+//   // Check everything.
+//   REQUIRE( ref.n_cols == 4 );
+//   REQUIRE( ref.n_rows == 3 );
+// 
+//   REQUIRE( (unsigned int) ref(0, 0) == 0 );
+//   REQUIRE( (unsigned int) ref(1, 0) == 3 );
+//   REQUIRE( (unsigned int) ref(2, 0) == 5 );
+//   REQUIRE( (unsigned int) ref(0, 1) == 2 );
+//   REQUIRE( (unsigned int) ref(1, 1) == 0 );
+//   REQUIRE( (unsigned int) ref(2, 1) == 0 );
+//   REQUIRE( (unsigned int) ref(0, 2) == 0 );
+//   REQUIRE( (unsigned int) ref(1, 2) == 0 );
+//   REQUIRE( (unsigned int) ref(2, 2) == 4 );
+//   REQUIRE( (unsigned int) ref(0, 3) == 1 );
+//   REQUIRE( (unsigned int) ref(1, 3) == 0 );
+//   REQUIRE( (unsigned int) ref(2, 3) == 6 );
+//   }
 
 TEST_CASE("sp_mat_zeros_tests")
   {
@@ -2406,12 +2404,62 @@ TEST_CASE("spmat_dirk_constructor_test")
 
   // Ok, now make a matrix.
   sp_mat M(row_indices, col_ptrs, values, 6, 5);
+  
+  REQUIRE( M.n_nonzero == 6 );
 
   // Make the equivalent dense matrix.
   mat D(6, 5);
   D.fill(0);
   D(1, 0) = 4.0;
   D(3, 0) = 2.0;
+  D(1, 2) = 1.0;
+  D(2, 3) = 3.2;
+  D(4, 4) = 1.2;
+  D(5, 4) = 3.5;
+
+  // So now let's just do a bunch of operations and make sure everything is the
+  // same.
+  sp_mat dm = M * M.t();
+  mat dd = D * D.t();
+
+  CheckMatrices(dm, dd);
+
+  dm = M.t() * M;
+  dd = D.t() * D;
+
+  CheckMatrices(dm, dd);
+
+  sp_mat am = M + M;
+  mat ad = D + D;
+
+  CheckMatrices(am, ad);
+
+  dm = M + D;
+  ad = D + M;
+
+  CheckMatrices(dm, ad);
+  }
+
+
+
+TEST_CASE("spmat_dirk_constructor_test2")
+  {
+  // note the zero at (1,1)
+   vec values      = "4.0 2.0 0.0 1.0 3.2 1.2 3.5";
+  uvec row_indices = "1 3 1 1 2 4 5";
+  uvec col_ptrs    = "0 2 3 4 5 7";
+  
+  // Ok, now make a matrix.
+  sp_mat M(row_indices, col_ptrs, values, 6, 5);
+  
+  REQUIRE( M.n_nonzero == 6 );
+
+  // Make the equivalent dense matrix.
+  mat D(6, 5);
+  D.fill(0);
+  D(1, 0) = 4.0;
+  D(3, 0) = 2.0;
+  D(1, 1) = 0.0;
   D(1, 2) = 1.0;
   D(2, 3) = 3.2;
   D(4, 4) = 1.2;
@@ -2570,7 +2618,7 @@ TEST_CASE("spmat_const_row_col_iterator_test")
   mat::const_row_col_iterator it;
   // Make sure ++ operator, operator* and comparison operators work fine.
   size_t count = 0;
-  for (it = X.begin_row_col(); it != X.end_row_col(); it++)
+  for (it = X.begin_row_col(); it != X.end_row_col(); ++it)
     {
     // Check iterator value.
     REQUIRE( *it == (count % 5) * 3 + (count / 5) );
@@ -2585,7 +2633,7 @@ TEST_CASE("spmat_const_row_col_iterator_test")
   it = X.end_row_col();
   do
     {
-    it--;
+    --it;
     count--;
 
     // Check iterator value.
@@ -2619,7 +2667,7 @@ TEST_CASE("spmat_row_col_iterator_test")
   mat::row_col_iterator it;
   // Make sure ++ operator, operator* and comparison operators work fine.
   size_t count = 0;
-  for (it = X.begin_row_col(); it != X.end_row_col(); it++)
+  for (it = X.begin_row_col(); it != X.end_row_col(); ++it)
     {
     // Check iterator value.
     REQUIRE( *it == (count % 5) * 3 + (count / 5) );
@@ -2634,7 +2682,7 @@ TEST_CASE("spmat_row_col_iterator_test")
   it = X.end_row_col();
   do
     {
-    it--;
+    --it;
     count--;
 
     // Check iterator value.
@@ -2667,7 +2715,7 @@ TEST_CASE("spmat_const_sprow_col_iterator_test")
   sp_mat::const_row_col_iterator it;
   // Make sure ++ operator, operator* and comparison operators work fine.
   size_t count = 1;
-  for (it = X.begin_row_col(); it != X.end_row_col(); it++)
+  for (it = X.begin_row_col(); it != X.end_row_col(); ++it)
     {
     // Check iterator value.
     REQUIRE( *it == (count % 5) * 3 + (count / 5) );
@@ -2682,7 +2730,7 @@ TEST_CASE("spmat_const_sprow_col_iterator_test")
   it = X.end_row_col();
   do
     {
-    it--;
+    --it;
     count--;
 
     // Check iterator value.
@@ -2715,7 +2763,7 @@ TEST_CASE("spmat_sprow_col_iterator_test")
   sp_mat::row_col_iterator it;
   // Make sure ++ operator, operator* and comparison operators work fine.
   size_t count = 1;
-  for (it = X.begin_row_col(); it != X.end_row_col(); it++)
+  for (it = X.begin_row_col(); it != X.end_row_col(); ++it)
     {
     // Check iterator value.
     REQUIRE( *it == (count % 5) * 3 + (count / 5) );
@@ -2730,7 +2778,7 @@ TEST_CASE("spmat_sprow_col_iterator_test")
   it = X.end_row_col();
   do
     {
-    it--;
+    --it;
     count--;
 
     // Check iterator value.
@@ -2742,4 +2790,37 @@ TEST_CASE("spmat_sprow_col_iterator_test")
     } while (it != X.begin_row_col());
 
   REQUIRE( count == 1 );
+  }
+
+
+TEST_CASE("spmat_row_iterator_constructor")
+  {
+  // Create a row iterator with an exact position.
+  Mat<double> tmp =
+      { { 5.5, 0.0, 0.0 },
+        { 0.0, 0.0, 6.5 },
+        { 0.0, 7.5, 0.0 } };
+
+  SpMat<double> X(tmp);
+
+  SpMat<double>::const_row_iterator cri(X, 0, 1);
+
+  // This should end up at (1, 2) with value 6.5.
+  REQUIRE( cri.row() == 1 );
+  REQUIRE( cri.col() == 2 );
+  REQUIRE( (*cri) == Approx(6.5) );
+
+  cri = SpMat<double>::const_row_iterator(X, 0, 0);
+
+  // This should end up at (0, 0) with value 5.5.
+  REQUIRE( cri.row() == 0 );
+  REQUIRE( cri.col() == 0 );
+  REQUIRE( (*cri) == Approx(5.5) );
+
+  cri = SpMat<double>::const_row_iterator(X, 2, 1);
+
+  // This should end up at (2, 1) with value 7.5.
+  REQUIRE( cri.row() == 2 );
+  REQUIRE( cri.col() == 1 );
+  REQUIRE( (*cri) == Approx(7.5) );
   }

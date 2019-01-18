@@ -7,78 +7,24 @@ Files-Excluded: mex_interface/*.mat
  *pdf
 
 Files: *
-Copyright: Copyright (C) 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
-	   Copyright (C) 2008-2016 National ICT Australia (NICTA)
-License: Apache-2.0
+Copyright: 2008-2017 Conrad Sanderson (http://conradsanderson.id.au)
+ 2008-2016 National ICT Australia (NICTA)
+ 2017      Arroyo Consortium
+ 2017      Data61, CSIRO
+License: Apache
  This package is licensed under the Apache 2.0 License. On
- Debian systems, the complete text of the GNU General Public License
+ Debian systems, the complete text of the Apache 2.0 License
  can be found in `/usr/share/common-licenses/Apache-2.0'.
  .
  Upstream Author: Conrad Sanderson <conradsand ! ieee !org> (Change first `!' to `@', second one to `.')
  Main developers:
  - Conrad Sanderson - http://itee.uq.edu.au/~conrad/
  - Ryan Curtin
- - Ian Cullinan
- - Dimitrios Bouzas
- - Stanislav Funiak
- Contributors:
- - Matthew Amidon
- - Eric R. Anderson
- - Benoît Bayol
- - Salim Bcoin
- - Justin Bedo
- - Evan Bollig
- - Darius Braziunas
- - Filip Bruman
- - Ted Campbell
- - James Cline
- - Chris Cooper
- - Clement Creusot
- - Chris Davey
- - Dirk Eddelbuettel
- - Romain Francois
- - Michael McNeil Forbes
- - Piotr Gawron
- - Charles Gretton
- - Benjamin Herzog
- - Edmund Highcock
- - Friedrich Hust
- - Kshitij Kulshreshtha
- - Oka Kurniawan
- - Simen Kvaal
- - David Lawrence
- - Jussi Lehtola
- - Jeremy Mason
- - Nikolay Mayorov
- - Carlos Mendes
- - Artem Novikov
- - Martin Orlob
- - Ken Panici
- - Adam Piątyszek
- - Jayden Platell
- - Vikas Reddy
- - Ola Rinta-Koski
- - Boris Sabanin
- - James Sanders
- - Alexander Scherbatey
- - Gerhard Schreiber
- - Shane Stainsby
- - Petter Strandmark
- - Eric Jon Sundstrom
- - Paul Torfs
- - Simon Urbanek
- - Arnold Wiliem
- - Yong Kang Wong
- - Buote Xu
- - Sean Young
- .
- This software is distributed under the terms of the Mozilla Public
- License version 2.0.
 
 Files: debian/*
-Copyright: © 2009-2013, Kumar Appaiah <akumar@debian.org>
+Copyright: © 2009-2017, Kumar Appaiah <akumar@debian.org>
 License: GPL-2
- The Debian packaging is © 2009-2013, Kumar Appaiah <akumar@debian.org>
+ The Debian packaging is © 2009-2017, Kumar Appaiah <akumar@debian.org>
  and is licensed under the GNU General Public License version 2. On
  Debian systems, the complete text of the GNU General Public License
  can be found in `/usr/share/common-licenses/GPL-2'.

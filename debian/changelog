@@ -1,7 +1,82 @@
+armadillo (1:9.200.6+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 11 Dec 2018 10:47:39 +0530
+
+armadillo (1:9.100.6+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch file to avoid RC releases.
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 29 Oct 2018 22:04:27 +0530
+
+armadillo (1:9.100.5+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * soname is now 9, add libarmadillo9 package
+  * Remove band mattrix patch
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 16 Aug 2018 14:52:34 +0530
+
+armadillo (1:8.400.0+dfsg-3) unstable; urgency=medium
+
+  * Add patch from upstream to fix band matrix bug.
+  * Move VCS details to Debian Salsa.
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 18 May 2018 16:54:54 +0530
+
+armadillo (1:8.400.0+dfsg-2) unstable; urgency=medium
+
+  * Fix debian/rules to allow armadillo to build from source. Patch from
+    Helmut Grohne. (Closes: #875405)
+  * Add -V to dh_makeshlibs to obtain versioned dependencies. (Closes: #885971)
+  * debhelper compay 9 automagically produces debug symbols.. (Closes: #744048)
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 21 Feb 2018 06:04:02 +0530
+
+armadillo (1:8.400.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 20 Feb 2018 19:48:07 +0530
+
+armadillo (1:8.300.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 22 Jan 2018 03:40:01 +0530
+
+armadillo (1:8.300.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Sun, 10 Dec 2017 09:43:58 +0530
+
+armadillo (1:8.200.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 21 Nov 2017 07:14:33 +0530
+
+armadillo (1:8.200.0+dfsg-3) unstable; urgency=medium
+
+  * Upload to unstable
+  * Fix copyright file to adhere to copyright format 1.0
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 06 Nov 2017 11:59:34 +0530
+
+armadillo (1:8.200.0+dfsg-2) experimental; urgency=medium
+
+  * Update and fix copyright to reflect new and corrected license and
+    copyright holder details.
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 11 Oct 2017 08:56:05 +0530
+
 armadillo (1:8.200.0+dfsg-1) experimental; urgency=medium
 
   * New upstream release
-  * The new package (with soname) is libarmadillo7
+  * The new package (with soname) is libarmadillo8
   * Standards Version is now 4.1.1 (no changes)
 
  -- Kumar Appaiah <akumar@debian.org>  Tue, 10 Oct 2017 05:22:15 +0530

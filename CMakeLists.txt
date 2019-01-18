@@ -126,7 +126,7 @@ if(WIN32)
   message(STATUS "")
   message(STATUS "*** WARNING: automatic installation is experimental for this platform.")
   message(STATUS "*** WARNING: if anything breaks, you get to keep all the pieces.")
-  message(STATUS "*** WARNING: manual installation is described in README.txt")
+  message(STATUS "*** WARNING: manual installation is described in the README file.")
   message(STATUS "")
 endif()
 
@@ -167,6 +167,8 @@ if(APPLE)
     message(STATUS "Clang compiler on MacOS X detected. Added '-stdlib=libc++' to compiler flags")
   endif()
   
+  set(CMAKE_MACOSX_RPATH 1)
+  
 else()
   
   set(ARMA_OS unix)
@@ -202,7 +204,6 @@ else()
     message(STATUS "*** On systems with SELinux enabled (eg. Fedora, RHEL),")
     message(STATUS "*** you may need to change the SELinux type of all MKL/ACML libraries")
     message(STATUS "*** to fix permission problems that may occur during run-time.")
-    message(STATUS "*** See README.txt for more information")
     message(STATUS "")
     
     if(MKL_FOUND)
