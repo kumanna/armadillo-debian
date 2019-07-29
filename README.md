@@ -1,17 +1,17 @@
 ### Armadillo: C++ Library for Linear Algebra & Scientific Computing  
 http://arma.sourceforge.net
 
-Copyright 2008-2018 Conrad Sanderson (http://conradsanderson.id.au)  
+Copyright 2008-2019 Conrad Sanderson (http://conradsanderson.id.au)  
 Copyright 2008-2016 National ICT Australia (NICTA)  
-Copyright 2017-2018 Arroyo Consortium  
-Copyright 2017-2018 Data61, CSIRO  
+Copyright 2017-2019 Arroyo Consortium  
+Copyright 2017-2019 Data61, CSIRO  
 
 ---
 
 ### Quick Links  
 
 - [download latest stable release](http://arma.sourceforge.net/download.html)
-- [function & syntax documentation](http://arma.sourceforge.net/docs.html)
+- [documentation for functions and classes](http://arma.sourceforge.net/docs.html)
 - [bug reports & questions](http://arma.sourceforge.net/faq.html)  
 
 ---
@@ -35,7 +35,7 @@ Copyright 2017-2018 Data61, CSIRO
 11. [Support for C++11 / C++14 Features](#11-support-for-c11-c14-features)
 12. [Support for OpenMP](#12-support-for-openmp)
 
-13. [API Documentation](#13-api-documentation)
+13. [Documentation](#13-documentation)
 14. [API Stability and Versioning](#14-api-stability-and-versioning)
 15. [Bug Reports and Frequently Asked Questions](#15-bug-reports-and-frequently-asked-questions)
 
@@ -74,7 +74,7 @@ Authors:
 
 ### 2: Citation Details
 
-Please cite the following papers if you use Armadillo
+Please cite one (or both) of the following papers if you use Armadillo
 in your research and/or software.  Citations are useful
 for the continued development and maintenance of the library.
 
@@ -83,8 +83,8 @@ for the continued development and maintenance of the library.
     Journal of Open Source Software, Vol. 1, pp. 26, 2016.  
   
   * Conrad Sanderson and Ryan Curtin.  
-    A User-Friendly Hybrid Sparse Matrix Class in C++.  
-    Lecture Notes in Computer Science (LNCS), Vol. 10931, pp. 422-430, 2018.
+    Practical Sparse Matrices in C++ with Hybrid Storage and Template-Based Expression Optimisation.  
+    Mathematical and Computational Applications, Vol. 24, No. 3, 2019.
 
 ---
 
@@ -287,8 +287,7 @@ Faster and/or alternative implementations of BLAS and LAPACK are available:
   * http://icl.cs.utk.edu/lapack-for-windows/lapack/
   * http://software.intel.com/en-us/intel-mkl/
 
-The OpenBLAS and Intel MKL libraries are generally the fastest
-replacements for both BLAS and LAPACK.
+OpenBLAS and Intel MKL are generally the fastest replacements for both BLAS and LAPACK.
 
 **Caveat:** 
 for any high performance scientific/engineering workloads,
@@ -391,9 +390,9 @@ may lead to speed regressions on recent processors.
 
 ---
 
-### 13: API Documentation
+### 13: Documentation
 
-Documentation of functions, classes and options is available at:  
+The documentation for Armadillo functions and classes is available at:  
 http://arma.sourceforge.net/docs.html
 
 The documentation is also in the "docs.html" file in this folder,

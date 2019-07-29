@@ -64,10 +64,11 @@ a.menu:hover
   color: #498c05;
   }
 
-a.hidden, a.hidden:hover, a.hidden:active, a.hidden:link, a.hidden:visited
+a.latent, a.latent:hover, a.latent:active, a.latent:link, a.latent:visited
   {
   text-decoration: none;
-  border-bottom: 0px
+  border-bottom: 0px;
+  color: #000000;
   }
 
 table
@@ -148,7 +149,7 @@ hr.greyline
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
 <a name="top"></a>
-<big><b>API Documentation for Armadillo 9.200</b></big>
+<big><b>API Documentation for Armadillo 9.600</b></big>
 <br>
 <br>
 <br>
@@ -189,7 +190,7 @@ History of <a href="#api_additions">API additions</a>
 <td style="text-align: left; vertical-align: top; width: 50%;">
 <ul>
 <li>
-Please cite the following papers if you use Armadillo in your research and/or software.
+Please cite one (or both) of the following papers if you use Armadillo in your research and/or software.
 <br>
 Citations are useful for the continued development and maintenance of the library.
 <br>
@@ -200,8 +201,8 @@ Conrad Sanderson and Ryan Curtin.
 <br>
 <br>
 Conrad Sanderson and Ryan Curtin.
-<br><i><a href="arma_spmat_icms_2018.pdf">A User-Friendly Hybrid Sparse Matrix Class in C++</a></i>.
-<br>Lecture Notes in Computer Science (LNCS), Vol.&nbsp;10931, pp.&nbsp;422-430, 2018.
+<br><i><a href="armadillo_mca_2019.pdf"><font size=-1>Practical Sparse Matrices in C++ with Hybrid Storage and Template-Based Expression Optimisation</font></a></i>.
+<br><a class="latent" href="https://doi.org/10.3390/mca24030070">Mathematical and Computational Applications, Vol. 24, No. 3, 2019.</a>
 </li>
 </ul>
 </td>
@@ -264,6 +265,7 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#fill">.fill</a></td><td>&nbsp;</td><td>set all elements to specified value</td></tr>
 <tr><td><a href="#imbue">.imbue</a></td><td>&nbsp;</td><td>imbue (fill) with values provided by functor or lambda function</td></tr>
+<tr><td><a href="#clean">.clean</a></td><td>&nbsp;</td><td>replace elements below a threshold with zeros</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#replace">.replace</a></td><td>&nbsp;</td><td>replace specific elements with a new value</td></tr>
 <tr><td><a href="#transform">.transform</a></td><td>&nbsp;</td><td>transform each element via functor or lambda function</td></tr>
@@ -298,6 +300,7 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><a href="#iterators_submat">iterators&nbsp;(submatrices)</a></td><td>&nbsp;</td><td>iterators and associated member functions for submatrices &amp; subcubes</td></tr>
 <tr><td><a href="#compat_container_fns">compat.&nbsp;container&nbsp;functions</a></td><td>&nbsp;</td><td>compatibility container functions</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
+<tr><td><a href="#as_col_row">.as_col&nbsp;/&nbsp;.as_row&nbsp;</a></td><td>&nbsp;</td><td>return flattened matrix as column or row vector</td></tr>
 <tr><td><a href="#t_st_members">.t&nbsp;/&nbsp;.st&nbsp;</a></td><td>&nbsp;</td><td>return matrix transpose</td></tr>
 <tr><td><a href="#i_member">.i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td><td>&nbsp;</td><td>return inverse of square matrix</td></tr>
 <tr><td><a href="#min_and_max_member">.min&nbsp;/&nbsp;.max</a></td><td>&nbsp;</td><td>return extremum value</td></tr>
@@ -312,8 +315,9 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><a href="#is_square">.is_square</a></td><td>&nbsp;</td><td>check whether matrix is square sized</td></tr>
 <tr><td><a href="#is_symmetric">.is_symmetric</a></td><td>&nbsp;</td><td>check whether matrix is symmetric</td></tr>
 <tr><td><a href="#is_hermitian">.is_hermitian</a></td><td>&nbsp;</td><td>check whether matrix is hermitian</td></tr>
+<tr><td><a href="#is_sympd">.is_sympd</a></td><td>&nbsp;</td><td>check whether matrix is symmetric/hermitian positive definite</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
-<tr><td><a href="#is_finite_member">.is_finite</a></td><td>&nbsp;</td><td>check whether all elements are finite</td></tr>
+<tr><td><a href="#is_finite">.is_finite</a></td><td>&nbsp;</td><td>check whether all elements are finite</td></tr>
 <tr><td><a href="#has_inf">.has_inf</a></td><td>&nbsp;</td><td>check whether any element is +-Inf</td></tr>
 <tr><td><a href="#has_nan">.has_nan</a></td><td>&nbsp;</td><td>check whether any element is NaN</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
@@ -388,43 +392,42 @@ Conrad Sanderson and Ryan Curtin.
 <tr style="background-color: #F5F5F5;"><td><a href="#index_min_and_index_max_standalone">index_min / index_max</a></td><td>&nbsp;</td><td>indices of extremum values</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#inplace_trans">inplace_trans</a></td><td>&nbsp;</td><td>in-place transpose</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#intersect">intersect</a></td><td>&nbsp;</td><td>find common elements in two vectors/matrices</td></tr>
-<tr><td><a href="#is_finite">is_finite</a></td><td>&nbsp;</td><td>check whether all elements are finite</td></tr>
 <tr><td><a href="#join">join_rows / join_cols</a></td><td>&nbsp;</td><td>concatenation of matrices</td></tr>
 <tr><td><a href="#join_slices">join_slices</a></td><td>&nbsp;</td><td>concatenation of cubes</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#kron">kron</a></td><td>&nbsp;</td><td>Kronecker tensor product</td></tr>
+<tr><td><a href="#kron">kron</a></td><td>&nbsp;</td><td>Kronecker tensor product</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#log_det">log_det</a></td><td>&nbsp;</td><td>log determinant</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#logmat">logmat</a></td><td>&nbsp;</td><td>matrix logarithm</td></tr>
-<tr><td><a href="#logmat_sympd">logmat_sympd</a></td><td>&nbsp;</td><td>symmetric matrix logarithm</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#logmat_sympd">logmat_sympd</a></td><td>&nbsp;</td><td>symmetric matrix logarithm</td></tr>
 <tr><td><a href="#min_and_max">min&nbsp;/&nbsp;max</a></td><td>&nbsp;</td><td>return extremum values</td></tr>
 <tr><td><a href="#nonzeros">nonzeros</a></td><td>&nbsp;</td><td>return non-zero values</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#norm">norm</a></td><td>&nbsp;</td><td>various norms of vectors and matrices</td></tr>
+<tr><td><a href="#norm">norm</a></td><td>&nbsp;</td><td>various norms of vectors and matrices</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#normalise">normalise</a></td><td>&nbsp;</td><td>normalise vectors to unit <i>p</i>-norm</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#prod">prod</a></td><td>&nbsp;</td><td>product of elements</td></tr>
-<tr><td><a href="#rank">rank</a></td><td>&nbsp;</td><td>rank of matrix</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#rank">rank</a></td><td>&nbsp;</td><td>rank of matrix</td></tr>
 <tr><td><a href="#rcond">rcond</a></td><td>&nbsp;</td><td>reciprocal of condition number</td></tr>
 <tr><td><a href="#repelem">repelem</a></td><td>&nbsp;</td><td>replicate elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#repmat">repmat</a></td><td>&nbsp;</td><td>replicate matrix in block-like fashion</td></tr>
+<tr><td><a href="#repmat">repmat</a></td><td>&nbsp;</td><td>replicate matrix in block-like fashion</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#reshape">reshape</a></td><td>&nbsp;</td><td>change size while keeping elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#resize">resize</a></td><td>&nbsp;</td><td>change size while keeping elements and preserving layout</td></tr>
-<tr><td><a href="#reverse">reverse</a></td><td>&nbsp;</td><td>reverse order of elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#reverse">reverse</a></td><td>&nbsp;</td><td>reverse order of elements</td></tr>
 <tr><td><a href="#roots">roots</a></td><td>&nbsp;</td><td>roots of polynomial</td></tr>
 <tr><td><a href="#shift">shift</a></td><td>&nbsp;</td><td>shift elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#shuffle">shuffle</a></td><td>&nbsp;</td><td>randomly shuffle elements</td></tr>
+<tr><td><a href="#shuffle">shuffle</a></td><td>&nbsp;</td><td>randomly shuffle elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#size">size</a></td><td>&nbsp;</td><td>obtain dimensions of given object</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#sort">sort</a></td><td>&nbsp;</td><td>sort elements</td></tr>
-<tr><td><a href="#sort_index">sort_index</a></td><td>&nbsp;</td><td>vector describing sorted order of elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#sort_index">sort_index</a></td><td>&nbsp;</td><td>vector describing sorted order of elements</td></tr>
 <tr><td><a href="#sqrtmat">sqrtmat</a></td><td>&nbsp;</td><td>square root of matrix</td></tr>
 <tr><td><a href="#sqrtmat_sympd">sqrtmat_sympd</a></td><td>&nbsp;</td><td>square root of symmetric matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#sum">sum</a></td><td>&nbsp;</td><td>sum of elements</td></tr>
+<tr><td><a href="#sum">sum</a></td><td>&nbsp;</td><td>sum of elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#sub2ind">sub2ind</a></td><td>&nbsp;</td><td>convert subscripts to linear index</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#symmat">symmatu&nbsp;/&nbsp;symmatl</a></td><td>&nbsp;</td><td>generate symmetric matrix from given matrix</td></tr>
-<tr><td><a href="#trace">trace</a></td><td>&nbsp;</td><td>sum of diagonal elements</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#trace">trace</a></td><td>&nbsp;</td><td>sum of diagonal elements</td></tr>
 <tr><td><a href="#trans">trans</a></td><td>&nbsp;</td><td>transpose of matrix</td></tr>
 <tr><td><a href="#trapz">trapz</a></td><td>&nbsp;</td><td>trapezoidal numerical integration</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#trimat">trimatu&nbsp;/&nbsp;trimatl</a></td><td>&nbsp;</td><td>copy upper/lower triangular part</td></tr>
+<tr><td><a href="#trimat">trimatu&nbsp;/&nbsp;trimatl</a></td><td>&nbsp;</td><td>copy upper/lower triangular part</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#unique">unique</a></td><td>&nbsp;</td><td>return unique elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#vectorise">vectorise</a></td><td>&nbsp;</td><td>convert matrix to vector</td></tr>
-<tr><td><a href="#misc_fns">misc&nbsp;functions</a></td><td>&nbsp;</td><td>miscellaneous element-wise functions:&nbsp;exp,&nbsp;log,&nbsp;pow,&nbsp;sqrt,&nbsp;round,&nbsp;sign,&nbsp;...</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#vectorise">vectorise</a></td><td>&nbsp;</td><td>flatten matrix into vector</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#misc_fns">misc&nbsp;functions</a></td><td>&nbsp;</td><td>miscellaneous element-wise functions:&nbsp;exp,&nbsp;log,&nbsp;pow,&nbsp;sqrt,&nbsp;round,&nbsp;sign,&nbsp;...</td></tr>
 <tr><td><a href="#trig_fns">trig&nbsp;functions</a></td><td>&nbsp;</td><td>trigonometric element-wise functions:&nbsp;cos,&nbsp;sin,&nbsp;...</td></tr>
 </tbody>
 </table>
@@ -484,8 +487,9 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><a href="#fft">fft&nbsp;/&nbsp;ifft</a></td><td>&nbsp;</td><td>1D fast Fourier transform and its inverse</td></tr>
 <tr><td><a href="#fft2">fft2&nbsp;/&nbsp;ifft2</a></td><td>&nbsp;</td><td>2D fast Fourier transform and its inverse</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#interp1">interp1</a></td><td>&nbsp;</td><td>1D interpolation</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#polyfit">polyfit</a></td><td>&nbsp;</td><td>find polynomial coefficients for data fitting</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#polyval">polyval</a></td><td>&nbsp;</td><td>evaluate polynomial</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#interp2">interp2</a></td><td>&nbsp;</td><td>2D interpolation</td></tr>
+<tr><td><a href="#polyfit">polyfit</a></td><td>&nbsp;</td><td>find polynomial coefficients for data fitting</td></tr>
+<tr><td><a href="#polyval">polyval</a></td><td>&nbsp;</td><td>evaluate polynomial</td></tr>
 </tbody>
 </table>
 </ul>
@@ -1781,11 +1785,7 @@ F.save("mat_field");
 <br><b>sp_cx_mat</b>
 <ul>
 <li>
-Classes for sparse matrices, with elements stored in <a href="http://en.wikipedia.org/wiki/Sparse_matrix">compressed sparse column (CSC) format</a>
-</li>
-<br>
-<li>
-Specifically intended for large matrices where only a small minority of the elements are non-zero
+Classes for sparse matrices; intended for storing very large matrices, where the vast majority of elements are zero
 </li>
 <br>
 <li>
@@ -1795,24 +1795,6 @@ The root sparse matrix class is <b>SpMat&lt;</b><i>type</i><b>&gt;</b>, where <i
 <i>float</i>, <i>double</i>, <i>std::complex&lt;float&gt;</i>, <i>std::complex&lt;double&gt;</i>,
 <i>short</i>, <i>int</i>, <i>long</i> and unsigned versions of <i>short</i>, <i>int</i>, <i>long</i>
 </li>
-</ul>
-</li>
-<br>
-<li>
-This class behaves in a similar manner to the <a href="#Mat">Mat</a> class;
-however, member functions which set all elements to non-zero values (and hence do not make sense for sparse matrices) have been deliberately omitted;
-examples of omitted functions: <a href="#fill">.fill()</a>, <a href="#ones_member">.ones()</a>, +=&nbsp;scalar, etc.
-</li>
-<br>
-<li>
-<b>NOTE:</b>
-<ul>
-<li>
-Armadillo 8.x is much faster than Armadillo 7.x for incrementally populating <i>SpMat</i> via <a href="#element_access">element access operators</a>
-</li>
-<li>
-In Armadillo 7.x and earlier, incrementally populating <i>SpMat</i> via <a href="#element_access">element access operators</a> is inefficient;
-use <a href="#batch_constructors_sp_mat">batch insertion constructors</a> instead</li>
 </ul>
 </li>
 <br>
@@ -1940,6 +1922,17 @@ All elements are treated as zero by default (ie. the matrix is initialised to co
 </li>
 <br>
 <li>
+Non-zero elements are stored in <a href="http://en.wikipedia.org/wiki/Sparse_matrix">compressed sparse column (CSC) format</a> (ie. column-major ordering);
+zero-valued elements are never stored
+</li>
+<br>
+<li>
+This class behaves in a similar manner to the <a href="#Mat">Mat</a> class;
+however, member functions which set all elements to non-zero values (and hence do not make sense for sparse matrices) have been deliberately omitted;
+examples of omitted functions: <a href="#fill">.fill()</a>, <a href="#ones_member">.ones()</a>, +=&nbsp;scalar, etc.
+</li>
+<br>
+<li>
 <a name="batch_constructors_sp_mat"></a>
 Batch insertion constructors:
 <ul>
@@ -1984,19 +1977,17 @@ manually specified via <i>n_rows</i> and <i>n_cols</i> (forms&nbsp;2,&nbsp;3,&nb
 </li>
 <br>
 <li>
-If <i>sort_locations</i> is set to <i>false</i>, the <i>locations</i> matrix is assumed to contain locations that are already sorted according to column-major ordering
+If <i>sort_locations</i> is set to <i>false</i>, the <i>locations</i> matrix is assumed to contain locations that are already sorted according to column-major ordering; do not set this to <i>false</i> unless you know what you are doing!
 </li>
 <br>
 <li>
-If <i>check_for_zeros</i> is set to <i>false</i>, the <i>values</i> vector is assumed to contain no zero values
+If <i>check_for_zeros</i> is set to <i>false</i>, the <i>values</i> vector is assumed to contain no zero values; do not set this to <i>false</i> unless you know what you are doing!
 </li>
 </ul>
 </ul>
 <br>
-
 <li>
-<b>Caveat:</b> support for sparse matrices is a work in progress;
-in this version, the following subset of operations works with sparse matrices:
+The following subset of operations &amp; functions is available for sparse matrices:
 <ul>
 <li>fundamental arithmetic <a href="#operators">operations</a> (such as addition and multiplication)</li>
 <li><a href="#submat">submatrix views</a> (contiguous forms only)</li>
@@ -2004,16 +1995,28 @@ in this version, the following subset of operations works with sparse matrices:
 <li><a href="#save_load_mat">saving and loading</a> (using <i>arma_binary</i> and <i>coord_ascii</i> formats only)</li>
 <li>element-wise functions: <a href="#abs">abs()</a>, <a href="#misc_fns">ceil()</a>, <a href="#conj">conj()</a>, <a href="#misc_fns">floor()</a>, <a href="#imag_real">imag()</a>, <a href="#imag_real">real()</a>, <a href="#misc_fns">round()</a>, <a href="#misc_fns">sign()</a>, <a href="#misc_fns">sqrt()</a>, <a href="#misc_fns">square()</a>, <a href="#misc_fns">trunc()</a></li>
 <li>scalar functions of matrices: <a href="#accu">accu()</a>, <a href="#as_scalar">as_scalar()</a>, <a href="#dot">dot()</a>, <a href="#norm">norm()</a>, <a href="#trace">trace()</a></li>
-<li>vector valued functions of matrices: <a href="#diagvec">diagvec()</a>, <a href="#min_and_max">min()</a>, <a href="#min_and_max">max()</a>, <a href="#nonzeros">nonzeros()</a>, <a href="#sum">sum()</a>, <a href="#stats_fns">mean()</a>, <a href="#stats_fns">var()</a></li>
-<li>matrix valued functions of matrices: <a href="#diagmat">diagmat()</a>, <a href="#flip">flipud()/fliplr()</a>, <a href="#join">join_rows()</a>, <a href="#join">join_cols()</a>, <a href="#kron">kron()</a>, <a href="#normalise">normalise()</a>, <a href="#repelem">repelem()</a>, <a href="#repmat">repmat()</a>, <a href="#reshape">reshape()</a>, <a href="#resize">resize()</a>, <a href="#reverse">reverse()</a>, <a href="#symmat">symmatu()/symmatl()</a>, <a href="#trimat">trimatu()/trimatl()</a>, <a href="#t_st_members">.t()</a>, <a href="#trans">trans()</a></li>
+<li>vector valued functions of matrices: <a href="#diagvec">diagvec()</a>, <a href="#min_and_max">min()</a>, <a href="#min_and_max">max()</a>, <a href="#nonzeros">nonzeros()</a>, <a href="#sum">sum()</a>, <a href="#stats_fns">mean()</a>, <a href="#stats_fns">var()</a>, <a href="#vectorise">vectorise()</a></li>
+<li>matrix valued functions of matrices: <a href="#clamp">clamp()</a>, <a href="#diagmat">diagmat()</a>, <a href="#flip">flipud()/fliplr()</a>, <a href="#join">join_rows()</a>, <a href="#join">join_cols()</a>, <a href="#kron">kron()</a>, <a href="#normalise">normalise()</a>, <a href="#repelem">repelem()</a>, <a href="#repmat">repmat()</a>, <a href="#reshape">reshape()</a>, <a href="#resize">resize()</a>, <a href="#reverse">reverse()</a>, <a href="#symmat">symmatu()/symmatl()</a>, <a href="#trimat">trimatu()/trimatl()</a>, <a href="#t_st_members">.t()</a>, <a href="#trans">trans()</a></li>
 <li>generated matrices: <a href="#speye">speye()</a>, <a href="#spones">spones()</a>, <a href="#sprandu_sprandn">sprandu()</a>, <a href="#sprandu_sprandn">sprandn()</a>, <a href="#zeros_standalone">zeros()</a></li>
 <li>eigen and svd decomposition: <a href="#eigs_sym">eigs_sym()</a>, <a href="#eigs_gen">eigs_gen()</a>, <a href="#svds">svds()</a></li>
 <li>solution of sparse linear systems: <a href="#spsolve">spsolve()</a>
-<li>miscellaneous: <a href="#approx_equal">approx_equal()</a>, <a href="#element_access">element access</a>, <a href="#iterators_spmat">element iterators</a>, <a href="#for_each">.for_each()</a>, <a href="#print">.print()</a>, <a href="#replace">.replace()</a>, <a href="#transform">.transform()</a>, <a href="#is_finite_member">.is_finite()</a>, <a href="#is_symmetric">.is_symmetric()</a>, <a href="#is_hermitian">.is_hermitian()</a></li>
+<li>miscellaneous: <a href="#approx_equal">approx_equal()</a>, <a href="#element_access">element access</a>, <a href="#iterators_spmat">element iterators</a>, <a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a>, <a href="#for_each">.for_each()</a>, <a href="#print">.print()</a>, <a href="#clean">.clean()</a>, <a href="#replace">.replace()</a>, <a href="#transform">.transform()</a>, <a href="#is_finite">.is_finite()</a>, <a href="#is_symmetric">.is_symmetric()</a>, <a href="#is_hermitian">.is_hermitian()</a></li>
 </ul>
 </li>
 <br>
-
+<li>
+<b>Caveats:</b>
+<ul>
+<li>
+Armadillo 9.600 is the minimum recommended version; it has considerably improved support for sparse matrices compared to earlier versions
+</li>
+<li>
+In old versions of Armadillo (7.x and earlier), incrementally populating sparse matrices via <a href="#element_access">element access operators</a> is inefficient;
+use <a href="#batch_constructors_sp_mat">batch insertion constructors</a> instead
+</li>
+</ul>
+</li>
+<br>
 <li>
 Examples:
 <ul>
@@ -2025,7 +2028,7 @@ sp_mat C = 2*B;
 sp_mat D = A*C;
 
 sp_mat E(1000,1000);
-E(1,2) = 123;  // element access (Armadillo 8.x)
+E(1,2) = 123;  // element access (Armadillo 8.x and later)
 
 
 // batch insertion of two values at (5, 6) and (9, 9)
@@ -2460,10 +2463,12 @@ Not recommended for use unless your code has been thoroughly debugged.</td>
 <br>
 <a name="element_access_bounds_check_note"></a>
 <li>
-The bounds checks used by the <i>(n)</i>, <i>(i,j)</i> and <i>(i,j,k)</i> access forms
+The bounds checks used by the <i>(n)</i>, <i>(i,j)</i> and <i>(i,j,k)</i> element access forms
 can be disabled by defining the <a href="#config_hpp_arma_no_debug">ARMA_NO_DEBUG</a> macro
 before including the <i>armadillo</i> header file (eg. <i>#define ARMA_NO_DEBUG</i>).
-Disabling the bounds checks is not recommended until your code has been thoroughly debugged
+Alternatively, the <i>.at(n)</i>, <i>.at(i,j)</i> and <i>.at(i,j,k)</i> element access forms can be used,
+which do not have bounds checks.
+Either way, disabling the bounds checks is not recommended until your code has been thoroughly tested and debugged
 -- it's better to write correct code first, and then maximise its speed.
 </li>
 <br>
@@ -3008,6 +3013,51 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="clean"></a>
+<b>.clean(&nbsp;</b>threshold<b>&nbsp;)</b>
+<br>
+<ul>
+<li>
+Member function of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>SpMat</i>
+</li>
+<br>
+<li>For objects with non-complex elements: each element with an absolute value &leq; <i>threshold</i> is replaced by zero</li>
+<br>
+<li>For objects with complex elements: for each element, each component (real and imaginary) with an absolute value &leq; <i>threshold</i> is replaced by zero</li>
+<br>
+<li>Can be used to sparsify a matrix, in the sense of zeroing values with small magnitudes</li>
+<br>
+<li><b>Caveat:</b> to explicitly convert from dense storage to sparse storage, use the <a href="#SpMat">SpMat class</a></li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+sp_mat A;
+
+A.sprandu(1000, 1000, 0.01);
+
+A(12,34) =  datum::eps;
+A(56,78) = -datum::eps;
+
+A.clean(datum::eps);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#replace">.replace()</a></li>
+<li><a href="#transform">.transform()</a></li>
+<li><a href="#clamp">clamp()</a></li>
+<li><a href="#constants">datum::eps</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="replace"></a>
 <b>.replace( old_value, new_value )</b>
 <ul>
@@ -3046,6 +3096,7 @@ See also:
 <ul>
 <li><a href="#transform">.transform()</a></li>
 <li><a href="#for_each">.for_each()</a></li>
+<li><a href="#clean">.clean()</a></li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="#has_nan">.has_nan()</a></li>
 <li><a href="#has_inf">.has_inf()</a></li>
@@ -3105,6 +3156,7 @@ See also:
 <li><a href="#for_each">.for_each()</a></li>
 <li><a href="#replace">.replace()</a></li>
 <li><a href="#imbue">.imbue()</a></li>
+<li><a href="#clean">.clean()</a></li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="#element_access">element access</a></li>
 <li><a href="#operators">overloaded operators</a></li>
@@ -3329,8 +3381,7 @@ to grow/shrink the object while preserving the elements <b>as well as</b> the la
 use <a href="#resize_member">.resize()</a> instead
 </li>
 <li>
-to create a vector representation of a matrix (ie. concatenate all the columns or rows),
-use <a href="#vectorise">vectorise()</a> instead
+to flatten a matrix into a vector, use <a href="#vectorise">vectorise()</a> or <a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a> instead
 </li>
 </ul>
 </li>
@@ -3353,6 +3404,7 @@ A.reshape(5,4);
 <li><a href="#copy_size">.copy_size()</a></li>
 <li><a href="#zeros_member">.zeros()</a></li>
 <li><a href="#reset">.reset()</a></li>
+<li><a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a></li>
 <li><a href="#reshape">reshape()</a> (standalone function)</li>
 <li><a href="#vectorise">vectorise()</a></li>
 <li><a href="#size">size()</a></li>
@@ -3660,6 +3712,10 @@ but uses memory from the existing matrix object.
 As such, the created vector is not alias safe,
 and does not take into account that the underlying matrix memory could be freed
 (eg. due to any operation involving a size change of the matrix).
+</li>
+<br>
+<li>
+Submatrix views of sparse matrices are only useful with Armadillo 9.600 and later versions; in earlier versions they are inefficient 
 </li>
 <br>
 <li>
@@ -4344,9 +4400,16 @@ See also:
       <b>.shed_row(&nbsp;</b>row_number<b>&nbsp;)</b>
       <br>
       <b>.shed_rows(&nbsp;</b>first_row, last_row<b>&nbsp;)</b>
+      <br>
+      <b>.shed_rows(&nbsp;</b>vector_of_indices<b>&nbsp;)</b>
       </td>
       <td>&nbsp;</td>
-      <td style="vertical-align: top;">(member functions of <i>Mat</i>, <i>Col</i>, <i>SpMat</i> and <i>Cube</i>)
+      <td style="vertical-align: top;">
+      (member function of <i>Mat</i>, <i>Col</i>, <i>SpMat</i>, <i>Cube</i>)
+      <br>
+      (member function of <i>Mat</i>, <i>Col</i>, <i>SpMat</i>, <i>Cube</i>)
+      <br>
+      (member function of <i>Mat</i>, <i>Col</i>)
       </td>
     </tr>
     <tr>
@@ -4357,9 +4420,16 @@ See also:
       <b>.shed_col(&nbsp;</b>column_number<b>&nbsp;)</b>
       <br>
       <b>.shed_cols(&nbsp;</b>first_column, last_column<b>&nbsp;)</b>
+      <br>
+      <b>.shed_cols(&nbsp;</b>vector_of_indices<b>&nbsp;)</b>
       </td>
       <td>&nbsp;</td>
-      <td style="vertical-align: top;">(member functions of <i>Mat</i>, <i>Row</i>, <i>SpMat</i> and <i>Cube</i>)
+      <td style="vertical-align: top;">
+      (member function of <i>Mat</i>, <i>Row</i>, <i>SpMat</i>, <i>Cube</i>)
+      <br>
+      (member function of <i>Mat</i>, <i>Row</i>, <i>SpMat</i>, <i>Cube</i>)
+      <br>
+      (member function of <i>Mat</i>, <i>Row</i>)
       </td>
     </tr>
     <tr>
@@ -4370,6 +4440,8 @@ See also:
       <b>.shed_slice(&nbsp;</b>slice_number<b>&nbsp;)</b>
       <br>
       <b>.shed_slices(&nbsp;</b>first_slice, last_slice<b>&nbsp;)</b>
+      <br>
+      <b>.shed_slices(&nbsp;</b>vector_of_indices<b>&nbsp;)</b>
       </td>
       <td>&nbsp;</td>
       <td style="vertical-align: top;">(member functions of <i>Cube</i>)
@@ -4379,13 +4451,15 @@ See also:
 </table>
 <ul>
 <li>
-Single argument functions:
-remove the specified row/column/slice
+Functions with single scalar argument: remove the specified row/column/slice
 </li>
 <br>
 <li>
-Two argument functions:
-remove the specified range of rows/columns/slices
+Functions with two scalar arguments: remove the specified range of rows/columns/slices
+</li>
+<br>
+<li>
+The <i>vector_of_indices</i> must evaluate to a vector of type <a href="#Col">uvec</a>; it contains the indices of rows/columns/slices to remove
 </li>
 <br>
 <li>
@@ -4393,9 +4467,13 @@ Examples:
 <ul>
 <pre>
 mat A = randu&lt;mat&gt;(5,10);
+mat B = randu&lt;mat&gt;(5,10);
 
 A.shed_row(2);
 A.shed_cols(2,4);
+
+uvec indices = {4, 6, 8};
+B.shed_cols(indices);
 </pre>
 </ul>
 </li>
@@ -5119,7 +5197,7 @@ Iterators for sparse matrices traverse over non-zero elements within the specifi
 <ul>
 <li>writing a zero value into a sparse matrix through an iterator will invalidate all current iterators associated with the sparse matrix;
 <br>consider using <a href="#transform">.transform()</a> and <a href="#for_each">.for_each()</a> as safer alternatives</li>
-<li>row iterators for sparse matrices are only useful with Armadillo versions 8.500 and later; in earlier versions they are inefficient
+<li>row iterators for sparse matrices are only useful with Armadillo 8.500 and later versions; in earlier versions they are inefficient
 </ul>
 </li>
 <br>
@@ -5462,6 +5540,51 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="as_col_row"></a>
+<b>
+.as_col()
+<br>.as_row()
+</b>
+<ul>
+<li>
+Member functions of any matrix expression
+</li>
+<br>
+<li>
+<i>.as_col()</i>: return a flattened version of the matrix as a column vector; flattening is done by concatenating all columns
+</li>
+<br>
+<li>
+<i>.as_row()</i>: return a flattened version of the matrix as a row vector; flattening is done by concatenating all rows
+</li>
+<br>
+<li>
+<b>Caveat:</b> concatenating columns is faster than concatenating rows
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat X = randu&lt;mat&gt;(4,5);
+vec v = X.as_col();
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#reshape_member">.reshape()</a></li>
+<li><a href="#t_st_members">.t()&nbsp;/&nbsp;.st()</a></li>
+<li><a href="#as_scalar">as_scalar()</a></li>
+<li><a href="#vectorise">vectorise()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="t_st_members"></a>
 <b>
 .t()
@@ -5504,6 +5627,7 @@ See also:
 <li><a href="#trans">trans()</a></li>
 <li><a href="#flip">fliplr() &amp; flipud()</a></li>
 <li><a href="#reverse">reverse()</a></li>
+<li><a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a></li>
 </ul>
 </li>
 <br>
@@ -5862,7 +5986,7 @@ See also:
 <ul>
 <li><a href="#is_square">.is_square()</a></li>
 <li><a href="#is_vec">.is_vec()</a></li>
-<li><a href="#is_finite_member">.is_finite()</a></li>
+<li><a href="#is_finite">.is_finite()</a></li>
 <li><a href="#reset">.reset()</a></li>
 </ul>
 </li>
@@ -5933,7 +6057,7 @@ See also:
 <ul>
 <li><a href="#is_empty">.is_empty()</a></li>
 <li><a href="#is_square">.is_square()</a></li>
-<li><a href="#is_finite_member">.is_finite()</a></li>
+<li><a href="#is_finite">.is_finite()</a></li>
 </ul>
 </li>
 <br>
@@ -5958,7 +6082,17 @@ If the object is a matrix, return a <i>bool</i> indicating whether the elements 
 </li>
 <br>
 <li>
-The <i>sort_direction</i> argument is optional; <i>sort_direction</i> is either <code>"ascend"</code> or <code>"descend"</code>; by default <code>"ascend"</code> is used
+The <i>sort_direction</i> argument is optional; <i>sort_direction</i> is one of:
+<ul>
+<table>
+<tbody>
+<tr><td><code>"ascend"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>elements are ascending; consecutive elements can be equal; this is the <b>default operation</b></td></tr>
+<tr><td><code>"descend"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>elements are descending; consecutive elements can be equal</td></tr>
+<tr><td><code>"strictascend"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>elements are strictly ascending; consecutive elements cannot be equal</td></tr>
+<tr><td><code>"strictdescend"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>elements are strictly descending; consecutive elements cannot be equal</td></tr>
+</tbody>
+</table>
+</ul>
 </li>
 <br>
 <li>
@@ -5995,6 +6129,7 @@ cout &lt;&lt; A.is_sorted("ascend", 1) &lt;&lt; endl;
 See also:
 <ul>
 <li><a href="#sort">sort()</a></li>
+<li><a href="#sort_index">sort_index()</a></li>
 </ul>
 </li>
 <br>
@@ -6034,7 +6169,7 @@ See also:
 <li><a href="#is_hermitian">.is_hermitian()</a></li>
 <li><a href="#is_empty">.is_empty()</a></li>
 <li><a href="#is_vec">.is_vec()</a></li>
-<li><a href="#is_finite_member">.is_finite()</a></li>
+<li><a href="#is_finite">.is_finite()</a></li>
 </ul>
 </li>
 <br>
@@ -6074,6 +6209,7 @@ cout &lt;&lt; B.is_symmetric() &lt;&lt; endl;
 See also:
 <ul>
 <li><a href="#is_hermitian">.is_hermitian()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="#is_square">.is_square()</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Symmetric_matrix">Symmetric matrix in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/SymmetricMatrix.html">Symmetric matrix in MathWorld</a></li>
@@ -6091,7 +6227,7 @@ See also:
 Member function of <i>Mat</i> and <i>SpMat</i>
 </li>
 <br>
-<li>Returns <i>true</i> if the matrix is hermitian</li>
+<li>Returns <i>true</i> if the matrix is hermitian (self-adjoint)</li>
 <br>
 <li>Returns <i>false</i> if the matrix is not hermitian</li>
 <br>
@@ -6116,6 +6252,7 @@ cout &lt;&lt; B.is_hermitian() &lt;&lt; endl;
 See also:
 <ul>
 <li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="#is_square">.is_square()</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Hermitian_matrix">Hermitian matrix in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/HermitianMatrix.html">Hermitian matrix in MathWorld</a></li>
@@ -6125,6 +6262,51 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="is_sympd"></a>
+<b>.is_sympd()</b>
+<br><b>.is_sympd(&nbsp;tol&nbsp;)</b>
+<ul>
+<li>
+Member function of <i>Mat</i> and any dense matrix expression
+</li>
+<br>
+<li>Returns <i>true</i> if the matrix is symmetric/hermitian positive definite within the tolerance given by <i>tol</i>
+</li>
+<br>
+<li>Returns <i>false</i> otherwise
+</li>
+<br>
+<li>
+The <i>tol</i> argument is optional; if <i>tol</i> is not specified, by default <i>tol = 100 * datum::eps * norm(X, "fro")</i>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A(5,5,fill::randu);
+
+mat B = A.t() * A;
+
+cout &lt;&lt; A.is_sympd() &lt;&lt; endl;
+cout &lt;&lt; B.is_sympd() &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="#is_hermitian">.is_hermitian()</a></li>
+<li><a href="#constants">datum::eps</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="is_finite"></a>
 <a name="is_finite_member"></a>
 <b>.is_finite()</b>
 <ul>
@@ -6160,7 +6342,6 @@ See also:
 <li><a href="#has_nan">.has_nan()</a></li>
 <li><a href="#find_finite">find_finite()</a></li>
 <li><a href="#find_nonfinite">find_nonfinite()</a></li>
-<li><a href="#is_finite">is_finite()</a> (standalone function)</li>
 <li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
 </ul>
 </li>
@@ -6201,7 +6382,7 @@ See also:
 <ul>
 <li><a href="#has_nan">.has_nan()</a>
 <li><a href="#replace">.replace()</a></li>
-<li><a href="#is_finite_member">.is_finite()</a>
+<li><a href="#is_finite">.is_finite()</a>
 <li><a href="#find_nonfinite">find_nonfinite()</a></li>
 <li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
 </ul>
@@ -6248,7 +6429,7 @@ See also:
 <ul>
 <li><a href="#has_inf">.has_inf()</a>
 <li><a href="#replace">.replace()</a></li>
-<li><a href="#is_finite_member">.is_finite()</a>
+<li><a href="#is_finite">.is_finite()</a>
 <li><a href="#find_nonfinite">find_nonfinite()</a></li>
 <li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
 </ul>
@@ -6829,7 +7010,7 @@ Usage:
 </li>
 <br>
 <li>
-<b>Caveat:</b> if N &le; 1, the generated vector will have a size of one, with the single element equal to <i>end</i>
+<b>Caveat:</b> for <i>N&nbsp;=&nbsp;1</i>, the generated vector will have a single element equal to <i>end</i>
 </li>
 <br>
 <li>
@@ -7884,6 +8065,7 @@ double d = as_scalar(r*inv(diagmat(X))*q);
 <li>
 See also:
 <ul>
+<li><a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a></li>
 <li><a href="#vectorise">vectorise()</a></li>
 <li><a href="#accu">accu()</a></li>
 <li><a href="#trace">trace()</a></li>
@@ -7905,6 +8087,10 @@ Create a copy of <i>X</i> with each element clamped to the [<i>min_val</i>,&nbsp
 </li>
 <br>
 <li>
+If <i>X</i> is a sparse matrix, clamping is applied only to the non-zero elements
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
@@ -7921,8 +8107,8 @@ mat D = clamp(A, 0.2, A.max());
 <li>
 See also:
 <ul>
-<li><a href="#min_and_max">min() &amp; max()</a> (standalone functions)</li>
-<li><a href="#min_and_max_member">.min() &amp; .max()</a> (member functions)</li>
+<li><a href="#min_and_max_member">.min() &amp; .max()</a></li>
+<li><a href="#clean">.clean()</a></li>
 <li><a href="#replace">.replace()</a></li>
 <li><a href="#find">find()</a></li>
 </ul>
@@ -8499,8 +8685,10 @@ See also:
 <li><i>expmat_sym(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 </ul>
 </li>
+<!--
 <br>
-<li><b>Caveat</b>: there is currently no check whether <i>A</i> is symmetric</li>
+<li><b>Caveat</b>: there is no explicit check whether <i>A</i> is symmetric/hermitian</li>
+-->
 <br>
 <li><b>Caveat</b>: the matrix exponential operation is generally <b>not</b> the same as applying the <a href="#misc_fns">exp()</a> function to each element</li>
 <br>
@@ -8523,6 +8711,8 @@ See also:
 <li><a href="#expmat">expmat()</a></li>
 <li><a href="#logmat_sympd">logmat_sympd()</a></li>
 <li><a href="#sqrtmat_sympd">sqrtmat_sympd()</a></li>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="#is_hermitian">.is_hermitian()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
@@ -8639,6 +8829,10 @@ See also:
 <ul>
 <li><a href="#find">find()</a></li>
 <li><a href="#find_nonfinite">find_nonfinite()</a></li>
+<li><a href="#is_finite">.is_finite()</a></li>
+<li><a href="#replace">.replace()</a></li>
+<li><a href="#has_inf">.has_inf()</a></li>
+<li><a href="#has_nan">.has_nan()</a></li>
 <li><a href="#submat">submatrix views</a></li>
 <li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
 </ul>
@@ -8685,6 +8879,7 @@ See also:
 <ul>
 <li><a href="#find">find()</a></li>
 <li><a href="#find_finite">find_finite()</a></li>
+<li><a href="#is_finite">.is_finite()</a></li>
 <li><a href="#replace">.replace()</a></li>
 <li><a href="#has_inf">.has_inf()</a></li>
 <li><a href="#has_nan">.has_nan()</a></li>
@@ -9109,53 +9304,6 @@ intersect(CC, iA, iB, A, B);
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="is_finite"></a>
-<b>is_finite( X )</b>
-<ul>
-<li>
-Returns <i>true</i> if all elements in <i>X</i> are finite
-</li>
-<br>
-<li>
-Returns <i>false</i> if at least one element in <i>X</i> is non-finite (&plusmn;infinity or NaN)
-</li>
-<br>
-<li>
-<i>X</i> can be a scalar (eg. <i>double</i>), vector, matrix or cube
-</li>
-<br>
-<li>
-Examples:
-<ul>
-<pre>
-mat A = randu&lt;mat&gt;(5,5);
-mat B = randu&lt;mat&gt;(5,5);
-
-B(1,1) = datum::inf;
-
-cout &lt;&lt; is_finite(A) &lt;&lt; endl;
-cout &lt;&lt; is_finite(B) &lt;&lt; endl;
-
-cout &lt;&lt; is_finite( 0.123456789 ) &lt;&lt; endl;
-cout &lt;&lt; is_finite( datum::nan  ) &lt;&lt; endl;
-cout &lt;&lt; is_finite( datum::inf  ) &lt;&lt; endl;
-</pre>
-</ul>
-</li>
-<br>
-<li>
-See also:
-<ul>
-<li><a href="#is_finite_member">.is_finite()</a> (member function of <i>Mat</i> and <i>Cube</i>)</li>
-<li><a href="#find_finite">find_finite()</a></li>
-<li><a href="#find_nonfinite">find_nonfinite()</a></li>
-<li><a href="#constants">constants (pi, nan, inf, ...)</a></li>
-</ul>
-</li>
-<br>
-</ul>
-
-<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="join"></a>
 <b>join_rows( A, B )</b>
 <br><b>join_horiz( A,  B )</b>
@@ -9418,8 +9566,10 @@ See also:
 <li><i>logmat_sympd(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 </ul>
 </li>
+<!--
 <br>
-<li><b>Caveat</b>: there is currently no check whether <i>A</i> is symmetric</li>
+<li><b>Caveat</b>: there is no explicit check whether <i>A</i> is symmetric/hermitian positive definite</li>
+-->
 <br>
 <li><b>Caveat</b>: the matrix logarithm operation is generally <b>not</b> the same as applying the <a href="#misc_fns">log()</a> function to each element</li>
 <br>
@@ -9442,6 +9592,7 @@ See also:
 <li><a href="#logmat">logmat()</a></li>
 <li><a href="#expmat_sym">expmat_sym()</a></li>
 <li><a href="#sqrtmat_sympd">sqrtmat_sympd()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Logarithm_of_a_matrix">matrix logarithm in Wikipedia</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Positive-definite_matrix">positive definite matrix in Wikipedia</a></li>
@@ -9907,15 +10058,15 @@ mat B = repmat(A, 4, 5);
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="reshape"></a>
-<b>reshape( mat, n_rows, n_cols )</b>
-<br><b>reshape( mat, size(X) )</b>
+<b>reshape( X, n_rows, n_cols )</b> &nbsp;&nbsp; (X is a vector or matrix)
+<br><b>reshape( X, size(Y) )</b>
 <br>
-<br><b>reshape( cube, n_rows, n_cols, n_slices )</b>
-<br><b>reshape( cube, size(X) )</b>
+<br><b>reshape( Q, n_rows, n_cols, n_slices )</b> &nbsp;&nbsp; (Q is a cube)
+<br><b>reshape( Q, size(R) )</b>
 <ul>
 <li>
-Generate a matrix or cube sized according to given size specifications,
-whose elements are taken from the given vector/matrix/cube in a column-wise manner;
+Generate a vector/matrix/cube with given size specifications,
+whose elements are taken from the given object in a column-wise manner;
 the elements in the generated object are placed column-wise (ie. the first column is filled up before filling the second column)
 </li>
 <br>
@@ -9945,8 +10096,7 @@ to grow/shrink a matrix while preserving the elements <b>as well as</b> the layo
 use <a href="#resize">resize()</a> instead
 </li>
 <li>
-to create a vector representation of a matrix (ie. concatenate all the columns or rows),
-use <a href="#vectorise">vectorise()</a> instead
+to flatten a matrix into a vector, use <a href="#vectorise">vectorise()</a> or <a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a> instead
 </li>
 </ul>
 </li>
@@ -9964,7 +10114,7 @@ mat B = reshape(A, 5, 10);
 <li>
 See also:
 <ul>
-<li><a href="#reshape_member">.reshape()</a></li>
+<li><a href="#reshape_member">.reshape()</a> (member function)</li>
 <li><a href="#set_size">.set_size()</a></li>
 <li><a href="#resize">resize()</a></li>
 <li><a href="#vectorise">vectorise()</a></li>
@@ -9974,6 +10124,7 @@ See also:
 <li><a href="#repmat">repmat()</a></li>
 <li><a href="#repelem">repelem()</a></li>
 <li><a href="#size">size()</a></li>
+<li><a href="#interp2">interp2()</a></li>
 </ul>
 </li>
 <br>
@@ -9981,15 +10132,15 @@ See also:
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="resize"></a>
-<b>resize( mat, n_rows, n_cols )</b>
-<br><b>resize( mat, size(X) )</b>
+<b>resize( X, n_rows, n_cols )</b> &nbsp;&nbsp; (X is a vector or matrix)
+<br><b>resize( X, size(Y) )</b>
 <br>
-<br><b>resize( cube, n_rows, n_cols, n_slices )</b>
-<br><b>resize( cube, size(X) )</b>
+<br><b>resize( Q, n_rows, n_cols, n_slices )</b> &nbsp;&nbsp; (Q is a cube)
+<br><b>resize( Q, size(R) )</b>
 <ul>
 <li>
-Generate a matrix or cube sized according to given size specifications,
-whose elements as well as the layout of the elements are taken from the given matrix/cube
+Generate a vector/matrix/cube with given size specifications,
+whose elements as well as the layout of the elements are taken from the given object
 </li>
 <br>
 <li>
@@ -10357,6 +10508,7 @@ See also:
 <ul>
 <li><a href="#sort">sort()</a></li>
 <li><a href="#find">find()</a></li>
+<li><a href="#is_sorted">.is_sorted()</a></li>
 <li><a href="#index_min_and_index_max_member">.index_min() &amp; .index_max()</a></li>
 <li><a href="#ind2sub">ind2sub()</a></li>
 </ul>
@@ -10422,8 +10574,10 @@ See also:
 <li><i>sqrtmat_sympd(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 </ul>
 </li>
+<!--
 <br>
-<li><b>Caveat</b>: there is currently no check whether <i>A</i> is symmetric</li>
+<li><b>Caveat</b>: there is no explicit check whether <i>A</i> is symmetric/hermitian positive definite</li>
+-->
 <br>
 <li><b>Caveat</b>: the matrix square root operation is generally <b>not</b> the same as applying the <a href="#misc_fns">sqrt()</a> function to each element</li>
 <br>
@@ -10447,6 +10601,7 @@ See also:
 <li><a href="#expmat_sym">expmat_sym()</a></li>
 <li><a href="#logmat_sympd">logmat_sympd()</a></li>
 <li><a href="#chol">chol()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Square_root_of_a_matrix">square root of a matrix in Wikipedia</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Positive-definite_matrix">positive definite matrix in Wikipedia</a></li>
@@ -10610,6 +10765,8 @@ mat C = symmatl(A);
 <ul>
 <li><a href="#diagmat">diagmat()</a></li>
 <li><a href="#trimat">trimatu() / trimatl()</a></li>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="#is_hermitian">.is_hermitian()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Symmetric_matrix">Symmetric matrix in Wikipedia</a></li>
 </ul>
 </li>
@@ -10853,7 +11010,7 @@ mat Y = unique(X);
 <br><b>vectorise( X, dim )</b>
 <ul>
 <li>
-Generate a column vector (<i>dim=0</i>) or row vector (<i>dim=1</i>) from matrix <i>X</i>
+Generate a flattened version of matrix <i>X</i>, either as a column vector (<i>dim=0</i>) or row vector (<i>dim=1</i>)
 </li>
 <br>
 <li>
@@ -10869,7 +11026,11 @@ For <i>dim=1</i>, the elements are copied from <i>X</i> row-wise; equivalent to 
 </li>
 <br>
 <li>
-Concatenating columns is faster than concatenating rows
+<b>Caveats:</b>
+<ul>
+<li>column-wise vectorisation is faster than row-wise vectorisation</li>
+<li>for sparse matrices, row-wise vectorisation is not recommended</li>
+</ul>
 </li>
 <br>
 <li>
@@ -10886,6 +11047,7 @@ vec v = vectorise(X);
 <li>
 See also:
 <ul>
+<li><a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a></li>
 <li><a href="#nonzeros">nonzeros()</a></li>
 <li><a href="#reshape">reshape()</a></li>
 <li><a href="#resize">resize()</a></li>
@@ -10901,8 +11063,8 @@ See also:
 <b>miscellaneous element-wise functions:</b>
 <ul>
 <table border="0" cellpadding="0" cellspacing="0">
-<tr><td><b>exp   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_exp</b></td></tr>
-<tr><td><b>log   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_log</b></td></tr>
+<tr><td><b>exp   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>exp10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_exp</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>expm1</b></td></tr>
+<tr><td><b>log   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log2  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log10 </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc_log</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>log1p</b></td></tr>
 <tr><td><b>pow   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>square</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>sqrt  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
 <tr><td><b>floor </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>ceil  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>round </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>trunc    </b></td></tr>
 <tr><td><b>erf   </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>erfc  </b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;</b></td><td>&nbsp;&nbsp;&nbsp;</td><td><b>&nbsp;   </b></td></tr>
@@ -10971,6 +11133,17 @@ fn(A) is one of:
       truncated to avoid infinity &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
     </td>
   </tr>
+  <tr style="background-color: #F5F5F5;">
+    <td style="vertical-align: top; text-align: right;">
+      <code>expm1(A)</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      compute <code>exp(A)-1</code> accurately for values of A close to zero &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
+    </td>
+  </tr>
   <tr>
     <td style="vertical-align: top; text-align: right;">
        <code>log(A)</code><sub>&nbsp;</sub>
@@ -11014,6 +11187,17 @@ fn(A) is one of:
     <td style="vertical-align: top;">
       natural log,
       truncated to avoid &plusmn;infinity &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top; text-align: right;">
+      <code>log1p(A)</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      compute <code>log(1+A)</code> accurately for values of A close to zero &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
     </td>
   </tr>
   <tr style="background-color: #F5F5F5;">
@@ -11101,7 +11285,7 @@ fn(A) is one of:
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      error function
+      error function &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
     </td>
   </tr>
   <tr style="background-color: #F5F5F5;">
@@ -11112,7 +11296,7 @@ fn(A) is one of:
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      complementary error function
+      complementary error function &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
     </td>
   </tr>
   <tr style="background-color: #F5F5F5;">
@@ -11123,7 +11307,7 @@ fn(A) is one of:
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      natural log of the gamma function
+      natural log of the gamma function &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
     </td>
   </tr>
   <tr>
@@ -11262,7 +11446,7 @@ Cholesky decomposition of matrix <i>X</i>
 </li>
 <br>
 <li>
-Matrix <i>X</i> must be symmetric and positive-definite
+Matrix <i>X</i> must be symmetric/hermitian and positive-definite
 </li>
 <br>
 <li>
@@ -11299,6 +11483,7 @@ See also:
 <li><a href="#sqrtmat">sqrtmat()</a></li>
 <li><a href="#lu">lu()</a></li>
 <li><a href="#qr">qr()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="http://mathworld.wolfram.com/CholeskyDecomposition.html">Cholesky decomposition in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Cholesky_decomposition">Cholesky decomposition in Wikipedia</a></li>
 </ul>
@@ -11320,6 +11505,8 @@ See also:
 <li>The eigenvalues and corresponding eigenvectors are stored in <i>eigval</i> and <i>eigvec</i>, respectively</li>
 <br>
 <li>The eigenvalues are in ascending order</li>
+<br>
+<li>The eigenvectors are stored as column vectors</li>
 <br>
 <li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
@@ -11345,8 +11532,10 @@ the divide-and-conquer method provides slightly different results than the stand
 <li><i>eig_sym(eigval,eigvec,X)</i> resets <i>eigval</i> &amp; <i>eigvec</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 </ul>
 </li>
+<!--
 <br>
-<li><b>Caveat:</b> there is currently no check whether <i>X</i> is symmetric</li>
+<li><b>Caveat:</b> there is no explicit check whether <i>X</i> is symmetric/hermitian</li>
+-->
 <br>
 <li>
 Examples:
@@ -11385,6 +11574,8 @@ See also:
 <li><a href="#svd_econ">svd_econ()</a></li>
 <li><a href="#princomp">princomp()</a></li>
 <li><a href="#eigs_sym">eigs_sym()</a></li>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="#is_hermitian">.is_hermitian()</a></li>
 <li><a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues &amp; eigenvectors in Wikipedia</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Divide-and-conquer_eigenvalue_algorithm">divide &amp; conquer eigenvalue algorithm in Wikipedia</a></li>
@@ -11396,15 +11587,31 @@ See also:
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="eig_gen"></a>
 <b>cx_vec eigval = eig_gen( X )</b>
+<br><b>cx_vec eigval = eig_gen( X, bal )</b>
 <br>
 <br><b>eig_gen( eigval, X )</b>
+<br><b>eig_gen( eigval, X, bal )</b>
 <br>
 <br><b>eig_gen( eigval, eigvec, X )</b>
+<br><b>eig_gen( eigval, eigvec, X, bal )</b>
 <ul>
-<li>
-Eigen decomposition of <b>dense</b> general (non-symmetric/non-hermitian) square matrix <i>X</i></li>
+<li>Eigen decomposition of <b>dense</b> general (non-symmetric/non-hermitian) square matrix <i>X</i></li>
 <br>
 <li>The eigenvalues and corresponding eigenvectors are stored in <i>eigval</i> and <i>eigvec</i>, respectively</li>
+<br>
+<li>The eigenvectors are stored as column vectors</li>
+<br>
+<li>
+The <i>bal</i> argument is optional; <i>bal</i> is one of:
+<ul>
+<table>
+<tbody>
+<tr><td><code>"balance"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>diagonally scale and permute <i>X</i> to improve conditioning of the eigenvalues</td></tr>
+<tr><td><code>"nobalance"</code></td><td>&nbsp;&mapsto;&nbsp;</td><td>do not balance <i>X</i>; this is the <b>default operation</b></td></tr>
+</tbody>
+</table>
+</ul>
+</li>
 <br>
 <li>If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
@@ -11426,6 +11633,7 @@ cx_vec eigval;
 cx_mat eigvec;
 
 eig_gen(eigval, eigvec, A);
+eig_gen(eigval, eigvec, A, "balance");
 </pre>
 </ul>
 </li>
@@ -11460,6 +11668,8 @@ such that <i>A*eigvec&nbsp;=&nbsp;B*eigvec*diagmat(eigval)</i>
 </li>
 <br>
 <li>The eigenvalues and corresponding eigenvectors are stored in <i>eigval</i> and <i>eigvec</i>, respectively</li>
+<br>
+<li>The eigenvectors are stored as column vectors</li>
 <br>
 <li>If <i>A</i> or <i>B</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
@@ -11630,16 +11840,16 @@ Inverse of symmetric/hermitian positive definite matrix <i>A</i>
 If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown
 </li>
 <br>
-<li>
-There is currently no explicit check whether <i>A</i> is symmetric/hermitian
-</li>
-<br>
 <li>If <i>A</i> appears to be singular or not positive definite:
 <ul>
 <li><i>B = inv_sympd(A)</i> resets <i>B</i> and throws a <i>std::runtime_error</i> exception</li>
 <li><i>inv_sympd(B,A)</i> resets <i>B</i> and returns a bool set to <i>false</i> (exception is not thrown)</li>
 </ul>
 </li>
+<!--
+<br>
+<li><b>Caveat:</b> there is no explicit check whether <i>A</i> is symmetric/hermitian positive definite</li>
+-->
 <br>
 <li>
 <b>Caveat:</b> 
@@ -11666,6 +11876,7 @@ See also:
 <li><a href="#pinv">pinv()</a>
 <li><a href="#solve">solve()</a></li>
 <li><a href="#eig_sym">eig_sym()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixInverse.html">matrix inverse in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Invertible_matrix">invertible matrix in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/PositiveDefiniteMatrix.html">positive definite matrix in MathWorld</a></li>
@@ -12139,6 +12350,11 @@ See also:
 similar functionality to the \ operator in Matlab/Octave, ie. <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>
 </li>
 <br>
+<li>
+By default, matrix <i>A</i> is analysed to automatically determine whether it is a general matrix, band matrix, diagonal matrix, or symmetric/hermitian positive definite (SPD) matrix;
+based on the detected matrix structure, a specialised solver is used for faster execution
+</li>
+<br>
 <li><i>A</i> can be square (critically determined system), or non-square (under/over-determined system)
 </li>
 <br>
@@ -12158,9 +12374,10 @@ The number of rows in <i>A</i> and <i>B</i> must be the same
 <tr><td><code>solve_opts::fast</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>fast mode: do not apply iterative refinement and/or equilibration</td></tr>
 <tr><td><code>solve_opts::equilibrate</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>equilibrate the system before solving &nbsp; (matrix <i>A</i> must be square)</td></tr>
 <tr><td><code>solve_opts::no_approx</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not find approximate solutions for rank deficient systems</td></tr>
-<tr><td><code>solve_opts::no_band</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use optimisations for band matrices</td></tr>
-<tr><td><code>solve_opts::no_sympd</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use optimisations for symmetric/hermitian positive definite matrices</td></tr>
+<tr><td><code>solve_opts::no_band</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use specialised solver for band matrices or diagonal matrices</td></tr>
+<tr><td><code>solve_opts::no_sympd</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use specialised solver for symmetric/hermitian positive definite matrices</td></tr>
 <tr><td><code>solve_opts::allow_ugly</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>keep solutions of systems that are singular to working precision</td></tr>
+<tr><td><code>solve_opts::likely_sympd</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>indicate that matrix <i>A</i> is likely symmetric/hermitian positive definite</td></tr>
 </tbody>
 </table>
 <br>
@@ -12168,13 +12385,17 @@ the above settings can be combined using the <code>+</code> operator; for exampl
 </li>
 <br>
 <li>
+If <i>A</i> is known to be a triangular matrix,
+the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>;
+<br>indicating a triangular matrix also implies that <i><code>solve_opts::fast</code></i> is enabled
+</li>
+<br>
+<li>
 <b>Caveat:</b> using <i><code>solve_opts::fast</code></i> will speed up finding the solution, but for poorly conditioned systems the solution may have lower quality 
 </li>
 <br>
 <li>
-If <i>A</i> is known to be a triangular matrix,
-the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>;
-<br>indicating a triangular matrix also implies that <i><code>solve_opts::fast</code></i> is enabled
+<b>Caveat:</b> not all SPD matrices are automatically detected; to skip the analysis step and directly indicate that matrix <i>A</i> is likely SPD, use <code>solve_opts::likely_sympd</code>
 </li>
 <br>
 <li>
@@ -12218,6 +12439,9 @@ See also:
 <li><a href="#spsolve">spsolve()</a></li>
 <li><a href="http://mathworld.wolfram.com/LinearSystemofEquations.html">linear system of equations in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Linear_system_of_equations">system of linear equations in Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Band_matrix">band matrix in Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Definiteness_of_a_matrix">definiteness of a matrix in Wikipedia</a></li>
+<li><a href="http://mathworld.wolfram.com/PositiveDefiniteMatrix.html">positive definite matrix in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -12492,7 +12716,6 @@ The argument <i>tol</i> is optional; it specifies the tolerance for convergence
 it's more difficult to compute the smallest eigenvalues than the largest eigenvalues;
 <br>if the decomposition fails, try increasing <i>k</i> (number of eigenvalues) and/or the tolerance
 </li>
-<li>there is currently no check whether <i>X</i> is symmetric</li>
 </ul>
 </li>
 <br>
@@ -12518,6 +12741,7 @@ See also:
 <li><a href="#eigs_gen">eigs_gen()</a></li>
 <li><a href="#eig_sym">eig_sym()</a></li>
 <li><a href="#svds">svds()</a></li>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
 <li><a href="http://mathworld.wolfram.com/EigenDecomposition.html">eigen decomposition in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues &amp; eigenvectors in Wikipedia</a></li>
 </ul>
@@ -12655,6 +12879,14 @@ For <code>"superlu"</code>, <i>ARMA_USE_SUPERLU</i> must be enabled in <a href="
 <li>
 For <code>"lapack"</code>, sparse matrix <i>A</i> is converted to a dense matrix before using the LAPACK solver; this considerably increases memory usage
 </li>
+</ul>
+</li>
+<br>
+<li>
+<b>Notes</b>:
+<ul>
+<li>The SuperLU solver is mainly useful for very large and/or very sparse matrices</li>
+<li>If you have sufficient amount of memory to store a dense version of matrix <i>A</i>, the LAPACK solver can be faster</li>
 </ul>
 </li>
 <br>
@@ -12971,6 +13203,7 @@ See also:
 <ul>
 <li><a href="#conv">conv()</a></li>
 <li><a href="#fft2">fft2()</a></li>
+<li><a href="#interp2">interp2()</a></li>
 <li><a href="http://mathworld.wolfram.com/Convolution.html">Convolution in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Convolution">Convolution in Wikipedia</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Kernel_%28image_processing%29">Kernel (image processing) in Wikipedia</a></li>
@@ -13139,10 +13372,103 @@ interp1(x, y, xx, yy, "nearest");
 <li>
 See also:
 <ul>
+<li><a href="#interp2">interp2()</a></li>
 <li><a href="#polyval">polyval()</a></li>
 <li><a href="#linspace">linspace()</a></li>
 <li><a href="#regspace">regspace()</a></li>
 <li><a href="#conv">conv()</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Interpolation">interpolation in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="interp2"></a>
+<b>interp2( X, Y, Z, XI, YI, ZI )</b>
+<br><b>interp2( X, Y, Z, XI, YI, ZI, method )</b>
+<br><b>interp2( X, Y, Z, XI, YI, ZI, method, extrapolation_value )</b>
+<ul>
+<li>
+2D data interpolation
+</li>
+<br>
+<li>
+Given a 2D function specified by matrix <i>Z</i> with coordinates given by vectors <i>X</i> and <i>Y</i>,
+<br>generate matrix <i>ZI</i> which contains interpolated values at the coordinates given by vectors <i>XI</i> and <i>YI</i>
+</li>
+<br>
+<li>
+The vector pairs <i>(X,&nbsp;Y)</i> and <i>(XI,&nbsp;YI)</i> define 2D coordinates in a grid;
+<br>for example, <i>X</i> defines the horizontal coordinates and <i>Y</i> defines the corresponding vertical coordinates,
+<br>so that (&nbsp;<i>X(m)</i>,&nbsp;<i>Y(n)&nbsp;)</i> is the 2D coordinate of element <i>Z(n,m)</i>
+</li>
+<br>
+<li>
+The length of vector <i>X</i> must be equal to the number of columns in matrix <i>Z</i>
+</li>
+<br>
+<li>
+The length of vector <i>Y</i> must be equal to the number of rows in matrix <i>Z</i>
+</li>
+<br>
+<li>
+Vectors <i>X</i>, <i>Y</i>, <i>XI</i>, <i>YI</i> must contain monotonically increasing values (eg. 0.1, 0.2, 0.3, ...)
+</li>
+<br>
+<li>
+The <i>method</i> argument is optional; it is one of:
+<ul>
+<table>
+<tbody>
+<tr><td style="text-align: right;"><code>"nearest"</code></td><td>&nbsp;=&nbsp;</td><td>interpolate using nearest neighbours</td></tr>
+<tr><td style="text-align: right;"><code>"linear"</code></td><td>&nbsp;=&nbsp;</td><td>linear interpolation between nearest neighbours (<b>default setting</b>)</td></tr>
+</tbody>
+</table>
+</ul>
+</li>
+<br>
+<li>
+If a coordinate in the 2D grid specified by <i>(XI,&nbsp;YI)</i> is outside the domain of the 2D grid specified by <i>(X,&nbsp;Y)</i>,
+<br>the corresponding value in <i>ZI</i> is set to <i>extrapolation_value</i>
+</li>
+<br>
+<li>
+The <i>extrapolation_value</i> argument is optional; by default it is <a href="#constants">datum::nan</a> (not-a-number)
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+
+mat Z;
+
+Z.load("input_image.pgm", pgm_binary);  // load an image in pgm format
+
+vec X = regspace(1, Z.n_cols);  // X = horizontal spacing
+vec Y = regspace(1, Z.n_rows);  // Y = vertical spacing
+
+vec XI = regspace(X.min(), 1.0/2.0, X.max()); // magnify by approx 2
+vec YI = regspace(Y.min(), 1.0/3.0, Y.max()); // magnify by approx 3
+
+mat ZI;
+
+interp2(X, Y, Z, XI, YI, ZI);  // use linear interpolation by default
+
+ZI.save("output_image.pgm", pgm_binary);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#interp1">interp1()</a></li>
+<li><a href="#regspace">regspace()</a></li>
+<li><a href="#conv2">conv2()</a></li>
+<li><a href="#reshape">reshape()</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">bilinear interpolation in Wikipedia</a></li>
 </ul>
 </li>
 <br>
@@ -13893,6 +14219,7 @@ See also:
 <li><a href="#chi2rnd">chi2rnd()</a></li>
 <li><a href="#wishrnd">wishrnd()</a></li>
 <li><a href="#cov">cov()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="#gmm_diag">gmm_diag</a> &amp; <a href="#gmm_full">gmm_full</a> - model and evaluate data using Gaussian Mixture Models (GMMs)</li>
 <li><a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate normal distribution in Wikipedia</a></li>
 </ul>
@@ -14017,6 +14344,7 @@ See also:
 <li><a href="#chol">chol()</a></li>
 <li><a href="#cov">cov()</a></li>
 <li><a href="#randu_randn_standalone">randn()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Wishart_distribution">Wishart distribution in Wikipedia</a></li>
 </ul>
 </li>
@@ -14073,6 +14401,7 @@ See also:
 <li><a href="#wishrnd">wishrnd()</a></li>
 <li><a href="#chol">chol()</a></li>
 <li><a href="#inv_sympd">inv_sympd()</a></li>
+<li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Inverse-Wishart_distribution">inverse Wishart distribution in Wikipedia</a></li>
 </ul>
 </li>
@@ -14629,33 +14958,11 @@ The optimisation algorithms are multi-threaded and run much quicker on multi-cor
 
 <ul>
 <li>
-Please cite one of the following papers if you use the <i>gmm_diag</i> or <i>gmm_full</i> classes in your research and/or software:
+Please cite the following paper if you use the <i>gmm_diag</i> or <i>gmm_full</i> classes in your research and/or software:
 <br>
-<br>
-Conrad Sanderson and Ryan Curtin.
-<br><i><a href="arma_gmm_joss_2017.pdf">gmm_diag and gmm_full: C++ classes for multi-threaded Gaussian mixture models and Expectation-Maximisation</a></i>.
-<br>Journal of Open Source Software, Vol.&nbsp;2, 2017.
-<br>
-<br>
-Conrad Sanderson and Ryan Curtin.
-<br><i><a href="arma_gmm_spcs_2017.pdf">An Open Source C++ Implementation of Multi-Threaded Gaussian Mixture Models, k-Means and Expectation Maximisation</a></i>.
-<br>International Conference on Signal Processing and Communication Systems, 2017.
-<br>
-<br>
-<br>bibtex:
-<br>
-<br>
-<font size=-1>
-<code>
-@article{gmm2017,<br>
-&nbsp;author&nbsp;&nbsp;= {Conrad Sanderson and Ryan Curtin},<br>
-&nbsp;title&nbsp;&nbsp;&nbsp;= {gmm{\tt\char95}diag and gmm{\tt\char95}full: C++ classes for multi-threaded Gaussian mixture models and Expectation-Maximisation},<br>
-&nbsp;journal&nbsp;= {Journal of Open Source Software},<br>
-&nbsp;volume&nbsp;&nbsp;= {2},<br>
-&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;= {2017}<br>
-&nbsp;}
-</code>
-</font>
+<br>Conrad Sanderson and Ryan Curtin.
+<br><i><a href="armadillo_spcs_2017.pdf">An Open Source C++ Implementation of Multi-Threaded Gaussian Mixture Models, k-Means and Expectation Maximisation</a></i>.
+<br><a class="latent" href="https://doi.org/10.1109/ICSPCS.2017.8270510">International Conference on Signal Processing and Communication Systems, 2017.</a>
 </li>
 </ul>
 
@@ -15363,13 +15670,24 @@ model.save("my_model.gmm");
   </tr>
   <tr>
     <td style="vertical-align: top;">
+      <code>datum::sqrt2pi</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      square root of 2&pi;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
       <code>datum::eps</code>
     </td>
     <td style="vertical-align: top;">
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      the difference between 1 and the least value greater than 1 that is representable  (type and machine dependent)
+      machine epsilon: the difference between 1 and the value least greater than 1 that is representable  (type and machine dependent)
     </td>
   </tr>
   <tr>
@@ -15806,8 +16124,8 @@ and
 <li>
 <b>Caveat:</b>
 <code>datum::nan</code> is not equal to anything, even itself;
-to check whether a given number <i>x</i> is finite,
-use <a href="#is_finite">is_finite</a>(<i>x</i>)
+to check whether a scalar <i>x</i> is finite,
+use <a href="https://en.cppreference.com/w/cpp/numeric/math/isfinite">std::isfinite</a>(<i>x</i>)
 </li>
 <br>
 <li>
@@ -15836,7 +16154,7 @@ cout &lt;&lt; datum::log_max &lt;&lt; endl;
 <li>
 See also:
 <ul>
-<li><a href="#is_finite">is_finite()</a></li>
+<li><a href="#is_finite">.is_finite()</a></li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/NaN">NaN</a> in Wikipedia</li>
 <li><a href="http://en.wikipedia.org/wiki/Physical_constant">physical constant</a> in Wikipedia</li>
@@ -15892,7 +16210,7 @@ cout &lt;&lt; "number of seconds: " &lt;&lt; n &lt;&lt; endl;
 <br>
 <ul>
 <li>
-In Armadillo 8.x, warnings and errors are printed by default to the <i>std::cerr</i> stream;
+In Armadillo 8.x and later versions, warnings and errors are printed by default to the <i>std::cerr</i> stream;
 in Armadillo 7.x and earlier, the <i>std::cout</i> stream is used
 <ul>
 <li>the printing can be disabled by placing <i>#define <a href="#config_hpp">ARMA_DONT_PRINT_ERRORS</a></i> before <i>#include&nbsp;&lt;armadillo&gt;</i></li>
@@ -17048,7 +17366,7 @@ Disable use of BLAS; overrides <i>ARMA_USE_BLAS</i>
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-Enable use of the built-in reimplementation of ARPACK (Armadillo 7.x and 8.x).
+Enable use of the built-in reimplementation of ARPACK (Armadillo 7.x and later versions).
 This is used for the eigen decomposition of real (non-complex) sparse matrices, ie. <a href="#eigs_gen">eigs_gen()</a>, <a href="#eigs_sym">eigs_sym()</a> and <a href="#svds">svds().</a>
 Requires ARMA_USE_LAPACK to be enabled.
     </td>
@@ -17141,7 +17459,7 @@ Disable use of ARPACK; overrides <i>ARMA_USE_ARPACK</i>
     <td style="vertical-align: top;">
 Enable use of SuperLU, which is used by <a href="#spsolve">spsolve()</a> for finding the solutions of sparse systems;
 you will need to link with the superlu library, for example <code><i>-lsuperlu</i></code>
-<br><b>Caveat:</b> Armadillo&nbsp;6.x requires SuperLU&nbsp;4.3, while Armadillo&nbsp;7.x and 8.x require SuperLU&nbsp;5.2
+<br><b>Caveat:</b> Armadillo&nbsp;7.x and later versions require SuperLU&nbsp;5.2, while Armadillo&nbsp;6.x and earlier versions require SuperLU&nbsp;4.3
     </td>
   </tr>
   <tr>
@@ -17913,6 +18231,71 @@ List of additions and changes for each version:
 
 
 
+<a name="version_9600"></a>
+<li>Version 9.600:
+<ul>
+<li>faster handling of sparse <a href="#submat">submatrices</a></li>
+<li>faster handling of sparse <a href="#diag">diagonal views</a></li>
+<li>faster handling of sparse matrices by <a href="#symmat">symmatu()</a> and <a href="#symmat">symmatl()</a></li>
+<li>faster handling of sparse matrices by <a href="#join">join_cols()</a></li>
+<li>expanded <a href="#clamp">clamp()</a> to handle sparse matrices</li>
+<li>added <a href="#clean">.clean()</a> to replace elements below a threshold with zeros</li>
+</ul>
+</li>
+<br>
+<a name="version_9500"></a>
+<li>Version 9.500:
+<ul>
+<li>expanded <a href="#solve">solve()</a> with <code>solve_opts::likely_sympd</code> to indicate that the given matrix is likely positive definite</li>
+<li>more robust automatic detection of positive definite matrices by <a href="#solve">solve()</a> and <a href="#inv">inv()</a></li>
+<li>faster handling of sparse submatrices</li>
+<li>expanded <a href="#eigs_sym">eigs_sym()</a> to print a warning if the given matrix is not symmetric</li>
+<li>
+extended LAPACK function prototypes to follow Fortran <a href="https://gcc.gnu.org/onlinedocs/gfortran/Argument-passing-conventions.html">passing conventions</a> for so-called "hidden arguments",
+in order to address <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90329">GCC Bug 90329</a>;
+<br>
+to use previous LAPACK function prototypes without the "hidden arguments",
+<code>#define ARMA_DONT_USE_FORTRAN_HIDDEN_ARGS</code> before <code>#include &lt;armadillo&gt;</code>
+</li>
+</ul>
+</li>
+<br>
+<a name="version_9400"></a>
+<li>Version 9.400:
+<ul>
+<li>faster <a href="#cov">cov()</a> and <a href="#cor">cor()</a></li>
+<li>added <a href="#as_col_row">.as_col()</a> and <a href="#as_col_row">.as_row()</a></li>
+<li>expanded <a href="#shed">.shed_rows()</a> / <a href="#shed">.shed_cols()</a> / <a href="#shed">.shed_slices()</a> to remove rows/columns/slices specified in a vector</li>
+<li>expanded <a href="#vectorise">vectorise()</a> to handle sparse matrices</li>
+<li>expanded element-wise versions of <a href="#min_and_max">max()</a> and <a href="#min_and_max">min()</a> to handle sparse matrices</li>
+<li>optimised handling of sparse matrix expressions: sparse&nbsp;%&nbsp;(sparse&nbsp;+-&nbsp;scalar) and sparse&nbsp;/&nbsp;(sparse&nbsp;+-&nbsp;scalar)</li>
+<li>
+expanded
+<a href="#eig_sym">eig_sym()</a>,
+<a href="#chol">chol()</a>,
+<a href="#expmat_sym">expmat_sym()</a>,
+<a href="#logmat_sympd">logmat_sympd()</a>,
+<a href="#sqrtmat_sympd">sqrtmat_sympd()</a>,
+<a href="#inv_sympd">inv_sympd()</a>
+to print a warning if the given matrix is not symmetric
+</li>
+<li>more consistent detection of vector expressions</li>
+</ul>
+</li>
+<br>
+<a name="version_9300"></a>
+<li>Version 9.300:
+<ul>
+<li>faster handling of compound complex matrix expressions by <a href="#trace">trace()</a></li>
+<li>more efficient handling of element access for inplace modifications in <a href="#SpMat">sparse matrices</a></li>
+<li>added <a href="#is_sympd">.is_sympd()</a> to check whether a matrix is symmetric/hermitian positive definite</li>
+<li>added <a href="#interp2">interp2()</a> for 2D data interpolation</li>
+<li>added <a href="#misc_fns">expm1()</a> and <a href="#misc_fns">log1p()</a></li>
+<li>expanded <a href="#is_sorted">.is_sorted()</a> with options <code>"strictascend"</code> and <code>"strictdescend"</code></li>
+<li>expanded <a href="#eig_gen">eig_gen()</a> to optionally perform balancing prior to decomposition</li>
+</ul>
+</li>
+<br>
 <a name="version_9200"></a>
 <li>Version 9.200:
 <ul>
@@ -18597,7 +18980,6 @@ that do not return a bool indicating success now throw <i>std::runtime_error</i>
 <li>added <a href="#misc_fns">floor()</a> and <a href="#misc_fns">ceil()</a></li>
 <li>added representation of &ldquo;not a number&rdquo;: math::nan()</li>
 <li>added representation of infinity: math::inf()</li>
-<li>added standalone <a href="#is_finite">is_finite()</a></li>
 <li><a href="#in_range">.in_range()</a> expanded to use <b>span()</b> arguments</li>
 <li><a href="#adv_constructors_mat">fixed size</a> matrices and vectors can use auxiliary (external) memory</li>
 <li><a href="#submat">submatrices</a> and <a href="#subfield">subfields</a> can be accessed via <i><b>X(</b>&nbsp;<b>span(</b>a,b<b>)</b>,&nbsp;<b>span(</b>c,d<b>)</b>&nbsp;<b>)</b></i></li>
