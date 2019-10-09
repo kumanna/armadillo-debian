@@ -36,7 +36,7 @@ body
 pre
   {
   font-family: "DejaVu Sans Mono", "Liberation Mono", "Andale Mono", "Bitstream Vera Sans Mono", "Luxi Mono", monospace;
-  font-size: smaller;
+  /* font-size: smaller; */
   color: #666666;
   }
 
@@ -149,7 +149,7 @@ hr.greyline
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
 <a name="top"></a>
-<big><b>API Documentation for Armadillo 9.600</b></big>
+<big><b>API Documentation for Armadillo 9.800</b></big>
 <br>
 <br>
 <br>
@@ -190,7 +190,7 @@ History of <a href="#api_additions">API additions</a>
 <td style="text-align: left; vertical-align: top; width: 50%;">
 <ul>
 <li>
-Please cite one (or both) of the following papers if you use Armadillo in your research and/or software.
+Please cite the following papers if you use Armadillo in your research and/or software.
 <br>
 Citations are useful for the continued development and maintenance of the library.
 <br>
@@ -201,8 +201,8 @@ Conrad Sanderson and Ryan Curtin.
 <br>
 <br>
 Conrad Sanderson and Ryan Curtin.
-<br><i><a href="armadillo_mca_2019.pdf"><font size=-1>Practical Sparse Matrices in C++ with Hybrid Storage and Template-Based Expression Optimisation</font></a></i>.
-<br><a class="latent" href="https://doi.org/10.3390/mca24030070">Mathematical and Computational Applications, Vol. 24, No. 3, 2019.</a>
+<br><i><a href="armadillo_mca_2019.pdf">Practical sparse matrices in C++ with hybrid storage and template-based expression optimisation</a></i>.
+<br>Mathematical and Computational Applications, Vol. 24, No. 3, 2019.
 </li>
 </ul>
 </td>
@@ -312,6 +312,8 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><a href="#is_vec">.is_vec</a></td><td>&nbsp;</td><td>check whether matrix is a vector</td></tr>
 <tr><td><a href="#is_sorted">.is_sorted</a></td><td>&nbsp;</td><td>check whether vector or matrix is sorted</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
+<tr><td><a href="#is_trimat">.is_trimatu / .is_trimatl</a></td><td>&nbsp;</td><td>check whether matrix is upper/lower triangular</td></tr>
+<tr><td><a href="#is_diagmat">.is_diagmat</a></td><td>&nbsp;</td><td>check whether matrix is diagonal</td></tr>
 <tr><td><a href="#is_square">.is_square</a></td><td>&nbsp;</td><td>check whether matrix is square sized</td></tr>
 <tr><td><a href="#is_symmetric">.is_symmetric</a></td><td>&nbsp;</td><td>check whether matrix is symmetric</td></tr>
 <tr><td><a href="#is_hermitian">.is_hermitian</a></td><td>&nbsp;</td><td>check whether matrix is hermitian</td></tr>
@@ -336,19 +338,20 @@ Conrad Sanderson and Ryan Curtin.
 <ul>
 <table>
 <tbody>
-<tr style="background-color: #F5F5F5;"><td><a href="#eye_standalone">eye</a></td><td>&nbsp;</td><td>generate identity matrix</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#linspace">linspace</a></td><td>&nbsp;</td><td>generate vector with linearly spaced elements</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#logspace">logspace</a></td><td>&nbsp;</td><td>generate vector with logarithmically spaced elements</td></tr>
-<tr><td><a href="#ones_standalone">ones</a></td><td>&nbsp;</td><td>generate object filled with ones</td></tr>
-<tr><td><a href="#randi">randi</a></td><td>&nbsp;</td><td>generate object with random integer values in specified interval</td></tr>
-<tr><td><a href="#randu_randn_standalone">randu&nbsp;/&nbsp;randn</a></td><td>&nbsp;</td><td>generate object with random values (uniform and normal distributions)</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#randg">randg</a></td><td>&nbsp;</td><td>generate object with random values (gamma distribution)</td></tr>
 <tr style="background-color: #F5F5F5;"><td><a href="#regspace">regspace</a></td><td>&nbsp;</td><td>generate vector with regularly spaced elements</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#speye">speye</a></td><td>&nbsp;</td><td>generate sparse identity matrix</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#randperm">randperm</a></td><td>&nbsp;</td><td>generate vector with random permutation of a sequence of integers</td></tr>
+<tr><td><a href="#eye_standalone">eye</a></td><td>&nbsp;</td><td>generate identity matrix</td></tr>
+<tr><td><a href="#ones_standalone">ones</a></td><td>&nbsp;</td><td>generate object filled with ones</td></tr>
+<tr><td><a href="#zeros_standalone">zeros</a></td><td>&nbsp;</td><td>generate object filled with zeros</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#randu_randn_standalone">randu&nbsp;/&nbsp;randn</a></td><td>&nbsp;</td><td>generate object with random values (uniform and normal distributions)</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#randg">randg</a></td><td>&nbsp;</td><td>generate object with random values (gamma distribution)</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#randi">randi</a></td><td>&nbsp;</td><td>generate object with random integer values in specified interval</td></tr>
+<tr><td><a href="#speye">speye</a></td><td>&nbsp;</td><td>generate sparse identity matrix</td></tr>
 <tr><td><a href="#spones">spones</a></td><td>&nbsp;</td><td>generate sparse matrix with non-zero elements set to one</td></tr>
 <tr><td><a href="#sprandu_sprandn">sprandu&nbsp;/&nbsp;sprandn</a></td><td>&nbsp;</td><td>generate sparse matrix with non-zero elements set to random values</td></tr>
-<tr><td><a href="#toeplitz">toeplitz</a></td><td>&nbsp;</td><td>generate Toeplitz matrix</td></tr>
-<tr style="background-color: #F5F5F5;"><td><a href="#zeros_standalone">zeros</a></td><td>&nbsp;</td><td>generate object filled with zeros</td></tr>
+<tr style="background-color: #F5F5F5;"><td><a href="#toeplitz">toeplitz</a></td><td>&nbsp;</td><td>generate Toeplitz matrix</td></tr>
 </tbody>
 </table>
 </ul>
@@ -1992,7 +1995,7 @@ The following subset of operations &amp; functions is available for sparse matri
 <li>fundamental arithmetic <a href="#operators">operations</a> (such as addition and multiplication)</li>
 <li><a href="#submat">submatrix views</a> (contiguous forms only)</li>
 <li><a href="#diag">diagonal views</a></li>
-<li><a href="#save_load_mat">saving and loading</a> (using <i>arma_binary</i> and <i>coord_ascii</i> formats only)</li>
+<li><a href="#save_load_mat">saving and loading</a> (using <i>arma_binary</i>, <i>coord_ascii</i>, and <i>csv_ascii</i> formats)</li>
 <li>element-wise functions: <a href="#abs">abs()</a>, <a href="#misc_fns">ceil()</a>, <a href="#conj">conj()</a>, <a href="#misc_fns">floor()</a>, <a href="#imag_real">imag()</a>, <a href="#imag_real">real()</a>, <a href="#misc_fns">round()</a>, <a href="#misc_fns">sign()</a>, <a href="#misc_fns">sqrt()</a>, <a href="#misc_fns">square()</a>, <a href="#misc_fns">trunc()</a></li>
 <li>scalar functions of matrices: <a href="#accu">accu()</a>, <a href="#as_scalar">as_scalar()</a>, <a href="#dot">dot()</a>, <a href="#norm">norm()</a>, <a href="#trace">trace()</a></li>
 <li>vector valued functions of matrices: <a href="#diagvec">diagvec()</a>, <a href="#min_and_max">min()</a>, <a href="#min_and_max">max()</a>, <a href="#nonzeros">nonzeros()</a>, <a href="#sum">sum()</a>, <a href="#stats_fns">mean()</a>, <a href="#stats_fns">var()</a>, <a href="#vectorise">vectorise()</a></li>
@@ -2000,7 +2003,7 @@ The following subset of operations &amp; functions is available for sparse matri
 <li>generated matrices: <a href="#speye">speye()</a>, <a href="#spones">spones()</a>, <a href="#sprandu_sprandn">sprandu()</a>, <a href="#sprandu_sprandn">sprandn()</a>, <a href="#zeros_standalone">zeros()</a></li>
 <li>eigen and svd decomposition: <a href="#eigs_sym">eigs_sym()</a>, <a href="#eigs_gen">eigs_gen()</a>, <a href="#svds">svds()</a></li>
 <li>solution of sparse linear systems: <a href="#spsolve">spsolve()</a>
-<li>miscellaneous: <a href="#approx_equal">approx_equal()</a>, <a href="#element_access">element access</a>, <a href="#iterators_spmat">element iterators</a>, <a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a>, <a href="#for_each">.for_each()</a>, <a href="#print">.print()</a>, <a href="#clean">.clean()</a>, <a href="#replace">.replace()</a>, <a href="#transform">.transform()</a>, <a href="#is_finite">.is_finite()</a>, <a href="#is_symmetric">.is_symmetric()</a>, <a href="#is_hermitian">.is_hermitian()</a></li>
+<li>miscellaneous: <a href="#approx_equal">approx_equal()</a>, <a href="#element_access">element access</a>, <a href="#iterators_spmat">element iterators</a>, <a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a>, <a href="#for_each">.for_each()</a>, <a href="#print">.print()</a>, <a href="#clean">.clean()</a>, <a href="#replace">.replace()</a>, <a href="#transform">.transform()</a>, <a href="#is_finite">.is_finite()</a>, <a href="#is_symmetric">.is_symmetric()</a>, <a href="#is_hermitian">.is_hermitian()</a>, <a href="#is_trimat">.is_trimatu()</a>, <a href="#is_trimat">.is_trimatl()</a>, <a href="#is_diagmat">.is_diagmat()</a></li>
 </ul>
 </li>
 <br>
@@ -2635,6 +2638,7 @@ See also:
 <ul>
 <li><a href="#zeros_standalone">zeros()</a> (standalone function)</li>
 <li><a href="#ones_member">.ones()</a></li>
+<li><a href="#clean">.clean()</a></li>
 <li><a href="#randu_randn_member">.randu()</a></li>
 <li><a href="#fill">.fill()</a></li>
 <li><a href="#imbue">.imbue()</a></li>
@@ -3050,6 +3054,7 @@ See also:
 <ul>
 <li><a href="#replace">.replace()</a></li>
 <li><a href="#transform">.transform()</a></li>
+<li><a href="#zeros_member">.zeros()</a></li>
 <li><a href="#clamp">clamp()</a></li>
 <li><a href="#constants">datum::eps</a></li>
 </ul>
@@ -5195,8 +5200,11 @@ Iterators for sparse matrices traverse over non-zero elements within the specifi
 <li>
 <b>Caveats:</b>
 <ul>
-<li>writing a zero value into a sparse matrix through an iterator will invalidate all current iterators associated with the sparse matrix;
-<br>consider using <a href="#transform">.transform()</a> and <a href="#for_each">.for_each()</a> as safer alternatives</li>
+<li>
+to modify the non-zero elements in a safer manner,
+use <a href="#transform">.transform()</a> or <a href="#for_each">.for_each()</a> instead of iterators;
+<br>
+writing a zero value into a sparse matrix through an iterator will invalidate all current iterators associated with the sparse matrix</li>
 <li>row iterators for sparse matrices are only useful with Armadillo 8.500 and later versions; in earlier versions they are inefficient
 </ul>
 </li>
@@ -5396,8 +5404,8 @@ Examples:
 <pre>
 sp_mat X = sprandu&lt;sp_mat&gt;(1000, 2000, 0.1);
 
-sp_mat::iterator it     = X.begin();
-sp_mat::iterator it_end = X.end();
+sp_mat::const_iterator it     = X.begin();
+sp_mat::const_iterator it_end = X.end();
 
 for(; it != it_end; ++it)
   {
@@ -5478,6 +5486,26 @@ See also:
 
 <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
   <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.front()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        access the first element in a vector
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b>.back()</b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+        access the last element in a vector
+      </td>
+    </tr>
     <tr>
       <td style="vertical-align: top;">
       <b>.clear()</b>
@@ -6136,6 +6164,100 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="is_trimat"></a>
+<b>.is_trimatu()</b>
+<br>
+<b>.is_trimatl()</b>
+<ul>
+<li>
+Member functions of <i>Mat</i> and <i>SpMat</i>
+</li>
+<br>
+<li><i>.is_trimatu()</i>:
+<ul>
+<li>return <i>true</i> if the matrix is upper triangular, ie. the matrix is square sized and all elements below the main diagonal are zero; return <i>false</i> otherwise</li>
+<li><b>caveat:</b> if this function returns <i>true</i>, do not assume that the matrix contains non-zero elements on or above the main diagonal</li>
+</ul>
+</li>
+<br>
+<li><i>.is_trimatl()</i>:
+<ul>
+<li>return <i>true</i> if the matrix is lower triangular, ie. the matrix is square sized and all elements above the main diagonal are zero; return <i>false</i> otherwise</li>
+<li><b>caveat:</b> if this function returns <i>true</i>, do not assume that the matrix contains non-zero elements on or below the main diagonal</li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = trimatl(A);
+
+cout &lt;&lt; A.is_trimatu() &lt;&lt; endl;
+cout &lt;&lt; B.is_trimatl() &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#trimat">trimatu() / trimatl()</a></li>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="#is_diagmat">.is_diagmat()</a></li>
+<li><a href="http://mathworld.wolfram.com/TriangularMatrix.html">Triangular matrix in MathWorld</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Triangular_matrix">Triangular matrix in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="is_diagmat"></a>
+<b>.is_diagmat()</b>
+<ul>
+<li>
+Member function of <i>Mat</i> and <i>SpMat</i>
+</li>
+<br>
+<li>Return <i>true</i> if the matrix is diagonal, ie. all elements outside of the main diagonal are zero
+</li>
+<br>
+<li>Return <i>false</i> otherwise
+</li>
+<br>
+<li>
+<b>Caveat:</b> if this function returns <i>true</i>, do not assume that the matrix contains non-zero elements on the main diagonal
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+mat A = randu&lt;mat&gt;(5,5);
+mat B = diagmat(A);
+
+cout &lt;&lt; A.is_diagmat() &lt;&lt; endl;
+cout &lt;&lt; B.is_diagmat() &lt;&lt; endl;
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#diagmat">diagmat()</a></li>
+<li><a href="#is_trimat">.is_trimatu() / .is_trimatl()</a></li>
+<li><a href="#is_symmetric">.is_symmetric()</a></li>
+<li><a href="http://mathworld.wolfram.com/DiagonalMatrix.html">Diagonal matrix in MathWorld</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Diagonal_matrix">Diagonal matrix in Wikipedia</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="is_square"></a>
 <b>.is_square()</b>
 <ul>
@@ -6211,6 +6333,7 @@ See also:
 <li><a href="#is_hermitian">.is_hermitian()</a></li>
 <li><a href="#is_sympd">.is_sympd()</a></li>
 <li><a href="#is_square">.is_square()</a></li>
+<li><a href="#is_trimat">.is_trimatu() / .is_trimatl()</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Symmetric_matrix">Symmetric matrix in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/SymmetricMatrix.html">Symmetric matrix in MathWorld</a></li>
 </ul>
@@ -6576,7 +6699,7 @@ A.raw_print(cout, "A:");
 </table>
 <br>
 <ul>
-<li>Member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i></li>
+<li>Member functions of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>Cube</i> and <i>SpMat</i></li>
 <br>
 <li>Store/retrieve data in a file or stream (<b>caveat:</b> the stream must be opened in binary mode)</li>
 <br>
@@ -6657,7 +6780,7 @@ Complex numbers are stored in standard C++ notation, which is a tuple surrounded
                         </td>
                         <td style="vertical-align: top;">
 Numerical data stored in comma separated value (CSV) text format, without a header.
-Applicable to <i>Mat</i> only.
+Applicable to <i>Mat</i> and <i>SpMat</i>.
 <br>
 <br>
                         </td>
@@ -6738,7 +6861,7 @@ By providing either <b>hdf5_name(</b>filename<b>,</b> dataset<b>)</b> or <b>hdf5
 <ul>
 <li>
 the <i>dataset</i> argument specifies an HDF5 dataset name (eg. "my_dataset") that can include a full path (eg. "/group_name/my_dataset");
-if a blank dataset name is specified (ie. ""), it's assumed to be "dataset"
+if a blank dataset name is specified (ie.&nbsp;""), it's assumed to be "dataset"
 <br>
 <br>
 </li>
@@ -6939,56 +7062,6 @@ as each matrix element is copied and converted to an 8 bit representation
 
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="eye_standalone"></a>
-<b>eye( n_rows, n_cols )</b>
-<br>
-<b>eye( size(X) )</b>
-<ul>
-<li>
-Generate a matrix with the elements along the main diagonal set to one
-and off-diagonal elements set to zero
-</li>
-<br>
-<li>
-An identity matrix is generated when <i>n_rows</i> = <i>n_cols</i>
-</li>
-<br>
-<li>
-Usage:
-<ul>
-<li><i>matrix_type</i> X = eye&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
-<li><i>matrix_type</i> Y = eye&lt;<i>matrix_type</i>&gt;( size(X) )</li>
-</ul>
-</li>
-<br>
-<li>
-Examples:
-<ul>
-<pre>
-mat A = eye&lt;mat&gt;(5,5);  // or:  mat A(5,5,fill::eye);
-
-mat B = 123.0 * eye&lt;mat&gt;(5,5);
-
-mat C = eye&lt;mat&gt;( size(B) );
-</pre>
-</ul>
-</li>
-<br>
-<li>See also:
-<ul>
-<li><a href="#eye_member">.eye()</a> (member function of Mat)</li>
-<li><a href="#diag">.diag()</a></li>
-<li><a href="#ones_standalone">ones()</a></li>
-<li><a href="#diagmat">diagmat()</a></li>
-<li><a href="#diagvec">diagvec()</a></li>
-<li><a href="#speye">speye()</a></li>
-<li><a href="#size">size()</a></li>
-</ul>
-</li>
-<br>
-</ul>
-
-<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="linspace"></a>
 <b>linspace( start, end )</b>
 <br><b>linspace( start, end, N )</b>
@@ -7005,6 +7078,7 @@ The argument <i>N</i> is optional; by default <i>N = 100</i>
 <li>
 Usage:
 <ul>
+<li>vec v = linspace(start, end, N)</li>
 <li><i>vector_type</i> v = linspace&lt;<i>vector_type</i>&gt;(start, end, N)</li>
 </ul>
 </li>
@@ -7017,9 +7091,9 @@ Usage:
 Examples:
 <ul>
 <pre>
-vec a = linspace&lt;vec&gt;(0, 5, 6);
+   vec a = linspace(0, 5, 6);
 
-vec b = linspace&lt;vec&gt;(5, 0, 6);
+rowvec b = linspace&lt;rowvec&gt;(5, 0, 6);
 </pre>
 </ul>
 </li>
@@ -7029,6 +7103,7 @@ See also:
 <ul>
 <li><a href="#regspace">regspace()</a></li>
 <li><a href="#logspace">logspace()</a></li>
+<li><a href="#randperm">randperm()</a></li>
 <li><a href="#ones_standalone">ones()</a></li>
 <li><a href="#interp1">interp1()</a></li>
 </ul>
@@ -7053,6 +7128,7 @@ The argument <i>N</i> is optional; by default <i>N = 50</i>
 <li>
 Usage:
 <ul>
+<li>vec v = logspace(A, B, N)</li>
 <li><i>vector_type</i> v = logspace&lt;<i>vector_type</i>&gt;(A, B, N)</li>
 </ul>
 </li>
@@ -7061,9 +7137,9 @@ Usage:
 Examples:
 <ul>
 <pre>
-vec a = logspace&lt;vec&gt;(0, 5, 6);
+   vec a = logspace(0, 5, 6);
 
-vec b = logspace&lt;vec&gt;(5, 0, 6);
+rowvec b = logspace&lt;rowvec&gt;(5, 0, 6);
 </pre>
 </ul>
 </li>
@@ -7073,6 +7149,161 @@ See also:
 <ul>
 <li><a href="#linspace">linspace()</a></li>
 <li><a href="#regspace">regspace()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="regspace"></a>
+<b>regspace( start, end )</b>
+<br><b>regspace( start, delta, end )</b>
+<ul>
+<li>
+Generate a vector with regularly spaced elements:
+<br>[&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;0*delta)</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;1*delta)</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;2*delta)</i>,&nbsp;&nbsp;<i>&#8943;</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;M*delta)</i>&nbsp;&nbsp;]
+<br>where <i>M&nbsp;=&nbsp;floor((end-start)/delta)</i>, so that <i>(start&nbsp;+&nbsp;M*delta)&nbsp;&le;&nbsp;end</i>
+</li>
+<br>
+<li>
+Similar in operation to the Matlab/Octave colon operator, ie. <i>start:end</i>&nbsp;&nbsp;and&nbsp;&nbsp;<i>start:delta:end</i>
+</li>
+<br>
+<li>
+If <i>delta</i> is not specified:
+<ul>
+<li><i>delta</i>&nbsp;=&nbsp;+1,       if <i>start&nbsp;&le;&nbsp;end</i></li>
+<li><i>delta</i>&nbsp;=&nbsp;&minus;1, if <i>start&nbsp;&gt;&nbsp;end</i> &nbsp; (<b>caveat:</b> this is different to Matlab/Octave)</li>
+</ul>
+</li>
+<br>
+<li>
+An empty vector is generated when one of the following conditions is true:
+<ul>
+<li><i>start&nbsp;&lt;&nbsp;end</i>, and <i>delta&nbsp;&lt;&nbsp;0</i></li>
+<li><i>start&nbsp;&gt;&nbsp;end</i>, and <i>delta&nbsp;&gt;&nbsp;0</i></li>
+<li><i>delta&nbsp;=&nbsp;0</i></li>
+</ul>
+</li>
+<br>
+<li>
+Usage:
+<ul>
+<li>vec v = regspace(start, end)</li>
+<li>vec v = regspace(start, delta, end)</li>
+<li><i>vector_type</i> v = regspace&lt;<i>vector_type</i>&gt;(start, end)</li>
+<li><i>vector_type</i> v = regspace&lt;<i>vector_type</i>&gt;(start, delta, end)</li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+ vec a = regspace(0,  9);             // 0,  1, ...,   9
+
+uvec b = regspace&lt;uvec&gt;(2,  2,  10);  // 2,  4, ...,  10
+
+ivec c = regspace&lt;ivec&gt;(0, -1, -10);  // 0, -1, ..., -10
+</pre>
+</ul>
+</li>
+<br>
+<li>
+<b>Caveat:</b> do not use <i>regspace()</i> to specify ranges for contiguous submatrix views; use <a href="#submat">span()</a> instead
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#linspace">linspace()</a></li>
+<li><a href="#logspace">logspace()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="randperm"></a>
+<b>randperm( N )</b>
+<br><b>randperm( N, M )</b>
+<ul>
+<li>
+Generate a vector with a random permutation of integers from <i>0</i> to <i>N-1</i>
+</li>
+<br>
+<li>
+The optional argument <i>M</i> indicates the number of elements to return,
+sampled without replacement from <i>0</i> to <i>N-1</i>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+uvec X = randperm(10);
+uvec Y = randperm(10,2);
+</pre>
+</ul>
+</li>
+<br>
+<li>
+See also:
+<ul>
+<li><a href="#randi">randi()</a></li>
+<li><a href="#linspace">linspace()</a></li>
+<li><a href="#regspace">regspace()</a></li>
+</ul>
+</li>
+<br>
+</ul>
+
+<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
+<a name="eye_standalone"></a>
+<b>eye( n_rows, n_cols )</b>
+<br>
+<b>eye( size(X) )</b>
+<ul>
+<li>
+Generate a matrix with the elements along the main diagonal set to one
+and off-diagonal elements set to zero
+</li>
+<br>
+<li>
+An identity matrix is generated when <i>n_rows</i> = <i>n_cols</i>
+</li>
+<br>
+<li>
+Usage:
+<ul>
+<li>mat X = eye( n_rows, n_cols )</li>
+<li><i>matrix_type</i> X = eye&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
+<li><i>matrix_type</i> Y = eye&lt;<i>matrix_type</i>&gt;( size(X) )</li>
+</ul>
+</li>
+<br>
+<li>
+Examples:
+<ul>
+<pre>
+   mat A = eye(5,5);  // or:  mat A(5,5,fill::eye);
+
+  fmat B = 123.0 * eye&lt;fmat&gt;(5,5);
+
+cx_mat C = eye&lt;cx_mat&gt;( size(B) );
+</pre>
+</ul>
+</li>
+<br>
+<li>See also:
+<ul>
+<li><a href="#eye_member">.eye()</a> (member function of Mat)</li>
+<li><a href="#diag">.diag()</a></li>
+<li><a href="#ones_standalone">ones()</a></li>
+<li><a href="#diagmat">diagmat()</a></li>
+<li><a href="#diagvec">diagvec()</a></li>
+<li><a href="#speye">speye()</a></li>
+<li><a href="#size">size()</a></li>
 </ul>
 </li>
 <br>
@@ -7123,6 +7354,7 @@ See also:
 <li><a href="#eye_standalone">eye()</a></li>
 <li><a href="#linspace">linspace()</a></li>
 <li><a href="#regspace">regspace()</a></li>
+<li><a href="#randperm">randperm()</a></li>
 <li><a href="#zeros_standalone">zeros()</a></li>
 <li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
 <li><a href="#spones">spones()</a></li>
@@ -7133,78 +7365,46 @@ See also:
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="randi"></a>
-<b>randi( )</b> 
-<br><b>randi( distr_param(a,b) )</b> 
-<br>
-<br><b>randi( n_elem )</b> 
-<br><b>randi( n_elem, distr_param(a,b) )</b> 
-<br>
-<br><b>randi( n_rows, n_cols )</b>
-<br><b>randi( n_rows, n_cols, distr_param(a,b) )</b>
-<br>
-<br><b>randi( n_rows, n_cols, n_slices )</b>
-<br><b>randi( n_rows, n_cols, n_slices, distr_param(a,b) )</b>
-<br>
-<br><b>randi( size(X) )</b>
-<br><b>randi( size(X), distr_param(a,b) )</b>
+<a name="zeros_standalone"></a>
+<b>zeros( n_elem )</b>
+<br><b>zeros( n_rows, n_cols )</b>
+<br><b>zeros( n_rows, n_cols, n_slices )</b>
+<br><b>zeros( size(X) )</b>
 <ul>
 <li>
-Generate a scalar, vector, matrix or cube with the elements set to random <b>integer</b> values in the [a,b] interval
-</li>
-<br>
-<li>The default distribution parameters are <i>a=0</i> and <i>b=maximum_int</i>
+Generate a vector, matrix or cube with the elements set to zero
 </li>
 <br>
 <li>
 Usage:
 <ul>
-<li><i>scalar_type</i> v = randi&lt;<i>scalar_type</i>&gt;( )</li>
-<li><i>scalar_type</i> v = randi&lt;<i>scalar_type</i>&gt;( distr_param(a,b) )</li>
-<br>
-<li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem )</li>
-<li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem, distr_param(a,b) )</li>
-<br>
-<li><i>matrix_type</i> X = randi&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
-<li><i>matrix_type</i> X = randi&lt;<i>matrix_type</i>&gt;( n_rows, n_cols, distr_param(a,b) )</li>
-<li><i>matrix_type</i> Y = randi&lt;<i>matrix_type</i>&gt;( size(X) )</li>
-<li><i>matrix_type</i> Y = randi&lt;<i>matrix_type</i>&gt;( size(X), distr_param(a,b) )</li>
-<br>
-<li><i>cube_type</i> Q = randi&lt;<i>cube_type</i>&gt;( n_rows, n_cols, n_slices )</li>
-<li><i>cube_type</i> Q = randi&lt;<i>cube_type</i>&gt;( n_rows, n_cols, n_slices, distr_param(a,b) )</li>
-<li><i>cube_type</i> R = randi&lt;<i>cube_type</i>&gt;( size(Q) )</li>
-<li><i>cube_type</i> R = randi&lt;<i>cube_type</i>&gt;( size(Q), distr_param(a,b) )</li>
+<li><i>vector_type</i> v = zeros&lt;<i>vector_type</i>&gt;( n_elem )</li>
+<li><i>matrix_type</i> X = zeros&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
+<li><i>matrix_type</i> Y = zeros&lt;<i>matrix_type</i>&gt;( size(X) )</li>
+<li><i>cube_type</i> Q = zeros&lt;<i>cube_type</i>&gt;( n_rows, n_cols, n_slices )</li>
+<li><i>cube_type</i> R = zeros&lt;<i>cube_type</i>&gt;( size(Q) )</li>
 </ul>
-</li>
-<br>
-<li>
-To change the RNG seed, use <i>arma_rng::set_seed(value)</i> or <i>arma_rng::set_seed_random()</i> functions
-</li>
-<br>
-<li>
-<b>Caveat:</b> to generate a continuous distribution with floating point values (ie. <i>float</i> or <i>double</i>), use <a href="#randu_randn_standalone">randu()</a> instead 
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
-imat A = randi&lt;imat&gt;(5, 6);
-
-imat A = randi&lt;imat&gt;(6, 7, distr_param(-10, +20));
-
-arma_rng::set_seed_random();  // set the seed to a random value
+vec  v = zeros&lt;vec&gt;(10);
+uvec u = zeros&lt;uvec&gt;(11);
+mat  A = zeros&lt;mat&gt;(5,6);
+cube Q = zeros&lt;cube&gt;(5,6,7);
 </pre>
 </ul>
 </li>
-<li>See also:
+<br>
+<li>
+See also:
 <ul>
-<li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
-<li><a href="#randg">randg()</a></li>
-<li><a href="#imbue">.imbue()</a></li>
+<li><a href="#zeros_member">.zeros()</a> (member function of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>SpMat</i> and <i>Cube</i>)</li>
+<li><a href="#ones_member">.ones()</a> (member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i>)</li>
 <li><a href="#ones_standalone">ones()</a></li>
-<li><a href="#zeros_standalone">zeros()</a></li>
-<li><a href="#shuffle">shuffle()</a></li>
+<li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
 <li><a href="#size">size()</a></li>
 </ul>
 </li>
@@ -7377,65 +7577,80 @@ mat X = randg&lt;mat&gt;(10, 10, distr_param(2,1));
 </ul>
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="regspace"></a>
-<b>regspace( start, end )</b>
-<br><b>regspace( start, delta, end )</b>
+<a name="randi"></a>
+<b>randi( )</b> 
+<br><b>randi( distr_param(a,b) )</b> 
+<br>
+<br><b>randi( n_elem )</b> 
+<br><b>randi( n_elem, distr_param(a,b) )</b> 
+<br>
+<br><b>randi( n_rows, n_cols )</b>
+<br><b>randi( n_rows, n_cols, distr_param(a,b) )</b>
+<br>
+<br><b>randi( n_rows, n_cols, n_slices )</b>
+<br><b>randi( n_rows, n_cols, n_slices, distr_param(a,b) )</b>
+<br>
+<br><b>randi( size(X) )</b>
+<br><b>randi( size(X), distr_param(a,b) )</b>
 <ul>
 <li>
-Generate a vector with regularly spaced elements:
-<br>[&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;0*delta)</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;1*delta)</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;2*delta)</i>,&nbsp;&nbsp;<i>&#8943;</i>,&nbsp;&nbsp;<i>(start&nbsp;+&nbsp;M*delta)</i>&nbsp;&nbsp;]
-<br>where <i>M&nbsp;=&nbsp;floor((end-start)/delta)</i>, so that <i>(start&nbsp;+&nbsp;M*delta)&nbsp;&le;&nbsp;end</i>
+Generate a scalar, vector, matrix or cube with the elements set to random <b>integer</b> values in the [a,b] interval
 </li>
 <br>
-<li>
-Similar in operation to the Matlab/Octave colon operator, ie. <i>start:end</i>&nbsp;&nbsp;and&nbsp;&nbsp;<i>start:delta:end</i>
-</li>
-<br>
-<li>
-If <i>delta</i> is not specified:
-<ul>
-<li><i>delta</i>&nbsp;=&nbsp;+1,       if <i>start&nbsp;&le;&nbsp;end</i></li>
-<li><i>delta</i>&nbsp;=&nbsp;&minus;1, if <i>start&nbsp;&gt;&nbsp;end</i> &nbsp; (<b>caveat:</b> this is different to Matlab/Octave)</li>
-</ul>
-</li>
-<br>
-<li>
-An empty vector is generated when one of the following conditions is true:
-<ul>
-<li><i>start&nbsp;&lt;&nbsp;end</i>, and <i>delta&nbsp;&lt;&nbsp;0</i></li>
-<li><i>start&nbsp;&gt;&nbsp;end</i>, and <i>delta&nbsp;&gt;&nbsp;0</i></li>
-<li><i>delta&nbsp;=&nbsp;0</i></li>
-</ul>
+<li>The default distribution parameters are <i>a=0</i> and <i>b=maximum_int</i>
 </li>
 <br>
 <li>
 Usage:
 <ul>
-<li><i>vector_type</i> v = regspace&lt;<i>vector_type</i>&gt;(start, end)</li>
-<li><i>vector_type</i> v = regspace&lt;<i>vector_type</i>&gt;(start, delta, end)</li>
+<li><i>scalar_type</i> v = randi&lt;<i>scalar_type</i>&gt;( )</li>
+<li><i>scalar_type</i> v = randi&lt;<i>scalar_type</i>&gt;( distr_param(a,b) )</li>
+<br>
+<li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem )</li>
+<li><i>vector_type</i> v = randi&lt;<i>vector_type</i>&gt;( n_elem, distr_param(a,b) )</li>
+<br>
+<li><i>matrix_type</i> X = randi&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
+<li><i>matrix_type</i> X = randi&lt;<i>matrix_type</i>&gt;( n_rows, n_cols, distr_param(a,b) )</li>
+<li><i>matrix_type</i> Y = randi&lt;<i>matrix_type</i>&gt;( size(X) )</li>
+<li><i>matrix_type</i> Y = randi&lt;<i>matrix_type</i>&gt;( size(X), distr_param(a,b) )</li>
+<br>
+<li><i>cube_type</i> Q = randi&lt;<i>cube_type</i>&gt;( n_rows, n_cols, n_slices )</li>
+<li><i>cube_type</i> Q = randi&lt;<i>cube_type</i>&gt;( n_rows, n_cols, n_slices, distr_param(a,b) )</li>
+<li><i>cube_type</i> R = randi&lt;<i>cube_type</i>&gt;( size(Q) )</li>
+<li><i>cube_type</i> R = randi&lt;<i>cube_type</i>&gt;( size(Q), distr_param(a,b) )</li>
 </ul>
+</li>
+<br>
+<li>
+To change the RNG seed, use <i>arma_rng::set_seed(value)</i> or <i>arma_rng::set_seed_random()</i> functions
+</li>
+<br>
+<li>
+<b>Caveat:</b> to generate a continuous distribution with floating point values (ie. <i>float</i> or <i>double</i>), use <a href="#randu_randn_standalone">randu()</a> instead 
 </li>
 <br>
 <li>
 Examples:
 <ul>
 <pre>
- vec a = regspace&lt; vec&gt;(0,  9);       // 0,  1, ...,   9
-uvec b = regspace&lt;uvec&gt;(2,  2,  10);  // 2,  4, ...,  10
-ivec c = regspace&lt;ivec&gt;(0, -1, -10);  // 0, -1, ..., -10
+imat A = randi&lt;imat&gt;(5, 6);
+
+imat A = randi&lt;imat&gt;(6, 7, distr_param(-10, +20));
+
+arma_rng::set_seed_random();  // set the seed to a random value
 </pre>
 </ul>
 </li>
-<br>
-<li>
-<b>Caveat:</b> do not use <i>regspace()</i> to specify ranges for contiguous submatrix views; use <a href="#submat">span()</a> instead
-</li>
-<br>
-<li>
-See also:
+<li>See also:
 <ul>
-<li><a href="#linspace">linspace()</a></li>
-<li><a href="#logspace">logspace()</a></li>
+<li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
+<li><a href="#randg">randg()</a></li>
+<li><a href="#randperm">randperm()</a></li>
+<li><a href="#imbue">.imbue()</a></li>
+<li><a href="#ones_standalone">ones()</a></li>
+<li><a href="#zeros_standalone">zeros()</a></li>
+<li><a href="#shuffle">shuffle()</a></li>
+<li><a href="#size">size()</a></li>
 </ul>
 </li>
 <br>
@@ -7602,53 +7817,6 @@ mat Y = circ_toeplitz(A);
 <li><a href="http://mathworld.wolfram.com/ToeplitzMatrix.html">Toeplitz matrix in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Toeplitz_matrix">Toeplitz matrix in Wikipedia</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Circulant_matrix">Circulant matrix in Wikipedia</a></li>
-</ul>
-</li>
-<br>
-</ul>
-
-<div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
-<a name="zeros_standalone"></a>
-<b>zeros( n_elem )</b>
-<br><b>zeros( n_rows, n_cols )</b>
-<br><b>zeros( n_rows, n_cols, n_slices )</b>
-<br><b>zeros( size(X) )</b>
-<ul>
-<li>
-Generate a vector, matrix or cube with the elements set to zero
-</li>
-<br>
-<li>
-Usage:
-<ul>
-<li><i>vector_type</i> v = zeros&lt;<i>vector_type</i>&gt;( n_elem )</li>
-<li><i>matrix_type</i> X = zeros&lt;<i>matrix_type</i>&gt;( n_rows, n_cols )</li>
-<li><i>matrix_type</i> Y = zeros&lt;<i>matrix_type</i>&gt;( size(X) )</li>
-<li><i>cube_type</i> Q = zeros&lt;<i>cube_type</i>&gt;( n_rows, n_cols, n_slices )</li>
-<li><i>cube_type</i> R = zeros&lt;<i>cube_type</i>&gt;( size(Q) )</li>
-</ul>
-</li>
-<br>
-<li>
-Examples:
-<ul>
-<pre>
-vec  v = zeros&lt;vec&gt;(10);
-uvec u = zeros&lt;uvec&gt;(11);
-mat  A = zeros&lt;mat&gt;(5,6);
-cube Q = zeros&lt;cube&gt;(5,6,7);
-</pre>
-</ul>
-</li>
-<br>
-<li>
-See also:
-<ul>
-<li><a href="#zeros_member">.zeros()</a> (member function of <i>Mat</i>, <i>Col</i>, <i>Row</i>, <i>SpMat</i> and <i>Cube</i>)</li>
-<li><a href="#ones_member">.ones()</a> (member function of <i>Mat</i>, <i>Col</i>, <i>Row</i> and <i>Cube</i>)</li>
-<li><a href="#ones_standalone">ones()</a></li>
-<li><a href="#randu_randn_standalone">randu() &amp; randn()</a></li>
-<li><a href="#size">size()</a></li>
 </ul>
 </li>
 <br>
@@ -8444,6 +8612,7 @@ mat E = diagmat(v,1);
 See also:
 <ul>
 <li><a href="#diag">.diag()</a></li>
+<li><a href="#is_diagmat">.is_diagmat()</a></li>
 <li><a href="#diagvec">diagvec()</a></li>
 <li><a href="#trimat">trimatu() / trimatl()</a></li>
 <li><a href="#symmat">symmatu() / symmatl()</a></li>
@@ -8665,6 +8834,7 @@ See also:
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
+<li><a href="http://doi.org/10.1137/S00361445024180">Nineteen Dubious Ways to Compute the Exponential of a Matrix, Twenty-Five Years Later</a></li>
 </ul>
 </li>
 <br>
@@ -8676,6 +8846,8 @@ See also:
 <br><b>expmat_sym(B, A)</b>
 <ul>
 <li>Matrix exponential of symmetric/hermitian matrix <i>A</i></li>
+<br>
+<li>The computation is based on eigen decomposition</li>
 <br>
 <li>If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown</li>
 <br>
@@ -8716,6 +8888,7 @@ See also:
 <li><a href="#misc_fns">miscellaneous element-wise functions</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixExponential.html">matrix exponential in MathWorld</a></li>
+<li><a href="http://doi.org/10.1137/S00361445024180">Nineteen Dubious Ways to Compute the Exponential of a Matrix, Twenty-Five Years Later</a></li>
 </ul>
 </li>
 <br>
@@ -8779,7 +8952,7 @@ See also:
 <li><a href="#all">all()</a></li>
 <li><a href="#any">any()</a></li>
 <li><a href="#clamp">clamp()</a></li>
-<li><a href="#replace">.replace()</a></li>
+<li><a href="#transform">.transform()</a></li>
 <li><a href="#approx_equal">approx_equal()</a></li>
 <li><a href="#find_finite">find_finite()</a></li>
 <li><a href="#find_nonfinite">find_nonfinite()</a></li>
@@ -9305,22 +9478,42 @@ intersect(CC, iA, iB, A, B);
 
 <div class="pagebreak"></div><div class="noprint"><hr class="greyline"><br></div>
 <a name="join"></a>
+<table>
+<tbody>
+<tr>
+<td>
 <b>join_rows( A, B )</b>
-<br><b>join_horiz( A,  B )</b>
-<br>
+<br><b>join_rows( A, B, C )</b>
+<br><b>join_rows( A, B, C, D )</b>
+<br>&nbsp;
 <br><b>join_cols( A, B )</b>
+<br><b>join_cols( A, B, C )</b>
+<br><b>join_cols( A, B, C, D )</b>
+</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<b>join_horiz( A, B )</b>
+<br><b>join_horiz( A, B, C )</b>
+<br><b>join_horiz( A, B, C, D )</b>
+<br>&nbsp;
 <br><b>join_vert( A, B )</b>
+<br><b>join_vert( A, B, C )</b>
+<br><b>join_vert( A, B, C, D )</b>
+</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>
 <i>join_rows()</i> and <i>join_horiz()</i>: horizontal concatenation;
-for two matrices <i>A</i> and <i>B</i>, join each row of <i>A</i> with the corresponding row of <i>B</i>;
-matrices <i>A</i> and <i>B</i> must have the same number of rows
+join the corresponding rows of the given matrices;
+the given matrices must have the same number of rows
 </li>
 <br>
 <li>
 <i>join_cols()</i> and <i>join_vert()</i>: vertical concatenation;
-for two matrices <i>A</i> and <i>B</i>, join each column of <i>A</i> with the corresponding column of <i>B</i>;
-matrices <i>A</i> and <i>B</i> must have the same number of columns
+join the corresponding columns of the given matrices;
+the given matrices must have the same number of columns
 </li>
 <br>
 <li>
@@ -9331,8 +9524,8 @@ mat A = randu&lt;mat&gt;(4,5);
 mat B = randu&lt;mat&gt;(4,6);
 mat C = randu&lt;mat&gt;(6,5);
 
-mat X = join_rows(A,B);
-mat Y = join_cols(A,C);
+mat AB = join_rows(A,B);
+mat AC = join_cols(A,C);
 </pre>
 </ul>
 </li>
@@ -9698,6 +9891,11 @@ Return a column vector containing the non-zero values of <i>X</i>
 <br>
 <li>
 <i>X</i> can be a sparse or dense matrix
+</li>
+<br>
+<li>
+<b>Caveat:</b> do not use <i>nonzeros()</i> if you only want to obtain the number of non-zero elements in a sparse matrix;
+use the <i>.n_nonzero</i> <a href="#attributes">attribute</a> instead, eg.&nbsp;<i>X.n_nonzero</i>
 </li>
 <br>
 <li>
@@ -10388,6 +10586,11 @@ The dimensions support simple arithmetic operations; they can also be printed an
 </li>
 <br>
 <li>
+<b>Caveat:</b> to prevent interference from <a href="https://en.cppreference.com/w/cpp/iterator/size"><i>std::size()</i></a> in C++17,
+preface Armadillo's <i>size()</i> with the <i>arma</i> namespace qualification, eg. <i>arma::size(X)</i>
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
@@ -10846,7 +11049,7 @@ mat C = A.t();    // equivalent to trans(A), but more compact
 <li>See also:
 <ul>
 <li><a href="#t_st_members">.t()</a></li>
-<li><a href="#inplace_trans">inplace_trans</a></li>
+<li><a href="#inplace_trans">inplace_trans()</a></li>
 </ul>
 </li>
 <br>
@@ -10954,6 +11157,7 @@ mat LL = trimatl(A, -1);  // omit the main diagonal
 <br>
 <li>See also:
 <ul>
+<li><a href="#is_trimat">.is_trimatu() / .is_trimatl()</a></li>
 <li><a href="#symmat">symmatu() / symmatl()</a></li>
 <li><a href="#diagmat">diagmat()</a></li>
 <li><a href="#nonzeros">nonzeros()</a></li>
@@ -11008,9 +11212,10 @@ mat Y = unique(X);
 <a name="vectorise"></a>
 <b>vectorise( X )</b>
 <br><b>vectorise( X, dim )</b>
+<br><b>vectorise( Q )</b>
 <ul>
 <li>
-Generate a flattened version of matrix <i>X</i>, either as a column vector (<i>dim=0</i>) or row vector (<i>dim=1</i>)
+Generate a flattened version of matrix <i>X</i> or cube <i>Q</i>
 </li>
 <br>
 <li>
@@ -11018,11 +11223,11 @@ The argument <i>dim</i> is optional; by default <i>dim=0</i> is used
 </li>
 <br>
 <li>
-For <i>dim=0</i>, the elements are copied from <i>X</i> column-wise; equivalent to concatenating all the columns of <i>X</i>
+For <i>dim=0</i>, the elements are copied from <i>X</i> column-wise, resulting in a column vector; equivalent to concatenating all the columns of <i>X</i>
 </li>
 <br>
 <li>
-For <i>dim=1</i>, the elements are copied from <i>X</i> row-wise; equivalent to concatenating all the rows of <i>X</i>
+For <i>dim=1</i>, the elements are copied from <i>X</i> row-wise, resulting in a row vector; equivalent to concatenating all the rows of <i>X</i>
 </li>
 <br>
 <li>
@@ -11786,16 +11991,10 @@ If <i>A</i> is not square sized, a <i>std::logic_error</i> exception is thrown
 <li>
 <b>Caveats:</b>
 <ul>
-<li>
-if matrix <i>A</i> is know to be symmetric positive definite, using <a href="#inv_sympd">inv_sympd()</a> is faster
-</li>
-<li>
-if matrix <i>A</i> is know to be diagonal, use <i>inv(&nbsp;diagmat(A)&nbsp;)</i>
-</li>
-<li>
-to solve a system of linear equations, such as <i>Z&nbsp;=&nbsp;inv(X)*Y</i>,
-using <a href="#solve">solve()</a> can be faster and/or more accurate
-</li>
+<li>if matrix <i>A</i> is know to be symmetric positive definite, using <a href="#inv_sympd">inv_sympd()</a> is faster</li>
+<li>if matrix <i>A</i> is know to be diagonal, use <i>inv(&nbsp;diagmat(A)&nbsp;)</i></li>
+<li>if matrix <i>A</i> is know to be triangular, use <i>inv(&nbsp;trimatu(A)&nbsp;)</i> or <i>inv(&nbsp;trimatl(A)&nbsp;)</i></li>
+<li>to solve a system of linear equations, such as <i>Z&nbsp;=&nbsp;inv(X)*Y</i>, using <a href="#solve">solve()</a> can be faster and/or more accurate</li>
 </ul>
 </li>
 <br>
@@ -11820,6 +12019,7 @@ See also:
 <li><a href="#solve">solve()</a></li>
 <li><a href="#spsolve">spsolve()</a></li>
 <li><a href="#diagmat">diagmat()</a></li>
+<li><a href="#trimat">trimatu() / trimatl()</a></li>
 <li><a href="http://mathworld.wolfram.com/MatrixInverse.html">matrix inverse in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Invertible_matrix">invertible matrix in Wikipedia</a></li>
 </ul>
@@ -12355,6 +12555,11 @@ By default, matrix <i>A</i> is analysed to automatically determine whether it is
 based on the detected matrix structure, a specialised solver is used for faster execution
 </li>
 <br>
+<li>
+If <i>A</i> is known to be a triangular matrix,
+the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>; see examples below
+</li>
+<br>
 <li><i>A</i> can be square (critically determined system), or non-square (under/over-determined system)
 </li>
 <br>
@@ -12371,23 +12576,19 @@ The number of rows in <i>A</i> and <i>B</i> must be the same
 <br>
 <table>
 <tbody>
-<tr><td><code>solve_opts::fast</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>fast mode: do not apply iterative refinement and/or equilibration</td></tr>
+<tr><td><code>solve_opts::fast</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>fast mode: disable determining solution quality via rcond, disable iterative refinement, disable equilibration</td></tr>
+<tr><td><code>solve_opts::refine</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>apply iterative refinement to improve solution quality &nbsp; (matrix <i>A</i> must be square)</td></tr>
 <tr><td><code>solve_opts::equilibrate</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>equilibrate the system before solving &nbsp; (matrix <i>A</i> must be square)</td></tr>
+<tr><td><code>solve_opts::likely_sympd</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>indicate that matrix <i>A</i> is likely symmetric/hermitian positive definite</td></tr>
+<tr><td><code>solve_opts::allow_ugly</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>keep solutions of systems that are singular to working precision</td></tr>
 <tr><td><code>solve_opts::no_approx</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not find approximate solutions for rank deficient systems</td></tr>
 <tr><td><code>solve_opts::no_band</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use specialised solver for band matrices or diagonal matrices</td></tr>
+<tr><td><code>solve_opts::no_trimat</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use specialised solver for triangular matrices</td></tr>
 <tr><td><code>solve_opts::no_sympd</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>do not use specialised solver for symmetric/hermitian positive definite matrices</td></tr>
-<tr><td><code>solve_opts::allow_ugly</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>keep solutions of systems that are singular to working precision</td></tr>
-<tr><td><code>solve_opts::likely_sympd</code></td><td>&nbsp;&nbsp;&nbsp;</td><td>indicate that matrix <i>A</i> is likely symmetric/hermitian positive definite</td></tr>
 </tbody>
 </table>
 <br>
 the above settings can be combined using the <code>+</code> operator; for example: <code>solve_opts::fast&nbsp;+&nbsp;solve_opts::no_approx</code>
-</li>
-<br>
-<li>
-If <i>A</i> is known to be a triangular matrix,
-the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>;
-<br>indicating a triangular matrix also implies that <i><code>solve_opts::fast</code></i> is enabled
 </li>
 <br>
 <li>
@@ -12442,6 +12643,7 @@ See also:
 <li><a href="https://en.wikipedia.org/wiki/Band_matrix">band matrix in Wikipedia</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Definiteness_of_a_matrix">definiteness of a matrix in Wikipedia</a></li>
 <li><a href="http://mathworld.wolfram.com/PositiveDefiniteMatrix.html">positive definite matrix in MathWorld</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Iterative_refinement">iterative refinement</a></li>
 </ul>
 </li>
 <br>
@@ -12902,7 +13104,7 @@ struct superlu_opts
   bool             symmetric;    // default: false
   double           pivot_thresh; // default: 1.0
   permutation_type permutation;  // default: superlu_opts::COLAMD
-  refine_type      refine;       // default: superlu_opts::REF_DOUBLE
+  refine_type      refine;       // default: superlu_opts::REF_NONE
   };
 </pre>
 </ul>
@@ -17857,6 +18059,51 @@ Use "long&nbsp;long" instead of "int" when calling BLAS and LAPACK functions
   </tr>
   <tr>
     <td style="vertical-align: top;">
+<code>ARMA_USE_FORTRAN_HIDDEN_ARGS</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+Use so-called "hidden arguments" when calling BLAS and LAPACK functions.  Enabled by default.
+See Fortran <a href="https://gcc.gnu.org/onlinedocs/gfortran/Argument-passing-conventions.html">argument passing conventions</a> for more details.
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+<code>ARMA_DONT_USE_FORTRAN_HIDDEN_ARGS</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+Disable use of so-called "hidden arguments" when calling BLAS and LAPACK functions
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
 <code>ARMA_USE_TBB_ALLOC</code>
     </td>
     <td style="vertical-align: top;">
@@ -17886,6 +18133,31 @@ Use Intel TBB <i>scalable_malloc()</i> and <i>scalable_free()</i> instead of sta
     </td>
     <td style="vertical-align: top;">
 Use Intel MKL <i>mkl_malloc()</i> and <i>mkl_free()</i> instead of standard <i>malloc()</i> and <i>free()</i> for managing matrix memory
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
+<code>ARMA_USE_MKL_TYPES</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+Use Intel MKL types for complex numbers.
+You will need to include appropriate MKL headers before the Armadillo header.
+You may also need to enable or disable the following options:
+<code>ARMA_BLAS_LONG</code>, <code>ARMA_BLAS_LONG_LONG</code>, <code>ARMA_USE_FORTRAN_HIDDEN_ARGS</code>
     </td>
   </tr>
   <tr>
@@ -18231,6 +18503,30 @@ List of additions and changes for each version:
 
 
 
+<a name="version_9800"></a>
+<li>Version 9.800:
+<ul>
+<li>faster <a href="#solve">solve()</a> in default operation; iterative refinement is no longer applied by default; use <code>solve_opts::refine</code> to explicitly enable refinement</li>
+<li>faster <a href="#expmat">expmat()</a></li>
+<li>faster handling of triangular matrices by <a href="#rcond">rcond()</a></li>
+<li>added <a href="#compat_container_fns">.front()</a> and <a href="#compat_container_fns">.back()</a>
+<li>added <a href="#is_trimat">.is_trimatu()</a> and <a href="#is_trimat">.is_trimatl()</a></li>
+<li>added <a href="#is_diagmat">.is_diagmat()</a></li>
+</ul>
+</li>
+<br>
+<a name="version_9700"></a>
+<li>Version 9.700:
+<ul>
+<li>faster handling of cubes by <a href="#vectorise">vectorise()</a></li>
+<li>faster handling of sparse matrices by <a href="#nonzeros">nonzeros()</a></li>
+<li>faster row-wise <a href="#index_min_and_index_max_standalone">index_min()</a> and <a href="#index_min_and_index_max_standalone">index_max()</a></li>
+<li>expanded <a href="#join">join_rows()</a> and <a href="#join">join_cols()</a> to handle joining up to 4 matrices</li>
+<li>expanded <a href="#save_load_mat">.save()</a> and <a href="#save_load_mat">.load()</a> to allow storing sparse matrices in CSV format</li>
+<li>added <a href="#randperm">randperm()</a> to generate a vector with random permutation of a sequence of integers</li>
+</ul>
+</li>
+<br>
 <a name="version_9600"></a>
 <li>Version 9.600:
 <ul>

@@ -20,9 +20,9 @@
 
 
 #define ARMA_VERSION_MAJOR 9
-#define ARMA_VERSION_MINOR 600
-#define ARMA_VERSION_PATCH 5
-#define ARMA_VERSION_NAME  "Napa Invasion"
+#define ARMA_VERSION_MINOR 800
+#define ARMA_VERSION_PATCH 1
+#define ARMA_VERSION_NAME  "Horizon Scraper"
 
 
 

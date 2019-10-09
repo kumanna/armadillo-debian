@@ -51,12 +51,14 @@ aiming towards a good balance between speed and ease of use.
 
 It's useful for algorithm development directly in C++,
 and/or quick conversion of research code into production environments.
-The syntax (API) is deliberately similar to Matlab.
+It has high-level syntax and functionality which is deliberately similar to Matlab.
 
 The library provides efficient classes for vectors, matrices and cubes,
-as well as 200+ associated functions (eg. contiguous and non-contiguous
-submatrix views). Various matrix decompositions are provided through
-integration with LAPACK, or one of its high performance drop-in replacements
+as well as 200+ associated functions covering essential and advanced functionality
+for data processing and manipulation of matrices.
+
+Various matrix decompositions are provided through integration with LAPACK,
+or one of its high performance drop-in replacements
 (eg. OpenBLAS, Intel MKL, Apple Accelerate framework, etc).
 
 A sophisticated expression evaluator (via C++ template meta-programming)
@@ -74,16 +76,15 @@ Authors:
 
 ### 2: Citation Details
 
-Please cite one (or both) of the following papers if you use Armadillo
-in your research and/or software.  Citations are useful
-for the continued development and maintenance of the library.
+Please cite the following papers if you use Armadillo in your research and/or software.  
+Citations are useful for the continued development and maintenance of the library.
 
   * Conrad Sanderson and Ryan Curtin.  
     Armadillo: a template-based C++ library for linear algebra.  
     Journal of Open Source Software, Vol. 1, pp. 26, 2016.  
   
   * Conrad Sanderson and Ryan Curtin.  
-    Practical Sparse Matrices in C++ with Hybrid Storage and Template-Based Expression Optimisation.  
+    Practical sparse matrices in C++ with hybrid storage and template-based expression optimisation.  
     Mathematical and Computational Applications, Vol. 24, No. 3, 2019.
 
 ---
@@ -467,7 +468,7 @@ Octave/Matlab with C++ code that uses Armadillo matrices.
 * MLPACK: extensive library of machine learning algorithms  
   http://mlpack.org
 
-* ensmallen: flexible C++ library for efficient mathematical optimisation  
+* ensmallen: C++ library of numerical optimisation methods  
   http://ensmallen.org/
 
 * SigPack: C++ signal processing library  

@@ -14,32 +14,37 @@
 // ------------------------------------------------------------------------
 
 
-//! \addtogroup fn_nonzeros
+//! \addtogroup CubeToMatOp
 //! @{
 
 
-template<typename T1>
-arma_warn_unused
+
+template<typename T1, typename op_type>
 inline
-const Op<T1,op_nonzeros>
-nonzeros(const Base<typename T1::elem_type,T1>& X)
+CubeToMatOp<T1, op_type>::CubeToMatOp(const T1& in_m)
+  : m(in_m)
   {
   arma_extra_debug_sigprint();
-  
-  return Op<T1,op_nonzeros>(X.get_ref());
   }
 
 
 
-template<typename T1>
-arma_warn_unused
+template<typename T1, typename op_type>
 inline
-const SpToDOp<T1, op_nonzeros_spmat>
-nonzeros(const SpBase<typename T1::elem_type,T1>& X)
+CubeToMatOp<T1, op_type>::CubeToMatOp(const T1& in_m, const typename T1::elem_type in_aux)
+  : m(in_m)
+  , aux(in_aux)
   {
   arma_extra_debug_sigprint();
-  
-  return SpToDOp<T1, op_nonzeros_spmat>(X.get_ref());
+  }
+
+
+
+template<typename T1, typename op_type>
+inline
+CubeToMatOp<T1, op_type>::~CubeToMatOp()
+  {
+  arma_extra_debug_sigprint();
   }
 
 
