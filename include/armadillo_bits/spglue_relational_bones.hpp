@@ -14,33 +14,36 @@
 // ------------------------------------------------------------------------
 
 
-//! \addtogroup fn_nonzeros
+//! \addtogroup spglue_relational
 //! @{
 
 
-template<typename T1>
-arma_warn_unused
-inline
-const Op<T1,op_nonzeros>
-nonzeros(const Base<typename T1::elem_type,T1>& X)
+
+class spglue_rel_lt
+  : public traits_glue_or
   {
-  arma_extra_debug_sigprint();
+  public:
   
-  return Op<T1,op_nonzeros>(X.get_ref());
-  }
+  template<typename T1, typename T2>
+  inline static void apply(SpMat<uword>& out, const mtSpGlue<uword, T1, T2, spglue_rel_lt>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply_noalias(SpMat<uword>& out, const SpProxy<T1>& PA, const SpProxy<T2>& PB);
+  };
 
 
 
-template<typename T1>
-arma_warn_unused
-inline
-const SpToDOp<T1, op_nonzeros_spmat>
-nonzeros(const SpBase<typename T1::elem_type,T1>& X)
+class spglue_rel_gt
+  : public traits_glue_or
   {
-  arma_extra_debug_sigprint();
+  public:
   
-  return SpToDOp<T1, op_nonzeros_spmat>(X.get_ref());
-  }
+  template<typename T1, typename T2>
+  inline static void apply(SpMat<uword>& out, const mtSpGlue<uword, T1, T2, spglue_rel_gt>& X);
+  
+  template<typename T1, typename T2>
+  inline static void apply_noalias(SpMat<uword>& out, const SpProxy<T1>& PA, const SpProxy<T2>& PB);
+  };
 
 
 
