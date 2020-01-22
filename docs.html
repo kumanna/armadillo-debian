@@ -201,8 +201,8 @@ Conrad Sanderson and Ryan Curtin.
 <br>
 <br>
 Conrad Sanderson and Ryan Curtin.
-<br><i><a href="armadillo_mca_2019.pdf">Practical sparse matrices in C++ with hybrid storage and template-based expression optimisation</a></i>.
-<br>Mathematical and Computational Applications, Vol. 24, No. 3, 2019.
+<br><i><a href="armadillo_lncs_2018.pdf">A User-Friendly Hybrid Sparse Matrix Class in C++</a></i>.
+<br>Lecture Notes in Computer Science (LNCS), Vol.&nbsp;10931, pp.&nbsp;422-430, 2018.
 </li>
 </ul>
 </td>
@@ -787,7 +787,7 @@ where <i>ptr_aux_mem</i> is a pointer to the memory
 <br>
 <ul>
 Create a fixed size matrix, with the size specified via template arguments.
-Memory for the matrix is allocated at compile time.
+Memory for the matrix is reserved at compile time.
 This is generally faster than dynamic memory allocation, but the size of the matrix can't be changed afterwards (directly or indirectly).
 <br>
 <br>
@@ -1121,7 +1121,7 @@ where <i>ptr_aux_mem</i> is a pointer to the memory
 <br>
 <ul>
 Create a fixed size column vector, with the size specified via the template argument.
-Memory for the vector is allocated at compile time.
+Memory for the vector is reserved at compile time.
 This is generally faster than dynamic memory allocation, but the size of the vector can't be changed afterwards (directly or indirectly).
 <br>
 <br>
@@ -1377,7 +1377,7 @@ where <i>ptr_aux_mem</i> is a pointer to the memory
 <br>
 <ul>
 Create a fixed size row vector, with the size specified via the template argument.
-Memory for the vector is allocated at compile time.
+Memory for the vector is reserved at compile time.
 This is generally faster than dynamic memory allocation, but the size of the vector can't be changed afterwards (directly or indirectly).
 <br>
 <br>
@@ -1606,7 +1606,7 @@ Advanced constructors:
 <br>
 <ul>
 Create a fixed size cube, with the size specified via template arguments.
-Memory for the cube is allocated at compile time.
+Memory for the cube is reserved at compile time.
 This is generally faster than dynamic memory allocation, but the size of the cube can't be changed afterwards (directly or indirectly).
 </ul>
 <br>
@@ -13940,6 +13940,12 @@ For the <i>var()</i> and <i>stddev()</i> functions:
 </li>
 <br>
 <li>
+<b>Caveat:</b>
+to obtain statistics for integer matrices/vectors (eg. <a href="#Mat">umat</a>, <a href="#Mat">imat</a>, <a href="#Col">uvec</a>, <a href="#Col">ivec</a>),
+convert to a matrix/vector with floating point values (eg. <a href="#Mat">mat</a>, <a href="#Col">vec</a>) using the <a href="#conv_to">conv_to()</a> function
+</li>
+<br>
+<li>
 Examples:
 <ul>
 <pre>
@@ -18088,7 +18094,8 @@ See Fortran <a href="https://gcc.gnu.org/onlinedocs/gfortran/Argument-passing-co
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-Disable use of so-called "hidden arguments" when calling BLAS and LAPACK functions
+Disable use of so-called "hidden arguments" when calling BLAS and LAPACK functions.
+May be necessary when using Armadillo in conjunction with broken MKL headers (eg. if you have <code>#include "mkl_lapack.h"</code> in your code).
     </td>
   </tr>
   <tr>
@@ -18156,8 +18163,8 @@ Use Intel MKL <i>mkl_malloc()</i> and <i>mkl_free()</i> instead of standard <i>m
     <td style="vertical-align: top;">
 Use Intel MKL types for complex numbers.
 You will need to include appropriate MKL headers before the Armadillo header.
-You may also need to enable or disable the following options:
-<code>ARMA_BLAS_LONG</code>, <code>ARMA_BLAS_LONG_LONG</code>, <code>ARMA_USE_FORTRAN_HIDDEN_ARGS</code>
+You may also need to enable one or more of the following options:
+<code>ARMA_BLAS_LONG</code>, <code>ARMA_BLAS_LONG_LONG</code>, <code>ARMA_DONT_USE_FORTRAN_HIDDEN_ARGS</code>
     </td>
   </tr>
   <tr>

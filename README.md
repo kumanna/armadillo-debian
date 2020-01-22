@@ -84,8 +84,8 @@ Citations are useful for the continued development and maintenance of the librar
     Journal of Open Source Software, Vol. 1, pp. 26, 2016.  
   
   * Conrad Sanderson and Ryan Curtin.  
-    Practical sparse matrices in C++ with hybrid storage and template-based expression optimisation.  
-    Mathematical and Computational Applications, Vol. 24, No. 3, 2019.
+    A User-Friendly Hybrid Sparse Matrix Class in C++.  
+    Lecture Notes in Computer Science (LNCS), Vol. 10931, pp. 422-430, 2018.
 
 ---
 
@@ -106,17 +106,18 @@ informational purposes only and do not modify the License.
 
 ### 4: Compilers and External Dependencies
 
-Armadillo makes extensive use of template meta-programming, recursive templates
-and template based function overloading. As such, C++ compilers which do not
-fully implement the C++ standard may not work correctly.
+Armadillo makes extensive use of template meta-programming and many other
+advanced C++ features.  As such, C++ compilers which do not fully implement
+the C++ standard may not work correctly.
 
 The functionality of Armadillo is partly dependent on other libraries:
-LAPACK, BLAS, ARPACK and SuperLU. The LAPACK and BLAS libraries are
-used for dense matrices, while the ARPACK and SuperLU libraries are
-used for sparse matrices. Armadillo can work without these libraries,
-but its functionality will be reduced. In particular, basic functionality
-will be available (eg. matrix addition and multiplication), but things
-like eigen decomposition or matrix inversion will not be.
+LAPACK, BLAS (preferably OpenBLAS), ARPACK and SuperLU.
+LAPACK and BLAS are used for dense matrices,
+while ARPACK and SuperLU are used for sparse matrices.
+
+Armadillo can work without the above libraries, but its functionality will be reduced.
+Basic functionality will be available (eg. matrix addition and multiplication),
+but operations like eigen decomposition or matrix inversion will not be.
 Matrix multiplication (mainly for big matrices) may not be as fast.
 
 As Armadillo is a template library, we recommended that optimisation
