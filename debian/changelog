@@ -1,3 +1,9 @@
+armadillo (1:9.800.4+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 22 Jan 2020 20:29:53 +0530
+
 armadillo (1:9.800.1+dfsg-1) unstable; urgency=medium
 
   * New upstream release
