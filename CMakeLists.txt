@@ -142,6 +142,12 @@ option(ALLOW_BLAS_LAPACK_MACOS "Allow detection of BLAS and LAPACK on macOS" OFF
 ## Example use on the command line:
 ## cmake -D ALLOW_BLAS_LAPACK_MACOS=true .
 
+option(BUILD_SMOKE_TEST "Build a smoke test" OFF)
+## Example use on the command line:
+## cmake -D BUILD_SMOKE_TEST=true .
+## make
+## ctest
+
 
 if(WIN32)
   message(STATUS "")
@@ -167,7 +173,10 @@ message(STATUS "BUILD_SHARED_LIBS          = ${BUILD_SHARED_LIBS}"         )
 message(STATUS "DETECT_HDF5                = ${DETECT_HDF5}"               )
 message(STATUS "ALLOW_OPENBLAS_MACOS       = ${ALLOW_OPENBLAS_MACOS}"      )
 message(STATUS "ALLOW_BLAS_LAPACK_MACOS    = ${ALLOW_BLAS_LAPACK_MACOS}"   )
+message(STATUS "BUILD_SMOKE_TEST           = ${BUILD_SMOKE_TEST}"          )
 
+message(STATUS "")
+message(STATUS "*** Looking for external libraries")
 
 ##
 ## Find LAPACK and BLAS libraries, or their optimised versions
@@ -602,3 +611,12 @@ message(STATUS "Generating '${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc'")
 configure_file(${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc.in "${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc" @ONLY)
 
 install(FILES "${PROJECT_BINARY_DIR}/tmp/misc/armadillo.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+
+
+# smoke test
+
+if(BUILD_SMOKE_TEST)
+  message(STATUS "*** configuring smoke_test")
+  enable_testing()
+  add_subdirectory(smoke_test)
+endif()
