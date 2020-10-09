@@ -1,6 +1,7 @@
-armadillo (1:10.1.0+dfsg-1) unstable; urgency=medium
+armadillo (1:10.1.0+dfsg-1) experimental; urgency=medium
 
   * New upstream release
+  * Standards version is now 4.5.0
 
  -- Kumar Appaiah <akumar@debian.org>  Fri, 09 Oct 2020 14:59:12 +0530
 
