@@ -781,8 +781,6 @@ when <i>strict</i> is set to <i>false</i>, the matrix will use the auxiliary mem
 when <i>strict</i> is set to <i>true</i>, the matrix will be bound to the auxiliary memory for its lifetime;
 the number of elements in the matrix can't be changed
 </li>
-<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
@@ -1115,8 +1113,6 @@ when <i>strict</i> is set to <i>false</i>, the vector will use the auxiliary mem
 when <i>strict</i> is set to <i>true</i>, the vector will be bound to the auxiliary memory for its lifetime;
 the number of elements in the vector can't be changed
 </li>
-<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
@@ -1372,8 +1368,6 @@ when <i>strict</i> is set to <i>false</i>, the vector will use the auxiliary mem
 when <i>strict</i> is set to <i>true</i>, the vector will be bound to the auxiliary memory for its lifetime;
 the number of elements in the vector can't be changed
 </li>
-<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
@@ -1651,8 +1645,6 @@ when <i>strict</i> is set to <i>false</i>, the cube will use the auxiliary memor
 when <i>strict</i> is set to <i>true</i>, the cube will be bound to the auxiliary memory for its lifetime;
 the number of elements in the cube can't be changed
 </li>
-<li>the default setting of <i>strict</i> in versions 6.000+ is <i>false</i></li>
-<li>the default setting of <i>strict</i> in versions 5.600 and earlier is <i>true</i></li>
 </ul>
 </ul>
 <br>
@@ -2502,12 +2494,12 @@ before including the <i>armadillo</i> header file (eg. <code>#define ARMA_NO_DEB
 Alternatively, the <code>.at(n)</code>, <code>.at(i,j)</code> and <code>.at(i,j,k)</code> element access forms can be used,
 which do not have bounds checks.
 Either way, <b>disabling the bounds checks is not recommended</b> until your code has been thoroughly tested and debugged
--- it's better to write correct code first, and then maximise its speed.
+-- it is better to write correct code first, and then maximise its speed.
 </li>
 <br>
 <li>
 The indices of elements are specified via the <a href="#uword">uword</a> type, which is a typedef for an <a href="#uword">unsigned integer type</a>.
-When using loops to access elements, it's best to use <i>uword</i> instead of <i>int</i>.
+When using loops to access elements, it is best to use <i>uword</i> instead of <i>int</i>.
 For example: <code>for(uword&nbsp;i=0;&nbsp;i&lt;X.n_elem;&nbsp;++i)&nbsp;{&nbsp;X(i)&nbsp;=&nbsp;...&nbsp;}</code>
 </li>
 <br>
@@ -5708,7 +5700,7 @@ If the matrix expression appears to be singular, the output matrix is reset and 
 <b>Caveats:</b>
 <ul>
 <li>
-if matrix <i>A</i> is know to be symmetric positive definite, it's faster to use <a href="#inv_sympd">inv_sympd()</a> instead 
+if matrix <i>A</i> is know to be symmetric positive definite, it is faster to use <a href="#inv_sympd">inv_sympd()</a> instead 
 </li>
 <li>
 to solve a system of linear equations, such as <i>Z&nbsp;=&nbsp;inv(X)*Y</i>,
@@ -6928,7 +6920,7 @@ By providing either <b>hdf5_name(</b>filename<b>,</b> dataset<b>)</b> or <b>hdf5
 <ul>
 <li>
 the <i>dataset</i> argument specifies an HDF5 dataset name (eg. "my_dataset") that can include a full path (eg. "/group_name/my_dataset");
-if a blank dataset name is specified (ie.&nbsp;""), it's assumed to be "dataset"
+if a blank dataset name is specified (ie.&nbsp;""), it is assumed to be "dataset"
 <br>
 <br>
 </li>
@@ -9150,7 +9142,7 @@ A.elem( find_nonfinite(A) ).zeros();
 <br>
 <li>
 <b>Caveat:</b> to replace instances of a specific non-finite value (eg. nan or inf),
-it's more efficient to use <a href="#replace">.replace()</a>
+it is more efficient to use <a href="#replace">.replace()</a>
 </li>
 <br>
 <li>
@@ -10388,7 +10380,7 @@ mat B = repelem(A, 4, 5);
 <br>
 <li>
 <b>Caveat:</b> to apply a vector operation on each row or column of a matrix,
-it's generally more efficient to use <a href="#each_colrow">.each_row()</a> or <a href="#each_colrow">.each_col()</a>
+it is generally more efficient to use <a href="#each_colrow">.each_row()</a> or <a href="#each_colrow">.each_col()</a>
 </li>
 <br>
 <li>
@@ -11746,7 +11738,7 @@ fn(A) is one of:
       &nbsp;
     </td>
     <td style="vertical-align: top;">
-      natural log of the gamma function &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
+      natural log of the absolute value of gamma function &nbsp; <font size=-1>(only for <i>float</i> and <i>double</i> elements)</font>
     </td>
   </tr>
   <tr>
@@ -12822,17 +12814,7 @@ See also:
 similar functionality to the \ operator in Matlab/Octave, ie. <i>X&nbsp;=&nbsp;A&nbsp;\&nbsp;B</i>
 </li>
 <br>
-<li>
-By default, matrix <i>A</i> is analysed to automatically determine whether it is a general matrix, band matrix, diagonal matrix, or symmetric/hermitian positive definite (SPD) matrix;
-based on the detected matrix structure, a specialised solver is used for faster execution
-</li>
-<br>
-<li>
-If <i>A</i> is known to be a triangular matrix,
-the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>; see examples below
-</li>
-<br>
-<li><i>A</i> can be square (critically determined system), or non-square (under/over-determined system)
+<li><i>A</i> can be square sized (critically determined system), or non-square (under/over-determined system)
 </li>
 <br>
 <li>
@@ -12841,6 +12823,17 @@ the solution can be computed faster by explicitly indicating that <i>A</i> is tr
 <br>
 <li>
 The number of rows in <i>A</i> and <i>B</i> must be the same
+</li>
+<br>
+<li>
+By default, matrix <i>A</i> is analysed to automatically determine whether it is a general matrix, band matrix, diagonal matrix, or symmetric/hermitian positive definite (SPD) matrix;
+based on the detected matrix structure, a specialised solver is used for faster execution;
+see the <a href="armadillo_solver_2020.pdf">associated paper</a> for more details
+</li>
+<br>
+<li>
+If <i>A</i> is known to be a triangular matrix,
+the solution can be computed faster by explicitly indicating that <i>A</i> is triangular through <a href="#trimat">trimatu()</a> or <a href="#trimat">trimatl()</a>; see examples below
 </li>
 <br>
 <li>The <i>settings</i> argument is optional; it is one of the following, or a combination thereof:
@@ -13140,20 +13133,14 @@ See also:
 <b>vec eigval = eigs_sym( X, k )</b>
 <br><b>vec eigval = eigs_sym( X, k, form )</b>
 <br><b>vec eigval = eigs_sym( X, k, form, opts )</b>
-<br><b>vec eigval = eigs_sym( X, k, sigma )</b>
-<br><b>vec eigval = eigs_sym( X, k, sigma, opts )</b>
 <br>
 <br><b>eigs_sym( eigval, X, k )</b>
 <br><b>eigs_sym( eigval, X, k, form )</b>
 <br><b>eigs_sym( eigval, X, k, form, opts )</b>
-<br><b>eigs_sym( eigval, X, k, sigma )</b>
-<br><b>eigs_sym( eigval, X, k, sigma, opts )</b>
 <br>
 <br><b>eigs_sym( eigval, eigvec, X, k )</b>
 <br><b>eigs_sym( eigval, eigvec, X, k, form )</b>
 <br><b>eigs_sym( eigval, eigvec, X, k, form, opts )</b>
-<br><b>eigs_sym( eigval, eigvec, X, k, sigma )</b>
-<br><b>eigs_sym( eigval, eigvec, X, k, sigma, opts )</b>
 <ul>
 <li>Obtain a limited number of eigenvalues and eigenvectors of <b>sparse</b> symmetric real matrix <i>X</i></li>
 <br>
@@ -13172,10 +13159,6 @@ See also:
 </tbody>
 </table>
 </ul>
-</li>
-<br>
-<li>The argument <i>sigma</i> is optional; specify a scalar <i>sigma</i> to obtain eigenvalues closest to <i>sigma</i>
-<br><b>NOTE:</b> to use a non-zero <i>sigma</i>, <i>ARMA_USE_SUPERLU</i> must be enabled in <a href="#config_hpp">config.hpp</a>
 </li>
 <br>
 <li>
@@ -13212,11 +13195,6 @@ struct eigs_opts
 <li><b>Caveats:</b>
 <ul>
 <li>the number of obtained eigenvalues/eigenvectors may be lower than requested, depending on the given data</li>
-<li>
-enabling <i>ARMA_USE_SUPERLU</i> in <a href="#config_hpp">config.hpp</a> is recommended;
-<br>SuperLU is used to provide faster and more stable convergence when requesting eigenvalues with smallest magnitude
-<br>and to calculate eigenvalues closest to a given <i>sigma</i>
-</li>
 <li>
 if the decomposition fails, try first increasing <i>opts.subdim</i> (Krylov subspace dimension)
 <br>and, as secondary options, try increasing <i>opts.subdim</i> (maximum number of iterations)
@@ -13265,20 +13243,14 @@ See also:
 <b>cx_vec eigval = eigs_gen( X, k )</b>
 <br><b>cx_vec eigval = eigs_gen( X, k, form )</b>
 <br><b>cx_vec eigval = eigs_gen( X, k, form, opts )</b>
-<br><b>cx_vec eigval = eigs_gen( X, k, sigma )</b>
-<br><b>cx_vec eigval = eigs_gen( X, k, sigma, opts )</b>
 <br>
 <br><b>eigs_gen( eigval, X, k )</b>
 <br><b>eigs_gen( eigval, X, k, form )</b>
 <br><b>eigs_gen( eigval, X, k, form, opts )</b>
-<br><b>eigs_gen( eigval, X, k, sigma )</b>
-<br><b>eigs_gen( eigval, X, k, sigma, opts )</b>
 <br>
 <br><b>eigs_gen( eigval, eigvec, X, k )</b>
 <br><b>eigs_gen( eigval, eigvec, X, k, form )</b>
 <br><b>eigs_gen( eigval, eigvec, X, k, form, opts )</b>
-<br><b>eigs_gen( eigval, eigvec, X, k, sigma )</b>
-<br><b>eigs_gen( eigval, eigvec, X, k, sigma, opts )</b>
 <ul>
 <li>
 Obtain a limited number of eigenvalues and eigenvectors of <b>sparse</b> general (non-symmetric/non-hermitian) square matrix <i>X</i>
@@ -13301,10 +13273,6 @@ Obtain a limited number of eigenvalues and eigenvectors of <b>sparse</b> general
 </tbody>
 </table>
 </ul>
-</li>
-<br>
-<li>The argument <i>sigma</i> is optional; specify a scalar <i>sigma</i> to obtain eigenvalues closest to <i>sigma</i>
-<br><b>NOTE:</b> to use a non-zero <i>sigma</i>, <i>ARMA_USE_SUPERLU</i> must be enabled in <a href="#config_hpp">config.hpp</a>
 </li>
 <br>
 <li>
@@ -13345,11 +13313,6 @@ If <i>X</i> is not square sized, a <i>std::logic_error</i> exception is thrown
 <li><b>Caveats:</b>
 <ul>
 <li>the number of obtained eigenvalues/eigenvectors may be lower than requested, depending on the given data</li>
-<li>
-enabling <i>ARMA_USE_SUPERLU</i> in <a href="#config_hpp">config.hpp</a> is recommended;
-<br>SuperLU is used to provide faster and more stable convergence when requesting eigenvalues with smallest magnitude
-<br>and to calculate eigenvalues closest to a given <i>sigma</i>
-</li>
 <li>
 if the decomposition fails, try first increasing <i>opts.subdim</i> (Krylov subspace dimension)
 <br>and, as secondary options, try increasing <i>opts.subdim</i> (maximum number of iterations)
@@ -18948,7 +18911,7 @@ List of additions and changes for each version:
 <li>faster handling of compound expressions by <a href="#trimat">trimatu()</a> and <a href="#trimat">trimatl()</a></li>
 <li>faster sparse matrix addition, subtraction and element-wise multiplication</li>
 <li>expanded sparse <a href="#submat">submatrix views</a> to handle the non-contiguous form of <i>X.cols(vector_of_column_indices)</i></li>
-<li>expanded <a href="#eigs_sym">eigs_sym()</a> and <a href="#eigs_gen">eigs_gen()</a> with optional fine-grained parameters (subspace dimension, number of iterations, eigenvalues closest to specified value)</li>
+<li>expanded <a href="#eigs_sym">eigs_sym()</a> and <a href="#eigs_gen">eigs_gen()</a> with optional fine-grained parameters</li>
 </ul>
 </li>
 <br>

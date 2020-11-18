@@ -4,7 +4,7 @@ http://arma.sourceforge.net
 Copyright 2008-2020 Conrad Sanderson (http://conradsanderson.id.au)  
 Copyright 2008-2016 National ICT Australia (NICTA)  
 Copyright 2017-2020 Arroyo Consortium  
-Copyright 2017-2020 Data61, CSIRO  
+Copyright 2017-2020 Data61 / CSIRO  
 
 ---
 
@@ -32,14 +32,14 @@ Copyright 2017-2020 Data61, CSIRO
 
 9.  [Support for OpenBLAS and Intel MKL](#9-support-for-openblas-and-intel-mkl)
 10. [Support for ATLAS](#10-support-for-atlas)
-11. [Support for OpenMP](#12-support-for-openmp)
+11. [Support for OpenMP](#11-support-for-openmp)
 
-12. [Documentation](#13-documentation)
-13. [API Stability and Versioning](#14-api-stability-and-versioning)
-14. [Bug Reports and Frequently Asked Questions](#15-bug-reports-and-frequently-asked-questions)
+12. [Documentation](#12-documentation)
+13. [API Stability and Versioning](#13-api-stability-and-versioning)
+14. [Bug Reports and Frequently Asked Questions](#14-bug-reports-and-frequently-asked-questions)
 
-15. [MEX Interface to Octave/Matlab](#16-mex-interface-to-octavematlab)
-16. [Related Software Using Armadillo](#17-related-software-using-armadillo)
+15. [MEX Interface to Octave/Matlab](#15-mex-interface-to-octavematlab)
+16. [Related Software Using Armadillo](#16-related-software-using-armadillo)
 
 ---
 
@@ -56,8 +56,8 @@ The library provides efficient classes for vectors, matrices and cubes,
 as well as 200+ associated functions covering essential and advanced functionality
 for data processing and manipulation of matrices.
 
-Various matrix decompositions are provided through integration with LAPACK,
-or one of its high performance drop-in replacements
+Various matrix decompositions (eigen, SVD, QR, etc) are provided through
+integration with LAPACK, or one of its high performance drop-in replacements
 (eg. OpenBLAS, Intel MKL, Apple Accelerate framework, etc).
 
 A sophisticated expression evaluator (via C++ template meta-programming)
