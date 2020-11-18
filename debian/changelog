@@ -1,3 +1,9 @@
+armadillo (1:10.1.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 18 Nov 2020 14:34:07 +0530
+
 armadillo (1:10.1.0+dfsg-1) experimental; urgency=medium
 
   * New upstream release
