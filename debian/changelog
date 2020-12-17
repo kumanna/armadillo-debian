@@ -1,3 +1,9 @@
+armadillo (1:10.1.2+dfsg-2) unstable; urgency=medium
+
+  * Install cmake and pkg-config files during install. (Closes: #954927)
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 17 Dec 2020 07:58:31 +0530
+
 armadillo (1:10.1.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
