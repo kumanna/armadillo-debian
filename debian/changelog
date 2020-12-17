@@ -1,6 +1,8 @@
 armadillo (1:10.1.2+dfsg-2) unstable; urgency=medium
 
   * Install cmake and pkg-config files during install. (Closes: #954927)
+  * Remove generated files during cleanup
+  * Standards version is now 4.5.1 (no changes needed)
 
  -- Kumar Appaiah <akumar@debian.org>  Thu, 17 Dec 2020 07:58:31 +0530
 
