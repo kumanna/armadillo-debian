@@ -1,8 +1,8 @@
-armadillo (1:10.1.2+dfsg-3) UNRELEASED; urgency=medium
+armadillo (1:10.1.2+dfsg-3) unstable; urgency=medium
 
   * Add patch to handle sign for NaNs
 
- -- Kumar Appaiah <akumar@debian.org>  Wed, 20 Jan 2021 16:11:11 +0530
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 20 Jan 2021 16:19:03 +0530
 
 armadillo (1:10.1.2+dfsg-2) unstable; urgency=medium
 
