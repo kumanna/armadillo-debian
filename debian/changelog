@@ -1,3 +1,9 @@
+armadillo (1:10.1.2+dfsg-3) UNRELEASED; urgency=medium
+
+  * Add patch to handle sign for NaNs
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 20 Jan 2021 16:11:11 +0530
+
 armadillo (1:10.1.2+dfsg-2) unstable; urgency=medium
 
   * Install cmake and pkg-config files during install. (Closes: #954927)
