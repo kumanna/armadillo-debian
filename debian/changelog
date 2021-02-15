@@ -1,3 +1,9 @@
+armadillo (1:10.1.2+dfsg-4) unstable; urgency=medium
+
+  * Fix issue with princomp function.
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 15 Feb 2021 14:52:17 +0530
+
 armadillo (1:10.1.2+dfsg-3) unstable; urgency=medium
 
   * Add patch to handle sign for NaNs
