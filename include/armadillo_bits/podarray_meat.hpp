@@ -108,63 +108,63 @@ podarray<eT>::podarray(const eT* X, const uword new_n_elem)
 
 
 
-template<typename eT>
-template<typename T1>
-inline
-podarray<eT>::podarray(const Proxy<T1>& P)
-  : n_elem(P.get_n_elem())
-  {
-  arma_extra_debug_sigprint_this(this);
-  
-  const uword P_n_elem = P.get_n_elem();
-    
-  init_cold(P_n_elem);
-  
-  eT* out_mem = (*this).memptr();
-    
-  if(Proxy<T1>::use_at == false)
-    {
-    typename Proxy<T1>::ea_type A = P.get_ea();
-    
-    uword i,j;
-    for(i=0, j=1; j < P_n_elem; i+=2, j+=2)
-      {
-      const eT val_i = A[i];
-      const eT val_j = A[j];
-      
-      out_mem[i] = val_i;
-      out_mem[j] = val_j;
-      }
-    
-    if(i < P_n_elem)
-      {
-      out_mem[i] = A[i];
-      }
-    }
-  else
-    {
-    const uword P_n_rows = P.get_n_rows();
-    const uword P_n_cols = P.get_n_cols();
-    
-    if(P_n_rows != 1)
-      {
-      uword count = 0;
-      
-      for(uword col=0; col < P_n_cols; ++col)
-      for(uword row=0; row < P_n_rows; ++row, ++count)
-        {
-        out_mem[count] = P.at(row,col);
-        }
-      }
-    else
-      {
-      for(uword col=0; col < P_n_cols; ++col)
-        {
-        out_mem[col] = P.at(0,col);
-        }
-      }
-    }
-  }
+// template<typename eT>
+// template<typename T1>
+// inline
+// podarray<eT>::podarray(const Proxy<T1>& P)
+//   : n_elem(P.get_n_elem())
+//   {
+//   arma_extra_debug_sigprint_this(this);
+//   
+//   const uword P_n_elem = P.get_n_elem();
+//     
+//   init_cold(P_n_elem);
+//   
+//   eT* out_mem = (*this).memptr();
+//     
+//   if(Proxy<T1>::use_at == false)
+//     {
+//     typename Proxy<T1>::ea_type A = P.get_ea();
+//     
+//     uword i,j;
+//     for(i=0, j=1; j < P_n_elem; i+=2, j+=2)
+//       {
+//       const eT val_i = A[i];
+//       const eT val_j = A[j];
+//       
+//       out_mem[i] = val_i;
+//       out_mem[j] = val_j;
+//       }
+//     
+//     if(i < P_n_elem)
+//       {
+//       out_mem[i] = A[i];
+//       }
+//     }
+//   else
+//     {
+//     const uword P_n_rows = P.get_n_rows();
+//     const uword P_n_cols = P.get_n_cols();
+//     
+//     if(P_n_rows != 1)
+//       {
+//       uword count = 0;
+//       
+//       for(uword col=0; col < P_n_cols; ++col)
+//       for(uword row=0; row < P_n_rows; ++row, ++count)
+//         {
+//         out_mem[count] = P.at(row,col);
+//         }
+//       }
+//     else
+//       {
+//       for(uword col=0; col < P_n_cols; ++col)
+//         {
+//         out_mem[col] = P.at(0,col);
+//         }
+//       }
+//     }
+//   }
 
 
 
@@ -364,21 +364,13 @@ podarray<eT>::copy_row(const Mat<eT>& A, const uword row)
 
 
 template<typename eT>
-arma_hot
 inline
 void
 podarray<eT>::init_cold(const uword new_n_elem)
   {
   arma_extra_debug_sigprint();
   
-  if(new_n_elem <= podarray_prealloc_n_elem::val )
-    {
-    mem = mem_local;
-    }
-  else
-    {
-    mem = memory::acquire<eT>(new_n_elem);
-    }
+  mem = (new_n_elem <= podarray_prealloc_n_elem::val) ? mem_local : memory::acquire<eT>(new_n_elem);
   }
 
 
@@ -390,24 +382,11 @@ podarray<eT>::init_warm(const uword new_n_elem)
   {
   arma_extra_debug_sigprint();
   
-  if(n_elem == new_n_elem)
-    {
-    return;
-    }
+  if(n_elem == new_n_elem)  { return; }
     
-  if(n_elem > podarray_prealloc_n_elem::val )
-    {
-    memory::release( mem );
-    }
+  if(n_elem > podarray_prealloc_n_elem::val)  { memory::release( mem ); }
   
-  if(new_n_elem <= podarray_prealloc_n_elem::val )
-    {
-    mem = mem_local;
-    }
-  else
-    {
-    mem = memory::acquire<eT>(new_n_elem);
-    }
+  mem = (new_n_elem <= podarray_prealloc_n_elem::val) ? mem_local : memory::acquire<eT>(new_n_elem);
   
   access::rw(n_elem) = new_n_elem;
   }

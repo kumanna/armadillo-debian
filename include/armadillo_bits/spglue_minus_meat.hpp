@@ -63,7 +63,7 @@ spglue_minus::apply_noalias(SpMat<eT>& out, const SpProxy<T1>& pa, const SpProxy
   if(pa.get_n_nonzero() == 0)  { out = pb.Q; out *= eT(-1); return; }
   if(pb.get_n_nonzero() == 0)  { out = pa.Q;                return; }
   
-  const uword max_n_nonzero = spglue_elem_helper::max_n_nonzero_plus(pa, pb);
+  const uword max_n_nonzero = pa.get_n_nonzero() + pb.get_n_nonzero();
   
   // Resize memory to upper bound
   out.reserve(pa.get_n_rows(), pa.get_n_cols(), max_n_nonzero);
@@ -125,6 +125,8 @@ spglue_minus::apply_noalias(SpMat<eT>& out, const SpProxy<T1>& pa, const SpProxy
       access::rw(out.col_ptrs[out_col + 1])++;
       ++count;
       }
+    
+    arma_check( (count > max_n_nonzero), "internal error: spglue_minus::apply_noalias(): count > max_n_nonzero" );
     }
   
   const uword out_n_cols = out.n_cols;
@@ -178,7 +180,7 @@ spglue_minus::apply_noalias(SpMat<eT>& out, const SpMat<eT>& A, const SpMat<eT>&
 template<typename T1, typename T2>
 inline
 void
-spglue_minus_mixed::sparse_minus_sparse(SpMat< typename promote_type<typename T1::elem_type, typename T2::elem_type>::result >& out, const T1& X, const T2& Y)
+spglue_minus_mixed::apply(SpMat<typename eT_promoter<T1,T2>::eT>& out, const mtSpGlue<typename eT_promoter<T1,T2>::eT, T1, T2, spglue_minus_mixed>& expr)
   {
   arma_extra_debug_sigprint();
   
@@ -193,8 +195,8 @@ spglue_minus_mixed::sparse_minus_sparse(SpMat< typename promote_type<typename T1
     {
     // upgrade T1
     
-    const unwrap_spmat<T1> UA(X);
-    const unwrap_spmat<T2> UB(Y);
+    const unwrap_spmat<T1> UA(expr.A);
+    const unwrap_spmat<T2> UB(expr.B);
     
     const SpMat<eT1>& A = UA.M;
     const SpMat<eT2>& B = UB.M;
@@ -205,15 +207,15 @@ spglue_minus_mixed::sparse_minus_sparse(SpMat< typename promote_type<typename T1
     
     const SpMat<out_eT>& BB = reinterpret_cast< const SpMat<out_eT>& >(B);
     
-    spglue_minus::apply_noalias(out, AA, BB);
+    out = AA - BB;
     }
   else
   if( (is_same_type<eT1,out_eT>::yes) && (is_same_type<eT2,out_eT>::no) )
     {
     // upgrade T2 
     
-    const unwrap_spmat<T1> UA(X);
-    const unwrap_spmat<T2> UB(Y);
+    const unwrap_spmat<T1> UA(expr.A);
+    const unwrap_spmat<T2> UB(expr.B);
     
     const SpMat<eT1>& A = UA.M;
     const SpMat<eT2>& B = UB.M;
@@ -224,14 +226,14 @@ spglue_minus_mixed::sparse_minus_sparse(SpMat< typename promote_type<typename T1
     
     for(uword i=0; i < B.n_nonzero; ++i)  { access::rw(BB.values[i]) = out_eT(B.values[i]); }
     
-    spglue_minus::apply_noalias(out, AA, BB);
+    out = AA - BB;
     }
   else
     {
     // upgrade T1 and T2
     
-    const unwrap_spmat<T1> UA(X);
-    const unwrap_spmat<T2> UB(Y);
+    const unwrap_spmat<T1> UA(expr.A);
+    const unwrap_spmat<T2> UB(expr.B);
     
     const SpMat<eT1>& A = UA.M;
     const SpMat<eT2>& B = UB.M;
@@ -242,7 +244,7 @@ spglue_minus_mixed::sparse_minus_sparse(SpMat< typename promote_type<typename T1
     for(uword i=0; i < A.n_nonzero; ++i)  { access::rw(AA.values[i]) = out_eT(A.values[i]); }
     for(uword i=0; i < B.n_nonzero; ++i)  { access::rw(BB.values[i]) = out_eT(B.values[i]); }
     
-    spglue_minus::apply_noalias(out, AA, BB);
+    out = AA - BB;
     }
   }
 

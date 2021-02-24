@@ -26,7 +26,7 @@ arma_cout_stream(std::ostream* user_stream)
   {
   static std::ostream* cout_stream = &(ARMA_COUT_STREAM);
   
-  if(user_stream != NULL)  { cout_stream = user_stream; }
+  if(user_stream != nullptr)  { cout_stream = user_stream; }
   
   return (*cout_stream);
   }
@@ -40,7 +40,7 @@ arma_cerr_stream(std::ostream* user_stream)
   {
   static std::ostream* cerr_stream = &(ARMA_CERR_STREAM);
   
-  if(user_stream != NULL)  { cerr_stream = user_stream; }
+  if(user_stream != nullptr)  { cerr_stream = user_stream; }
   
   return (*cerr_stream);
   }
@@ -69,7 +69,7 @@ inline
 std::ostream&
 get_cout_stream()
   {
-  return arma_cout_stream<char>(NULL);
+  return arma_cout_stream<char>(nullptr);
   }
 
 
@@ -78,7 +78,7 @@ inline
 std::ostream&
 get_cerr_stream()
   {
-  return arma_cerr_stream<char>(NULL);
+  return arma_cerr_stream<char>(nullptr);
   }
 
 
@@ -413,7 +413,7 @@ arma_inline
 void
 arma_set_error(bool& err_state, char*& err_msg, const bool expression, const char* message)
   {
-  if(expression == true)
+  if(expression)
     {
     err_state = true;
     err_msg   = const_cast<char*>(message);
@@ -432,7 +432,7 @@ static
 std::string
 arma_incompat_size_string(const uword A_n_rows, const uword A_n_cols, const uword B_n_rows, const uword B_n_cols, const char* x)
   {
-  std::stringstream tmp;
+  std::ostringstream tmp;
   
   tmp << x << ": incompatible matrix dimensions: " << A_n_rows << 'x' << A_n_cols << " and " << B_n_rows << 'x' << B_n_cols;
   
@@ -447,7 +447,7 @@ static
 std::string
 arma_incompat_size_string(const uword A_n_rows, const uword A_n_cols, const uword A_n_slices, const uword B_n_rows, const uword B_n_cols, const uword B_n_slices, const char* x)
   {
-  std::stringstream tmp;
+  std::ostringstream tmp;
   
   tmp << x << ": incompatible cube dimensions: " << A_n_rows << 'x' << A_n_cols << 'x' << A_n_slices << " and " << B_n_rows << 'x' << B_n_cols << 'x' << B_n_slices;
   
@@ -463,7 +463,7 @@ static
 std::string
 arma_incompat_size_string(const subview_cube<eT>& Q, const Mat<eT>& A, const char* x)
   {
-  std::stringstream tmp;
+  std::ostringstream tmp;
   
   tmp << x
       << ": interpreting matrix as cube with dimensions: "
@@ -879,7 +879,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
     {
     if( ( (Q_n_rows == 1) || (Q_n_cols == 1) || (Q_n_slices == 1) ) == false )
       {
-      std::stringstream tmp;
+      std::ostringstream tmp;
         
       tmp << x
           << ": can't interpret cube with dimensions "
@@ -895,7 +895,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
       {
       if( (M_vec_state == 1) && (Q_n_cols != 1) )
         {
-        std::stringstream tmp;
+        std::ostringstream tmp;
         
         tmp << x
             << ": can't interpret cube with dimensions "
@@ -907,7 +907,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
       
       if( (M_vec_state == 2) && (Q_n_rows != 1) )
         {
-        std::stringstream tmp;
+        std::ostringstream tmp;
         
         tmp << x
             << ": can't interpret cube with dimensions "
@@ -921,7 +921,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
       {
       if( (Q_n_cols != 1) && (Q_n_rows != 1) )
         {
-        std::stringstream tmp;
+        std::ostringstream tmp;
         
         tmp << x
             << ": can't interpret cube with dimensions "
@@ -934,7 +934,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
     }
   
   
-  if(check_compat_size == true)
+  if(check_compat_size)
     {
     const uword M_n_rows = M.n_rows;
     const uword M_n_cols = M.n_cols;
@@ -952,7 +952,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
           == false
         )
         {
-        std::stringstream tmp;
+        std::ostringstream tmp;
         
         tmp << x
             << ": can't interpret cube with dimensions "
@@ -969,7 +969,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
         {
         if( (M_vec_state == 1) && (Q_n_rows != M_n_rows) )
           {
-          std::stringstream tmp;
+          std::ostringstream tmp;
           
           tmp << x
               << ": can't interpret cube with dimensions "
@@ -982,7 +982,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
         
         if( (M_vec_state == 2) && (Q_n_cols != M_n_cols) )
           {
-          std::stringstream tmp;
+          std::ostringstream tmp;
           
           tmp << x
               << ": can't interpret cube with dimensions "
@@ -997,7 +997,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
         {
         if( ( (M_n_cols == Q_n_slices) || (M_n_rows == Q_n_slices) ) == false )
           {
-          std::stringstream tmp;
+          std::ostringstream tmp;
           
           tmp << x
               << ": can't interpret cube with dimensions "
@@ -1317,7 +1317,9 @@ arma_assert_atlas_size(const T1& A, const T2& B)
             << " (" << nickname << ")\n";
         
         out << "@ arma_config::wrapper      = " << arma_config::wrapper      << '\n';
-        out << "@ arma_config::cxx11        = " << arma_config::cxx11        << '\n';
+        out << "@ arma_config::cxx14        = " << arma_config::cxx14        << '\n';
+        out << "@ arma_config::cxx17        = " << arma_config::cxx17        << '\n';
+        out << "@ arma_config::std_mutex    = " << arma_config::std_mutex    << '\n';
         out << "@ arma_config::posix        = " << arma_config::posix        << '\n';
         out << "@ arma_config::openmp       = " << arma_config::openmp       << '\n';
         out << "@ arma_config::lapack       = " << arma_config::lapack       << '\n';
@@ -1329,6 +1331,7 @@ arma_assert_atlas_size(const T1& A, const T2& B)
         out << "@ arma_config::hdf5         = " << arma_config::hdf5         << '\n';
         out << "@ arma_config::good_comp    = " << arma_config::good_comp    << '\n';
         out << "@ arma_config::extra_code   = " << arma_config::extra_code   << '\n';
+        out << "@ arma_config::hidden_args  = " << arma_config::hidden_args  << '\n';
         out << "@ arma_config::mat_prealloc = " << arma_config::mat_prealloc << '\n';
         out << "@ arma_config::mp_threshold = " << arma_config::mp_threshold << '\n';
         out << "@ arma_config::mp_threads   = " << arma_config::mp_threads   << '\n';

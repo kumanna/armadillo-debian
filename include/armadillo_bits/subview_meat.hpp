@@ -129,7 +129,7 @@ subview<eT>::inplace_op(const Base<eT,T1>& in, const char* identifier)
   
   arma_debug_assert_same_size(s, P, identifier);
   
-  const bool use_mp      = arma_config::cxx11 && arma_config::openmp && Proxy<T1>::use_mp && mp_gate<eT>::eval(s.n_elem);
+  const bool use_mp      = arma_config::openmp && Proxy<T1>::use_mp && mp_gate<eT>::eval(s.n_elem);
   const bool has_overlap = P.has_overlap(s);
   
   if(has_overlap)  { arma_extra_debug_print("aliasing or overlap detected"); }
@@ -172,13 +172,20 @@ subview<eT>::inplace_op(const Base<eT,T1>& in, const char* identifier)
       }
     else  // not a row vector
       {
-      for(uword ucol=0; ucol < s_n_cols; ++ucol)
+      if( (is_same_type<op_type, op_internal_equ>::yes) && (s.aux_row1 == 0) && (s_n_rows == s.m.n_rows) )
         {
-        if(is_same_type<op_type, op_internal_equ  >::yes)  { arrayops::copy         ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
-        if(is_same_type<op_type, op_internal_plus >::yes)  { arrayops::inplace_plus ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
-        if(is_same_type<op_type, op_internal_minus>::yes)  { arrayops::inplace_minus( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
-        if(is_same_type<op_type, op_internal_schur>::yes)  { arrayops::inplace_mul  ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
-        if(is_same_type<op_type, op_internal_div  >::yes)  { arrayops::inplace_div  ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
+        arrayops::copy( s.colptr(0), B.memptr(), s.n_elem );
+        }
+      else
+        {
+        for(uword ucol=0; ucol < s_n_cols; ++ucol)
+          {
+          if(is_same_type<op_type, op_internal_equ  >::yes)  { arrayops::copy         ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
+          if(is_same_type<op_type, op_internal_plus >::yes)  { arrayops::inplace_plus ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
+          if(is_same_type<op_type, op_internal_minus>::yes)  { arrayops::inplace_minus( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
+          if(is_same_type<op_type, op_internal_schur>::yes)  { arrayops::inplace_mul  ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
+          if(is_same_type<op_type, op_internal_div  >::yes)  { arrayops::inplace_div  ( s.colptr(ucol), B.colptr(ucol), s_n_rows ); }
+          }
         }
       }
     }
@@ -680,8 +687,8 @@ subview<eT>::operator/=(const SpBase<eT, T1>& x)
   // This is probably going to fill your subview with a bunch of NaNs,
   // so I'm not going to bother to implement it fast.
   // You can have slow NaNs.  They're fine too.
-  for (uword c = 0; c < n_cols; ++c)
-  for (uword r = 0; r < n_rows; ++r)
+  for(uword c = 0; c < n_cols; ++c)
+  for(uword r = 0; r < n_rows; ++r)
     {
     at(r, c) /= p.at(r, c);
     }
@@ -916,6 +923,26 @@ subview<eT>::replace(const eT old_val, const eT new_val)
 template<typename eT>
 inline
 void
+subview<eT>::clean(const typename get_pod_type<eT>::result threshold)
+  {
+  arma_extra_debug_sigprint();
+  
+  subview<eT>& s = *this;
+  
+  const uword s_n_cols = s.n_cols;
+  const uword s_n_rows = s.n_rows;
+  
+  for(uword ucol=0; ucol < s_n_cols; ++ucol)
+    {
+    arrayops::clean( s.colptr(ucol), s_n_rows, threshold );
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
 subview<eT>::fill(const eT val)
   {
   arma_extra_debug_sigprint();
@@ -947,6 +974,13 @@ subview<eT>::fill(const eT val)
     }
   else
     {
+    if( (s.aux_row1 == 0) && (s_n_rows == s.m.n_rows) )
+      {
+      arrayops::inplace_set( s.colptr(0), val, s.n_elem );
+      
+      return;
+      }
+    
     for(uword ucol=0; ucol < s_n_cols; ++ucol)
       {
       arrayops::inplace_set( s.colptr(ucol), val, s_n_rows );
@@ -1182,6 +1216,60 @@ subview<eT>::at(const uword in_row, const uword in_col) const
 
 
 template<typename eT>
+inline
+eT&
+subview<eT>::front()
+  {
+  const uword index = aux_col1*m.n_rows + aux_row1;
+  
+  return access::rw( (const_cast< Mat<eT>& >(m)).mem[index] );
+  }
+
+
+
+template<typename eT>
+inline
+eT
+subview<eT>::front() const
+  {
+  const uword index = aux_col1*m.n_rows + aux_row1;
+  
+  return m.mem[index];
+  }
+
+
+
+template<typename eT>
+inline
+eT&
+subview<eT>::back()
+  {
+  const uword in_row = n_rows - 1;
+  const uword in_col = n_cols - 1;
+  
+  const uword index = (in_col + aux_col1)*m.n_rows + aux_row1 + in_row;
+  
+  return access::rw( (const_cast< Mat<eT>& >(m)).mem[index] );
+  }
+
+
+
+template<typename eT>
+inline
+eT
+subview<eT>::back() const
+  {
+  const uword in_row = n_rows - 1;
+  const uword in_col = n_cols - 1;
+  
+  const uword index = (in_col + aux_col1)*m.n_rows + aux_row1 + in_row;
+  
+  return m.mem[index];
+  }
+
+
+
+template<typename eT>
 arma_inline
 eT*
 subview<eT>::colptr(const uword in_col)
@@ -1262,6 +1350,27 @@ subview<eT>::is_finite() const
   for(uword ii=0; ii<local_n_cols; ++ii)
     {
     if(arrayops::is_finite(colptr(ii), local_n_rows) == false)  { return false; }
+    }
+  
+  return true;
+  }
+
+
+
+template<typename eT>
+inline
+arma_warn_unused
+bool
+subview<eT>::is_zero(const typename get_pod_type<eT>::result tol) const
+  {
+  arma_extra_debug_sigprint();
+  
+  const uword local_n_rows = n_rows;
+  const uword local_n_cols = n_cols;
+  
+  for(uword ii=0; ii<local_n_cols; ++ii)
+    {
+    if(arrayops::is_zero(colptr(ii), local_n_rows, tol) == false)  { return false; }
     }
   
   return true;
@@ -1367,6 +1476,13 @@ subview<eT>::extract(Mat<eT>& out, const subview<eT>& in)
   else   // general submatrix
     {
     arma_extra_debug_print("subview::extract(): general submatrix");
+    
+    if( (in.aux_row1 == 0) && (n_rows == in.m.n_rows) )
+      {
+      arrayops::copy( out.memptr(), in.colptr(0), in.n_elem );
+      
+      return;
+      }
     
     for(uword col=0; col < n_cols; ++col)
       {
@@ -2093,135 +2209,131 @@ subview<eT>::each_row(const Base<uword,T1>& indices)
 
 
 
-#if defined(ARMA_USE_CXX11)
+//! apply a lambda function to each column, where each column is interpreted as a column vector
+template<typename eT>
+inline
+void
+subview<eT>::each_col(const std::function< void(Col<eT>&) >& F)
+  {
+  arma_extra_debug_sigprint();
   
-  //! apply a lambda function to each column, where each column is interpreted as a column vector
-  template<typename eT>
-  inline
-  void
-  subview<eT>::each_col(const std::function< void(Col<eT>&) >& F)
+  for(uword ii=0; ii < n_cols; ++ii)
     {
-    arma_extra_debug_sigprint();
-    
-    for(uword ii=0; ii < n_cols; ++ii)
+    Col<eT> tmp(colptr(ii), n_rows, false, true);
+    F(tmp);
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+subview<eT>::each_col(const std::function< void(const Col<eT>&) >& F) const
+  {
+  arma_extra_debug_sigprint();
+  
+  for(uword ii=0; ii < n_cols; ++ii)
+    {
+    const Col<eT> tmp(colptr(ii), n_rows, false, true);
+    F(tmp);
+    }
+  }
+
+
+
+//! apply a lambda function to each row, where each row is interpreted as a row vector
+template<typename eT>
+inline
+void
+subview<eT>::each_row(const std::function< void(Row<eT>&) >& F)
+  {
+  arma_extra_debug_sigprint();
+  
+  podarray<eT> array1(n_cols);
+  podarray<eT> array2(n_cols);
+  
+  Row<eT> tmp1( array1.memptr(), n_cols, false, true );
+  Row<eT> tmp2( array2.memptr(), n_cols, false, true );
+  
+  eT* tmp1_mem = tmp1.memptr();
+  eT* tmp2_mem = tmp2.memptr();
+  
+  uword ii, jj;
+  
+  for(ii=0, jj=1; jj < n_rows; ii+=2, jj+=2)
+    {
+    for(uword col_id = 0; col_id < n_cols; ++col_id)
       {
-      Col<eT> tmp(colptr(ii), n_rows, false, true);
-      F(tmp);
+      const eT* col_mem = colptr(col_id);
+      
+      tmp1_mem[col_id] = col_mem[ii];
+      tmp2_mem[col_id] = col_mem[jj];
+      }
+    
+    F(tmp1);
+    F(tmp2);
+    
+    for(uword col_id = 0; col_id < n_cols; ++col_id)
+      {
+      eT* col_mem = colptr(col_id);
+      
+      col_mem[ii] = tmp1_mem[col_id];
+      col_mem[jj] = tmp2_mem[col_id];
       }
     }
   
-  
-  
-  template<typename eT>
-  inline
-  void
-  subview<eT>::each_col(const std::function< void(const Col<eT>&) >& F) const
+  if(ii < n_rows)
     {
-    arma_extra_debug_sigprint();
+    tmp1 = (*this).row(ii);
     
-    for(uword ii=0; ii < n_cols; ++ii)
+    F(tmp1);
+    
+    (*this).row(ii) = tmp1;
+    }
+  }
+
+
+
+template<typename eT>
+inline
+void
+subview<eT>::each_row(const std::function< void(const Row<eT>&) >& F) const
+  {
+  arma_extra_debug_sigprint();
+  
+  podarray<eT> array1(n_cols);
+  podarray<eT> array2(n_cols);
+  
+  Row<eT> tmp1( array1.memptr(), n_cols, false, true );
+  Row<eT> tmp2( array2.memptr(), n_cols, false, true );
+  
+  eT* tmp1_mem = tmp1.memptr();
+  eT* tmp2_mem = tmp2.memptr();
+  
+  uword ii, jj;
+  
+  for(ii=0, jj=1; jj < n_rows; ii+=2, jj+=2)
+    {
+    for(uword col_id = 0; col_id < n_cols; ++col_id)
       {
-      const Col<eT> tmp(colptr(ii), n_rows, false, true);
-      F(tmp);
+      const eT* col_mem = colptr(col_id);
+      
+      tmp1_mem[col_id] = col_mem[ii];
+      tmp2_mem[col_id] = col_mem[jj];
       }
+    
+    F(tmp1);
+    F(tmp2);
     }
   
-  
-  
-  //! apply a lambda function to each row, where each row is interpreted as a row vector
-  template<typename eT>
-  inline
-  void
-  subview<eT>::each_row(const std::function< void(Row<eT>&) >& F)
+  if(ii < n_rows)
     {
-    arma_extra_debug_sigprint();
+    tmp1 = (*this).row(ii);
     
-    podarray<eT> array1(n_cols);
-    podarray<eT> array2(n_cols);
-    
-    Row<eT> tmp1( array1.memptr(), n_cols, false, true );
-    Row<eT> tmp2( array2.memptr(), n_cols, false, true );
-    
-    eT* tmp1_mem = tmp1.memptr();
-    eT* tmp2_mem = tmp2.memptr();
-    
-    uword ii, jj;
-    
-    for(ii=0, jj=1; jj < n_rows; ii+=2, jj+=2)
-      {
-      for(uword col_id = 0; col_id < n_cols; ++col_id)
-        {
-        const eT* col_mem = colptr(col_id);
-        
-        tmp1_mem[col_id] = col_mem[ii];
-        tmp2_mem[col_id] = col_mem[jj];
-        }
-      
-      F(tmp1);
-      F(tmp2);
-      
-      for(uword col_id = 0; col_id < n_cols; ++col_id)
-        {
-        eT* col_mem = colptr(col_id);
-        
-        col_mem[ii] = tmp1_mem[col_id];
-        col_mem[jj] = tmp2_mem[col_id];
-        }
-      }
-    
-    if(ii < n_rows)
-      {
-      tmp1 = (*this).row(ii);
-      
-      F(tmp1);
-      
-      (*this).row(ii) = tmp1;
-      }
+    F(tmp1);
     }
-  
-  
-  
-  template<typename eT>
-  inline
-  void
-  subview<eT>::each_row(const std::function< void(const Row<eT>&) >& F) const
-    {
-    arma_extra_debug_sigprint();
-    
-    podarray<eT> array1(n_cols);
-    podarray<eT> array2(n_cols);
-    
-    Row<eT> tmp1( array1.memptr(), n_cols, false, true );
-    Row<eT> tmp2( array2.memptr(), n_cols, false, true );
-    
-    eT* tmp1_mem = tmp1.memptr();
-    eT* tmp2_mem = tmp2.memptr();
-    
-    uword ii, jj;
-    
-    for(ii=0, jj=1; jj < n_rows; ii+=2, jj+=2)
-      {
-      for(uword col_id = 0; col_id < n_cols; ++col_id)
-        {
-        const eT* col_mem = colptr(col_id);
-        
-        tmp1_mem[col_id] = col_mem[ii];
-        tmp2_mem[col_id] = col_mem[jj];
-        }
-      
-      F(tmp1);
-      F(tmp2);
-      }
-    
-    if(ii < n_rows)
-      {
-      tmp1 = (*this).row(ii);
-      
-      F(tmp1);
-      }
-    }
-  
-#endif
+  }
 
 
 
@@ -2407,12 +2519,12 @@ subview<eT>::cend() const
 template<typename eT>
 inline
 subview<eT>::iterator::iterator()
-  : M          (NULL)
-  , current_ptr(NULL)
-  , current_row(0   )
-  , current_col(0   )
-  , aux_row1   (0   )
-  , aux_row2_p1(0   )
+  : M          (nullptr)
+  , current_ptr(nullptr)
+  , current_row(0      )
+  , current_col(0      )
+  , aux_row1   (0      )
+  , aux_row2_p1(0      )
   {
   arma_extra_debug_sigprint();
   // Technically this iterator is invalid (it does not point to a valid element)
@@ -2553,8 +2665,8 @@ subview<eT>::iterator::operator!=(const const_iterator& rhs) const
 template<typename eT>
 inline
 subview<eT>::const_iterator::const_iterator()
-  : M          (NULL)
-  , current_ptr(NULL)
+  : M          (nullptr)
+  , current_ptr(nullptr)
   , current_row(0   )
   , current_col(0   )
   , aux_row1   (0   )
@@ -2714,8 +2826,7 @@ subview<eT>::const_iterator::operator!=(const const_iterator& rhs) const
 template<typename eT>
 inline
 subview<eT>::row_iterator::row_iterator()
-  : M          (NULL)
-  , current_ptr(NULL)
+  : M          (nullptr)
   , current_row(0   )
   , current_col(0   )
   , aux_col1   (0   )
@@ -2731,7 +2842,6 @@ template<typename eT>
 inline
 subview<eT>::row_iterator::row_iterator(const row_iterator& X)
   : M          (X.M          )
-  , current_ptr(X.current_ptr)
   , current_row(X.current_row)
   , current_col(X.current_col)
   , aux_col1   (X.aux_col1   )
@@ -2746,7 +2856,6 @@ template<typename eT>
 inline
 subview<eT>::row_iterator::row_iterator(subview<eT>& in_sv, const uword in_row, const uword in_col)
   : M          (&(const_cast< Mat<eT>& >(in_sv.m)))
-  , current_ptr(&(M->at(in_row,in_col))           )
   , current_row(in_row                            )
   , current_col(in_col                            )
   , aux_col1   (in_sv.aux_col1                    )
@@ -2763,7 +2872,7 @@ arma_warn_unused
 eT&
 subview<eT>::row_iterator::operator*()
   {
-  return (*current_ptr);
+  return M->at(current_row,current_col);
   }
 
 
@@ -2779,12 +2888,6 @@ subview<eT>::row_iterator::operator++()
     {
     current_col = aux_col1;
     current_row++;
-    
-    current_ptr = &( (*M).at(current_row,current_col) );
-    }
-  else
-    {
-    current_ptr += (*M).n_rows;
     }
   
   return *this;
@@ -2813,7 +2916,7 @@ arma_warn_unused
 bool
 subview<eT>::row_iterator::operator==(const row_iterator& rhs) const
   {
-  return (current_ptr == rhs.current_ptr);
+  return ( (current_row == rhs.current_row) && (current_col == rhs.current_col) );
   }
 
 
@@ -2824,7 +2927,7 @@ arma_warn_unused
 bool
 subview<eT>::row_iterator::operator!=(const row_iterator& rhs) const
   {
-  return (current_ptr != rhs.current_ptr);
+  return ( (current_row != rhs.current_row) || (current_col != rhs.current_col) );
   }
 
 
@@ -2835,7 +2938,7 @@ arma_warn_unused
 bool
 subview<eT>::row_iterator::operator==(const const_row_iterator& rhs) const
   {
-  return (current_ptr == rhs.current_ptr);
+  return ( (current_row == rhs.current_row) && (current_col == rhs.current_col) );
   }
 
 
@@ -2846,7 +2949,7 @@ arma_warn_unused
 bool
 subview<eT>::row_iterator::operator!=(const const_row_iterator& rhs) const
   {
-  return (current_ptr != rhs.current_ptr);
+  return ( (current_row != rhs.current_row) || (current_col != rhs.current_col) );
   }
 
 
@@ -2860,8 +2963,7 @@ subview<eT>::row_iterator::operator!=(const const_row_iterator& rhs) const
 template<typename eT>
 inline
 subview<eT>::const_row_iterator::const_row_iterator()
-  : M          (NULL)
-  , current_ptr(NULL)
+  : M          (nullptr)
   , current_row(0   )
   , current_col(0   )
   , aux_col1   (0   )
@@ -2877,7 +2979,6 @@ template<typename eT>
 inline
 subview<eT>::const_row_iterator::const_row_iterator(const row_iterator& X)
   : M          (X.M          )
-  , current_ptr(X.current_ptr)
   , current_row(X.current_row)
   , current_col(X.current_col)
   , aux_col1   (X.aux_col1   )
@@ -2892,7 +2993,6 @@ template<typename eT>
 inline
 subview<eT>::const_row_iterator::const_row_iterator(const const_row_iterator& X)
   : M          (X.M          )
-  , current_ptr(X.current_ptr)
   , current_row(X.current_row)
   , current_col(X.current_col)
   , aux_col1   (X.aux_col1   )
@@ -2907,7 +3007,6 @@ template<typename eT>
 inline
 subview<eT>::const_row_iterator::const_row_iterator(const subview<eT>& in_sv, const uword in_row, const uword in_col)
   : M          (&(in_sv.m)                   )
-  , current_ptr(&(M->at(in_row,in_col))      )
   , current_row(in_row                       )
   , current_col(in_col                       )
   , aux_col1   (in_sv.aux_col1               )
@@ -2924,7 +3023,7 @@ arma_warn_unused
 const eT&
 subview<eT>::const_row_iterator::operator*() const
   {
-  return (*current_ptr);
+  return M->at(current_row,current_col);
   }
 
 
@@ -2940,12 +3039,6 @@ subview<eT>::const_row_iterator::operator++()
     {
     current_col = aux_col1;
     current_row++;
-    
-    current_ptr = &( (*M).at(current_row,current_col) );
-    }
-  else
-    {
-    current_ptr += (*M).n_rows;
     }
   
   return *this;
@@ -2974,7 +3067,7 @@ arma_warn_unused
 bool
 subview<eT>::const_row_iterator::operator==(const row_iterator& rhs) const
   {
-  return (current_ptr == rhs.current_ptr);
+  return ( (current_row == rhs.current_row) && (current_col == rhs.current_col) );
   }
 
 
@@ -2985,7 +3078,7 @@ arma_warn_unused
 bool
 subview<eT>::const_row_iterator::operator!=(const row_iterator& rhs) const
   {
-  return (current_ptr != rhs.current_ptr);
+  return ( (current_row != rhs.current_row) || (current_col != rhs.current_col) );
   }
 
 
@@ -2996,7 +3089,7 @@ arma_warn_unused
 bool
 subview<eT>::const_row_iterator::operator==(const const_row_iterator& rhs) const
   {
-  return (current_ptr == rhs.current_ptr);
+  return ( (current_row == rhs.current_row) && (current_col == rhs.current_col) );
   }
 
 
@@ -3007,7 +3100,7 @@ arma_warn_unused
 bool
 subview<eT>::const_row_iterator::operator!=(const const_row_iterator& rhs) const
   {
-  return (current_ptr != rhs.current_ptr);
+  return ( (current_row != rhs.current_row) || (current_col != rhs.current_col) );
   }
 
 
@@ -3133,6 +3226,16 @@ template<typename eT>
 arma_inline
 const Op<subview_col<eT>,op_strans>
 subview_col<eT>::st() const
+  {
+  return Op<subview_col<eT>,op_strans>(*this);
+  }
+
+
+
+template<typename eT>
+arma_inline
+const Op<subview_col<eT>,op_strans>
+subview_col<eT>::as_row() const
   {
   return Op<subview_col<eT>,op_strans>(*this);
   }
@@ -3710,6 +3813,16 @@ template<typename eT>
 arma_inline
 const Op<subview_row<eT>,op_strans>
 subview_row<eT>::st() const
+  {
+  return Op<subview_row<eT>,op_strans>(*this);
+  }
+
+
+
+template<typename eT>
+arma_inline
+const Op<subview_row<eT>,op_strans>
+subview_row<eT>::as_col() const
   {
   return Op<subview_row<eT>,op_strans>(*this);
   }

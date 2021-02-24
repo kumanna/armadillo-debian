@@ -28,7 +28,7 @@ clean:
 	rm -rf CMakeFiles
 	rm -f install_manifest.txt include/armadillo_bits/config.hpp examples/Makefile
 	rm -f ArmadilloConfig.cmake ArmadilloConfigVersion.cmake 
-	rm -rf InstallFiles
+	rm -rf InstallFiles tmp *.o a.out
 	dh_clean  --exclude ./src/include/armadillo_bits/dgemm_proto.hpp.orig
 
 install: build
@@ -45,6 +45,8 @@ binary-arch: build install
 	dh_installdocs -a
 	dh_installexamples -a
 	dh_install -a --sourcedir=debian/tmp
+	mkdir -p debian/libarmadillo-dev/usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/
+	cp debian/tmp/usr/lib/pkgconfig/armadillo.pc debian/libarmadillo-dev/usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/
 	dh_installman -a
 	dh_link -a
 	dh_strip -a

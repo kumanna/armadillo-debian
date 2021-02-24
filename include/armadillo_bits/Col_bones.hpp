@@ -27,8 +27,9 @@ class Col : public Mat<eT>
   typedef eT                                elem_type;
   typedef typename get_pod_type<eT>::result pod_type;
   
-  static const bool is_col = true;
-  static const bool is_row = false;
+  static constexpr bool is_col  = true;
+  static constexpr bool is_row  = false;
+  static constexpr bool is_xvec = false;
   
   inline          Col();
   inline          Col(const Col<eT>& X);
@@ -49,13 +50,11 @@ class Col : public Mat<eT>
   inline            Col(const std::vector<eT>& x);
   inline Col& operator=(const std::vector<eT>& x);
   
-  #if defined(ARMA_USE_CXX11)
   inline            Col(const std::initializer_list<eT>& list);
   inline Col& operator=(const std::initializer_list<eT>& list);
   
   inline            Col(Col&& m);
   inline Col& operator=(Col&& m);
-  #endif
   
   inline Col& operator=(const eT val);
   inline Col& operator=(const Col& m);
@@ -78,11 +77,13 @@ class Col : public Mat<eT>
   inline            Col(const subview_cube<eT>& X);
   inline Col& operator=(const subview_cube<eT>& X);
   
-  inline mat_injector<Col> operator<<(const eT val);
+  arma_cold inline mat_injector<Col> operator<<(const eT val);
   
   arma_inline const Op<Col<eT>,op_htrans>  t() const;
   arma_inline const Op<Col<eT>,op_htrans> ht() const;
   arma_inline const Op<Col<eT>,op_strans> st() const;
+  
+  arma_inline const Op<Col<eT>,op_strans> as_row() const;
   
   arma_inline       subview_col<eT> row(const uword row_num);
   arma_inline const subview_col<eT> row(const uword row_num) const;
@@ -123,6 +124,8 @@ class Col : public Mat<eT>
   
   inline void shed_row (const uword row_num);
   inline void shed_rows(const uword in_row1, const uword in_row2);
+  
+  template<typename T1> inline void shed_rows(const Base<uword, T1>& indices);
   
                         inline void insert_rows(const uword row_num, const uword N, const bool set_to_zero = true);
   template<typename T1> inline void insert_rows(const uword row_num, const Base<eT,T1>& X);
@@ -168,7 +171,7 @@ class Col<eT>::fixed : public Col<eT>
   {
   private:
   
-  static const bool use_extra = (fixed_n_elem > arma_config::mat_prealloc);
+  static constexpr bool use_extra = (fixed_n_elem > arma_config::mat_prealloc);
   
   arma_align_mem eT mem_local_extra[ (use_extra) ? fixed_n_elem : 1 ];
   
@@ -180,8 +183,9 @@ class Col<eT>::fixed : public Col<eT>
   typedef eT                                elem_type;
   typedef typename get_pod_type<eT>::result pod_type;
   
-  static const bool is_col = true;
-  static const bool is_row = false;
+  static constexpr bool is_col  = true;
+  static constexpr bool is_row  = false;
+  static constexpr bool is_xvec = false;
   
   static const uword n_rows;  // value provided below the class definition
   static const uword n_cols;  // value provided below the class definition
@@ -209,10 +213,8 @@ class Col<eT>::fixed : public Col<eT>
   
   using Col<eT>::operator();
   
-  #if defined(ARMA_USE_CXX11)
-    inline          fixed(const std::initializer_list<eT>& list);
-    inline Col& operator=(const std::initializer_list<eT>& list);
-  #endif
+  inline          fixed(const std::initializer_list<eT>& list);
+  inline Col& operator=(const std::initializer_list<eT>& list);
   
   arma_inline Col& operator=(const fixed<fixed_n_elem>& X);
   

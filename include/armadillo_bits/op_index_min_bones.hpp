@@ -19,6 +19,7 @@
 
 
 class op_index_min
+  : public traits_op_xvec
   {
   public:
   
@@ -37,10 +38,10 @@ class op_index_min
   inline static void apply(Cube<uword>& out, const mtOpCube<uword, T1, op_index_min>& in);  
   
   template<typename eT>
-  inline static void apply_noalias(Cube<uword>& out, const Cube<eT>& X, const uword dim, const typename arma_not_cx<eT>::result* junk = 0);
+  inline static void apply_noalias(Cube<uword>& out, const Cube<eT>& X, const uword dim, const typename arma_not_cx<eT>::result* junk = nullptr);
   
   template<typename eT>
-  inline static void apply_noalias(Cube<uword>& out, const Cube<eT>& X, const uword dim, const typename arma_cx_only<eT>::result* junk = 0);
+  inline static void apply_noalias(Cube<uword>& out, const Cube<eT>& X, const uword dim, const typename arma_cx_only<eT>::result* junk = nullptr);
   
   
   // sparse matrices

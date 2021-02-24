@@ -1,3 +1,67 @@
+armadillo (1:10.1.2+dfsg-4) unstable; urgency=medium
+
+  * Fix issue with princomp function.
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 15 Feb 2021 14:52:17 +0530
+
+armadillo (1:10.1.2+dfsg-3) unstable; urgency=medium
+
+  * Add patch to handle sign for NaNs
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 20 Jan 2021 16:19:03 +0530
+
+armadillo (1:10.1.2+dfsg-2) unstable; urgency=medium
+
+  * Install cmake and pkg-config files during install. (Closes: #954927)
+  * Remove generated files during cleanup
+  * Standards version is now 4.5.1 (no changes needed)
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 17 Dec 2020 07:58:31 +0530
+
+armadillo (1:10.1.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 18 Nov 2020 14:34:07 +0530
+
+armadillo (1:10.1.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release
+  * Standards version is now 4.5.0
+
+ -- Kumar Appaiah <akumar@debian.org>  Fri, 09 Oct 2020 14:59:12 +0530
+
+armadillo (1:9.900.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Thu, 11 Jun 2020 14:27:04 +0530
+
+armadillo (1:9.800.4+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 22 Jan 2020 20:29:53 +0530
+
+armadillo (1:9.800.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+  * Standards version is now 4.4.0 (no changes needed)
+
+ -- Kumar Appaiah <akumar@debian.org>  Wed, 09 Oct 2019 18:57:37 +0530
+
+armadillo (1:9.600.5+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 29 Jul 2019 08:58:55 +0530
+
+armadillo (1:9.200.7+dfsg-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #920015)
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 21 Jan 2019 21:22:55 +0530
+
 armadillo (1:9.200.6+dfsg-1) unstable; urgency=medium
 
   * New upstream release

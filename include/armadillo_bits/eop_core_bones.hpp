@@ -50,8 +50,8 @@ class eop_core
   };
 
 
-struct eop_use_mp_true  { static const bool use_mp = true;  };
-struct eop_use_mp_false { static const bool use_mp = false; };
+struct eop_use_mp_true  { static constexpr bool use_mp = true;  };
+struct eop_use_mp_false { static constexpr bool use_mp = false; };
 
 
 class eop_neg               : public eop_core<eop_neg>               , public eop_use_mp_false {};
@@ -68,10 +68,12 @@ class eop_log               : public eop_core<eop_log>               , public eo
 class eop_log2              : public eop_core<eop_log2>              , public eop_use_mp_true  {};
 class eop_log10             : public eop_core<eop_log10>             , public eop_use_mp_true  {};
 class eop_trunc_log         : public eop_core<eop_trunc_log>         , public eop_use_mp_true  {};
+class eop_log1p             : public eop_core<eop_log1p>             , public eop_use_mp_true  {};
 class eop_exp               : public eop_core<eop_exp>               , public eop_use_mp_true  {};
 class eop_exp2              : public eop_core<eop_exp2>              , public eop_use_mp_true  {};
 class eop_exp10             : public eop_core<eop_exp10>             , public eop_use_mp_true  {};
 class eop_trunc_exp         : public eop_core<eop_trunc_exp>         , public eop_use_mp_true  {};
+class eop_expm1             : public eop_core<eop_expm1>             , public eop_use_mp_true  {};
 class eop_cos               : public eop_core<eop_cos>               , public eop_use_mp_true  {};
 class eop_sin               : public eop_core<eop_sin>               , public eop_use_mp_true  {};
 class eop_tan               : public eop_core<eop_tan>               , public eop_use_mp_true  {};

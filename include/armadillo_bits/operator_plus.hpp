@@ -178,7 +178,7 @@ operator+
 
 
 
-//! addition of sparse and non-sparse object
+//! addition of one dense and one sparse object
 template<typename T1, typename T2>
 inline
 typename
@@ -215,7 +215,7 @@ operator+
 
 
 
-//! addition of sparse and non-sparse object
+//! addition of one sparse and one dense object
 template<typename T1, typename T2>
 inline
 typename
@@ -232,9 +232,22 @@ operator+
   {
   arma_extra_debug_sigprint();
   
-  // Just call the other order (these operations are commutative)
-  // TODO: if there is a matrix size mismatch, the debug assert will print the matrix sizes in wrong order
-  return (y + x);
+  const SpProxy<T1> pa(x);
+  
+  Mat<typename T1::elem_type> result(y);
+  
+  arma_debug_assert_same_size( pa.get_n_rows(), pa.get_n_cols(), result.n_rows, result.n_cols, "addition" );
+  
+  typename SpProxy<T1>::const_iterator_type it     = pa.begin();
+  typename SpProxy<T1>::const_iterator_type it_end = pa.end();
+  
+  while(it != it_end)
+    {
+    result.at(it.row(), it.col()) += (*it);
+    ++it;
+    }
+  
+  return result;
   }
 
 
@@ -246,7 +259,7 @@ typename
 enable_if2
   <
   (is_arma_sparse_type<T1>::value && is_arma_sparse_type<T2>::value && is_same_type<typename T1::elem_type, typename T2::elem_type>::no),
-  SpMat< typename promote_type<typename T1::elem_type, typename T2::elem_type>::result >
+  const mtSpGlue< typename promote_type<typename T1::elem_type, typename T2::elem_type>::result, T1, T2, spglue_plus_mixed >
   >::result
 operator+
   (
@@ -256,11 +269,14 @@ operator+
   {
   arma_extra_debug_sigprint();
   
-  SpMat< typename promote_type<typename T1::elem_type, typename T2::elem_type>::result > out;
+  typedef typename T1::elem_type eT1;
+  typedef typename T2::elem_type eT2;
   
-  spglue_plus_mixed::sparse_plus_sparse(out, X, Y);
+  typedef typename promote_type<eT1,eT2>::result out_eT;
   
-  return out;
+  promote_type<eT1,eT2>::check();
+  
+  return mtSpGlue<out_eT, T1, T2, spglue_plus_mixed>( X, Y );
   }
 
 
@@ -316,6 +332,142 @@ operator+
   
   return out;
   }
+
+
+
+//! addition of sparse object with scalar
+template<typename T1>
+inline
+typename enable_if2< is_arma_sparse_type<T1>::value, const SpToDOp<T1, op_sp_plus> >::result
+operator+
+  (
+  const T1&                    X,
+  const typename T1::elem_type k
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  return SpToDOp<T1, op_sp_plus>(X, k);
+  }
+
+
+
+template<typename T1>
+inline
+typename enable_if2< is_arma_sparse_type<T1>::value, const SpToDOp<T1, op_sp_plus> >::result
+operator+
+  (
+  const typename T1::elem_type k,
+  const T1&                    X
+  )
+  {
+  arma_extra_debug_sigprint();
+
+  return SpToDOp<T1, op_sp_plus>(X, k);  // NOTE: swapped order
+  }
+
+
+
+// TODO: this is an uncommon use case; remove?
+//! multiple applications of add/subtract scalars can be condensed
+template<typename T1, typename op_type>
+inline
+typename
+enable_if2
+  <
+  (is_arma_sparse_type<T1>::value &&
+      (is_same_type<op_type, op_sp_plus>::value ||
+       is_same_type<op_type, op_sp_minus_post>::value)),
+  const SpToDOp<T1, op_sp_plus>
+  >::result
+operator+
+  (
+  const SpToDOp<T1, op_type>&  x,
+  const typename T1::elem_type k
+  )
+  {
+  arma_extra_debug_sigprint();
+
+  const typename T1::elem_type aux = (is_same_type<op_type, op_sp_plus>::value) ? x.aux : -x.aux;
+
+  return SpToDOp<T1, op_sp_plus>(x.m, aux + k);
+  }
+
+
+
+// TODO: this is an uncommon use case; remove?
+//! multiple applications of add/subtract scalars can be condensed
+template<typename T1, typename op_type>
+inline
+typename
+enable_if2
+  <
+  (is_arma_sparse_type<T1>::value &&
+       is_same_type<op_type, op_sp_minus_pre>::value),
+  const SpToDOp<T1, op_sp_minus_pre>
+  >::result
+operator+
+  (
+  const SpToDOp<T1, op_type>&  x,
+  const typename T1::elem_type k
+  )
+  {
+  arma_extra_debug_sigprint();
+
+  return SpToDOp<T1, op_sp_minus_pre>(x.m, x.aux + k);
+  }
+
+
+
+// TODO: this is an uncommon use case; remove?
+//! multiple applications of add/subtract scalars can be condensed
+template<typename T1, typename op_type>
+inline
+typename
+enable_if2
+  <
+  (is_arma_sparse_type<T1>::value &&
+      (is_same_type<op_type, op_sp_plus>::value ||
+       is_same_type<op_type, op_sp_minus_post>::value)),
+  const SpToDOp<T1, op_sp_plus>
+  >::result
+operator+
+  (
+  const typename T1::elem_type k,
+  const SpToDOp<T1, op_type>&  x
+  )
+  {
+  arma_extra_debug_sigprint();
+
+  const typename T1::elem_type aux = (is_same_type<op_type, op_sp_plus>::value) ? x.aux : -x.aux;
+
+  return SpToDOp<T1, op_sp_plus>(x.m, aux + k);
+  }
+
+
+
+// TODO: this is an uncommon use case; remove?
+//! multiple applications of add/subtract scalars can be condensed
+template<typename T1, typename op_type>
+inline
+typename
+enable_if2
+  <
+  (is_arma_sparse_type<T1>::value &&
+       is_same_type<op_type, op_sp_minus_pre>::value),
+  const SpToDOp<T1, op_sp_minus_pre>
+  >::result
+operator+
+  (
+  const typename T1::elem_type k,
+  const SpToDOp<T1, op_type>&  x
+  )
+  {
+  arma_extra_debug_sigprint();
+
+  return SpToDOp<T1, op_sp_minus_pre>(x.m, x.aux + k);
+  }
+
 
 
 

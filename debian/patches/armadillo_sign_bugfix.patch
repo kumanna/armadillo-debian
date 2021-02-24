@@ -1,0 +1,12 @@
+diff -Naur armadillo-10.1.2/include/armadillo_bits/arma_cmath.hpp armadillo-10.1.2-fix/include/armadillo_bits/arma_cmath.hpp
+--- armadillo-10.1.2/include/armadillo_bits/arma_cmath.hpp	2016-06-17 02:22:12.000000000 +1000
++++ armadillo-10.1.2-fix/include/armadillo_bits/arma_cmath.hpp	2016-06-17 02:22:13.000000000 +1000
+@@ -183,7 +183,7 @@
+ typename arma_real_only<eT>::result
+ arma_sign(const eT x)
+   {
+-  return (x > eT(0)) ? eT(+1) : ( (x < eT(0)) ? eT(-1) : eT(0) );
++  return (x > eT(0)) ? eT(+1) : ( (x < eT(0)) ? eT(-1) : ((x == eT(0)) ? eT(0) : x) );
+   }
+ 
+ 

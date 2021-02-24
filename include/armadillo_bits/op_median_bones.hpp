@@ -39,6 +39,7 @@ operator< (const arma_cx_median_packet<T>& A, const arma_cx_median_packet<T>& B)
 
 //! Class for finding median values of a matrix
 class op_median
+  : public traits_op_xvec
   {
   public:
   
@@ -52,10 +53,10 @@ class op_median
   //
   
   template<typename T1>
-  inline static typename T1::elem_type median_vec(const T1& X, const typename arma_not_cx<typename T1::elem_type>::result* junk = 0);
+  inline static typename T1::elem_type median_vec(const T1& X, const typename arma_not_cx<typename T1::elem_type>::result* junk = nullptr);
   
   template<typename T1>
-  inline static typename T1::elem_type median_vec(const T1& X, const typename arma_cx_only<typename T1::elem_type>::result* junk = 0);
+  inline static typename T1::elem_type median_vec(const T1& X, const typename arma_cx_only<typename T1::elem_type>::result* junk = nullptr);
   
   //
   //

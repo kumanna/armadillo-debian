@@ -24,6 +24,14 @@ class spop_strans
   {
   public:
   
+  template<typename T1>
+  struct traits
+    {
+    static constexpr bool is_row  = T1::is_col;  // deliberately swapped
+    static constexpr bool is_col  = T1::is_row;
+    static constexpr bool is_xvec = T1::is_xvec;
+    };
+  
   template<typename eT>
   inline static void apply_noalias(SpMat<eT>& B, const SpMat<eT>& A);
   

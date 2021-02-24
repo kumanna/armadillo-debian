@@ -19,6 +19,7 @@
 
 
 class op_chi2rnd
+  : public traits_op_passthru
   {
   public:
   
@@ -34,8 +35,6 @@ class op_chi2rnd
 
 
 
-#if defined(ARMA_USE_CXX11)
-
 template<typename eT>
 class op_chi2rnd_varying_df
   {
@@ -48,8 +47,6 @@ class op_chi2rnd_varying_df
   
   inline eT operator()(const eT df);
   };
-
-#endif
 
 
 //! @}

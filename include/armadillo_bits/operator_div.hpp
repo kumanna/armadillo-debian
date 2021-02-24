@@ -23,7 +23,7 @@
 template<typename T1>
 arma_inline
 typename
-enable_if2< is_arma_type<T1>::value, const eOp<T1, eop_scalar_div_post> >::result
+enable_if2< is_arma_type<T1>::value, const eOp< T1, eop_scalar_div_post> >::result
 operator/
   (
   const T1&                    X,
@@ -41,7 +41,7 @@ operator/
 template<typename T1>
 arma_inline
 typename
-enable_if2< is_arma_type<T1>::value, const eOp<T1, eop_scalar_div_pre> >::result
+enable_if2< is_arma_type<T1>::value, const eOp< T1, eop_scalar_div_pre> >::result
 operator/
   (
   const typename T1::elem_type k,
@@ -154,7 +154,7 @@ operator/
 template<typename T1>
 inline
 typename
-enable_if2<is_arma_sparse_type<T1>::value, SpMat<typename T1::elem_type> >::result
+enable_if2< is_arma_sparse_type<T1>::value, SpMat<typename T1::elem_type> >::result
 operator/
   (
   const T1&                    X,
@@ -237,6 +237,38 @@ operator/
     }
   
   return result;
+  }
+
+
+
+//! optimization: element-wise division of sparse / (sparse +/- scalar)
+template<typename T1, typename T2, typename op_type>
+inline
+typename
+enable_if2
+  <
+  (
+  is_arma_sparse_type<T1>::value && is_arma_sparse_type<T2>::value &&
+  is_same_type<typename T1::elem_type, typename T2::elem_type>::yes &&
+      (is_same_type<op_type, op_sp_plus>::value ||
+       is_same_type<op_type, op_sp_minus_pre>::value ||
+       is_same_type<op_type, op_sp_minus_post>::value)
+  ),
+  SpMat<typename T1::elem_type>
+  >::result
+operator/
+  (
+  const T1& x,
+  const SpToDOp<T2, op_type>& y
+  )
+  {
+  arma_extra_debug_sigprint();
+  
+  SpMat<typename T1::elem_type> out;
+  
+  op_type::apply_inside_div(out, x, y);
+  
+  return out;
   }
 
 
