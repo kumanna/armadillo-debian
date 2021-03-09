@@ -1,2 +1,5 @@
 armadillo_sign_bugfix.patch
 armadillo_princomp_bugfix.patch
+armadillo_pinv_bugfix.patch
+armadillo_rcond_bugfix.patch
+

@@ -1,3 +1,9 @@
+armadillo (1:10.1.2+dfsg-5) unstable; urgency=medium
+
+  * Add patches from upstream for pinv and rcond bugs
+
+ -- Kumar Appaiah <akumar@debian.org>  Tue, 09 Mar 2021 20:19:43 +0530
+
 armadillo (1:10.1.2+dfsg-4) unstable; urgency=medium
 
   * Fix issue with princomp function.
