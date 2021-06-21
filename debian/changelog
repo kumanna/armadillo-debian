@@ -1,3 +1,9 @@
+armadillo (1:10.1.2+dfsg-6) unstable; urgency=medium
+
+  * Add patch from upstream for fixing sparse matrix related bug.
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 21 Jun 2021 09:43:00 +0530
+
 armadillo (1:10.1.2+dfsg-5) unstable; urgency=medium
 
   * Add patches from upstream for pinv and rcond bugs
