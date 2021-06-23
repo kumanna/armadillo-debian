@@ -1,3 +1,7 @@
+Description: Fixed incorrect princomp(cx_mat,cx_mat) calls
+Forwarded: not-needed
+Author: Conrad Sanderson <conradsand@gmail.com>
+
 diff -Naur armadillo-10.1.2/include/armadillo_bits/op_pinv_meat.hpp armadillo-10.1.2-pinv-bugfix/include/armadillo_bits/op_pinv_meat.hpp
 --- armadillo-10.1.2/include/armadillo_bits/op_pinv_meat.hpp	2016-06-17 02:22:12.000000000 +1000
 +++ armadillo-10.1.2-pinv-bugfix/include/armadillo_bits/op_pinv_meat.hpp	2021-03-09 16:25:49.909112061 +1000

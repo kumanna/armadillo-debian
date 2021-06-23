@@ -1,3 +1,7 @@
+Description: The sign function did not handle nan correctly. This patch fixes it.
+Forwarded: not-needed
+Origin: https://gitlab.com/conradsnicta/armadillo-code/-/commit/50c5c2d619a3b529ad83ce517393c37d685acf3d
+
 diff -Naur armadillo-10.1.2/include/armadillo_bits/arma_cmath.hpp armadillo-10.1.2-fix/include/armadillo_bits/arma_cmath.hpp
 --- armadillo-10.1.2/include/armadillo_bits/arma_cmath.hpp	2016-06-17 02:22:12.000000000 +1000
 +++ armadillo-10.1.2-fix/include/armadillo_bits/arma_cmath.hpp	2016-06-17 02:22:13.000000000 +1000

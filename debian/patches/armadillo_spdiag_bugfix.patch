@@ -1,3 +1,10 @@
+Description: Writing to the main diagonal of a sparse matrix via the .diag() member
+function will erroneously omit elements when the target matrix has
+non-zero elements.  This in turn can lead to wrong calculations
+involving sparse matrices.
+Forwarded: not-needed
+Origin: https://gitlab.com/conradsnicta/armadillo-code/-/commit/0545b947ff4a129612c0afcf09175d784212abd8
+
 --- armadillo-10.1.2/include/armadillo_bits/spglue_merge_meat.hpp	2016-06-17 02:22:12.000000000 +1000
 +++ armadillo-10.1.2-spdiag-bugfix/include/armadillo_bits/spglue_merge_meat.hpp	2021-06-21 12:10:16.212683012 +1000
 @@ -485,7 +485,7 @@

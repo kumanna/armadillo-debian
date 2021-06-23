@@ -1,3 +1,7 @@
+Description: Fixed incorrect princomp(cx_mat,cx_mat) calls
+Forwarded: not-needed
+Origin: https://gitlab.com/conradsnicta/armadillo-code/-/commit/d9002c70fb69cb3d0653ace4045d812a4a4ab35b
+
 diff -Naur armadillo-10.1.2/include/armadillo_bits/op_princomp_meat.hpp armadillo-10.1.2-princomp_fix/include/armadillo_bits/op_princomp_meat.hpp
 --- armadillo-10.1.2/include/armadillo_bits/op_princomp_meat.hpp	2016-06-17 02:22:12.000000000 +1000
 +++ armadillo-10.1.2-princomp_fix/include/armadillo_bits/op_princomp_meat.hpp	2016-06-17 02:22:13.000000000 +1000
