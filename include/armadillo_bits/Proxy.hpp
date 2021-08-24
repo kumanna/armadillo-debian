@@ -89,9 +89,18 @@ struct Proxy_fixed
     arma_extra_debug_sigprint();
     }
   
-  static constexpr uword get_n_rows() { return T1::n_rows; }
-  static constexpr uword get_n_cols() { return T1::n_cols; }
-  static constexpr uword get_n_elem() { return T1::n_elem; }
+  //// this may require T1::n_elem etc to be declared as static constexpr inline variables (C++17)
+  //// see also the notes in Mat::fixed
+  //// https://en.cppreference.com/w/cpp/language/static
+  //// https://en.cppreference.com/w/cpp/language/inline
+  // 
+  // static constexpr uword get_n_rows() { return T1::n_rows; }
+  // static constexpr uword get_n_cols() { return T1::n_cols; }
+  // static constexpr uword get_n_elem() { return T1::n_elem; }
+  
+  arma_inline uword get_n_rows() const { return is_row ? 1 : T1::n_rows; }
+  arma_inline uword get_n_cols() const { return is_col ? 1 : T1::n_cols; }
+  arma_inline uword get_n_elem() const { return              T1::n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                    const { return Q[i];           }
   arma_inline elem_type at         (const uword row, const uword col) const { return Q.at(row, col); }
@@ -218,7 +227,7 @@ class Proxy< Col<eT> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];        }
@@ -266,7 +275,7 @@ class Proxy< Row<eT> >
     arma_extra_debug_sigprint();
     }
   
-    constexpr uword get_n_rows() const { return 1;        }
+  constexpr   uword get_n_rows() const { return 1;        }
   arma_inline uword get_n_cols() const { return Q.n_cols; }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
@@ -808,7 +817,7 @@ class Proxy< CubeToMatOp<T1, op_vectorise_cube_col> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];        }
@@ -908,7 +917,7 @@ class Proxy< SpToDOp<T1, op_nonzeros_spmat> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];        }
@@ -1006,7 +1015,7 @@ class Proxy< subview_col<eT> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];        }
@@ -1054,7 +1063,7 @@ class Proxy< subview_row<eT> >
     arma_extra_debug_sigprint();
     }
   
-    constexpr uword get_n_rows() const { return 1;        }
+  constexpr   uword get_n_rows() const { return 1;        }
   arma_inline uword get_n_cols() const { return Q.n_cols; }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
@@ -1107,16 +1116,16 @@ class Proxy< subview_elem1<eT,T1> >
     const bool R_is_vec   = ((R.get_n_rows() == 1) || (R.get_n_cols() == 1));
     const bool R_is_empty = (R.get_n_elem() == 0);
     
-    arma_debug_check( ((R_is_vec == false) && (R_is_empty == false)), "Mat::elem(): given object is not a vector" );
+    arma_debug_check( ((R_is_vec == false) && (R_is_empty == false)), "Mat::elem(): given object must be a vector" );
     }
   
   arma_inline uword get_n_rows() const { return R.get_n_elem(); }
-    constexpr uword get_n_cols() const { return 1;              }
+  constexpr   uword get_n_cols() const { return 1;              }
   arma_inline uword get_n_elem() const { return R.get_n_elem(); }
   
-  arma_inline elem_type operator[] (const uword i)                const { const uword ii = (Proxy<T1>::use_at) ? R.at(i,  0) : R[i  ]; arma_debug_check( (ii >= Q.m.n_elem), "Mat::elem(): index out of bounds" ); return Q.m[ii]; }
-  arma_inline elem_type at         (const uword row, const uword) const { const uword ii = (Proxy<T1>::use_at) ? R.at(row,0) : R[row]; arma_debug_check( (ii >= Q.m.n_elem), "Mat::elem(): index out of bounds" ); return Q.m[ii]; }
-  arma_inline elem_type at_alt     (const uword i)                const { const uword ii = (Proxy<T1>::use_at) ? R.at(i,  0) : R[i  ]; arma_debug_check( (ii >= Q.m.n_elem), "Mat::elem(): index out of bounds" ); return Q.m[ii]; }
+  arma_inline elem_type operator[] (const uword i)                const { const uword ii = (Proxy<T1>::use_at) ? R.at(i,  0) : R[i  ]; arma_debug_check_bounds( (ii >= Q.m.n_elem), "Mat::elem(): index out of bounds" ); return Q.m[ii]; }
+  arma_inline elem_type at         (const uword row, const uword) const { const uword ii = (Proxy<T1>::use_at) ? R.at(row,0) : R[row]; arma_debug_check_bounds( (ii >= Q.m.n_elem), "Mat::elem(): index out of bounds" ); return Q.m[ii]; }
+  arma_inline elem_type at_alt     (const uword i)                const { const uword ii = (Proxy<T1>::use_at) ? R.at(i,  0) : R[i  ]; arma_debug_check_bounds( (ii >= Q.m.n_elem), "Mat::elem(): index out of bounds" ); return Q.m[ii]; }
   
   arma_inline         ea_type         get_ea() const { return (*this); }
   arma_inline aligned_ea_type get_aligned_ea() const { return (*this); }
@@ -1209,7 +1218,7 @@ class Proxy< diagview<eT> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];         }
@@ -1267,7 +1276,7 @@ class Proxy_diagvec_mat< Op<T1, op_diagvec> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];         }
@@ -1324,7 +1333,7 @@ class Proxy_diagvec_expr< Op<T1, op_diagvec> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];         }
@@ -1401,7 +1410,7 @@ class Proxy< Op<T1, op_diagvec2> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];         }
@@ -1869,7 +1878,7 @@ class Proxy< Op<subview_row<eT>, op_htrans> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];   }
@@ -1918,7 +1927,7 @@ class Proxy< Op<subview_row<eT>, op_strans> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];   }
@@ -1971,7 +1980,7 @@ class Proxy< Op< Row< std::complex<T> >, op_htrans> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];   }
@@ -2023,7 +2032,7 @@ class Proxy< Op< Col< std::complex<T> >, op_htrans> >
     arma_extra_debug_sigprint();
     }
   
-    constexpr uword get_n_rows() const { return 1;        }
+  constexpr   uword get_n_rows() const { return 1;        }
   arma_inline uword get_n_cols() const { return Q.n_cols; }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
@@ -2076,7 +2085,7 @@ class Proxy< Op< subview_col< std::complex<T> >, op_htrans> >
     arma_extra_debug_sigprint();
     }
   
-    constexpr uword get_n_rows() const { return 1;        }
+  constexpr   uword get_n_rows() const { return 1;        }
   arma_inline uword get_n_cols() const { return Q.n_cols; }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
@@ -2178,7 +2187,7 @@ class Proxy< subview_row_strans<eT> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];   }
@@ -2227,7 +2236,7 @@ class Proxy< subview_row_htrans<eT> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];   }
@@ -2384,7 +2393,7 @@ class Proxy_vectorise_col_mat< Op<T1, op_vectorise_col> >
     }
   
   arma_inline uword get_n_rows() const { return Q.n_rows; }
-    constexpr uword get_n_cols() const { return 1;        }
+  constexpr   uword get_n_cols() const { return 1;        }
   arma_inline uword get_n_elem() const { return Q.n_elem; }
   
   arma_inline elem_type operator[] (const uword i)                const { return Q[i];           }
@@ -2443,7 +2452,7 @@ class Proxy_vectorise_col_expr< Op<T1, op_vectorise_col> >
     }
   
   arma_inline uword get_n_rows() const { return R.get_n_elem(); }
-    constexpr uword get_n_cols() const { return 1;              }
+  constexpr   uword get_n_cols() const { return 1;              }
   arma_inline uword get_n_elem() const { return R.get_n_elem(); }
   
   arma_inline elem_type operator[] (const uword i)                const { return R[i];         }

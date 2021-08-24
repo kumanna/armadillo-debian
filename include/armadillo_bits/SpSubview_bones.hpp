@@ -48,6 +48,9 @@ class SpSubview : public SpBase< eT, SpSubview<eT> >
   inline ~SpSubview();
   inline  SpSubview() = delete;
   
+  inline  SpSubview(const SpSubview&  in);
+  inline  SpSubview(      SpSubview&& in);
+  
   inline const SpSubview& operator+= (const eT val);
   inline const SpSubview& operator-= (const eT val);
   inline const SpSubview& operator*= (const eT val);
@@ -89,10 +92,15 @@ class SpSubview : public SpBase< eT, SpSubview<eT> >
   
   inline void clean(const pod_type threshold);
   
+  inline void clamp(const eT min_val, const eT max_val);
+  
   inline void fill(const eT val);
   inline void zeros();
   inline void ones();
   inline void eye();
+  inline void randu();
+  inline void randn();
+  
   
   arma_hot inline SpSubview_MapMat_val<eT> operator[](const uword i);
   arma_hot inline eT                       operator[](const uword i) const;

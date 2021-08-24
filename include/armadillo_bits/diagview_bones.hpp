@@ -52,6 +52,9 @@ class diagview : public Base< eT, diagview<eT> >
   inline ~diagview();
   inline  diagview() = delete;
   
+  inline  diagview(const diagview&  in);
+  inline  diagview(      diagview&& in);
+  
   inline void operator=(const diagview& x);
   
   inline void operator+=(const eT val);
@@ -89,6 +92,10 @@ class diagview : public Base< eT, diagview<eT> >
   arma_inline const Op<diagview<eT>,op_strans> st() const;
   
   inline void replace(const eT old_val, const eT new_val);
+  
+  inline void clean(const pod_type threshold);
+  
+  inline void clamp(const eT min_val, const eT max_val);
   
   inline void fill(const eT val);
   inline void zeros();

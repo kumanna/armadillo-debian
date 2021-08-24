@@ -51,6 +51,9 @@ class subview : public Base< eT, subview<eT> >
   inline ~subview();
   inline  subview() = delete;
   
+  inline  subview(const subview&  in);
+  inline  subview(      subview&& in);
+  
   template<typename op_type             > inline void inplace_op(const eT           val                        );
   template<typename op_type, typename T1> inline void inplace_op(const Base<eT,T1>& x,   const char* identifier);
   template<typename op_type             > inline void inplace_op(const subview<eT>& x,   const char* identifier);
@@ -84,6 +87,9 @@ class subview : public Base< eT, subview<eT> >
   template<typename T1, typename gen_type>
   inline typename enable_if2< is_same_type<typename T1::elem_type, eT>::value, void>::result operator=(const Gen<T1,gen_type>& x);
   
+  inline void operator=(const std::initializer_list<eT>& list);
+  inline void operator=(const std::initializer_list< std::initializer_list<eT> >& list);
+  
   
   inline static void extract(Mat<eT>& out, const subview& in);
   
@@ -102,6 +108,8 @@ class subview : public Base< eT, subview<eT> >
   
   inline void clean(const pod_type threshold);
   
+  inline void clamp(const eT min_val, const eT max_val);
+  
   inline void fill(const eT val);
   inline void zeros();
   inline void ones();
@@ -109,25 +117,25 @@ class subview : public Base< eT, subview<eT> >
   inline void randu();
   inline void randn();
   
-  inline eT  at_alt    (const uword ii) const;
+  inline arma_warn_unused eT  at_alt    (const uword ii) const;
   
-  inline eT& operator[](const uword ii);
-  inline eT  operator[](const uword ii) const;
+  inline arma_warn_unused eT& operator[](const uword ii);
+  inline arma_warn_unused eT  operator[](const uword ii) const;
   
-  inline eT& operator()(const uword ii);
-  inline eT  operator()(const uword ii) const;
+  inline arma_warn_unused eT& operator()(const uword ii);
+  inline arma_warn_unused eT  operator()(const uword ii) const;
   
-  inline eT& operator()(const uword in_row, const uword in_col);
-  inline eT  operator()(const uword in_row, const uword in_col) const;
+  inline arma_warn_unused eT& operator()(const uword in_row, const uword in_col);
+  inline arma_warn_unused eT  operator()(const uword in_row, const uword in_col) const;
   
-  inline eT&         at(const uword in_row, const uword in_col);
-  inline eT          at(const uword in_row, const uword in_col) const;
+  inline arma_warn_unused eT&         at(const uword in_row, const uword in_col);
+  inline arma_warn_unused eT          at(const uword in_row, const uword in_col) const;
   
-  inline eT&         front();
-  inline eT          front() const;
+  inline arma_warn_unused eT& front();
+  inline arma_warn_unused eT  front() const;
   
-  inline eT&         back();
-  inline eT          back() const;
+  inline arma_warn_unused eT& back();
+  inline arma_warn_unused eT  back() const;
   
   arma_inline       eT* colptr(const uword in_col);
   arma_inline const eT* colptr(const uword in_col) const;
@@ -364,6 +372,7 @@ class subview_col : public subview<eT>
   inline void operator= (const subview<eT>& x);
   inline void operator= (const subview_col& x);
   inline void operator= (const eT val);
+  inline void operator= (const std::initializer_list<eT>& list);
   
   template<typename T1>
   inline void operator= (const Base<eT,T1>& x);
@@ -422,6 +431,9 @@ class subview_col : public subview<eT>
   inline arma_warn_unused uword index_min() const;
   inline arma_warn_unused uword index_max() const;
   
+  inline  subview_col(const subview_col&  in);
+  inline  subview_col(      subview_col&& in);
+  
   
   protected:
   
@@ -452,6 +464,7 @@ class subview_row : public subview<eT>
   inline void operator= (const subview<eT>& x);
   inline void operator= (const subview_row& x);
   inline void operator= (const eT val);
+  inline void operator= (const std::initializer_list<eT>& list);
   
   template<typename T1>
   inline void operator= (const Base<eT,T1>& x);
@@ -505,6 +518,9 @@ class subview_row : public subview<eT>
   inline typename subview<eT>::const_row_iterator  end() const;
   inline typename subview<eT>::const_row_iterator cend() const;
   
+  inline  subview_row(const subview_row&  in);
+  inline  subview_row(      subview_row&& in);
+  
   
   protected:
   
@@ -534,8 +550,9 @@ class subview_row_strans : public Base< eT, subview_row_strans<eT> >
   
   arma_aligned const subview_row<eT>& sv_row;
   
-         const     uword n_rows;     // equal to n_elem
-         const     uword n_elem;
+  const uword n_rows;     // equal to n_elem
+  const uword n_elem;
+  
   static constexpr uword n_cols = 1;
   
   
@@ -568,8 +585,9 @@ class subview_row_htrans : public Base< eT, subview_row_htrans<eT> >
   
   arma_aligned const subview_row<eT>& sv_row;
   
-         const     uword n_rows;     // equal to n_elem
-         const     uword n_elem;
+  const uword n_rows;     // equal to n_elem
+  const uword n_elem;
+  
   static constexpr uword n_cols = 1;
   
   

@@ -87,10 +87,20 @@ string(REGEX REPLACE ".*#define ARMA_VERSION_PATCH ([0-9]+).*" "\\1" ARMA_VERSIO
 
 message(STATUS "Configuring Armadillo ${ARMA_VERSION_MAJOR}.${ARMA_VERSION_MINOR}.${ARMA_VERSION_PATCH}")
 
+string(COMPARE EQUAL "${CMAKE_CXX_FLAGS}" "" CXX_FLAGS_EMPTY)
+if(NOT CXX_FLAGS_EMPTY)
+  message(STATUS "")
+  message(STATUS "*** WARNING: variable 'CMAKE_CXX_FLAGS' is not empty; this may cause problems!")
+  message(STATUS "")
+endif()
+
 
 # NOTE: ARMA_USE_EXTERN_RNG requires compiler support for thread_local and C++11
 # NOTE: for Linux, this is available with gcc 4.8.3 onwards
 # NOTE: for macOS, thread_local is supoported in Xcode 8 (mid 2016 onwards) in C++11 mode
+
+# NOTE: thread_local appears broken again on macOS 11 (Big Sur) and/or AppleClang 12.0
+# NOTE: see comments in include/armadillo_bits/arma_rng.hpp
 
 if(DEFINED CMAKE_CXX_COMPILER_ID AND DEFINED CMAKE_CXX_COMPILER_VERSION)
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -198,9 +208,11 @@ option(DETECT_HDF5 "Detect HDF5 and include HDF5 support, if found" ON)
 ## you can also disable HDF5 detection directly on the command line:
 ## cmake -D DETECT_HDF5=false .
 
-option(ALLOW_FLEXIBLAS_LINUX "Allow detection of FlexiBLAS on Linux (EXPERIMENTAL)" OFF)
-## Example use on the command line:
-## cmake -D ALLOW_FLEXIBLAS_LINUX=true .
+option(ALLOW_FLEXIBLAS_LINUX "Allow detection of FlexiBLAS on Linux" ON)
+# set(ALLOW_FLEXIBLAS_LINUX false)
+## uncomment the above line to disable the detection of FlexiBLAS;
+## you can also disable FlexiBLAS detection directly on the command line:
+## cmake -D ALLOW_FLEXIBLAS_LINUX=false .
 
 option(ALLOW_OPENBLAS_MACOS "Allow detection of OpenBLAS on macOS" OFF)
 ## Example use on the command line:
@@ -343,14 +355,10 @@ else()
     
     message(STATUS "")
     message(STATUS "*** Using FlexiBLAS to access BLAS and LAPACK functions.")
-    message(STATUS "*** WARNING:")
-    message(STATUS "*** if SuperLU and/or ARPACK are used, they must also be linked with FlexiBLAS.")
-    message(STATUS "")
-    message(STATUS "*** If using FlexiBLAS causes problems, please file a bug")
-    message(STATUS "*** report with the FlexiBLAS developers:")
     message(STATUS "*** https://www.mpi-magdeburg.mpg.de/projects/flexiblas")
+    message(STATUS "*** WARNING: SuperLU and ARPACK must also link with FlexiBLAS.")
     message(STATUS "")
-    message(STATUS "*** To disable detection of FlexiBLAS,")
+    message(STATUS "*** If using FlexiBLAS causes problems, ")
     message(STATUS "*** rerun cmake with FlexiBLAS detection disabled:")
     message(STATUS "*** cmake -D ALLOW_FLEXIBLAS_LINUX=false .")
     message(STATUS "")
@@ -546,7 +554,8 @@ message(STATUS "CMAKE_REQUIRED_INCLUDES   = ${CMAKE_REQUIRED_INCLUDES}"  )
 
 add_library( armadillo ${PROJECT_SOURCE_DIR}/src/wrapper1.cpp ${PROJECT_SOURCE_DIR}/src/wrapper2.cpp )
 target_link_libraries( armadillo ${ARMA_LIBS} )
-target_include_directories(armadillo INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>)
+# target_include_directories(armadillo INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>)
+target_include_directories(armadillo INTERFACE $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/tmp/include> $<INSTALL_INTERFACE:include>)
 set_target_properties(armadillo PROPERTIES VERSION ${ARMA_VERSION_MAJOR}.${ARMA_VERSION_MINOR_ALT}.${ARMA_VERSION_PATCH} SOVERSION ${ARMA_VERSION_MAJOR})
 
 
