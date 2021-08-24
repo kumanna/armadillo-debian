@@ -34,10 +34,8 @@ TEST_CASE("fn_spsolve_sparse_test")
 
     sp_mat A;
     A.sprandu(size, size, 0.25);
-    for (uword i = 0; i < size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     mat B = A * rX;
 
@@ -56,7 +54,7 @@ TEST_CASE("fn_spsolve_sparse_test")
       {
       for (uword j = 0; j < dX.n_rows; ++j)
         {
-        REQUIRE( (double) X(j, i) == Approx((double) dX(j, i)) );
+        REQUIRE( (double) X(j, i) == Approx((double) dX(j, i)).epsilon(0.01) );
         }
       }
     }
@@ -76,10 +74,8 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_test")
 
     sp_mat A;
     A.sprandu(r_size, r_size, 0.25);
-    for (uword i = 0; i < r_size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     mat B = A * rX;
 
@@ -98,7 +94,7 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_test")
       {
       for (uword j = 0; j < dX.n_rows; ++j)
         {
-        REQUIRE( (double) X(j, i) == Approx((double) dX(j, i)) );
+        REQUIRE( (double) X(j, i) == Approx((double) dX(j, i)).epsilon(0.01) );
         }
       }
     }
@@ -119,10 +115,8 @@ TEST_CASE("fn_spsolve_sparse_float_test")
 
     SpMat<float> A;
     A.sprandu(size, size, 0.25);
-    for (uword i = 0; i < size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     fmat B = A * rX;
 
@@ -141,7 +135,7 @@ TEST_CASE("fn_spsolve_sparse_float_test")
       {
       for (size_t j = 0; j < dX.n_rows; ++j)
         {
-        REQUIRE( (float) X(j, i) == Approx((float) dX(j, i)) );
+        REQUIRE( (float) X(j, i) == Approx((float) dX(j, i)).epsilon(0.01) );
         }
       }
     }
@@ -161,10 +155,8 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_float_test")
 
     SpMat<float> A;
     A.sprandu(r_size, r_size, 0.25);
-    for (uword i = 0; i < r_size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     fmat B = A * rX;
 
@@ -183,7 +175,7 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_float_test")
       {
       for (uword j = 0; j < dX.n_rows; ++j)
         {
-        REQUIRE( (float) X(j, i) == Approx((float) dX(j, i)) );
+        REQUIRE( (float) X(j, i) == Approx((float) dX(j, i)).epsilon(0.01) );
         }
       }
     }
@@ -204,10 +196,8 @@ TEST_CASE("fn_spsolve_sparse_complex_float_test")
 
     SpMat<cx_float> A;
     A.sprandu(size, size, 0.25);
-    for(uword i = 0; i < size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     Mat<cx_float> B = A * rX;
 
@@ -227,7 +217,7 @@ TEST_CASE("fn_spsolve_sparse_complex_float_test")
       for (uword j = 0; j < dX.n_rows; ++j)
         {
         REQUIRE( (float) std::abs((cx_float) X(j, i)) ==
-                 Approx((float) std::abs((cx_float) dX(j, i))) );
+                 Approx((float) std::abs((cx_float) dX(j, i))).epsilon(0.01) );
         }
       }
     }
@@ -247,10 +237,8 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_complex_float_test")
 
     SpMat<cx_float> A;
     A.sprandu(r_size, r_size, 0.25);
-    for (uword i = 0; i < r_size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     Mat<cx_float> B = A * rX;
 
@@ -270,7 +258,7 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_complex_float_test")
       for (uword j = 0; j < dX.n_rows; ++j)
         {
         REQUIRE( (float) std::abs((cx_float) X(j, i)) ==
-                 Approx((float) std::abs((cx_float) dX(j, i))) );
+                 Approx((float) std::abs((cx_float) dX(j, i))).epsilon(0.01) );
         }
       }
     }
@@ -291,10 +279,8 @@ TEST_CASE("fn_spsolve_sparse_complex_test")
 
     SpMat<cx_double> A;
     A.sprandu(size, size, 0.25);
-    for (uword i = 0; i < size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     Mat<cx_double> B = A * rX;
 
@@ -314,7 +300,7 @@ TEST_CASE("fn_spsolve_sparse_complex_test")
       for (uword j = 0; j < dX.n_rows; ++j)
         {
         REQUIRE( (double) std::abs((cx_double) X(j, i)) ==
-                 Approx((double) std::abs((cx_double) dX(j, i))) );
+                 Approx((double) std::abs((cx_double) dX(j, i))).epsilon(0.01) );
         }
       }
     }
@@ -334,10 +320,8 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_complex_test")
 
     SpMat<cx_double> A;
     A.sprandu(r_size, r_size, 0.25);
-    for (uword i = 0; i < r_size; ++i)
-      {
-      A(i, i) += rand();
-      }
+    A.diag().randu();
+    A.diag() += 1;
 
     Mat<cx_double> B = A * rX;
 
@@ -357,7 +341,7 @@ TEST_CASE("fn_spsolve_sparse_nonsymmetric_complex_test")
       for (uword j = 0; j < dX.n_rows; ++j)
         {
         REQUIRE( (double) std::abs((cx_double) X(j, i)) ==
-                 Approx((double) std::abs((cx_double) dX(j, i))) );
+                 Approx((double) std::abs((cx_double) dX(j, i))).epsilon(0.01) );
         }
       }
     }
@@ -374,10 +358,8 @@ TEST_CASE("fn_spsolve_delayed_sparse_test")
 
   sp_mat A;
   A.sprandu(size, size, 0.25);
-  for (uword i = 0; i < size; ++i)
-    {
-    A(i, i) += rand();
-    }
+  A.diag().randu();
+  A.diag() += 1;
 
   mat B = A * rX;
 
@@ -394,7 +376,7 @@ TEST_CASE("fn_spsolve_delayed_sparse_test")
     {
     for (uword j = 0; j < dX.n_rows; ++j)
       {
-      REQUIRE( (double) X(j, i) == Approx((double) dX(j, i)) );
+      REQUIRE( (double) X(j, i) == Approx((double) dX(j, i)).epsilon(0.01) );
       }
     }
   }
@@ -438,7 +420,7 @@ TEST_CASE("fn_spsolve_superlu_solve_test")
     {
     for (uword j = 0; j < x.n_rows; ++j)
       {
-      REQUIRE( (double) x(j, i) == Approx(dx(j, i)) );
+      REQUIRE( (double) x(j, i) == Approx(dx(j, i)).epsilon(0.01) );
       }
     }
   }
@@ -469,7 +451,7 @@ TEST_CASE("fn_spsolve_random_superlu_solve_test")
       {
       for (uword j = 0; j < x.n_rows; ++j)
         {
-        REQUIRE( x(j, i) == Approx((double) trueX(j, i)) );
+        REQUIRE( x(j, i) == Approx((double) trueX(j, i)).epsilon(0.01) );
         }
       }
     }
@@ -514,7 +496,7 @@ TEST_CASE("fn_spsolve_float_superlu_solve_test")
     {
     for (uword j = 0; j < x.n_rows; ++j)
       {
-      REQUIRE( (float) x(j, i) == Approx(dx(j, i)) );
+      REQUIRE( (float) x(j, i) == Approx(dx(j, i)).epsilon(0.01) );
       }
     }
   }
@@ -772,7 +754,7 @@ TEST_CASE("fn_spsolve_function_test")
     {
     for (uword j = 0; j < x.n_rows; ++j)
       {
-      REQUIRE( (double) trueX(j, i) == Approx(x(j, i)) );
+      REQUIRE( (double) trueX(j, i) == Approx(x(j, i)).epsilon(0.01) );
       }
     }
   }

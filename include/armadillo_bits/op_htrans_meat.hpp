@@ -20,7 +20,6 @@
 
 
 template<typename eT>
-arma_hot
 arma_inline
 void
 op_htrans::apply_mat_noalias(Mat<eT>& out, const Mat<eT>& A, const typename arma_not_cx<eT>::result* junk)
@@ -163,7 +162,6 @@ op_htrans::apply_mat_noalias_large(Mat< std::complex<T> >& out, const Mat< std::
 
 
 template<typename eT>
-arma_hot
 arma_inline
 void
 op_htrans::apply_mat_inplace(Mat<eT>& out, const typename arma_not_cx<eT>::result* junk)
@@ -221,7 +219,6 @@ op_htrans::apply_mat_inplace(Mat<eT>& out, const typename arma_cx_only<eT>::resu
 
 
 template<typename eT>
-arma_hot
 arma_inline
 void
 op_htrans::apply_mat(Mat<eT>& out, const Mat<eT>& A, const typename arma_not_cx<eT>::result* junk)
@@ -291,7 +288,7 @@ op_htrans::apply_proxy(Mat<typename T1::elem_type>& out, const T1& X)
       }
     else  // aliasing
       {
-      Mat<eT> out2(n_cols, n_rows);
+      Mat<eT> out2(n_cols, n_rows, arma_nozeros_indicator());
       
       eT* out_mem = out2.memptr();
       
@@ -327,7 +324,7 @@ op_htrans::apply_proxy(Mat<typename T1::elem_type>& out, const T1& X)
       }
     else // aliasing
       {
-      Mat<eT> out2(n_cols, n_rows);
+      Mat<eT> out2(n_cols, n_rows, arma_nozeros_indicator());
       
       eT* out2ptr = out2.memptr();
       
@@ -357,7 +354,7 @@ op_htrans::apply_direct(Mat<typename T1::elem_type>& out, const T1& X)
   arma_extra_debug_sigprint();
   
   // allow detection of in-place transpose
-  if(is_Mat<T1>::value || is_Mat<typename Proxy<T1>::stored_type>::value)
+  if(is_Mat<T1>::value || is_Mat<typename Proxy<T1>::stored_type>::value || (arma_config::openmp && Proxy<T1>::use_mp))
     {
     const unwrap<T1> U(X);
     

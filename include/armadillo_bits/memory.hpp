@@ -29,11 +29,6 @@ class memory
   template<typename eT> arma_inline static bool      is_aligned(const eT*  mem);
   template<typename eT> arma_inline static void mark_as_aligned(      eT*& mem);
   template<typename eT> arma_inline static void mark_as_aligned(const eT*& mem);
-  
-  // deprecated functions that will be removed
-  
-  inline arma_deprecated static uword enlarge_to_mult_of_chunksize(const uword n_elem);         //! NOTE: do not use this function; it will be removed
-  template<typename eT> inline arma_deprecated static eT* acquire_chunked(const uword n_elem);  //! NOTE: do not use this function; it will be removed
   };
 
 
@@ -54,7 +49,11 @@ memory::acquire(const uword n_elem)
   
   eT* out_memptr;
   
-  #if   defined(ARMA_USE_TBB_ALLOC)
+  #if   defined(ARMA_ALIEN_MEM_ALLOC_FUNCTION)
+    {
+    out_memptr = (eT *) ARMA_ALIEN_MEM_ALLOC_FUNCTION(sizeof(eT)*n_elem);
+    }
+  #elif defined(ARMA_USE_TBB_ALLOC)
     {
     out_memptr = (eT *) scalable_malloc(sizeof(eT)*n_elem);
     }
@@ -107,7 +106,11 @@ memory::release(eT* mem)
   {
   if(mem == nullptr)  { return; }
   
-  #if   defined(ARMA_USE_TBB_ALLOC)
+  #if   defined(ARMA_ALIEN_MEM_FREE_FUNCTION)
+    {
+    ARMA_ALIEN_MEM_FREE_FUNCTION( (void *)(mem) );
+    }
+  #elif defined(ARMA_USE_TBB_ALLOC)
     {
     scalable_free( (void *)(mem) );
     }
@@ -207,29 +210,6 @@ memory::mark_as_aligned(const eT*& mem)
     arma_ignore(mem);
     }
   #endif
-  }
-
-
-
-//! NOTE: do not use this function; it will be removed
-inline
-arma_deprecated
-uword
-memory::enlarge_to_mult_of_chunksize(const uword n_elem)   //! NOTE: do not use this function; it will be removed
-  {
-  return n_elem;
-  }
-
-
-
-//! NOTE: do not use this function; it will be removed
-template<typename eT>
-inline
-arma_deprecated
-eT*
-memory::acquire_chunked(const uword n_elem)   //! NOTE: do not use this function; it will be removed
-  {
-  return memory::acquire<eT>(n_elem);
   }
 
 

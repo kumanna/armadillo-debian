@@ -34,8 +34,13 @@
   
   namespace arma
     {
+    // NOTE: arma_rng_cxx11_instance is kept only for compatibility with earlier versions of armadillo
+    // TODO: remove arma_rng_cxx11_instance when the major version is bumped
+    
     #include "armadillo_bits/arma_rng_cxx11.hpp"
     thread_local arma_rng_cxx11 arma_rng_cxx11_instance;
+    
+    thread_local std::mt19937_64 mt19937_64_instance;
     }
 #endif
 
@@ -1191,6 +1196,28 @@ extern "C"
       arma_fortran_sans_prefix(arma_zgehrd)(n, ilo, ihi, a, lda, tao, work, lwork, info);
       }
     
+    
+    
+    void arma_fortran_with_prefix(arma_spstrf)(const char* uplo, const blas_int* n,    float* a, const blas_int* lda, blas_int* piv, blas_int* rank, const  float* tol,  float* work, blas_int* info)
+      {
+      arma_fortran_sans_prefix(arma_spstrf)(uplo, n, a, lda, piv, rank, tol, work, info);
+      }
+    
+    void arma_fortran_with_prefix(arma_dpstrf)(const char* uplo, const blas_int* n,   double* a, const blas_int* lda, blas_int* piv, blas_int* rank, const double* tol, double* work, blas_int* info)
+      {
+      arma_fortran_sans_prefix(arma_dpstrf)(uplo, n, a, lda, piv, rank, tol, work, info);
+      }
+    
+    void arma_fortran_with_prefix(arma_cpstrf)(const char* uplo, const blas_int* n, blas_cxf* a, const blas_int* lda, blas_int* piv, blas_int* rank, const  float* tol,  float* work, blas_int* info)
+      {
+      arma_fortran_sans_prefix(arma_cpstrf)(uplo, n, a, lda, piv, rank, tol, work, info);
+      }
+    
+    void arma_fortran_with_prefix(arma_zpstrf)(const char* uplo, const blas_int* n, blas_cxd* a, const blas_int* lda, blas_int* piv, blas_int* rank, const double* tol, double* work, blas_int* info)
+      {
+      arma_fortran_sans_prefix(arma_zpstrf)(uplo, n, a, lda, piv, rank, tol, work, info);
+      }
+    
   #endif
   
   
@@ -1583,29 +1610,29 @@ extern "C"
     
     
     
-    void wrapper_sgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b,  float c, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
+    void wrapper_sgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
       {
-      sgstrf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o);
+      sgstrf(a, b, d, e, f, g, h, i, j, k, l, m, n, o);
       }
     
-    void wrapper_dgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b, double c, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
+    void wrapper_dgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
       {
-      dgstrf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o);
+      dgstrf(a, b, d, e, f, g, h, i, j, k, l, m, n, o);
       }
     
-    void wrapper_cgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b,  float c, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
+    void wrapper_cgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
       {
-      cgstrf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o);
+      cgstrf(a, b, d, e, f, g, h, i, j, k, l, m, n, o);
       }
     
-    void wrapper_zgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b, double c, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
+    void wrapper_zgstrf(superlu::superlu_options_t* a, superlu::SuperMatrix* b, int d, int e, int* f, void* g, int h, int* i, int* j, superlu::SuperMatrix* k, superlu::SuperMatrix* l, superlu::GlobalLU_t* m, superlu::SuperLUStat_t* n, int* o)
       {
-      zgstrf(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o);
+      zgstrf(a, b, d, e, f, g, h, i, j, k, l, m, n, o);
       }
-
-
-
-
+    
+    
+    
+    
     void wrapper_sgstrs(superlu::trans_t a, superlu::SuperMatrix* b, superlu::SuperMatrix* c, int* d, int* e, superlu::SuperMatrix* f, superlu::SuperLUStat_t* g, int* h)
       {
       sgstrs(a, b, c, d, e, f, g, h);
@@ -1625,10 +1652,54 @@ extern "C"
       {
       zgstrs(a, b, c, d, e, f, g, h);
       }
-
-
-
-
+    
+    
+    
+    
+    float  wrapper_slangs(char* norm, superlu::SuperMatrix* A)
+      {
+      return slangs(norm, A);
+      }
+    
+    double wrapper_dlangs(char* norm, superlu::SuperMatrix* A)
+      {
+      return dlangs(norm, A);
+      }
+    
+    float  wrapper_clangs(char* norm, superlu::SuperMatrix* A)
+      {
+      return clangs(norm, A);
+      }
+    
+    double wrapper_zlangs(char* norm, superlu::SuperMatrix* A)
+      {
+      return zlangs(norm, A);
+      }
+    
+    
+    
+    void wrapper_sgscon(char* norm, superlu::SuperMatrix* L, superlu::SuperMatrix* U,  float anorm,  float* rcond, superlu::SuperLUStat_t* stat, int* info)
+      {
+      sgscon(norm, L, U, anorm, rcond, stat, info);
+      }
+    
+    void wrapper_dgscon(char* norm, superlu::SuperMatrix* L, superlu::SuperMatrix* U, double anorm, double* rcond, superlu::SuperLUStat_t* stat, int* info)
+      {
+      dgscon(norm, L, U, anorm, rcond, stat, info);
+      }
+    
+    void wrapper_cgscon(char* norm, superlu::SuperMatrix* L, superlu::SuperMatrix* U,  float anorm,  float* rcond, superlu::SuperLUStat_t* stat, int* info)
+      {
+      cgscon(norm, L, U, anorm, rcond, stat, info);
+      }
+    
+    void wrapper_zgscon(char* norm, superlu::SuperMatrix* L, superlu::SuperMatrix* U, double anorm, double* rcond, superlu::SuperLUStat_t* stat, int* info)
+      {
+      zgscon(norm, L, U, anorm, rcond, stat, info);
+      }
+    
+    
+    
     void wrapper_StatInit(superlu::SuperLUStat_t* a)
       {
       StatInit(a);
