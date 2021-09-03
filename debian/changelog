@@ -1,4 +1,4 @@
-armadillo (1:10.1.2+dfsg-7) unstable; urgency=medium
+armadillo (1:10.6.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release
   * Remove all patches (included upstream)
