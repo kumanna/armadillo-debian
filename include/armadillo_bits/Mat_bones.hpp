@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+// 
 // Copyright 2008-2016 Conrad Sanderson (http://conradsanderson.id.au)
 // Copyright 2008-2016 National ICT Australia (NICTA)
 // 
@@ -207,17 +209,17 @@ class Mat : public Base< eT, Mat<eT> >
   inline      const Col<eT>  unsafe_col(const uword col_num) const;
   
   
-  arma_inline       subview<eT> rows(const uword in_row1, const uword in_row2);
-  arma_inline const subview<eT> rows(const uword in_row1, const uword in_row2) const;
+  arma_inline       subview<eT>      rows(const uword in_row1, const uword in_row2);
+  arma_inline const subview<eT>      rows(const uword in_row1, const uword in_row2) const;
   
-  arma_inline       subview<eT> cols(const uword in_col1, const uword in_col2);
-  arma_inline const subview<eT> cols(const uword in_col1, const uword in_col2) const;
+  arma_inline       subview_cols<eT> cols(const uword in_col1, const uword in_col2);
+  arma_inline const subview_cols<eT> cols(const uword in_col1, const uword in_col2) const;
   
-  inline            subview<eT> rows(const span& row_span);
-  inline      const subview<eT> rows(const span& row_span) const;
+  inline            subview<eT>      rows(const span& row_span);
+  inline      const subview<eT>      rows(const span& row_span) const;
   
-  arma_inline       subview<eT> cols(const span& col_span);
-  arma_inline const subview<eT> cols(const span& col_span) const;
+  arma_inline       subview_cols<eT> cols(const span& col_span);
+  arma_inline const subview_cols<eT> cols(const span& col_span) const;
   
   
   arma_inline       subview<eT> submat(const uword in_row1, const uword in_col1, const uword in_row2, const uword in_col2);
@@ -241,11 +243,11 @@ class Mat : public Base< eT, Mat<eT> >
   inline       subview<eT> tail_rows(const uword N);
   inline const subview<eT> tail_rows(const uword N) const;
   
-  inline       subview<eT> head_cols(const uword N);
-  inline const subview<eT> head_cols(const uword N) const;
+  inline       subview_cols<eT> head_cols(const uword N);
+  inline const subview_cols<eT> head_cols(const uword N) const;
   
-  inline       subview<eT> tail_cols(const uword N);
-  inline const subview<eT> tail_cols(const uword N) const;
+  inline       subview_cols<eT> tail_cols(const uword N);
+  inline const subview_cols<eT> tail_cols(const uword N) const;
   
   template<typename T1> arma_inline       subview_elem1<eT,T1> elem(const Base<uword,T1>& a);
   template<typename T1> arma_inline const subview_elem1<eT,T1> elem(const Base<uword,T1>& a) const;
@@ -842,9 +844,9 @@ class Mat<eT>::fixed : public Mat<eT>
     template<typename T1, typename T2, typename eglue_type> inline Mat& operator=(const eGlue<T1, T2, eglue_type>& X);
   #endif
   
-  arma_inline const Op< Mat_fixed_type, op_htrans >  t() const;
-  arma_inline const Op< Mat_fixed_type, op_htrans > ht() const;
-  arma_inline const Op< Mat_fixed_type, op_strans > st() const;
+  arma_inline arma_warn_unused const Op< Mat_fixed_type, op_htrans >  t() const;
+  arma_inline arma_warn_unused const Op< Mat_fixed_type, op_htrans > ht() const;
+  arma_inline arma_warn_unused const Op< Mat_fixed_type, op_strans > st() const;
   
   arma_inline arma_warn_unused const eT& at_alt     (const uword i) const;
   
