@@ -111,6 +111,8 @@ op_logmat::apply_direct(Mat< std::complex<typename T1::elem_type> >& out, const 
   
   if(A.is_diagmat())
     {
+    arma_extra_debug_print("op_logmat: detected diagonal matrix");
+    
     const uword N = A.n_rows;
     
     out.zeros(N,N);  // aliasing can't happen as op_logmat is defined as cx_mat = op(mat)
@@ -133,7 +135,7 @@ op_logmat::apply_direct(Mat< std::complex<typename T1::elem_type> >& out, const 
     }
   
   #if defined(ARMA_OPTIMISE_SYMPD)
-    const bool try_sympd = sympd_helper::guess_sympd_anysize(A);
+    const bool try_sympd = sympd_helper::guess_sympd(A);
   #else
     const bool try_sympd = false;
   #endif
@@ -294,6 +296,8 @@ op_logmat_cx::apply_direct(Mat<typename T1::elem_type>& out, const Base<typename
   
   if(S.is_diagmat())
     {
+    arma_extra_debug_print("op_logmat_cx: detected diagonal matrix");
+    
     const uword N = S.n_rows;
     
     out.zeros(N,N);  // aliasing can't happen as S is generated
@@ -304,7 +308,7 @@ op_logmat_cx::apply_direct(Mat<typename T1::elem_type>& out, const Base<typename
     }
   
   #if defined(ARMA_OPTIMISE_SYMPD)
-    const bool try_sympd = sympd_helper::guess_sympd_anysize(S);
+    const bool try_sympd = sympd_helper::guess_sympd(S);
   #else
     const bool try_sympd = false;
   #endif

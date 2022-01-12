@@ -150,7 +150,7 @@ hr.greyline
 <a class="noprint" style="display:scroll; position:fixed; bottom:5px; right:5px;" href="#top"><font size=-1>[top]</font></a>
 
 <a name="top"></a>
-<big><b>API Documentation for Armadillo 10.7</b></big>
+<big><b>API Documentation for Armadillo 10.8</b></big>
 <br>
 <br>
 <br>
@@ -2272,7 +2272,7 @@ For "broadcasting" operations, use <a href="#each_colrow">.each_col()</a> and <a
 </li>
 <br>
 <li>
-A <i>std::logic_error</i> exception is thrown if incompatible object sizes are used
+If incompatible object sizes are used, a <i>std::logic_error</i> exception is thrown
 </li>
 <br>
 <li>
@@ -4667,6 +4667,7 @@ X.swap_rows(0,4);
 <li>
 See also:
 <ul>
+<li><a href="#reverse">reverse()</a></li>
 <li><a href="#flip">fliplr() &amp; flipud()</a></li>
 <li><a href="#swap">.swap()</a></li>
 </ul>
@@ -5347,7 +5348,6 @@ to modify the non-zero elements in a safer manner,
 use <a href="#transform">.transform()</a> or <a href="#for_each">.for_each()</a> instead of iterators;
 <br>
 writing a zero value into a sparse matrix through an iterator will invalidate all current iterators associated with the sparse matrix</li>
-<li>row iterators for sparse matrices are only useful with Armadillo 8.500 and later versions; in earlier versions they are inefficient
 </ul>
 </li>
 <br>
@@ -5769,15 +5769,15 @@ Member functions of any matrix or vector expression
 For real (non-complex) matrix:
 <ul>
 <li><i>.t()</i> provides a transposed copy of the matrix</li>
-<li><i>.st()</i> not applicable</li>
+<li><i>.st()</i> is not applicable</li>
 </ul>
 </li>
 <br>
 <li>
 For complex matrix:
 <ul>
-<li><i>.t()</i> provides a Hermitian transpose (ie. the conjugate of the elements is taken during the transpose)</li>
-<li><i>.st()</i> provides a transposed copy without taking the conjugate of the elements</li>
+<li><i>.t()</i> provides a Hermitian (conjugate) transposed copy (ie. signs of imaginary components are flipped)</li>
+<li><i>.st()</i> provides a simple transposed copy (ie. signs of imaginary components are not flipped)</li>
 </ul>
 </li>
 <br>
@@ -5795,9 +5795,12 @@ mat B = A.t();
 See also:
 <ul>
 <li><a href="#trans">trans()</a></li>
-<li><a href="#flip">fliplr() &amp; flipud()</a></li>
 <li><a href="#reverse">reverse()</a></li>
 <li><a href="#as_col_row">.as_col()&nbsp;/&nbsp;.as_row()</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Transpose">transpose in Wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/Transpose.html">transpose in MathWorld</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Conjugate_transpose">conjugate transpose in Wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/ConjugateTranspose.html">conjugate transpose in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -9485,7 +9488,7 @@ The argument <i><b>size(</b>X<b>)</b></i> can be replaced with <i><b>size(</b>n_
 </li>
 <br>
 <li>
-A&nbsp;<i>std::logic_error</i> exception is thrown if an index is out of range
+If an index is out of range, a <i>std::logic_error</i> exception is thrown
 </li>
 <br>
 <li>
@@ -10496,7 +10499,7 @@ See also:
 <br>
 <b>rank( X, tolerance )</b>
 <ul>
-<li>Return the rank of matrix <i>X</i></li>
+<li>Return the rank of matrix <i>X</i>, based on on singular value decomposition</li>
 <br>
 <li>Any singular values less than <i>tolerance</i> are treated as zero</li>
 <br>
@@ -10504,16 +10507,19 @@ See also:
 The <i>tolerance</i> argument is optional; by default <i>tolerance</i> is <i>max(m,n)&thinsp;&middot;&thinsp;max_sv&thinsp;&middot;&thinsp;datum::eps</i>, where:
 <ul>
 <li><i>m</i> = number of rows and <i>n</i> = number of columns in <i>X</i></li>
-<li><i>max_sv</i> = maximal singular value of <i>X</i></li>
+<li><i>max_sv</i> = maximum singular value of <i>X</i></li>
 <li><i>datum::eps</i> = difference between 1 and the least value greater than 1 that is representable</li>
 </ul>
 </li>
 <br>
-<li>The computation is based on singular value decomposition;
-if the decomposition fails, a <i>std::runtime_error</i> exception is thrown</li>
+<li>If the decomposition fails, a <i>std::runtime_error</i> exception is thrown</li>
 <br>
 <li>
 <b>Caveat:</b> to confirm whether a matrix is singular, use <a href="#rcond">rcond()</a> or <a href="#cond">cond()</a>
+</li>
+<br>
+<li>
+<b>Caveat:</b> to distinguish from <code>std::rank</code>, use the <code>arma::</code> prefix, ie. <code>arma::rank(X)</code>
 </li>
 <br>
 <li>
@@ -10828,8 +10834,9 @@ See also:
 <li><a href="#flip">fliplr() &amp; flipud()</a></li>
 <li><a href="#shift">shift()</a></li>
 <li><a href="#sort">sort()</a></li>
-<li><a href="#swap_rows">.swap_rows() &amp; .swap_cols()</a></li>
+<li><a href="#trans">trans()</a></li>
 <li><a href="#t_st_members">.t()</a></li>
+<li><a href="#swap_rows">.swap_rows() &amp; .swap_cols()</a></li>
 </ul>
 </li>
 <br>
@@ -11319,7 +11326,7 @@ For the <i>matrix_of_subscripts</i> argument, the subscripts must be stored in e
 </li>
 <br>
 <li>
-A&nbsp;<i>std::logic_error</i> exception is thrown if a subscript is out of range
+If a subscript is out of range, a <i>std::logic_error</i> exception is thrown
 </li>
 <br>
 <li>
@@ -11440,15 +11447,15 @@ See also:
 For real (non-complex) matrix:
 <ul>
 <li><i>trans()</i> provides a transposed copy of the matrix</li>
-<li><i>strans()</i> not applicable</li>
+<li><i>strans()</i> is not applicable</li>
 </ul>
 </li>
 <br>
 <li>
 For complex matrix:
 <ul>
-<li><i>trans()</i> provides a Hermitian transpose (ie. the conjugate of the elements is taken during the transpose)</li>
-<li><i>strans()</i> provides a transposed copy without taking the conjugate of the elements</li>
+<li><i>trans()</i> provides a Hermitian (conjugate) transposed copy (ie. signs of imaginary components are flipped)</li>
+<li><i>strans()</i> provides a simple transposed copy (ie. signs of imaginary components are not flipped)</li>
 </ul>
 </li>
 <br>
@@ -11468,6 +11475,11 @@ mat C = A.t();    // equivalent to trans(A), but more compact
 <ul>
 <li><a href="#t_st_members">.t()</a></li>
 <li><a href="#inplace_trans">inplace_trans()</a></li>
+<li><a href="#reverse">reverse()</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Transpose">transpose in Wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/Transpose.html">transpose in MathWorld</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Conjugate_transpose">conjugate transpose in Wikipedia</a></li>
+<li><a href="https://mathworld.wolfram.com/ConjugateTranspose.html">conjugate transpose in MathWorld</a></li>
 </ul>
 </li>
 <br>
@@ -12710,7 +12722,7 @@ The dimension of the range space is the number of singular values of <i>A</i> no
 The <i>tolerance</i> argument is optional; by default <i>tolerance</i> is <i>max(m,n)&thinsp;&middot;&thinsp;max_sv&thinsp;&middot;&thinsp;datum::eps</i>, where:
 <ul>
 <li><i>m</i> = number of rows and <i>n</i> = number of columns in <i>A</i></li>
-<li><i>max_sv</i> = maximal singular value of <i>A</i></li>
+<li><i>max_sv</i> = maximum singular value of <i>A</i></li>
 <li><i>datum::eps</i> = difference between 1 and the least value greater than 1 that is representable</li>
 </ul>
 </li>
@@ -12772,7 +12784,7 @@ The dimension of the range space is the number of singular values of <i>A</i> gr
 The <i>tolerance</i> argument is optional; by default <i>tolerance</i> is <i>max(m,n)&thinsp;&middot;&thinsp;max_sv&thinsp;&middot;&thinsp;datum::eps</i>, where:
 <ul>
 <li><i>m</i> = number of rows and <i>n</i> = number of columns in <i>A</i></li>
-<li><i>max_sv</i> = maximal singular value of <i>A</i></li>
+<li><i>max_sv</i> = maximum singular value of <i>A</i></li>
 <li><i>datum::eps</i> = difference between 1 and the least value greater than 1 that is representable</li>
 </ul>
 </li>
@@ -12831,7 +12843,7 @@ The computation is based on singular value decomposition
 <li>The default tolerance is <i>max(m,n)&thinsp;&middot;&thinsp;max_sv&thinsp;&middot;&thinsp;datum::eps</i>, where:
 <ul>
 <li><i>m</i> = number of rows and <i>n</i> = number of columns in <i>A</i></li>
-<li><i>max_sv</i> = maximal singular value of <i>A</i></li>
+<li><i>max_sv</i> = maximum singular value of <i>A</i></li>
 <li><i>datum::eps</i> = difference between 1 and the least value greater than 1 that is representable</li>
 </ul>
 </li>
@@ -13236,7 +13248,7 @@ See also:
 <li><a href="#rcond">rcond()</a></li>
 <li><a href="#roots">roots()</a></li>
 <li><a href="#syl">syl()</a></li>
-<li><a href="#spsolve">spsolve()</a></li>
+<li><a href="#spsolve">spsolve()</a> - solve sparse system of linear equations</li>
 <li><a href="http://mathworld.wolfram.com/LinearSystemofEquations.html">linear system of equations in MathWorld</a></li>
 <li><a href="http://en.wikipedia.org/wiki/Linear_system_of_equations">system of linear equations in Wikipedia</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Band_matrix">band matrix in Wikipedia</a></li>
@@ -13850,7 +13862,7 @@ spsolve(x, A, b, "superlu", opts);
 <li>
 See also:
 <ul>
-<li><a href="#solve">solve()</a></li>
+<li><a href="#solve">solve()</a> - solve dense system of linear equations</li>
 <!-- <li><a href="http://crd-legacy.lbl.gov/~xiaoye/SuperLU/">SuperLU home page</a> -->
 <li><a href="https://portal.nersc.gov/project/sparse/superlu/">SuperLU home page</a>
 <li><a href="http://mathworld.wolfram.com/LinearSystemofEquations.html">linear system of equations in MathWorld</a></li>
@@ -14889,7 +14901,7 @@ For vector <i>V</i>, produce a vector with the same orientation as <i>V</i> and 
 </li>
 <br>
 <li>
-For matrix <i>X</i>, produce a matrix with the quantiles for each column vector (<i>dim&thinsp;=&thinsp;0</i>) or each row vector (<i>dim&thinsp;=&thinsp;0</i>)
+For matrix <i>X</i>, produce a matrix with the quantiles for each column vector (<i>dim&thinsp;=&thinsp;0</i>) or each row vector (<i>dim&thinsp;=&thinsp;1</i>)
 </li>
 <br>
 <li>
@@ -16618,6 +16630,17 @@ model.save("my_model.gmm");
   </tr>
   <tr>
     <td style="vertical-align: top;">
+      <code>datum::tau</code>
+    </td>
+    <td style="vertical-align: top;">
+      &nbsp;
+    </td>
+    <td style="vertical-align: top;">
+      &tau;, the ratio of any circle's circumference to its radius (replacement of 2&pi;)
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;">
       <code>datum::inf</code>
     </td>
     <td style="vertical-align: top;">
@@ -16665,6 +16688,7 @@ model.save("my_model.gmm");
       square root of 2
     </td>
   </tr>
+  <!--
   <tr>
     <td style="vertical-align: top;">
       <code>datum::sqrt2pi</code>
@@ -16676,6 +16700,7 @@ model.save("my_model.gmm");
       square root of 2&pi;
     </td>
   </tr>
+  -->
   <tr>
     <td style="vertical-align: top;">
       <code>datum::eps</code>
@@ -17155,7 +17180,10 @@ See also:
 <li><a href="#fill">.fill()</a></li>
 <li><a href="http://en.wikipedia.org/wiki/NaN">NaN</a> in Wikipedia</li>
 <li><a href="http://en.wikipedia.org/wiki/Physical_constant">physical constant</a> in Wikipedia</li>
-<li><a href="http://cplusplus.com/reference/std/limits/numeric_limits/">std::numeric_limits</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Turn_(angle)">replacement of 2&pi; with &tau;</a> in Wikipedia</li>
+<li><a href="https://tauday.com/tau-manifesto">The Tau Manifesto</a> by Michael Hartl</li>
+<li><a href="http://cplusplus.com/reference/std/limits/numeric_limits/">std::numeric_limits</a> in cplusplus.com</li>
+<li><a href="https://en.cppreference.com/w/cpp/types/numeric_limits">std::numeric_limits</a> in cppreference.com</li>
 </ul>
 </li>
 <br>
@@ -19275,6 +19303,16 @@ List of additions and changes for each version:
 
 
 
+<a name="version_108"></a>
+<li>Version 10.8:
+<ul>
+<li>faster handling of symmetric matrices by <a href="#pinv">pinv()</a> and <a href="#rank">rank()</a></li>
+<li>faster handling of diagonal matrices by <a href="#inv_sympd">inv_sympd()</a>, <a href="#pinv">pinv()</a>, <a href="#rank">rank()</a></li>
+<li>expanded <a href="#norm">norm()</a> to handle integer vectors and matrices</li>
+<li>added <a href="#constants">datum::tau</a> to replace 2&pi;</li>
+</ul>
+</li>
+<br>
 <a name="version_107"></a>
 <li>Version 10.7:
 <ul>
