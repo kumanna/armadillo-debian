@@ -301,7 +301,7 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><a href="#iterators_cube">iterators&nbsp;(cubes)</a></td><td>&nbsp;</td><td>iterators and associated member functions for cubes</td></tr>
 <tr><td><a href="#iterators_spmat">iterators&nbsp;(sparse matrices)</a></td><td>&nbsp;</td><td>iterators and associated member functions for sparse matrices</td></tr>
 <tr><td><a href="#iterators_submat">iterators&nbsp;(submatrices)</a></td><td>&nbsp;</td><td>iterators and associated member functions for submatrices &amp; subcubes</td></tr>
-<tr><td><a href="#compat_container_fns">compat.&nbsp;container&nbsp;functions</a></td><td>&nbsp;</td><td>compatibility container functions</td></tr>
+<tr><td><a href="#compat_container_fns">compat.&thinsp;container&thinsp;functions</a></td><td>&nbsp;</td><td>compatibility container functions</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
 <tr><td><a href="#as_col_row">.as_col&nbsp;/&nbsp;.as_row&nbsp;</a></td><td>&nbsp;</td><td>return flattened matrix as column or row vector</td></tr>
 <tr><td><a href="#t_st_members">.t&nbsp;/&nbsp;.st&nbsp;</a></td><td>&nbsp;</td><td>return matrix transpose</td></tr>
@@ -331,7 +331,7 @@ Conrad Sanderson and Ryan Curtin.
 <tr><td><a href="#raw_print">.raw_print</a></td><td>&nbsp;</td><td>print object without formatting</td></tr>
 <tr><td><a href="#brief_print">.brief_print</a></td><td>&nbsp;</td><td>print object in abridged form</td></tr>
 <tr><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td><td><small><small>&nbsp;</small></small></td></tr>
-<tr><td><a href="#save_load_mat">.save/.load&nbsp;(matrices&nbsp;&amp;&nbsp;cubes)</a></td><td>&nbsp;</td><td>save/load matrices and cubes in files or streams</td></tr>
+<tr><td><a href="#save_load_mat">.save/.load&nbsp;(matrices&thinsp;&amp;&thinsp;cubes)</a></td><td>&nbsp;</td><td>save/load matrices and cubes in files or streams</td></tr>
 <tr><td><a href="#save_load_field">.save/.load&nbsp;(fields)</a></td><td>&nbsp;</td><td>save/load fields in files or streams</td></tr>
 </tbody>
 </table>
@@ -2268,7 +2268,7 @@ If the <code><b>*</b></code> operator is chained, Armadillo aims to find an effi
 </li>
 <br>
 <li>
-For "broadcasting" operations, use <a href="#each_colrow">.each_col()</a> and <a href="#each_colrow">.each_row()</a>
+Broadcasting operations are available via <a href="#each_colrow">.each_col()</a>, <a href="#each_colrow">.each_row()</a>, <a href="#each_slice">.each_slice()</a>  
 </li>
 <br>
 <li>
@@ -12832,7 +12832,7 @@ See also:
 <br><b>pinv( B, A, tolerance )</b>
 <br><b>pinv( B, A, tolerance, method )</b>
 <ul>
-<li>Moore-Penrose pseudo-inverse of matrix <i>A</i></li>
+<li>Moore-Penrose pseudo-inverse (generalised inverse) of matrix <i>A</i></li>
 <br>
 <li>
 The computation is based on singular value decomposition
@@ -12900,7 +12900,7 @@ See also:
 <li><a href="#constants">datum::eps</a></li>
 <li><a href="http://mathworld.wolfram.com/Pseudoinverse.html">Pseudoinverse in MathWorld</a></li>
 <li><a href="http://mathworld.wolfram.com/Moore-PenroseMatrixInverse.html">Moore-Penrose Matrix Inverse in MathWorld</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Moore-Penrose_pseudoinverse">Moore-Penrose pseudoinverse in Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Moore-Penrose_inverse">Moore-Penrose inverse in Wikipedia</a></li>
 </ul>
 </li>
 <br>
@@ -17161,8 +17161,6 @@ and some from
 Examples:
 <ul>
 <pre>
-cout &lt;&lt; "2.0 * pi = " &lt;&lt; 2.0 * datum::pi &lt;&lt; endl;
-
 cout &lt;&lt; "speed of light = " &lt;&lt; datum::c_0 &lt;&lt; endl;
 
 cout &lt;&lt; "log_max for floats = ";
@@ -17194,7 +17192,37 @@ See also:
 <b>wall_clock</b>
 <ul>
 <li>
-Simple wall clock timer class for measuring the number of elapsed seconds
+A simple timer class for measuring the number of elapsed seconds
+</li>
+<br>
+<li>
+An instance of the class has two member functions:
+<br>
+<br>
+<table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      <b><code>.tic()</code></b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      start the timer
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <b><code>.toc()</code></b>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<br>
+      </td>
+      <td style="vertical-align: top;">
+      return the number of seconds since the last call to <code>.tic()</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </li>
 <br>
 <li>
@@ -17203,21 +17231,20 @@ Examples:
 <pre>
 wall_clock timer;
 
-mat A(100, 100, fill::randu);
-mat B(100, 100, fill::randu);
-mat C;
-
 timer.tic();
 
-for(uword i=0; i&lt;100000; ++i)
-  {
-  C = A + B + A + B;
-  }
+// ... do something ...
 
 double n = timer.toc();
 
 cout &lt;&lt; "number of seconds: " &lt;&lt; n &lt;&lt; endl;
 </pre>
+</ul>
+</li>
+<li>
+See also:
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Elapsed_real_time">elapsed real time</a> in Wikipedia</li>
 </ul>
 </li>
 </ul>
