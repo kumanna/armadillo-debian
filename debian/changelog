@@ -1,3 +1,9 @@
+armadillo (1:10.8.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Kumar Appaiah <akumar@debian.org>  Mon, 07 Feb 2022 21:02:29 +0530
+
 armadillo (1:10.8.0+dfsg-1) unstable; urgency=medium
 
   * New upstream release
